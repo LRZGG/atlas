@@ -1,0 +1,222 @@
+<title>Unknownpedia, quatre directions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@400;600&family=Cutive+Mono&family=IM+Fell+DW+Pica:ital@0;1&family=Jost:ital,wght@0,200;0,300;0,400;1,200;1,300&family=Share+Tech+Mono&display=swap">
+<style>
+/* Mise en page : une colonne de lecture, quatre maquettes de la carte dessinées sur les vraies données. Fond neutre sombre pour ne pas influencer le jugement des couleurs. */
+:root { --bg: #0e0f11; --fg: #e8e9ec; --dim: #9aa0aa; --line: #262a31; --acc: #e8d9b0; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 "Archivo Narrow", system-ui, sans-serif; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 1040px; margin: 0 auto; padding-block: 40px 80px; }
+h1 { font: 700 30px/1.15 "Archivo Narrow", sans-serif; margin: 0 0 8px; text-wrap: balance; }
+h2 { font: 700 22px/1.2 "Archivo Narrow", sans-serif; margin: 0; }
+p { margin: 0 0 10px; max-width: 70ch; }
+.lead { color: var(--dim); font-size: 17px; }
+section { border-top: 1px solid var(--line); margin-top: 44px; padding-top: 28px; min-width: 0; }
+.tag { font: 12px "Archivo Narrow", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--acc); }
+canvas { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 620; border: 1px solid var(--line); margin: 14px 0; background: #000; }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 0; max-width: 70ch; }
+dt { color: var(--dim); }
+dd { margin: 0; min-width: 0; }
+button { font: inherit; color: var(--fg); background: transparent; border: 1px solid var(--dim); border-radius: 3px; padding: 6px 12px; cursor: pointer; }
+button:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+.note { color: var(--dim); font-size: 14px; border-left: 2px solid var(--line); padding-left: 12px; }
+@media (max-width: 560px) { dl { grid-template-columns: 1fr; } dt { margin-top: 6px; } }
+</style>
+<main>
+<p class="tag">Unknownpedia · maquettes</p>
+<h1>Quatre directions, sur la vraie carte</h1>
+<p class="lead">Chaque image ci-dessous est dessinée avec les vraies données : 4 516 sujets de recherche, leurs liens, 14 des 31 questions. Seul l'habillage change. Le texte en haut à gauche (qui dit ce qu'on regarde), la légende repliée en haut à droite, les sources en bas à droite et le « ? » des questions sont gardés dans les quatre.</p>
+<p class="note">La première direction est celle que le tirage au sort m'a assignée ; les trois autres sont des alternatives tirées au sort aussi, pas des variantes de mon goût. Les positions sont les vraies, mais le vide central est élargi à la main sur la carte actuelle ; ces maquettes sont des images fixes, sans zoom ni survol.</p>
+
+<section>
+<p class="tag">Direction assignée · mode sombre et mode clair</p>
+<h2>A. La chambre à bulles</h2>
+<p>Une photographie d'événement de physique des particules : chaque sujet de recherche est une trace, le vide au centre est ce qu'aucune trace ne traverse. Les neutres ne laissent aucune trace : on ne les voit que par la forme en « V » que leur désintégration dessine. Une question ouverte fonctionne de la même façon, on ne la voit qu'à ce qu'elle fait aux sujets qui l'entourent.</p>
+<canvas id="A" width="2000" height="1240" role="img" aria-label="Maquette A : traces claires sur fond noir, façon photographie de chambre à bulles, avec les questions marquées d'un point d'interrogation."></canvas>
+<p><button id="neg" type="button" aria-pressed="false">Voir en négatif (mode clair)</button></p>
+<dl>
+<dt>Matière</dt><dd>Négatif photographique : traits fins, grain, croix de repérage aux coins. Une seule teinte (blanc chaud), aucune couleur par domaine : les disciplines sont nommées en capitales dactylographiées. Le mode clair est le même film en négatif, ce qui répond à ceux qui veulent du blanc.</dd>
+<dt>Polices</dt><dd>Cutive Mono (légendes de film) et Archivo Narrow (titres). Les deux sont sous licence libre OFL, à reconfirmer sur Google Fonts avant l'usage final.</dd>
+<dt>Pourquoi</dt><dd>Il règle le défaut des couleurs « Google Chrome » en supprimant la couleur. La métaphore est vraie : l'inconnu se lit par ses effets sur le connu.</dd>
+<dt>Risque honnête</dt><dd>Le monochrome rend les quatre grands domaines moins faciles à distinguer. Et un fond noir avec des traits clairs reste proche de ce qu'on voit déjà : il faut que le grain, les repères et la typographie fassent la différence.</dd>
+</dl>
+</section>
+
+<section>
+<p class="tag">Alternative tirée au sort · clair</p>
+<h2>B. La planche de brevet</h2>
+<p>Une feuille de dessin technique : trait d'encre, numéros de référence reliés aux régions par des lignes courbes, tableau des numéros à droite, une encre carmin réservée à ce qui est examiné, ici les questions ouvertes.</p>
+<canvas id="B" width="2000" height="1240" role="img" aria-label="Maquette B : planche de dessin technique blanche, régions numérotées avec lignes de rappel, questions en carmin."></canvas>
+<dl>
+<dt>Matière</dt><dd>Papier blanc légèrement froid, encre noire, carmin pour l'inconnu seulement. Le cartouche « VISA » reçoit le nom du relecteur : l'étiquette « brouillon IA » y est naturelle.</dd>
+<dt>Polices</dt><dd>IM Fell DW Pica (titres, légende de figure) et Archivo Narrow. Licence OFL, à reconfirmer.</dd>
+<dt>Pourquoi</dt><dd>C'est le mode clair assumé, proche de ce que les scientifiques lisent (figures, LaTeX). Les crédits deviennent une note de bas de feuille, sans bulle à ajouter.</dd>
+<dt>Verdict du tirage</dt><dd>Gagne en identification du public et en clarté : l'unique encre carmin désigne l'inconnu sans légende.</dd>
+<dt>Risque honnête</dt><dd>La légende est un tableau toujours visible : sur mobile il faut le replier. Peut paraître sage, voire administratif, si on n'ose pas la précision du trait.</dd>
+</dl>
+</section>
+
+<section>
+<p class="tag">Alternative tirée au sort · sombre</p>
+<h2>C. Le sous-bois</h2>
+<p>Un sous-bois de nuit : les liens réels entre sous-disciplines deviennent des racines et des fils (la toile), les sujets des spores lumineuses, les questions des fleurs qui s'allument. Les 990 courbes ci-dessous sont les vrais liens mesurés.</p>
+<canvas id="C" width="2000" height="1240" role="img" aria-label="Maquette C : réseau de lignes fines vertes sur fond nuit, points lumineux colorés, questions en fleurs de lumière."></canvas>
+<dl>
+<dt>Matière</dt><dd>Terreau presque noir, racines vert pâle, spores cyan et lilas, la lumière blanche réservée à la question. Les domaines gardent quatre teintes douces.</dd>
+<dt>Police</dt><dd>Jost en graisse fine (licence OFL, à reconfirmer), qui « s'allume » à l'approche.</dd>
+<dt>Pourquoi</dt><dd>Il met en scène ce que la carte mesure vraiment : les liens. C'est la toile d'araignée et la nature que tu évoquais, avec des données derrière.</dd>
+<dt>Verdict du tirage</dt><dd>Fuse très bien avec le graphe de liens, mais retombe dans le fond noir à lueurs, un cliché de la science-fiction.</dd>
+<dt>Risque honnête</dt><dd>Le plus beau au premier regard, le moins sobre. Les halos peuvent faire jeu vidéo, ce que tu veux éviter.</dd>
+</dl>
+</section>
+
+<section>
+<p class="tag">Alternative tirée au sort · sombre</p>
+<h2>D. L'oscilloscope</h2>
+<p>Un banc de mesure : quadrillage gravé de 8 × 8 divisions, traces de phosphore vert, curseurs et affichages ambre, boutons crantés pour le zoom et le filtre par domaine.</p>
+<canvas id="D" width="2000" height="1240" role="img" aria-label="Maquette D : écran d'oscilloscope avec quadrillage, points phosphorescents verts et questions en ambre."></canvas>
+<dl>
+<dt>Matière</dt><dd>Verre noir, quadrillage gris gravé, phosphore vert, ambre pour l'inconnu et les mesures.</dd>
+<dt>Polices</dt><dd>Share Tech Mono et Barlow Condensed (licence OFL, à reconfirmer).</dd>
+<dt>Pourquoi</dt><dd>Le quadrillage rend l'idée de « carte mesurée » très lisible, et le vocabulaire (curseur, échelle, seuil) correspond aux vrais contrôles de la carte.</dd>
+<dt>Verdict du tirage</dt><dd>Fuse mal : une carte n'est pas un signal dans le temps, l'image reste un habillage.</dd>
+<dt>Risque honnête</dt><dd>Vert phosphore sur noir : un cliché « hacker ». À éviter si tu veux être pris au sérieux par des chercheurs.</dd>
+</dl>
+</section>
+
+<section>
+<p class="tag">Pour décider</p>
+<h2>Et pour le choix clair / sombre</h2>
+<p>Deux des quatre directions sont claires (B, ou A en négatif). Ce n'est pas un détail : une carte de l'inconnu gagne à avoir un fond sombre, mais les scientifiques lisent surtout en clair. Le plus simple est de livrer les deux, avec une bascule, en partant de A, dont le négatif fonctionne naturellement.</p>
+<p class="note">La porte de sortie reste ouverte : si tu préfères le classique (fond blanc sobre, comme Wikipédia), je le fais sans fantaisie. Tu peux aussi demander de retirer les trois autres et d'en tirer de nouvelles.</p>
+</section>
+</main>
+
+<script>
+const DATA = /*DATA*/null;
+const W = 1000, H = 620, CX = 520, CY = 312, SIDE = 560;
+const { T, F, S, L, Q } = DATA, N = T.length / 4;
+let x0 = 9, x1 = -9, y0 = 9, y1 = -9;
+for (let i = 0; i < N; i++) { x0 = Math.min(x0, T[i * 4]); x1 = Math.max(x1, T[i * 4]); y0 = Math.min(y0, T[i * 4 + 1]); y1 = Math.max(y1, T[i * 4 + 1]); }
+const sc = SIDE / Math.max(x1 - x0, y1 - y0), mx = (x0 + x1) / 2, my = (y0 + y1) / 2;
+const P = (x, y) => [CX + (x - mx) * sc, CY + (y - my) * sc];
+const rng = a => () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+// Centre de chaque discipline (moyenne pondérée par le nombre d'articles).
+const FC = F.map(() => ({ x: 0, y: 0, w: 0 }));
+for (let i = 0; i < N; i++) { const f = FC[T[i * 4 + 3]], w = T[i * 4 + 2] + 1; f.x += T[i * 4] * w; f.y += T[i * 4 + 1] * w; f.w += w; }
+FC.forEach(f => { f.x /= f.w; f.y /= f.w; });
+const QSEL = ['Conscience', 'Origine de la vie', 'Vie ailleurs', "Composition de l'univers", 'Intérieur de la Terre', 'Ce qui nous rend humains', 'Mémoire', 'Coopération', 'P contre NP', 'Limites du calcul', 'Ampleur du réchauffement', 'Après le pétrole', 'Peu de gènes', 'Hypothèse de Riemann'];
+const QS = Q.filter(q => QSEL.includes(q.n));
+const cv = id => { const c = document.getElementById(id), x = c.getContext('2d'); x.setTransform(2, 0, 0, 2, 0, 0); x.globalCompositeOperation = 'source-over'; x.setLineDash([]); x.letterSpacing = '0px'; return x; };
+// Étiquettes sans chevauchement : une étiquette qui en recouvre une autre est sautée.
+const labeller = () => { const used = []; return (x, txt, px, py, size, align = 'left') => { const w = x.measureText(txt).width, bx = align === 'right' ? px - w : align === 'center' ? px - w / 2 : px, r = [bx - 3, py - size, bx + w + 3, py + 4]; if (used.some(u => !(r[2] < u[0] || r[0] > u[2] || r[3] < u[1] || r[1] > u[3]))) return false; used.push(r); x.textAlign = align; x.fillText(txt, px, py); return true; }; };
+const lines = (x, arr, px, py, step) => arr.forEach((t, i) => x.fillText(t, px, py + i * step));
+const infoBubble = (x, col, label, font) => { x.strokeStyle = col; x.fillStyle = col; x.lineWidth = 1; x.beginPath(); x.arc(W - 34, H - 34, 10, 0, 7); x.stroke(); x.font = 'italic 14px ' + font; x.textAlign = 'center'; x.fillText('i', W - 34, H - 29); x.textAlign = 'right'; x.font = '12px ' + font; x.fillText(label, W - 52, H - 30); };
+const MORE = ['Chaque trace est un sujet', 'de recherche réel. Le vide au', "centre : peu d'articles relient", 'ces disciplines. Chaque « ? »', 'est une question ouverte.'];
+
+function drawA(neg) {
+  const x = cv('A'), ink = neg ? '22,22,22' : '226,229,223', R = rng(7), acc = neg ? '#111' : '#f4ecd0';
+  x.fillStyle = neg ? '#e7e6e1' : '#09090a'; x.fillRect(0, 0, W, H);
+  const g = x.createRadialGradient(CX, CY, 60, CX, CY, 520); g.addColorStop(0, neg ? 'rgba(255,255,255,.3)' : 'rgba(44,46,44,.4)'); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
+  x.fillStyle = `rgba(${ink},.05)`; for (let i = 0; i < 5000; i++) x.fillRect(R() * W, R() * H, 1, 1);
+  x.lineWidth = .6; x.lineCap = 'round';
+  for (let i = 0; i < N; i++) {
+    const [px, py] = P(T[i * 4], T[i * 4 + 1]), w = T[i * 4 + 2], d = F[T[i * 4 + 3]].d; let a = Math.atan2(py - CY, px - CX) + (d % 2 ? 1 : -1) * 1.2 + (R() - .5) * 1.1;
+    const len = 7 + Math.log10(1 + w) * 5.5, cu = (R() - .5) * .14 + (d - 1.5) * .05; let qx = px, qy = py;
+    x.strokeStyle = `rgba(${ink},${(.16 + R() * .3).toFixed(2)})`; x.beginPath(); x.moveTo(px, py);
+    for (let k = 0; k < 10; k++) { qx += Math.cos(a) * len / 10; qy += Math.sin(a) * len / 10; a += cu; x.lineTo(qx, qy); } x.stroke();
+  }
+  x.strokeStyle = `rgba(${ink},.55)`; x.lineWidth = 1;
+  for (const [fx, fy] of [[CX - SIDE / 2, CY - SIDE / 2], [CX + SIDE / 2, CY - SIDE / 2], [CX - SIDE / 2, CY + SIDE / 2], [CX + SIDE / 2, CY + SIDE / 2]]) { x.beginPath(); x.moveTo(fx - 7, fy); x.lineTo(fx + 7, fy); x.moveTo(fx, fy - 7); x.lineTo(fx, fy + 7); x.stroke(); }
+  const lab = labeller(); x.fillStyle = `rgba(${ink},.8)`; x.font = '10px "Cutive Mono", monospace';
+  [...F.keys()].sort((a, b) => FC[b].w - FC[a].w).slice(0, 12).forEach(f => { const [px, py] = P(FC[f].x, FC[f].y), a = Math.atan2(py - CY, px - CX); lab(x, F[f].n.toUpperCase(), px + Math.cos(a) * 22, py + Math.sin(a) * 22, 10, Math.cos(a) > 0 ? 'left' : 'right'); });
+  for (const q of QS) {
+    const [px, py] = P(q.x, q.y), ac = Math.atan2(CY - py, CX - px);
+    x.strokeStyle = acc; x.lineWidth = 1; x.beginPath(); for (const s of [-.34, .34]) { x.moveTo(px, py); x.lineTo(px + Math.cos(ac + s) * 18, py + Math.sin(ac + s) * 18); } x.stroke();
+    x.setLineDash([2, 4]); x.beginPath(); x.moveTo(px, py); x.lineTo(px + Math.cos(ac) * 46, py + Math.sin(ac) * 46); x.stroke(); x.setLineDash([]);
+    x.beginPath(); x.arc(px, py, 5, 0, 7); x.stroke(); x.fillStyle = acc; x.font = '700 15px "Archivo Narrow", sans-serif'; x.textAlign = 'center'; x.fillText('?', px, py + 5);
+    x.font = 'italic 13px "Archivo Narrow", sans-serif'; lab(x, q.n, px + (px < CX ? -12 : 12), py - 8, 13, px < CX ? 'right' : 'left');
+  }
+  x.fillStyle = `rgb(${ink})`; x.textAlign = 'left'; x.font = '700 22px "Archivo Narrow", sans-serif'; x.letterSpacing = '4px'; x.fillText('UNKNOWNPEDIA', 28, 46); x.letterSpacing = '0px';
+  x.font = '11px "Cutive Mono", monospace'; x.fillStyle = `rgba(${ink},.55)`; x.fillText('RELEVÉ 2026-11-16 · N = 4 516', 28, 66);
+  x.font = '13px "Cutive Mono", monospace'; x.fillStyle = `rgba(${ink},.85)`; lines(x, MORE, 28, 96, 17);
+  x.strokeStyle = `rgba(${ink},.5)`; x.strokeRect(W - 150, 22, 124, 28); x.fillStyle = `rgba(${ink},.85)`; x.font = '12px "Cutive Mono", monospace'; x.textAlign = 'left'; x.fillText('LÉGENDE        +', W - 140, 40);
+  x.textAlign = 'right'; x.fillText('FR · en', W - 26, 72); x.textAlign = 'left'; x.fillText('→ Visite guidée', 28, H - 30);
+  infoBubble(x, `rgba(${ink},.8)`, 'Sources et licences', '"Cutive Mono", monospace');
+}
+
+function drawB() {
+  const x = cv('B'), ink = '#15181d', red = '#b3122f', R = rng(3);
+  x.fillStyle = '#fbfbf9'; x.fillRect(0, 0, W, H); x.strokeStyle = ink; x.lineWidth = 1.6; x.strokeRect(14.5, 14.5, W - 29, H - 29); x.lineWidth = .6; x.strokeRect(20.5, 20.5, W - 41, H - 41);
+  for (let i = 0; i < N; i++) { const [px, py] = P(T[i * 4], T[i * 4 + 1]); x.fillStyle = 'rgba(21,24,29,.55)'; x.beginPath(); x.arc(px, py, .45 + Math.log10(1 + T[i * 4 + 2]) * .17, 0, 7); x.fill(); }
+  // Numéros de référence : régions classées par angle autour du centre, poussées vers l'extérieur, puis écartées entre elles.
+  const ord = [...F.keys()].sort((a, b) => Math.atan2(FC[a].y - my, FC[a].x - mx) - Math.atan2(FC[b].y - my, FC[b].x - mx)), pos = {};
+  ord.forEach(f => { const [px, py] = P(FC[f].x, FC[f].y), a = Math.atan2(py - CY, px - CX), d = Math.hypot(px - CX, py - CY); pos[f] = { ax: px, ay: py, x: CX + Math.cos(a) * (d + 42), y: CY + Math.sin(a) * (d + 42) }; });
+  for (let it = 0; it < 40; it++) for (const a of ord) for (const b of ord) if (a < b) { const p = pos[a], q = pos[b], dx = q.x - p.x, dy = q.y - p.y, d = Math.hypot(dx, dy) || 1; if (d < 22) { const s = (22 - d) / 2 / d; p.x -= dx * s; p.y -= dy * s; q.x += dx * s; q.y += dy * s; } }
+  ord.forEach((f, i) => {
+    const p = pos[f]; x.strokeStyle = ink; x.lineWidth = .7; x.beginPath(); x.moveTo(p.x, p.y); x.quadraticCurveTo((p.x + p.ax) / 2 + (p.ay - p.y) * .12, (p.y + p.ay) / 2 - (p.ax - p.x) * .12, p.ax, p.ay); x.stroke();
+    x.fillStyle = ink; x.beginPath(); x.arc(p.ax, p.ay, 2.2, 0, 7); x.fill(); x.fillStyle = '#fbfbf9'; x.beginPath(); x.arc(p.x, p.y, 9, 0, 7); x.fill(); x.stroke();
+    x.fillStyle = ink; x.font = '11px "Archivo Narrow", sans-serif'; x.textAlign = 'center'; x.fillText(i + 1, p.x, p.y + 4);
+  });
+  const lab = labeller();
+  for (const q of QS) { const [px, py] = P(q.x, q.y); x.fillStyle = red; x.font = '700 17px "IM Fell DW Pica", serif'; x.textAlign = 'center'; x.fillText('?', px, py + 5); x.font = 'italic 13px "IM Fell DW Pica", serif'; lab(x, q.n, px + (px < CX ? -10 : 10), py - 9, 13, px < CX ? 'right' : 'left'); }
+  x.fillStyle = ink; x.textAlign = 'center';
+  x.font = 'italic 15px "IM Fell DW Pica", serif'; x.fillText('Fig. 1. Quatre mille cinq cent seize sujets de recherche ; en carmin, les questions ouvertes.', W / 2, H - 52);
+  x.textAlign = 'left'; x.font = '15px "IM Fell DW Pica", serif'; x.letterSpacing = '3px'; x.fillText('UNKNOWNPEDIA', 34, 74); x.letterSpacing = '0px';
+  x.font = '12px "Archivo Narrow", sans-serif'; x.fillStyle = '#3b4048'; lines(x, MORE, 34, 98, 16);
+  x.font = '11px "Archivo Narrow", sans-serif'; ord.forEach((f, i) => { x.fillStyle = ink; x.textAlign = 'right'; x.fillText(i + 1, 862, 82 + i * 14.2); x.textAlign = 'left'; x.fillText(F[f].n, 872, 82 + i * 14.2); });
+  x.strokeStyle = ink; x.lineWidth = .8; x.strokeRect(842, 470, 130, 58); x.font = '10px "Archivo Narrow", sans-serif'; x.fillStyle = red; x.textAlign = 'left'; x.fillText('VISA :  non relu', 850, 488); x.fillStyle = '#3b4048'; lines(x, ['Brouillon rédigé avec une IA,', 'références vérifiées.'], 850, 504, 12);
+  x.font = '10px "Archivo Narrow", sans-serif'; x.fillStyle = '#3b4048'; x.textAlign = 'left'; x.fillText('Données : OpenAlex (CC0) · Extraits : Wikipédia (CC BY-SA) · Polices et code : licences libres.', 34, H - 30);
+}
+
+function drawC() {
+  const x = cv('C'), R = rng(11), hue = ['88,214,255', '169,148,255', '138,255,176', '255,158,196'];
+  const g = x.createRadialGradient(CX, CY, 20, CX, CY, 560); g.addColorStop(0, '#0a1016'); g.addColorStop(1, '#030507'); x.fillStyle = g; x.fillRect(0, 0, W, H);
+  x.lineWidth = .7; L.forEach(([i, j], k) => {
+    const [ax, ay] = P(...S[i]), [bx, by] = P(...S[j]), dx = bx - ax, dy = by - ay, s = k % 2 ? 1 : -1, bright = R() < .1;
+    x.strokeStyle = bright ? 'rgba(170,255,215,.24)' : 'rgba(120,235,185,.075)'; x.beginPath(); x.moveTo(ax, ay); x.quadraticCurveTo((ax + bx) / 2 - dy * .16 * s, (ay + by) / 2 + dx * .16 * s, bx, by); x.stroke();
+  });
+  x.globalCompositeOperation = 'lighter';
+  for (let i = 0; i < N; i++) {
+    const [px, py] = P(T[i * 4], T[i * 4 + 1]), r = .6 + Math.log10(1 + T[i * 4 + 2]) * .2, c = hue[F[T[i * 4 + 3]].d];
+    x.fillStyle = `rgba(${c},.05)`; x.beginPath(); x.arc(px, py, r * 4.5, 0, 7); x.fill(); x.fillStyle = `rgba(${c},.55)`; x.beginPath(); x.arc(px, py, r, 0, 7); x.fill();
+  }
+  x.lineWidth = .6; for (let k = 0; k < 280; k++) { const i = Math.floor(R() * N), [px, py] = P(T[i * 4], T[i * 4 + 1]), len = 6 + R() * 12; x.strokeStyle = 'rgba(200,255,235,.2)'; x.beginPath(); x.moveTo(px, py - 3); x.lineTo(px + (R() - .5) * 3, py - 3 - len); x.stroke(); }
+  const lab = labeller();
+  for (const q of QS) {
+    const [px, py] = P(q.x, q.y), b = x.createRadialGradient(px, py, 0, px, py, 34); b.addColorStop(0, 'rgba(255,255,255,.5)'); b.addColorStop(.35, 'rgba(190,230,255,.12)'); b.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = b; x.beginPath(); x.arc(px, py, 34, 0, 7); x.fill();
+  }
+  x.globalCompositeOperation = 'source-over';
+  for (const q of QS) { const [px, py] = P(q.x, q.y); x.fillStyle = '#fff'; x.font = '300 21px Jost, sans-serif'; x.textAlign = 'center'; x.fillText('?', px, py + 7); x.font = 'italic 300 13px Jost, sans-serif'; x.fillStyle = 'rgba(235,245,255,.9)'; lab(x, q.n, px + (px < CX ? -16 : 16), py - 10, 13, px < CX ? 'right' : 'left'); }
+  x.textAlign = 'left'; x.fillStyle = 'rgba(235,245,255,.95)'; x.font = '300 15px Jost, sans-serif'; x.letterSpacing = '7px'; x.fillText('UNKNOWNPEDIA', 28, 46); x.letterSpacing = '0px';
+  x.font = '300 13px Jost, sans-serif'; x.fillStyle = 'rgba(220,235,245,.7)'; lines(x, MORE, 28, 78, 18);
+  x.textAlign = 'right'; x.font = '200 13px Jost, sans-serif'; x.fillStyle = 'rgba(200,235,225,.85)'; x.fillText('légende  ◦', W - 26, 42); x.fillText('FR · en', W - 26, 66);
+  x.textAlign = 'left'; x.fillText('→ visite guidée', 28, H - 30); infoBubble(x, 'rgba(200,235,225,.8)', 'sources et licences', 'Jost, sans-serif');
+}
+
+function drawD() {
+  const x = cv('D'), gx = CX - SIDE / 2, gy = CY - SIDE / 2, cell = SIDE / 8, amber = '#ffb347', R = rng(5);
+  x.fillStyle = '#030706'; x.fillRect(0, 0, W, H); x.fillStyle = '#05100c'; x.fillRect(gx, gy, SIDE, SIDE);
+  x.strokeStyle = 'rgba(120,160,140,.2)'; x.lineWidth = 1; for (let i = 0; i <= 8; i++) { x.beginPath(); x.moveTo(gx + i * cell, gy); x.lineTo(gx + i * cell, gy + SIDE); x.moveTo(gx, gy + i * cell); x.lineTo(gx + SIDE, gy + i * cell); x.stroke(); }
+  x.strokeStyle = 'rgba(140,190,165,.45)'; x.beginPath(); x.moveTo(CX, gy); x.lineTo(CX, gy + SIDE); x.moveTo(gx, CY); x.lineTo(gx + SIDE, CY); x.stroke();
+  for (let i = 0; i <= 40; i++) { const t = i * cell / 5, l = i % 5 ? 4 : 8; x.beginPath(); x.moveTo(gx + t, CY - l); x.lineTo(gx + t, CY + l); x.moveTo(CX - l, gy + t); x.lineTo(CX + l, gy + t); x.stroke(); }
+  x.strokeStyle = '#2a332f'; x.lineWidth = 3; x.strokeRect(gx - 6, gy - 6, SIDE + 12, SIDE + 12);
+  x.globalCompositeOperation = 'lighter';
+  for (let i = 0; i < N; i++) { const [px, py] = P(T[i * 4], T[i * 4 + 1]), r = .7 + Math.log10(1 + T[i * 4 + 2]) * .17; x.fillStyle = 'rgba(80,255,140,.06)'; x.beginPath(); x.arc(px, py, r * 4, 0, 7); x.fill(); x.fillStyle = 'rgba(120,255,165,.6)'; x.beginPath(); x.arc(px, py, r, 0, 7); x.fill(); }
+  x.globalCompositeOperation = 'source-over';
+  const lab = labeller(), cur = QS.find(q => q.n === 'Conscience');
+  for (const q of QS) { const [px, py] = P(q.x, q.y); x.fillStyle = amber; x.font = '700 16px "Share Tech Mono", monospace'; x.textAlign = 'center'; x.fillText('?', px, py + 5); x.font = '13px "Barlow Condensed", sans-serif'; lab(x, q.n.toUpperCase(), px + (px < CX ? -11 : 11), py - 9, 13, px < CX ? 'right' : 'left'); }
+  { const [px, py] = P(cur.x, cur.y); x.strokeStyle = amber; x.lineWidth = .8; x.setLineDash([4, 4]); x.beginPath(); x.moveTo(gx, py); x.lineTo(gx + SIDE, py); x.moveTo(px, gy); x.lineTo(px, gy + SIDE); x.stroke(); x.setLineDash([]); x.fillStyle = amber; x.font = '12px "Share Tech Mono", monospace'; x.textAlign = 'left'; x.fillText('CURSEUR  x ' + cur.x.toFixed(2) + '  y ' + cur.y.toFixed(2), gx + 8, gy + SIDE - 10); }
+  x.textAlign = 'left'; x.fillStyle = amber; x.font = '14px "Share Tech Mono", monospace'; x.fillText('CH1  UNKNOWNPEDIA', 28, 44); x.font = '12px "Share Tech Mono", monospace'; x.fillStyle = 'rgba(255,179,71,.75)'; x.fillText('N 4516    Q 31    8 × 8', 28, 64);
+  x.fillStyle = 'rgba(150,230,185,.85)'; x.font = '600 13px "Barlow Condensed", sans-serif'; x.letterSpacing = '1px'; lines(x, ['CHAQUE POINT : UN SUJET DE', 'RECHERCHE RÉEL. LE VIDE :', "PEU D'ARTICLES RELIENT CES", 'DISCIPLINES. CHAQUE « ? » :', 'UNE QUESTION OUVERTE.'], 28, 96, 17); x.letterSpacing = '0px';
+  x.strokeStyle = amber; x.lineWidth = 1; x.strokeRect(W - 150, 22, 124, 28); x.fillStyle = amber; x.font = '12px "Share Tech Mono", monospace'; x.fillText('LÉGENDE      ▸', W - 140, 40); x.textAlign = 'right'; x.fillText('FR | en', W - 26, 72);
+  [['ZOOM', 60], ['DOMAINE', 120], ['SEUIL', 180]].forEach(([t, kx], i) => { const ky = H - 64; x.strokeStyle = 'rgba(150,230,185,.7)'; x.lineWidth = 1.2; x.beginPath(); x.arc(kx, ky, 14, 0, 7); x.stroke(); const a = -2.2 + i * .9; x.beginPath(); x.moveTo(kx + Math.cos(a) * 5, ky + Math.sin(a) * 5); x.lineTo(kx + Math.cos(a) * 13, ky + Math.sin(a) * 13); x.stroke(); x.fillStyle = 'rgba(150,230,185,.8)'; x.font = '600 11px "Barlow Condensed", sans-serif'; x.textAlign = 'center'; x.fillText(t, kx, ky + 28); });
+  infoBubble(x, 'rgba(150,230,185,.8)', 'SOURCES ET LICENCES', '"Barlow Condensed", sans-serif');
+}
+
+let neg = false; const btn = document.getElementById('neg');
+btn.addEventListener('click', () => { neg = !neg; btn.setAttribute('aria-pressed', neg); btn.textContent = neg ? 'Revenir au noir' : 'Voir en négatif (mode clair)'; drawA(neg); });
+const specs = ['13px "Cutive Mono"', '700 22px "Archivo Narrow"', 'italic 13px "Archivo Narrow"', '15px "IM Fell DW Pica"', 'italic 15px "IM Fell DW Pica"', '300 13px Jost', 'italic 300 13px Jost', '14px "Share Tech Mono"', '600 13px "Barlow Condensed"'];
+const draw = () => { drawA(neg); drawB(); drawC(); drawD(); };
+draw(); Promise.allSettled(specs.map(s => document.fonts.load(s))).then(draw);
+</script>
