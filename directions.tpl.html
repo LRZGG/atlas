@@ -1,0 +1,170 @@
+<title>Carte de l'inconnu, trois directions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Spectral:ital,wght@0,300;0,400;1,400&display=swap">
+<style>
+/* Layout : une colonne de lecture, trois planches empilées qui montrent les mêmes données réelles sous trois formes. Un seul univers, sombre par choix ; la planche « relief » est une feuille de papier posée dessus. */
+:root {
+  color-scheme: dark;
+  --void: #06080d;
+  --line: #1e2633;
+  --fg: #e9ecf2;
+  --dim: #94a0b4;
+  --paper: #f3efe6;
+  --ink: #1c3454;
+  --d0: #7fa6e0; --d1: #74c2a0; --d2: #dc8d7c; --d3: #cfae63;
+  --serif: "Spectral", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+body { background: var(--void); color: var(--fg); font: 16px/1.6 var(--sans); padding-block: 48px 96px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 900px; margin: 0 auto; display: grid; gap: 72px; }
+h1 { font: 300 clamp(34px, 6vw, 60px)/1.02 var(--serif); letter-spacing: -0.015em; margin: 0 0 16px; text-wrap: balance; }
+h2 { font: 400 32px/1.1 var(--serif); margin: 0 0 10px; }
+p { margin: 0; max-width: 66ch; color: var(--dim); }
+p b { color: var(--fg); font-weight: 500; }
+#key { display: flex; flex-wrap: wrap; gap: 8px 22px; list-style: none; padding: 0; margin: 22px 0 0; font-size: 14px; }
+#key li { display: flex; align-items: center; gap: 8px; }
+#key i { width: 10px; height: 10px; border-radius: 50%; }
+section { display: grid; gap: 20px; }
+figure { margin: 0; position: relative; }
+canvas { display: block; width: 100%; aspect-ratio: 1; max-width: 100%; border: 1px solid var(--line); }
+#tree { aspect-ratio: 3 / 2; }
+.tip { position: absolute; pointer-events: none; background: var(--void); border: 1px solid var(--dim); padding: 7px 10px; font-size: 13px; line-height: 1.35; max-width: 260px; z-index: 2; }
+.tip b { display: block; font-weight: 500; }
+.tip span { color: var(--dim); }
+dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 16px; margin: 0; font-size: 15px; }
+dt { color: var(--dim); }
+dd { margin: 0; }
+footer { font-size: 13.5px; color: var(--dim); border-top: 1px solid var(--line); padding-top: 20px; max-width: 66ch; }
+@media (max-width: 600px) { #tree { aspect-ratio: 4 / 5; } main { gap: 56px; } h2 { font-size: 26px; } }
+</style>
+
+<main>
+  <header>
+    <h1>Les mêmes données, trois façons de les voir</h1>
+    <p>Ici, plus rien n'est inventé. Chaque point est l'un des <b id="nT"></b> sujets de recherche répertoriés par la base ouverte OpenAlex, avec son vrai nombre d'articles. Passe la souris ou le doigt sur une planche pour lire un sujet. Les questions ouvertes ne sont pas encore posées dessus.</p>
+    <ul id="key"></ul>
+  </header>
+
+  <section>
+    <div><h2>Le ciel</h2><p>Chaque étoile est un sujet. Plus elle est grosse et brillante, plus on a publié dessus. Deux sujets voisins partagent beaucoup d'articles. Le noir, c'est là où presque personne ne travaille.</p></div>
+    <figure><canvas id="sky" role="img" aria-label="Les sujets de recherche dessinés comme des étoiles, regroupés par discipline."></canvas><div class="tip" hidden></div></figure>
+    <dl><dt>Force</dt><dd>Donne envie de se promener, et les vides se voient tout de suite.</dd><dt>Faiblesse</dt><dd>Difficile de comparer deux régions avec précision.</dd></dl>
+  </section>
+
+  <section>
+    <div><h2>Le relief</h2><p>La même disposition, lue comme une carte d'altitude. Plus l'encre est foncée, plus la recherche est dense. Le papier nu, c'est qu'aucun sujet n'existe à cet endroit.</p></div>
+    <figure><canvas id="relief" role="img" aria-label="La densité de recherche dessinée en courbes de niveau sur fond clair."></canvas><div class="tip" hidden></div></figure>
+    <dl><dt>Force</dt><dd>On lit d'un coup les sommets et les plaines, comme sur une carte de randonnée.</dd><dt>Faiblesse</dt><dd>Plus froid, et les sujets isolés disparaissent dans le fond.</dd></dl>
+  </section>
+
+  <section>
+    <div><h2>Le territoire</h2><p>La surface de chaque case est proportionnelle au nombre d'articles. Les cases sont rangées par discipline, puis par grand domaine.</p></div>
+    <figure><canvas id="tree" role="img" aria-label="Les sous-disciplines dessinées comme des cases dont la surface est proportionnelle au nombre d'articles."></canvas><div class="tip" hidden></div></figure>
+    <dl><dt>Force</dt><dd>Le plus simple à comprendre : on voit où l'humanité met ses efforts.</dd><dt>Faiblesse</dt><dd>Aucun vide et aucune notion de proximité, donc nulle part où poser l'inconnu.</dd></dl>
+  </section>
+
+  <footer>Données : OpenAlex, relevées le <span id="date"></span>. Les compteurs manifestement faux sont plafonnés à <span id="cap"></span> articles et signalés au survol. Les noms des sujets sont encore en anglais.</footer>
+</main>
+
+<script>
+const DATA = /*DATA*/null;
+const { D, F, S, L, T, cap } = DATA, N = T.length / 5;
+const css = getComputedStyle(document.documentElement), tok = n => css.getPropertyValue(n).trim();
+const DOM = [0, 1, 2, 3].map(i => tok('--d' + i)), SANS = tok('--sans'), SERIF = tok('--serif');
+const fmt = n => n.toLocaleString('fr-FR');
+const LMIN = 2, LMAX = Math.log10(cap), nrm = w => Math.max(0, Math.min(1, (Math.log10(Math.max(w, 1)) - LMIN) / (LMAX - LMIN)));
+document.getElementById('nT').textContent = fmt(N);
+document.getElementById('date').textContent = new Date(DATA.fetched).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+document.getElementById('cap').textContent = fmt(cap);
+D.forEach((n, i) => { const li = document.createElement('li'), d = document.createElement('i'); d.style.background = DOM[i]; li.append(d, n); document.getElementById('key').appendChild(li); });
+
+// Centre de chaque discipline = moyenne pondérée de ses sous-disciplines.
+F.forEach((f, i) => { let x = 0, y = 0, w = 0; S.forEach(s => { if (s.f === i) { x += s.x * s.w; y += s.y * s.w; w += s.w; } }); f.x = x / w; f.y = y / w; f.w = w; });
+
+function setup(id) { const cv = document.getElementById(id), r = cv.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2); cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return { cv, ctx, W: r.width, H: r.height, dpr }; }
+const proj = (W, H) => { const m = Math.min(W, H) / 2 * 0.96; return [x => W / 2 + x * m, y => H / 2 + y * m]; };
+function labels(ctx, X, Y, W, fill, halo, font) {
+  ctx.font = font; ctx.textAlign = 'center'; ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = halo; ctx.fillStyle = fill;
+  // Les plus grosses disciplines d'abord ; une étiquette qui en chevaucherait une autre est omise (elle reste lisible au survol).
+  const placed = [];
+  for (const f of F.slice().sort((a, b) => b.w - a.w)) {
+    const x = X(f.x), y = Y(f.y), hw = ctx.measureText(f.n).width / 2 + 6, box = [x - hw, y - 16, x + hw, y + 8];
+    if (placed.some(p => box[0] < p[2] && box[2] > p[0] && box[1] < p[3] && box[3] > p[1])) continue;
+    placed.push(box); ctx.strokeText(f.n, x, y); ctx.fillText(f.n, x, y);
+  }
+}
+const hits = {};
+function nearest(X, Y) { return (px, py) => { let best = -1, bd = 196; for (let i = 0; i < N; i++) { const dx = X(T[i * 5]) - px, dy = Y(T[i * 5 + 1]) - py, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = i; } } if (best < 0) return null; const w = T[best * 5 + 2], s = S[T[best * 5 + 3]]; return [T[best * 5 + 4], F[s.f].n + ' · ' + s.n, fmt(w) + ' articles' + (w > cap ? ' (compteur douteux)' : '')]; }; }
+
+function drawSky() {
+  const { ctx, W, H } = setup('sky'), [X, Y] = proj(W, H);
+  ctx.fillStyle = tok('--void'); ctx.fillRect(0, 0, W, H);
+  ctx.globalCompositeOperation = 'lighter';
+  ctx.strokeStyle = '#8fa9d2'; ctx.globalAlpha = 0.07; ctx.lineWidth = 1; ctx.beginPath();
+  for (const [i, j] of L) { ctx.moveTo(X(S[i].x), Y(S[i].y)); ctx.lineTo(X(S[j].x), Y(S[j].y)); }
+  ctx.stroke();
+  const k = W / 900;
+  for (let i = 0; i < N; i++) { const v = nrm(T[i * 5 + 2]); ctx.globalAlpha = 0.18 + 0.82 * v * v; ctx.fillStyle = DOM[F[S[T[i * 5 + 3]].f].d]; ctx.beginPath(); ctx.arc(X(T[i * 5]), Y(T[i * 5 + 1]), (0.5 + 2.6 * v * v) * Math.max(k, 0.6), 0, 6.283); ctx.fill(); }
+  ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+  labels(ctx, X, Y, W, tok('--fg'), tok('--void'), `500 ${W < 500 ? 10 : 12}px ${SANS}`);
+  hits.sky = nearest(X, Y);
+}
+
+function drawRelief() {
+  const { cv, ctx, W, H, dpr } = setup('relief'), [X, Y] = proj(W, H);
+  const G = 260, g = new Float32Array(G * G), R = 7, sig = 2.4, m = G / 2 * 0.96;
+  for (let i = 0; i < N; i++) { const v = nrm(T[i * 5 + 2]), cx = G / 2 + T[i * 5] * m, cy = G / 2 + T[i * 5 + 1] * m, wt = 0.05 + v * v; for (let dy = -R; dy <= R; dy++) for (let dx = -R; dx <= R; dx++) { const gx = Math.round(cx) + dx, gy = Math.round(cy) + dy; if (gx < 0 || gy < 0 || gx >= G || gy >= G) continue; const ex = gx - cx, ey = gy - cy; g[gy * G + gx] += wt * Math.exp(-(ex * ex + ey * ey) / (2 * sig * sig)); } }
+  let mx = 0; for (const v of g) if (v > mx) mx = v;
+  const pw = cv.width, ph = cv.height, img = ctx.createImageData(pw, ph), px = img.data, B = 8, paper = [243, 239, 230], ink = [28, 52, 84];
+  // Le canvas peut être rectangulaire : la grille carrée est centrée dedans.
+  const side = Math.min(pw, ph), ox = (pw - side) / 2, oy = (ph - side) / 2;
+  for (let y = 0; y < ph; y++) for (let x = 0; x < pw; x++) {
+    const fx = (x - ox) / side * (G - 1), fy = (y - oy) / side * (G - 1), o = (y * pw + x) * 4; let v = 0;
+    if (fx >= 0 && fy >= 0 && fx < G - 1 && fy < G - 1) { const x0 = fx | 0, y0 = fy | 0, tx = fx - x0, ty = fy - y0, a = g[y0 * G + x0], b = g[y0 * G + x0 + 1], c = g[(y0 + 1) * G + x0], d = g[(y0 + 1) * G + x0 + 1]; v = Math.pow(((a * (1 - tx) + b * tx) * (1 - ty) + (c * (1 - tx) + d * tx) * ty) / mx, 0.42); }
+    const lv = v * B, band = Math.floor(lv); let t = band < 1 ? 0 : 0.1 + 0.9 * (band - 1) / (B - 1) * 0.85;
+    if (band >= 1 && lv - band < 0.08) t = Math.min(1, t + 0.16);
+    px[o] = paper[0] + (ink[0] - paper[0]) * t; px[o + 1] = paper[1] + (ink[1] - paper[1]) * t; px[o + 2] = paper[2] + (ink[2] - paper[2]) * t; px[o + 3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  labels(ctx, X, Y, W, '#0b1626', tok('--paper'), `italic 400 ${W < 500 ? 12 : 15}px ${SERIF}`);
+  hits.relief = nearest(X, Y);
+}
+
+function squarify(items, x, y, w, h) {
+  const total = items.reduce((a, i) => a + i.v, 0), sc = w * h / total; let row = [];
+  const worst = (r, side) => { const s = r.reduce((a, i) => a + i.v * sc, 0); let mx = 0, mn = Infinity; for (const i of r) { mx = Math.max(mx, i.v * sc); mn = Math.min(mn, i.v * sc); } return Math.max(side * side * mx / (s * s), s * s / (side * side * mn)); };
+  const flush = () => { const s = row.reduce((a, i) => a + i.v * sc, 0); if (w >= h) { const rw = s / h; let yy = y; for (const i of row) { const rh = i.v * sc / rw; i.r = [x, yy, rw, rh]; yy += rh; } x += rw; w -= rw; } else { const rh = s / w; let xx = x; for (const i of row) { const rw = i.v * sc / rh; i.r = [xx, y, rw, rh]; xx += rw; } y += rh; h -= rh; } row = []; };
+  for (const it of items) { const side = Math.min(w, h); if (row.length && worst([...row, it], side) > worst(row, side)) flush(); row.push(it); }
+  if (row.length) flush();
+}
+function drawTree() {
+  const { ctx, W, H } = setup('tree');
+  ctx.fillStyle = tok('--void'); ctx.fillRect(0, 0, W, H);
+  const doms = D.map((n, d) => ({ n, d, kids: F.map((f, i) => ({ f, i })).filter(o => o.f.d === d).map(o => ({ n: o.f.n, kids: S.filter(s => s.f === o.i && s.w > 0).map(s => ({ s, v: s.w })).sort((a, b) => b.v - a.v) })) }));
+  doms.forEach(d => { d.kids.forEach(f => f.v = f.kids.reduce((a, k) => a + k.v, 0)); d.kids.sort((a, b) => b.v - a.v); d.v = d.kids.reduce((a, k) => a + k.v, 0); });
+  doms.sort((a, b) => b.v - a.v); squarify(doms, 0, 0, W, H);
+  const cells = [];
+  for (const d of doms) { squarify(d.kids, d.r[0] + 2, d.r[1] + 2, d.r[2] - 4, d.r[3] - 4);
+    for (const f of d.kids) { squarify(f.kids, f.r[0] + 1.5, f.r[1] + 1.5, Math.max(1, f.r[2] - 3), Math.max(1, f.r[3] - 3));
+      ctx.fillStyle = DOM[d.d];
+      for (const k of f.kids) { const [x, y, w, h] = k.r; ctx.globalAlpha = 0.9; ctx.fillRect(x + 0.5, y + 0.5, Math.max(0.5, w - 1), Math.max(0.5, h - 1)); cells.push([x, y, w, h, k.s, f.n]); }
+    }
+  }
+  ctx.globalAlpha = 1; ctx.fillStyle = '#0a0e15'; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+  for (const d of doms) for (const f of d.kids) { const [x, y, w, h] = f.r; ctx.font = `500 ${w > 150 ? 14 : 12}px ${SANS}`; if (h > 26 && ctx.measureText(f.n).width < w - 14) ctx.fillText(f.n, x + 8, y + 8); }
+  ctx.textBaseline = 'alphabetic';
+  hits.tree = (px, py) => { for (const [x, y, w, h, s, fn] of cells) if (px >= x && px < x + w && py >= y && py < y + h) return [s.n, fn, fmt(s.w) + ' articles']; return null; };
+}
+
+for (const id of ['sky', 'relief', 'tree']) {
+  const cv = document.getElementById(id), tip = cv.nextElementSibling;
+  const show = e => { const r = cv.getBoundingClientRect(), px = e.clientX - r.left, py = e.clientY - r.top, h = hits[id] && hits[id](px, py); if (!h) { tip.hidden = true; return; }
+    tip.textContent = ''; const b = document.createElement('b'), a = document.createElement('span'), c = document.createElement('div'); b.textContent = h[0]; a.textContent = h[1]; c.textContent = h[2]; tip.append(b, a, c); tip.hidden = false;
+    tip.style.left = Math.max(0, Math.min(px + 14, r.width - tip.offsetWidth)) + 'px'; tip.style.top = (py + 16 + tip.offsetHeight > r.height ? py - tip.offsetHeight - 10 : py + 16) + 'px'; };
+  cv.addEventListener('pointermove', show); cv.addEventListener('pointerdown', show); cv.addEventListener('pointerleave', () => { tip.hidden = true; });
+}
+function drawAll() { drawSky(); drawRelief(); drawTree(); }
+let lastW = 0;
+new ResizeObserver(() => { const w = document.getElementById('sky').clientWidth; if (w && w !== lastW) { lastW = w; drawAll(); } }).observe(document.getElementById('sky'));
+if (document.fonts) document.fonts.ready.then(() => { if (lastW) drawAll(); });
+</script>

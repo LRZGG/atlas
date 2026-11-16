@@ -1,0 +1,290 @@
+<title>Carte de l'inconnu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Spectral:wght@300;400&display=swap">
+<style>
+/* Layout : une toile cosmique plein écran (le connu = filaments lumineux, l'inconnu = vides noirs, les questions = anneaux tendus vers le vide), un panneau de lecture à côté. Un seul univers visuel, sombre par choix : c'est le ciel. */
+:root {
+  color-scheme: dark;
+  --void: #06080d;
+  --panel: #0c1018;
+  --line: #1e2633;
+  --fg: #e9ecf2;
+  --dim: #94a0b4;
+  --filament: #86a8dc;
+  --question: #f3dfb2;
+  --serif: "Spectral", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+html, body { height: 100%; }
+body { background: var(--void); color: var(--fg); font: 15px/1.55 var(--sans); display: grid; grid-template-columns: minmax(0, 1fr) 400px; overflow: hidden; }
+#stage { position: relative; min-width: 0; min-height: 0; }
+canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+#brand { position: absolute; top: 24px; left: max(24px, env(safe-area-inset-left, 0px)); right: 24px; pointer-events: none; }
+#brand h1 { font: 300 clamp(26px, 3.6vw, 52px)/1 var(--serif); letter-spacing: -0.01em; margin: 0; }
+#brand p { font-size: 14px; color: var(--dim); margin: 10px 0 0; max-width: 34ch; }
+#zoom { position: absolute; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); left: max(24px, env(safe-area-inset-left, 0px)); display: flex; gap: 6px; }
+button, input { font: inherit; color: inherit; }
+button { background: transparent; border: 1px solid var(--line); border-radius: 3px; cursor: pointer; transition: border-color .15s, background-color .15s; }
+button:hover { border-color: var(--dim); }
+:focus-visible { outline: 2px solid var(--question); outline-offset: 2px; }
+svg { display: block; }
+#zoom button { width: 38px; height: 38px; background: var(--panel); display: grid; place-items: center; }
+#panel { background: var(--panel); border-left: 1px solid var(--line); overflow-y: auto; min-height: 0; padding-block: 24px; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.small { font-size: 12.5px; color: var(--dim); }
+#legend { list-style: none; margin: 0 0 22px; padding: 0 0 18px; border-bottom: 1px solid var(--line); display: grid; gap: 10px; }
+#legend li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; align-items: center; font-size: 13.5px; }
+#legend b { font-weight: 500; }
+#legend span { color: var(--dim); }
+#search { width: 100%; box-sizing: border-box; background: var(--void); border: 1px solid var(--line); border-radius: 3px; padding: 10px 12px; }
+#search::placeholder { color: var(--dim); }
+#chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 14px; }
+#chips button { padding: 4px 11px; font-size: 13px; color: var(--dim); }
+#chips button[aria-pressed="true"] { color: var(--void); background: var(--question); border-color: var(--question); }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.row label { display: flex; gap: 8px; align-items: center; font-size: 13.5px; }
+#count { font-variant-numeric: tabular-nums; }
+#list { list-style: none; margin: 16px 0 0; padding: 0; border-top: 1px solid var(--line); }
+#list button { width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 12px 0 12px 24px; position: relative; display: block; font: 400 19px/1.25 var(--serif); }
+#list button::before { content: ""; position: absolute; left: 2px; top: 18px; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--question); }
+#list button.seen::before { background: var(--question); }
+#list button:hover { background: var(--void); }
+#list .small { display: block; margin-top: 3px; font-family: var(--sans); }
+#back { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px 6px 9px; font-size: 13.5px; margin-bottom: 26px; }
+#detail h2 { font: 400 34px/1.08 var(--serif); letter-spacing: -0.01em; margin: 0 0 8px; text-wrap: balance; }
+#dDomain { margin: 0 0 20px; }
+#dWhy { margin: 0 0 22px; font-size: 16px; max-width: 60ch; }
+#detail dl { margin: 0; border-top: 1px solid var(--line); }
+#detail dt { margin-top: 14px; }
+#detail dd { margin: 3px 0 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+#links { display: grid; gap: 6px; margin-top: 8px; }
+#links button { text-align: left; padding: 9px 12px; font: 400 17px/1.25 var(--serif); }
+#note { margin: 20px 0 0; }
+@media (max-width: 800px) {
+  body { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) 48%; }
+  #panel { border-left: 0; border-top: 1px solid var(--line); padding-block: 18px; }
+  #brand { top: 16px; left: max(16px, env(safe-area-inset-left, 0px)); }
+  #brand p { display: none; }
+  #zoom { left: max(16px, env(safe-area-inset-left, 0px)); bottom: 12px; }
+  #detail h2 { font-size: 26px; }
+}
+@media (prefers-reduced-motion: reduce) { button { transition: none; } }
+</style>
+
+<div id="stage">
+  <canvas id="c" role="img" aria-label="Carte en forme de toile cosmique. Les filaments lumineux figurent ce qui est connu, les vides noirs ce qui est inconnu, et les anneaux clairs tendus vers les vides sont les questions ouvertes. La liste à côté contient les mêmes questions."></canvas>
+  <div id="brand"><h1>Carte de l'inconnu</h1><p>Les questions que la science n'a pas encore résolues, là où le savoir s'arrête.</p></div>
+  <div id="zoom">
+    <button id="zin" aria-label="Zoomer"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v12M2 8h12"/></svg></button>
+    <button id="zout" aria-label="Dézoomer"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12"/></svg></button>
+    <button id="zfit" aria-label="Voir toute la carte"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></button>
+  </div>
+</div>
+
+<aside id="panel">
+  <div id="browse">
+    <ul id="legend">
+      <li><svg width="44" height="20" viewBox="0 0 44 20" aria-hidden="true"><path d="M3 14 14 6l10 7 9-8 8 6" fill="none" stroke="#86a8dc" stroke-opacity=".5"/><g fill="#86a8dc"><circle cx="3" cy="14" r="1.6"/><circle cx="14" cy="6" r="2.2"/><circle cx="24" cy="13" r="1.4"/><circle cx="33" cy="5" r="1.9"/><circle cx="41" cy="11" r="1.3"/></g></svg><div><b>Filaments lumineux</b> <span>ce qu'on sait</span></div></li>
+      <li><svg width="44" height="20" viewBox="0 0 44 20" aria-hidden="true"><rect x="8" y="1" width="28" height="18" fill="#06080d" stroke="#1e2633"/></svg><div><b>Vides noirs</b> <span>ce qu'on ignore</span></div></li>
+      <li><svg width="44" height="20" viewBox="0 0 44 20" aria-hidden="true"><path d="M4 10h24" stroke="#f3dfb2" stroke-opacity=".5"/><circle cx="4" cy="10" r="1.6" fill="#86a8dc"/><circle cx="33" cy="10" r="4.5" fill="#06080d" stroke="#f3dfb2" stroke-width="1.5"/></svg><div><b>Anneaux clairs</b> <span>une question ouverte, tendue vers le vide</span></div></li>
+    </ul>
+    <input id="search" type="search" placeholder="sommeil, planète, nombres premiers" aria-label="Chercher une question">
+    <div id="chips"></div>
+    <div class="row">
+      <label><input id="pc" type="checkbox"> Attaquable avec un ordinateur</label>
+      <span class="small" id="count"></span>
+    </div>
+    <ul id="list"></ul>
+    <p id="note" class="small">Prototype. Les 29 questions sont réelles et écrites à la main. Les points des filaments sont décoratifs : ils ne correspondent pas encore à de vrais articles.</p>
+  </div>
+  <div id="detail" hidden>
+    <button id="back"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 8H2M7 3 2 8l5 5"/></svg>Toutes les questions</button>
+    <h2 id="dTitle"></h2>
+    <p id="dDomain" class="small"></p>
+    <p id="dWhy"></p>
+    <dl>
+      <dt class="small">Ce qui bloque</dt><dd id="dBlock"></dd>
+      <dt class="small">Ce qu'il faut pour l'attaquer</dt><dd id="dHow"></dd>
+      <dt class="small">Questions voisines</dt><dd><div id="links"></div></dd>
+    </dl>
+  </div>
+</aside>
+
+<script>
+const D = {
+  cosmos:   { n: 'Cosmos',   x: 0,    y: -620 },
+  matiere:  { n: 'Matière',  x: 540,  y: -330 },
+  maths:    { n: 'Maths',    x: 640,  y: 260 },
+  machines: { n: 'Machines', x: 230,  y: 640 },
+  cerveau:  { n: 'Cerveau',  x: -330, y: 600 },
+  vivant:   { n: 'Vivant',   x: -660, y: 160 },
+  terre:    { n: 'Terre',    x: -520, y: -380 }
+};
+const BRIDGES = [['cosmos','matiere'],['matiere','maths'],['maths','machines'],['machines','cerveau'],['cerveau','vivant'],['vivant','terre'],['terre','cosmos'],['cosmos','vivant'],['matiere','terre'],['maths','cerveau']];
+const HOW = { pc: 'Un ordinateur et des données publiques', lab: 'Un laboratoire', obs: "De grands instruments d'observation", theo: 'De la théorie pure' };
+const Q = [
+  { id:'c1', d:'cosmos', q:"De quoi est faite la matière noire ?", why:"On mesure son effet gravitationnel sur les galaxies, mais on n'a jamais détecté la particule qui la composerait.", block:"Des détecteurs de plus en plus sensibles tournent depuis des décennies sans signal confirmé.", how:'obs', links:['p1','c2'] },
+  { id:'c2', d:'cosmos', q:"Qu'est-ce qui accélère l'expansion de l'univers ?", why:"L'expansion s'accélère au lieu de ralentir. On appelle la cause « énergie noire » sans savoir ce que c'est.", block:"On ne l'observe qu'indirectement, par son effet sur des galaxies très lointaines.", how:'obs', links:['c1','c3'] },
+  { id:'c3', d:'cosmos', q:"Pourquoi deux mesures de la vitesse d'expansion ne s'accordent-elles pas ?", why:"La mesure faite sur l'univers jeune et celle faite sur l'univers proche donnent deux valeurs différentes.", block:"Personne ne sait si c'est une erreur de mesure ou une physique nouvelle.", how:'pc', links:['c2'] },
+  { id:'c4', d:'cosmos', q:"Sommes-nous seuls ?", why:"On connaît des milliers de planètes autour d'autres étoiles et aucune trace de vie ailleurs que sur Terre.", block:"On n'a qu'un seul exemple de vie, donc aucune idée de sa fréquence.", how:'obs', links:['v1','c5'] },
+  { id:'c5', d:'cosmos', q:"Y a-t-il une neuvième planète dans le système solaire ?", why:"Les orbites de petits corps lointains semblent alignées, comme si une planète invisible les guidait.", block:"Elle serait très sombre et très loin. Les relevés du ciel n'ont rien trouvé pour l'instant.", how:'pc', links:['c4'] },
+  { id:'p1', d:'matiere', q:"Comment unir la gravité et la mécanique quantique ?", why:"Les deux théories marchent chacune dans leur domaine et se contredisent là où elles se rencontrent.", block:"Les énergies nécessaires pour tester les théories candidates sont hors de portée.", how:'theo', links:['c1','p2'] },
+  { id:'p2', d:'matiere', q:"Pourquoi y a-t-il plus de matière que d'antimatière ?", why:"Le Big Bang aurait dû en produire autant de chaque. Elles se seraient annulées et il ne resterait rien.", block:"Les asymétries mesurées en accélérateur sont bien trop faibles pour l'expliquer.", how:'lab', links:['p1'] },
+  { id:'p3', d:'matiere', q:"Un supraconducteur à température et pression ambiantes est-il possible ?", why:"Un tel matériau transporterait l'électricité sans perte. Aucune annonce n'a résisté à la vérification.", block:"On ne sait pas prédire par le calcul quels matériaux seront supraconducteurs.", how:'lab', links:['a1'] },
+  { id:'p4', d:'matiere', q:"Peut-on décrire complètement la turbulence ?", why:"Les équations des fluides existent depuis deux siècles. On ne sait toujours pas prouver qu'elles ont toujours une solution régulière.", block:"Le mouvement se joue à toutes les échelles en même temps, ce qui dépasse les maths et les ordinateurs actuels.", how:'theo', links:['m1','t3'] },
+  { id:'m1', d:'maths', q:"Les nombres premiers suivent-ils la règle de Riemann ?", why:"L'hypothèse de Riemann, posée en 1859, décrirait la répartition exacte des nombres premiers.", block:"Elle est vérifiée par ordinateur sur des milliers de milliards de cas, mais personne ne sait la prouver.", how:'theo', links:['m4','p4'] },
+  { id:'m2', d:'maths', q:"Vérifier une solution est-il aussi difficile que la trouver ?", why:"C'est le problème P = NP. S'ils sont égaux, une grande partie de la cryptographie s'effondre.", block:"Aucune technique de preuve connue ne semble suffisante.", how:'theo', links:['a2','m3'] },
+  { id:'m3', d:'maths', q:"La suite de Collatz retombe-t-elle toujours sur 1 ?", why:"On divise par 2 si le nombre est pair, sinon on multiplie par 3 et on ajoute 1. Tous les nombres testés finissent à 1.", block:"L'énoncé tient en une ligne, et aucun outil mathématique n'a prise dessus.", how:'pc', links:['m2','m4'] },
+  { id:'m4', d:'maths', q:"Tout nombre pair est-il la somme de deux nombres premiers ?", why:"La conjecture de Goldbach date de 1742. Elle est vraie pour tous les nombres testés.", block:"Les méthodes actuelles prouvent des versions plus faibles, pas l'énoncé complet.", how:'theo', links:['m1','m3'] },
+  { id:'a1', d:'machines', q:"Que se passe-t-il à l'intérieur d'un réseau de neurones ?", why:"On sait entraîner ces systèmes sans savoir lire les calculs qu'ils ont appris.", block:"Des milliards de paramètres, et aucune méthode qui les explique en entier.", how:'pc', links:['a2','b3'] },
+  { id:'a2', d:'machines', q:"Comment garantir qu'une IA poursuit le but qu'on lui donne ?", why:"Un système peut réussir tous les tests et viser autre chose que ce qu'on voulait.", block:"On ne sait pas vérifier un but de l'intérieur, seulement observer un comportement.", how:'pc', links:['a1','m2'] },
+  { id:'a3', d:'machines', q:"Une machine peut-elle être consciente ?", why:"Aucun test ne permet de trancher, dans un sens ou dans l'autre.", block:"Il n'existe pas de théorie de la conscience acceptée, même pour le cerveau.", how:'theo', links:['b1'] },
+  { id:'a4', d:'machines', q:"Pourquoi les robots sont-ils si maladroits de leurs mains ?", why:"Une machine bat les champions d'échecs depuis longtemps et peine encore à plier du linge.", block:"Le toucher et les gestes fins demandent des données que personne n'a en quantité.", how:'lab', links:['b3'] },
+  { id:'b1', d:'cerveau', q:"Comment de la matière produit-elle une expérience vécue ?", why:"On relie de mieux en mieux l'activité du cerveau aux états conscients, sans expliquer pourquoi il y a un ressenti.", block:"Les théories concurrentes font peu de prédictions qui permettent de les départager.", how:'theo', links:['a3','b4'] },
+  { id:'b2', d:'cerveau', q:"Pourquoi dormons-nous ?", why:"Tous les animaux étudiés dorment, alors que cela les rend vulnérables. La fonction principale reste débattue.", block:"Le sommeil semble servir à plusieurs choses à la fois, difficiles à isoler.", how:'lab', links:['b3','v2'] },
+  { id:'b3', d:'cerveau', q:"Comment un souvenir est-il stocké physiquement ?", why:"On sait que les connexions entre neurones changent. On ne sait pas lire un souvenir dans un cerveau.", block:"Un souvenir est réparti sur un très grand nombre de cellules qu'on ne peut pas toutes enregistrer.", how:'lab', links:['a1','b2'] },
+  { id:'b4', d:'cerveau', q:"Comment l'anesthésie générale éteint-elle la conscience ?", why:"On l'utilise tous les jours depuis plus d'un siècle sans comprendre entièrement son mécanisme.", block:"Des molécules très différentes produisent le même effet.", how:'lab', links:['b1'] },
+  { id:'v1', d:'vivant', q:"Comment la vie est-elle apparue ?", why:"On sait fabriquer des briques du vivant en laboratoire. Personne n'a obtenu un système qui se reproduit seul.", block:"Il ne reste presque aucune trace géologique de cette époque.", how:'lab', links:['c4','v3'] },
+  { id:'v2', d:'vivant', q:"Pourquoi vieillit-on ?", why:"Certaines espèces vivent quelques semaines, d'autres plusieurs siècles. La cause première du vieillissement n'est pas établie.", block:"Les expériences sur la longévité humaine durent plus longtemps qu'une carrière.", how:'lab', links:['b2','v3'] },
+  { id:'v3', d:'vivant', q:"À quoi sert la plus grande partie de notre ADN ?", why:"Une petite fraction du génome code des protéines. Le rôle du reste est discuté.", block:"Montrer qu'une séquence ne sert à rien est très difficile.", how:'pc', links:['v1','v2'] },
+  { id:'v4', d:'vivant', q:"Combien d'espèces vivent sur Terre ?", why:"Environ deux millions sont décrites. Les estimations du total vont de quelques millions à bien davantage avec les microbes.", block:"Beaucoup d'espèces disparaissent avant d'avoir été décrites.", how:'lab', links:['t4'] },
+  { id:'t1', d:'terre', q:"Peut-on prédire un séisme ?", why:"On sait où les séismes sont probables. On ne sait pas annoncer le jour, ni même l'année.", block:"Les failles sont à des kilomètres de profondeur, hors de portée des instruments.", how:'pc', links:['t2'] },
+  { id:'t2', d:'terre', q:"Où se trouvent les points de bascule du climat ?", why:"Certaines parties du système, comme les calottes glaciaires, peuvent basculer sans retour possible.", block:"On ne peut pas faire l'expérience, et le passé offre peu de cas comparables.", how:'pc', links:['t3','t1'] },
+  { id:'t3', d:'terre', q:"Comment les nuages réagiront-ils au réchauffement ?", why:"C'est la plus grande source d'incertitude sur l'ampleur du réchauffement à venir.", block:"Les nuages se forment à des échelles plus fines que la maille des modèles de climat.", how:'pc', links:['t2','p4'] },
+  { id:'t4', d:'terre', q:"Que trouve-t-on au fond des océans ?", why:"La plus grande partie du fond marin n'a jamais été cartographiée en détail.", block:"L'eau arrête la lumière et les ondes radio. Il faut y aller avec des sonars, bateau par bateau.", how:'obs', links:['v4'] }
+];
+const byId = Object.fromEntries(Q.map(q => [q.id, q]));
+Q.forEach(q => q.links.forEach(l => console.assert(byId[l], 'lien inconnu', q.id, l)));
+
+// Générateur pseudo-aléatoire à graine fixe : la carte est identique à chaque visite.
+let seed = 20261116;
+const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+const gauss = () => Math.sqrt(-2 * Math.log(1 - rnd())) * Math.cos(2 * Math.PI * rnd());
+
+// Chaque domaine : un cœur dense et un halo diffus, comme un amas de galaxies.
+const dots = [];
+for (const k in D) for (let i = 0; i < 120; i++) { const s = i < 50 ? 55 : 135; dots.push({ x: D[k].x + gauss() * s, y: D[k].y + gauss() * s, r: 0.5 + rnd() * (i < 50 ? 1.5 : 1), a: 0.3 + rnd() * 0.7 }); }
+for (const [a, b] of BRIDGES) for (let i = 1; i < 24; i++) { const t = i / 24; dots.push({ x: D[a].x + (D[b].x - D[a].x) * t + gauss() * 22, y: D[a].y + (D[b].y - D[a].y) * t + gauss() * 22, r: 0.4 + rnd() * 0.8, a: 0.2 + rnd() * 0.45 }); }
+const edges = [];
+dots.forEach((p, i) => {
+  const near = []; dots.forEach((o, j) => { const d = Math.hypot(o.x - p.x, o.y - p.y); if (j !== i && d < 95) near.push([d, j]); });
+  near.sort((a, b) => a[0] - b[0]).slice(0, 3).forEach(e => edges.push([i, e[1]]));
+});
+// Les questions sont posées en couronne autour de chaque domaine, reliées au dernier point connu.
+for (const k in D) { const qs = Q.filter(q => q.d === k), base = rnd() * 6.28; qs.forEach((q, i) => {
+  const a = base + i * 6.283 / qs.length + (rnd() - .5) * .5, r = 250 + rnd() * 50; q.x = D[k].x + Math.cos(a) * r; q.y = D[k].y + Math.sin(a) * r;
+  let bd = Infinity; for (const p of dots) { const d = Math.hypot(p.x - q.x, p.y - q.y); if (d < bd) { bd = d; q.anchor = p; } }
+}); }
+
+const $ = id => document.getElementById(id);
+const cv = $('c'), ctx = cv.getContext('2d'), css = getComputedStyle(document.documentElement);
+const tok = n => css.getPropertyValue(n).trim();
+const COL = { fil: tok('--filament'), q: tok('--question'), fg: tok('--fg'), dim: tok('--dim'), bg: tok('--void') }, SANS = tok('--sans'), SERIF = tok('--serif');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W = 0, H = 0, cam = { x: 0, y: 0, k: 1 }, target = null, dirty = true, hover = null, sel = null;
+let seen = new Set();
+try { seen = new Set(JSON.parse(localStorage.getItem('seen') || '[]')); } catch (e) {}
+const state = { text: '', dom: null, pc: false };
+const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+const match = q => (!state.dom || q.d === state.dom) && (!state.pc || q.how === 'pc') && (!state.text || norm(q.q + ' ' + q.why).includes(norm(state.text)));
+
+const fitK = () => Math.min(W, H) / 2050;
+function resize() { const r = cv.getBoundingClientRect(), dpr = devicePixelRatio || 1; W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); dirty = true; }
+const sx = x => (x - cam.x) * cam.k + W / 2, sy = y => (y - cam.y) * cam.k + H / 2;
+
+function draw(t) {
+  ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.fillStyle = COL.bg; ctx.fillRect(0, 0, W, H);
+  // Le connu est dessiné en lumière additive : là où les points se serrent, ça s'éclaire tout seul.
+  ctx.globalCompositeOperation = 'lighter';
+  for (const k in D) { const x = sx(D[k].x), y = sy(D[k].y), r = 300 * cam.k, g = ctx.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, 'rgba(134,168,220,.16)'); g.addColorStop(1, 'rgba(134,168,220,0)'); ctx.fillStyle = g; ctx.fillRect(x - r, y - r, 2 * r, 2 * r); }
+  ctx.strokeStyle = COL.fil; ctx.lineWidth = 1; ctx.globalAlpha = 0.13; ctx.beginPath();
+  for (const [a, b] of edges) { ctx.moveTo(sx(dots[a].x), sy(dots[a].y)); ctx.lineTo(sx(dots[b].x), sy(dots[b].y)); }
+  ctx.stroke();
+  ctx.fillStyle = COL.fil; const zs = Math.max(0.9, Math.sqrt(cam.k) * 1.7);
+  for (const p of dots) { ctx.globalAlpha = p.a; ctx.beginPath(); ctx.arc(sx(p.x), sy(p.y), p.r * zs, 0, 6.283); ctx.fill(); }
+  ctx.globalCompositeOperation = 'source-over';
+
+  ctx.strokeStyle = COL.q; ctx.lineWidth = 1; ctx.setLineDash([2, 6]);
+  for (const q of Q) for (const l of q.links) { if (q.id > l && byId[l].links.includes(q.id)) continue; const o = byId[l], on = sel && (sel === q || sel === o); if (!on && !(match(q) && match(o))) continue; ctx.globalAlpha = on ? 0.75 : 0.1; ctx.beginPath(); ctx.moveTo(sx(q.x), sy(q.y)); ctx.lineTo(sx(o.x), sy(o.y)); ctx.stroke(); }
+  ctx.setLineDash([]);
+
+  ctx.font = '500 11px ' + SANS; ctx.textAlign = 'center'; ctx.fillStyle = COL.fg; ctx.globalAlpha = 0.8;
+  if ('letterSpacing' in ctx) ctx.letterSpacing = '3px';
+  for (const k in D) ctx.fillText(D[k].n.toUpperCase(), sx(D[k].x), sy(D[k].y - 175) );
+  if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+
+  const labels = [];
+  Q.forEach((q, i) => {
+    const m = match(q), x = sx(q.x), y = sy(q.y);
+    ctx.strokeStyle = COL.q; ctx.lineWidth = 1; ctx.globalAlpha = m ? 0.4 : 0.08;
+    ctx.beginPath(); ctx.moveTo(sx(q.anchor.x), sy(q.anchor.y)); ctx.lineTo(x, y); ctx.stroke();
+    if (m && !reduce) { const ph = (t / 2600 + i * 0.37) % 1; ctx.globalAlpha = 0.35 * (1 - ph); ctx.beginPath(); ctx.arc(x, y, 6 + ph * 12, 0, 6.283); ctx.stroke(); }
+    ctx.globalAlpha = m ? 1 : 0.15; ctx.lineWidth = 1.5; ctx.fillStyle = seen.has(q.id) ? COL.q : COL.bg;
+    ctx.beginPath(); ctx.arc(x, y, 5.5, 0, 6.283); ctx.fill(); ctx.stroke();
+    if (q === sel) { ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(x, y, 11, 0, 6.283); ctx.stroke(); }
+    if (m && (q === sel || q === hover || cam.k > 1.3)) labels.push(q);
+  });
+  ctx.textAlign = 'left'; ctx.font = '17px ' + SERIF;
+  for (const q of labels) { const x = sx(q.x) + 16, y = sy(q.y), w = ctx.measureText(q.q).width, flip = x + w > W - 8, lx = flip ? sx(q.x) - 16 - w : x; ctx.globalAlpha = 0.86; ctx.fillStyle = COL.bg; ctx.fillRect(lx - 5, y - 13, w + 10, 25); ctx.globalAlpha = 1; ctx.fillStyle = COL.fg; ctx.fillText(q.q, lx, y + 5); }
+}
+function loop(t) {
+  if (target) { const f = reduce ? 1 : 0.09; cam.x += (target.x - cam.x) * f; cam.y += (target.y - cam.y) * f; cam.k += (target.k - cam.k) * f; if (Math.abs(target.x - cam.x) + Math.abs(target.y - cam.y) < 0.5 && Math.abs(target.k - cam.k) < 0.002) { cam = target; target = null; } dirty = true; }
+  if (dirty || !reduce) draw(t);
+  dirty = false; requestAnimationFrame(loop);
+}
+function zoomAt(px, py, f) { const k = Math.min(4, Math.max(fitK() * 0.7, cam.k * f)), wx = (px - W / 2) / cam.k + cam.x, wy = (py - H / 2) / cam.k + cam.y; cam = { x: wx - (px - W / 2) / k, y: wy - (py - H / 2) / k, k }; target = null; dirty = true; }
+function pick(px, py) { let best = null, bd = 20; for (const q of Q) { if (!match(q)) continue; const d = Math.hypot(sx(q.x) - px, sy(q.y) - py); if (d < bd) { bd = d; best = q; } } return best; }
+
+const ptrs = new Map(); let moved = 0, pinch = 0;
+const pos = e => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, pos(e)); moved = 0; pinch = 0; cv.style.cursor = 'grabbing'; });
+cv.addEventListener('pointermove', e => {
+  const p = pos(e), o = ptrs.get(e.pointerId);
+  if (!o) { const h = pick(p[0], p[1]); if (h !== hover) { hover = h; dirty = true; } cv.style.cursor = h ? 'pointer' : 'grab'; return; }
+  ptrs.set(e.pointerId, p); moved += Math.abs(p[0] - o[0]) + Math.abs(p[1] - o[1]);
+  if (ptrs.size === 2) { const [a, b] = [...ptrs.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch) zoomAt((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, d / pinch); pinch = d; return; }
+  cam.x -= (p[0] - o[0]) / cam.k; cam.y -= (p[1] - o[1]) / cam.k; target = null; dirty = true;
+});
+cv.addEventListener('pointerup', e => { const p = pos(e), was = ptrs.size; ptrs.delete(e.pointerId); pinch = 0; cv.style.cursor = 'grab'; if (was === 1 && moved < 6) { const q = pick(p[0], p[1]); if (q) select(q); } });
+cv.addEventListener('pointercancel', e => { ptrs.delete(e.pointerId); pinch = 0; });
+cv.addEventListener('pointerleave', () => { if (hover) { hover = null; dirty = true; } });
+cv.addEventListener('wheel', e => { e.preventDefault(); const p = pos(e); zoomAt(p[0], p[1], Math.exp(-e.deltaY * 0.0015)); }, { passive: false });
+$('zin').onclick = () => zoomAt(W / 2, H / 2, 1.4);
+$('zout').onclick = () => zoomAt(W / 2, H / 2, 1 / 1.4);
+$('zfit').onclick = () => { target = { x: 0, y: 0, k: fitK() }; };
+
+function select(q) {
+  sel = q; seen.add(q.id);
+  try { localStorage.setItem('seen', JSON.stringify([...seen])); } catch (e) {}
+  if (location.hash.slice(1) !== q.id) location.hash = q.id;
+  $('browse').hidden = true; $('detail').hidden = false;
+  $('dTitle').textContent = q.q; $('dDomain').textContent = D[q.d].n; $('dWhy').textContent = q.why; $('dBlock').textContent = q.block; $('dHow').textContent = HOW[q.how];
+  const box = $('links'); box.textContent = '';
+  q.links.forEach(l => { const b = document.createElement('button'); b.textContent = byId[l].q; b.onclick = () => select(byId[l]); box.appendChild(b); });
+  target = { x: q.x, y: q.y, k: Math.max(cam.k, 1.15) }; $('panel').scrollTop = 0; renderList();
+}
+function closeDetail() { sel = null; $('detail').hidden = true; $('browse').hidden = false; dirty = true; }
+$('back').onclick = () => { location.hash = ''; closeDetail(); };
+// Chaque question a son adresse (#b2) : on peut envoyer le lien d'une question précise.
+addEventListener('hashchange', () => { const q = byId[location.hash.slice(1)]; if (q && q !== sel) select(q); else if (!q && sel) closeDetail(); });
+
+function renderList() {
+  const ul = $('list'); ul.textContent = '';
+  Q.filter(match).forEach(q => { const li = document.createElement('li'), b = document.createElement('button'), s = document.createElement('span'); b.textContent = q.q; s.className = 'small'; s.textContent = D[q.d].n; b.appendChild(s); if (seen.has(q.id)) b.className = 'seen'; b.onclick = () => select(q); li.appendChild(b); ul.appendChild(li); });
+  if (!ul.children.length) { const li = document.createElement('li'); li.className = 'small'; li.style.padding = '14px 0'; li.textContent = 'Aucune question ne correspond. Élargis la recherche.'; ul.appendChild(li); }
+  $('count').textContent = seen.size + ' / ' + Q.length + ' explorées'; dirty = true;
+}
+for (const k in D) { const b = document.createElement('button'); b.textContent = D[k].n; b.setAttribute('aria-pressed', 'false'); b.onclick = () => { state.dom = state.dom === k ? null : k; [...$('chips').children].forEach(c => c.setAttribute('aria-pressed', String(c === b && state.dom === k))); renderList(); }; $('chips').appendChild(b); }
+$('search').oninput = e => { state.text = e.target.value.trim(); renderList(); };
+$('pc').onchange = e => { state.pc = e.target.checked; renderList(); };
+
+new ResizeObserver(() => {
+  const first = !W; resize(); if (!first) return;
+  const start = byId[location.hash.slice(1)];
+  // Ouverture : la carte recule lentement jusqu'à se montrer en entier.
+  cam = { x: 0, y: 0, k: fitK() * (reduce || start ? 1 : 1.7) }; target = { x: 0, y: 0, k: fitK() };
+  if (start) select(start);
+}).observe(cv);
+addEventListener("resize", resize);
+if (document.fonts) document.fonts.ready.then(() => { dirty = true; });
+renderList(); requestAnimationFrame(loop);
+</script>
