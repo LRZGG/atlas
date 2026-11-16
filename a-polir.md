@@ -18,7 +18,12 @@
 - **Vide central** agrandi par dilatation radiale (rayon 0,17 → 0,41), avec « terra incognita » centré dedans et une zone réservée au texte.
 - **Visite guidée** en cinq étapes. **Légende repliée** au départ, carnet affiché à côté des boutons.
 
-Reste à faire : tout ce qui suit, notamment l'aperçu Wikipédia, la traduction et le contenu (31 questions, c'est trop peu). À trancher : le mode gamifié (voir la discussion du 16 novembre), qui n'a de sens qu'avec bien plus de questions.
+**Quatrième passe (même jour)**
+
+- **Les questions comme noms de lieu** : un « ? » et un nom court en italique crème, à la place des étoiles. Le texte complet apparaît au survol, à la sélection ou en zoomant. Seule la respiration du « ? » est animée, tant que la question n'est pas lue.
+- **Trois fiches complètes** pour juger le format : ce qu'on sait, ce qu'on ignore, pourquoi c'est dur, pourquoi ça compte, par où commencer, extrait Wikipédia et références vérifiées.
+
+Reste à faire : juger le format des fiches, puis passer de 31 à environ 100 questions, la traduction française et la relecture par un spécialiste. À trancher : le mode gamifié (voir la discussion du 16 novembre), qui n'a de sens qu'avec bien plus de questions.
 
 ## 1. Le but, à trancher avant le reste
 

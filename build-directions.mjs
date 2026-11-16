@@ -1,6 +1,6 @@
 // Calcule la position de chaque sous-discipline et de chaque sujet à partir des liens mesurés,
 // puis écrit directions.html (le gabarit + les données). Usage : node build-directions.mjs
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import assert from 'node:assert';
 
 const s = JSON.parse(readFileSync('squelette.json'));
@@ -83,6 +83,7 @@ function toEdge(x, y, a) { for (let d = 0.004; d < 0.45; d += 0.004) { if (dens(
 
 // Les questions ouvertes. Une question qui touche une seule région se pose au bord du connu, tendue vers le noir.
 // Une question qui relie des régions éloignées reste entre elles, dans le vide central : c'est elle qui fait le pont.
+const FI = existsSync('fiches.json') ? JSON.parse(readFileSync('fiches.json', 'utf8')).fiches : {};
 const SPREAD_MIN = 0.4; // coupure naturelle dans la répartition des écarts (0,33 puis 0,43)
 const qs = JSON.parse(readFileSync('questions.json')), byName = Object.fromEntries(sIds.map((id, i) => [s.subfields[id].name, i]));
 assert.equal(Object.keys(byName).length, sIds.length, 'noms de sous-disciplines en double');
@@ -96,7 +97,10 @@ const Q = qs.questions.map(q => {
   // Le texte « terra incognita » occupe une bande au centre du vide : une question transversale se pose juste au-dessus ou au-dessous, pas dessus.
   if (t) { const a = hole.r * 0.8, b = hole.r * 0.14; if (((x - hole.x) / a) ** 2 + ((y - hole.y) / b) ** 2 < 1) y = hole.y + (y >= hole.y ? 1 : -1) * b * 1.3; }
   if (process.argv.includes('--diag')) console.log(`  ${t ? 'TRANSVERSALE' : 'bord        '} écart ${spread.toFixed(2)}  ${q.id}`);
-  return { id: q.id, q: q.q, c: q.ctx, s: q.src, st: q.status || 'ouverte', n: q.note || '', subs, t, x, y };
+  // La fiche détaillée (s'il y en a une) : texte écrit à la main dans questions.json, extrait Wikipédia et références vérifiées par fetch-fiches.mjs.
+  const fi = q.fiche && FI[q.id]; assert(!q.fiche || fi, `fiche non téléchargée pour ${q.id} : lancer node fetch-fiches.mjs`);
+  const f = q.fiche ? { s: q.fiche.savoir, i: q.fiche.ignore, d: q.fiche.dur, e: q.fiche.enjeu, c: q.fiche.commencer, w: fi.w, r: fi.r } : null;
+  return { id: q.id, q: q.q, nm: q.nom, c: q.ctx, s: q.src, st: q.status || 'ouverte', n: q.note || '', subs, t, x, y, f };
 });
 assert.equal(new Set(Q.map(q => q.id)).size, Q.length, 'identifiants de questions en double');
 // Deux anneaux superposés seraient illisibles : on les écarte du minimum nécessaire.

@@ -59,6 +59,22 @@ svg { display: block; }
 #cLinks { list-style: none; margin: 6px 0 0; padding: 0; font-size: 13.5px; }
 #cLinks li { padding: 4px 0; border-top: 1px solid var(--line); }
 #close { position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; display: grid; place-items: center; }
+#card { max-height: calc(100% - 40px); overflow-y: auto; }
+@media (min-width: 721px) { #card.wide { width: min(460px, calc(100% - 40px)); } }
+#fiche h4 { font: 500 11px var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--dim); margin: 18px 0 6px; }
+#fiche ul { margin: 0; padding-left: 17px; }
+#fiche li { margin: 0 0 7px; color: var(--fg); font-size: 14px; line-height: 1.5; }
+#fiche p { color: var(--fg); font-size: 14px; }
+#fiche .wiki { border-left: 1px solid var(--line); padding-left: 12px; margin: 4px 0 14px; }
+#fiche .wiki p { margin: 0 0 6px; font: 400 14px/1.55 var(--serif); }
+#fiche .wiki p.attr { font: 12px/1.4 var(--sans); color: var(--dim); }
+#fiche .refs { list-style: none; padding: 0; }
+#fiche .refs li { margin: 0 0 10px; }
+#fiche .refs a { display: block; }
+#fiche .refs span { color: var(--dim); font-size: 12.5px; }
+.qg { font: italic 400 18px/1 var(--serif); color: var(--question); text-align: center; }
+.qg.t { text-decoration: underline dotted; text-underline-offset: 4px; }
+.qg.d { opacity: .5; }
 #tour { position: absolute; left: max(20px, env(safe-area-inset-left, 0px)); bottom: calc(72px + env(safe-area-inset-bottom, 0px)); width: min(360px, calc(100% - 40px)); box-sizing: border-box; background: var(--panel); border: 1px solid var(--question); padding: 14px 16px; }
 #tour p { margin: 4px 0 12px; font: 400 16px/1.45 var(--serif); }
 #tStep { color: var(--question); font: 500 11px var(--sans); letter-spacing: .09em; text-transform: uppercase; }
@@ -82,7 +98,7 @@ svg { display: block; }
 
 <div id="stage">
   <canvas id="gl" aria-hidden="true"></canvas>
-  <canvas id="c" role="img" aria-label="Carte de la recherche mondiale. Le relief montre où l'on publie beaucoup, chaque point est un sujet de recherche, les étoiles claires sont des questions que personne n'a résolues, le noir est ce qui est peu étudié."></canvas>
+  <canvas id="c" role="img" aria-label="Carte de la recherche mondiale. Le relief montre où l'on publie beaucoup, chaque point est un sujet de recherche, les noms précédés d'un point d'interrogation sont des questions que personne n'a résolues, le noir est ce qui est peu étudié."></canvas>
   <canvas id="m" aria-hidden="true"></canvas>
   <div id="brand"><h1>Carte de l'inconnu</h1><p><span id="nT"></span> sujets de recherche réels et <span id="nQ"></span> grandes questions que personne n'a résolues. Le relief montre où l'on cherche.</p></div>
   <details id="side">
@@ -94,9 +110,9 @@ svg { display: block; }
     <ul id="key"></ul>
     <h3>Questions</h3>
     <ul id="qkey">
-      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 3Q11.96 10.04 19 11Q11.96 11.96 11 19Q10.04 11.96 3 11Q10.04 10.04 11 3Z" fill="#f3dfb2"/><circle cx="11" cy="11" r="1.4" fill="#fff6df"/></svg><div>À découvrir<span>au bord du connu, scintille</span></div></li>
-      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 3.5Q11.9 10.1 18.5 11Q11.9 11.9 11 18.5Q10.1 11.9 3.5 11Q10.1 10.1 11 3.5Z" fill="#f3dfb2"/><circle cx="11" cy="11" r="1.4" fill="#fff6df"/><circle cx="11" cy="11" r="9.5" fill="none" stroke="#f3dfb2" stroke-opacity=".5"/></svg><div>Transversale<span>relie plusieurs disciplines</span></div></li>
-      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 3Q11.96 10.04 19 11Q11.96 11.96 11 19Q10.04 11.96 3 11Q10.04 10.04 11 3Z" fill="none" stroke="#f3dfb2" stroke-opacity=".7" stroke-width="1.2"/></svg><div>Déjà lue<span>dans ton carnet</span></div></li>
+      <li><em class="qg">?</em><div>À découvrir<span>nom en italique, au bord du connu</span></div></li>
+      <li><em class="qg t">?</em><div>Transversale<span>nom souligné : relie plusieurs disciplines</span></div></li>
+      <li><em class="qg d">?</em><div>Déjà lue<span>dans ton carnet</span></div></li>
     </ul>
     <div id="layers">
       <label><input id="lRelief" type="checkbox" checked> Relief</label>
@@ -123,6 +139,7 @@ svg { display: block; }
     <p id="cWhere"></p>
     <div id="cCount"></div>
     <p id="cUnit"></p>
+    <div id="fiche"></div>
     <p id="cSrc" hidden><a id="cLink" target="_blank" rel="noopener"></a></p>
     <p id="cListT" style="margin-top:14px"></p>
     <ul id="cLinks"></ul>
@@ -135,7 +152,7 @@ const DATA = /*DATA*/null;
 const { D, F, S, L, T, cap, Q, SRC, hole } = DATA, N = T.length / 5;
 const $ = id => document.getElementById(id), css = getComputedStyle(document.documentElement), tok = n => css.getPropertyValue(n).trim();
 const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
-const VOID = hex(tok('--void')), DOMRGB = [0, 1, 2, 3].map(i => hex(tok('--d' + i))), SANS = tok('--sans'), SERIF = tok('--serif'), FG = tok('--fg'), DIM = tok('--dim'), QCOL = tok('--question');
+const VOID = hex(tok('--void')), DOMRGB = [0, 1, 2, 3].map(i => hex(tok('--d' + i))), SANS = tok('--sans'), SERIF = tok('--serif'), FG = tok('--fg'), DIM = tok('--dim'), QCOL = tok('--question'), VOIDC = tok('--void');
 const fmt = n => n.toLocaleString('fr-FR');
 const LMAX = Math.log10(cap), nrm = w => Math.max(0, Math.min(1, (Math.log10(Math.max(w, 1)) - 2) / (LMAX - 2)));
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -236,27 +253,27 @@ function label(text, x, y, font, fill, align) {
   if (box[0] < 0 || box[2] > W || box[3] < 0 || box[1] > H || placed.some(p => box[0] < p[2] && box[2] > p[0] && box[1] < p[3] && box[3] > p[1])) return false;
   placed.push(box); ctx.textAlign = 'left'; ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = tok('--void'); ctx.strokeText(text, x0, y); ctx.fillStyle = fill; ctx.fillText(text, x0, y); return true;
 }
-// Étoile à quatre branches, fine : le signe d'un point à découvrir.
-function spark(c, x, y, r, k) { c.beginPath(); c.moveTo(x, y - r); c.quadraticCurveTo(x + r * k, y - r * k, x + r, y); c.quadraticCurveTo(x + r * k, y + r * k, x, y + r); c.quadraticCurveTo(x - r * k, y + r * k, x - r, y); c.quadraticCurveTo(x - r * k, y - r * k, x, y - r); c.closePath(); }
-// Les questions ont leur propre calque : elles seules sont redessinées à chaque image (31 marqueurs), pas toute la carte.
-// Une question non lue scintille et émet un fin cercle qui s'étend puis s'efface ; une question lue devient une étoile creuse, immobile.
+// Les questions sont des noms de lieu : un « ? » puis le nom de la question en petit italique crème (le texte complet au survol, à la sélection ou en zoomant).
+// Elles ont leur propre calque, redessiné à chaque image : seule la respiration du « ? » est animée, et seulement tant que la question n'est pas lue.
+const qBox = [];
 function drawMarkers(t) {
-  mctx.clearRect(0, 0, W, H); if (!$('lQ').checked) return;
-  const s0 = t / 1000;
-  Q.forEach((q, i) => {
-    const x = X(q.x), y = Y(q.y); if (x < -30 || y < -30 || x > W + 30 || y > H + 30) return;
-    const on = i === selQ || i === hoverQ, done = explored.has(q.id), base = q.t ? 6.5 : 5;
-    const tw = reduce ? 0.7 : 0.5 + 0.5 * Math.sin(s0 * 2 * Math.PI / 3.4 + i * 1.9), r = base * (done ? 1 : 0.82 + 0.3 * tw) * (on ? 1.25 : 1);
-    mctx.strokeStyle = QCOL; mctx.fillStyle = QCOL;
-    if (!done && !reduce) { const p = ((s0 + i * 0.77) % 3.6) / 3.6; mctx.globalAlpha = 0.34 * (1 - p) * (1 - p); mctx.lineWidth = 1; mctx.beginPath(); mctx.arc(x, y, base + 1 + p * 14, 0, 6.283); mctx.stroke(); }
-    if (!done) { const g = mctx.createRadialGradient(x, y, 0, x, y, 11); g.addColorStop(0, 'rgba(243,223,178,' + (0.16 + 0.2 * tw).toFixed(3) + ')'); g.addColorStop(1, 'rgba(243,223,178,0)'); mctx.globalAlpha = 1; mctx.fillStyle = g; mctx.beginPath(); mctx.arc(x, y, 11, 0, 6.283); mctx.fill(); mctx.fillStyle = QCOL; }
-    mctx.globalAlpha = done ? 0.65 : 0.72 + 0.28 * tw; mctx.lineWidth = 1.2;
-    spark(mctx, x, y, r, 0.12); if (done) mctx.stroke(); else mctx.fill();
-    if (!done) { mctx.globalAlpha = 1; mctx.fillStyle = '#fff6df'; mctx.beginPath(); mctx.arc(x, y, 1.4, 0, 6.283); mctx.fill(); }
-    if (q.t) { mctx.globalAlpha = 0.5; mctx.lineWidth = 1; mctx.beginPath(); mctx.arc(x, y, base + 4.5, 0, 6.283); mctx.stroke(); }
-    if (on) { mctx.globalAlpha = 0.6; mctx.lineWidth = 1; mctx.beginPath(); mctx.arc(x, y, base + 8, 0, 6.283); mctx.stroke(); }
-  });
-  mctx.globalAlpha = 1;
+  mctx.clearRect(0, 0, W, H); qBox.length = 0; if (!$('lQ').checked) return;
+  const s0 = t / 1000, boxes = placed.slice(), order = Q.map((q, i) => i).sort((a, b) => ((b === selQ) - (a === selQ)) || ((b === hoverQ) - (a === hoverQ)) || (Q[b].t - Q[a].t));
+  mctx.textBaseline = 'middle'; mctx.lineJoin = 'round';
+  for (const i of order) {
+    const q = Q[i], x = X(q.x), y = Y(q.y); qBox[i] = null; if (x < -30 || y < -30 || x > W + 30 || y > H + 30) continue;
+    const on = i === selQ || i === hoverQ, done = explored.has(q.id), tw = reduce ? 0.7 : 0.5 + 0.5 * Math.sin(s0 * 2 * Math.PI / 3.4 + i * 1.9);
+    mctx.font = `italic 400 ${on ? 19 : 16}px ${SERIF}`; mctx.textAlign = 'center'; mctx.lineWidth = 3; mctx.strokeStyle = VOIDC; mctx.fillStyle = QCOL;
+    mctx.globalAlpha = done ? 0.55 : 0.72 + 0.28 * tw; mctx.strokeText('?', x, y); mctx.fillText('?', x, y);
+    const full = on || cam.k >= 2.2, text = full ? q.q : q.nm, fs = on ? 15 : full ? 13 : q.t ? 13 : 12.5;
+    mctx.font = `italic 400 ${fs}px ${SERIF}`; const w = mctx.measureText(text).width; let x0 = x + 11; if (x0 + w + 4 > W) x0 = x - 11 - w;
+    const box = [x0 - 3, y - fs * 0.75, x0 + w + 3, y + fs * 0.75];
+    if (!on && (x0 < 2 || boxes.some(p => box[0] < p[2] && box[2] > p[0] && box[1] < p[3] && box[3] > p[1]))) continue;
+    boxes.push(box); qBox[i] = box;
+    mctx.textAlign = 'left'; mctx.lineWidth = 3.5; mctx.strokeStyle = VOIDC; mctx.globalAlpha = on ? 1 : done ? 0.55 : 0.92; mctx.strokeText(text, x0, y); mctx.fillStyle = QCOL; mctx.fillText(text, x0, y);
+    if (q.t) { mctx.setLineDash([1.5, 2.5]); mctx.strokeStyle = QCOL; mctx.lineWidth = 1; mctx.globalAlpha = 0.6; mctx.beginPath(); mctx.moveTo(x0, y + fs * 0.62); mctx.lineTo(x0 + w, y + fs * 0.62); mctx.stroke(); mctx.setLineDash([]); }
+  }
+  mctx.globalAlpha = 1; mctx.textBaseline = 'alphabetic';
 }
 function draw() {
   drawGL(); ctx.clearRect(0, 0, W, H); ctx.globalAlpha = 1; placed = [];
@@ -273,7 +290,6 @@ function draw() {
   if (showQ && selQ >= 0) { const q = Q[selQ]; ctx.strokeStyle = QCOL; ctx.fillStyle = QCOL; ctx.lineWidth = 1; ctx.setLineDash([2, 5]); for (const j of q.subs) { ctx.globalAlpha = 0.65; ctx.beginPath(); ctx.moveTo(X(q.x), Y(q.y)); ctx.lineTo(X(S[j].x), Y(S[j].y)); ctx.stroke(); ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(X(S[j].x), Y(S[j].y), 3, 0, 6.283); ctx.fill(); } ctx.setLineDash([]); }
   for (const i of [sel, hover]) if (i >= 0) { ctx.strokeStyle = FG; ctx.lineWidth = 1.25; ctx.beginPath(); ctx.arc(tx(i), ty(i), 8, 0, 6.283); ctx.stroke(); }
   // Étiquettes, par ordre de priorité : ce qui est choisi d'abord, puis les régions, puis les questions s'il reste de la place.
-  if (showQ) for (const i of [selQ, hoverQ]) if (i >= 0) label(Q[i].q, X(Q[i].x) + 14, Y(Q[i].y) + 5, `400 16px ${SERIF}`, QCOL, 'left');
   if (sel >= 0) label(T[sel * 5 + 4], tx(sel) + 14, ty(sel) + 5, `500 13px ${SANS}`, FG, 'left');
   if (lit) for (const j of lit) label(S[j].n, X(S[j].x), Y(S[j].y) - 10, `italic 400 14px ${SERIF}`, FG);
   const small = W < 600;
@@ -281,7 +297,6 @@ function draw() {
   else { for (const f of fByW) label(f.n.toUpperCase(), X(f.x), Y(f.y), `500 11px ${SANS}`, DIM);
     for (const i of sByW) label(S[i].n, X(S[i].x), Y(S[i].y), `italic 400 15px ${SERIF}`, FG);
     if (cam.k >= 5) { let n = 0; for (const i of tByW) { const x = tx(i), y = ty(i); if (x < 0 || y < 0 || x > W || y > H) continue; if (label(T[i * 5 + 4], x + 9, y + 4, `400 12px ${SANS}`, DIM, 'left') && ++n > 40) break; } } }
-  if (showQ) for (const q of Q) if (q.t || cam.k >= 1.6) label(q.q, X(q.x) + 14, Y(q.y) + 5, `400 15px ${SERIF}`, QCOL, 'left');
 }
 function loop(t) {
   if (target) { const f = reduce ? 1 : 0.14; cam.x += (target.x - cam.x) * f; cam.y += (target.y - cam.y) * f; cam.k += (target.k - cam.k) * f; if (Math.abs(target.x - cam.x) + Math.abs(target.y - cam.y) < 1e-4 && Math.abs(target.k - cam.k) < 0.002) { cam = target; target = null; } dirty = true; }
@@ -290,7 +305,11 @@ function loop(t) {
   requestAnimationFrame(loop);
 }
 function zoomAt(px, py, f) { const k = Math.min(30, Math.max(0.7, cam.k * f)), ax = wx(px), ay = wy(py); cam = { x: ax - (px - W / 2) / (M * k), y: ay - (py - H / 2) / (M * k), k }; target = null; dirty = true; }
-function pickQ(px, py) { if (!$('lQ').checked) return -1; let best = -1, bd = 289; Q.forEach((q, i) => { const dx = X(q.x) - px, dy = Y(q.y) - py, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = i; } }); return best; }
+function pickQ(px, py) {
+  if (!$('lQ').checked) return -1;
+  for (let i = 0; i < Q.length; i++) { const b = qBox[i]; if (b && px >= b[0] - 4 && px <= b[2] + 4 && py >= b[1] - 4 && py <= b[3] + 4) return i; }
+  let best = -1, bd = 256; Q.forEach((q, i) => { const dx = X(q.x) - px, dy = Y(q.y) - py, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = i; } }); return best;
+}
 function pick(px, py) { if (!$('lStars').checked) return -1; let best = -1, bd = 170; for (let i = 0; i < N; i++) { const dx = tx(i) - px, dy = ty(i) - py, d = dx * dx + dy * dy - V[i] * 30; if (d < bd) { bd = d; best = i; } } return best; }
 
 const tip = $('tip');
@@ -299,12 +318,27 @@ function showTip(i, px, py) { if (i < 0) { tip.hidden = true; return; } const s 
 function focusOn(x, y, k) { target = { x: x + (W > 720 ? 0.16 * W : 0) / (M * k), y, k }; }
 // Quand une fiche s'ouvre, la légende se replie pour ne pas la recouvrir ; elle revient à la fermeture.
 let legendOpen = $('side').open;
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+const link = (txt, href) => { const a = el('a', null, txt); a.href = href; a.target = '_blank'; a.rel = 'noopener'; return a; };
+// La fiche détaillée d'une question : ce qu'on sait, ce qu'on ignore, pourquoi c'est dur, pourquoi ça compte, par où commencer, et de quoi aller plus loin.
+function renderFiche(q) {
+  const box = $('fiche'); box.textContent = ''; $('card').classList.toggle('wide', !!(q && q.f)); $('card').scrollTop = 0;
+  if (!q) return;
+  if (!q.f) { box.appendChild(el('p', null, 'Fiche détaillée en préparation.')); return; }
+  const f = q.f, sec = (titre, items) => { box.appendChild(el('h4', null, titre)); const ul = el('ul'); items.forEach(t => ul.appendChild(el('li', null, t))); box.appendChild(ul); };
+  sec("Ce qu'on sait", f.s); sec("Ce qu'on ignore", f.i); sec("Pourquoi c'est dur", f.d);
+  box.appendChild(el('h4', null, 'Pourquoi ça compte')); box.appendChild(el('p', null, f.e));
+  sec('Par où commencer', f.c);
+  box.appendChild(el('h4', null, 'Pour aller plus loin'));
+  const wk = el('div', 'wiki'); wk.appendChild(el('p', null, f.w.x)); const at = el('p', 'attr'); at.append('Extrait de l’article Wikipédia « ', link(f.w.t, f.w.u), ' » (licence CC BY-SA).'); wk.appendChild(at); box.appendChild(wk);
+  const ul = el('ul', 'refs'); f.r.forEach(r => { const li = el('li'); li.appendChild(link(r.t, r.u)); li.appendChild(el('span', null, [r.a, r.y].filter(Boolean).join(', '))); ul.appendChild(li); }); box.appendChild(ul);
+}
 function openCard() { tip.hidden = true; if ($('card').hidden) legendOpen = $('side').open; $('side').open = false; $('card').hidden = false; }
 function clearSel() { sel = selQ = -1; lit = null; if (!$('card').hidden) $('side').open = legendOpen; $('card').hidden = true; if (location.hash) location.hash = ''; dirty = true; }
 function select(i) {
   tourStop(); sel = i; selQ = -1; dirty = true; if (location.hash) location.hash = '';
   const si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2]; lit = new Set([si]);
-  $('cCount').hidden = false; $('cSrc').hidden = true; $('cListT').textContent = "Sous-disciplines qui partagent le plus d'articles avec la sienne";
+  renderFiche(null); $('cCount').hidden = false; $('cSrc').hidden = true; $('cListT').textContent = "Sous-disciplines qui partagent le plus d'articles avec la sienne";
   $('cName').textContent = T[i * 5 + 4]; $('cWhere').textContent = F[s.f].n + ' · ' + s.n; $('cCount').textContent = fmt(w); $('cUnit').textContent = 'articles publiés' + (w > cap ? ' (compteur douteux, plafonné sur la carte)' : '');
   const ul = $('cLinks'); ul.textContent = ''; NB[si].slice(0, 5).forEach(j => { const li = document.createElement('li'); li.textContent = S[j].n; ul.appendChild(li); });
   openCard(); focusOn(T[i * 5], T[i * 5 + 1], Math.max(cam.k, 3));
@@ -312,7 +346,7 @@ function select(i) {
 function selectQ(i) {
   tourStop(); selQ = i; sel = -1; dirty = true; const q = Q[i], src = SRC[q.s]; lit = new Set(q.subs);
   explored.add(q.id); try { localStorage.setItem('explored', JSON.stringify([...explored])); } catch (e) {} countSeen();
-  $('cName').textContent = q.q; $('cWhere').textContent = STATUS[q.st] + (q.t ? ' · transversale' : ''); $('cCount').hidden = true; $('cUnit').textContent = q.c + (q.n ? ' ' + q.n : '');
+  $('cName').textContent = q.q; $('cWhere').textContent = STATUS[q.st] + (q.t ? ' · transversale' : ''); $('cCount').hidden = true; $('cUnit').textContent = q.c + (q.n ? ' ' + q.n : ''); renderFiche(q);
   $('cSrc').hidden = false; $('cLink').textContent = 'Source : ' + src.n; $('cLink').href = src.u; $('cListT').textContent = q.t ? 'Elle relie ces sous-disciplines' : 'Sous-disciplines concernées';
   const ul = $('cLinks'); ul.textContent = ''; q.subs.forEach(j => { const li = document.createElement('li'); li.textContent = F[S[j].f].n + ' · ' + S[j].n; ul.appendChild(li); });
   openCard(); focusOn(q.x, q.y, Math.max(cam.k, q.t ? 1.6 : 2.2)); if (location.hash.slice(1) !== q.id) location.hash = q.id;
@@ -328,8 +362,8 @@ const TOUR = [
   { t: "Chaque point est un sujet de recherche réel. Plus la zone est claire, plus on y publie. Le noir, c'est ce qui est peu étudié.", v: () => ({ x: 0, y: 0, k: 1 }) },
   { t: "Les couleurs sont les grands domaines. Ici, la santé. Zoome pour descendre des disciplines jusqu'aux sujets.", v: () => ({ x: fMed.x, y: fMed.y, k: 3 }) },
   { t: "Au centre, très peu d'articles relient des domaines éloignés. C'est la terra incognita : l'espace entre les disciplines.", v: () => ({ x: hole.x, y: hole.y, k: 1.8 }) },
-  { t: "Les étoiles sont des questions que personne n'a résolues. Celles qui relient des disciplines éloignées, comme celle-ci, se posent entre elles, souvent dans le vide du centre. Les autres sont au bord de leur région.", v: () => ({ x: Q[qCons].x, y: Q[qCons].y, k: 2 }), q: qCons },
-  { t: "À toi : clique une étoile pour lire sa question. Chaque question lue passe dans ton carnet.", v: () => ({ x: 0, y: 0, k: 1 }) }
+  { t: "Les noms précédés d'un « ? » sont des questions que personne n'a résolues. Celles qui relient des disciplines éloignées, comme celle-ci, se posent entre elles, souvent dans le vide du centre. Les autres sont au bord de leur région.", v: () => ({ x: Q[qCons].x, y: Q[qCons].y, k: 2 }), q: qCons },
+  { t: "À toi : clique un « ? » pour lire sa question. Chaque question lue passe dans ton carnet.", v: () => ({ x: 0, y: 0, k: 1 }) }
 ];
 let tourI = -1;
 function tourStop() { if (tourI < 0) return; tourI = -1; $('tour').hidden = true; hoverQ = -1; dirty = true; }

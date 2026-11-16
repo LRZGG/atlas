@@ -16,9 +16,9 @@ Aujourd'hui, la carte montre le **connu** : les 4 516 sujets de recherche réper
 | Une étoile | Un sujet de recherche réel |
 | Sa taille et son éclat | Le nombre d'articles publiés dessus |
 | Le relief coloré | La densité de recherche, teintée par grand domaine |
-| Une petite étoile crème qui scintille | Une grande question ouverte, au bord du connu |
-| La même, entourée d'un cercle | Une question transversale, qui relie plusieurs disciplines |
-| Une étoile creuse, immobile | Une question déjà lue (carnet de l'utilisateur) |
+| Un « ? » et un nom en italique crème | Une grande question ouverte, au bord du connu |
+| Le même nom, souligné en pointillés | Une question transversale, qui relie plusieurs disciplines |
+| Le même, estompé | Une question déjà lue (carnet de l'utilisateur) |
 | « Terra incognita » | Le vide entre les disciplines : peu d'articles relient des domaines éloignés |
 | Deux sujets proches | Leurs sous-disciplines partagent beaucoup d'articles |
 | Le noir | Presque personne n'y travaille |
@@ -45,7 +45,9 @@ La première commande télécharge le squelette depuis OpenAlex dans `squelette.
 |---|---|
 | `fetch-squelette.mjs` | Télécharge sujets, hiérarchie et liens depuis OpenAlex |
 | `squelette.json` | Les données brutes |
-| `questions.json` | Les grandes questions, avec source, statut et sous-disciplines touchées |
+| `questions.json` | Les grandes questions : nom court, source, statut, sous-disciplines touchées, et la fiche détaillée quand elle existe |
+| `fetch-fiches.mjs` | Pour chaque fiche, télécharge l'extrait Wikipédia et vérifie chaque référence dans OpenAlex ; échoue si l'une est introuvable |
+| `fiches.json` | Le résultat de `fetch-fiches.mjs` (extraits et références vérifiées) |
 | `build-directions.mjs` | Calcule les positions et génère les pages |
 | `carte.tpl.html` | Le gabarit de la carte |
 | `directions.tpl.html` | Le gabarit de la comparaison des trois directions |
@@ -65,6 +67,7 @@ La première commande télécharge le squelette depuis OpenAlex dans `squelette.
 - Le centre de la carte est dilaté (`HOLE`, 0,5, dans `build-directions.mjs`) : c'est un choix de présentation. La transformation est radiale et croissante, donc l'ordre autour du centre et le voisinage sont conservés, mais le vide central passe d'un rayon de 0,17 à 0,41 pour pouvoir se lire.
 - Le relief est dessiné par le processeur graphique avec WebGL 2, ce qui le rend net à tout zoom. Sans WebGL 2, il n'apparaît pas : ce cas n'a pas été testé.
 - La disposition combine la mesure des liens et une attraction vers la discipline (`COH` dans `build-directions.mjs`, 0,08). Sans cette attraction, 77 % des sous-disciplines voisines d'une sous-discipline sont du même domaine ; avec, 88 %. Les ponts réels (neurologie clinique, interaction homme-machine, génie biomédical) restent visibles.
+- Seules 3 questions ont une fiche détaillée (la conscience, P contre NP, l'origine de la vie). Elles sont rédigées à la main à partir de connaissances générales ; l'extrait Wikipédia est repris tel quel (licence CC BY-SA, attribuée dans la fiche) et l'existence de chaque référence est vérifiée dans OpenAlex. Le choix des références et la justesse du texte n'ont **pas** été relus par un spécialiste : à faire avant tout lancement. L'année affichée pour l'article de Chalmers (1996) est celle de la version éditée retrouvée dans OpenAlex.
 - Le relief mesure l'effort de recherche (articles publiés), pas le savoir établi : une question fondamentale peut être au cœur d'une zone très publiée.
 
 Données : OpenAlex, sous licence CC0.

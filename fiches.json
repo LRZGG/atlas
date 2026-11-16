@@ -1,0 +1,74 @@
+{
+  "fetched": "2026-11-16",
+  "fiches": {
+    "conscience": {
+      "w": {
+        "t": "Problème difficile de la conscience",
+        "x": "L'expression problème difficile de la conscience, imaginée par David Chalmers, désigne le problème de l'origine des qualia, c'est-à-dire du contenu subjectif de l'expérience d'un état mental, lorsque cette question est abordée sous l'angle des neurosciences et des sciences cognitives.",
+        "u": "https://fr.wikipedia.org/wiki/Probl%C3%A8me_difficile_de_la_conscience"
+      },
+      "r": [
+        {
+          "t": "Facing Up to the Problem of Consciousness",
+          "a": "David J. Chalmers",
+          "y": 1996,
+          "u": "https://doi.org/10.7551/mitpress/6860.003.0003"
+        },
+        {
+          "t": "Neural correlates of consciousness: progress and problems",
+          "a": "Christof Koch, Marcello Massimini, Mélanie Boly et al.",
+          "y": 2016,
+          "u": "https://doi.org/10.1038/nrn.2016.22"
+        }
+      ]
+    },
+    "origine-vie": {
+      "w": {
+        "t": "Origine de la vie",
+        "x": "L'origine de la vie sur Terre demeure incertaine. Les plus anciens micro-organismes fossiles observés sont datés d'au moins 3,5 Ga durant le Paléoarchéen. Une étude publiée en 2015 sur des inclusions de carbone considérées comme d'origine organique leur assigne un âge de 4,1 milliards d'années et plus récemment des précipités hydrofuges sous-marins trouvés dans des roches sédimentaires ferrugineuses de la ceinture de roches vertes de Nuvvuagittuq (Québec) ont été interprétés comme de possibles traces de vie il y a…",
+        "u": "https://fr.wikipedia.org/wiki/Origine_de_la_vie"
+      },
+      "r": [
+        {
+          "t": "Prebiotic Systems Chemistry: New Perspectives for the Origins of Life",
+          "a": "Kepa Ruiz‐Mirazo, Carlos Briones, Andrés de la Escosura",
+          "y": 2013,
+          "u": "https://doi.org/10.1021/cr2004844"
+        },
+        {
+          "t": "The Origin of Life—Out of the Blue",
+          "a": "John D. Sutherland",
+          "y": 2015,
+          "u": "https://doi.org/10.1002/anie.201506585"
+        },
+        {
+          "t": "Synthesis of activated pyrimidine ribonucleotides in prebiotically plausible conditions",
+          "a": "Matthew W. Powner, Béatrice Gerland, John D. Sutherland",
+          "y": 2009,
+          "u": "https://doi.org/10.1038/nature08013"
+        }
+      ]
+    },
+    "p-np": {
+      "w": {
+        "t": "Problème P ≟ NP",
+        "x": "Le problème P ≟ NP est une conjecture en mathématiques, et plus précisément en informatique théorique, considérée par de nombreux chercheurs comme une des plus importantes conjectures du domaine, et même des mathématiques en général. L'Institut de mathématiques Clay a inclus ce problème dans sa liste des sept problèmes du prix du millénaire, et offre à ce titre un million de dollars à quiconque sera en mesure de démontrer P = NP ou P ≠ NP ou de démontrer que ce n'est pas démontrable.",
+        "u": "https://fr.wikipedia.org/wiki/Probl%C3%A8me_P_%E2%89%9F_NP"
+      },
+      "r": [
+        {
+          "t": "The status of the P versus NP problem",
+          "a": "Lance Fortnow",
+          "y": 2009,
+          "u": "https://doi.org/10.1145/1562164.1562186"
+        },
+        {
+          "t": "P vs NP, description officielle du problème",
+          "a": "Clay Mathematics Institute",
+          "y": null,
+          "u": "https://www.claymath.org/millennium/p-vs-np/"
+        }
+      ]
+    }
+  }
+}
