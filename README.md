@@ -5,6 +5,7 @@ Un atlas de ce que l'humanité ne sait pas encore. On y entre par curiosité, on
 Aujourd'hui, la carte montre le **connu** : les 4 516 sujets de recherche répertoriés par [OpenAlex](https://openalex.org), placés d'après les articles qu'ils partagent. Dessus sont posées 31 **grandes questions ouvertes**, chacune avec sa source (voir `questions.json`) et son propre lien (par exemple `/#conscience`).
 
 - **Vision et méthode** : [methode.md](methode.md)
+- **Ce qui reste à améliorer** : [a-polir.md](a-polir.md)
 - **La carte** : `docs/index.html`
 - **Les trois directions visuelles comparées** : `docs/directions.html`
 
