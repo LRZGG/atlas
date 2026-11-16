@@ -18,8 +18,8 @@
 html, body { height: 100%; }
 body { background: var(--void); color: var(--fg); font: 14.5px/1.5 var(--sans); overflow: hidden; }
 #stage { position: relative; height: 100%; }
-#gl, #c { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-#gl { pointer-events: none; }
+#gl, #c, #m { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+#gl, #m { pointer-events: none; }
 #c { touch-action: none; cursor: grab; }
 #brand { position: absolute; top: 20px; left: max(20px, env(safe-area-inset-left, 0px)); max-width: min(380px, 62vw); pointer-events: none; transition: opacity .3s; }
 h1 { font: 300 clamp(26px, 3.4vw, 46px)/1 var(--serif); letter-spacing: -0.012em; margin: 0; }
@@ -83,6 +83,7 @@ svg { display: block; }
 <div id="stage">
   <canvas id="gl" aria-hidden="true"></canvas>
   <canvas id="c" role="img" aria-label="Carte de la recherche mondiale. Le relief montre où l'on publie beaucoup, chaque point est un sujet de recherche, les étoiles claires sont des questions que personne n'a résolues, le noir est ce qui est peu étudié."></canvas>
+  <canvas id="m" aria-hidden="true"></canvas>
   <div id="brand"><h1>Carte de l'inconnu</h1><p><span id="nT"></span> sujets de recherche réels et <span id="nQ"></span> grandes questions que personne n'a résolues. Le relief montre où l'on cherche.</p></div>
   <details id="side">
     <summary>Légende</summary>
@@ -93,9 +94,9 @@ svg { display: block; }
     <ul id="key"></ul>
     <h3>Questions</h3>
     <ul id="qkey">
-      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 2.5Q12.7 9.3 19.5 11Q12.7 12.7 11 19.5Q9.3 12.7 2.5 11Q9.3 9.3 11 2.5Z" fill="#f3dfb2"/></svg><div>À découvrir<span>au bord du connu</span></div></li>
-      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 1.5Q13 9 20.5 11Q13 13 11 20.5Q9 13 1.5 11Q9 9 11 1.5Z" fill="#f3dfb2"/><g transform="rotate(45 11 11)"><path d="M11 5Q12.2 9.8 17 11Q12.2 12.2 11 17Q9.8 12.2 5 11Q9.8 9.8 11 5Z" fill="#f3dfb2" fill-opacity=".75"/></g></svg><div>Transversale<span>relie plusieurs disciplines</span></div></li>
-      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 2.5Q12.7 9.3 19.5 11Q12.7 12.7 11 19.5Q9.3 12.7 2.5 11Q9.3 9.3 11 2.5Z" fill="none" stroke="#f3dfb2" stroke-opacity=".7" stroke-width="1.4"/></svg><div>Déjà lue<span>dans ton carnet</span></div></li>
+      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 3Q11.96 10.04 19 11Q11.96 11.96 11 19Q10.04 11.96 3 11Q10.04 10.04 11 3Z" fill="#f3dfb2"/><circle cx="11" cy="11" r="1.4" fill="#fff6df"/></svg><div>À découvrir<span>au bord du connu, scintille</span></div></li>
+      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 3.5Q11.9 10.1 18.5 11Q11.9 11.9 11 18.5Q10.1 11.9 3.5 11Q10.1 10.1 11 3.5Z" fill="#f3dfb2"/><circle cx="11" cy="11" r="1.4" fill="#fff6df"/><circle cx="11" cy="11" r="9.5" fill="none" stroke="#f3dfb2" stroke-opacity=".5"/></svg><div>Transversale<span>relie plusieurs disciplines</span></div></li>
+      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 3Q11.96 10.04 19 11Q11.96 11.96 11 19Q10.04 11.96 3 11Q10.04 10.04 11 3Z" fill="none" stroke="#f3dfb2" stroke-opacity=".7" stroke-width="1.2"/></svg><div>Déjà lue<span>dans ton carnet</span></div></li>
     </ul>
     <div id="layers">
       <label><input id="lRelief" type="checkbox" checked> Relief</label>
@@ -220,9 +221,9 @@ function drawGL() {
   gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
 
-const cv = $('c'), ctx = cv.getContext('2d');
+const cv = $('c'), ctx = cv.getContext('2d'), mc = $('m'), mctx = mc.getContext('2d');
 let W = 0, H = 0, M = 1, dpr = 1, cam = { x: 0, y: 0, k: 1 }, target = null, dirty = true, hover = -1, hoverQ = -1, sel = -1, selQ = -1, lit = null;
-function resize() { const r = cv.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 2); W = r.width; H = r.height; M = Math.min(W, H) / 2 * 0.94; for (const c of [cv, glc]) { c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); } ctx.setTransform(dpr, 0, 0, dpr, 0, 0); dirty = true; }
+function resize() { const r = cv.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 2); W = r.width; H = r.height; M = Math.min(W, H) / 2 * 0.94; for (const c of [cv, glc, mc]) { c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); } ctx.setTransform(dpr, 0, 0, dpr, 0, 0); mctx.setTransform(dpr, 0, 0, dpr, 0, 0); dirty = true; }
 const X = x => W / 2 + (x - cam.x) * M * cam.k, Y = y => H / 2 + (y - cam.y) * M * cam.k;
 const wx = px => (px - W / 2) / (M * cam.k) + cam.x, wy = py => (py - H / 2) / (M * cam.k) + cam.y;
 const tx = i => X(T[i * 5]), ty = i => Y(T[i * 5 + 1]);
@@ -235,16 +236,27 @@ function label(text, x, y, font, fill, align) {
   if (box[0] < 0 || box[2] > W || box[3] < 0 || box[1] > H || placed.some(p => box[0] < p[2] && box[2] > p[0] && box[1] < p[3] && box[3] > p[1])) return false;
   placed.push(box); ctx.textAlign = 'left'; ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = tok('--void'); ctx.strokeText(text, x0, y); ctx.fillStyle = fill; ctx.fillText(text, x0, y); return true;
 }
-// Étoile à quatre branches : le signe d'un point à découvrir.
-function spark(x, y, r, k) { ctx.beginPath(); ctx.moveTo(x, y - r); ctx.quadraticCurveTo(x + r * k, y - r * k, x + r, y); ctx.quadraticCurveTo(x + r * k, y + r * k, x, y + r); ctx.quadraticCurveTo(x - r * k, y + r * k, x - r, y); ctx.quadraticCurveTo(x - r * k, y - r * k, x, y - r); ctx.closePath(); }
-function marker(q, i) {
-  const x = X(q.x), y = Y(q.y), on = i === selQ || i === hoverQ, done = explored.has(q.id), r = (q.t ? 12 : 9) * (on ? 1.2 : 1);
-  if (!done) { const g = ctx.createRadialGradient(x, y, 0, x, y, r * 3.4); g.addColorStop(0, 'rgba(243,223,178,.3)'); g.addColorStop(1, 'rgba(243,223,178,0)'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, r * 3.4, 0, 6.283); ctx.fill(); }
-  ctx.fillStyle = QCOL; ctx.strokeStyle = QCOL; ctx.lineWidth = 1.4; ctx.globalAlpha = done ? 0.7 : 1;
-  spark(x, y, r, 0.2); if (done) ctx.stroke(); else ctx.fill();
-  if (q.t) { ctx.save(); ctx.translate(x, y); ctx.rotate(Math.PI / 4); spark(0, 0, r * 0.74, 0.2); if (done) ctx.stroke(); else { ctx.globalAlpha = 0.75; ctx.fill(); } ctx.restore(); }
-  ctx.globalAlpha = 1;
-  if (on) { ctx.lineWidth = 1; ctx.globalAlpha = 0.55; ctx.beginPath(); ctx.arc(x, y, r + 6, 0, 6.283); ctx.stroke(); ctx.globalAlpha = 1; }
+// Étoile à quatre branches, fine : le signe d'un point à découvrir.
+function spark(c, x, y, r, k) { c.beginPath(); c.moveTo(x, y - r); c.quadraticCurveTo(x + r * k, y - r * k, x + r, y); c.quadraticCurveTo(x + r * k, y + r * k, x, y + r); c.quadraticCurveTo(x - r * k, y + r * k, x - r, y); c.quadraticCurveTo(x - r * k, y - r * k, x, y - r); c.closePath(); }
+// Les questions ont leur propre calque : elles seules sont redessinées à chaque image (31 marqueurs), pas toute la carte.
+// Une question non lue scintille et émet un fin cercle qui s'étend puis s'efface ; une question lue devient une étoile creuse, immobile.
+function drawMarkers(t) {
+  mctx.clearRect(0, 0, W, H); if (!$('lQ').checked) return;
+  const s0 = t / 1000;
+  Q.forEach((q, i) => {
+    const x = X(q.x), y = Y(q.y); if (x < -30 || y < -30 || x > W + 30 || y > H + 30) return;
+    const on = i === selQ || i === hoverQ, done = explored.has(q.id), base = q.t ? 6.5 : 5;
+    const tw = reduce ? 0.7 : 0.5 + 0.5 * Math.sin(s0 * 2 * Math.PI / 3.4 + i * 1.9), r = base * (done ? 1 : 0.82 + 0.3 * tw) * (on ? 1.25 : 1);
+    mctx.strokeStyle = QCOL; mctx.fillStyle = QCOL;
+    if (!done && !reduce) { const p = ((s0 + i * 0.77) % 3.6) / 3.6; mctx.globalAlpha = 0.34 * (1 - p) * (1 - p); mctx.lineWidth = 1; mctx.beginPath(); mctx.arc(x, y, base + 1 + p * 14, 0, 6.283); mctx.stroke(); }
+    if (!done) { const g = mctx.createRadialGradient(x, y, 0, x, y, 11); g.addColorStop(0, 'rgba(243,223,178,' + (0.16 + 0.2 * tw).toFixed(3) + ')'); g.addColorStop(1, 'rgba(243,223,178,0)'); mctx.globalAlpha = 1; mctx.fillStyle = g; mctx.beginPath(); mctx.arc(x, y, 11, 0, 6.283); mctx.fill(); mctx.fillStyle = QCOL; }
+    mctx.globalAlpha = done ? 0.65 : 0.72 + 0.28 * tw; mctx.lineWidth = 1.2;
+    spark(mctx, x, y, r, 0.12); if (done) mctx.stroke(); else mctx.fill();
+    if (!done) { mctx.globalAlpha = 1; mctx.fillStyle = '#fff6df'; mctx.beginPath(); mctx.arc(x, y, 1.4, 0, 6.283); mctx.fill(); }
+    if (q.t) { mctx.globalAlpha = 0.5; mctx.lineWidth = 1; mctx.beginPath(); mctx.arc(x, y, base + 4.5, 0, 6.283); mctx.stroke(); }
+    if (on) { mctx.globalAlpha = 0.6; mctx.lineWidth = 1; mctx.beginPath(); mctx.arc(x, y, base + 8, 0, 6.283); mctx.stroke(); }
+  });
+  mctx.globalAlpha = 1;
 }
 function draw() {
   drawGL(); ctx.clearRect(0, 0, W, H); ctx.globalAlpha = 1; placed = [];
@@ -259,10 +271,9 @@ function draw() {
   ctx.globalAlpha = 1;
   const showQ = $('lQ').checked;
   if (showQ && selQ >= 0) { const q = Q[selQ]; ctx.strokeStyle = QCOL; ctx.fillStyle = QCOL; ctx.lineWidth = 1; ctx.setLineDash([2, 5]); for (const j of q.subs) { ctx.globalAlpha = 0.65; ctx.beginPath(); ctx.moveTo(X(q.x), Y(q.y)); ctx.lineTo(X(S[j].x), Y(S[j].y)); ctx.stroke(); ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(X(S[j].x), Y(S[j].y), 3, 0, 6.283); ctx.fill(); } ctx.setLineDash([]); }
-  if (showQ) Q.forEach((q, i) => marker(q, i));
   for (const i of [sel, hover]) if (i >= 0) { ctx.strokeStyle = FG; ctx.lineWidth = 1.25; ctx.beginPath(); ctx.arc(tx(i), ty(i), 8, 0, 6.283); ctx.stroke(); }
   // Étiquettes, par ordre de priorité : ce qui est choisi d'abord, puis les régions, puis les questions s'il reste de la place.
-  if (showQ) for (const i of [selQ, hoverQ]) if (i >= 0) label(Q[i].q, X(Q[i].x) + 18, Y(Q[i].y) + 5, `400 16px ${SERIF}`, QCOL, 'left');
+  if (showQ) for (const i of [selQ, hoverQ]) if (i >= 0) label(Q[i].q, X(Q[i].x) + 14, Y(Q[i].y) + 5, `400 16px ${SERIF}`, QCOL, 'left');
   if (sel >= 0) label(T[sel * 5 + 4], tx(sel) + 14, ty(sel) + 5, `500 13px ${SANS}`, FG, 'left');
   if (lit) for (const j of lit) label(S[j].n, X(S[j].x), Y(S[j].y) - 10, `italic 400 14px ${SERIF}`, FG);
   const small = W < 600;
@@ -270,14 +281,16 @@ function draw() {
   else { for (const f of fByW) label(f.n.toUpperCase(), X(f.x), Y(f.y), `500 11px ${SANS}`, DIM);
     for (const i of sByW) label(S[i].n, X(S[i].x), Y(S[i].y), `italic 400 15px ${SERIF}`, FG);
     if (cam.k >= 5) { let n = 0; for (const i of tByW) { const x = tx(i), y = ty(i); if (x < 0 || y < 0 || x > W || y > H) continue; if (label(T[i * 5 + 4], x + 9, y + 4, `400 12px ${SANS}`, DIM, 'left') && ++n > 40) break; } } }
-  if (showQ) for (const q of Q) if (q.t || cam.k >= 1.6) label(q.q, X(q.x) + 18, Y(q.y) + 5, `400 15px ${SERIF}`, QCOL, 'left');
+  if (showQ) for (const q of Q) if (q.t || cam.k >= 1.6) label(q.q, X(q.x) + 14, Y(q.y) + 5, `400 15px ${SERIF}`, QCOL, 'left');
 }
-function loop() {
+function loop(t) {
   if (target) { const f = reduce ? 1 : 0.14; cam.x += (target.x - cam.x) * f; cam.y += (target.y - cam.y) * f; cam.k += (target.k - cam.k) * f; if (Math.abs(target.x - cam.x) + Math.abs(target.y - cam.y) < 1e-4 && Math.abs(target.k - cam.k) < 0.002) { cam = target; target = null; } dirty = true; }
-  if (dirty) { dirty = false; draw(); $('brand').style.opacity = cam.k > 1.5 ? 0 : 1; } requestAnimationFrame(loop);
+  const heavy = dirty; if (dirty) { dirty = false; draw(); $('brand').style.opacity = cam.k > 1.5 ? 0 : 1; }
+  if (!reduce || heavy) drawMarkers(t || 0);
+  requestAnimationFrame(loop);
 }
 function zoomAt(px, py, f) { const k = Math.min(30, Math.max(0.7, cam.k * f)), ax = wx(px), ay = wy(py); cam = { x: ax - (px - W / 2) / (M * k), y: ay - (py - H / 2) / (M * k), k }; target = null; dirty = true; }
-function pickQ(px, py) { if (!$('lQ').checked) return -1; let best = -1, bd = 400; Q.forEach((q, i) => { const dx = X(q.x) - px, dy = Y(q.y) - py, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = i; } }); return best; }
+function pickQ(px, py) { if (!$('lQ').checked) return -1; let best = -1, bd = 289; Q.forEach((q, i) => { const dx = X(q.x) - px, dy = Y(q.y) - py, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = i; } }); return best; }
 function pick(px, py) { if (!$('lStars').checked) return -1; let best = -1, bd = 170; for (let i = 0; i < N; i++) { const dx = tx(i) - px, dy = ty(i) - py, d = dx * dx + dy * dy - V[i] * 30; if (d < bd) { bd = d; best = i; } } return best; }
 
 const tip = $('tip');

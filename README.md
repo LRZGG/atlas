@@ -16,9 +16,9 @@ Aujourd'hui, la carte montre le **connu** : les 4 516 sujets de recherche réper
 | Une étoile | Un sujet de recherche réel |
 | Sa taille et son éclat | Le nombre d'articles publiés dessus |
 | Le relief coloré | La densité de recherche, teintée par grand domaine |
-| Une étoile crème | Une grande question ouverte, au bord du connu |
-| Une étoile à huit branches | Une question transversale, qui relie plusieurs disciplines |
-| Une étoile creuse | Une question déjà lue (carnet de l'utilisateur) |
+| Une petite étoile crème qui scintille | Une grande question ouverte, au bord du connu |
+| La même, entourée d'un cercle | Une question transversale, qui relie plusieurs disciplines |
+| Une étoile creuse, immobile | Une question déjà lue (carnet de l'utilisateur) |
 | « Terra incognita » | Le vide entre les disciplines : peu d'articles relient des domaines éloignés |
 | Deux sujets proches | Leurs sous-disciplines partagent beaucoup d'articles |
 | Le noir | Presque personne n'y travaille |
