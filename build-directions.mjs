@@ -45,15 +45,32 @@ const T = [];
 for (const t of s.topics) { const i = sIdx[t.subfield], r = 0.011 * Math.sqrt(sn[i]); T.push(r3(pos[i][0] + gauss() * r), r3(pos[i][1] + gauss() * r), t.works, i, t.name); }
 assert.equal(T.length, s.topics.length * 5);
 
+// Les questions ouvertes : chacune est placée au barycentre des sous-disciplines qu'elle touche.
+const qs = JSON.parse(readFileSync('questions.json')), byName = Object.fromEntries(sIds.map((id, i) => [s.subfields[id].name, i]));
+assert.equal(Object.keys(byName).length, sIds.length, 'noms de sous-disciplines en double');
+const Q = qs.questions.map(q => {
+  const subs = q.subs.map(n => { assert(n in byName, `sous-discipline inconnue : ${n} (${q.id})`); return byName[n]; });
+  assert(qs.sources[q.src], `source inconnue : ${q.src}`);
+  return { id: q.id, q: q.q, c: q.ctx, s: q.src, st: q.status || 'ouverte', n: q.note || '', subs, x: subs.reduce((a, j) => a + pos[j][0], 0) / subs.length, y: subs.reduce((a, j) => a + pos[j][1], 0) / subs.length };
+});
+assert.equal(new Set(Q.map(q => q.id)).size, Q.length, 'identifiants de questions en double');
+// Deux anneaux superposés seraient illisibles : on les écarte du minimum nécessaire.
+for (let it = 0; it < 60; it++) for (let i = 0; i < Q.length; i++) for (let j = i + 1; j < Q.length; j++) {
+  let dx = Q[j].x - Q[i].x, dy = Q[j].y - Q[i].y, d = Math.hypot(dx, dy); if (d >= 0.045) continue;
+  if (d < 1e-6) { dx = Math.cos(i + j); dy = Math.sin(i + j); d = 1; }
+  const p = (0.045 - Math.min(d, 0.045)) / 2 / d; Q[i].x -= dx * p; Q[i].y -= dy * p; Q[j].x += dx * p; Q[j].y += dy * p;
+}
+Q.forEach(q => { q.x = r3(q.x); q.y = r3(q.y); });
+
 const DATA = {
   fetched: s.fetched, cap,
   D: dIds.map(d => fr(s.domains[d])),
   F: fIds.map(f => ({ n: fr(s.fields[f].name), d: dIds.indexOf(s.fields[f].domain) })),
   S: sIds.map((id, i) => ({ n: s.subfields[id].name, f: fIdx[s.subfields[id].field], x: r3(pos[i][0]), y: r3(pos[i][1]), w: sw[i] })),
-  L: links.map(([i, j]) => [i, j]), T
+  L: links.map(([i, j]) => [i, j]), T, Q, SRC: qs.sources
 };
 // Chaque page sort deux fois : le fragment (pour un aperçu Claude) et la page complète dans docs/ (pour GitHub Pages).
 const HEAD = '<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>';
 mkdirSync('docs', { recursive: true });
 for (const [tpl, out, site] of [['directions.tpl.html', 'directions.html', 'docs/directions.html'], ['carte.tpl.html', 'carte-de-l-inconnu.html', 'docs/index.html']]) { const page = readFileSync(tpl, 'utf8').replace('/*DATA*/null', () => JSON.stringify(DATA)); writeFileSync(out, page); writeFileSync(site, HEAD + page); }
-console.log(`plafond ${cap} articles, ${links.length} liens gardés, ${T.length / 5} sujets placés`);
+console.log(`plafond ${cap} articles, ${links.length} liens gardés, ${T.length / 5} sujets placés, ${Q.length} questions`);
