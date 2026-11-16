@@ -1,8 +1,8 @@
-<title>Carte de l'inconnu</title>
+<title>Map of the Unknown</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap">
 <style>
-/* Layout : une carte plein écran dans la tradition de l'atlas. Dessous, le relief (effort de recherche) dessiné par le processeur graphique, net à tout zoom ; dessus, les sujets en fine poussière, puis les questions en étoiles crème. La crème est réservée à l'inconnu. Légende en cartouche, fiche en bas à droite, visite guidée en bas à gauche. Un seul univers sombre, par choix. */
+/* Layout : une carte plein écran dans la tradition de l'atlas. Dessous, le relief (effort de recherche) dessiné par le processeur graphique, net à tout zoom ; dessus, les sujets en fine poussière, puis les questions en noms de lieu crème. La crème est réservée à l'inconnu. Légende en cartouche, fiche en bas à droite, visite guidée en bas à gauche, langue en haut à droite. Un seul univers sombre, par choix. */
 :root {
   color-scheme: dark;
   --void: #06080d;
@@ -29,6 +29,13 @@ button { background: var(--panel); border: 1px solid var(--line); border-radius:
 button:hover { border-color: var(--dim); }
 :focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
 svg { display: block; }
+#lang { position: absolute; top: 20px; right: calc(max(20px, env(safe-area-inset-right, 0px)) + 252px); display: flex; }
+#lang button { height: 30px; padding: 0 10px; font-size: 12px; letter-spacing: .06em; border-radius: 0; }
+#lang button + button { border-left: 0; }
+#lang button:first-child { border-radius: 3px 0 0 3px; }
+#lang button:last-child { border-radius: 0 3px 3px 0; }
+#lang button[aria-pressed="true"] { color: var(--question); border-color: var(--question); }
+#lang button[aria-pressed="true"] + button { border-left: 1px solid var(--line); }
 #side { position: absolute; top: 20px; right: max(20px, env(safe-area-inset-right, 0px)); width: 240px; box-sizing: border-box; background: var(--panel); border: 1px solid var(--line); padding: 12px 14px; font-size: 13px; }
 #side summary { cursor: pointer; font: italic 400 16px var(--serif); }
 #side h3 { font: 500 11px var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--dim); margin: 14px 0 6px; }
@@ -40,6 +47,7 @@ svg { display: block; }
 #key i { width: 9px; height: 9px; border-radius: 50%; flex: none; }
 #qkey { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 #qkey li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; align-items: center; }
+#qkey b { font-weight: 400; }
 #qkey span { color: var(--dim); font-size: 12px; display: block; }
 #lnote { margin: 12px 0 0; color: var(--dim); font-size: 12px; line-height: 1.45; }
 #layers { display: grid; gap: 4px; border-top: 1px solid var(--line); margin-top: 14px; padding-top: 10px; }
@@ -54,6 +62,7 @@ svg { display: block; }
 #card h2 { font: 400 23px/1.15 var(--serif); margin: 0 30px 6px 0; text-wrap: balance; }
 #card p { margin: 0; color: var(--dim); font-size: 13.5px; }
 #card a { color: var(--question); }
+#cNote { margin-top: 8px; font-size: 12.5px; font-style: italic; }
 #cCount { font: 300 30px/1 var(--serif); color: var(--fg); margin: 14px 0 2px; font-variant-numeric: tabular-nums; }
 #cUnit { color: var(--fg); font-size: 14.5px; margin-top: 10px; }
 #cSrc { margin-top: 10px; }
@@ -86,8 +95,9 @@ svg { display: block; }
 #tip b { display: block; font-weight: 500; }
 #tip span { color: var(--dim); }
 @media (max-width: 720px) {
-  #brand { top: 14px; left: max(16px, env(safe-area-inset-left, 0px)); max-width: none; right: 16px; }
+  #brand { top: 14px; left: max(16px, env(safe-area-inset-left, 0px)); max-width: none; right: 92px; }
   #brand p { font-size: 13px; }
+  #lang { top: 14px; right: max(16px, env(safe-area-inset-right, 0px)); }
   #side { top: auto; right: auto; left: max(16px, env(safe-area-inset-left, 0px)); bottom: calc(66px + env(safe-area-inset-bottom, 0px)); }
   #zoom { left: max(16px, env(safe-area-inset-left, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
   #card { left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); width: auto; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
@@ -99,46 +109,48 @@ svg { display: block; }
 
 <div id="stage">
   <canvas id="gl" aria-hidden="true"></canvas>
-  <canvas id="c" role="img" aria-label="Carte de la recherche mondiale. Le relief montre où l'on publie beaucoup, chaque point est un sujet de recherche, les noms précédés d'un point d'interrogation sont des questions que personne n'a résolues, le noir est ce qui est peu étudié."></canvas>
+  <canvas id="c" role="img" data-ia="aria_carte"></canvas>
   <canvas id="m" aria-hidden="true"></canvas>
-  <div id="brand"><h1>Carte de l'inconnu</h1><p><span id="nT"></span> sujets de recherche réels et <span id="nQ"></span> grandes questions que personne n'a résolues. Le relief montre où l'on cherche.</p></div>
+  <div id="brand"><h1 id="siteTitle"></h1><p id="brandP"></p></div>
+  <div id="lang" role="group" data-ia="lang_aria"><button data-lang="fr" aria-pressed="false">FR</button><button data-lang="en" aria-pressed="false">EN</button></div>
   <details id="side">
-    <summary>Légende</summary>
-    <h3>Relief : effort de recherche</h3>
+    <summary data-i="leg"></summary>
+    <h3 data-i="leg_relief"></h3>
     <div id="ramp"></div>
-    <div id="rampCap"><span>peu d'articles</span><span>beaucoup</span></div>
-    <h3>Teinte : grand domaine</h3>
+    <div id="rampCap"><span data-i="leg_peu"></span><span data-i="leg_beaucoup"></span></div>
+    <h3 data-i="leg_teinte"></h3>
     <ul id="key"></ul>
-    <h3>Questions</h3>
+    <h3 data-i="leg_questions"></h3>
     <ul id="qkey">
-      <li><em class="qg">?</em><div>À découvrir<span>nom en italique, au bord du connu</span></div></li>
-      <li><em class="qg t">?</em><div>Transversale<span>nom souligné : relie plusieurs disciplines</span></div></li>
-      <li><em class="qg d">?</em><div>Déjà lue<span>dans ton carnet</span></div></li>
+      <li><em class="qg">?</em><div><b data-i="qk1"></b><span data-i="qk1b"></span></div></li>
+      <li><em class="qg t">?</em><div><b data-i="qk2"></b><span data-i="qk2b"></span></div></li>
+      <li><em class="qg d">?</em><div><b data-i="qk3"></b><span data-i="qk3b"></span></div></li>
     </ul>
-    <p id="lnote">Les positions sont calculées d'après les articles que les sujets ont en commun. Le centre est dilaté pour que le vide se lise.</p>
+    <p id="lnote" data-i="lnote"></p>
     <div id="layers">
-      <label><input id="lRelief" type="checkbox" checked> Relief</label>
-      <label><input id="lStars" type="checkbox" checked> Sujets</label>
-      <label><input id="lQ" type="checkbox" checked> Questions</label>
+      <label><input id="lRelief" type="checkbox" checked> <span data-i="l_relief"></span></label>
+      <label><input id="lStars" type="checkbox" checked> <span data-i="l_sujets"></span></label>
+      <label><input id="lQ" type="checkbox" checked> <span data-i="l_questions"></span></label>
     </div>
-    <div id="coll"><b id="nSeen">0</b> / <span id="nQ2"></span> questions lues</div>
+    <div id="coll"><b id="nSeen">0</b> / <span id="nQ2"></span> <span data-i="lues"></span></div>
   </details>
   <div id="zoom">
-    <button id="zin" aria-label="Zoomer"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v12M2 8h12"/></svg></button>
-    <button id="zout" aria-label="Dézoomer"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12"/></svg></button>
-    <button id="zfit" aria-label="Voir toute la carte"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></button>
-    <button id="tStart">Visite guidée</button>
-    <div id="pill" title="Questions lues">Carnet : <b id="nSeen2">0</b> / <span id="nQ3"></span></div>
+    <button id="zin" data-ia="zin"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v12M2 8h12"/></svg></button>
+    <button id="zout" data-ia="zout"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12"/></svg></button>
+    <button id="zfit" data-ia="zfit"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></button>
+    <button id="tStart" data-i="visite"></button>
+    <div id="pill" data-it="carnet_t"><span data-i="carnet"></span> <b id="nSeen2">0</b> / <span id="nQ3"></span></div>
   </div>
   <div id="tour" hidden>
     <div id="tStep"></div>
     <p id="tText"></p>
-    <div class="row"><button id="tNext">Suivant</button><button id="tQuit">Quitter</button></div>
+    <div class="row"><button id="tNext"></button><button id="tQuit" data-i="quitter"></button></div>
   </div>
   <div id="card" hidden>
-    <button id="close" aria-label="Fermer la fiche"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l10 10M11 1 1 11"/></svg></button>
+    <button id="close" data-ia="fermer"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l10 10M11 1 1 11"/></svg></button>
     <h2 id="cName"></h2>
     <p id="cWhere"></p>
+    <p id="cNote" hidden></p>
     <div id="cCount"></div>
     <p id="cUnit"></p>
     <div id="fiche"></div>
@@ -151,20 +163,28 @@ svg { display: block; }
 
 <script>
 const DATA = /*DATA*/null;
-const { D, F, S, L, T, cap, Q, SRC, hole } = DATA, N = T.length / 5;
+const { F, S, L, T, cap, Q, SRC, hole } = DATA, N = T.length / 5;
 const $ = id => document.getElementById(id), css = getComputedStyle(document.documentElement), tok = n => css.getPropertyValue(n).trim();
 const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
 const VOID = hex(tok('--void')), DOMRGB = [0, 1, 2, 3].map(i => hex(tok('--d' + i))), SANS = tok('--sans'), SERIF = tok('--serif'), FG = tok('--fg'), DIM = tok('--dim'), QCOL = tok('--question'), VOIDC = tok('--void');
-const fmt = n => n.toLocaleString('fr-FR');
+
+// ---- Langue : fixée par la page (/fr/, /en/), sinon choix mémorisé, sinon langue du navigateur (anglais par défaut).
+const FORCED = window.__LANG || null;
+function detectLang(langs) { const l = (langs || []).find(x => /^(fr|en)(-|_|$)/i.test(x)); return l && /^fr/i.test(l) ? 'fr' : 'en'; }
+let LANG = FORCED;
+if (!LANG) { let saved = null; try { saved = localStorage.getItem('lang'); } catch (e) {} LANG = saved === 'fr' || saved === 'en' ? saved : detectLang(navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language]); }
+const t = (k, v) => { let s = DATA.TXT[LANG][k] ?? DATA.TXT.en[k] ?? k; if (v) for (const x in v) s = s.replace('{' + x + '}', v[x]); return s; };
+const loc = o => (o && (o[LANG] ?? o.fr)) || '';
+const fb = o => !(o && o[LANG] != null);
+const fmt = n => n.toLocaleString(LANG === 'fr' ? 'fr-FR' : 'en-US');
+
 const LMAX = Math.log10(cap), nrm = w => Math.max(0, Math.min(1, (Math.log10(Math.max(w, 1)) - 2) / (LMAX - 2)));
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const STATUS = { ouverte: 'Question ouverte', evaluation: 'Résolution proposée, en cours d’évaluation', avancee: 'Largement avancée depuis 2005' };
 const mix = (c, t, a) => c.map((v, i) => v + (t[i] - v) * a);
 // Chaque discipline a sa nuance dans la teinte de son domaine, pour qu'un pont entre deux régions se voie.
 const FSTAR = F.map((f, i) => { const sib = F.map((g, j) => j).filter(j => F[j].d === f.d), k = sib.indexOf(i), n = sib.length, sh = n > 1 ? (k / (n - 1) - 0.5) * 0.5 : 0; let c = mix(DOMRGB[f.d], [255, 255, 255], 0.4); c = sh > 0 ? mix(c, [255, 255, 255], sh) : mix(c, [0, 0, 0], -sh); return `rgb(${c.map(Math.round).join(',')})`; });
 
-$('nT').textContent = fmt(N); $('nQ').textContent = $('nQ2').textContent = $('nQ3').textContent = Q.length;
-D.forEach((n, i) => { const li = document.createElement('li'), d = document.createElement('i'); d.style.background = tok('--d' + i); li.append(d, n); $('key').appendChild(li); });
+$('nQ2').textContent = $('nQ3').textContent = Q.length;
 for (let b = 2; b <= 7; b++) { const i = document.createElement('i'), c = mix(VOID, [190, 202, 225], 0.14 + 0.62 * (b - 2) / 5); i.style.background = `rgb(${c.map(Math.round).join(',')})`; $('ramp').appendChild(i); }
 if (matchMedia('(max-width: 720px)').matches) $('side').open = false;
 
@@ -217,7 +237,7 @@ function initGL() {
 }
 function buildRelief() {
   if (!gl) return;
-  try { initGL(); } catch (e) { console.warn('Relief indisponible :', e.message); gl = null; return; }
+  try { initGL(); } catch (e) { console.warn('Relief unavailable:', e.message); gl = null; return; }
   const sig = DATA.rl.sig * GR / (2 * EXT), R = Math.ceil(2.9 * sig), data = new Float32Array(GR * GR * 4);
   for (let i = 0; i < N; i++) {
     const d = F[S[T[i * 5 + 3]].f].d, fx = (T[i * 5] + EXT) / (2 * EXT) * GR - 0.5, fy = (T[i * 5 + 1] + EXT) / (2 * EXT) * GR - 0.5, wt = 0.05 + V[i] * V[i], rx = Math.round(fx), ry = Math.round(fy);
@@ -300,10 +320,10 @@ function draw() {
     for (const i of sByW) label(S[i].n, X(S[i].x), Y(S[i].y), `italic 400 15px ${SERIF}`, FG);
     if (cam.k >= 5) { let n = 0; for (const i of tByW) { const x = tx(i), y = ty(i); if (x < 0 || y < 0 || x > W || y > H) continue; if (label(T[i * 5 + 4], x + 9, y + 4, `400 12px ${SANS}`, DIM, 'left') && ++n > 40) break; } } }
 }
-function loop(t) {
+function loop(ts) {
   if (target) { const f = reduce ? 1 : 0.14; cam.x += (target.x - cam.x) * f; cam.y += (target.y - cam.y) * f; cam.k += (target.k - cam.k) * f; if (Math.abs(target.x - cam.x) + Math.abs(target.y - cam.y) < 1e-4 && Math.abs(target.k - cam.k) < 0.002) { cam = target; target = null; } dirty = true; }
   const heavy = dirty; if (dirty) { dirty = false; draw(); $('brand').style.opacity = cam.k > 1.5 ? 0 : 1; }
-  if (!reduce || heavy) drawMarkers(t || 0);
+  if (!reduce || heavy) drawMarkers(ts || 0);
   requestAnimationFrame(loop);
 }
 function zoomAt(px, py, f) { const k = Math.min(30, Math.max(0.7, cam.k * f)), ax = wx(px), ay = wy(py); cam = { x: ax - (px - W / 2) / (M * k), y: ay - (py - H / 2) / (M * k), k }; target = null; dirty = true; }
@@ -315,67 +335,94 @@ function pickQ(px, py) {
 function pick(px, py) { if (!$('lStars').checked) return -1; let best = -1, bd = 170; for (let i = 0; i < N; i++) { const dx = tx(i) - px, dy = ty(i) - py, d = dx * dx + dy * dy - V[i] * 30; if (d < bd) { bd = d; best = i; } } return best; }
 
 const tip = $('tip');
-function showTip(i, px, py) { if (i < 0) { tip.hidden = true; return; } const s = S[T[i * 5 + 3]], w = T[i * 5 + 2]; tip.textContent = ''; const b = document.createElement('b'), a = document.createElement('span'); b.textContent = T[i * 5 + 4]; a.textContent = F[s.f].n + ' · ' + fmt(w) + ' articles' + (w > cap ? ' (compteur douteux)' : ''); tip.append(b, a); tip.hidden = false; tip.style.left = Math.max(4, Math.min(px + 16, W - tip.offsetWidth - 4)) + 'px'; tip.style.top = (py + 18 + tip.offsetHeight > H ? py - tip.offsetHeight - 12 : py + 18) + 'px'; }
+function showTip(i, px, py) { if (i < 0) { tip.hidden = true; return; } const s = S[T[i * 5 + 3]], w = T[i * 5 + 2]; tip.textContent = ''; const b = document.createElement('b'), a = document.createElement('span'); b.textContent = T[i * 5 + 4]; a.textContent = F[s.f].n + ' · ' + fmt(w) + ' ' + t('articles') + (w > cap ? ' ' + t('douteux') : ''); tip.append(b, a); tip.hidden = false; tip.style.left = Math.max(4, Math.min(px + 16, W - tip.offsetWidth - 4)) + 'px'; tip.style.top = (py + 18 + tip.offsetHeight > H ? py - tip.offsetHeight - 12 : py + 18) + 'px'; }
 // Cadre un point en le décalant vers la gauche quand la fiche occupe la droite de l'écran.
 function focusOn(x, y, k) { target = { x: x + (W > 720 ? 0.16 * W : 0) / (M * k), y, k }; }
 // Quand une fiche s'ouvre, la légende se replie pour ne pas la recouvrir ; elle revient à la fermeture.
 let legendOpen = $('side').open;
 const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
 const link = (txt, href) => { const a = el('a', null, txt); a.href = href; a.target = '_blank'; a.rel = 'noopener'; return a; };
-// La fiche détaillée d'une question : ce qu'on sait, ce qu'on ignore, pourquoi c'est dur, pourquoi ça compte, par où commencer, et de quoi aller plus loin.
+// La fiche détaillée d'une question, dans la langue choisie (à défaut, en français) : ce qu'on sait, ce qu'on ignore, pourquoi c'est dur, pourquoi ça compte, par où commencer, de quoi aller plus loin.
 function renderFiche(q) {
   const box = $('fiche'); box.textContent = ''; $('card').classList.toggle('wide', !!(q && q.f)); $('card').scrollTop = 0;
   if (!q) return;
-  if (!q.f) { box.appendChild(el('p', null, 'Fiche détaillée en préparation.')); return; }
-  const f = q.f, sec = (titre, items) => { box.appendChild(el('h4', null, titre)); const ul = el('ul'); items.forEach(t => ul.appendChild(el('li', null, t))); box.appendChild(ul); };
-  sec("Ce qu'on sait", f.s); sec("Ce qu'on ignore", f.i); sec("Pourquoi c'est dur", f.d);
-  box.appendChild(el('h4', null, 'Pourquoi ça compte')); box.appendChild(el('p', null, f.e));
-  sec('Par où commencer', f.c);
-  box.appendChild(el('h4', null, 'Pour aller plus loin'));
-  const wk = el('div', 'wiki'); wk.appendChild(el('p', null, f.w.x)); const at = el('p', 'attr'); at.append('Extrait de l’article Wikipédia « ', link(f.w.t, f.w.u), ' » (licence CC BY-SA).'); wk.appendChild(at); box.appendChild(wk);
+  if (!q.f) { box.appendChild(el('p', null, t('fiche_prep'))); return; }
+  const f = q.f, b = f[LANG] || f.fr, w = f.w[LANG] || f.w.fr, sec = (titre, items) => { box.appendChild(el('h4', null, titre)); const ul = el('ul'); items.forEach(x => ul.appendChild(el('li', null, x))); box.appendChild(ul); };
+  sec(t('f_sait'), b.s); sec(t('f_ignore'), b.i); sec(t('f_dur'), b.d);
+  box.appendChild(el('h4', null, t('f_compte'))); box.appendChild(el('p', null, b.e));
+  sec(t('f_commencer'), b.c);
+  box.appendChild(el('h4', null, t('f_loin')));
+  const wk = el('div', 'wiki'); wk.appendChild(el('p', null, w.x)); const at = el('p', 'attr'), parts = t('wiki_attr').split('{t}'); at.append(parts[0], link(w.t, w.u), parts[1] || ''); wk.appendChild(at); box.appendChild(wk);
   const ul = el('ul', 'refs'); f.r.forEach(r => { const li = el('li'); li.appendChild(link(r.t, r.u)); li.appendChild(el('span', null, [r.a, r.y].filter(Boolean).join(', '))); ul.appendChild(li); }); box.appendChild(ul);
 }
 function openCard() { tip.hidden = true; if ($('card').hidden) legendOpen = $('side').open; $('side').open = false; $('card').hidden = false; }
 function clearSel() { sel = selQ = -1; lit = null; if (!$('card').hidden) $('side').open = legendOpen; $('card').hidden = true; if (location.hash) location.hash = ''; dirty = true; }
+// Le contenu de la fiche, séparé de la sélection pour pouvoir le réécrire quand la langue change.
+function fillTopic(i) {
+  const si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2];
+  renderFiche(null); $('cNote').hidden = true; $('cCount').hidden = false; $('cSrc').hidden = true; $('cListT').textContent = t('t_voisines');
+  $('cName').textContent = T[i * 5 + 4]; $('cWhere').textContent = F[s.f].n + ' · ' + s.n; $('cCount').textContent = fmt(w); $('cUnit').textContent = t('publies') + (w > cap ? ' ' + t('douteux_long') : '');
+  const ul = $('cLinks'); ul.textContent = ''; NB[si].slice(0, 5).forEach(j => { const li = document.createElement('li'); li.textContent = S[j].n; ul.appendChild(li); });
+}
+function fillQuestion(i) {
+  const q = Q[i], src = SRC[q.s];
+  $('cName').textContent = q.q; $('cWhere').textContent = t('st_' + q.st) + (q.t ? t('transversale') : ''); $('cCount').hidden = true; $('cUnit').textContent = q.c + (q.n ? ' ' + q.n : ''); renderFiche(q);
+  const manque = LANG !== 'fr' && (fb(q.cc) || (q.no && fb(q.no)) || (q.f && !q.f[LANG])); $('cNote').hidden = !manque; $('cNote').textContent = t('non_traduit');
+  $('cSrc').hidden = false; $('cLink').textContent = t('source') + loc(src.n); $('cLink').href = src.u; $('cListT').textContent = t(q.t ? 'q_relie' : 'q_concernees');
+  const ul = $('cLinks'); ul.textContent = ''; q.subs.forEach(j => { const li = document.createElement('li'); li.textContent = F[S[j].f].n + ' · ' + S[j].n; ul.appendChild(li); });
+}
+function refreshCard() { if (selQ >= 0) fillQuestion(selQ); else if (sel >= 0) fillTopic(sel); }
 function select(i) {
   tourStop(); sel = i; selQ = -1; dirty = true; if (location.hash) location.hash = '';
-  const si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2]; lit = new Set([si]);
-  renderFiche(null); $('cCount').hidden = false; $('cSrc').hidden = true; $('cListT').textContent = "Sous-disciplines qui partagent le plus d'articles avec la sienne";
-  $('cName').textContent = T[i * 5 + 4]; $('cWhere').textContent = F[s.f].n + ' · ' + s.n; $('cCount').textContent = fmt(w); $('cUnit').textContent = 'articles publiés' + (w > cap ? ' (compteur douteux, plafonné sur la carte)' : '');
-  const ul = $('cLinks'); ul.textContent = ''; NB[si].slice(0, 5).forEach(j => { const li = document.createElement('li'); li.textContent = S[j].n; ul.appendChild(li); });
-  openCard(); focusOn(T[i * 5], T[i * 5 + 1], Math.max(cam.k, 3));
+  lit = new Set([T[i * 5 + 3]]); fillTopic(i); openCard(); focusOn(T[i * 5], T[i * 5 + 1], Math.max(cam.k, 3));
 }
 function selectQ(i) {
-  tourStop(); selQ = i; sel = -1; dirty = true; const q = Q[i], src = SRC[q.s]; lit = new Set(q.subs);
+  tourStop(); selQ = i; sel = -1; dirty = true; const q = Q[i]; lit = new Set(q.subs);
   explored.add(q.id); try { localStorage.setItem('explored', JSON.stringify([...explored])); } catch (e) {} countSeen();
-  $('cName').textContent = q.q; $('cWhere').textContent = STATUS[q.st] + (q.t ? ' · transversale' : ''); $('cCount').hidden = true; $('cUnit').textContent = q.c + (q.n ? ' ' + q.n : ''); renderFiche(q);
-  $('cSrc').hidden = false; $('cLink').textContent = 'Source : ' + src.n; $('cLink').href = src.u; $('cListT').textContent = q.t ? 'Elle relie ces sous-disciplines' : 'Sous-disciplines concernées';
-  const ul = $('cLinks'); ul.textContent = ''; q.subs.forEach(j => { const li = document.createElement('li'); li.textContent = F[S[j].f].n + ' · ' + S[j].n; ul.appendChild(li); });
-  openCard(); focusOn(q.x, q.y, Math.max(cam.k, q.t ? 1.6 : 2.2)); if (location.hash.slice(1) !== q.id) location.hash = q.id;
+  fillQuestion(i); openCard(); focusOn(q.x, q.y, Math.max(cam.k, q.t ? 1.6 : 2.2)); if (location.hash.slice(1) !== q.id) location.hash = q.id;
 }
 // Chaque question a son adresse (#conscience) : on peut envoyer le lien d'une question précise.
 function openHash() { const i = Q.findIndex(q => q.id === location.hash.slice(1)); if (i >= 0 && i !== selQ) selectQ(i); }
 addEventListener('hashchange', openHash);
 $('close').onclick = clearSel;
 
-// Visite guidée : cinq étapes qui déplacent la caméra et expliquent ce qu'on regarde.
-const fMed = F.find(f => f.n === 'Médecine') || F[0], qCons = Math.max(0, Q.findIndex(q => q.id === 'malthus'));
+// Visite guidée : cinq étapes qui déplacent la caméra ; les textes sont dans textes.json (tour1 à tour5).
+const fMed = F.find(f => f.nn.en === 'Medicine') || F[0], qMal = Math.max(0, Q.findIndex(q => q.id === 'malthus'));
 const TOUR = [
-  { t: "Chaque point est un sujet de recherche réel. Plus la zone est claire, plus on y publie. Le noir, c'est ce qui est peu étudié.", v: () => ({ x: 0, y: 0, k: 1 }) },
-  { t: "Les couleurs sont les grands domaines. Ici, la santé. Zoome pour descendre des disciplines jusqu'aux sujets.", v: () => ({ x: fMed.x, y: fMed.y, k: 3 }) },
-  { t: "Au centre, très peu d'articles relient des domaines éloignés. C'est la terra incognita : l'espace entre les disciplines.", v: () => ({ x: hole.x, y: hole.y, k: 1.8 }) },
-  { t: "Les noms précédés d'un « ? » sont des questions que personne n'a résolues. Celles qui relient des disciplines éloignées, comme celle-ci, se posent entre elles, souvent dans le vide du centre. Les autres sont au bord de leur région.", v: () => ({ x: Q[qCons].x, y: Q[qCons].y, k: 2 }), q: qCons },
-  { t: "À toi : clique un « ? » pour lire sa question. Chaque question lue passe dans ton carnet.", v: () => ({ x: 0, y: 0, k: 1 }) }
+  { v: () => ({ x: 0, y: 0, k: 1 }) },
+  { v: () => ({ x: fMed.x, y: fMed.y, k: 3 }) },
+  { v: () => ({ x: hole.x, y: hole.y, k: 1.8 }) },
+  { v: () => ({ x: Q[qMal].x, y: Q[qMal].y, k: 2 }), q: qMal },
+  { v: () => ({ x: 0, y: 0, k: 1 }) }
 ];
 let tourI = -1;
+function tourShow(i) { $('tStep').textContent = t('tour_n', { i: i + 1, n: TOUR.length }); $('tText').textContent = t('tour' + (i + 1)); $('tNext').textContent = t(i === TOUR.length - 1 ? 'terminer' : 'suivant'); }
 function tourStop() { if (tourI < 0) return; tourI = -1; $('tour').hidden = true; hoverQ = -1; dirty = true; }
 function tourGo(i) {
   if (i >= TOUR.length) { tourStop(); return; }
   if (!$('card').hidden) clearSel();
-  tourI = i; const s = TOUR[i]; $('tStep').textContent = 'Visite · ' + (i + 1) + ' / ' + TOUR.length; $('tText').textContent = s.t; $('tNext').textContent = i === TOUR.length - 1 ? 'Terminer' : 'Suivant'; $('tour').hidden = false;
-  hoverQ = s.q ?? -1; target = s.v(); dirty = true;
+  tourI = i; tourShow(i); $('tour').hidden = false; hoverQ = TOUR[i].q ?? -1; target = TOUR[i].v(); dirty = true;
 }
 $('tStart').onclick = () => tourGo(0); $('tNext').onclick = () => tourGo(tourI + 1); $('tQuit').onclick = tourStop;
+
+// Applique la langue à toute la page : textes fixes (attributs data-i, data-ia, data-it), légende, noms des disciplines et des questions, fiche ouverte, visite.
+function applyLang() {
+  document.documentElement.lang = LANG; document.title = t('titre'); const md = document.querySelector('meta[name=description]'); if (md) md.content = t('desc');
+  document.querySelectorAll('[data-i]').forEach(e => { e.textContent = t(e.dataset.i); });
+  document.querySelectorAll('[data-ia]').forEach(e => e.setAttribute('aria-label', t(e.dataset.ia)));
+  document.querySelectorAll('[data-it]').forEach(e => { e.title = t(e.dataset.it); });
+  $('siteTitle').textContent = t('titre'); $('brandP').textContent = t('brand', { n: fmt(N), q: Q.length });
+  $('key').textContent = ''; DATA.D.forEach((n, i) => { const li = document.createElement('li'), d = document.createElement('i'); d.style.background = tok('--d' + i); li.append(d, n[LANG] ?? n.fr); $('key').appendChild(li); });
+  F.forEach(f => { f.n = f.nn[LANG] ?? f.nn.fr; });
+  Q.forEach(q => { q.q = loc(q.qq); q.nm = loc(q.nmm); q.c = loc(q.cc); q.n = loc(q.no); });
+  document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
+  if (tourI >= 0) tourShow(tourI);
+  refreshCard(); dirty = true;
+}
+function setLang(l) { LANG = l; try { localStorage.setItem('lang', l); } catch (e) {} applyLang(); }
+document.querySelectorAll('#lang button').forEach(b => { b.onclick = () => {
+  const l = b.dataset.lang; if (l === LANG) return; try { localStorage.setItem('lang', l); } catch (e) {}
+  if (FORCED) location.href = '../' + l + '/' + location.hash; else setLang(l); }; });
 
 const ptrs = new Map(); let moved = 0, pinch = 0;
 const pos = e => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
@@ -399,5 +446,5 @@ $('lRelief').onchange = $('lStars').onchange = $('lQ').onchange = () => { dirty 
 
 new ResizeObserver(resize).observe(cv); addEventListener('resize', resize);
 if (document.fonts) document.fonts.ready.then(() => { dirty = true; });
-resize(); requestAnimationFrame(loop); openHash(); setTimeout(buildRelief, 30);
+applyLang(); resize(); requestAnimationFrame(loop); openHash(); setTimeout(buildRelief, 30);
 </script>

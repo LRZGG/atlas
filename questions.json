@@ -1,11 +1,17 @@
 {
   "sources": {
     "science2005": {
-      "n": "Revue Science, « 125 questions », 1er juillet 2005",
+      "n": {
+        "fr": "Revue Science, « 125 questions », 1er juillet 2005",
+        "en": "Science magazine, “125 questions”, 1 July 2005"
+      },
       "u": "https://www.eurekalert.org/news-releases/630081"
     },
     "clay": {
-      "n": "Institut Clay, problèmes du prix du millénaire (2000)",
+      "n": {
+        "fr": "Institut Clay, problèmes du prix du millénaire (2000)",
+        "en": "Clay Mathematics Institute, Millennium Prize Problems (2000)"
+      },
       "u": "https://www.claymath.org/millennium-problems/"
     }
   },
@@ -13,46 +19,67 @@
     {
       "id": "univers",
       "src": "science2005",
-      "q": "De quoi est fait l'univers ?",
-      "ctx": "La matière ordinaire, celle des étoiles et des galaxies, compte pour moins de 5 % de ce qui existe. La nature du reste est inconnue.",
+      "q": {
+        "fr": "De quoi est fait l'univers ?",
+        "en": "What is the universe made of?"
+      },
+      "ctx": {
+        "fr": "La matière ordinaire, celle des étoiles et des galaxies, compte pour moins de 5 % de ce qui existe. La nature du reste est inconnue."
+      },
       "subs": [
         "Astronomy and Astrophysics",
         "Nuclear and High Energy Physics"
       ],
-      "nom": "Composition de l'univers"
+      "nom": {
+        "fr": "Composition de l'univers",
+        "en": "Makeup of the universe"
+      }
     },
     {
       "id": "conscience",
       "src": "science2005",
-      "q": "Quelle est la base biologique de la conscience ?",
-      "ctx": "Ce qui se passe dans l'esprit vient de processus dans le cerveau, mais on commence seulement à les démêler.",
+      "q": {
+        "fr": "Quelle est la base biologique de la conscience ?",
+        "en": "What is the biological basis of consciousness?"
+      },
+      "ctx": {
+        "fr": "Ce qui se passe dans l'esprit vient de processus dans le cerveau, mais on commence seulement à les démêler."
+      },
       "subs": [
         "Cognitive Neuroscience",
         "Philosophy",
         "Experimental and Cognitive Psychology"
       ],
-      "nom": "Conscience",
+      "nom": {
+        "fr": "Conscience",
+        "en": "Consciousness"
+      },
       "fiche": {
-        "wiki": "Problème difficile de la conscience",
-        "savoir": [
-          "Le cerveau et la conscience sont étroitement liés : une lésion, une anesthésie ou le sommeil profond changent ou suppriment l'expérience vécue.",
-          "On sait repérer des « corrélats neuronaux » : des activités du cerveau qui accompagnent une expérience consciente. Par exemple, ce qui diffère dans le cerveau entre une image qu'on voit et la même image qu'on ne remarque pas.",
-          "Plusieurs théories scientifiques sont en concurrence pour l'expliquer, et on cherche à les tester les unes contre les autres."
-        ],
-        "ignore": [
-          "Pourquoi l'activité de neurones s'accompagne d'une expérience vécue : le goût d'un fruit, le rouge d'une couleur, une douleur. Le philosophe David Chalmers a appelé cela le « problème difficile » de la conscience.",
-          "Quels êtres en ont une : certains animaux ? Une machine pourrait-elle en avoir ? Il n'existe pas de test accepté par tous."
-        ],
-        "dur": [
-          "L'expérience vécue est privée : personne ne peut la mesurer de l'extérieur. On dépend de ce que la personne rapporte, et un bébé, un animal ou un patient qui ne répond pas ne peuvent rien rapporter.",
-          "Il n'existe pas de définition de la conscience qui fasse l'unanimité, et les théories concurrentes se laissent difficilement départager par l'expérience."
-        ],
-        "enjeu": "Savoir si un patient qui ne répond pas ressent quelque chose, ce qu'on doit aux animaux, et ce que valent des machines qui prétendent ressentir.",
-        "commencer": [
-          "Les neurosciences cognitives étudient les corrélats neuronaux ; la philosophie de l'esprit étudie la question de fond. Les deux se rejoignent ici.",
-          "Un protocole de base : comparer ce que fait le cerveau face à une perception consciente et à une perception qui ne l'est pas.",
-          "Pour poser le problème, le texte de Chalmers ci-dessous est le point de départ."
-        ],
+        "wiki": {
+          "fr": "Problème difficile de la conscience",
+          "en": "Hard problem of consciousness"
+        },
+        "fr": {
+          "savoir": [
+            "Le cerveau et la conscience sont étroitement liés : une lésion, une anesthésie ou le sommeil profond changent ou suppriment l'expérience vécue.",
+            "On sait repérer des « corrélats neuronaux » : des activités du cerveau qui accompagnent une expérience consciente. Par exemple, ce qui diffère dans le cerveau entre une image qu'on voit et la même image qu'on ne remarque pas.",
+            "Plusieurs théories scientifiques sont en concurrence pour l'expliquer, et on cherche à les tester les unes contre les autres."
+          ],
+          "ignore": [
+            "Pourquoi l'activité de neurones s'accompagne d'une expérience vécue : le goût d'un fruit, le rouge d'une couleur, une douleur. Le philosophe David Chalmers a appelé cela le « problème difficile » de la conscience.",
+            "Quels êtres en ont une : certains animaux ? Une machine pourrait-elle en avoir ? Il n'existe pas de test accepté par tous."
+          ],
+          "dur": [
+            "L'expérience vécue est privée : personne ne peut la mesurer de l'extérieur. On dépend de ce que la personne rapporte, et un bébé, un animal ou un patient qui ne répond pas ne peuvent rien rapporter.",
+            "Il n'existe pas de définition de la conscience qui fasse l'unanimité, et les théories concurrentes se laissent difficilement départager par l'expérience."
+          ],
+          "enjeu": "Savoir si un patient qui ne répond pas ressent quelque chose, ce qu'on doit aux animaux, et ce que valent des machines qui prétendent ressentir.",
+          "commencer": [
+            "Les neurosciences cognitives étudient les corrélats neuronaux ; la philosophie de l'esprit étudie la question de fond. Les deux se rejoignent ici.",
+            "Un protocole de base : comparer ce que fait le cerveau face à une perception consciente et à une perception qui ne l'est pas.",
+            "Pour poser le problème, le texte de Chalmers ci-dessous est le point de départ."
+          ]
+        },
         "refs": [
           {
             "doi": "10.7551/mitpress/6860.003.0003"
@@ -66,139 +93,226 @@
     {
       "id": "genes",
       "src": "science2005",
-      "q": "Pourquoi les humains ont-ils si peu de gènes ?",
-      "ctx": "Nous avons à peu près autant de gènes qu'une petite plante à fleurs. La façon dont ils sont régulés et exprimés est une question centrale de la biologie.",
+      "q": {
+        "fr": "Pourquoi les humains ont-ils si peu de gènes ?",
+        "en": "Why do humans have so few genes?"
+      },
+      "ctx": {
+        "fr": "Nous avons à peu près autant de gènes qu'une petite plante à fleurs. La façon dont ils sont régulés et exprimés est une question centrale de la biologie."
+      },
       "subs": [
         "Genetics",
         "Molecular Biology"
       ],
-      "nom": "Peu de gènes"
+      "nom": {
+        "fr": "Peu de gènes",
+        "en": "So few genes"
+      }
     },
     {
       "id": "sante-genetique",
       "src": "science2005",
-      "q": "Dans quelle mesure nos variations génétiques déterminent-elles notre santé ?",
-      "ctx": "Relier les différences entre génomes aux maladies de chacun reste difficile dès que plusieurs gènes et le mode de vie s'en mêlent.",
+      "q": {
+        "fr": "Dans quelle mesure nos variations génétiques déterminent-elles notre santé ?",
+        "en": "To what extent do genetic variations determine our health?"
+      },
+      "ctx": {
+        "fr": "Relier les différences entre génomes aux maladies de chacun reste difficile dès que plusieurs gènes et le mode de vie s'en mêlent."
+      },
       "subs": [
         "Genetics (clinical)",
         "Genetics",
         "Epidemiology"
       ],
-      "nom": "Génétique et santé"
+      "nom": {
+        "fr": "Génétique et santé",
+        "en": "Genetics and health"
+      }
     },
     {
       "id": "unification",
       "src": "science2005",
-      "q": "Peut-on unifier les lois de la physique ?",
-      "ctx": "La gravité et la physique quantique sont décrites par deux théories que personne n'a su réunir en une seule.",
+      "q": {
+        "fr": "Peut-on unifier les lois de la physique ?",
+        "en": "Can the laws of physics be unified?"
+      },
+      "ctx": {
+        "fr": "La gravité et la physique quantique sont décrites par deux théories que personne n'a su réunir en une seule."
+      },
       "subs": [
         "Nuclear and High Energy Physics",
         "Mathematical Physics"
       ],
-      "nom": "Unification de la physique"
+      "nom": {
+        "fr": "Unification de la physique",
+        "en": "Unifying physics"
+      }
     },
     {
       "id": "longevite",
       "src": "science2005",
-      "q": "Jusqu'où peut-on prolonger la vie humaine ?",
-      "ctx": "Des souris, des vers et des levures vivent plus longtemps en laboratoire. Certains chercheurs pensent pouvoir ralentir le vieillissement humain, d'autres que notre durée de vie est plus figée.",
+      "q": {
+        "fr": "Jusqu'où peut-on prolonger la vie humaine ?",
+        "en": "How far can human lifespan be extended?"
+      },
+      "ctx": {
+        "fr": "Des souris, des vers et des levures vivent plus longtemps en laboratoire. Certains chercheurs pensent pouvoir ralentir le vieillissement humain, d'autres que notre durée de vie est plus figée."
+      },
       "subs": [
         "Aging",
         "Geriatrics and Gerontology"
       ],
-      "nom": "Limites de la longévité"
+      "nom": {
+        "fr": "Limites de la longévité",
+        "en": "Limits of longevity"
+      }
     },
     {
       "id": "regeneration",
       "src": "science2005",
-      "q": "Qu'est-ce qui commande la régénération des organes ?",
-      "ctx": "Certains animaux font repousser un membre entier. On ne sait pas pourquoi les mammifères en sont presque incapables.",
+      "q": {
+        "fr": "Qu'est-ce qui commande la régénération des organes ?",
+        "en": "What controls organ regeneration?"
+      },
+      "ctx": {
+        "fr": "Certains animaux font repousser un membre entier. On ne sait pas pourquoi les mammifères en sont presque incapables."
+      },
       "subs": [
         "Developmental Biology",
         "Cell Biology",
         "Transplantation"
       ],
-      "nom": "Régénération des organes"
+      "nom": {
+        "fr": "Régénération des organes",
+        "en": "Organ regeneration"
+      }
     },
     {
       "id": "reprogrammation",
       "src": "science2005",
       "status": "avancee",
-      "q": "Comment une cellule de peau peut-elle devenir une cellule nerveuse ?",
-      "ctx": "La question portait sur la possibilité de changer l'identité d'une cellule adulte.",
-      "note": "Depuis 2006, on sait reprogrammer des cellules adultes en cellules souches (prix Nobel 2012). Les mécanismes fins restent étudiés.",
+      "q": {
+        "fr": "Comment une cellule de peau peut-elle devenir une cellule nerveuse ?",
+        "en": "How can a skin cell become a nerve cell?"
+      },
+      "ctx": {
+        "fr": "La question portait sur la possibilité de changer l'identité d'une cellule adulte."
+      },
+      "note": {
+        "fr": "Depuis 2006, on sait reprogrammer des cellules adultes en cellules souches (prix Nobel 2012). Les mécanismes fins restent étudiés."
+      },
       "subs": [
         "Cell Biology",
         "Developmental Biology",
         "Cellular and Molecular Neuroscience"
       ],
-      "nom": "Reprogrammer les cellules"
+      "nom": {
+        "fr": "Reprogrammer les cellules",
+        "en": "Reprogramming cells"
+      }
     },
     {
       "id": "plante",
       "src": "science2005",
-      "q": "Comment une seule cellule devient-elle une plante entière ?",
-      "ctx": "Une cellule végétale isolée peut redonner une plante complète. Ce qui déclenche et guide ce processus n'est pas entièrement compris.",
+      "q": {
+        "fr": "Comment une seule cellule devient-elle une plante entière ?",
+        "en": "How does a single cell become a whole plant?"
+      },
+      "ctx": {
+        "fr": "Une cellule végétale isolée peut redonner une plante complète. Ce qui déclenche et guide ce processus n'est pas entièrement compris."
+      },
       "subs": [
         "Plant Science",
         "Developmental Biology"
       ],
-      "nom": "De la cellule à la plante"
+      "nom": {
+        "fr": "De la cellule à la plante",
+        "en": "From cell to plant"
+      }
     },
     {
       "id": "interieur-terre",
       "src": "science2005",
-      "q": "Comment fonctionne l'intérieur de la Terre ?",
-      "ctx": "On ne peut pas y aller. Tout ce qu'on sait du manteau et du noyau vient de mesures indirectes, surtout les ondes des séismes.",
+      "q": {
+        "fr": "Comment fonctionne l'intérieur de la Terre ?",
+        "en": "How does Earth's interior work?"
+      },
+      "ctx": {
+        "fr": "On ne peut pas y aller. Tout ce qu'on sait du manteau et du noyau vient de mesures indirectes, surtout les ondes des séismes."
+      },
       "subs": [
         "Geophysics",
         "Geochemistry and Petrology"
       ],
-      "nom": "Intérieur de la Terre"
+      "nom": {
+        "fr": "Intérieur de la Terre",
+        "en": "Earth's interior"
+      }
     },
     {
       "id": "seuls",
       "src": "science2005",
-      "q": "Sommes-nous seuls dans l'univers ?",
-      "ctx": "On ne connaît qu'un seul exemple de vie : la nôtre.",
+      "q": {
+        "fr": "Sommes-nous seuls dans l'univers ?",
+        "en": "Are we alone in the universe?"
+      },
+      "ctx": {
+        "fr": "On ne connaît qu'un seul exemple de vie : la nôtre."
+      },
       "subs": [
         "Astronomy and Astrophysics",
         "Space and Planetary Science"
       ],
-      "nom": "Vie ailleurs"
+      "nom": {
+        "fr": "Vie ailleurs",
+        "en": "Life elsewhere"
+      }
     },
     {
       "id": "origine-vie",
       "src": "science2005",
-      "q": "Où et comment la vie est-elle apparue sur Terre ?",
-      "ctx": "Il ne reste presque aucune trace de cette époque, et personne n'a recréé en laboratoire un système qui se reproduit seul à partir de chimie simple.",
+      "q": {
+        "fr": "Où et comment la vie est-elle apparue sur Terre ?",
+        "en": "Where and how did life arise on Earth?"
+      },
+      "ctx": {
+        "fr": "Il ne reste presque aucune trace de cette époque, et personne n'a recréé en laboratoire un système qui se reproduit seul à partir de chimie simple."
+      },
       "subs": [
         "Biochemistry",
         "Geochemistry and Petrology",
         "Paleontology"
       ],
-      "nom": "Origine de la vie",
+      "nom": {
+        "fr": "Origine de la vie",
+        "en": "Origin of life"
+      },
       "fiche": {
-        "wiki": "Origine de la vie",
-        "savoir": [
-          "La vie existe sur Terre depuis très longtemps : les plus anciens micro-organismes fossiles observés sont datés d'au moins 3,5 milliards d'années.",
-          "Les briques du vivant (acides aminés, composants de l'ARN, lipides) peuvent se former dans des conditions jugées plausibles pour la Terre primitive. Des expériences l'ont montré, depuis celle de Miller en 1953 jusqu'à la synthèse de composants de l'ARN en 2009 (dernier article ci-dessous).",
-          "Plusieurs scénarios sont étudiés : un « monde à ARN », où l'ARN stocke l'information et catalyse des réactions, des sources hydrothermales au fond des océans, des mares chaudes en surface. Aucun n'est démontré."
-        ],
-        "ignore": [
-          "Le chemin complet, de la chimie sans vie à une cellule capable de se reproduire et d'évoluer : on connaît des étapes, pas leur enchaînement.",
-          "Où et quand cela s'est produit, et si c'est un événement rare ou probable."
-        ],
-        "dur": [
-          "Il ne reste presque aucune roche de cette époque : les archives géologiques les plus anciennes sont rares et très transformées.",
-          "On ne peut pas refaire l'expérience sur des millions d'années ni dans un océan entier : les laboratoires ne reproduisent que des étapes isolées.",
-          "Ces étapes demandent souvent des conditions chimiques incompatibles entre elles, ce qui oblige à imaginer des environnements où elles se succèdent."
-        ],
-        "enjeu": "Savoir si la vie est un accident rare ou un résultat probable de la chimie, ce qui change la façon de chercher la vie ailleurs.",
-        "commencer": [
-          "La chimie prébiotique : comment des molécules simples donnent des molécules plus complexes.",
-          "Les trois articles ci-dessous sont des points d'entrée ; le dernier décrit une étape précise réussie."
-        ],
+        "wiki": {
+          "fr": "Origine de la vie",
+          "en": "Abiogenesis"
+        },
+        "fr": {
+          "savoir": [
+            "La vie existe sur Terre depuis très longtemps : les plus anciens micro-organismes fossiles observés sont datés d'au moins 3,5 milliards d'années.",
+            "Les briques du vivant (acides aminés, composants de l'ARN, lipides) peuvent se former dans des conditions jugées plausibles pour la Terre primitive. Des expériences l'ont montré, depuis celle de Miller en 1953 jusqu'à la synthèse de composants de l'ARN en 2009 (dernier article ci-dessous).",
+            "Plusieurs scénarios sont étudiés : un « monde à ARN », où l'ARN stocke l'information et catalyse des réactions, des sources hydrothermales au fond des océans, des mares chaudes en surface. Aucun n'est démontré."
+          ],
+          "ignore": [
+            "Le chemin complet, de la chimie sans vie à une cellule capable de se reproduire et d'évoluer : on connaît des étapes, pas leur enchaînement.",
+            "Où et quand cela s'est produit, et si c'est un événement rare ou probable."
+          ],
+          "dur": [
+            "Il ne reste presque aucune roche de cette époque : les archives géologiques les plus anciennes sont rares et très transformées.",
+            "On ne peut pas refaire l'expérience sur des millions d'années ni dans un océan entier : les laboratoires ne reproduisent que des étapes isolées.",
+            "Ces étapes demandent souvent des conditions chimiques incompatibles entre elles, ce qui oblige à imaginer des environnements où elles se succèdent."
+          ],
+          "enjeu": "Savoir si la vie est un accident rare ou un résultat probable de la chimie, ce qui change la façon de chercher la vie ailleurs.",
+          "commencer": [
+            "La chimie prébiotique : comment des molécules simples donnent des molécules plus complexes.",
+            "Les trois articles ci-dessous sont des points d'entrée ; le dernier décrit une étape précise réussie."
+          ]
+        },
         "refs": [
           {
             "doi": "10.1021/cr2004844"
@@ -215,186 +329,303 @@
     {
       "id": "biodiversite",
       "src": "science2005",
-      "q": "Qu'est-ce qui détermine la diversité des espèces ?",
-      "ctx": "Certains milieux abritent des milliers d'espèces et d'autres très peu, sans qu'une règle générale l'explique.",
+      "q": {
+        "fr": "Qu'est-ce qui détermine la diversité des espèces ?",
+        "en": "What determines species diversity?"
+      },
+      "ctx": {
+        "fr": "Certains milieux abritent des milliers d'espèces et d'autres très peu, sans qu'une règle générale l'explique."
+      },
       "subs": [
         "Ecology, Evolution, Behavior and Systematics",
         "Ecology"
       ],
-      "nom": "Diversité des espèces"
+      "nom": {
+        "fr": "Diversité des espèces",
+        "en": "Species diversity"
+      }
     },
     {
       "id": "humain",
       "src": "science2005",
-      "q": "Quels changements génétiques nous ont rendus humains ?",
-      "ctx": "Notre génome est très proche de celui du chimpanzé. Quelles différences comptent vraiment reste à établir.",
+      "q": {
+        "fr": "Quels changements génétiques nous ont rendus humains ?",
+        "en": "What genetic changes made us uniquely human?"
+      },
+      "ctx": {
+        "fr": "Notre génome est très proche de celui du chimpanzé. Quelles différences comptent vraiment reste à établir."
+      },
       "subs": [
         "Genetics",
         "Anthropology"
       ],
-      "nom": "Ce qui nous rend humains"
+      "nom": {
+        "fr": "Ce qui nous rend humains",
+        "en": "What makes us human"
+      }
     },
     {
       "id": "memoire",
       "src": "science2005",
-      "q": "Comment les souvenirs sont-ils stockés et retrouvés ?",
-      "ctx": "On sait que les connexions entre neurones changent quand on apprend. On ne sait pas lire un souvenir dans un cerveau.",
+      "q": {
+        "fr": "Comment les souvenirs sont-ils stockés et retrouvés ?",
+        "en": "How are memories stored and retrieved?"
+      },
+      "ctx": {
+        "fr": "On sait que les connexions entre neurones changent quand on apprend. On ne sait pas lire un souvenir dans un cerveau."
+      },
       "subs": [
         "Cognitive Neuroscience",
         "Cellular and Molecular Neuroscience"
       ],
-      "nom": "Mémoire"
+      "nom": {
+        "fr": "Mémoire",
+        "en": "Memory"
+      }
     },
     {
       "id": "cooperation",
       "src": "science2005",
-      "q": "Comment la coopération est-elle apparue au cours de l'évolution ?",
-      "ctx": "La sélection naturelle favorise l'intérêt individuel, et pourtant de nombreuses espèces, dont la nôtre, s'entraident.",
+      "q": {
+        "fr": "Comment la coopération est-elle apparue au cours de l'évolution ?",
+        "en": "How did cooperation evolve?"
+      },
+      "ctx": {
+        "fr": "La sélection naturelle favorise l'intérêt individuel, et pourtant de nombreuses espèces, dont la nôtre, s'entraident."
+      },
       "subs": [
         "Ecology, Evolution, Behavior and Systematics",
         "Social Psychology",
         "Sociology and Political Science"
       ],
-      "nom": "Coopération"
+      "nom": {
+        "fr": "Coopération",
+        "en": "Cooperation"
+      }
     },
     {
       "id": "donnees-biologiques",
       "src": "science2005",
-      "q": "Comment tirer une vue d'ensemble de la masse des données biologiques ?",
-      "ctx": "La biologie produit plus de mesures qu'elle ne sait en relier pour comprendre un organisme entier.",
+      "q": {
+        "fr": "Comment tirer une vue d'ensemble de la masse des données biologiques ?",
+        "en": "How will big pictures emerge from a sea of biological data?"
+      },
+      "ctx": {
+        "fr": "La biologie produit plus de mesures qu'elle ne sait en relier pour comprendre un organisme entier."
+      },
       "subs": [
         "Molecular Biology",
         "Computer Science Applications",
         "Statistics and Probability"
       ],
-      "nom": "Masse de données biologiques"
+      "nom": {
+        "fr": "Masse de données biologiques",
+        "en": "Mass of biological data"
+      }
     },
     {
       "id": "auto-assemblage",
       "src": "science2005",
-      "q": "Jusqu'où peut-on pousser l'auto-assemblage chimique ?",
-      "ctx": "Le vivant construit des structures complexes à partir de molécules qui s'organisent seules. Les chimistes n'en reproduisent que des versions simples.",
+      "q": {
+        "fr": "Jusqu'où peut-on pousser l'auto-assemblage chimique ?",
+        "en": "How far can we push chemical self-assembly?"
+      },
+      "ctx": {
+        "fr": "Le vivant construit des structures complexes à partir de molécules qui s'organisent seules. Les chimistes n'en reproduisent que des versions simples."
+      },
       "subs": [
         "Organic Chemistry",
         "Materials Chemistry",
         "Physical and Theoretical Chemistry"
       ],
-      "nom": "Auto-assemblage"
+      "nom": {
+        "fr": "Auto-assemblage",
+        "en": "Self-assembly"
+      }
     },
     {
       "id": "limites-calcul",
       "src": "science2005",
-      "q": "Quelles sont les limites du calcul conventionnel ?",
-      "ctx": "Certains problèmes semblent hors de portée de tout ordinateur classique, quelle que soit sa puissance.",
+      "q": {
+        "fr": "Quelles sont les limites du calcul conventionnel ?",
+        "en": "What are the limits of conventional computing?"
+      },
+      "ctx": {
+        "fr": "Certains problèmes semblent hors de portée de tout ordinateur classique, quelle que soit sa puissance."
+      },
       "subs": [
         "Computational Theory and Mathematics",
         "Hardware and Architecture",
         "Theoretical Computer Science"
       ],
-      "nom": "Limites du calcul"
+      "nom": {
+        "fr": "Limites du calcul",
+        "en": "Limits of computing"
+      }
     },
     {
       "id": "immunite",
       "src": "science2005",
-      "q": "Peut-on éteindre sélectivement une réponse immunitaire ?",
-      "ctx": "Cela permettrait de traiter les maladies auto-immunes et les rejets de greffe sans affaiblir toutes les défenses du corps.",
+      "q": {
+        "fr": "Peut-on éteindre sélectivement une réponse immunitaire ?",
+        "en": "Can we selectively shut off immune responses?"
+      },
+      "ctx": {
+        "fr": "Cela permettrait de traiter les maladies auto-immunes et les rejets de greffe sans affaiblir toutes les défenses du corps."
+      },
       "subs": [
         "Immunology",
         "Immunology and Allergy",
         "Transplantation"
       ],
-      "nom": "Éteindre l'immunité"
+      "nom": {
+        "fr": "Éteindre l'immunité",
+        "en": "Switching off immunity"
+      }
     },
     {
       "id": "quantique",
       "src": "science2005",
-      "q": "Des principes plus profonds se cachent-ils derrière l'incertitude quantique ?",
-      "ctx": "La mécanique quantique prédit très bien les résultats d'expérience, sans dire pourquoi le hasard et l'action à distance y apparaissent.",
+      "q": {
+        "fr": "Des principes plus profonds se cachent-ils derrière l'incertitude quantique ?",
+        "en": "Do deeper principles underlie quantum uncertainty and nonlocality?"
+      },
+      "ctx": {
+        "fr": "La mécanique quantique prédit très bien les résultats d'expérience, sans dire pourquoi le hasard et l'action à distance y apparaissent."
+      },
       "subs": [
         "Atomic and Molecular Physics, and Optics",
         "Mathematical Physics",
         "History and Philosophy of Science"
       ],
-      "nom": "Au-delà du quantique"
+      "nom": {
+        "fr": "Au-delà du quantique",
+        "en": "Beyond quantum"
+      }
     },
     {
       "id": "vaccin-vih",
       "src": "science2005",
-      "q": "Un vaccin efficace contre le VIH est-il possible ?",
-      "ctx": "Le virus mute vite et s'attaque aux cellules mêmes qui devraient le combattre.",
+      "q": {
+        "fr": "Un vaccin efficace contre le VIH est-il possible ?",
+        "en": "Is an effective HIV vaccine feasible?"
+      },
+      "ctx": {
+        "fr": "Le virus mute vite et s'attaque aux cellules mêmes qui devraient le combattre."
+      },
       "subs": [
         "Virology",
         "Immunology",
         "Infectious Diseases"
       ],
-      "nom": "Vaccin contre le VIH"
+      "nom": {
+        "fr": "Vaccin contre le VIH",
+        "en": "HIV vaccine"
+      }
     },
     {
       "id": "rechauffement",
       "src": "science2005",
-      "q": "Quelle température atteindra le monde sous effet de serre ?",
-      "ctx": "La réponse dépend de la sensibilité du climat aux gaz à effet de serre, que les modèles n'encadrent qu'avec une marge.",
+      "q": {
+        "fr": "Quelle température atteindra le monde sous effet de serre ?",
+        "en": "How hot will the greenhouse world be?"
+      },
+      "ctx": {
+        "fr": "La réponse dépend de la sensibilité du climat aux gaz à effet de serre, que les modèles n'encadrent qu'avec une marge."
+      },
       "subs": [
         "Global and Planetary Change",
         "Atmospheric Science"
       ],
-      "nom": "Ampleur du réchauffement"
+      "nom": {
+        "fr": "Ampleur du réchauffement",
+        "en": "Extent of warming"
+      }
     },
     {
       "id": "apres-petrole",
       "src": "science2005",
-      "q": "Qu'est-ce qui remplacera le pétrole bon marché, et quand ?",
-      "ctx": "La question est à la fois technique et économique.",
+      "q": {
+        "fr": "Qu'est-ce qui remplacera le pétrole bon marché, et quand ?",
+        "en": "What will replace oil, and when?"
+      },
+      "ctx": {
+        "fr": "La question est à la fois technique et économique."
+      },
       "subs": [
         "Renewable Energy, Sustainability and the Environment",
         "Fuel Technology",
         "Economics and Econometrics"
       ],
-      "nom": "Après le pétrole"
+      "nom": {
+        "fr": "Après le pétrole",
+        "en": "After oil"
+      }
     },
     {
       "id": "malthus",
       "src": "science2005",
-      "q": "Malthus continuera-t-il d'avoir tort ?",
-      "ctx": "En 1798, Malthus prédisait que la croissance de la population serait stoppée par la famine, la guerre ou la maladie. La population a été multipliée par six sans l'effondrement annoncé. Peut-on continuer à l'éviter ?",
+      "q": {
+        "fr": "Malthus continuera-t-il d'avoir tort ?",
+        "en": "Will Malthus continue to be wrong?"
+      },
+      "ctx": {
+        "fr": "En 1798, Malthus prédisait que la croissance de la population serait stoppée par la famine, la guerre ou la maladie. La population a été multipliée par six sans l'effondrement annoncé. Peut-on continuer à l'éviter ?"
+      },
       "subs": [
         "Demography",
         "Agronomy and Crop Science",
         "Development"
       ],
-      "nom": "Malthus"
+      "nom": {
+        "fr": "Malthus",
+        "en": "Malthus"
+      }
     },
     {
       "id": "p-np",
       "src": "clay",
-      "q": "Vérifier une solution est-il aussi difficile que la trouver ?",
-      "ctx": "C'est le problème « P contre NP », la question centrale de la théorie de la complexité.",
+      "q": {
+        "fr": "Vérifier une solution est-il aussi difficile que la trouver ?",
+        "en": "Is checking a solution as hard as finding it?"
+      },
+      "ctx": {
+        "fr": "C'est le problème « P contre NP », la question centrale de la théorie de la complexité."
+      },
       "subs": [
         "Computational Theory and Mathematics",
         "Theoretical Computer Science"
       ],
-      "nom": "P contre NP",
+      "nom": {
+        "fr": "P contre NP",
+        "en": "P versus NP"
+      },
       "fiche": {
-        "wiki": "Problème P ≟ NP",
-        "savoir": [
-          "Un problème est dans P si un ordinateur peut le résoudre en un temps raisonnable, même quand les données grossissent. Il est dans NP si, quand on vous propose une solution, vous pouvez la vérifier vite.",
-          "Tout problème de P est dans NP : ce qu'on sait résoudre vite, on sait le vérifier vite.",
-          "Des milliers de problèmes utiles sont dans NP (organiser des tournées, remplir un emploi du temps, ranger des objets dans le moins de boîtes), et pour beaucoup d'entre eux personne ne connaît d'algorithme rapide.",
-          "La plupart des spécialistes pensent que P est différent de NP, sans l'avoir prouvé."
-        ],
-        "ignore": [
-          "Si P est égal à NP ou non. Personne n'a démontré l'un ni l'autre. L'institut Clay offre un million de dollars à qui y parviendra : c'est un des problèmes du prix du millénaire."
-        ],
-        "dur": [
-          "Prouver qu'un problème est impossible à résoudre vite oblige à raisonner sur tous les programmes possibles, y compris ceux que personne n'a encore imaginés.",
-          "Des résultats montrent que plusieurs familles de techniques de preuve ne peuvent pas suffire à trancher. Il faut donc inventer de nouvelles méthodes."
-        ],
-        "enjeu": "Si P était égal à NP avec un algorithme pratique, une grande partie de la cryptographie actuelle serait cassée. Dans l'autre cas, on saurait que pour des milliers de problèmes, aucune astuce ne donnera d'algorithme rapide.",
-        "commencer": [
-          "La théorie de la complexité, une branche de l'informatique théorique et des mathématiques.",
-          "Un premier pas : comprendre pourquoi vérifier une grille de sudoku est facile alors que résoudre ce type de problème en général ne l'est pas.",
-          "Lire la description officielle du problème sur le site de l'institut Clay, ci-dessous."
-        ],
+        "wiki": {
+          "fr": "Problème P ≟ NP",
+          "en": "P versus NP problem"
+        },
+        "fr": {
+          "savoir": [
+            "Un problème est dans P si un ordinateur peut le résoudre en un temps raisonnable, même quand les données grossissent. Il est dans NP si, quand on vous propose une solution, vous pouvez la vérifier vite.",
+            "Tout problème de P est dans NP : ce qu'on sait résoudre vite, on sait le vérifier vite.",
+            "Des milliers de problèmes utiles sont dans NP (organiser des tournées, remplir un emploi du temps, ranger des objets dans le moins de boîtes), et pour beaucoup d'entre eux personne ne connaît d'algorithme rapide.",
+            "La plupart des spécialistes pensent que P est différent de NP, sans l'avoir prouvé."
+          ],
+          "ignore": [
+            "Si P est égal à NP ou non. Personne n'a démontré l'un ni l'autre. L'institut Clay offre un million de dollars à qui y parviendra : c'est un des problèmes du prix du millénaire."
+          ],
+          "dur": [
+            "Prouver qu'un problème est impossible à résoudre vite oblige à raisonner sur tous les programmes possibles, y compris ceux que personne n'a encore imaginés.",
+            "Des résultats montrent que plusieurs familles de techniques de preuve ne peuvent pas suffire à trancher. Il faut donc inventer de nouvelles méthodes."
+          ],
+          "enjeu": "Si P était égal à NP avec un algorithme pratique, une grande partie de la cryptographie actuelle serait cassée. Dans l'autre cas, on saurait que pour des milliers de problèmes, aucune astuce ne donnera d'algorithme rapide.",
+          "commencer": [
+            "La théorie de la complexité, une branche de l'informatique théorique et des mathématiques.",
+            "Un premier pas : comprendre pourquoi vérifier une grille de sudoku est facile alors que résoudre ce type de problème en général ne l'est pas.",
+            "Lire la description officielle du problème sur le site de l'institut Clay, ci-dessous."
+          ]
+        },
         "refs": [
           {
             "doi": "10.1145/1562164.1562186"
@@ -410,58 +641,100 @@
     {
       "id": "riemann",
       "src": "clay",
-      "q": "L'hypothèse de Riemann est-elle vraie ?",
-      "ctx": "Formulée en 1859, elle porte sur la répartition des nombres premiers.",
+      "q": {
+        "fr": "L'hypothèse de Riemann est-elle vraie ?",
+        "en": "Is the Riemann hypothesis true?"
+      },
+      "ctx": {
+        "fr": "Formulée en 1859, elle porte sur la répartition des nombres premiers."
+      },
       "subs": [
         "Algebra and Number Theory"
       ],
-      "nom": "Hypothèse de Riemann"
+      "nom": {
+        "fr": "Hypothèse de Riemann",
+        "en": "Riemann hypothesis"
+      }
     },
     {
       "id": "yang-mills",
       "src": "clay",
-      "q": "Peut-on construire rigoureusement la théorie de Yang-Mills ?",
-      "ctx": "Cette théorie décrit les forces entre particules. Il manque sa construction mathématique rigoureuse, avec la preuve d'un « écart de masse » positif.",
+      "q": {
+        "fr": "Peut-on construire rigoureusement la théorie de Yang-Mills ?",
+        "en": "Can Yang–Mills theory be built rigorously?"
+      },
+      "ctx": {
+        "fr": "Cette théorie décrit les forces entre particules. Il manque sa construction mathématique rigoureuse, avec la preuve d'un « écart de masse » positif."
+      },
       "subs": [
         "Mathematical Physics",
         "Nuclear and High Energy Physics"
       ],
-      "nom": "Yang-Mills"
+      "nom": {
+        "fr": "Yang-Mills",
+        "en": "Yang–Mills"
+      }
     },
     {
       "id": "navier-stokes",
       "src": "clay",
       "status": "evaluation",
-      "q": "Les équations de Navier-Stokes ont-elles toujours une solution régulière ?",
-      "ctx": "Ces équations décrivent l'écoulement des fluides depuis le XIXe siècle. Le problème demande si leurs solutions existent toujours et restent lisses en trois dimensions.",
-      "note": "Une résolution a été proposée en septembre 2026. L'institut Clay classe le problème comme « actif » et n'a pas attribué le prix (d'après MathWorld, consulté le 16 novembre 2026).",
+      "q": {
+        "fr": "Les équations de Navier-Stokes ont-elles toujours une solution régulière ?",
+        "en": "Do the Navier–Stokes equations always have a smooth solution?"
+      },
+      "ctx": {
+        "fr": "Ces équations décrivent l'écoulement des fluides depuis le XIXe siècle. Le problème demande si leurs solutions existent toujours et restent lisses en trois dimensions."
+      },
+      "note": {
+        "fr": "Une résolution a été proposée en septembre 2026. L'institut Clay classe le problème comme « actif » et n'a pas attribué le prix (d'après MathWorld, consulté le 16 novembre 2026)."
+      },
       "subs": [
         "Applied Mathematics",
         "Fluid Flow and Transfer Processes",
         "Computational Mechanics"
       ],
-      "nom": "Navier-Stokes"
+      "nom": {
+        "fr": "Navier-Stokes",
+        "en": "Navier–Stokes"
+      }
     },
     {
       "id": "hodge",
       "src": "clay",
-      "q": "La conjecture de Hodge est-elle vraie ?",
-      "ctx": "Elle relie la forme de certains espaces géométriques aux équations algébriques qui les définissent.",
+      "q": {
+        "fr": "La conjecture de Hodge est-elle vraie ?",
+        "en": "Is the Hodge conjecture true?"
+      },
+      "ctx": {
+        "fr": "Elle relie la forme de certains espaces géométriques aux équations algébriques qui les définissent."
+      },
       "subs": [
         "Geometry and Topology",
         "Algebra and Number Theory"
       ],
-      "nom": "Conjecture de Hodge"
+      "nom": {
+        "fr": "Conjecture de Hodge",
+        "en": "Hodge conjecture"
+      }
     },
     {
       "id": "birch-swinnerton-dyer",
       "src": "clay",
-      "q": "La conjecture de Birch et Swinnerton-Dyer est-elle vraie ?",
-      "ctx": "Elle porte sur le nombre de solutions rationnelles de certaines équations, les courbes elliptiques.",
+      "q": {
+        "fr": "La conjecture de Birch et Swinnerton-Dyer est-elle vraie ?",
+        "en": "Is the Birch and Swinnerton-Dyer conjecture true?"
+      },
+      "ctx": {
+        "fr": "Elle porte sur le nombre de solutions rationnelles de certaines équations, les courbes elliptiques."
+      },
       "subs": [
         "Algebra and Number Theory"
       ],
-      "nom": "Birch et Swinnerton-Dyer"
+      "nom": {
+        "fr": "Birch et Swinnerton-Dyer",
+        "en": "Birch and Swinnerton-Dyer"
+      }
     }
   ]
 }

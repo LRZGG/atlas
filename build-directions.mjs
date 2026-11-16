@@ -137,8 +137,10 @@ const Q = qs.questions.map(q => {
   if (process.argv.includes('--diag')) console.log(`  ${t ? 'TRANSVERSALE' : 'bord        '} écart ${spread.toFixed(2)}  ${q.id}`);
   // La fiche détaillée (s'il y en a une) : texte écrit à la main dans questions.json, extrait Wikipédia et références vérifiées par fetch-fiches.mjs.
   const fi = q.fiche && FI[q.id]; assert(!q.fiche || fi, `fiche non téléchargée pour ${q.id} : lancer node fetch-fiches.mjs`);
-  const f = q.fiche ? { s: q.fiche.savoir, i: q.fiche.ignore, d: q.fiche.dur, e: q.fiche.enjeu, c: q.fiche.commencer, w: fi.w, r: fi.r } : null;
-  return { id: q.id, q: q.q, nm: q.nom, c: q.ctx, s: q.src, st: q.status || 'ouverte', n: q.note || '', subs, t, x, y, f };
+  // Par langue : le texte de la fiche. L'extrait Wikipédia vient de fiches.json (par langue aussi), les références sont communes aux deux langues.
+  const f = q.fiche ? { w: fi.w, r: fi.r } : null;
+  if (f) for (const l of ['fr', 'en']) if (q.fiche[l]) f[l] = { s: q.fiche[l].savoir, i: q.fiche[l].ignore, d: q.fiche[l].dur, e: q.fiche[l].enjeu, c: q.fiche[l].commencer };
+  return { id: q.id, qq: q.q, nmm: q.nom, cc: q.ctx, no: q.note || null, s: q.src, st: q.status || 'ouverte', subs, t, x, y, f };
 });
 assert.equal(new Set(Q.map(q => q.id)).size, Q.length, 'identifiants de questions en double');
 // Deux anneaux superposés seraient illisibles : on les écarte du minimum nécessaire.
@@ -151,13 +153,33 @@ Q.forEach(q => { q.x = r3(q.x); q.y = r3(q.y); });
 
 const DATA = {
   fetched: s.fetched, cap, hole, edge: EDGE, rl: RL,
-  D: dIds.map(d => fr(s.domains[d])),
-  F: fIds.map(f => ({ n: fr(s.fields[f].name), d: dIds.indexOf(s.fields[f].domain) })),
+  D: dIds.map(d => ({ fr: fr(s.domains[d]), en: s.domains[d] })),
+  F: fIds.map(f => ({ nn: { fr: fr(s.fields[f].name), en: s.fields[f].name }, d: dIds.indexOf(s.fields[f].domain) })),
   S: sIds.map((id, i) => ({ n: s.subfields[id].name, f: fIdx[s.subfields[id].field], x: r3(pos[i][0]), y: r3(pos[i][1]), w: sw[i] })),
-  L: links.map(([i, j]) => [i, j]), T, Q, SRC: qs.sources
+  L: links.map(([i, j]) => [i, j]), T, Q, SRC: qs.sources,
+  TXT: JSON.parse(readFileSync('textes.json', 'utf8'))
 };
-// Chaque page sort deux fois : le fragment (pour un aperçu Claude) et la page complète dans docs/ (pour GitHub Pages).
-const HEAD = '<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>';
-mkdirSync('docs', { recursive: true });
-for (const [tpl, out, site] of [['directions.tpl.html', 'directions.html', 'docs/directions.html'], ['carte.tpl.html', 'carte-de-l-inconnu.html', 'docs/index.html']]) { const page = readFileSync(tpl, 'utf8').replace('/*DATA*/null', () => JSON.stringify(DATA)); writeFileSync(out, page); writeFileSync(site, HEAD + page); }
+// La carte sort en trois pages pour GitHub Pages : la racine, qui détecte la langue du navigateur (anglais par défaut), puis /fr/ et /en/ qui la fixent
+// (un lien partagé garde sa langue, et chaque page a sa langue déclarée pour les moteurs de recherche). Le fragment sans enveloppe sert d'aperçu.
+// La page de comparaison des trois directions garde l'ancienne forme des données (noms français).
+const BASE = process.env.BASE || 'https://lorenzo1208.github.io/atlas';
+const esc = t => t.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+const STYLE = '<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>';
+function head(lang, path, forced) {
+  const t = DATA.TXT[lang], url = BASE + path, alt = [['fr', '/fr/'], ['en', '/en/'], ['x-default', '/']].map(([h, p]) => `<link rel="alternate" hreflang="${h}" href="${BASE}${p}">`).join('');
+  return `<!doctype html><html lang="${lang}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="${esc(t.desc)}"><link rel="canonical" href="${url}">${alt}<meta property="og:type" content="website"><meta property="og:title" content="${esc(t.titre)}"><meta property="og:description" content="${esc(t.desc)}"><meta property="og:url" content="${url}"><meta name="twitter:card" content="summary">${STYLE}${forced ? `<script>window.__LANG="${lang}"</script>` : ''}`;
+}
+const carte = readFileSync('carte.tpl.html', 'utf8').replace('/*DATA*/null', () => JSON.stringify(DATA));
+const titre = lang => carte.replace(/<title>[^<]*<\/title>/, `<title>${esc(DATA.TXT[lang].titre)}</title>`);
+const LEG = { ...DATA, D: DATA.D.map(d => d.fr), F: DATA.F.map(f => ({ n: f.nn.fr, d: f.d })) };
+const dirs = readFileSync('directions.tpl.html', 'utf8').replace('/*DATA*/null', () => JSON.stringify(LEG));
+for (const d of ['docs', 'docs/fr', 'docs/en']) mkdirSync(d, { recursive: true });
+writeFileSync('carte-de-l-inconnu.html', titre('en'));
+writeFileSync('directions.html', dirs);
+writeFileSync('docs/directions.html', '<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">' + STYLE + dirs);
+writeFileSync('docs/index.html', head('en', '/', false) + titre('en'));
+writeFileSync('docs/fr/index.html', head('fr', '/fr/', true) + titre('fr'));
+writeFileSync('docs/en/index.html', head('en', '/en/', true) + titre('en'));
+writeFileSync('docs/robots.txt', `User-agent: *\nAllow: /\nSitemap: ${BASE}/sitemap.xml\n`);
+writeFileSync('docs/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${['/', '/fr/', '/en/'].map(p => `  <url><loc>${BASE}${p}</loc></url>`).join('\n')}\n</urlset>\n`);
 console.log(`plafond ${cap} articles, ${links.length} liens gardés, ${T.length / 5} sujets placés, ${Q.length} questions`);

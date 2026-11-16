@@ -6,7 +6,7 @@ Aujourd'hui, la carte montre le **connu** : les 4 516 sujets de recherche réper
 
 - **Vision et méthode** : [methode.md](methode.md)
 - **Ce qui reste à améliorer** : [a-polir.md](a-polir.md)
-- **La carte** : `docs/index.html`
+- **La carte** : `docs/index.html`, qui détecte la langue du navigateur (français si la première langue connue est le français, anglais sinon, avec un sélecteur FR / EN). `docs/fr/index.html` et `docs/en/index.html` fixent la langue : un lien partagé la garde.
 - **Les trois directions visuelles comparées** : `docs/directions.html`
 
 ## Comment lire la carte
@@ -47,7 +47,8 @@ La première commande télécharge le squelette depuis OpenAlex dans `squelette.
 | `squelette.json` | Les données brutes |
 | `fetch-liens-sujets.mjs` | Mesure, pour chaque sujet, les 40 sujets avec lesquels il partage le plus d'articles (clé d'API facultative, reprise automatique) |
 | `liens-sujets.json` | Le résultat de `fetch-liens-sujets.mjs` |
-| `questions.json` | Les grandes questions : nom court, source, statut, sous-disciplines touchées, et la fiche détaillée quand elle existe |
+| `questions.json` | Les grandes questions : nom court, énoncé, contexte (par langue : `fr` et `en`), source, statut, sous-disciplines touchées, et la fiche détaillée quand elle existe |
+| `textes.json` | Tous les textes de l'interface, en français et en anglais. Pour ajouter une langue : une entrée de plus ici, une page de plus dans `build-directions.mjs` |
 | `fetch-fiches.mjs` | Pour chaque fiche, télécharge l'extrait Wikipédia et vérifie chaque référence dans OpenAlex ; échoue si l'une est introuvable |
 | `fiches.json` | Le résultat de `fetch-fiches.mjs` (extraits et références vérifiées) |
 | `build-directions.mjs` | Calcule les positions et génère les pages |
@@ -61,7 +62,8 @@ La première commande télécharge le squelette depuis OpenAlex dans `squelette.
 - Certains compteurs d'OpenAlex sont faux. Ils sont plafonnés au 99e centile et signalés au survol.
 - Les liens comptent les articles partagés entre sous-disciplines, pas les citations.
 - La disposition dépend des réglages du placement par forces dans `build-directions.mjs`.
-- Les noms des sous-disciplines et des sujets sont encore en anglais.
+- Traduction : l'interface, les noms et énoncés des 31 questions, les 26 disciplines et les extraits Wikipédia sont bilingues. Le contexte des questions et le texte des fiches sont **en français seulement** : en anglais, ils s'affichent en français avec un avertissement. Les noms des 250 sous-disciplines et des 4 516 sujets sont en anglais dans les deux langues (c'est la langue d'OpenAlex). Les titres anglais des questions de *Science* sont écrits de mémoire : à confronter à la liste officielle.
+- Référencement : chaque page a sa langue déclarée, ses balises de description et de partage, des liens `hreflang` entre langues, un `robots.txt` et un `sitemap.xml`. Les adresses de ces fichiers viennent de la variable `BASE` (`BASE=https://exemple.org node build-directions.mjs` quand le domaine sera choisi). Le contenu de la carte est dessiné par script : tant que chaque question n'a pas sa propre page HTML, les moteurs de recherche n'y verront presque rien.
 - Les liens entre sujets ont été mesurés le 16 novembre 2026 pour les 4 516 sujets (`liens-sujets.json`, environ 0,29 $ d'API, les 40 liens les plus fréquents de chaque sujet ; 87 sujets n'ont aucun lien et restent près du centre de leur sous-discipline). Le placement combine l'attraction par ces liens et une attache à la sous-discipline (`KANC`, 0,4, dans `build-directions.mjs`).
 - Ce que ce placement apporte, mesuré : la distance moyenne d'un sujet à ses 5 sujets les plus liés passe de 0,296 à 0,184 (deux sujets au hasard : 0,953). Contrôle sans triche : pour les sujets liés de rang 9 à 13, que le placement n'utilise pas, la distance passe de 0,337 à 0,240. Le gain vient donc bien d'une structure réelle, mais il est partiel.
 - Le compromis est volontaire : avec une attache faible (0,03), le gain monte (0,167 sur le contrôle) mais le vide entre les disciplines se comble presque (rayon 0,13 au lieu de 0,38 à 0,46). Ce vide est donc en partie un choix de présentation, à côté de la dilatation du centre.

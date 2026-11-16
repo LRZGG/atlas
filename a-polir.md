@@ -28,7 +28,13 @@
 - **Positions mesurées pour les 4 516 sujets** (et plus seulement pour les 250 sous-disciplines), grâce aux liens entre sujets téléchargés avec une clé OpenAlex. Détails et chiffres dans le README.
 - **Relief réglé** pour supporter des sujets regroupés par leurs liens.
 
-Reste à faire : juger le format des fiches, puis passer de 31 à environ 100 questions, la traduction française et la relecture par un spécialiste. À trancher : le mode gamifié (voir la discussion du 16 novembre), qui n'a de sens qu'avec bien plus de questions.
+**Sixième passe (même jour)**
+
+- **Structure bilingue** en place : détection du navigateur, sélecteur FR / EN, pages `/fr/` et `/en/`, tous les textes de l'interface dans `textes.json`.
+- **Ordre retenu** : on traduit les questions et les fiches à la fin, quand elles ne bougeront plus. Seuls les noms et énoncés des 31 questions sont déjà en anglais.
+- **Référencement de base** : langue déclarée, descriptions, `hreflang`, `robots.txt`, `sitemap.xml`. Le vrai levier, une page HTML par question, reste à faire.
+
+Reste à faire : choisir le nom, juger le format des fiches, puis passer de 31 à environ 100 questions, la traduction française et la relecture par un spécialiste. À trancher : le mode gamifié (voir la discussion du 16 novembre), qui n'a de sens qu'avec bien plus de questions.
 
 ## 1. Le but, à trancher avant le reste
 
