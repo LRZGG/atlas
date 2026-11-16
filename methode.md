@@ -89,6 +89,19 @@ Tu veux creuser le visuel avant les vraies questions. Je suis d'accord, avec une
 4. **Niveaux 2 et 3** : l'extraction automatique.
 5. **Lancement** : nom de domaine, version anglaise, image d'aperçu par question.
 
+## Qui écrit quoi
+
+Le site est fait par une seule personne, avec l'aide d'une IA (Claude). Rien n'est caché : voici la répartition.
+
+| Élément | Fait par | Vérifié par |
+|---|---|---|
+| Données de la carte (sujets, liens, positions) | Script, à partir d'OpenAlex | Chiffres de contrôle dans `README.md` |
+| Questions et sources | Rédigées avec une IA, à partir de listes publiées (*Science* 2005, prix du millénaire) | Pas encore relues par un spécialiste |
+| Fiches détaillées | Brouillons rédigés avec une IA | L'existence de chaque référence est vérifiée par script dans OpenAlex ; le texte **n'est pas encore relu** par un spécialiste |
+| Extraits Wikipédia | Repris tels quels (CC BY-SA) | Page choisie à la main |
+
+Chaque fiche affiche son état. Quand un spécialiste l'a relue, on ajoute dans `questions.json`, dans la fiche, `"relue": { "par": "Nom", "date": "2026-12-01" }` : l'étiquette « brouillon IA » est alors remplacée par « Relu par Nom, date ». Si tu es spécialiste d'une de ces questions et que tu veux la relire, ouvre une *issue* sur le dépôt.
+
 ## Ce qui reste à décider
 
 - **Le vote** : d'accord pour s'en passer au lancement ?

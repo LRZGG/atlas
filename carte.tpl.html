@@ -78,6 +78,7 @@ svg { display: block; }
 #fiche .wiki { border-left: 1px solid var(--line); padding-left: 12px; margin: 4px 0 14px; }
 #fiche .wiki p { margin: 0 0 6px; font: 400 14px/1.55 var(--serif); }
 #fiche .wiki p.attr { font: 12px/1.4 var(--sans); color: var(--dim); }
+#fiche p.prov { font: 12px/1.45 var(--sans); color: var(--dim); border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; margin: 0 0 4px; }
 #fiche .refs { list-style: none; padding: 0; }
 #fiche .refs li { margin: 0 0 10px; }
 #fiche .refs a { display: block; }
@@ -347,7 +348,10 @@ function renderFiche(q) {
   const box = $('fiche'); box.textContent = ''; $('card').classList.toggle('wide', !!(q && q.f)); $('card').scrollTop = 0;
   if (!q) return;
   if (!q.f) { box.appendChild(el('p', null, t('fiche_prep'))); return; }
-  const f = q.f, b = f[LANG] || f.fr, w = f.w[LANG] || f.w.fr, sec = (titre, items) => { box.appendChild(el('h4', null, titre)); const ul = el('ul'); items.forEach(x => ul.appendChild(el('li', null, x))); box.appendChild(ul); };
+  const f = q.f, b = f[LANG] || f.fr, w = f.w[LANG] || f.w.fr;
+  // Provenance : dit toujours ce qui est fait par une IA et si un humain a relu.
+  const pv = el('p', 'prov', f.rv ? t('prov_rv').replace('{n}', f.rv.par).replace('{d}', f.rv.date) : t('prov') + ' '); if (!f.rv) pv.appendChild(link(t('prov_lien'), 'https://github.com/Lorenzo1208/atlas/blob/main/methode.md#qui-écrit-quoi')); box.appendChild(pv);
+  const sec =(titre, items) => { box.appendChild(el('h4', null, titre)); const ul = el('ul'); items.forEach(x => ul.appendChild(el('li', null, x))); box.appendChild(ul); };
   sec(t('f_sait'), b.s); sec(t('f_ignore'), b.i); sec(t('f_dur'), b.d);
   box.appendChild(el('h4', null, t('f_compte'))); box.appendChild(el('p', null, b.e));
   sec(t('f_commencer'), b.c);

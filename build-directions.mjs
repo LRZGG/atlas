@@ -138,7 +138,7 @@ const Q = qs.questions.map(q => {
   // La fiche détaillée (s'il y en a une) : texte écrit à la main dans questions.json, extrait Wikipédia et références vérifiées par fetch-fiches.mjs.
   const fi = q.fiche && FI[q.id]; assert(!q.fiche || fi, `fiche non téléchargée pour ${q.id} : lancer node fetch-fiches.mjs`);
   // Par langue : le texte de la fiche. L'extrait Wikipédia vient de fiches.json (par langue aussi), les références sont communes aux deux langues.
-  const f = q.fiche ? { w: fi.w, r: fi.r } : null;
+  const f = q.fiche ? { w: fi.w, r: fi.r, rv: q.fiche.relue || null } : null; // relue : { par, date } à remplir quand un spécialiste a relu
   if (f) for (const l of ['fr', 'en']) if (q.fiche[l]) f[l] = { s: q.fiche[l].savoir, i: q.fiche[l].ignore, d: q.fiche[l].dur, e: q.fiche[l].enjeu, c: q.fiche[l].commencer };
   return { id: q.id, qq: q.q, nmm: q.nom, cc: q.ctx, no: q.note || null, s: q.src, st: q.status || 'ouverte', subs, t, x, y, f };
 });
@@ -180,6 +180,21 @@ writeFileSync('docs/directions.html', '<!doctype html><html lang="fr"><meta char
 writeFileSync('docs/index.html', head('en', '/', false) + titre('en'));
 writeFileSync('docs/fr/index.html', head('fr', '/fr/', true) + titre('fr'));
 writeFileSync('docs/en/index.html', head('en', '/en/', true) + titre('en'));
+// Une page HTML par question qui a une fiche : lisible sans JavaScript, avec son adresse, sa description et sa provenance (français seulement tant que les fiches ne sont pas traduites).
+const T0 = DATA.TXT.fr, PAGES = [];
+const li = a => a.map(x => '<li>' + esc(x) + '</li>').join('');
+for (const q of Q.filter(q => q.f)) {
+  const f = q.f, b = f.fr, w = f.w.fr, p = '/fr/q/' + q.id + '/', at = T0.wiki_attr.split('{t}');
+  const prov = f.rv ? esc(T0.prov_rv.replace('{n}', f.rv.par).replace('{d}', f.rv.date)) : esc(T0.prov) + ' <a href="https://github.com/Lorenzo1208/atlas/blob/main/methode.md#qui-écrit-quoi">' + esc(T0.prov_lien) + '</a>';
+  const desc = esc(q.cc.fr), titre = esc(q.qq.fr) + ' — ' + esc(T0.titre);
+  const html = '<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>' + titre + '</title><meta name="description" content="' + desc + '"><link rel="canonical" href="' + BASE + p + '"><meta property="og:type" content="article"><meta property="og:title" content="' + esc(q.qq.fr) + '"><meta property="og:description" content="' + desc + '"><meta property="og:url" content="' + BASE + p + '"><meta name="twitter:card" content="summary">'
+    + '<style>:root{color-scheme:dark}body{margin:0;background:#06080d;color:#e9ecf2;font:17px/1.6 Georgia,serif;padding:0 max(16px,env(safe-area-inset-left))}main{max-width:680px;margin:0 auto;padding:32px 0 64px}a{color:#e8d9b0}h1{font-size:2rem;line-height:1.2;text-wrap:balance;margin:.4em 0}h2{font:500 12px system-ui,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#94a0b4;margin:2em 0 .5em}.top{font:14px system-ui,sans-serif;color:#94a0b4}.prov{font:13px/1.45 system-ui,sans-serif;color:#94a0b4;border:1px solid #232c3b;border-radius:4px;padding:10px 12px}.wiki{border-left:1px solid #232c3b;padding-left:14px}.attr{font:13px system-ui,sans-serif;color:#94a0b4}li{margin:0 0 .5em}ul.refs{list-style:none;padding:0}</style>'
+    + '<main><p class="top"><a href="' + BASE + '/fr/#' + q.id + '">← ' + esc(T0.titre) + ' : voir sur la carte</a></p><h1>' + esc(q.qq.fr) + '</h1><p>' + esc(q.cc.fr) + '</p><p class="prov">' + prov + '</p>'
+    + '<h2>' + esc(T0.f_sait) + '</h2><ul>' + li(b.s) + '</ul><h2>' + esc(T0.f_ignore) + '</h2><ul>' + li(b.i) + '</ul><h2>' + esc(T0.f_dur) + '</h2><ul>' + li(b.d) + '</ul><h2>' + esc(T0.f_compte) + '</h2><p>' + esc(b.e) + '</p><h2>' + esc(T0.f_commencer) + '</h2><ul>' + li(b.c) + '</ul>'
+    + '<h2>' + esc(T0.f_loin) + '</h2><div class="wiki"><p>' + esc(w.x) + '</p><p class="attr">' + esc(at[0]) + '<a href="' + esc(w.u) + '">' + esc(w.t) + '</a>' + esc(at[1] || '') + '</p></div>'
+    + '<ul class="refs">' + f.r.map(r => '<li><a href="' + esc(r.u) + '">' + esc(r.t) + '</a><br><span class="attr">' + esc([r.a, r.y].filter(Boolean).join(', ')) + '</span></li>').join('') + '</ul></main>';
+  mkdirSync('docs/fr/q/' + q.id, { recursive: true }); writeFileSync('docs/fr/q/' + q.id + '/index.html', html); PAGES.push(p);
+}
 writeFileSync('docs/robots.txt', `User-agent: *\nAllow: /\nSitemap: ${BASE}/sitemap.xml\n`);
-writeFileSync('docs/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${['/', '/fr/', '/en/'].map(p => `  <url><loc>${BASE}${p}</loc></url>`).join('\n')}\n</urlset>\n`);
+writeFileSync('docs/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${['/', '/fr/', '/en/', ...PAGES].map(p => `  <url><loc>${BASE}${p}</loc></url>`).join('\n')}\n</urlset>\n`);
 console.log(`plafond ${cap} articles, ${links.length} liens gardés, ${T.length / 5} sujets placés, ${Q.length} questions`);
