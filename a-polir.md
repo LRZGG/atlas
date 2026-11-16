@@ -2,6 +2,17 @@
 
 État au 16 novembre 2026. Ce document liste ce qui ne va pas, pourquoi, et ce qu'on propose. Il complète [methode.md](methode.md).
 
+## 0. Fait lors de la deuxième passe (16 novembre)
+
+- **Survol** : une infobulle seule, plus de traits. **Tirage des étoiles supprimé.** Un clic sur un point éclaire toute sa sous-discipline et replie la légende.
+- **Relief assumé** comme « effort de recherche », avec une échelle dans la légende.
+- **Questions** : au bord du connu, sauf les transversales (au moins trois disciplines, ou régions éloignées) qui restent au centre, dans la « terra incognita ».
+- **Couleurs** : cohésion par discipline ajoutée à la disposition (88 % de voisines du même domaine au lieu de 77 %) et une nuance par discipline dans la teinte de son domaine. Les ponts réels restent visibles : le mélange restant n'est pas un bug.
+- **Carnet d'exploration** : les questions ouvertes se remplissent, avec un compteur « n / 31 ». Ni points, ni classement.
+- **Cadrage** : la question ouverte se place à gauche pour ne pas passer sous la fiche. Les étiquettes ne dépassent plus de l'écran.
+
+Reste à faire : tout ce qui suit, notamment l'aperçu Wikipédia, la traduction, le relief flou en zoom et le contenu.
+
 ## 1. Le but, à trancher avant le reste
 
 **Proposition.** « Choisis une question que personne n'a résolue et vois où elle se situe dans toute la science. »

@@ -1,8 +1,8 @@
 <title>Carte de l'inconnu</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Spectral:ital,wght@0,300;0,400;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap">
 <style>
-/* Layout : la carte occupe tout l'écran. Le relief (densité de recherche) est le sol, les étoiles (sujets) sont posées dessus, les commandes flottent dans les coins. Un seul univers, sombre par choix : c'est un ciel. */
+/* Layout : une carte plein écran dans la tradition de l'atlas. Le relief (effort de recherche) est le sol, les étoiles (sujets) une fine poussière, la crème est réservée à l'inconnu : anneaux des questions et mention « terra incognita ». Légende en cartouche, fiche en bas à droite. Un seul univers sombre, par choix. */
 :root {
   color-scheme: dark;
   --void: #06080d;
@@ -19,7 +19,7 @@ html, body { height: 100%; }
 body { background: var(--void); color: var(--fg); font: 14.5px/1.5 var(--sans); overflow: hidden; }
 #stage { position: relative; height: 100%; }
 canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
-#brand { position: absolute; top: 20px; left: max(20px, env(safe-area-inset-left, 0px)); max-width: min(400px, 62vw); pointer-events: none; transition: opacity .3s; }
+#brand { position: absolute; top: 20px; left: max(20px, env(safe-area-inset-left, 0px)); max-width: min(380px, 62vw); pointer-events: none; transition: opacity .3s; }
 h1 { font: 300 clamp(26px, 3.4vw, 46px)/1 var(--serif); letter-spacing: -0.012em; margin: 0; }
 #brand p { margin: 10px 0 0; color: var(--dim); }
 button, input { font: inherit; color: inherit; }
@@ -27,51 +27,69 @@ button { background: var(--panel); border: 1px solid var(--line); border-radius:
 button:hover { border-color: var(--dim); }
 :focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
 svg { display: block; }
-#side { position: absolute; top: 20px; right: max(20px, env(safe-area-inset-right, 0px)); background: var(--panel); border: 1px solid var(--line); padding: 14px 16px; display: grid; gap: 14px; font-size: 13.5px; }
-#key { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
-#key li, #side label { display: flex; align-items: center; gap: 9px; }
+#side { position: absolute; top: 20px; right: max(20px, env(safe-area-inset-right, 0px)); width: 236px; box-sizing: border-box; background: var(--panel); border: 1px solid var(--line); padding: 12px 14px; font-size: 13px; }
+#side summary { cursor: pointer; font: italic 400 16px var(--serif); }
+#side h3 { font: 500 11px var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--dim); margin: 14px 0 6px; }
+#ramp { display: flex; gap: 2px; }
+#ramp i { flex: 1; height: 9px; }
+#rampCap { display: flex; justify-content: space-between; color: var(--dim); font-size: 12px; margin-top: 3px; }
+#key { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+#key li, #layers label { display: flex; align-items: center; gap: 9px; }
 #key i { width: 9px; height: 9px; border-radius: 50%; flex: none; }
-#key i.ring { box-sizing: border-box; width: 11px; height: 11px; margin-left: -1px; border: 1.75px solid var(--question); }
-#card a { color: var(--question); }
-#cSrc { margin-top: 10px; }
-#cUnit { color: var(--fg); font-size: 14.5px; margin-top: 10px; }
-#layers { display: grid; gap: 5px; border-top: 1px solid var(--line); padding-top: 12px; }
+#qkey { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+#qkey li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; align-items: center; }
+#qkey span { color: var(--dim); font-size: 12px; display: block; }
+#layers { display: grid; gap: 4px; border-top: 1px solid var(--line); margin-top: 14px; padding-top: 10px; }
+#coll { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+#coll b { font: 300 22px var(--serif); }
 #zoom { position: absolute; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); left: max(20px, env(safe-area-inset-left, 0px)); display: flex; gap: 6px; }
 #zoom button { width: 38px; height: 38px; display: grid; place-items: center; }
 #card { position: absolute; right: max(20px, env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); width: min(340px, calc(100% - 40px)); box-sizing: border-box; background: var(--panel); border: 1px solid var(--line); padding: 18px 18px 16px; }
 #card h2 { font: 400 23px/1.15 var(--serif); margin: 0 30px 6px 0; text-wrap: balance; }
 #card p { margin: 0; color: var(--dim); font-size: 13.5px; }
+#card a { color: var(--question); }
 #cCount { font: 300 30px/1 var(--serif); color: var(--fg); margin: 14px 0 2px; font-variant-numeric: tabular-nums; }
+#cUnit { color: var(--fg); font-size: 14.5px; margin-top: 10px; }
+#cSrc { margin-top: 10px; }
 #cLinks { list-style: none; margin: 6px 0 0; padding: 0; font-size: 13.5px; }
 #cLinks li { padding: 4px 0; border-top: 1px solid var(--line); }
 #close { position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; display: grid; place-items: center; }
 #tip { position: absolute; pointer-events: none; background: var(--void); border: 1px solid var(--dim); padding: 6px 10px; font-size: 13px; line-height: 1.35; max-width: 250px; }
 #tip b { display: block; font-weight: 500; }
 #tip span { color: var(--dim); }
-@media (max-height: 760px) and (min-width: 721px) { body:has(#card:not([hidden])) #side { display: none; } }
 @media (max-width: 720px) {
   #brand { top: 14px; left: max(16px, env(safe-area-inset-left, 0px)); max-width: none; right: 16px; }
   #brand p { font-size: 13px; }
-  #side { top: auto; right: auto; left: max(16px, env(safe-area-inset-left, 0px)); bottom: calc(66px + env(safe-area-inset-bottom, 0px)); padding: 10px 12px; gap: 8px; font-size: 12.5px; }
-  #layers { padding-top: 8px; grid-auto-flow: column; gap: 14px; }
-  #key { grid-template-columns: 1fr 1fr; gap: 3px 14px; }
+  #side { top: auto; right: auto; left: max(16px, env(safe-area-inset-left, 0px)); bottom: calc(66px + env(safe-area-inset-bottom, 0px)); }
   #zoom { left: max(16px, env(safe-area-inset-left, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
   #card { left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); width: auto; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+  body:has(#card:not([hidden])) #side { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { button { transition: none; } }
 </style>
 
 <div id="stage">
-  <canvas id="c" role="img" aria-label="Carte de la recherche mondiale. Le relief coloré montre où l'on publie beaucoup, chaque étoile est un sujet de recherche, les zones noires sont celles où presque personne ne travaille."></canvas>
-  <div id="brand"><h1>Carte de l'inconnu</h1><p><span id="nT"></span> sujets de recherche réels et <span id="nQ"></span> grandes questions ouvertes. Clique un anneau pour lire une question. Attrape une étoile et tire : ce qui lui est lié suit.</p></div>
-  <div id="side">
+  <canvas id="c" role="img" aria-label="Carte de la recherche mondiale. Le relief montre où l'on publie beaucoup, chaque point est un sujet de recherche, les anneaux clairs sont des questions que personne n'a résolues, le noir est ce qui est peu étudié."></canvas>
+  <div id="brand"><h1>Carte de l'inconnu</h1><p><span id="nT"></span> sujets de recherche réels et <span id="nQ"></span> grandes questions que personne n'a résolues. Le relief montre où l'on cherche. Clique un anneau pour lire une question.</p></div>
+  <details id="side" open>
+    <summary>Légende</summary>
+    <h3>Relief : effort de recherche</h3>
+    <div id="ramp"></div>
+    <div id="rampCap"><span>peu d'articles</span><span>beaucoup</span></div>
+    <h3>Teinte : grand domaine</h3>
     <ul id="key"></ul>
+    <h3>Questions</h3>
+    <ul id="qkey">
+      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9" fill="none" stroke="#f3dfb2" stroke-opacity=".35"/><circle cx="11" cy="11" r="5" fill="#06080d" stroke="#f3dfb2" stroke-width="1.75"/></svg><div>Question ouverte<span>au bord du connu</span></div></li>
+      <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="none" stroke="#f3dfb2" stroke-opacity=".35"/><circle cx="11" cy="11" r="7.5" fill="none" stroke="#f3dfb2" stroke-opacity=".35"/><circle cx="11" cy="11" r="4.5" fill="#06080d" stroke="#f3dfb2" stroke-width="1.75"/></svg><div>Question transversale<span>relie plusieurs disciplines</span></div></li>
+    </ul>
     <div id="layers">
       <label><input id="lRelief" type="checkbox" checked> Relief</label>
-      <label><input id="lStars" type="checkbox" checked> Étoiles</label>
+      <label><input id="lStars" type="checkbox" checked> Sujets</label>
       <label><input id="lQ" type="checkbox" checked> Questions</label>
     </div>
-  </div>
+    <div id="coll"><b id="nSeen">0</b> / <span id="nQ2"></span> questions explorées</div>
+  </details>
   <div id="zoom">
     <button id="zin" aria-label="Zoomer"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v12M2 8h12"/></svg></button>
     <button id="zout" aria-label="Dézoomer"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12"/></svg></button>
@@ -95,24 +113,31 @@ const DATA = /*DATA*/null;
 const { D, F, S, L, T, cap, Q, SRC } = DATA, N = T.length / 5;
 const $ = id => document.getElementById(id), css = getComputedStyle(document.documentElement), tok = n => css.getPropertyValue(n).trim();
 const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
-const VOID = hex(tok('--void')), DOMRGB = [0, 1, 2, 3].map(i => hex(tok('--d' + i))), SANS = tok('--sans'), SERIF = tok('--serif'), FG = tok('--fg'), DIM = tok('--dim');
-const STAR = DOMRGB.map(c => `rgb(${c.map(v => Math.round(v + (255 - v) * 0.4)).join(',')})`);
+const VOID = hex(tok('--void')), DOMRGB = [0, 1, 2, 3].map(i => hex(tok('--d' + i))), SANS = tok('--sans'), SERIF = tok('--serif'), FG = tok('--fg'), DIM = tok('--dim'), QCOL = tok('--question'), VOIDC = tok('--void');
 const fmt = n => n.toLocaleString('fr-FR');
 const LMAX = Math.log10(cap), nrm = w => Math.max(0, Math.min(1, (Math.log10(Math.max(w, 1)) - 2) / (LMAX - 2)));
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-$('nT').textContent = fmt(N); $('nQ').textContent = Q.length;
-const QCOL = tok('--question'), STATUS = { ouverte: 'Question ouverte', evaluation: 'Résolution proposée, en cours d’évaluation', avancee: 'Largement avancée depuis 2005' };
+const STATUS = { ouverte: 'Question ouverte', evaluation: 'Résolution proposée, en cours d’évaluation', avancee: 'Largement avancée depuis 2005' };
+const mix = (c, t, a) => c.map((v, i) => v + (t[i] - v) * a);
+// Chaque discipline a sa nuance dans la teinte de son domaine, pour qu'un pont entre deux régions se voie.
+const FSTAR = F.map((f, i) => { const sib = F.map((g, j) => j).filter(j => F[j].d === f.d), k = sib.indexOf(i), n = sib.length, sh = n > 1 ? (k / (n - 1) - 0.5) * 0.5 : 0; let c = mix(DOMRGB[f.d], [255, 255, 255], 0.4); c = sh > 0 ? mix(c, [255, 255, 255], sh) : mix(c, [0, 0, 0], -sh); return `rgb(${c.map(Math.round).join(',')})`; });
+
+$('nT').textContent = fmt(N); $('nQ').textContent = $('nQ2').textContent = Q.length;
 D.forEach((n, i) => { const li = document.createElement('li'), d = document.createElement('i'); d.style.background = tok('--d' + i); li.append(d, n); $('key').appendChild(li); });
-{ const li = document.createElement('li'), d = document.createElement('i'); d.className = 'ring'; li.append(d, 'Question ouverte'); $('key').appendChild(li); }
+for (let b = 1; b <= 7; b++) { const i = document.createElement('i'), c = mix(VOID, [190, 202, 225], 0.14 + 0.62 * (b - 1) / 6); i.style.background = `rgb(${c.map(Math.round).join(',')})`; $('ramp').appendChild(i); }
+if (matchMedia('(max-width: 720px)').matches) $('side').open = false;
+
+let explored = new Set();
+try { explored = new Set(JSON.parse(localStorage.getItem('explored') || '[]')); } catch (e) {}
+const countSeen = () => { $('nSeen').textContent = Q.filter(q => explored.has(q.id)).length; };
+countSeen();
 
 F.forEach((f, i) => { let x = 0, y = 0, w = 0; S.forEach(s => { if (s.f === i) { x += s.x * s.w; y += s.y * s.w; w += s.w; } }); f.x = x / w; f.y = y / w; f.w = w; });
 const NB = S.map(() => []); L.forEach(([i, j]) => { NB[i].push(j); NB[j].push(i); });
 const fByW = F.slice().sort((a, b) => b.w - a.w), sByW = S.map((s, i) => i).sort((a, b) => S[b].w - S[a].w), tByW = Array.from({ length: N }, (_, i) => i).sort((a, b) => T[b * 5 + 2] - T[a * 5 + 2]);
 const V = new Float32Array(N); for (let i = 0; i < N; i++) V[i] = nrm(T[i * 5 + 2]);
-// Déplacement élastique de chaque sous-discipline par rapport à sa vraie position : dx, dy, vx, vy.
-const off = S.map(() => [0, 0, 0, 0]);
 
-// Le relief : la densité de recherche, calculée une fois puis posée sous les étoiles.
+// Le relief : la densité de recherche, calculée une fois puis posée sous les sujets.
 const EXT = 1.1, RP = 1400, relief = document.createElement('canvas'); let reliefReady = false;
 function buildRelief() {
   const G = 300, R = 7, sig = 2.4, m = G / 2 / EXT, g = [0, 1, 2, 3].map(() => new Float32Array(G * G)), tot = new Float32Array(G * G);
@@ -132,103 +157,104 @@ function buildRelief() {
 }
 
 const cv = $('c'), ctx = cv.getContext('2d');
-let W = 0, H = 0, M = 1, cam = { x: 0, y: 0, k: 1 }, target = null, dirty = true, hover = -1, sel = -1, grab = null, hoverQ = -1, selQ = -1;
+let W = 0, H = 0, M = 1, cam = { x: 0, y: 0, k: 1 }, target = null, dirty = true, hover = -1, hoverQ = -1, sel = -1, selQ = -1, lit = null;
 function resize() { const r = cv.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2); W = r.width; H = r.height; M = Math.min(W, H) / 2 * 0.94; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); dirty = true; }
 const X = x => W / 2 + (x - cam.x) * M * cam.k, Y = y => H / 2 + (y - cam.y) * M * cam.k;
 const wx = px => (px - W / 2) / (M * cam.k) + cam.x, wy = py => (py - H / 2) / (M * cam.k) + cam.y;
-const tx = i => X(T[i * 5] + off[T[i * 5 + 3]][0]), ty = i => Y(T[i * 5 + 1] + off[T[i * 5 + 3]][1]);
+const tx = i => X(T[i * 5]), ty = i => Y(T[i * 5 + 1]);
 
 let placed = [];
 function label(text, x, y, font, fill, align) {
-  ctx.font = font; const w = ctx.measureText(text).width, x0 = align === 'left' ? x : x - w / 2, box = [x0 - 5, y - 15, x0 + w + 5, y + 7];
-  if (box[2] < 0 || box[0] > W || box[3] < 0 || box[1] > H || placed.some(p => box[0] < p[2] && box[2] > p[0] && box[1] < p[3] && box[3] > p[1])) return false;
-  placed.push(box); ctx.textAlign = 'left'; ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = tok('--void'); ctx.strokeText(text, x0, y); ctx.fillStyle = fill; ctx.fillText(text, x0, y); return true;
+  ctx.font = font; const w = ctx.measureText(text).width; let x0 = align === 'left' ? x : x - w / 2;
+  if (align === 'left' && x0 + w + 5 > W) x0 = x - 40 - w; // pas la place à droite : l'étiquette passe à gauche du point
+  const box = [x0 - 5, y - 15, x0 + w + 5, y + 7];
+  if (box[0] < 0 || box[2] > W || box[3] < 0 || box[1] > H || box[3] < 0 || box[1] > H || placed.some(p => box[0] < p[2] && box[2] > p[0] && box[1] < p[3] && box[3] > p[1])) return false;
+  placed.push(box); ctx.textAlign = 'left'; ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = VOIDC; ctx.strokeText(text, x0, y); ctx.fillStyle = fill; ctx.fillText(text, x0, y); return true;
+}
+function ring(q, i) {
+  const x = X(q.x), y = Y(q.y), on = i === selQ || i === hoverQ;
+  ctx.strokeStyle = QCOL; ctx.lineWidth = 1; ctx.globalAlpha = on ? 0.65 : 0.3; ctx.beginPath(); ctx.arc(x, y, on ? 14 : 11.5, 0, 6.283); ctx.stroke();
+  if (q.t) { ctx.beginPath(); ctx.arc(x, y, on ? 19.5 : 17, 0, 6.283); ctx.stroke(); }
+  ctx.globalAlpha = 1; ctx.lineWidth = 1.75; ctx.fillStyle = explored.has(q.id) ? QCOL : VOIDC; ctx.beginPath(); ctx.arc(x, y, 5.5, 0, 6.283); ctx.fill(); ctx.stroke();
 }
 function draw() {
-  ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.fillStyle = tok('--void'); ctx.fillRect(0, 0, W, H);
+  ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.fillStyle = VOIDC; ctx.fillRect(0, 0, W, H);
   if (reliefReady && $('lRelief').checked) { ctx.imageSmoothingQuality = 'high'; const s = 2 * EXT * M * cam.k; ctx.drawImage(relief, X(-EXT), Y(-EXT), s, s); }
-  const focus = grab && grab.drag ? grab.s : sel >= 0 ? T[sel * 5 + 3] : hover >= 0 ? T[hover * 5 + 3] : -1;
-  if (focus >= 0) { ctx.strokeStyle = FG; ctx.lineWidth = 1; ctx.globalAlpha = 0.45; ctx.beginPath(); for (const j of NB[focus]) { ctx.moveTo(X(S[focus].x + off[focus][0]), Y(S[focus].y + off[focus][1])); ctx.lineTo(X(S[j].x + off[j][0]), Y(S[j].y + off[j][1])); } ctx.stroke(); }
+  placed = [];
+  // Le vide entre les disciplines : peu d'articles relient des domaines éloignés.
+  { const fs = Math.max(11, Math.min(44, 0.04 * M * cam.k)); ctx.font = `italic 300 ${fs}px ${SERIF}`; ctx.textAlign = 'center'; ctx.fillStyle = QCOL; ctx.globalAlpha = 0.3; if ('letterSpacing' in ctx) ctx.letterSpacing = fs * 0.32 + 'px'; ctx.fillText('TERRA INCOGNITA', X(0), Y(0) + fs * 0.3); if ('letterSpacing' in ctx) ctx.letterSpacing = '0px'; ctx.globalAlpha = 1; }
   if ($('lStars').checked) {
-    ctx.globalCompositeOperation = 'lighter'; const zs = Math.pow(cam.k, 0.6) * Math.max(0.7, Math.min(W, H) / 900) * 0.72, za = Math.min(1, 0.5 + 0.25 * cam.k);
-    for (let i = 0; i < N; i++) { const x = tx(i), y = ty(i); if (x < -8 || y < -8 || x > W + 8 || y > H + 8) continue; const v = V[i]; ctx.globalAlpha = (0.2 + 0.8 * v * v) * za; ctx.fillStyle = STAR[F[S[T[i * 5 + 3]].f].d]; ctx.beginPath(); ctx.arc(x, y, (0.55 + 2.3 * v * v) * zs, 0, 6.283); ctx.fill(); }
+    ctx.globalCompositeOperation = 'lighter'; const zs = Math.pow(cam.k, 0.6) * Math.max(0.7, Math.min(W, H) / 900) * 0.62, za = Math.min(1, 0.45 + 0.25 * cam.k);
+    for (let i = 0; i < N; i++) { const x = tx(i), y = ty(i); if (x < -8 || y < -8 || x > W + 8 || y > H + 8) continue; const v = V[i], si = T[i * 5 + 3], on = !lit || lit.has(si); ctx.globalAlpha = on ? (lit ? 0.95 : (0.2 + 0.8 * v * v) * za) : 0.12; ctx.fillStyle = FSTAR[S[si].f]; ctx.beginPath(); ctx.arc(x, y, (0.55 + 2.3 * v * v) * zs * (lit && on ? 1.5 : 1), 0, 6.283); ctx.fill(); }
     ctx.globalCompositeOperation = 'source-over';
   }
-  ctx.globalAlpha = 1; placed = [];
-  // Les questions : des anneaux posés au barycentre des sous-disciplines qu'elles touchent.
-  if ($('lQ').checked) {
-    if (selQ >= 0) { const q = Q[selQ]; ctx.strokeStyle = QCOL; ctx.lineWidth = 1; ctx.globalAlpha = 0.6; ctx.beginPath(); for (const j of q.subs) { ctx.moveTo(X(q.x), Y(q.y)); ctx.lineTo(X(S[j].x + off[j][0]), Y(S[j].y + off[j][1])); } ctx.stroke(); }
-    Q.forEach((q, i) => { const x = X(q.x), y = Y(q.y), on = i === selQ || i === hoverQ; ctx.strokeStyle = QCOL; ctx.globalAlpha = on ? 0.6 : 0.3; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(x, y, on ? 13 : 10.5, 0, 6.283); ctx.stroke(); ctx.globalAlpha = 1; ctx.lineWidth = 1.75; ctx.fillStyle = tok('--void'); ctx.beginPath(); ctx.arc(x, y, 5.5, 0, 6.283); ctx.fill(); ctx.stroke(); });
-    for (const i of [selQ, hoverQ]) if (i >= 0) label(Q[i].q, X(Q[i].x) + 19, Y(Q[i].y) + 5, `400 16px ${SERIF}`, QCOL, 'left');
-    if (selQ >= 0) for (const j of Q[selQ].subs) label(S[j].n, X(S[j].x + off[j][0]), Y(S[j].y + off[j][1]) - 10, `500 12px ${SANS}`, FG);
-    if (cam.k >= 2.6) for (const q of Q) label(q.q, X(q.x) + 19, Y(q.y) + 5, `400 16px ${SERIF}`, QCOL, 'left');
-  }
-  for (const i of [sel, hover]) if (i >= 0) { ctx.strokeStyle = FG; ctx.lineWidth = 1.25; ctx.beginPath(); ctx.arc(tx(i), ty(i), 9, 0, 6.283); ctx.stroke(); }
-  if (sel >= 0) label(T[sel * 5 + 4], tx(sel) + 15, ty(sel) + 5, `500 13px ${SANS}`, FG, 'left');
-  if (focus >= 0) for (const j of [focus, ...NB[focus]]) label(S[j].n, X(S[j].x + off[j][0]), Y(S[j].y + off[j][1]) - 10, `500 12px ${SANS}`, FG);
-  // Zoom sémantique : disciplines de loin, sous-disciplines de près, sujets de très près.
+  ctx.globalAlpha = 1;
+  const showQ = $('lQ').checked;
+  if (showQ && selQ >= 0) { const q = Q[selQ]; ctx.strokeStyle = QCOL; ctx.fillStyle = QCOL; ctx.lineWidth = 1; ctx.setLineDash([2, 5]); for (const j of q.subs) { ctx.globalAlpha = 0.65; ctx.beginPath(); ctx.moveTo(X(q.x), Y(q.y)); ctx.lineTo(X(S[j].x), Y(S[j].y)); ctx.stroke(); ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(X(S[j].x), Y(S[j].y), 3, 0, 6.283); ctx.fill(); } ctx.setLineDash([]); }
+  if (showQ) Q.forEach((q, i) => ring(q, i));
+  for (const i of [sel, hover]) if (i >= 0) { ctx.strokeStyle = FG; ctx.lineWidth = 1.25; ctx.beginPath(); ctx.arc(tx(i), ty(i), 8, 0, 6.283); ctx.stroke(); }
+  // Étiquettes, par ordre de priorité : ce qui est choisi d'abord, puis les régions, puis les questions s'il reste de la place.
+  if (showQ) for (const i of [selQ, hoverQ]) if (i >= 0) label(Q[i].q, X(Q[i].x) + 20, Y(Q[i].y) + 5, `400 16px ${SERIF}`, QCOL, 'left');
+  if (sel >= 0) label(T[sel * 5 + 4], tx(sel) + 14, ty(sel) + 5, `500 13px ${SANS}`, FG, 'left');
+  if (lit) for (const j of lit) label(S[j].n, X(S[j].x), Y(S[j].y) - 10, `italic 400 14px ${SERIF}`, FG);
   const small = W < 600;
   if (cam.k < 2.6) for (const f of fByW) label(f.n, X(f.x), Y(f.y), `italic 400 ${small ? 13 : 16}px ${SERIF}`, FG);
   else { for (const f of fByW) label(f.n.toUpperCase(), X(f.x), Y(f.y), `500 11px ${SANS}`, DIM);
-    for (const i of sByW) label(S[i].n, X(S[i].x + off[i][0]), Y(S[i].y + off[i][1]), `italic 400 15px ${SERIF}`, FG);
+    for (const i of sByW) label(S[i].n, X(S[i].x), Y(S[i].y), `italic 400 15px ${SERIF}`, FG);
     if (cam.k >= 5) { let n = 0; for (const i of tByW) { const x = tx(i), y = ty(i); if (x < 0 || y < 0 || x > W || y > H) continue; if (label(T[i * 5 + 4], x + 9, y + 4, `400 12px ${SANS}`, DIM, 'left') && ++n > 40) break; } } }
-}
-function physics() {
-  let live = false;
-  S.forEach((s, i) => { const o = off[i]; if (grab && grab.drag && grab.s === i) { live = true; return; }
-    let mxn = 0, myn = 0; for (const j of NB[i]) { mxn += off[j][0]; myn += off[j][1]; } const n = NB[i].length || 1;
-    o[2] = (o[2] + 0.5 * (mxn / n - o[0]) - 0.1 * o[0]) * 0.7; o[3] = (o[3] + 0.5 * (myn / n - o[1]) - 0.1 * o[1]) * 0.7;
-    if (Math.abs(o[0]) + Math.abs(o[1]) + Math.abs(o[2]) + Math.abs(o[3]) > 1e-5) live = true; else o[0] = o[1] = o[2] = o[3] = 0; });
-  if (live) { S.forEach((s, i) => { if (!(grab && grab.drag && grab.s === i)) { off[i][0] += off[i][2]; off[i][1] += off[i][3]; } }); dirty = true; }
+  if (showQ) for (const q of Q) if (q.t || cam.k >= 1.6) label(q.q, X(q.x) + 20, Y(q.y) + 5, `400 15px ${SERIF}`, QCOL, 'left');
 }
 function loop() {
   if (target) { const f = reduce ? 1 : 0.14; cam.x += (target.x - cam.x) * f; cam.y += (target.y - cam.y) * f; cam.k += (target.k - cam.k) * f; if (Math.abs(target.x - cam.x) + Math.abs(target.y - cam.y) < 1e-4 && Math.abs(target.k - cam.k) < 0.002) { cam = target; target = null; } dirty = true; }
-  physics(); if (dirty) { dirty = false; draw(); $('brand').style.opacity = cam.k > 1.5 ? 0 : 1; } requestAnimationFrame(loop);
+  if (dirty) { dirty = false; draw(); $('brand').style.opacity = cam.k > 1.5 ? 0 : 1; } requestAnimationFrame(loop);
 }
 function zoomAt(px, py, f) { const k = Math.min(14, Math.max(0.7, cam.k * f)), ax = wx(px), ay = wy(py); cam = { x: ax - (px - W / 2) / (M * k), y: ay - (py - H / 2) / (M * k), k }; target = null; dirty = true; }
-function pickQ(px, py) { if (!$('lQ').checked) return -1; let best = -1, bd = 256; Q.forEach((q, i) => { const dx = X(q.x) - px, dy = Y(q.y) - py, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = i; } }); return best; }
+function pickQ(px, py) { if (!$('lQ').checked) return -1; let best = -1, bd = 324; Q.forEach((q, i) => { const dx = X(q.x) - px, dy = Y(q.y) - py, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = i; } }); return best; }
 function pick(px, py) { if (!$('lStars').checked) return -1; let best = -1, bd = 170; for (let i = 0; i < N; i++) { const dx = tx(i) - px, dy = ty(i) - py, d = dx * dx + dy * dy - V[i] * 30; if (d < bd) { bd = d; best = i; } } return best; }
 
 const tip = $('tip');
-function showTip(i, px, py) { if (i < 0 || (grab && grab.drag)) { tip.hidden = true; return; } const s = S[T[i * 5 + 3]], w = T[i * 5 + 2]; tip.textContent = ''; const b = document.createElement('b'), a = document.createElement('span'); b.textContent = T[i * 5 + 4]; a.textContent = F[s.f].n + ' · ' + fmt(w) + ' articles' + (w > cap ? ' (compteur douteux)' : ''); tip.append(b, a); tip.hidden = false; tip.style.left = Math.max(4, Math.min(px + 16, W - tip.offsetWidth - 4)) + 'px'; tip.style.top = (py + 18 + tip.offsetHeight > H ? py - tip.offsetHeight - 12 : py + 18) + 'px'; }
+function showTip(i, px, py) { if (i < 0) { tip.hidden = true; return; } const s = S[T[i * 5 + 3]], w = T[i * 5 + 2]; tip.textContent = ''; const b = document.createElement('b'), a = document.createElement('span'); b.textContent = T[i * 5 + 4]; a.textContent = F[s.f].n + ' · ' + fmt(w) + ' articles' + (w > cap ? ' (compteur douteux)' : ''); tip.append(b, a); tip.hidden = false; tip.style.left = Math.max(4, Math.min(px + 16, W - tip.offsetWidth - 4)) + 'px'; tip.style.top = (py + 18 + tip.offsetHeight > H ? py - tip.offsetHeight - 12 : py + 18) + 'px'; }
+// Cadre un point en le décalant vers la gauche quand la fiche occupe la droite de l'écran.
+function focusOn(x, y, k) { target = { x: x + (W > 720 ? 0.16 * W : 0) / (M * k), y, k }; }
+// Quand une fiche s'ouvre, la légende se replie pour ne pas la recouvrir ; elle revient à la fermeture.
+let legendOpen = $('side').open;
+function openCard() { tip.hidden = true; if ($('card').hidden) legendOpen = $('side').open; $('side').open = false; $('card').hidden = false; }
+function clearSel() { sel = selQ = -1; lit = null; if (!$('card').hidden) $('side').open = legendOpen; $('card').hidden = true; if (location.hash) location.hash = ''; dirty = true; }
 function select(i) {
-  sel = i; dirty = true; if (i < 0) { if (selQ < 0) $('card').hidden = true; return; }
-  if (selQ >= 0) { selQ = -1; if (location.hash) location.hash = ''; }
+  sel = i; selQ = -1; dirty = true; if (location.hash) location.hash = '';
+  const si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2]; lit = new Set([si]);
   $('cCount').hidden = false; $('cSrc').hidden = true; $('cListT').textContent = "Sous-disciplines qui partagent le plus d'articles avec la sienne";
-  const si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2];
   $('cName').textContent = T[i * 5 + 4]; $('cWhere').textContent = F[s.f].n + ' · ' + s.n; $('cCount').textContent = fmt(w); $('cUnit').textContent = 'articles publiés' + (w > cap ? ' (compteur douteux, plafonné sur la carte)' : '');
   const ul = $('cLinks'); ul.textContent = ''; NB[si].slice(0, 5).forEach(j => { const li = document.createElement('li'); li.textContent = S[j].n; ul.appendChild(li); });
-  $('card').hidden = false; target = { x: T[i * 5], y: T[i * 5 + 1], k: Math.max(cam.k, 3) };
+  openCard(); focusOn(T[i * 5], T[i * 5 + 1], Math.max(cam.k, 3));
 }
 function selectQ(i) {
-  selQ = i; dirty = true; if (i < 0) { if (sel < 0) $('card').hidden = true; if (location.hash) location.hash = ''; return; }
-  sel = -1; const q = Q[i], src = SRC[q.s];
-  $('cName').textContent = q.q; $('cWhere').textContent = STATUS[q.st]; $('cCount').hidden = true; $('cUnit').textContent = q.c + (q.n ? ' ' + q.n : '');
-  $('cSrc').hidden = false; $('cLink').textContent = 'Source : ' + src.n; $('cLink').href = src.u; $('cListT').textContent = 'Sous-disciplines concernées';
+  selQ = i; sel = -1; dirty = true; const q = Q[i], src = SRC[q.s]; lit = new Set(q.subs);
+  explored.add(q.id); try { localStorage.setItem('explored', JSON.stringify([...explored])); } catch (e) {} countSeen();
+  $('cName').textContent = q.q; $('cWhere').textContent = STATUS[q.st] + (q.t ? ' · transversale' : ''); $('cCount').hidden = true; $('cUnit').textContent = q.c + (q.n ? ' ' + q.n : '');
+  $('cSrc').hidden = false; $('cLink').textContent = 'Source : ' + src.n; $('cLink').href = src.u; $('cListT').textContent = q.t ? 'Elle relie ces sous-disciplines' : 'Sous-disciplines concernées';
   const ul = $('cLinks'); ul.textContent = ''; q.subs.forEach(j => { const li = document.createElement('li'); li.textContent = F[S[j].f].n + ' · ' + S[j].n; ul.appendChild(li); });
-  $('card').hidden = false; target = { x: q.x, y: q.y, k: Math.max(cam.k, 2.2) }; if (location.hash.slice(1) !== q.id) location.hash = q.id;
+  openCard(); focusOn(q.x, q.y, Math.max(cam.k, q.t ? 1.6 : 2.2)); if (location.hash.slice(1) !== q.id) location.hash = q.id;
 }
 // Chaque question a son adresse (#conscience) : on peut envoyer le lien d'une question précise.
 function openHash() { const i = Q.findIndex(q => q.id === location.hash.slice(1)); if (i >= 0 && i !== selQ) selectQ(i); }
 addEventListener('hashchange', openHash);
-$('close').onclick = () => { select(-1); selectQ(-1); };
+$('close').onclick = clearSel;
 
-const ptrs = new Map(); let moved = 0, pinch = 0, downQ = -1;
+const ptrs = new Map(); let moved = 0, pinch = 0;
 const pos = e => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
-cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); const p = pos(e); ptrs.set(e.pointerId, p); moved = 0; pinch = 0; target = null;
-  downQ = ptrs.size === 1 ? pickQ(p[0], p[1]) : -1; const i = ptrs.size === 1 && downQ < 0 ? pick(p[0], p[1]) : -1; grab = i >= 0 ? { t: i, s: T[i * 5 + 3], gx: wx(p[0]) - off[T[i * 5 + 3]][0], gy: wy(p[1]) - off[T[i * 5 + 3]][1], drag: false } : null; cv.style.cursor = 'grabbing'; });
+cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, pos(e)); moved = 0; pinch = 0; target = null; cv.style.cursor = 'grabbing'; });
 cv.addEventListener('pointermove', e => {
   const p = pos(e), o = ptrs.get(e.pointerId);
   if (!o) { const hq = pickQ(p[0], p[1]), h = hq >= 0 ? -1 : pick(p[0], p[1]); if (h !== hover || hq !== hoverQ) { hover = h; hoverQ = hq; dirty = true; } cv.style.cursor = h >= 0 || hq >= 0 ? 'pointer' : 'grab'; showTip(h, p[0], p[1]); return; }
   ptrs.set(e.pointerId, p); moved += Math.abs(p[0] - o[0]) + Math.abs(p[1] - o[1]);
-  if (ptrs.size === 2) { grab = null; const [a, b] = [...ptrs.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch) zoomAt((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, d / pinch); pinch = d; return; }
-  if (grab) { if (moved > 5) { grab.drag = true; tip.hidden = true; const g = off[grab.s]; g[0] = wx(p[0]) - grab.gx; g[1] = wy(p[1]) - grab.gy; g[2] = g[3] = 0; dirty = true; } return; }
-  cam.x -= (p[0] - o[0]) / (M * cam.k); cam.y -= (p[1] - o[1]) / (M * cam.k); dirty = true;
+  if (ptrs.size === 2) { const [a, b] = [...ptrs.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch) zoomAt((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, d / pinch); pinch = d; return; }
+  tip.hidden = true; cam.x -= (p[0] - o[0]) / (M * cam.k); cam.y -= (p[1] - o[1]) / (M * cam.k); dirty = true;
 });
-function release(e) { const was = ptrs.size; ptrs.delete(e.pointerId); pinch = 0; cv.style.cursor = 'grab'; const g = grab; grab = null; dirty = true; return was === 1 ? g : null; }
-cv.addEventListener('pointerup', e => { const g = release(e); if (downQ >= 0 && moved < 6) selectQ(downQ); else if (g && !g.drag) select(g.t); else if (!g && moved < 5) { select(-1); selectQ(-1); } });
-cv.addEventListener('pointercancel', release);
-cv.addEventListener('pointerleave', () => { tip.hidden = true; if (hover >= 0) { hover = -1; dirty = true; } });
+cv.addEventListener('pointerup', e => { const p = pos(e), was = ptrs.size; ptrs.delete(e.pointerId); pinch = 0; cv.style.cursor = 'grab';
+  if (was === 1 && moved < 6) { const q = pickQ(p[0], p[1]); if (q >= 0) selectQ(q); else { const i = pick(p[0], p[1]); if (i >= 0) select(i); else clearSel(); } } });
+cv.addEventListener('pointercancel', e => { ptrs.delete(e.pointerId); pinch = 0; });
+cv.addEventListener('pointerleave', () => { tip.hidden = true; if (hover >= 0 || hoverQ >= 0) { hover = hoverQ = -1; dirty = true; } });
 cv.addEventListener('wheel', e => { e.preventDefault(); const p = pos(e); zoomAt(p[0], p[1], Math.exp(-e.deltaY * 0.0016)); }, { passive: false });
 $('zin').onclick = () => zoomAt(W / 2, H / 2, 1.5);
 $('zout').onclick = () => zoomAt(W / 2, H / 2, 1 / 1.5);
