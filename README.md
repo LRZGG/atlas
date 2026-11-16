@@ -54,7 +54,9 @@ La première commande télécharge le squelette depuis OpenAlex dans `squelette.
 - Les liens comptent les articles partagés entre sous-disciplines, pas les citations.
 - La disposition dépend des réglages du placement par forces dans `build-directions.mjs`.
 - Les noms des sous-disciplines et des sujets sont encore en anglais.
-- Les 31 questions viennent de deux listes seulement : 24 de la revue *Science* (2005, dont la liste date de plus de vingt ans) et les 7 problèmes du prix du millénaire. Elles sont rédigées à la main d'après les sources citées, pas extraites automatiquement. La liste complète des 125 questions de *Science* n'a pas été consultée.
+- Les 31 questions viennent de deux listes seulement : 25 de la revue *Science* (2005, une liste vieille de plus de vingt ans) et 6 des 7 problèmes du prix du millénaire (le septième, Poincaré, est résolu). Elles sont rédigées à la main, pas extraites automatiquement.
+- **À vérifier avant tout lancement** : seule une partie des 25 questions de *Science* a été confrontée à une source consultée (l'univers, la conscience, les gènes, la longévité, Malthus, et en partie la vie ailleurs, la coopération, l'unification de la physique et l'incertitude quantique). Les autres sont écrites de mémoire et doivent être relues contre le numéro original du 1er juillet 2005. Le champ `note` de la question « reprogrammation » (prix Nobel 2012) est aussi de mémoire.
+- Le statut de Navier-Stokes provient de MathWorld (consulté le 16 novembre 2026) ; la page de l'institut Clay que j'ai ouverte ne mentionne pas ce statut.
 - La position d'une question est un barycentre des sous-disciplines que j'ai choisies à la main : c'est un choix éditorial, pas une mesure.
 
 Données : OpenAlex, sous licence CC0.
