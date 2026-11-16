@@ -41,6 +41,7 @@ svg { display: block; }
 #qkey { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 #qkey li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; align-items: center; }
 #qkey span { color: var(--dim); font-size: 12px; display: block; }
+#lnote { margin: 12px 0 0; color: var(--dim); font-size: 12px; line-height: 1.45; }
 #layers { display: grid; gap: 4px; border-top: 1px solid var(--line); margin-top: 14px; padding-top: 10px; }
 #coll { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
 #coll b { font: 300 22px var(--serif); }
@@ -114,6 +115,7 @@ svg { display: block; }
       <li><em class="qg t">?</em><div>Transversale<span>nom souligné : relie plusieurs disciplines</span></div></li>
       <li><em class="qg d">?</em><div>Déjà lue<span>dans ton carnet</span></div></li>
     </ul>
+    <p id="lnote">Les positions sont mesurées entre sous-disciplines. À l'intérieur d'une sous-discipline, elles sont indicatives.</p>
     <div id="layers">
       <label><input id="lRelief" type="checkbox" checked> Relief</label>
       <label><input id="lStars" type="checkbox" checked> Sujets</label>

@@ -94,3 +94,44 @@ Tu veux creuser le visuel avant les vraies questions. Je suis d'accord, avec une
 - **Le vote** : d'accord pour s'en passer au lancement ?
 - **Le périmètre** : toute la science d'un coup, ou une discipline d'abord pour valider la méthode ?
 - **La métaphore** : garder le ciel, ou tester autre chose à l'étape 2 ?
+
+## 9. Les questions : méthode
+
+On n'invente pas de questions : on les collecte dans des sources reconnues, on les qualifie, on les place avec des données, on écrit leur fiche et on la fait relire.
+
+### Où les trouver
+
+| Source | Statut |
+|---|---|
+| Revue *Science*, 125 questions (2005) | 25 déjà en place, en partie écrites de mémoire. La liste officielle complète reste à obtenir et à confronter |
+| Problèmes du prix du millénaire (institut Clay) | Fait : les 6 problèmes encore ouverts |
+| Listes Wikipédia « List of unsolved problems in… » | Existent en anglais pour la physique, la chimie, la biologie, les neurosciences, l'informatique, les mathématiques, la médecine, l'économie, la philosophie et les géosciences (vérifié le 16 novembre 2026). Source secondaire : chaque question retenue doit être recoupée avec une source institutionnelle ou un article de synthèse |
+| Rapports d'académies et d'agences (astronomie, climat, santé, ingénierie) | À explorer, non vérifié |
+| Extraction automatique des sections « limites » des articles | Plus tard, pour les questions de détail. Marquées « extraites automatiquement », jamais présentées comme choisies |
+
+### Ce qui fait qu'une question est retenue
+
+| Critère | Test |
+|---|---|
+| Ouverte | Une source fiable la dit non résolue ou sans consensus, à la date de vérification |
+| Sérieuse | Question de la science établie ; les questions marginales, idéologiques ou pseudo-scientifiques sont exclues |
+| Compréhensible | Elle se formule en une phrase, sans jargon |
+| Importante | Elle figure dans au moins une liste établie |
+| Sourcée | Au moins une source citée et une référence dont l'existence est vérifiée |
+| Datée | On note la date de dernière vérification : une question peut se résoudre (Poincaré l'est, Navier-Stokes est en cours d'évaluation) |
+
+### Où on la place
+
+Aujourd'hui, les sous-disciplines d'une question sont choisies à la main : c'est un choix éditorial. La version mesurée : chercher dans OpenAlex les articles qui parlent de la question, regarder dans quelles sous-disciplines ils tombent, et garder les trois à cinq plus fréquentes. L'éditeur ne fait plus que valider. À faire.
+
+### La fiche
+
+Brouillon (une IA peut aider à le rédiger) → script de vérification (extrait Wikipédia et références retrouvées) → relecture par un spécialiste → publication avec « relu par X, le jj/mm ». Trois états affichés : « en préparation », « brouillon », « relu ». Seules les fiches relues devraient être mises en avant.
+
+### Combien
+
+Je n'ai pas de chiffre vérifié. Un objectif raisonnable pour la première version : environ 150 questions, avec au moins 4 par discipline (26 × 4 = 104) pour qu'aucune région ne soit vide, plus une vingtaine de questions transversales. Ensuite, quelques centaines de sous-questions, puis des milliers de questions de détail extraites automatiquement, marquées comme telles.
+
+### Proposer une question
+
+Ouvrir une « issue » sur le dépôt GitHub avec l'énoncé, la source et la discipline. Elle est évaluée selon les critères ci-dessus. Pas de comptes ni de vote à construire pour l'instant.
