@@ -1,4 +1,4 @@
-# Carte de l'inconnu : vision et méthode
+# Unknownpedia : vision et méthode
 
 ## L'idée en une phrase
 

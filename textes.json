@@ -1,6 +1,6 @@
 {
   "fr": {
-    "titre": "Carte de l'inconnu",
+    "titre": "Unknownpedia",
     "desc": "Les grandes questions que la science n'a pas résolues, placées sur une carte de la recherche mondiale.",
     "aria_carte": "Carte de la recherche mondiale. Le relief montre où l'on publie beaucoup, chaque point est un sujet de recherche, les noms précédés d'un point d'interrogation sont des questions que personne n'a résolues, le noir est ce qui est peu étudié.",
     "brand": "{n} sujets de recherche réels et {q} grandes questions que personne n'a résolues. Le relief montre où l'on cherche.",
@@ -61,7 +61,7 @@
     "lang_aria": "Langue"
   },
   "en": {
-    "titre": "Map of the Unknown",
+    "titre": "Unknownpedia",
     "desc": "The big questions science hasn't solved yet, placed on a map of world research.",
     "aria_carte": "Map of world research. The relief shows where a lot is published, each dot is a research topic, names preceded by a question mark are questions nobody has solved, and black is what is little studied.",
     "brand": "{n} real research topics and {q} big questions nobody has solved. The relief shows where people are searching.",

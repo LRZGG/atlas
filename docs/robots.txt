@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://lorenzo1208.github.io/atlas/sitemap.xml
+Sitemap: https://unknownpedia.org/sitemap.xml

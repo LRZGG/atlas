@@ -1,4 +1,4 @@
-# Carte de l'inconnu
+# Unknownpedia
 
 Un atlas de ce que l'humanité ne sait pas encore. On y entre par curiosité, on s'y promène, et on en sort en sachant où on pourrait aider.
 
