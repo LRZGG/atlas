@@ -2,7 +2,7 @@
 
 Un atlas de ce que l'humanité ne sait pas encore. On y entre par curiosité, on s'y promène, et on en sort en sachant où on pourrait aider.
 
-Aujourd'hui, la carte montre le **connu** : les 4 516 sujets de recherche répertoriés par [OpenAlex](https://openalex.org), regroupés par sous-discipline. Les 250 sous-disciplines sont placées d'après les articles qu'elles partagent (c'est une mesure) ; à l'intérieur d'une sous-discipline, la position de chaque sujet est tirée au hasard (ce n'est **pas** une mesure). Dessus sont posées 31 **grandes questions ouvertes**, chacune avec sa source (voir `questions.json`) et son propre lien (par exemple `/#conscience`).
+Aujourd'hui, la carte montre le **connu** : les 4 516 sujets de recherche répertoriés par [OpenAlex](https://openalex.org), regroupés par sous-discipline. Les 250 sous-disciplines sont placées d'après les articles qu'elles partagent, puis chacun des 4 516 sujets est placé d'après ses propres liens mesurés (les 8 sujets avec lesquels il partage le plus d'articles), avec une attache à sa sous-discipline (voir les limites). Dessus sont posées 31 **grandes questions ouvertes**, chacune avec sa source (voir `questions.json`) et son propre lien (par exemple `/#conscience`).
 
 - **Vision et méthode** : [methode.md](methode.md)
 - **Ce qui reste à améliorer** : [a-polir.md](a-polir.md)
@@ -45,6 +45,8 @@ La première commande télécharge le squelette depuis OpenAlex dans `squelette.
 |---|---|
 | `fetch-squelette.mjs` | Télécharge sujets, hiérarchie et liens depuis OpenAlex |
 | `squelette.json` | Les données brutes |
+| `fetch-liens-sujets.mjs` | Mesure, pour chaque sujet, les 40 sujets avec lesquels il partage le plus d'articles (clé d'API facultative, reprise automatique) |
+| `liens-sujets.json` | Le résultat de `fetch-liens-sujets.mjs` |
 | `questions.json` | Les grandes questions : nom court, source, statut, sous-disciplines touchées, et la fiche détaillée quand elle existe |
 | `fetch-fiches.mjs` | Pour chaque fiche, télécharge l'extrait Wikipédia et vérifie chaque référence dans OpenAlex ; échoue si l'une est introuvable |
 | `fiches.json` | Le résultat de `fetch-fiches.mjs` (extraits et références vérifiées) |
@@ -60,7 +62,11 @@ La première commande télécharge le squelette depuis OpenAlex dans `squelette.
 - Les liens comptent les articles partagés entre sous-disciplines, pas les citations.
 - La disposition dépend des réglages du placement par forces dans `build-directions.mjs`.
 - Les noms des sous-disciplines et des sujets sont encore en anglais.
-- Les liens mesurés sont au niveau des sous-disciplines (250 appels à OpenAlex). Mesurer les liens entre les 4 516 sujets eux-mêmes demande environ 4 500 appels, soit environ 0,45 $ de budget d'API : c'est ce qui permettrait de placer chaque sujet d'après les données au lieu du hasard.
+- Les liens entre sujets ont été mesurés le 16 novembre 2026 pour les 4 516 sujets (`liens-sujets.json`, environ 0,29 $ d'API, les 40 liens les plus fréquents de chaque sujet ; 87 sujets n'ont aucun lien et restent près du centre de leur sous-discipline). Le placement combine l'attraction par ces liens et une attache à la sous-discipline (`KANC`, 0,4, dans `build-directions.mjs`).
+- Ce que ce placement apporte, mesuré : la distance moyenne d'un sujet à ses 5 sujets les plus liés passe de 0,296 à 0,184 (deux sujets au hasard : 0,953). Contrôle sans triche : pour les sujets liés de rang 9 à 13, que le placement n'utilise pas, la distance passe de 0,337 à 0,240. Le gain vient donc bien d'une structure réelle, mais il est partiel.
+- Le compromis est volontaire : avec une attache faible (0,03), le gain monte (0,167 sur le contrôle) mais le vide entre les disciplines se comble presque (rayon 0,13 au lieu de 0,38 à 0,46). Ce vide est donc en partie un choix de présentation, à côté de la dilatation du centre.
+- Le relief est calculé avec un noyau de 0,035 (unités de la carte), une compression de 0,42 et un premier niveau visible à 2 sur 8 (`SIG`, `GAM`, `B0`). Avec le noyau plus étroit de la version précédente (0,0176), les amas de sujets rendaient le relief fragmenté.
+- Pour relancer la mesure : `node fetch-liens-sujets.mjs` avec une clé OpenAlex gratuite dans la variable `OPENALEX_API_KEY` (jamais dans le dépôt). Le script reprend là où il s'est arrêté.
 - Les 31 questions viennent de deux listes seulement : 25 de la revue *Science* (2005, une liste vieille de plus de vingt ans) et 6 des 7 problèmes du prix du millénaire (le septième, Poincaré, est résolu). Elles sont rédigées à la main, pas extraites automatiquement.
 - **À vérifier avant tout lancement** : seule une partie des 25 questions de *Science* a été confrontée à une source consultée (l'univers, la conscience, les gènes, la longévité, Malthus, et en partie la vie ailleurs, la coopération, l'unification de la physique et l'incertitude quantique). Les autres sont écrites de mémoire et doivent être relues contre le numéro original du 1er juillet 2005. Le champ `note` de la question « reprogrammation » (prix Nobel 2012) est aussi de mémoire.
 - Le statut de Navier-Stokes provient de MathWorld (consulté le 16 novembre 2026) ; la page de l'institut Clay que j'ai ouverte ne mentionne pas ce statut.

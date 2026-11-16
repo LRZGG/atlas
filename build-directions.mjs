@@ -66,16 +66,54 @@ const T = [];
 for (const t of s.topics) { const i = sIdx[t.subfield], r = 0.011 * Math.sqrt(sn[i]); T.push(r3(pos[i][0] + gauss() * r), r3(pos[i][1] + gauss() * r), t.works, i, t.name); }
 assert.equal(T.length, s.topics.length * 5);
 
+// Placement des sujets d'après leurs liens mesurés (liens-sujets.json, produit par fetch-liens-sujets.mjs) :
+// chaque sujet est tiré vers ceux dont il partage le plus d'articles, et retenu par une attache faible à sa sous-discipline, qui garde la structure d'ensemble.
+// Sans ce fichier, les sujets restent tirés au hasard autour de leur sous-discipline (position non mesurée).
+const LIENS_F = process.env.LIENS || 'liens-sujets.json';
+if (existsSync(LIENS_F)) {
+  const liens = JSON.parse(readFileSync(LIENS_F, 'utf8')).liens, n = s.topics.length, idx = new Map(s.topics.map((t, i) => [+t.id.replace('T', ''), i]));
+  const X = new Float64Array(n), Y = new Float64Array(n), AX = new Float64Array(n), AY = new Float64Array(n);
+  s.topics.forEach((t, i) => { X[i] = T[i * 5]; Y[i] = T[i * 5 + 1]; AX[i] = pos[sIdx[t.subfield]][0]; AY[i] = pos[sIdx[t.subfield]][1]; });
+  const tops = k => (liens[k] || []).filter(([j]) => idx.has(j));
+  // Arêtes : les 8 sujets les plus liés à chaque sujet, pondérés par leur part dans ses liens (robuste aux compteurs aberrants), puis symétrisées.
+  const E = new Map(); let nm = 0;
+  for (const k in liens) { const i = idx.get(+k); if (i == null) continue; const top = tops(k).slice(0, 8), tot = top.reduce((a, l) => a + l[1], 0); if (!tot) continue; nm++;
+    for (const [j, c] of top) { const a = idx.get(j), key = i < a ? i * n + a : a * n + i; E.set(key, (E.get(key) || 0) + c / tot); } }
+  const edges = [...E].map(([k, w]) => [Math.floor(k / n), k % n, w]);
+  const d5 = () => { let a = 0, m = 0; for (const k in liens) { const i = idx.get(+k); if (i == null) continue; for (const [j] of tops(k).slice(0, 5)) { const b = idx.get(j); a += Math.hypot(X[i] - X[b], Y[i] - Y[b]); m++; } } return m ? a / m : 0; };
+  // Contrôle sans triche : les liens de rang 9 à 13 ne servent pas au placement. S'ils se rapprochent aussi, c'est que les positions reflètent une vraie structure.
+  const dh = () => { let a = 0, m = 0; for (const k in liens) { const i = idx.get(+k); if (i == null) continue; for (const [j] of tops(k).slice(8, 13)) { const b = idx.get(j); a += Math.hypot(X[i] - X[b], Y[i] - Y[b]); m++; } } return m ? a / m : 0; };
+  const avantH = dh();
+  let alea = 0; for (let k = 0; k < 20000; k++) { const a = Math.floor(rnd() * n), b = Math.floor(rnd() * n); alea += Math.hypot(X[a] - X[b], Y[a] - Y[b]); } alea /= 20000;
+  const avant = d5();
+  const KA = Number(process.env.KA ?? 0.12), KANC = Number(process.env.KANC ?? 0.4), R0 = Number(process.env.R0 ?? 0.012), KR = 0.4, IT2 = 250, fx = new Float64Array(n), fy = new Float64Array(n);
+  for (let it = 0; it < IT2; it++) {
+    fx.fill(0); fy.fill(0);
+    for (const [a, b, w] of edges) { const dx = X[b] - X[a], dy = Y[b] - Y[a]; fx[a] += KA * w * dx; fy[a] += KA * w * dy; fx[b] -= KA * w * dx; fy[b] -= KA * w * dy; }
+    for (let i = 0; i < n; i++) { fx[i] += KANC * (AX[i] - X[i]); fy[i] += KANC * (AY[i] - Y[i]); }
+    const grid = new Map(); for (let i = 0; i < n; i++) { const c = Math.floor(X[i] / R0) * 100003 + Math.floor(Y[i] / R0); (grid.get(c) || grid.set(c, []).get(c)).push(i); }
+    for (let i = 0; i < n; i++) { const cx = Math.floor(X[i] / R0), cy = Math.floor(Y[i] / R0);
+      for (let gx = -1; gx <= 1; gx++) for (let gy = -1; gy <= 1; gy++) for (const j of grid.get((cx + gx) * 100003 + cy + gy) || []) { if (j <= i) continue; let dx = X[i] - X[j], dy = Y[i] - Y[j], d = Math.hypot(dx, dy); if (d >= R0) continue; if (d < 1e-9) { dx = rnd() - 0.5; dy = rnd() - 0.5; d = Math.hypot(dx, dy); } const p = KR * (R0 - d) / d; fx[i] += dx * p; fy[i] += dy * p; fx[j] -= dx * p; fy[j] -= dy * p; } }
+    const lim = 0.01 * (1 - it / IT2) + 0.0005;
+    for (let i = 0; i < n; i++) { const m = Math.hypot(fx[i], fy[i]), c = m > lim ? lim / m : 1; X[i] += fx[i] * c; Y[i] += fy[i] * c; }
+  }
+  for (let i = 0; i < n; i++) { T[i * 5] = r3(X[i]); T[i * 5 + 1] = r3(Y[i]); }
+  console.log(`sujets placés d'après leurs liens : ${nm} sujets mesurés sur ${n} ; distance moyenne aux 5 sujets les plus liés : ${avant.toFixed(3)} avant, ${d5().toFixed(3)} après (deux sujets au hasard : ${alea.toFixed(3)})\n  contrôle sur les liens de rang 9 à 13, non utilisés pour le placement : ${avantH.toFixed(3)} avant, ${dh().toFixed(3)} après`);
+}
+
 // La densité de recherche, calculée comme sur la carte (même noyau, même seuil), pour savoir où s'arrête le connu.
 const G = 300, EXT = 1.1, LMAXB = Math.log10(cap), nrmB = w => Math.max(0, Math.min(1, (Math.log10(Math.max(w, 1)) - 2) / (LMAXB - 2)));
+// Réglages du relief, partagés avec la carte : largeur du noyau (unités de la carte), exponent de compression, premier niveau visible.
+const RL = { sig: Number(process.env.SIG ?? 0.035), gam: Number(process.env.GAM ?? 0.42), b0: Number(process.env.B0 ?? 2) };
+const SC = RL.sig * G / (2 * EXT), RR = Math.ceil(2.9 * SC);
 const dg = new Float32Array(G * G);
 for (let i = 0; i < T.length; i += 5) { const v = nrmB(T[i + 2]), wt = 0.05 + v * v, cx = G / 2 + T[i] * G / 2 / EXT, cy = G / 2 + T[i + 1] * G / 2 / EXT;
-  for (let dy = -7; dy <= 7; dy++) for (let dx = -7; dx <= 7; dx++) { const gx = Math.round(cx) + dx, gy = Math.round(cy) + dy; if (gx < 0 || gy < 0 || gx >= G || gy >= G) continue; const ex = gx - cx, ey = gy - cy; dg[gy * G + gx] += wt * Math.exp(-(ex * ex + ey * ey) / (2 * 2.4 * 2.4)); } }
-const dmax = Math.max(...dg), EDGE = Math.pow(2 / 8, 1 / 0.42); // premier niveau visible du relief (les îlots plus faibles ne sont pas dessinés)
+  for (let dy = -RR; dy <= RR; dy++) for (let dx = -RR; dx <= RR; dx++) { const gx = Math.round(cx) + dx, gy = Math.round(cy) + dy; if (gx < 0 || gy < 0 || gx >= G || gy >= G) continue; const ex = gx - cx, ey = gy - cy; dg[gy * G + gx] += wt * Math.exp(-(ex * ex + ey * ey) / (2 * SC * SC)); } }
+const dmax = Math.max(...dg), EDGE = Math.pow(RL.b0 / 8, 1 / RL.gam); // premier niveau visible du relief (les îlots plus faibles ne sont pas dessinés)
 // Le vide central : le plus grand disque sans relief visible, cherché autour du centre.
 const dense = []; for (let gy = 0; gy < G; gy += 2) for (let gx = 0; gx < G; gx += 2) if (dg[gy * G + gx] / dmax >= EDGE) dense.push([(gx - G / 2) * 2 * EXT / G, (gy - G / 2) * 2 * EXT / G]);
 let hole = { x: 0, y: 0, r: 0 };
-for (let x = -0.5; x <= 0.5; x += 0.025) for (let y = -0.5; y <= 0.5; y += 0.025) { let m = Infinity; for (const p of dense) { const d = (p[0] - x) ** 2 + (p[1] - y) ** 2; if (d < m) m = d; } m = Math.sqrt(m); if (m > hole.r) hole = { x: r3(x), y: r3(y), r: r3(m) }; }
+for (let x = -0.5; x <= 0.5; x += 0.025) for (let y = -0.5; y <= 0.5; y += 0.025) { if (x * x + y * y > 0.35 * 0.35) continue; let m = Infinity; for (const p of dense) { const d = (p[0] - x) ** 2 + (p[1] - y) ** 2; if (d < m) m = d; } m = Math.sqrt(m); if (m > hole.r) hole = { x: r3(x), y: r3(y), r: r3(m) }; }
 console.log(`vide central : rayon ${hole.r}, centre (${hole.x}, ${hole.y})`);
 const dens = (x, y) => { const fx = G / 2 + x * G / 2 / EXT, fy = G / 2 + y * G / 2 / EXT; if (fx < 0 || fy < 0 || fx >= G - 1 || fy >= G - 1) return 0; const x0 = fx | 0, y0 = fy | 0, tx = fx - x0, ty = fy - y0; return ((dg[y0 * G + x0] * (1 - tx) + dg[y0 * G + x0 + 1] * tx) * (1 - ty) + (dg[(y0 + 1) * G + x0] * (1 - tx) + dg[(y0 + 1) * G + x0 + 1] * tx) * ty) / dmax; };
 // Du point (x,y), distance jusqu'au bord du connu dans la direction a, ou null si le vide n'est pas franc.
@@ -112,7 +150,7 @@ for (let it = 0; it < 60; it++) for (let i = 0; i < Q.length; i++) for (let j = 
 Q.forEach(q => { q.x = r3(q.x); q.y = r3(q.y); });
 
 const DATA = {
-  fetched: s.fetched, cap, hole, edge: EDGE,
+  fetched: s.fetched, cap, hole, edge: EDGE, rl: RL,
   D: dIds.map(d => fr(s.domains[d])),
   F: fIds.map(f => ({ n: fr(s.fields[f].name), d: dIds.indexOf(s.fields[f].domain) })),
   S: sIds.map((id, i) => ({ n: s.subfields[id].name, f: fIdx[s.subfields[id].field], x: r3(pos[i][0]), y: r3(pos[i][1]), w: sw[i] })),

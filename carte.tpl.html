@@ -115,7 +115,7 @@ svg { display: block; }
       <li><em class="qg t">?</em><div>Transversale<span>nom souligné : relie plusieurs disciplines</span></div></li>
       <li><em class="qg d">?</em><div>Déjà lue<span>dans ton carnet</span></div></li>
     </ul>
-    <p id="lnote">Les positions sont mesurées entre sous-disciplines. À l'intérieur d'une sous-discipline, elles sont indicatives.</p>
+    <p id="lnote">Les positions sont calculées d'après les articles que les sujets ont en commun. Le centre est dilaté pour que le vide se lise.</p>
     <div id="layers">
       <label><input id="lRelief" type="checkbox" checked> Relief</label>
       <label><input id="lStars" type="checkbox" checked> Sujets</label>
@@ -186,7 +186,7 @@ const VS = `#version 300 es
 in vec2 p; void main() { gl_Position = vec4(p, 0., 1.); }`;
 const FS = `#version 300 es
 precision highp float;
-uniform sampler2D u_d; uniform vec2 u_res; uniform vec3 u_cam; uniform float u_M, u_ext, u_mx, u_dpr; uniform vec3 u_col[4]; uniform vec3 u_void; out vec4 o;
+uniform sampler2D u_d; uniform vec2 u_res; uniform vec3 u_cam; uniform float u_M, u_ext, u_mx, u_dpr, u_gam, u_b0; uniform vec3 u_col[4]; uniform vec3 u_void; out vec4 o;
 void main() {
   vec2 px = vec2(gl_FragCoord.x, u_res.y - gl_FragCoord.y) / u_dpr;
   vec2 w = (px - u_res / u_dpr * .5) / (u_M * u_cam.z) + u_cam.xy;
@@ -195,10 +195,10 @@ void main() {
   if (uv.x >= 0. && uv.x <= 1. && uv.y >= 0. && uv.y <= 1.) {
     vec4 d = texture(u_d, uv);
     float tot = d.x + d.y + d.z + d.w;
-    float lv = pow(max(tot, 0.) / u_mx, .42) * 8.;
+    float lv = pow(max(tot, 0.) / u_mx, u_gam) * 8.;
     float band = floor(lv);
-    if (band >= 2.) {
-      float t = .12 + .5 * (band - 2.) / 6.;
+    if (band >= u_b0) {
+      float t = .12 + .5 * (band - u_b0) / (8. - u_b0);
       t += .16 * (1. - smoothstep(0., 1., (lv - band) / max(fwidth(lv) * 1.3, 1e-4)));
       vec3 mc = (u_col[0] * d.x + u_col[1] * d.y + u_col[2] * d.z + u_col[3] * d.w) / max(tot, 1e-6);
       c = mix(c, mc, t);
@@ -213,12 +213,12 @@ function initGL() {
   gl.useProgram(glProg);
   const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
   const a = gl.getAttribLocation(glProg, 'p'); gl.enableVertexAttribArray(a); gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
-  for (const n of ['u_d', 'u_res', 'u_cam', 'u_M', 'u_ext', 'u_mx', 'u_dpr', 'u_col', 'u_void']) glU[n] = gl.getUniformLocation(glProg, n);
+  for (const n of ['u_d', 'u_res', 'u_cam', 'u_M', 'u_ext', 'u_mx', 'u_dpr', 'u_gam', 'u_b0', 'u_col', 'u_void']) glU[n] = gl.getUniformLocation(glProg, n);
 }
 function buildRelief() {
   if (!gl) return;
   try { initGL(); } catch (e) { console.warn('Relief indisponible :', e.message); gl = null; return; }
-  const R = 12, sig = 4.096, data = new Float32Array(GR * GR * 4);
+  const sig = DATA.rl.sig * GR / (2 * EXT), R = Math.ceil(2.9 * sig), data = new Float32Array(GR * GR * 4);
   for (let i = 0; i < N; i++) {
     const d = F[S[T[i * 5 + 3]].f].d, fx = (T[i * 5] + EXT) / (2 * EXT) * GR - 0.5, fy = (T[i * 5 + 1] + EXT) / (2 * EXT) * GR - 0.5, wt = 0.05 + V[i] * V[i], rx = Math.round(fx), ry = Math.round(fy);
     for (let dy = -R; dy <= R; dy++) { const gy = ry + dy; if (gy < 0 || gy >= GR) continue;
@@ -235,7 +235,7 @@ function drawGL() {
   gl.viewport(0, 0, glc.width, glc.height);
   if (!reliefReady || !$('lRelief').checked) { gl.clearColor(VOID[0] / 255, VOID[1] / 255, VOID[2] / 255, 1); gl.clear(gl.COLOR_BUFFER_BIT); return; }
   gl.useProgram(glProg); gl.bindTexture(gl.TEXTURE_2D, glTex); gl.uniform1i(glU.u_d, 0);
-  gl.uniform2f(glU.u_res, glc.width, glc.height); gl.uniform3f(glU.u_cam, cam.x, cam.y, cam.k); gl.uniform1f(glU.u_M, M); gl.uniform1f(glU.u_ext, EXT); gl.uniform1f(glU.u_mx, mxD); gl.uniform1f(glU.u_dpr, dpr);
+  gl.uniform2f(glU.u_res, glc.width, glc.height); gl.uniform3f(glU.u_cam, cam.x, cam.y, cam.k); gl.uniform1f(glU.u_M, M); gl.uniform1f(glU.u_ext, EXT); gl.uniform1f(glU.u_mx, mxD); gl.uniform1f(glU.u_dpr, dpr); gl.uniform1f(glU.u_gam, DATA.rl.gam); gl.uniform1f(glU.u_b0, DATA.rl.b0);
   gl.uniform3fv(glU.u_col, new Float32Array(DOMRGB.flat().map(v => v / 255))); gl.uniform3f(glU.u_void, VOID[0] / 255, VOID[1] / 255, VOID[2] / 255);
   gl.drawArrays(gl.TRIANGLES, 0, 3);
 }

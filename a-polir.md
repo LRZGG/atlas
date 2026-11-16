@@ -23,6 +23,11 @@
 - **Les questions comme noms de lieu** : un « ? » et un nom court en italique crème, à la place des étoiles. Le texte complet apparaît au survol, à la sélection ou en zoomant. Seule la respiration du « ? » est animée, tant que la question n'est pas lue.
 - **Trois fiches complètes** pour juger le format : ce qu'on sait, ce qu'on ignore, pourquoi c'est dur, pourquoi ça compte, par où commencer, extrait Wikipédia et références vérifiées.
 
+**Cinquième passe (même jour)**
+
+- **Positions mesurées pour les 4 516 sujets** (et plus seulement pour les 250 sous-disciplines), grâce aux liens entre sujets téléchargés avec une clé OpenAlex. Détails et chiffres dans le README.
+- **Relief réglé** pour supporter des sujets regroupés par leurs liens.
+
 Reste à faire : juger le format des fiches, puis passer de 31 à environ 100 questions, la traduction française et la relecture par un spécialiste. À trancher : le mode gamifié (voir la discussion du 16 novembre), qui n'a de sens qu'avec bien plus de questions.
 
 ## 1. Le but, à trancher avant le reste
