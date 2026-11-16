@@ -13,15 +13,13 @@ Aujourd'hui, la carte montre le **connu** : les 4 516 sujets de recherche réper
 
 | Ce qu'on voit | Ce que ça mesure |
 |---|---|
-| Une étoile | Un sujet de recherche réel |
-| Sa taille et son éclat | Le nombre d'articles publiés dessus |
-| Le relief coloré | La densité de recherche, teintée par grand domaine |
-| Un « ? » et un nom en italique crème | Une grande question ouverte, au bord du connu |
-| Le même nom, souligné en pointillés | Une question transversale, qui relie plusieurs disciplines |
-| Le même, estompé | Une question déjà lue (carnet de l'utilisateur) |
-| « Terra incognita » | Le vide entre les disciplines : peu d'articles relient des domaines éloignés |
+| Un point | Un sujet de recherche réel ; sa taille croît avec le nombre d'articles |
+| Les courbes de niveau | L'effort de recherche (articles publiés), pas le savoir établi |
+| Les petits traits le long de la première courbe | Le bord du connu, tournés vers le moins étudié |
+| Un numéro dans un cercle, relié par une ligne | Une discipline (table des références, en haut à droite) |
+| Un « ? » rouge (blanc en mode sombre) et son nom en italique | Une grande question ouverte |
+| Le vide au centre | Peu d'articles relient ces disciplines |
 | Deux sujets proches | Leurs sous-disciplines partagent beaucoup d'articles |
-| Le noir | Presque personne n'y travaille |
 
 Rien n'est décoratif : chaque élément correspond à une donnée.
 
@@ -52,7 +50,12 @@ La première commande télécharge le squelette depuis OpenAlex dans `squelette.
 | `fetch-fiches.mjs` | Pour chaque fiche, télécharge l'extrait Wikipédia et vérifie chaque référence dans OpenAlex ; échoue si l'une est introuvable |
 | `fiches.json` | Le résultat de `fetch-fiches.mjs` (extraits et références vérifiées) |
 | `build-directions.mjs` | Calcule les positions et génère les pages |
-| `carte.tpl.html` | Le gabarit de la carte |
+| `carte.tpl.html` | Le gabarit de la carte (direction « planche de brevet », clair et sombre) |
+| `docs/fonts/` | Polices libres (OFL) hébergées sur le site, avec leurs licences |
+| `a-faire.md`, `PRODUCT.md` | Liste de travail et cadrage du produit |
+| `build-maquettes.mjs`, `maquettes.tpl.html` | Les quatre directions artistiques comparées (maquettes) |
+| `build-proto.mjs`, `proto-common.js`, `proto-chambre.tpl.html` | Prototype de la « chambre à nuages » (non retenu pour l'instant) |
+| `build-sciguessr.mjs`, `sciguessr.tpl.html` | Test d'un jeu de devinettes sur la carte (non publié) |
 | `directions.tpl.html` | Le gabarit de la comparaison des trois directions |
 | `prototype-v1.html` | Le premier prototype, avec 29 questions écrites à la main et des filaments décoratifs |
 
@@ -74,7 +77,7 @@ La première commande télécharge le squelette depuis OpenAlex dans `squelette.
 - Le statut de Navier-Stokes provient de MathWorld (consulté le 16 novembre 2026) ; la page de l'institut Clay que j'ai ouverte ne mentionne pas ce statut.
 - La position d'une question vient d'un choix éditorial (les sous-disciplines qu'elle touche, listées à la main dans `questions.json`) et d'une règle de placement : au bord du connu si elle touche une région, au centre si elle touche au moins trois disciplines couvrant au moins deux domaines, ou des régions éloignées (« question transversale »). Le seuil d'éloignement (0,4) est un réglage choisi d'après une coupure naturelle dans la répartition des écarts. Une question transversale n'est donc pas toujours dans le vide du centre : elle se pose au barycentre des régions qu'elle relie (la conscience, par exemple, tombe côté sciences sociales).
 - Le centre de la carte est dilaté (`HOLE`, 0,5, dans `build-directions.mjs`) : c'est un choix de présentation. La transformation est radiale et croissante, donc l'ordre autour du centre et le voisinage sont conservés, mais le vide central passe d'un rayon de 0,17 à 0,41 pour pouvoir se lire.
-- Le relief est dessiné par le processeur graphique avec WebGL 2, ce qui le rend net à tout zoom. Sans WebGL 2, il n'apparaît pas : ce cas n'a pas été testé.
+- Le relief est calculé dans le navigateur (densité de recherche, huit niveaux) puis tracé en courbes de niveau vectorielles, nettes à tout zoom. Il ne dépend plus de WebGL.
 - La disposition combine la mesure des liens et une attraction vers la discipline (`COH` dans `build-directions.mjs`, 0,08). Sans cette attraction, 77 % des sous-disciplines voisines d'une sous-discipline sont du même domaine ; avec, 88 %. Les ponts réels (neurologie clinique, interaction homme-machine, génie biomédical) restent visibles.
 - Seules 3 questions ont une fiche détaillée (la conscience, P contre NP, l'origine de la vie). Elles sont rédigées à la main à partir de connaissances générales ; l'extrait Wikipédia est repris tel quel (licence CC BY-SA, attribuée dans la fiche) et l'existence de chaque référence est vérifiée dans OpenAlex. Le choix des références et la justesse du texte n'ont **pas** été relus par un spécialiste : à faire avant tout lancement. L'année affichée pour l'article de Chalmers (1996) est celle de la version éditée retrouvée dans OpenAlex.
 - Le relief mesure l'effort de recherche (articles publiés), pas le savoir établi : une question fondamentale peut être au cœur d'une zone très publiée.

@@ -4,16 +4,21 @@
 
 ## 1. Design (priorité)
 
-- [ ] **Direction artistique à part**, pas un style qu'un seul prompt suffit à produire : cherchée dans l'inconnu, l'espace, les cartes anciennes, la nature, les jeux vidéo. Plusieurs directions comparées, puis une choisie.
-- [ ] **Police originale et libre** (licence OFL ou équivalente), vérifiée avant usage.
-- [ ] **Clair, sombre ou les deux** : à trancher. Wikipédia et LaTeX sont blancs ; la carte a besoin de noir pour l'« inconnu ».
-- [ ] **Texte en haut à gauche** : à **garder**, il donne le contexte (« qu'est-ce que je regarde ? ») et disparaît quand on zoome. À changer : la police et peut-être le texte.
-- [ ] **Légende en haut à droite** : repliée au départ (ok), mais à refaire. Les couleurs ressemblent aux couleurs de clusters de Google Chrome ; les boutons font « cheap ».
-- [ ] **Bouton FR / EN** : bug d'affichage au changement de langue, il manque une partie de l'encadré.
-- [ ] **Visite guidée** (en bas à gauche) : classique, à repenser.
-- [ ] **Carnet d'exploration et « questions lues »** : retirer pour l'instant (effet jeu vidéo, pas beau). On y reviendra.
-- [ ] **Le « ? » des questions** : à garder.
-- [ ] **Sources et licences** : une petite bulle d'information en bas à droite qui renvoie vers une page claire (OpenAlex, Wikipédia, polices, licence du dépôt).
+Direction retenue le 16 novembre 2026 : **la planche de brevet** (clair et sombre, relief en courbes de niveau).
+
+- [x] **Direction artistique** : quatre directions comparées (`maquettes.tpl.html`), la planche de brevet choisie.
+- [x] **Polices libres** : IM Fell DW Pica et Archivo Narrow (OFL), hébergées dans `docs/fonts/` avec leurs licences (pas de requête vers Google chez le visiteur).
+- [x] **Clair et sombre** : bouton ◐, réglage du système par défaut, choix mémorisé.
+- [x] **Texte en haut à gauche** : gardé, il s'efface au zoom et à l'ouverture d'une fiche ; nouvelle police et nouveau texte.
+- [x] **Légende** : remplacée par une table des références repliée (disciplines numérotées et liste des questions).
+- [x] **Bouton FR / EN** : refait dans le style de la planche. À vérifier à l'usage.
+- [x] **Visite guidée, carnet et « questions lues »** : retirés.
+- [x] **Le « ? » des questions** : gardé.
+- [x] **Sources et licences** : bulle en bas à droite.
+- [ ] **Page « Sources et licences » complète** : la bulle résume ; une vraie page reste à écrire (licence du dépôt, citations).
+- [ ] **Clavier** : la liste des questions est accessible au clavier, mais pas la carte elle-même.
+- [ ] **Mobile** : prévu (pincement, panneau plein écran) mais non testé sur un vrai téléphone.
+- [ ] **Titre de l'onglet et aperçu de partage** : une image par question reste à faire.
 
 ## 2. Contenu
 

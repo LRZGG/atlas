@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Unknownpedia, chambre à nuages (prototype)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400;0,700;1,400&family=Cutive+Mono&display=swap">
+<style>
+/* Prototype local : une chambre à nuages. Le brouillon de vapeur est l'effort de recherche (dense là où on publie beaucoup) ; les sujets sont des gouttelettes ; quand on touche une discipline, ses liens réels se tracent comme des trajectoires de particules. */
+:root { --bg: #06080b; --fg: #e6e9ec; --dim: #8e98a3; --acc: #f4ecd0; --line: #29313a; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { background: var(--bg); color: var(--fg); font: 13px/1.45 "Archivo Narrow", system-ui, sans-serif; overflow: hidden; }
+#cv { position: fixed; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
+.ov { position: absolute; z-index: 2; }
+#ctx { left: 28px; top: 26px; width: 250px; transition: opacity .25s; pointer-events: none; }
+#ctx h1 { font: 700 20px "Archivo Narrow", sans-serif; letter-spacing: .3em; margin: 0 0 6px; }
+#ctx p { margin: 0 0 6px; font: 13px/1.5 "Cutive Mono", monospace; color: #c8d0d8; }
+#ctl { left: 28px; bottom: 28px; display: flex; gap: 6px; align-items: center; }
+button { font: 15px "Archivo Narrow", sans-serif; color: var(--fg); background: rgba(10,13,17,.7); border: 1px solid #4a545f; border-radius: 3px; width: 32px; height: 32px; cursor: pointer; }
+button:hover { border-color: var(--fg); }
+button:focus-visible, summary:focus-visible, input:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+label { margin-left: 10px; color: var(--dim); display: flex; gap: 6px; align-items: center; font: 12px "Cutive Mono", monospace; }
+#hint { left: 50%; bottom: 30px; transform: translateX(-50%); font: 12px "Cutive Mono", monospace; color: var(--dim); pointer-events: none; text-align: center; }
+#src { right: 28px; bottom: 28px; }
+#src summary { list-style: none; cursor: pointer; display: flex; gap: 8px; align-items: center; color: #c8d0d8; font: 12px "Cutive Mono", monospace; }
+#src summary::-webkit-details-marker { display: none; }
+#src i { display: inline-grid; place-items: center; width: 20px; height: 20px; border: 1px solid #8a949f; border-radius: 50%; font: italic 13px "Archivo Narrow", sans-serif; }
+#src div { position: absolute; right: 0; bottom: 30px; width: 280px; background: #0c1015; border: 1px solid var(--line); padding: 10px 12px; font-size: 12px; }
+#src a { color: inherit; }
+#tip { position: absolute; z-index: 3; pointer-events: none; background: #0c1015; border: 1px solid var(--line); padding: 4px 7px; font-size: 12px; max-width: 260px; }
+#panel { position: absolute; z-index: 4; right: 20px; top: 20px; bottom: 20px; width: min(380px, calc(100% - 40px)); background: rgba(10,13,17,.94); border: 1px solid var(--line); padding: 18px 20px; overflow: auto; }
+#panel h2 { font: 700 22px/1.2 "Archivo Narrow", sans-serif; margin: 4px 0 10px; text-wrap: balance; }
+#panel h3 { font: 12px "Cutive Mono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin: 16px 0 4px; }
+#panel p { margin: 0 0 8px; font-size: 14px; }
+#panel .small { font-size: 13px; color: #aab3bc; }
+#panel .kicker { font: 12px "Cutive Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--acc); margin: 0; }
+#panel .prov { border: 1px solid var(--line); padding: 8px 10px; font-size: 12px; margin-top: 14px; color: #aab3bc; }
+#panel a { color: var(--acc); }
+#panel ul { margin: 0; padding-left: 16px; font-size: 13px; color: #aab3bc; }
+#pclose { position: absolute; right: 8px; top: 8px; width: 26px; height: 26px; }
+@media (max-width: 720px) { #ctx { width: 200px; } #hint { display: none; } }
+</style>
+</head>
+<body>
+<canvas id="cv" role="img" aria-label="Carte de la recherche mondiale en brouillard : 4 516 sujets de recherche, 31 questions ouvertes marquées d'un point d'interrogation."></canvas>
+<div id="ctx" class="ov"><h1>UNKNOWNPEDIA</h1><p>Le brouillard est l'effort de recherche : il s'épaissit là où l'on publie beaucoup.</p><p>Touche une discipline : ses liens réels se tracent comme des trajectoires.</p><p>Chaque « ? » est une question ouverte.</p></div>
+<div id="ctl" class="ov"><button id="zi" type="button" aria-label="Zoom avant">+</button><button id="zo" type="button" aria-label="Zoom arrière">−</button><button id="zr" type="button" aria-label="Vue d'ensemble">⌂</button><label><input id="fogT" type="checkbox" checked> brouillard</label></div>
+<div id="hint" class="ov">Survole une discipline · clique pour la fixer · clique un « ? » pour lire la question</div>
+<details id="src" class="ov"><summary>sources et licences <i>i</i></summary><div>Données : <a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex</a> (CC0). Extraits : Wikipédia (CC BY-SA). Polices : Archivo Narrow et Cutive Mono (licence OFL). Le brouillard mesure l'effort de recherche, pas le savoir établi. Les noms des disciplines sont ceux d'OpenAlex (en anglais).</div></details>
+<div id="tip" hidden></div>
+<aside id="panel" hidden></aside>
+<script>
+const DATA = /*DATA*/null;
+/*COMMON*/
+// ---- Chambre à nuages ----
+// Le brouillard : la densité de recherche dessinée une fois dans une image douce, étirée à l'écran.
+const fog = document.createElement('canvas'); fog.width = fog.height = GN; { const fc = fog.getContext('2d'), im = fc.createImageData(GN, GN); for (let i = 0; i < GN * GN; i++) { const a = Math.pow(clamp(V[i] / 8, 0, 1), 1.15); im.data[i * 4] = 196; im.data[i * 4 + 1] = 210; im.data[i * 4 + 2] = 222; im.data[i * 4 + 3] = Math.round(255 * a * .9); } fc.putImageData(im, 0, 0); }
+const SX = S.map(s => [s.x, s.y]), FIELD = S.map((s, i) => i), tracks = [], topicsOf = S.map(() => []); for (let i = 0; i < N; i++) topicsOf[T[i * 5 + 3]].push(i);
+let hoverS = -1, lockS = -1, hoverQ = -1, lastAmb = 0, lastLock = 0, now = 0; const tip = $('tip'), QS = Q.map(() => [0, 0]);
+const nameF = si => F[S[si].f].nn.fr;
+function fire(a, b, t, strong, delay) { tracks.push({ a, b, t0: t + (delay || 0), dur: strong ? 520 : 700, fade: strong ? 3200 : 1500, c: (Math.random() < .5 ? -1 : 1) * (.08 + Math.random() * .1), strong }); }
+function burst(si, t) { ADJ[si].forEach((j, n) => fire(si, j, t, true, n * 45)); }
+function trackPt(tr, s) { const A = S[tr.a], B = S[tr.b], dx = B.x - A.x, dy = B.y - A.y, cx = (A.x + B.x) / 2 - dy * tr.c, cy = (A.y + B.y) / 2 + dx * tr.c, u = 1 - s; return [u * u * A.x + 2 * u * s * cx + s * s * B.x, u * u * A.y + 2 * u * s * cy + s * s * B.y]; }
+function nearestS(px, py) { let best = -1, bd = 34; for (let i = 0; i < S.length; i++) { const p = toScreen(S[i].x, S[i].y), d = Math.hypot(p[0] - px, p[1] - py); if (d < bd) { bd = d; best = i; } } return best; }
+function fieldHTML(si) {
+  const top = topicsOf[si].slice().sort((a, b) => T[b * 5 + 2] - T[a * 5 + 2]).slice(0, 6);
+  return `<p class="kicker">Sous-discipline · ${esc(nameF(si))}</p><h2>${esc(S[si].n)}</h2><p class="small">${topicsOf[si].length} sujets de recherche · ${ADJ[si].length} liens avec d'autres sous-disciplines (articles partagés).</p><h3>Sujets les plus publiés</h3><ul>${top.map(i => `<li>${esc(T[i * 5 + 4])}</li>`).join('')}</ul><h3>Liées à</h3><ul>${ADJ[si].map(j => `<li>${esc(S[j].n)}</li>`).join('')}</ul>`;
+}
+hooks.closed = () => { lockS = -1; };
+hooks.hover = (px, py) => {
+  hoverQ = -1; if (px < 0) { tip.hidden = true; if (hoverS >= 0) hoverS = -1; return; }
+  for (const i of QORD) if (Math.hypot(QS[i][0] - px, QS[i][1] - py) < 15) { hoverQ = i; break; }
+  const s = hoverQ >= 0 ? -1 : nearestS(px, py); if (s !== hoverS) { hoverS = s; if (s >= 0 && s !== lockS) burst(s, now); }
+  cv.style.cursor = hoverQ >= 0 || hoverS >= 0 ? 'pointer' : 'crosshair';
+  if (hoverQ >= 0) tip.innerHTML = esc(Q[hoverQ].qq.fr); else if (hoverS >= 0) tip.innerHTML = esc(S[hoverS].n) + '<br><span style="color:#8e98a3">' + esc(nameF(hoverS)) + '</span>'; else { tip.hidden = true; return; }
+  tip.hidden = false; const r = cv.getBoundingClientRect(); tip.style.left = Math.min(r.left + px + 14, innerWidth - 280) + 'px'; tip.style.top = (r.top + py + 14) + 'px';
+};
+hooks.click = () => {
+  if (hoverQ >= 0) { lockS = -1; showPanel(questionHTML(Q[hoverQ])); flyTo(Q[hoverQ].x, Q[hoverQ].y, Math.max(view.k, 1.8)); }
+  else if (hoverS >= 0) { lockS = hoverS; showPanel(fieldHTML(hoverS)); burst(hoverS, now); lastLock = now; flyTo(S[hoverS].x, S[hoverS].y, Math.max(view.k, 2)); }
+  else if (!panel.hidden) hidePanel();
+};
+const fogT = $('fogT');
+loop(t => {
+  now = t; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); const k = view.k;
+  const g = ctx.createRadialGradient(W / 2, H / 2, 40, W / 2, H / 2, Math.max(W, H) * .7); g.addColorStop(0, '#0b1016'); g.addColorStop(1, '#030406'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  $('ctx').style.opacity = clamp((1.9 - k) / .6, 0, 1);
+  if (fogT.checked) { const [ax, ay] = toScreen(gx0, gy0), sw = GW * s0 * k, sh = GH * s0 * k, dx = Math.sin(t / 5200) * 4, dy = Math.cos(t / 4300) * 3; ctx.imageSmoothingEnabled = true; ctx.globalAlpha = .5; ctx.drawImage(fog, ax + dx, ay + dy, sw, sh); ctx.globalAlpha = .3; ctx.drawImage(fog, ax - dx - sw * .01, ay - dy - sh * .01, sw * 1.02, sh * 1.02); ctx.globalAlpha = 1; }
+  const act = lockS >= 0 ? lockS : hoverS, grow = 1 + (k - 1) * .2;
+  ctx.fillStyle = 'rgba(232,238,244,.5)';
+  for (let i = 0; i < N; i++) { const p = toScreen(T[i * 5], T[i * 5 + 1]); if (p[0] < -4 || p[0] > W + 4 || p[1] < -4 || p[1] > H + 4) continue; const r = (.5 + Math.log10(1 + T[i * 5 + 2]) * .15) * grow; ctx.fillRect(p[0] - r, p[1] - r, r * 2, r * 2); }
+  if (act >= 0) { ctx.fillStyle = 'rgba(255,255,255,.95)'; for (const i of topicsOf[act]) { const p = toScreen(T[i * 5], T[i * 5 + 1]); ctx.beginPath(); ctx.arc(p[0], p[1], 1.9 * grow, 0, 7); ctx.fill(); } const c = toScreen(S[act].x, S[act].y); ctx.strokeStyle = 'rgba(255,255,255,.8)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(c[0], c[1], 9, 0, 7); ctx.stroke(); }
+  if (t - lastAmb > 650) { lastAmb = t; const l = L[Math.floor(Math.random() * L.length)]; fire(l[0], l[1], t, false, 0); }
+  if (lockS >= 0 && t - lastLock > 4200) { lastLock = t; burst(lockS, t); }
+  const lab = labeller(); ctx.font = '11px "Cutive Mono", monospace'; ctx.fillStyle = 'rgba(214,224,232,.78)';
+  for (let n = tracks.length - 1; n >= 0; n--) {
+    const tr = tracks[n], e = t - tr.t0; if (e < 0) continue; if (e > tr.dur + tr.fade) { tracks.splice(n, 1); continue; }
+    const p = Math.min(1, e / tr.dur), al = e < tr.dur ? 1 : 1 - (e - tr.dur) / tr.fade, m = Math.max(2, Math.ceil(26 * p));
+    ctx.strokeStyle = `rgba(240,246,252,${(al * (tr.strong ? .95 : .5)).toFixed(3)})`; ctx.lineWidth = tr.strong ? 1.5 : .9; ctx.beginPath();
+    for (let j = 0; j <= m; j++) { const q = trackPt(tr, p * j / m), sp = toScreen(q[0], q[1]); j ? ctx.lineTo(sp[0], sp[1]) : ctx.moveTo(sp[0], sp[1]); } ctx.stroke();
+    if (tr.strong) { ctx.fillStyle = `rgba(240,246,252,${(al * .7).toFixed(3)})`; for (let j = 1; j < 8; j++) { const q = trackPt(tr, p * j / 8), sp = toScreen(q[0], q[1]); ctx.fillRect(sp[0] + ((j * 7) % 5) - 2, sp[1] + ((j * 3) % 5) - 2, 1.4, 1.4); } }
+    if (tr.strong && e > tr.dur && al > .3) { const sp = toScreen(S[tr.b].x, S[tr.b].y); ctx.fillStyle = `rgba(230,238,246,${(al * .9).toFixed(3)})`; ctx.font = '11px "Cutive Mono", monospace'; lab(S[tr.b].n, sp[0] + 8, sp[1] - 8, 11, 'left'); }
+  }
+  // Noms des grandes disciplines, en capitales dactylographiées, qui s'effacent quand on s'approche.
+  const fa = clamp((2.6 - k) / .8, 0, 1) * .75; if (fa > 0) { ctx.font = '10px "Cutive Mono", monospace'; ctx.fillStyle = `rgba(205,216,226,${fa.toFixed(3)})`; [...F.keys()].sort((a, b) => FC[b].w - FC[a].w).forEach(f => { const p = toScreen(FC[f].x, FC[f].y), a = Math.atan2(p[1] - H / 2, p[0] - W / 2); lab(F[f].nn.fr.toUpperCase(), p[0] + Math.cos(a) * 24, p[1] + Math.sin(a) * 24, 10, Math.cos(a) > 0 ? 'left' : 'right'); }); }
+  // Questions : un « ? » au sommet d'un V qui s'ouvre vers le vide, comme la désintégration d'une particule neutre.
+  for (const i of QORD) {
+    const q = Q[i], p = toScreen(q.x, q.y); QS[i] = p; if (p[0] < -20 || p[0] > W + 20 || p[1] < -20 || p[1] > H + 20) continue; const hot = i === hoverQ, ac = Math.atan2(H / 2 - p[1], W / 2 - p[0]);
+    ctx.strokeStyle = '#f4ecd0'; ctx.lineWidth = 1; ctx.beginPath(); for (const s of [-.36, .36]) { ctx.moveTo(p[0], p[1]); ctx.lineTo(p[0] + Math.cos(ac + s) * 18, p[1] + Math.sin(ac + s) * 18); } ctx.stroke();
+    ctx.fillStyle = '#f4ecd0'; ctx.font = `700 ${hot ? 21 : 16}px "Archivo Narrow", sans-serif`; ctx.textAlign = 'center'; ctx.fillText('?', p[0], p[1] + 5); ctx.font = `italic ${hot ? 15 : 13}px "Archivo Narrow", sans-serif`;
+    if (hot) { ctx.textAlign = p[0] < W / 2 ? 'right' : 'left'; ctx.fillText(q.nmm.fr, p[0] + (p[0] < W / 2 ? -13 : 13), p[1] - 9); } else lab(q.nmm.fr, p[0] + (p[0] < W / 2 ? -12 : 12), p[1] - 9, 13, p[0] < W / 2 ? 'right' : 'left');
+  }
+});
+</script>
+</body>
+</html>
