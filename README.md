@@ -16,8 +16,9 @@ Aujourd'hui, la carte montre le **connu** : les 4 516 sujets de recherche réper
 | Une étoile | Un sujet de recherche réel |
 | Sa taille et son éclat | Le nombre d'articles publiés dessus |
 | Le relief coloré | La densité de recherche, teintée par grand domaine |
-| Un anneau | Une grande question ouverte, au bord du connu |
-| Un anneau double, au centre | Une question transversale, qui relie plusieurs disciplines |
+| Une étoile crème | Une grande question ouverte, au bord du connu |
+| Une étoile à huit branches | Une question transversale, qui relie plusieurs disciplines |
+| Une étoile creuse | Une question déjà lue (carnet de l'utilisateur) |
 | « Terra incognita » | Le vide entre les disciplines : peu d'articles relient des domaines éloignés |
 | Deux sujets proches | Leurs sous-disciplines partagent beaucoup d'articles |
 | Le noir | Presque personne n'y travaille |
@@ -60,7 +61,9 @@ La première commande télécharge le squelette depuis OpenAlex dans `squelette.
 - Les 31 questions viennent de deux listes seulement : 25 de la revue *Science* (2005, une liste vieille de plus de vingt ans) et 6 des 7 problèmes du prix du millénaire (le septième, Poincaré, est résolu). Elles sont rédigées à la main, pas extraites automatiquement.
 - **À vérifier avant tout lancement** : seule une partie des 25 questions de *Science* a été confrontée à une source consultée (l'univers, la conscience, les gènes, la longévité, Malthus, et en partie la vie ailleurs, la coopération, l'unification de la physique et l'incertitude quantique). Les autres sont écrites de mémoire et doivent être relues contre le numéro original du 1er juillet 2005. Le champ `note` de la question « reprogrammation » (prix Nobel 2012) est aussi de mémoire.
 - Le statut de Navier-Stokes provient de MathWorld (consulté le 16 novembre 2026) ; la page de l'institut Clay que j'ai ouverte ne mentionne pas ce statut.
-- La position d'une question vient d'un choix éditorial (les sous-disciplines qu'elle touche, listées à la main dans `questions.json`) et d'une règle de placement : au bord du connu si elle touche une région, au centre si elle touche au moins trois disciplines ou des régions éloignées (« question transversale »). Le seuil d'éloignement (0,3) est un réglage choisi d'après la répartition des écarts.
+- La position d'une question vient d'un choix éditorial (les sous-disciplines qu'elle touche, listées à la main dans `questions.json`) et d'une règle de placement : au bord du connu si elle touche une région, au centre si elle touche au moins trois disciplines couvrant au moins deux domaines, ou des régions éloignées (« question transversale »). Le seuil d'éloignement (0,4) est un réglage choisi d'après une coupure naturelle dans la répartition des écarts. Une question transversale n'est donc pas toujours dans le vide du centre : elle se pose au barycentre des régions qu'elle relie (la conscience, par exemple, tombe côté sciences sociales).
+- Le centre de la carte est dilaté (`HOLE`, 0,5, dans `build-directions.mjs`) : c'est un choix de présentation. La transformation est radiale et croissante, donc l'ordre autour du centre et le voisinage sont conservés, mais le vide central passe d'un rayon de 0,17 à 0,41 pour pouvoir se lire.
+- Le relief est dessiné par le processeur graphique avec WebGL 2, ce qui le rend net à tout zoom. Sans WebGL 2, il n'apparaît pas : ce cas n'a pas été testé.
 - La disposition combine la mesure des liens et une attraction vers la discipline (`COH` dans `build-directions.mjs`, 0,08). Sans cette attraction, 77 % des sous-disciplines voisines d'une sous-discipline sont du même domaine ; avec, 88 %. Les ponts réels (neurologie clinique, interaction homme-machine, génie biomédical) restent visibles.
 - Le relief mesure l'effort de recherche (articles publiés), pas le savoir établi : une question fondamentale peut être au cœur d'une zone très publiée.
 

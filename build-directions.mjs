@@ -28,7 +28,7 @@ const gauss = () => Math.sqrt(-2 * Math.log(1 - rnd())) * Math.cos(2 * Math.PI *
 
 // Placement par forces : les liens rapprochent, tout le monde se repousse un peu.
 const pos = sIds.map(id => { const a = fIdx[s.subfields[id].field] / fIds.length * 2 * Math.PI; return [Math.cos(a) + gauss() * .12, Math.sin(a) + gauss() * .12]; });
-const IT = 600, COH = Number(process.env.COH ?? 0.08);
+const IT = 600, COH = Number(process.env.COH ?? 0.08), GRAV = Number(process.env.GRAV ?? 0.012), HOLE = Number(process.env.HOLE ?? 0.5);
 for (let it = 0; it < IT; it++) {
   const f = pos.map(() => [0, 0]);
   for (let i = 0; i < pos.length; i++) for (let j = i + 1; j < pos.length; j++) { const dx = pos[i][0] - pos[j][0], dy = pos[i][1] - pos[j][1], d2 = dx * dx + dy * dy + 1e-4, k = 0.0016 / d2; f[i][0] += dx * k; f[i][1] += dy * k; f[j][0] -= dx * k; f[j][1] -= dy * k; }
@@ -37,11 +37,19 @@ for (let it = 0; it < IT; it++) {
   if (COH > 0) { const cx = fIds.map(() => [0, 0, 0]); pos.forEach((p, i) => { const c = cx[fIdx[s.subfields[sIds[i]].field]]; c[0] += p[0]; c[1] += p[1]; c[2]++; });
     pos.forEach((p, i) => { const c = cx[fIdx[s.subfields[sIds[i]].field]]; f[i][0] += (c[0] / c[2] - p[0]) * COH; f[i][1] += (c[1] / c[2] - p[1]) * COH; }); }
   const lim = 0.06 * (1 - it / IT) + 0.002;
-  pos.forEach((p, i) => { f[i][0] -= p[0] * 0.012; f[i][1] -= p[1] * 0.012; const m = Math.hypot(f[i][0], f[i][1]), c = m > lim ? lim / m : 1; p[0] += f[i][0] * c; p[1] += f[i][1] * c; });
+  pos.forEach((p, i) => { f[i][0] -= p[0] * GRAV; f[i][1] -= p[1] * GRAV; const m = Math.hypot(f[i][0], f[i][1]), c = m > lim ? lim / m : 1; p[0] += f[i][0] * c; p[1] += f[i][1] * c; });
 }
 const rmax = Math.max(...pos.map(p => Math.hypot(p[0], p[1])));
 pos.forEach(p => { p[0] /= rmax * 1.08; p[1] /= rmax * 1.08; });
 assert(pos.every(p => Number.isFinite(p[0]) && Number.isFinite(p[1])), 'position invalide');
+
+// Projection (choix de présentation, pas une mesure) : on dilate le centre autour du centre de l'anneau pour que le vide entre les disciplines ait la place de se lire.
+// La transformation est radiale et croissante : l'ordre autour du centre et le voisinage sont conservés, seules les distances au centre changent.
+{
+  const cx = pos.reduce((a, p) => a + p[0], 0) / pos.length, cy = pos.reduce((a, p) => a + p[1], 0) / pos.length;
+  const rr = pos.map(p => Math.hypot(p[0] - cx, p[1] - cy)), r0 = Math.min(...rr), r1 = Math.max(...rr);
+  pos.forEach((p, i) => { const a = Math.atan2(p[1] - cy, p[0] - cx), r = (HOLE + (rr[i] - r0) / (r1 - r0) * (1 - HOLE)) * 0.926; p[0] = Math.cos(a) * r; p[1] = Math.sin(a) * r; });
+}
 
 // Contrôle de la disposition : parmi les 5 sous-disciplines les plus proches d'une sous-discipline, quelle part est du même domaine / de la même discipline ?
 {
@@ -63,23 +71,30 @@ const G = 300, EXT = 1.1, LMAXB = Math.log10(cap), nrmB = w => Math.max(0, Math.
 const dg = new Float32Array(G * G);
 for (let i = 0; i < T.length; i += 5) { const v = nrmB(T[i + 2]), wt = 0.05 + v * v, cx = G / 2 + T[i] * G / 2 / EXT, cy = G / 2 + T[i + 1] * G / 2 / EXT;
   for (let dy = -7; dy <= 7; dy++) for (let dx = -7; dx <= 7; dx++) { const gx = Math.round(cx) + dx, gy = Math.round(cy) + dy; if (gx < 0 || gy < 0 || gx >= G || gy >= G) continue; const ex = gx - cx, ey = gy - cy; dg[gy * G + gx] += wt * Math.exp(-(ex * ex + ey * ey) / (2 * 2.4 * 2.4)); } }
-const dmax = Math.max(...dg), EDGE = Math.pow(1 / 8, 1 / 0.42); // premier niveau visible du relief
+const dmax = Math.max(...dg), EDGE = Math.pow(2 / 8, 1 / 0.42); // premier niveau visible du relief (les îlots plus faibles ne sont pas dessinés)
+// Le vide central : le plus grand disque sans relief visible, cherché autour du centre.
+const dense = []; for (let gy = 0; gy < G; gy += 2) for (let gx = 0; gx < G; gx += 2) if (dg[gy * G + gx] / dmax >= EDGE) dense.push([(gx - G / 2) * 2 * EXT / G, (gy - G / 2) * 2 * EXT / G]);
+let hole = { x: 0, y: 0, r: 0 };
+for (let x = -0.5; x <= 0.5; x += 0.025) for (let y = -0.5; y <= 0.5; y += 0.025) { let m = Infinity; for (const p of dense) { const d = (p[0] - x) ** 2 + (p[1] - y) ** 2; if (d < m) m = d; } m = Math.sqrt(m); if (m > hole.r) hole = { x: r3(x), y: r3(y), r: r3(m) }; }
+console.log(`vide central : rayon ${hole.r}, centre (${hole.x}, ${hole.y})`);
 const dens = (x, y) => { const fx = G / 2 + x * G / 2 / EXT, fy = G / 2 + y * G / 2 / EXT; if (fx < 0 || fy < 0 || fx >= G - 1 || fy >= G - 1) return 0; const x0 = fx | 0, y0 = fy | 0, tx = fx - x0, ty = fy - y0; return ((dg[y0 * G + x0] * (1 - tx) + dg[y0 * G + x0 + 1] * tx) * (1 - ty) + (dg[(y0 + 1) * G + x0] * (1 - tx) + dg[(y0 + 1) * G + x0 + 1] * tx) * ty) / dmax; };
 // Du point (x,y), distance jusqu'au bord du connu dans la direction a, ou null si le vide n'est pas franc.
 function toEdge(x, y, a) { for (let d = 0.004; d < 0.45; d += 0.004) { if (dens(x + Math.cos(a) * d, y + Math.sin(a) * d) >= EDGE) continue; let dark = true; for (let e = 0.006; e <= 0.036; e += 0.006) if (dens(x + Math.cos(a) * (d + e), y + Math.sin(a) * (d + e)) >= EDGE * 1.5) dark = false; if (dark) return d; } return null; }
 
 // Les questions ouvertes. Une question qui touche une seule région se pose au bord du connu, tendue vers le noir.
 // Une question qui relie des régions éloignées reste entre elles, dans le vide central : c'est elle qui fait le pont.
-const SPREAD_MIN = 0.3;
+const SPREAD_MIN = 0.4; // coupure naturelle dans la répartition des écarts (0,33 puis 0,43)
 const qs = JSON.parse(readFileSync('questions.json')), byName = Object.fromEntries(sIds.map((id, i) => [s.subfields[id].name, i]));
 assert.equal(Object.keys(byName).length, sIds.length, 'noms de sous-disciplines en double');
 const Q = qs.questions.map(q => {
   const subs = q.subs.map(n => { assert(n in byName, `sous-discipline inconnue : ${n} (${q.id})`); return byName[n]; });
   assert(qs.sources[q.src], `source inconnue : ${q.src}`);
   const bx = subs.reduce((a, j) => a + pos[j][0], 0) / subs.length, by = subs.reduce((a, j) => a + pos[j][1], 0) / subs.length;
-  const spread = Math.sqrt(subs.reduce((a, j) => a + (pos[j][0] - bx) ** 2 + (pos[j][1] - by) ** 2, 0) / subs.length), nf = new Set(subs.map(j => s.subfields[sIds[j]].field)).size, t = nf >= 3 || spread > SPREAD_MIN;
+  const spread = Math.sqrt(subs.reduce((a, j) => a + (pos[j][0] - bx) ** 2 + (pos[j][1] - by) ** 2, 0) / subs.length), nf = new Set(subs.map(j => s.subfields[sIds[j]].field)).size, nd = new Set(subs.map(j => s.fields[s.subfields[sIds[j]].field].domain)).size, t = (nf >= 3 && nd >= 2) || spread > SPREAD_MIN;
   let x = bx, y = by;
   if (!t && dens(bx, by) >= EDGE) { let best = null; for (let k = 0; k < 48; k++) { const a = k / 48 * 2 * Math.PI, d = toEdge(bx, by, a); if (d != null && (!best || d < best.d)) best = { d, a }; } if (best) { x = bx + Math.cos(best.a) * best.d; y = by + Math.sin(best.a) * best.d; } }
+  // Le texte « terra incognita » occupe une bande au centre du vide : une question transversale se pose juste au-dessus ou au-dessous, pas dessus.
+  if (t) { const a = hole.r * 0.8, b = hole.r * 0.14; if (((x - hole.x) / a) ** 2 + ((y - hole.y) / b) ** 2 < 1) y = hole.y + (y >= hole.y ? 1 : -1) * b * 1.3; }
   if (process.argv.includes('--diag')) console.log(`  ${t ? 'TRANSVERSALE' : 'bord        '} écart ${spread.toFixed(2)}  ${q.id}`);
   return { id: q.id, q: q.q, c: q.ctx, s: q.src, st: q.status || 'ouverte', n: q.note || '', subs, t, x, y };
 });
@@ -93,7 +108,7 @@ for (let it = 0; it < 60; it++) for (let i = 0; i < Q.length; i++) for (let j = 
 Q.forEach(q => { q.x = r3(q.x); q.y = r3(q.y); });
 
 const DATA = {
-  fetched: s.fetched, cap,
+  fetched: s.fetched, cap, hole, edge: EDGE,
   D: dIds.map(d => fr(s.domains[d])),
   F: fIds.map(f => ({ n: fr(s.fields[f].name), d: dIds.indexOf(s.fields[f].domain) })),
   S: sIds.map((id, i) => ({ n: s.subfields[id].name, f: fIdx[s.subfields[id].field], x: r3(pos[i][0]), y: r3(pos[i][1]), w: sw[i] })),

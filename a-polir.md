@@ -11,7 +11,14 @@
 - **Carnet d'exploration** : les questions ouvertes se remplissent, avec un compteur « n / 31 ». Ni points, ni classement.
 - **Cadrage** : la question ouverte se place à gauche pour ne pas passer sous la fiche. Les étiquettes ne dépassent plus de l'écran.
 
-Reste à faire : tout ce qui suit, notamment l'aperçu Wikipédia, la traduction, le relief flou en zoom et le contenu.
+**Troisième passe (même jour)**
+
+- **Relief net à tout zoom** : dessiné par le processeur graphique (WebGL 2) au lieu d'une image agrandie. Les petits îlots isolés autour de l'anneau ne sont plus dessinés.
+- **Questions** : des étoiles à quatre branches (huit pour les transversales, creuses une fois lues) à la place des anneaux, qui ressemblaient à des cases à cocher.
+- **Vide central** agrandi par dilatation radiale (rayon 0,17 → 0,41), avec « terra incognita » centré dedans et une zone réservée au texte.
+- **Visite guidée** en cinq étapes. **Légende repliée** au départ, carnet affiché à côté des boutons.
+
+Reste à faire : tout ce qui suit, notamment l'aperçu Wikipédia, la traduction et le contenu (31 questions, c'est trop peu). À trancher : le mode gamifié (voir la discussion du 16 novembre), qui n'a de sens qu'avec bien plus de questions.
 
 ## 1. Le but, à trancher avant le reste
 
