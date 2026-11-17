@@ -2,7 +2,7 @@
   "fr": {
     "titre": "Unknownpedia",
     "desc": "Les grandes questions que la science n'a pas résolues, placées sur une carte de la recherche mondiale.",
-    "aria_carte": "Carte de la recherche mondiale en courbes de niveau : chaque point est un sujet de recherche, les courbes montrent où l'on publie beaucoup, les noms précédés d'un point d'interrogation sont des questions que personne n'a résolues.",
+    "aria_carte": "Carte de la recherche. Utiliser les flèches pour se déplacer, N et P pour parcourir les questions.",
     "zin": "Zoomer",
     "zout": "Dézoomer",
     "zfit": "Voir toute la carte",
@@ -44,12 +44,14 @@
     "src_fonts": "Licences des polices",
     "theme_aria": "Changer de thème, clair ou sombre",
     "sub_lbl": "Sous-discipline",
-    "cherche": "Chercher"
+    "cherche": "Chercher",
+    "kb_t": "Au clavier",
+    "kb_p": "Sur la carte : flèches pour se déplacer, + et − pour zoomer, 0 pour tout voir, N et P pour passer d'une question à l'autre, Entrée pour l'ouvrir, Échap pour fermer."
   },
   "en": {
     "titre": "Unknownpedia",
     "desc": "The big questions science hasn't solved yet, placed on a map of world research.",
-    "aria_carte": "Contour map of world research: each dot is a research topic, the lines show where a lot is published, names preceded by a question mark are questions nobody has solved.",
+    "aria_carte": "Map of research. Use the arrow keys to move, N and P to step through the questions.",
     "zin": "Zoom in",
     "zout": "Zoom out",
     "zfit": "Show the whole map",
@@ -91,6 +93,8 @@
     "src_fonts": "Font licences",
     "theme_aria": "Switch between light and dark theme",
     "sub_lbl": "Subfield",
-    "cherche": "Search"
+    "cherche": "Search",
+    "kb_t": "Keyboard",
+    "kb_p": "On the map: arrow keys to move, + and − to zoom, 0 to see everything, N and P to step through questions, Enter to open one, Esc to close."
   }
 }

@@ -16,9 +16,9 @@ Direction retenue le 16 novembre 2026 : **la planche de brevet** (clair et sombr
 - [x] **Le « ? » des questions** : gardé.
 - [x] **Sources et licences** : bulle en bas à droite.
 - [ ] **Page « Sources et licences » complète** : la bulle résume ; une vraie page reste à écrire (licence du dépôt, citations).
-- [ ] **Clavier** : la liste des questions est accessible au clavier, mais pas la carte elle-même.
-- [ ] **Mobile** : prévu (pincement, panneau plein écran) mais non testé sur un vrai téléphone.
-- [ ] **Titre de l'onglet et aperçu de partage** : une image par question reste à faire.
+- [x] **Clavier** : la carte se pilote au clavier (flèches, + −, 0, N/P entre questions, Entrée, Échap), focus visible, annonce vocale de la question ; aide dans la table des références. Testé dans Chromium, pas avec un lecteur d'écran.
+- [~] **Mobile** : testé en émulation iPhone 13 (pincement, panneau plein écran, cibles tactiles de 42 px, en-tête sans chevauchement) ; **reste à essayer sur un vrai téléphone**. La carte est petite sur écran étroit.
+- [x] **Aperçu de partage** : une image 1200×630 par page de question et une pour l'accueil (`node build-partage.mjs`, à relancer quand des pages s'ajoutent). Les pages de question sont maintenant au style de la planche. Un lien `#id` de la carte n'a pas d'aperçu propre : seules les pages `/fr/q/…` en ont.
 
 ## 2. Contenu
 
