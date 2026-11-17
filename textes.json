@@ -35,7 +35,7 @@
     "ctx_p": "Chaque point est un sujet de recherche réel ({n}). Les courbes de niveau montrent l'effort de recherche, c'est-à-dire le nombre d'articles publiés, pas le savoir établi ; les petits traits marquent le bord du connu. Chaque « ? » est une question que personne n'a résolue ({q}).",
     "refs_t": "Table des références",
     "refs_q": "Questions ouvertes",
-    "cap": "Fig. 1. {n} sujets de recherche ; en « ? », les questions ouvertes.",
+    "cap": "Fig. 1. Carte de la recherche mondiale ({n} sujets). Au centre, terra incognita : ce que l'on ne sait pas encore.",
     "visa": "VISA : non relu",
     "visa_p": "Brouillon rédigé avec une IA, références vérifiées.",
     "src_t": "Sources et licences",
@@ -46,7 +46,17 @@
     "sub_lbl": "Sous-discipline",
     "cherche": "Chercher",
     "kb_t": "Au clavier",
-    "kb_p": "Sur la carte : flèches pour se déplacer, + et − pour zoomer, 0 pour tout voir, N et P pour passer d'une question à l'autre, Entrée pour l'ouvrir, Échap pour fermer."
+    "kb_p": "Sur la carte : flèches pour se déplacer, + et − pour zoomer, 0 pour tout voir, N et P pour passer d'une question à l'autre, Entrée pour l'ouvrir, Échap pour fermer.",
+    "terra": "Terra incognita",
+    "terra_sub": "ce que l'on ne sait pas encore",
+    "cluster_n": "{n} questions ici · cliquer pour zoomer",
+    "key_t": "Lire la carte",
+    "key_relief": "Courbes de niveau : plus il y a d'articles publiés, plus la colline est haute. Elles mesurent l'effort de recherche, pas le savoir.",
+    "key_ticks": "Petits traits : le bord du connu, côté peu étudié.",
+    "key_dot": "Point : un sujet de recherche réel.",
+    "key_disc": "Cercle numéroté : une discipline (liste ci-dessous).",
+    "key_q": "? : une question que personne n'a résolue. Un chiffre à côté = plusieurs questions groupées, à zoomer.",
+    "key_center": "Centre vide : peu d'articles relient ces disciplines. Le vide est agrandi pour la lisibilité."
   },
   "en": {
     "titre": "Unknownpedia",
@@ -84,7 +94,7 @@
     "ctx_p": "Each dot is a real research topic ({n}). The contour lines show research effort, meaning the number of papers published, not established knowledge; the small ticks mark the edge of the known. Each “?” is a question nobody has solved ({q}).",
     "refs_t": "Reference table",
     "refs_q": "Open questions",
-    "cap": "Fig. 1. {n} research topics; the “?” marks are open questions.",
+    "cap": "Fig. 1. Map of world research ({n} topics). At the centre, terra incognita: what is not yet known.",
     "visa": "VISA: not reviewed",
     "visa_p": "Draft written with an AI, references checked.",
     "src_t": "Sources and licences",
@@ -95,6 +105,16 @@
     "sub_lbl": "Subfield",
     "cherche": "Search",
     "kb_t": "Keyboard",
-    "kb_p": "On the map: arrow keys to move, + and − to zoom, 0 to see everything, N and P to step through questions, Enter to open one, Esc to close."
+    "kb_p": "On the map: arrow keys to move, + and − to zoom, 0 to see everything, N and P to step through questions, Enter to open one, Esc to close.",
+    "terra": "Terra incognita",
+    "terra_sub": "what is not yet known",
+    "cluster_n": "{n} questions here · click to zoom",
+    "key_t": "Reading the map",
+    "key_relief": "Contour lines: the more papers published, the higher the hill. They measure research effort, not knowledge.",
+    "key_ticks": "Small ticks: the edge of the known, on the little-studied side.",
+    "key_dot": "Dot: a real research topic.",
+    "key_disc": "Numbered circle: a discipline (list below).",
+    "key_q": "?: a question nobody has solved. A number beside it = several questions grouped; zoom in.",
+    "key_center": "Empty centre: few papers link these disciplines. The gap is enlarged for legibility."
   }
 }

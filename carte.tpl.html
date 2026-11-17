@@ -35,7 +35,7 @@ button.sq { font: 14px var(--sans); color: var(--ink); background: var(--paper);
 #lang button + button { border-left: 0; }
 button.sq:hover, #lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 button:focus-visible, summary:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
-#cap { left: 50%; bottom: 30px; transform: translateX(-50%); font: italic 15px var(--serif); text-align: center; width: min(560px, 60%); pointer-events: none; }
+#cap { left: 50%; bottom: 28px; transform: translateX(-50%); font: italic 14px/1.3 var(--serif); text-align: center; width: min(620px, 56%); pointer-events: none; }
 #stamp { right: 38px; bottom: 74px; border: .8px solid var(--ink); padding: 5px 8px; font-size: 11px; background: var(--paper); max-width: 200px; }
 #stamp b { color: var(--acc); font-weight: 400; letter-spacing: .06em; }
 #src { right: 34px; bottom: 30px; }
@@ -62,6 +62,16 @@ button:focus-visible, summary:focus-visible { outline: 2px solid var(--acc); out
 #panel .note { font-size: 12px; color: var(--dim); border-top: .6px solid var(--ink); padding-top: 6px; }
 #pclose { position: absolute; right: 8px; top: 8px; width: 26px; height: 26px; }
 body.panel-open #legend, body.panel-open #lang { display: none; }
+#legend .scroll, #panel { scrollbar-width: thin; scrollbar-color: var(--ink) var(--paper); }
+#legend .scroll::-webkit-scrollbar, #panel::-webkit-scrollbar { width: 9px; }
+#legend .scroll::-webkit-scrollbar-track, #panel::-webkit-scrollbar-track { background: transparent; border-left: .6px solid rgba(var(--ink-rgb), .45); }
+#legend .scroll::-webkit-scrollbar-thumb, #panel::-webkit-scrollbar-thumb { background: var(--ink); border: 2.5px solid var(--paper); border-radius: 0; }
+#legend .scroll::-webkit-scrollbar-button, #panel::-webkit-scrollbar-button { display: none; height: 0; }
+#key { border-bottom: .6px solid var(--ink); padding-bottom: 6px; margin-bottom: 4px; }
+#key ul { list-style: none; margin: 0; padding: 0; }
+#key li { display: flex; gap: 9px; align-items: flex-start; margin: 0 0 7px; font-size: 12px; line-height: 1.3; }
+#key svg { flex: none; width: 30px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1; }
+#key .qm { flex: none; width: 30px; text-align: center; color: var(--acc); font: 700 19px/1 var(--serif); }
 #c:focus-visible { outline: 2px solid var(--acc); outline-offset: -4px; }
 #panel:focus { outline: none; }
 #live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
@@ -85,7 +95,13 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <div id="frame"></div>
 <div id="ctx" class="ov"><h1 id="siteTitle"></h1><p id="ctxP"></p></div>
 <div id="lang" class="ov" role="group" data-ia="lang_aria"><button class="sq" type="button" data-lang="fr" aria-pressed="false">FR</button><button class="sq" type="button" data-lang="en" aria-pressed="false">EN</button></div>
-<details id="legend" class="ov"><summary data-i="refs_t"></summary><div class="scroll"><ol id="refs"></ol><h2 data-i="refs_q"></h2><ul id="qlist"></ul><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
+<details id="legend" class="ov"><summary data-i="refs_t"></summary><div class="scroll"><div id="key"><h2 data-i="key_t"></h2><ul>
+<li><svg viewBox="0 0 30 20"><path d="M2 16C4 6 13 3 19 7S28 13 27 17" stroke-width=".7"/><path d="M7 16C9 10 15 8 19 11S24 14 24 17"/><path d="M12 17C13 14 17 13 19 15" stroke-width="1.4"/></svg><span data-i="key_relief"></span></li>
+<li><svg viewBox="0 0 30 20"><path d="M3 15C8 8 16 8 27 13"/><path d="M8 11v-4M13 9.5v-4M18 9.5v-4M23 11v-4" stroke-width=".8"/></svg><span data-i="key_ticks"></span></li>
+<li><svg viewBox="0 0 30 20"><circle cx="9" cy="10" r="1.6" fill="currentColor"/><circle cx="15" cy="7" r="1.1" fill="currentColor"/><circle cx="20" cy="12" r="1.9" fill="currentColor"/><circle cx="13" cy="14" r="1" fill="currentColor"/></svg><span data-i="key_dot"></span></li>
+<li><svg viewBox="0 0 30 20"><circle cx="15" cy="10" r="7.5"/><text x="15" y="13.6" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" font-family="Archivo Narrow,sans-serif">7</text></svg><span data-i="key_disc"></span></li>
+<li><span class="qm">?</span><span data-i="key_q"></span></li>
+<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><ol id="refs"></ol><h2 data-i="refs_q"></h2><ul id="qlist"></ul><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
 <div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></div>
 <div id="cap" class="ov"></div>
 <div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div>
@@ -195,14 +211,14 @@ function openHash() { const i = Q.findIndex(q => q.id === location.hash.slice(1)
 addEventListener('hashchange', openHash);
 
 // ---- Survol et clic ----
-let hoverT = -1, hoverQ = -1, hoverF = -1; const QS = Q.map(() => [0, 0]);
+let hoverT = -1, hoverQ = -1, hoverF = -1, hoverC = -1, CL = []; const QS = Q.map(() => [0, 0]);
 function hover(px, py) {
-  hoverQ = -1; hoverT = -1; hoverF = -1; if (px < 0) { tip.hidden = true; return; }
-  for (const i of QORD) if (Math.hypot(QS[i][0] - px, QS[i][1] - py) < 15) { hoverQ = i; break; }
-  if (hoverQ < 0 && NA > .25) for (const f of ORD) if (NS[f] && Math.hypot(NS[f][0] - px, NS[f][1] - py) < 14) { hoverF = f; break; }
-  if (hoverQ < 0 && hoverF < 0) { const [wx, wy] = toWorld(px, py); hoverT = nearestTopic(wx, wy, 8 / (s0 * view.k)); }
-  cv.style.cursor = hoverQ >= 0 || hoverF >= 0 || hoverT >= 0 ? 'pointer' : 'crosshair';
-  if (hoverQ >= 0 || hoverF >= 0) { tip.hidden = true; return; } else if (hoverT >= 0) { const i = hoverT; tip.innerHTML = esc(T[i * 5 + 4]) + '<small>' + esc(loc(F[S[T[i * 5 + 3]].f].nn)) + ' · ' + esc(fmt(T[i * 5 + 2])) + ' ' + esc(t('publies')) + '</small>'; } else { tip.hidden = true; return; }
+  hoverQ = -1; hoverT = -1; hoverF = -1; hoverC = -1; if (px < 0) { tip.hidden = true; return; }
+  for (const c of CL) if (Math.hypot(c.p[0] - px, c.p[1] - py) < 15) { if (c.ids.length > 1) hoverC = c.lead; else hoverQ = c.lead; break; }
+  if (hoverQ < 0 && hoverC < 0) for (const f of ORD) if (NS[f] && Math.hypot(NS[f][0] - px, NS[f][1] - py) < 14) { hoverF = f; break; }
+  if (hoverQ < 0 && hoverC < 0 && hoverF < 0) { const [wx, wy] = toWorld(px, py); hoverT = nearestTopic(wx, wy, 8 / (s0 * view.k)); }
+  cv.style.cursor = hoverQ >= 0 || hoverC >= 0 || hoverF >= 0 || hoverT >= 0 ? 'pointer' : 'crosshair';
+  if (hoverQ >= 0 || hoverC >= 0 || hoverF >= 0) { tip.hidden = true; return; } else if (hoverT >= 0) { const i = hoverT; tip.innerHTML = esc(T[i * 5 + 4]) + '<small>' + esc(loc(F[S[T[i * 5 + 3]].f].nn)) + ' · ' + esc(fmt(T[i * 5 + 2])) + ' ' + esc(t('publies')) + '</small>'; } else { tip.hidden = true; return; }
   tip.hidden = false; const r = cv.getBoundingClientRect(); tip.style.left = Math.min(r.left + px + 14, innerWidth - 280) + 'px'; tip.style.top = (r.top + py + 14) + 'px';
 }
 const ptrs = new Map(); let moved = 0, pinch = 0;
@@ -215,7 +231,7 @@ cv.addEventListener('pointermove', e => {
   if (moved > 5) { tip.hidden = true; view.x -= (p[0] - o[0]) / (s0 * view.k); view.y -= (p[1] - o[1]) / (s0 * view.k); tgt = null; cv.style.cursor = 'grabbing'; }
 });
 cv.addEventListener('pointerup', e => { const p = rel(e), was = ptrs.size; ptrs.delete(e.pointerId); pinch = 0; cv.style.cursor = '';
-  if (was === 1 && moved < 6) { hover(p[0], p[1]); if (hoverQ >= 0) openQ(hoverQ); else if (hoverF >= 0) flyTo(FC[hoverF].x, FC[hoverF].y, 2.6); else if (hoverT >= 0) openT(hoverT); else if (cur) closePanel(); } });
+  if (was === 1 && moved < 6) { hover(p[0], p[1]); if (hoverQ >= 0) openQ(hoverQ); else if (hoverC >= 0) { const c = CL.find(c => c.lead === hoverC); if (c) flyTo(c.wx, c.wy, Math.min(14, view.k * 2.6)); } else if (hoverF >= 0) flyTo(FC[hoverF].x, FC[hoverF].y, 2.6); else if (hoverT >= 0) openT(hoverT); else if (cur) closePanel(); } });
 cv.addEventListener('pointercancel', e => { ptrs.delete(e.pointerId); pinch = 0; });
 cv.addEventListener('pointerleave', () => hover(-1, -1));
 cv.addEventListener('wheel', e => { e.preventDefault(); const [px, py] = rel(e); zoomAt(px, py, Math.exp(-e.deltaY * .0015)); }, { passive: false });
@@ -260,12 +276,14 @@ function wrap(txt, maxw) { const lines = []; let c = ''; for (const w of txt.spl
 // Fiche de survol : un cartouche qui se déroule depuis le point visé, puis le texte s'écrit lettre à lettre, avec un curseur qui clignote tant que ça tape.
 function card(txt, a, px, py, font, lh, maxw, right, color) {
   if (a.g <= 0.01) return; ctx.font = font; const lines = wrap(txt, maxw), w = Math.max(...lines.map(l => ctx.measureText(l).width)) + 22, h = lines.length * lh + 14, e = ease(a.g);
-  let bx = right ? px + 16 : px - 16 - w, by = clamp(py - h / 2, 6, H - h - 6); bx = clamp(bx, 6, W - w - 6);
+  if (right && px + 16 + w > W - 6) right = false; else if (!right && px - 16 - w < 6) right = true;
+  const bx = right ? px + 16 : px - 16 - w, by = clamp(py - h / 2, 6, H - h - 6);
   ctx.save(); ctx.beginPath(); ctx.rect(right ? bx : bx + w * (1 - e), by, w * e, h); ctx.clip();
   ctx.fillStyle = COL.paper; ctx.fillRect(bx, by, w, h); ctx.strokeStyle = inkA(1.6); ctx.lineWidth = .8; ctx.strokeRect(bx + .5, by + .5, w - 1, h - 1);
-  ctx.fillStyle = color; ctx.textAlign = 'left'; let left = Math.floor(a.c), cx = 0, cy = 0, typing = a.c < txt.length;
-  lines.forEach((l, i) => { const part = l.slice(0, Math.max(0, left)), yy = by + 7 + (i + 1) * lh - 5; ctx.fillText(part, bx + 11, yy); if (left >= 0 && left <= l.length) { cx = bx + 11 + ctx.measureText(part).width; cy = yy; } left -= l.length + 1; });
-  if (typing && Math.floor(performance.now() / 280) % 2 === 0) ctx.fillRect(cx + 1, cy - lh + 6, 1.6, lh - 5);
+  // Côté droit : le texte s'écrit vers la droite depuis le point. Côté gauche : il est aligné à droite, contre le point, et s'écrit en se décalant vers la gauche.
+  ctx.fillStyle = color; ctx.textAlign = right ? 'left' : 'right'; const tx = right ? bx + 11 : bx + w - 11; let left = Math.floor(a.c), cx = tx, cy = by + 7 + lh - 5; const typing = a.c < txt.length;
+  lines.forEach((l, i) => { const part = l.slice(0, Math.max(0, left)), yy = by + 7 + (i + 1) * lh - 5; ctx.fillText(part, tx, yy); if (left >= 0 && left <= l.length) { cx = right ? tx + ctx.measureText(part).width : tx; cy = yy; } left -= l.length + 1; });
+  if (typing && Math.floor(performance.now() / 280) % 2 === 0) ctx.fillRect(right ? cx + 1 : cx + 2, cy - lh + 6, 1.6, lh - 5);
   ctx.restore();
 }
 const labeller = (seed) => { const used = seed || []; return (txt, px, py, size, align) => { const w = ctx.measureText(txt).width, bx = align === 'right' ? px - w : align === 'center' ? px - w / 2 : px, r = [bx - 6, py - size - 2, bx + w + 6, py + 7]; if (used.some(u => !(r[2] < u[0] || r[0] > u[2] || r[3] < u[1] || r[1] > u[3]))) return false; used.push(r); ctx.textAlign = align; ctx.fillText(txt, px, py); return true; }; };
@@ -277,36 +295,39 @@ function draw(dt) {
   ctx.fillStyle = inkA(.62); const grow = 1 + (k - 1) * .22;
   for (let i = 0; i < N; i++) { const p = toScreen(T[i * 5], T[i * 5 + 1]); if (p[0] < -6 || p[0] > W + 6 || p[1] < -6 || p[1] > H + 6) continue; ctx.beginPath(); ctx.arc(p[0], p[1], (.45 + Math.log10(1 + T[i * 5 + 2]) * .17) * grow, 0, 7); ctx.fill(); }
   const ht = cur && cur.t != null ? cur.t : hoverT; if (ht >= 0) { const p = toScreen(T[ht * 5], T[ht * 5 + 1]); ctx.strokeStyle = inkA(1.4); ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(p[0], p[1], 5, 0, 7); ctx.stroke(); }
-  const na = clamp((2.5 - k) / .8, 0, 1); NA = na;
-  const hf = hoverF; ORD.forEach(f => anim(FA[f], na > .25 && f === hf, dt, loc(F[f].nn).length));
-  if (na > 0) ORD.forEach((f, i) => {
-    const a = toScreen(FC[f].x, FC[f].y), b = toScreen(NUM[f].x, NUM[f].y); ctx.globalAlpha = na; ctx.strokeStyle = inkA(1.2); ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(b[0], b[1]); ctx.quadraticCurveTo((a[0] + b[0]) / 2 + (a[1] - b[1]) * .12, (a[1] + b[1]) / 2 - (a[0] - b[0]) * .12, a[0], a[1]); ctx.stroke();
+  const na = 1; NA = 1;
+  const hf = hoverF; ORD.forEach(f => anim(FA[f], f === hf, dt, loc(F[f].nn).length));
+  ORD.forEach((f, i) => {
+    const a = toScreen(FC[f].x, FC[f].y); let b = toScreen(NUM[f].x, NUM[f].y); NS[f] = null; if (a[0] < -30 || a[0] > W + 30 || a[1] < -30 || a[1] > H + 30) return; b = [clamp(b[0], 18, W - 18), clamp(b[1], 18, H - 18)]; ctx.globalAlpha = na; ctx.strokeStyle = inkA(1.2); ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(b[0], b[1]); ctx.quadraticCurveTo((a[0] + b[0]) / 2 + (a[1] - b[1]) * .12, (a[1] + b[1]) / 2 - (a[0] - b[0]) * .12, a[0], a[1]); ctx.stroke();
     ctx.fillStyle = inkA(1.4); ctx.beginPath(); ctx.arc(a[0], a[1], 2.2, 0, 7); ctx.fill(); NS[f] = b; const A = FA[f], e = ease(A.g), r = 9 + 5 * e; ctx.fillStyle = COL.paper; ctx.beginPath(); ctx.arc(b[0], b[1], r, 0, 7); ctx.fill(); ctx.lineWidth = .7 + .6 * e; ctx.stroke(); ctx.fillStyle = inkA(1.5); ctx.font = `${11 + 2 * e}px "Archivo Narrow", sans-serif`; ctx.textAlign = 'center'; ctx.fillText(i + 1, b[0], b[1] + 4 + e * .6); ctx.globalAlpha = 1;
   });
-  const cx = W / 2, sel = cur && cur.q != null ? cur.q : -1, vis = [];
-  // Répulsion : chaque « ? » est repoussé des autres et des numéros de discipline, puis rappelé vers son vrai point (un fil fin les relie).
-  for (const i of QORD) { const p = toScreen(Q[i].x, Q[i].y); if (p[0] < -20 || p[0] > W + 20 || p[1] < -20 || p[1] > H + 20) { OFF[i][0] *= .8; OFF[i][1] *= .8; QS[i] = p; continue; } vis.push(i); }
-  for (let it = 0; it < 2; it++) {
-    for (const i of vis) { const o = OFF[i], p = toScreen(Q[i].x, Q[i].y); let fx = -o[0] * .06, fy = -o[1] * .06;
-      for (const j of vis) { if (j === i) continue; const pj = toScreen(Q[j].x, Q[j].y); let dx = p[0] + o[0] - pj[0] - OFF[j][0], dy = p[1] + o[1] - pj[1] - OFF[j][1], d = Math.hypot(dx, dy); if (d >= 19) continue; if (d < .01) { const ang = i * 2.399; dx = Math.cos(ang); dy = Math.sin(ang); d = 1; } const m = (19 - d) * .18 / d; fx += dx * m; fy += dy * m; }
-      if (NA > .2) for (const f of ORD) { const n = NS[f]; if (!n) continue; const dx = p[0] + o[0] - n[0], dy = p[1] + o[1] - n[1], d = Math.hypot(dx, dy); if (d < 24 && d > .01) { const m = (24 - d) * .3 / d; fx += dx * m; fy += dy * m; } }
-      o[0] = clamp(o[0] + fx, -46, 46); o[1] = clamp(o[1] + fy, -46, 46); }
+  const cx = W / 2, sel = cur && cur.q != null ? cur.q : -1;
+  // « Terra incognita » au centre du vide, effacée quand on zoome.
+  { const h = toScreen(DATA.hole.x, DATA.hole.y), al = clamp(3 - k, 0, 1); if (al > 0 && h[0] > -200 && h[0] < W + 200) { ctx.save(); ctx.globalAlpha = al * .75; ctx.fillStyle = `rgb(${COL.rgb})`; ctx.textAlign = 'center'; if ('letterSpacing' in ctx) ctx.letterSpacing = '5px'; ctx.font = `14px "Archivo Narrow", sans-serif`; ctx.fillText(t('terra').toUpperCase(), h[0] + 2, h[1]); if ('letterSpacing' in ctx) ctx.letterSpacing = '0px'; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; ctx.fillText(t('terra_sub'), h[0], h[1] + 18); ctx.restore(); } }
+  // Regroupement : dans les zones denses, les « ? » à moins de 21 px forment une grappe marquée du nombre de questions ; on zoome pour les séparer.
+  const TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => !!Q[b].f - !!Q[a].f), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ)], seen = new Set(); CL = [];
+  for (const i of order) {
+    const p = TS[i]; if (seen.has(i) || p[0] < -20 || p[0] > W + 20 || p[1] < -20 || p[1] > H + 20) continue; seen.add(i); const ids = [i], forced = i === sel || i === kbQ;
+    if (!forced) for (const j of order) { if (seen.has(j) || j === sel || j === kbQ) continue; if (Math.hypot(TS[j][0] - p[0], TS[j][1] - p[1]) < 21) { ids.push(j); seen.add(j); } }
+    const n = ids.length, ax = ids.reduce((a, j) => a + TS[j][0], 0) / n, ay = ids.reduce((a, j) => a + TS[j][1], 0) / n; let q = [n > 1 ? ax : p[0], n > 1 ? ay : p[1]];
+    for (let it = 0; it < 2; it++) if (NA > .2) for (const f of ORD) { const nb = NS[f]; if (!nb) continue; const dx = q[0] - nb[0], dy = q[1] - nb[1], d = Math.hypot(dx, dy); if (d < 24) { const m = (24 - d) / (d || 1); q = d < .01 ? [q[0] + 24, q[1]] : [q[0] + dx * m, q[1] + dy * m]; } }
+    CL.push({ lead: i, ids, p: q, t: n > 1 ? [ax, ay] : p, wx: ids.reduce((a, j) => a + Q[j].x, 0) / n, wy: ids.reduce((a, j) => a + Q[j].y, 0) / n });
   }
-  const seed = [], pos = {};
-  for (const i of vis) { const p = toScreen(Q[i].x, Q[i].y), q = [p[0] + OFF[i][0], p[1] + OFF[i][1]]; QS[i] = q; pos[i] = q; seed.push([q[0] - 6, q[1] - 14, q[0] + 6, q[1] + 6]); }
-  if (NA > .2) for (const f of ORD) { const n = NS[f]; if (n) seed.push([n[0] - 12, n[1] - 12, n[0] + 12, n[1] + 12]); }
-  const lab = labeller(seed), hotCards = [];
-  for (const i of vis) { const p = pos[i], t = toScreen(Q[i].x, Q[i].y), off = Math.hypot(OFF[i][0], OFF[i][1]);
-    if (off > 5) { ctx.strokeStyle = inkA(.9); ctx.lineWidth = .6; ctx.beginPath(); ctx.moveTo(t[0], t[1]); ctx.lineTo(p[0], p[1] - 3); ctx.stroke(); ctx.fillStyle = inkA(1.2); ctx.beginPath(); ctx.arc(t[0], t[1], 1.6, 0, 7); ctx.fill(); } }
-  for (const i of vis) {
-    const q = Q[i], p = pos[i], on = i === hoverQ || i === kbQ, hot = on || i === sel, A = QA[i]; anim(A, on, dt, loc(q.qq).length); const e = ease(hot ? Math.max(A.g, i === sel ? 1 : 0) : A.g);
-    if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); }
-    ctx.fillStyle = COL.acc; ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.textAlign = 'center'; ctx.fillText('?', p[0], p[1] + 5);
-    if (A.g > .01) hotCards.push([i, p]); else if (!hot) { ctx.font = 'italic 13px "IM Fell DW Pica", serif'; const nm = loc(q.nmm), r = p[0] < cx, c2 = [[p[0] + (r ? -11 : 11), p[1] - 7, r ? 'right' : 'left'], [p[0] + (r ? 11 : -11), p[1] - 7, r ? 'left' : 'right'], [p[0], p[1] - 20, 'center'], [p[0], p[1] + 22, 'center']]; for (const c of c2) if (lab(nm, c[0], c[1], 13, c[2])) break; }
+  const seed = CL.map(c => [c.p[0] - (c.ids.length > 1 ? 12 : 6), c.p[1] - 14, c.p[0] + (c.ids.length > 1 ? 16 : 6), c.p[1] + 6]);
+  for (const f of ORD) { const nb = NS[f]; if (nb) seed.push([nb[0] - 12, nb[1] - 12, nb[0] + 12, nb[1] + 12]); }
+  const lab = labeller(seed), cards = [];
+  for (const c of CL) { const off = Math.hypot(c.p[0] - c.t[0], c.p[1] - c.t[1]); if (off > 5) { ctx.strokeStyle = inkA(.9); ctx.lineWidth = .6; ctx.beginPath(); ctx.moveTo(c.t[0], c.t[1]); ctx.lineTo(c.p[0], c.p[1] - 3); ctx.stroke(); ctx.fillStyle = inkA(1.2); ctx.beginPath(); ctx.arc(c.t[0], c.t[1], 1.6, 0, 7); ctx.fill(); } }
+  for (const c of CL) {
+    const i = c.lead, p = c.p, q = Q[i], A = QA[i], multi = c.ids.length > 1; QS[i] = p;
+    const on = multi ? i === hoverC : (i === hoverQ || i === kbQ), hot = !multi && (on || i === sel); anim(A, on, dt, multi ? t('cluster_n', { n: c.ids.length }).length : loc(q.qq).length); const e = ease(hot ? Math.max(A.g, i === sel ? 1 : 0) : A.g);
+    ctx.fillStyle = COL.acc; ctx.textAlign = 'center';
+    if (multi) { ctx.strokeStyle = COL.acc; ctx.globalAlpha = .55; ctx.lineWidth = .7; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 12 + 2 * e, 0, 7); ctx.stroke(); ctx.globalAlpha = 1; ctx.font = `700 ${18 + 3 * e}px "IM Fell DW Pica", serif`; ctx.fillText('?', p[0] - 2, p[1] + 3); ctx.font = '700 10px "Archivo Narrow", sans-serif'; ctx.textAlign = 'left'; ctx.fillText(c.ids.length, p[0] + 5, p[1] - 6); }
+    else { if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); } ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.fillText('?', p[0], p[1] + 5); }
+    if (A.g > .01) cards.push([c, multi]); else if (!multi && !hot) { ctx.font = 'italic 13px "IM Fell DW Pica", serif'; const nm = loc(q.nmm), r = p[0] < cx, c2 = [[p[0] + (r ? -11 : 11), p[1] - 7, r ? 'right' : 'left'], [p[0] + (r ? 11 : -11), p[1] - 7, r ? 'left' : 'right'], [p[0], p[1] - 20, 'center'], [p[0], p[1] + 22, 'center']]; for (const z of c2) if (lab(nm, z[0], z[1], 13, z[2])) break; }
   }
-  // Les cartouches de survol passent par-dessus tout le reste.
-  for (const [i, p] of hotCards) card(loc(Q[i].qq), QA[i], p[0], p[1] - 3, 'italic 14px "IM Fell DW Pica", serif', 18, 250, p[0] < cx, COL.acc);
-  for (const f of ORD) if (FA[f].g > .01 && NS[f]) card(loc(F[f].nn).toUpperCase(), FA[f], NS[f][0], NS[f][1], '12px "Archivo Narrow", sans-serif', 16, 210, NS[f][0] < cx, `rgb(${COL.rgb})`);
+  // Les cartouches de survol passent par-dessus tout le reste ; ils s'ouvrent vers l'extérieur de la carte.
+  for (const [c, multi] of cards) card(multi ? t('cluster_n', { n: c.ids.length }) : loc(Q[c.lead].qq), QA[c.lead], c.p[0], c.p[1] - 3, 'italic 14px "IM Fell DW Pica", serif', 18, 250, c.p[0] >= cx, COL.acc);
+  for (const f of ORD) if (FA[f].g > .01 && NS[f]) card(loc(F[f].nn).toUpperCase(), FA[f], NS[f][0], NS[f][1], '12px "Archivo Narrow", sans-serif', 16, 210, NS[f][0] >= cx, `rgb(${COL.rgb})`);
 }
 new ResizeObserver(resize).observe(cv); addEventListener('resize', resize);
 if (document.fonts) document.fonts.ready.then(() => {});
