@@ -56,7 +56,8 @@
     "key_dot": "Point : un sujet de recherche réel.",
     "key_disc": "Cercle numéroté : une discipline (liste ci-dessous).",
     "key_q": "? : une question que personne n'a résolue. Un chiffre à côté : plusieurs questions groupées ; zoomer pour les séparer.",
-    "key_center": "Centre vide : peu d'articles relient ces disciplines. Le vide est agrandi pour la lisibilité."
+    "key_center": "Centre vide : peu d'articles relient ces disciplines. Le vide est agrandi pour la lisibilité.",
+    "key_dom": "Grands domaines : les quatre grandes familles de la science, écrites autour de la carte avec leur étendue. Domaines et disciplines suivent la classification d'OpenAlex."
   },
   "en": {
     "titre": "Unknownpedia",
@@ -115,6 +116,7 @@
     "key_dot": "Dot: a real research topic.",
     "key_disc": "Numbered circle: a discipline (list below).",
     "key_q": "?: a question nobody has solved. A number beside it: several questions grouped; zoom in to separate them.",
-    "key_center": "Empty centre: few papers link these disciplines. The gap is enlarged for legibility."
+    "key_center": "Empty centre: few papers link these disciplines. The gap is enlarged for legibility.",
+    "key_dom": "Broad domains: the four main families of science, written around the map with their extent. Domains and disciplines follow the OpenAlex classification."
   }
 }
