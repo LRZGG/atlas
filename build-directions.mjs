@@ -11,6 +11,10 @@ const fr = n => FR[n] || n;
 const sorted = s.topics.map(t => t.works).sort((a, b) => a - b), cap = sorted[Math.floor(sorted.length * 0.99)];
 // Choix éditorial : le dentaire (un domaine à part dans OpenAlex, 23 sujets) est rattaché à la médecine, dont il est une spécialité. Les 4 sous-disciplines dentaires restent telles quelles.
 for (const sf of Object.values(s.subfields)) if (sf.field === '35') sf.field = '27';
+// Autre choix éditorial : « Agricultural and Biological Sciences » regroupe deux mondes, on la sépare en deux disciplines (mêmes sous-disciplines, même domaine).
+s.fields['11b'] = { name: 'Agronomy and Food', domain: s.fields['11'].domain }; s.fields['11'].name = 'Ecology and Organismal Biology';
+for (const sf of Object.values(s.subfields)) if (sf.field === '11' && ['Agronomy and Crop Science', 'Food Science', 'Forestry', 'Horticulture', 'Soil Science'].includes(sf.name)) sf.field = '11b';
+Object.assign(FR, { 'Agronomy and Food': 'Agronomie et alimentation', 'Ecology and Organismal Biology': 'Écologie et biologie des organismes', 'Biochemistry, Genetics and Molecular Biology': 'Biochimie, génétique et biologie moléculaire' });
 delete s.fields['35']; s.fields['27'].name = 'Medicine and Dentistry'; FR['Medicine and Dentistry'] = 'Médecine et dentaire';
 const dIds = Object.keys(s.domains), fIds = Object.keys(s.fields).sort((a, b) => s.fields[a].domain.localeCompare(s.fields[b].domain)), sIds = Object.keys(s.subfields);
 const sIdx = Object.fromEntries(sIds.map((id, i) => [id, i])), fIdx = Object.fromEntries(fIds.map((id, i) => [id, i]));
