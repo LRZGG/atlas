@@ -255,12 +255,59 @@ body{background:#23282b;background-image:radial-gradient(#ffffff0a 1px,transpare
 .type::after{content:"▌";animation:bl 1s steps(2) infinite;color:#a11d23}.type.done::after{content:""}@keyframes bl{50%{opacity:0}}
 @media(max-width:720px){.folder{padding:40px 8px 16px}}` };
 
+// Trois nouvelles lectures de M1 (dossier tapé), plus adultes : rapport dactylographié, fiches de catalogue, dactylo en direct.
+const TYPED = `
+body{background:#2a2d30;color:#17181a;font:16px/1.75 "Courier Prime",monospace}
+.wrap{max-width:900px;margin:0 auto;padding:30px 14px 80px}
+.sheet{background:#f8f8f5;padding:56px 72px 52px;box-shadow:0 18px 44px -16px #000c;position:relative;margin-bottom:50px}
+.hd{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:#17181a}
+.eq{overflow:hidden;white-space:nowrap;letter-spacing:0;color:#17181a;line-height:1;margin:6px 0 24px;font-size:14px;user-select:none}
+h1{font:400 clamp(26px,4vw,38px)/1.25 "Courier Prime",monospace;font-weight:700;margin:0 0 4px;text-transform:uppercase;letter-spacing:.03em}
+.q{margin:0 0 18px;font-style:italic;color:#444}
+.row{display:flex;align-items:baseline;gap:0}.row i{flex:1;border-bottom:2px dotted #17181a88;margin:0 8px 5px}.row b{font-weight:400}.row .red{color:#b3262b;font-weight:700;text-transform:uppercase}
+.meta{margin-bottom:6px}
+h2{font:700 15px "Courier Prime",monospace;letter-spacing:.14em;text-transform:uppercase;margin:34px 0 0}
+h2+.eq{margin:2px 0 12px}
+p,li{margin:0 0 .7em}ul.l{list-style:none;padding:0;margin:0}ul.l li{padding-left:3.2ch;text-indent:-3.2ch}ul.l li::before{content:"— ";}
+.ig li{color:#b3262b}.ig li::after{content:" [non documenté]";font-size:.8em;letter-spacing:.06em;text-transform:uppercase}
+.fig{margin:22px 0 0}.fig img{width:100%;max-height:380px;object-fit:cover;filter:grayscale(1) contrast(1.08);opacity:.92}.fig .cap{font-size:12.5px;margin-top:6px}.fig .cap::before{content:"Pièce jointe n°1. ";font-weight:700}
+.prov{margin-top:34px;border-top:2px dotted #17181a88;padding-top:10px;font-size:12.5px;line-height:1.55;color:#333}
+.card{background:#f8f8f5;padding:12px 14px;box-shadow:0 10px 24px -14px #000}.card h3{font:700 16px/1.25 "Courier Prime";text-transform:uppercase;margin:4px 0}.card .s{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#b3262b}.card p{font-size:13.5px;line-height:1.5}
+h2.cat{color:#d9dcdd;margin-top:0}.eq.cat{color:#d9dcdd}
+@media(max-width:720px){.sheet{padding:30px 20px}.hd{flex-direction:column;gap:2px}}`;
+S.m1b = { univ: 'mystere', nom: 'Rapport tapé', pitch: "Un rapport dactylographié sans folklore : papier blanc plat, titres soulignés de « = » tapés, repères avec points de conduite, ce qu'on ignore tapé au ruban rouge. Aucun tampon, aucun gadget.", risque: "Le plus adulte et le plus lisible. Moins de personnalité visuelle que M1 ; tout repose sur la typographie et le rythme.", css: TYPED };
+S.m1d = { univ: 'mystere', nom: 'Dactylo en direct', pitch: "Le même rapport, mais tapé sous vos yeux, lettre à lettre, avec un curseur ; un bouton « Passer » affiche tout d'un coup. L'effet « machine à écrire » devient le geste signature, sans décor.", risque: "Mémorable et fidèle à l'idée d'enquête qu'on rédige. À borner : sans JavaScript ou avec « moins d'animations », tout s'affiche immédiatement.", css: TYPED + `
+.skip{position:fixed;right:18px;bottom:18px;z-index:9;font:13px "Archivo Narrow",sans-serif;letter-spacing:.1em;text-transform:uppercase;background:#f8f8f5;color:#17181a;border:1px solid #17181a;padding:8px 14px;cursor:pointer}
+.sheet .o{opacity:0}.sheet .lastc::after{content:"";display:inline-block;width:.6em;height:1.05em;background:#b3262b;vertical-align:-.15em;margin-left:1px;animation:bl .6s steps(2) infinite}@keyframes bl{50%{opacity:0}}
+.roller{height:22px;background:linear-gradient(180deg,#0c0d0e,#3a3d40 40%,#0c0d0e);position:relative;margin:-56px -72px 34px;border-radius:2px 2px 0 0}
+.roller::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:6px;background:repeating-linear-gradient(90deg,#17181a 0 1px,#0000 1px 10px)}
+@media(max-width:720px){.roller{margin:-30px -20px 24px}}` };
+S.m1c = { univ: 'mystere', nom: 'Fiches de catalogue', pitch: "Des fiches cartonnées tapées à la machine, comme un fichier de bibliothèque : une fiche par rubrique, filet rouge sous l'en-tête, onglet de repère, trou de tringle. Le dossier devient un fichier qu'on feuillette.", risque: "Très « archives » et très lisible par blocs. Le cartonnage crème est classique : le fond vert sombre et le filet rouge doivent faire le caractère.", css: `
+body{background:#183029;background-image:radial-gradient(#ffffff0a 1px,transparent 1.5px);background-size:6px 6px;color:#1a1814;font:15.5px/1.65 "Courier Prime",monospace}
+.wrap{max-width:820px;margin:0 auto;padding:40px 14px 80px}
+.drawer{display:grid;gap:34px}
+.ic{background:#efe9d6;border:1px solid #cdc4a6;box-shadow:0 12px 26px -14px #000d;padding:18px 36px 54px;position:relative}.ic:nth-child(odd){transform:rotate(.15deg)}.ic:nth-child(even){transform:rotate(-.15deg)}
+.ic .top{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;padding:0 0 8px;border-bottom:2px solid #b3262b;margin:0 0 14px}
+.ic::after{content:"";position:absolute;left:50%;bottom:14px;width:15px;height:15px;margin-left:-7px;border-radius:50%;background:#183029;box-shadow:inset 0 2px 3px #000a}
+.ic .tab{position:absolute;top:-23px;left:34px;background:#efe9d6;border:1px solid #cdc4a6;border-bottom:0;padding:3px 16px 2px;font:700 11.5px "Archivo Narrow",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#7a1f23;border-radius:4px 4px 0 0}
+h1{font:700 clamp(24px,3.6vw,34px)/1.2 "Courier Prime",monospace;text-transform:uppercase;margin:0 0 2px}
+.q{margin:0;font-style:italic}
+.row{display:flex}.row i{flex:1;border-bottom:2px dotted #1a181488;margin:0 8px 5px}.row .red{color:#b3262b;font-weight:700;text-transform:uppercase}
+p,li{margin:0 0 .6em}ul.l{list-style:none;padding:0;margin:0}ul.l li{padding-left:3.2ch;text-indent:-3.2ch}ul.l li::before{content:"— "}
+.ig li{color:#b3262b}.ig li::after{content:" [non documenté]";font-size:.8em;letter-spacing:.06em;text-transform:uppercase}
+.fig img{width:100%;max-height:340px;object-fit:cover;filter:grayscale(1) contrast(1.08)}.fig .cap{font-size:12.5px;margin-top:6px}
+.prov{font-size:12.5px;line-height:1.5}
+.card{background:#efe9d6;padding:12px 14px;border:1px solid #cdc4a6;box-shadow:0 10px 24px -14px #000}.card h3{font:700 16px/1.2 "Courier Prime";text-transform:uppercase;margin:4px 0}.card .s{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#b3262b}.card p{font-size:13.5px;line-height:1.5}
+h2.cat{color:#e4dcc2;font:700 15px "Courier Prime";letter-spacing:.14em;text-transform:uppercase;margin:40px 0 12px}
+@media(max-width:720px){.ic{padding:16px 18px 46px}.ic .top{flex-direction:column;gap:2px}}` };
+
 const FILTERS = `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <filter id="duo" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues="0.039 0.9"/><feFuncG type="table" tableValues="0.165 0.949"/><feFuncB type="table" tableValues="0.302 0.984"/></feComponentTransfer></filter>
 <filter id="wood" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="discrete" tableValues="0 0 0 0 1 1 1"/><feFuncG type="discrete" tableValues="0 0 0 0 1 1 1"/><feFuncB type="discrete" tableValues="0 0 0 0 1 1 1"/></feComponentTransfer></filter>
 <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/></filter></defs></svg>`;
 
-const ks = u => Object.keys(S).filter(k => S[k].univ === u);
+const HIDE = new Set(['m6', 'f4', 'f4n']); // écartés après revue (M6 jugé raté ; colportage : blanc et nuit retenus)
+const ks = u => Object.keys(S).filter(k => S[k].univ === u && !HIDE.has(k));
 const nav = cur => `<nav aria-label="Styles"><i>Mystères</i>${ks('mystere').map(k => `<a href="${k}.html"${k === cur ? ' aria-current="page"' : ''}>${k.toUpperCase()} ${S[k].nom}</a>`).join('')}<i>Folklore</i>${ks('folklore').map(k => `<a href="${k}.html"${k === cur ? ' aria-current="page"' : ''}>${k.toUpperCase()} ${S[k].nom}</a>`).join('')}</nav>`;
 
 function figure(e) { if (!e.imgfile) return ''; const m = e.imgmeta || {}; return `<figure class="fig"><div class="ph"><img src="${e.imgfile}" alt="${esc(e.titre)}" loading="lazy"></div><figcaption class="cap">${esc(clean(m.author) || clean(m.credit))} · ${esc(m.lic)} · <a href="${esc(m.page)}" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption></figure>`; }
@@ -274,28 +321,43 @@ function dossier(e, k) {
   const mast = m4 ? `<div class="mast"><span>La Gazette de l'inconnu</span><span>Journal fictif, maquette</span><span>Édition de démonstration</span></div>` : '';
   const flow = k === 'f1' || k.startsWith('f4');
   const body = m4 ? `<div class="body">${figure(e)}<p>${ex}</p>${facts}${sait}</div>` : flow ? `${figure(e)}<div class="body"><p>${ex}</p></div>${facts}${sait}` : `${figure(e)}<section class="body"><h2>Résumé</h2><p>${ex}</p></section>${facts}${sait}`;
+  if (k === 'm1b' || k === 'm1d' || k === 'm1c') {
+    const f = Object.fromEntries(e.facts), tw = k === 'm1d' ? ' tw' : '', R = ['I', 'II', 'III', 'IV', 'V'];
+    const row = (a, b, red) => `<div class="row"><span>${esc(a)}</span><i></i><b class="${red ? 'red' : ''}">${esc(b)}</b></div>`;
+    const eq = '<div class="eq" aria-hidden="true">' + '='.repeat(120) + '</div>';
+    const secs = [['Résumé', `<p class="${tw.trim()}">${ex}</p>`]];
+    if (e.sait) { secs.push(["Ce qu'on sait", `<ul class="l">${e.sait.map(x => `<li class="${tw.trim()}">${esc(x)}</li>`).join('')}</ul>`]); secs.push(["Ce qu'on ignore", `<ul class="l ig">${e.ignore.map(x => `<li class="${tw.trim()}">${esc(x)}</li>`).join('')}</ul>`]); } else secs.push(["Ce qu'on sait, ce qu'on ignore", '<p>Fiche à rédiger. Cette maquette ne montre ici que le résumé public.</p>']);
+    const meta = [row('Statut', e.st[1], true), row('Date de référence', f['Date de référence'] || 'non établie'), row('Lieu', f['Lieu'] || 'non établi'), row('Nature', f['Nature'] || 'non précisée'), row('Identifiant Wikidata', e.qid), row('Rédaction', 'brouillon IA, non relu')].join('');
+    const fig = e.imgfile ? figure(e) : '';
+    if (k === 'm1c') {
+      const card = (tab, inner, top) => `<section class="ic"><span class="tab">${tab}</span><div class="top"><span>UNK-${esc(e.id.toUpperCase())}</span><span>${esc(top || e.titre)}</span></div>${inner}</section>`;
+      return `<div class="drawer"><section class="ic" id="${e.id}"><div class="top"><span>Unknownpedia · fichier documentaire</span><span>Fiche 1</span></div><h1>${esc(e.titre)}</h1><p class="q">${esc(e.q)}</p><div style="margin-top:12px">${meta}</div></section>${secs.map(([t, h]) => card(t, h)).join('')}${fig ? card('Pièce jointe', fig) : ''}${card('Sources', prov.replace('class="prov"', 'class="prov"'))}</div>`;
+    }
+    return `<article class="sheet" id="${e.id}">${k === 'm1d' ? '<div class="roller" aria-hidden="true"></div>' : ''}<div class="hd"><span>Unknownpedia · archives documentaires</span><span>Dossier UNK-${esc(e.id.toUpperCase())} · feuillet 1/1</span></div>${eq}<h1${k === 'm1b' ? ` class="type" data-t="${esc(e.titre)}"` : ''}>${esc(e.titre)}</h1><p class="q${tw}">Objet : ${esc(e.q)}</p><div class="meta">${meta}</div>${fig}${secs.map(([t, h], i) => `<h2>${R[i]}. ${esc(t)}</h2>${eq.replace('class="eq"', 'class="eq" style="font-size:12px"')}${h}`).join('')}${prov}</article>`;
+  }
   if (k === 'm5' || k === 'm6') { const f = Object.fromEntries(e.facts), six = k === 'm6'; const art = `<article class="sheet" id="${e.id}"><div class="agency"><span>Bureau d'archives d'Unknownpedia · maquette</span><span>Dossier UNK-${esc(e.id.toUpperCase())}</span></div><div class="form"><div class="c6"><small>Objet</small><h1${six ? ` class="type" data-t="${esc(e.titre)}"` : ''}>${esc(e.titre)}</h1><p class="q">${esc(e.q)}</p></div><div class="c2"><small>Date de référence</small><b>${esc(f['Date de référence'] || 'non établie')}</b></div><div class="c2"><small>Lieu</small><b>${esc(f['Lieu'] || 'non établi')}</b></div><div class="c2"><small>Identifiant Wikidata</small><b>${e.qid}</b></div><div class="c4"><small>Rédaction</small><b>Brouillon IA · non relu par un spécialiste</b></div><div class="c2 st"><small>Statut</small><b>${esc(e.st[1])}</b></div></div>${figure(e)}<section class="body"><h2>Résumé</h2><p>${ex}</p></section>${sait}${prov}</article>`; return six ? `<div class="folder"><span class="tab">Dossier UNK-${esc(e.id.toUpperCase())}</span>${art}</div>` : art; }
   return `<article class="sheet" id="${e.id}">${mast}${head}${body}${prov}</article>`;
 }
 function cards(list) { return `<ul class="cards">${list.map(e => `<li><a class="card" href="#${e.id}"><span class="s">${esc(e.st[1])}</span><h3>${esc(e.titre)}</h3><p>${esc(e.q || e.desc)}</p></a></li>`).join('')}</ul>`; }
 
 const SCRIPT = `<script>(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var el=document.querySelector('h1.type');if(!el||!document.body.classList.contains('typing'))return;var t=el.dataset.t;el.textContent='';var i=0;(function n(){el.textContent=t.slice(0,++i);if(i<t.length)setTimeout(n,55);else el.classList.add('done')})()})()</script>`;
+const LIVE = `<script>(function(){var b=document.body;if(!b.classList.contains('live')||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var els=[].slice.call(document.querySelectorAll('.tw')),spans=[];els.forEach(function(el){var t=el.textContent;el.innerHTML='';for(var i=0;i<t.length;i++){var s=document.createElement('span');s.className='o';s.textContent=t[i];el.appendChild(s);spans.push(s)}});var i=0,last=null,done=false,btn=document.createElement('button');btn.className='skip';btn.type='button';btn.textContent='Passer';document.body.appendChild(btn);function end(){done=true;spans.forEach(function(s){s.className=''});if(last)last.classList.remove('lastc');btn.remove()}btn.onclick=end;(function step(){if(done)return;var n=3;while(n--&&i<spans.length){if(last)last.classList.remove('lastc');var s=spans[i++];s.className='lastc';last=s}if(last){var r=last.getBoundingClientRect();if(r.bottom>innerHeight-60)scrollBy(0,r.bottom-innerHeight+120)}if(i<spans.length)setTimeout(step,24);else end()})()})()</script>`;
 
 function page(k) {
   const s = S[k], feat = byId[s.univ === 'mystere' ? 'wow' : 'nessie'], others = entries.filter(e => e.univ === s.univ && e.id !== feat.id);
   const title = `${s.nom} · maquette ${s.univ === 'mystere' ? 'Mystères' : 'Folklore'}`;
   return `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>${esc(title)}</title>
 <style>${FONTS}${BASE}${s.css}</style>${FILTERS}
-<body class="${k === 'm1' || k === 'm6' ? 'typing' : ''}"><div class="maq"><b>Maquette</b><span>${esc(title)} · données réelles, contenu de démonstration</span><a href="index.html">Tous les styles</a>${nav(k)}</div>
-<div class="wrap"><main>${dossier(feat, k)}<h2 class="cat">Autres dossiers</h2>${cards(others)}</main></div>${SCRIPT}`;
+<body class="${k === 'm1' || k === 'm6' || k === 'm1b' ? 'typing' : k === 'm1d' ? 'live' : ''}"><div class="maq"><b>Maquette</b><span>${esc(title)} · données réelles, contenu de démonstration</span><a href="index.html">Tous les styles</a>${nav(k)}</div>
+<div class="wrap"><main>${dossier(feat, k)}<h2 class="cat">Autres dossiers</h2>${cards(others)}</main></div>${SCRIPT}${LIVE}`;
 }
-for (const k of Object.keys(S)) writeFileSync(`docs/labo/${k}.html`, page(k));
+for (const k of Object.keys(S)) if (!HIDE.has(k)) writeFileSync(`docs/labo/${k}.html`, page(k));
 
 // Page d'accueil du labo : les huit styles, leur résumé et leur risque.
 const idx = `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Labo des styles · Unknownpedia</title>
 <style>${FONTS}${BASE}body{background:#f4f3ef;color:#15181d;font:16px/1.5 "Archivo Narrow",sans-serif}.wrap{max-width:1100px;margin:0 auto;padding:30px 18px 70px}h1{font:400 34px/1.1 "IM Fell DW Pica",serif;margin:.2em 0}h2{font:400 22px "IM Fell DW Pica",serif;margin:34px 0 10px;border-bottom:1px solid #15181d;padding-bottom:4px}.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}.t{border:1px solid #15181d;background:#fff;display:flex;flex-direction:column;text-decoration:none}.t img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border-bottom:1px solid #15181d;background:#ddd}.t div{padding:10px 12px}.t b{font:400 20px "IM Fell DW Pica",serif;display:block}.t small{display:block;margin-top:6px;color:#555}.t span{color:#b3122f;font-size:12px;letter-spacing:.1em;text-transform:uppercase}</style>
 <div class="maq"><b>Maquette</b><span>Labo des styles pour les deux nouveaux univers · hors site, non indexé</span></div>
 <div class="wrap"><h1>Labo des styles</h1><p>Huit directions pour « Mystères » et « Folklore », sur de vraies données publiques (Wikipédia, Wikidata, Wikimedia Commons). Le contenu est de démonstration : statuts non validés, brouillons IA, aucune relecture. La planche de brevet (science) n'est pas touchée.</p>
-${['mystere', 'folklore'].map(u => `<h2>${u === 'mystere' ? 'Mystères et enquêtes documentées' : 'Mythes et folklore'}</h2><div class="g">${Object.entries(S).filter(([, s]) => s.univ === u).map(([k, s]) => `<a class="t" href="${k}.html"><img src="vignettes/${k}.png" alt="" loading="lazy" onerror="this.style.display='none'"><div><span>${k.toUpperCase()}</span><b>${esc(s.nom)}</b>${esc(s.pitch)}<small>Risque : ${esc(s.risque)}</small></div></a>`).join('')}</div>`).join('')}</div>`;
+${['mystere', 'folklore'].map(u => `<h2>${u === 'mystere' ? 'Mystères et enquêtes documentées' : 'Mythes et folklore'}</h2><div class="g">${Object.entries(S).filter(([k, s]) => s.univ === u && !HIDE.has(k)).map(([k, s]) => `<a class="t" href="${k}.html"><img src="vignettes/${k}.png" alt="" loading="lazy" onerror="this.style.display='none'"><div><span>${k.toUpperCase()}</span><b>${esc(s.nom)}</b>${esc(s.pitch)}<small>Risque : ${esc(s.risque)}</small></div></a>`).join('')}</div>`).join('')}</div>`;
 writeFileSync('docs/labo/index.html', idx);
 console.log('labo : 8 styles + index');

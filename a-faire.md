@@ -65,3 +65,4 @@ Il manque un twist. Pistes retenues pour y réfléchir :
 
 - [~] **Labo des styles** (`docs/labo/`, non indexé, `node fetch-labo.mjs` puis `node build-labo.mjs`) : 8 maquettes sur de vraies données (Wikipédia, Wikidata, Commons). Mystères : dossier tapé, listing, cyanotype, coupure de presse. Folklore : bestiaire, estampe, cabinet de curiosités, bibliothèque bleue. Contenu de démonstration : statuts non validés, brouillons IA.
 - [ ] Choisir un style par univers, puis 3 à 5 dossiers de test. Voir la critique dans la conversation du 17 novembre : le folklore reste hors de la carte mesurée, pas de témoignages d'utilisateurs, la barre de statut est identique partout.
+- [x] Choix du 17 novembre : folklore = **colportage blanc (F4W) et nuit (F4K)** ; mystères : M6 (chemise) écarté, M1 repris en trois versions plus adultes (M1B rapport tapé, M1C fiches de catalogue, M1D dactylo en direct).
