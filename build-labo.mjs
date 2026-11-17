@@ -301,16 +301,56 @@ p,li{margin:0 0 .6em}ul.l{list-style:none;padding:0;margin:0}ul.l li{padding-lef
 h2.cat{color:#e4dcc2;font:700 15px "Courier Prime";letter-spacing:.14em;text-transform:uppercase;margin:40px 0 12px}
 @media(max-width:720px){.ic{padding:16px 18px 46px}.ic .top{flex-direction:column;gap:2px}}` };
 
+// M1R : le premier dossier tapé (M1), mais avec les traces d'un vrai dossier : lettres irrégulières, faute rayée, agrafe, plis, pile de feuilles, photo scotchée, tampon d'encre usé, tampon de date, numéro de pièce.
+S.m1r = { univ: 'mystere', nom: 'Dossier tapé, réaliste', pitch: "M1 avec les détails d'un vrai dossier dactylographié : chaque lettre légèrement différente, une faute rayée au X, agrafe, plis du papier, pile de feuilles, photo scotchée, tampon d'encre usé, tampon de date de vérification.", risque: "Le plus crédible et le plus tactile. Chaque détail doit rester un signal (date de vérification, statut, pièce jointe), jamais du décor gratuit ; un excès de « vieux papier » tue la lisibilité.", css: `
+body{background:#1b2829;background-image:radial-gradient(#ffffff0c 1px,transparent 1.6px);background-size:5px 5px;color:#1d1c1b;font:16.5px/1.7 "Courier Prime",monospace}
+.wrap{max-width:900px;margin:0 auto;padding:30px 14px 80px}
+.pile{position:relative;margin:14px 0 52px}
+.pile::before,.pile::after{content:"";position:absolute;inset:0;background:#e6e3da;box-shadow:0 8px 20px -10px #000c}
+.pile::before{transform:rotate(1.3deg) translate(8px,6px)}.pile::after{transform:rotate(-.7deg) translate(-5px,3px);background:#ebe8df}
+.sheet.r{position:relative;z-index:1;background:#f1efe7;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .25 0 0 0 0 .2 0 0 0 0 .1 0 0 0 .13 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(ellipse at 50% 40%,#f6f4ec 0,#efeadb 70%,#e2dcc8 100%);padding:60px 64px 54px 96px;transform:rotate(-.3deg);box-shadow:0 18px 40px -14px #000d}
+.sheet.r::before{content:"";position:absolute;left:30px;top:0;bottom:0;width:22px;background:radial-gradient(circle,#1b2829 7px,#0006 8px,#0000 9px) 0 150px/22px 330px repeat-y}
+.crease{position:absolute;left:0;right:0;height:14px;pointer-events:none;background:linear-gradient(180deg,#0000,#00000012 45%,#ffffff55 55%,#0000)}
+.crease.c1{top:33%}.crease.c2{top:66%}
+.staple{position:absolute;left:58px;top:20px;width:34px;height:8px;border-top:2px solid #8c9092;border-bottom:2px solid #5d6163;border-radius:1px;transform:rotate(-14deg);box-shadow:0 1px 1px #0005}
+.hd{display:flex;justify-content:space-between;gap:14px;font:12.5px "Special Elite",monospace;letter-spacing:.12em;text-transform:uppercase}
+.memo{font:700 18px "Special Elite",monospace;letter-spacing:.3em;text-align:center;margin:20px 0 4px}
+.ul{overflow:hidden;white-space:nowrap;line-height:1;color:#1d1c1b;margin:0 0 14px;user-select:none}
+.blk{margin:0 0 14px}.blk div{display:grid;grid-template-columns:22ch 1fr;gap:0 4px;margin:0}.blk b{font-weight:400;text-transform:uppercase;letter-spacing:.04em}
+.st2{position:relative}.st2 .t{color:#a11d23;text-transform:uppercase;font-weight:700}
+.stamp1{position:absolute;right:-8px;top:-14px;transform:rotate(-6deg);border:3px double #a11d23;color:#a11d23;font:15px/1.15 "Special Elite",monospace;text-transform:uppercase;padding:9px 12px 7px;letter-spacing:.09em;filter:url(#ink);opacity:.9;text-align:center;max-width:210px;mix-blend-mode:multiply}
+.stamp2{position:absolute;right:56px;bottom:118px;transform:rotate(3deg);border:2px solid #23264a;color:#23264a;font:12px/1.25 "Special Elite",monospace;text-transform:uppercase;padding:5px 9px 3px;letter-spacing:.1em;text-align:center;filter:url(#ink);opacity:.85;mix-blend-mode:multiply}.stamp2 b{display:block;font-size:15px;letter-spacing:.06em}
+h2{font:700 15px "Special Elite",monospace;letter-spacing:.14em;text-transform:uppercase;margin:30px 0 8px}
+p,li{margin:0 0 .75em;text-shadow:0 0 .7px #1d1c1b88,.35px 0 0 #1d1c1b33}ul.l{list-style:none;padding:0;margin:0}ul.l li{padding-left:3.4ch;text-indent:-3.4ch}
+.num{display:inline-block;width:3.4ch;text-indent:0}
+.ig li{color:#8f1d22}
+.w{white-space:nowrap}.w span{text-indent:0;display:inline-block;transform:translateY(var(--y)) rotate(var(--r));opacity:var(--o)}
+.miss{position:relative;display:inline-block;white-space:nowrap}.miss i{position:absolute;left:0;right:0;top:0;bottom:0;font-style:normal;overflow:hidden;letter-spacing:0;line-height:1.7;color:#1d1c1b;opacity:.85}
+.photo{position:relative;width:78%;margin:26px 0 8px 4%;transform:rotate(-1.2deg);background:#faf9f4;padding:11px 11px 12px;box-shadow:0 8px 18px -8px #000b,0 0 0 1px #0002}
+.photo img{width:100%;max-height:360px;object-fit:cover;filter:grayscale(1) contrast(1.08)}
+.tape{position:absolute;width:92px;height:24px;background:rgba(222,208,160,.6);box-shadow:0 1px 2px #0003;top:-12px;clip-path:polygon(0 8%,3% 0,6% 10%,9% 0,12% 8%,100% 0,97% 14%,100% 30%,97% 46%,100% 62%,97% 78%,100% 100%,0 92%,3% 76%,0 60%,3% 44%,0 28%)}
+.tape.a{left:-30px;transform:rotate(-38deg)}.tape.b{right:-30px;transform:rotate(36deg)}
+.label{width:78%;margin:0 0 20px 4%;background:#faf9f4;padding:4px 10px 5px;font:12.5px "Courier Prime",monospace;box-shadow:0 3px 8px -4px #000a;transform:rotate(.5deg)}
+.foot{display:flex;justify-content:space-between;gap:14px;margin-top:36px;padding-top:6px;border-top:1px solid #1d1c1b66;font-size:12px;letter-spacing:.06em}
+.prov{font-size:12.5px;line-height:1.5;margin-top:22px;border-top:2px dotted #1d1c1b77;padding-top:8px}
+.card{background:#ebe8df;padding:12px 14px;box-shadow:0 10px 22px -12px #000}.card h3{font:700 16px/1.2 "Special Elite";text-transform:uppercase;margin:4px 0}.card .s{font:11.5px "Special Elite";letter-spacing:.1em;text-transform:uppercase;color:#a11d23}.card p{font-size:13.5px;line-height:1.45}
+h2.cat{color:#cfdcdb;font:700 15px "Special Elite";letter-spacing:.14em;margin-top:0}
+@media(max-width:720px){.sheet.r{padding:34px 18px 38px 48px}.sheet.r::before{left:12px;width:16px;background-size:16px 330px}.blk div{grid-template-columns:1fr}.stamp1{position:static;display:inline-block;margin:6px 0 10px;transform:rotate(-3deg)}.photo,.label{width:96%;margin-left:2%}.stamp2{position:static;display:inline-block;margin-top:12px}.hd{flex-direction:column;gap:2px}.pile::before,.pile::after{display:none}}` };
+
 const FILTERS = `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <filter id="duo" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues="0.039 0.9"/><feFuncG type="table" tableValues="0.165 0.949"/><feFuncB type="table" tableValues="0.302 0.984"/></feComponentTransfer></filter>
 <filter id="wood" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="discrete" tableValues="0 0 0 0 1 1 1"/><feFuncG type="discrete" tableValues="0 0 0 0 1 1 1"/><feFuncB type="discrete" tableValues="0 0 0 0 1 1 1"/></feComponentTransfer></filter>
+<filter id="ink"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.3 1.45" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>
 <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/></filter></defs></svg>`;
 
-const HIDE = new Set(['m6', 'f4', 'f4n']); // écartés après revue (M6 jugé raté ; colportage : blanc et nuit retenus)
-const ks = u => Object.keys(S).filter(k => S[k].univ === u && !HIDE.has(k));
+const HIDE = new Set(['m6', 'f4', 'f4n', 'm1b', 'm1c', 'm1d']); // écartés après revue (M6 jugé raté ; colportage : blanc et nuit retenus)
+const ks = u => Object.keys(S).filter(k => S[k].univ === u && !HIDE.has(k)).sort((a, b) => (b === 'm1r') - (a === 'm1r'));
 const nav = cur => `<nav aria-label="Styles"><i>Mystères</i>${ks('mystere').map(k => `<a href="${k}.html"${k === cur ? ' aria-current="page"' : ''}>${k.toUpperCase()} ${S[k].nom}</a>`).join('')}<i>Folklore</i>${ks('folklore').map(k => `<a href="${k}.html"${k === cur ? ' aria-current="page"' : ''}>${k.toUpperCase()} ${S[k].nom}</a>`).join('')}</nav>`;
 
 function figure(e) { if (!e.imgfile) return ''; const m = e.imgmeta || {}; return `<figure class="fig"><div class="ph"><img src="${e.imgfile}" alt="${esc(e.titre)}" loading="lazy"></div><figcaption class="cap">${esc(clean(m.author) || clean(m.credit))} · ${esc(m.lic)} · <a href="${esc(m.page)}" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption></figure>`; }
+function rng(seed) { let h = 2166136261; for (const c of seed) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return () => { h += 0x6D2B79F5; let t = Math.imul(h ^ (h >>> 15), 1 | h); t ^= t + Math.imul(t ^ (t >>> 7), 61 | t); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+// Chaque lettre est frappée un peu différemment (hauteur, angle, force de frappe), de façon déterministe.
+function jit(text, seed) { const R = rng(seed); return String(text).split(' ').map(w => `<span class="w">${[...w].map(c => { const y = ((R() - .5) * 1.3).toFixed(2), r = ((R() - .5) * 1.6).toFixed(2), o = (.8 + R() * .2).toFixed(2); return `<span style="--y:${y}px;--r:${r}deg;--o:${o}">${esc(c)}</span>`; }).join('')}</span>`).join(' '); }
 function dossier(e, k) {
   const m4 = k === 'm4', ex = esc(e.extrait || '');
   const ig = (k === 'm5' || k === 'm6') ? ' class="ig"' : ' class="l"';
@@ -321,6 +361,20 @@ function dossier(e, k) {
   const mast = m4 ? `<div class="mast"><span>La Gazette de l'inconnu</span><span>Journal fictif, maquette</span><span>Édition de démonstration</span></div>` : '';
   const flow = k === 'f1' || k.startsWith('f4');
   const body = m4 ? `<div class="body">${figure(e)}<p>${ex}</p>${facts}${sait}</div>` : flow ? `${figure(e)}<div class="body"><p>${ex}</p></div>${facts}${sait}` : `${figure(e)}<section class="body"><h2>Résumé</h2><p>${ex}</p></section>${facts}${sait}`;
+  if (k === 'm1r') {
+    const f = Object.fromEntries(e.facts), J = (t, n) => jit(t, e.id + n), up = t => t.toUpperCase();
+    const ul = '<div class="ul" aria-hidden="true">' + '_'.repeat(110) + '</div>';
+    const num = i => `<span class="num">${i}.</span>`;
+    const fig = e.imgfile ? `<figure class="photo"><span class="tape a"></span><span class="tape b"></span><img src="${e.imgfile}" alt="${esc(e.titre)}"></figure><div class="label">${esc(clean(e.imgmeta?.author) || clean(e.imgmeta?.credit))} · ${esc(e.imgmeta?.lic)} · <a href="${esc(e.imgmeta?.page)}" target="_blank" rel="noopener">Commons</a></div>` : '';
+    const sait = e.sait ? `<h2>3. Faits établis</h2><ul class="l">${e.sait.map((x, i) => `<li>${num('3.' + (i + 1))}${J(x, 's' + i)}</li>`).join('')}</ul><h2>4. Points non résolus</h2><ul class="l ig">${e.ignore.map((x, i) => `<li>${num('4.' + (i + 1))}${J(x + ' [NON DOCUMENTÉ]', 'i' + i)}</li>`).join('')}</ul>` : `<h2>3. Faits établis, points non résolus</h2><p>Fiche à rédiger.</p>`;
+    return `<div class="pile"><article class="sheet r" id="${e.id}"><i class="staple" aria-hidden="true"></i><i class="crease c1"></i><i class="crease c2"></i>
+<div class="hd"><span>Unknownpedia · archives documentaires</span><span>Feuillet 1 de 1</span></div><div class="memo">NOTE DE DOSSIER</div>${ul}
+<div class="blk"><div><b>Dossier n° :</b><span>${J('UNK-' + e.id.toUpperCase(), 'a')}</span></div><div><b>Objet :</b><span>${J(up(e.titre) + ' — ' + e.q, 'b')}</span></div><div><b>Date de référence :</b><span>${J(f['Date de référence'] || 'non établie', 'c')}</span></div><div><b>Lieu :</b><span>${J(f['Lieu'] || 'non établi', 'd')}</span></div><div class="st2"><b>Statut :</b><span class="t">${J(up(e.st[1]), 'e')}</span><span class="stamp1">${esc(e.st[1])}</span></div><div><b>Rédaction :</b><span><span class="miss" aria-hidden="true">Brouillion<i>xxxxxxxxxx</i></span> ${J('brouillon IA, non relu', 'f')}</span></div></div>${ul}
+<h2>1. Résumé</h2><p>${J(e.extrait || '', 'r')}</p>${fig}<h2>2. Source du résumé</h2><p>${J('Wikipédia (' + (e.extraitLang === 'fr' ? 'fr' : 'en') + '), licence CC BY-SA. Repères : Wikidata ' + e.qid + ', CC0.', 'g')}</p>${sait}
+<div class="stamp2" aria-label="Dernière vérification">Vérifié (IA)<b>17 nov. 2026</b></div>
+<div class="foot"><span>UNK-${esc(e.id.toUpperCase())}-0001</span><span>Maquette · contenu de démonstration</span></div>
+<p class="prov">Brouillon rédigé avec une IA, rien n'a été relu par un spécialiste. <a href="${esc(e.wiki)}" target="_blank" rel="noopener">Wikipédia</a> · <a href="https://www.wikidata.org/wiki/${e.qid}" target="_blank" rel="noopener">Wikidata</a> · Image : Wikimedia Commons.</p></article></div>`;
+  }
   if (k === 'm1b' || k === 'm1d' || k === 'm1c') {
     const f = Object.fromEntries(e.facts), tw = k === 'm1d' ? ' tw' : '', R = ['I', 'II', 'III', 'IV', 'V'];
     const row = (a, b, red) => `<div class="row"><span>${esc(a)}</span><i></i><b class="${red ? 'red' : ''}">${esc(b)}</b></div>`;
@@ -358,6 +412,6 @@ const idx = `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="vi
 <style>${FONTS}${BASE}body{background:#f4f3ef;color:#15181d;font:16px/1.5 "Archivo Narrow",sans-serif}.wrap{max-width:1100px;margin:0 auto;padding:30px 18px 70px}h1{font:400 34px/1.1 "IM Fell DW Pica",serif;margin:.2em 0}h2{font:400 22px "IM Fell DW Pica",serif;margin:34px 0 10px;border-bottom:1px solid #15181d;padding-bottom:4px}.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}.t{border:1px solid #15181d;background:#fff;display:flex;flex-direction:column;text-decoration:none}.t img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border-bottom:1px solid #15181d;background:#ddd}.t div{padding:10px 12px}.t b{font:400 20px "IM Fell DW Pica",serif;display:block}.t small{display:block;margin-top:6px;color:#555}.t span{color:#b3122f;font-size:12px;letter-spacing:.1em;text-transform:uppercase}</style>
 <div class="maq"><b>Maquette</b><span>Labo des styles pour les deux nouveaux univers · hors site, non indexé</span></div>
 <div class="wrap"><h1>Labo des styles</h1><p>Huit directions pour « Mystères » et « Folklore », sur de vraies données publiques (Wikipédia, Wikidata, Wikimedia Commons). Le contenu est de démonstration : statuts non validés, brouillons IA, aucune relecture. La planche de brevet (science) n'est pas touchée.</p>
-${['mystere', 'folklore'].map(u => `<h2>${u === 'mystere' ? 'Mystères et enquêtes documentées' : 'Mythes et folklore'}</h2><div class="g">${Object.entries(S).filter(([k, s]) => s.univ === u && !HIDE.has(k)).map(([k, s]) => `<a class="t" href="${k}.html"><img src="vignettes/${k}.png" alt="" loading="lazy" onerror="this.style.display='none'"><div><span>${k.toUpperCase()}</span><b>${esc(s.nom)}</b>${esc(s.pitch)}<small>Risque : ${esc(s.risque)}</small></div></a>`).join('')}</div>`).join('')}</div>`;
+${['mystere', 'folklore'].map(u => `<h2>${u === 'mystere' ? 'Mystères et enquêtes documentées' : 'Mythes et folklore'}</h2><div class="g">${Object.entries(S).filter(([k, s]) => s.univ === u && !HIDE.has(k)).sort((a, b) => (b[0] === 'm1r') - (a[0] === 'm1r')).map(([k, s]) => `<a class="t" href="${k}.html"><img src="vignettes/${k}.png" alt="" loading="lazy" onerror="this.style.display='none'"><div><span>${k.toUpperCase()}</span><b>${esc(s.nom)}</b>${esc(s.pitch)}<small>Risque : ${esc(s.risque)}</small></div></a>`).join('')}</div>`).join('')}<h2>Visualisations du « centre » de chaque univers</h2><p>Vingt dossiers par univers, vus de cinq façons chacun (mappemonde, strates du temps, registre, étagère, âge et attention ; planisphère, arbre des familles, abécédaire, colonnes de statut, cabinet). Données réelles de Wikidata ; ce qui manque est montré, pas caché.</p><div class="g"><a class="t" href="viz-mystere.html"><img src="vignettes/viz-mystere.png" alt="" onerror="this.style.display='none'"><div><span>Mystères</span><b>Le fichier des mystères</b>Cinq vues sur 20 énigmes documentées.</div></a><a class="t" href="viz-folklore.html"><img src="vignettes/viz-folklore.png" alt="" onerror="this.style.display='none'"><div><span>Folklore</span><b>Le bestiaire du monde</b>Cinq vues sur 20 récits populaires, en clair et en nuit.</div></a></div></div>`;
 writeFileSync('docs/labo/index.html', idx);
 console.log('labo : 8 styles + index');

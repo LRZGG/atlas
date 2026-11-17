@@ -20,7 +20,10 @@
    },
    "wd": {
     "inception": "+1977-08-15T00:00:00Z",
-    "coord": null,
+    "coord": [
+     40.25111111111111,
+     -83.04916666666666
+    ],
     "label": "Wow! signal",
     "inst": [
      "Q174984",
@@ -29,7 +32,17 @@
     "country": [],
     "loc": [
      "Q1138406"
-    ]
+    ],
+    "date": "+1977-08-15T00:00:00Z",
+    "wikis": 43,
+    "place": [
+     "Q1138406"
+    ],
+    "classes": [
+     "Q174984",
+     "Q751989"
+    ],
+    "coordFrom": "lieu lié : observatoire radio de l'université d'État de l'Ohio"
    },
    "imgmeta": {
     "file": "Wow_signal.jpg",
@@ -60,7 +73,10 @@
    },
    "wd": {
     "inception": "+1430-00-00T00:00:00Z",
-    "coord": null,
+    "coord": [
+     41.31161,
+     -72.92722
+    ],
     "label": "Voynich manuscript",
     "inst": [
      "Q48498"
@@ -68,7 +84,16 @@
     "country": [],
     "loc": [
      "Q814779"
-    ]
+    ],
+    "date": "+1430-00-00T00:00:00Z",
+    "wikis": 66,
+    "place": [
+     "Q814779"
+    ],
+    "classes": [
+     "Q48498"
+    ],
+    "coordFrom": "lieu lié : bibliothèque Beinecke de livres rares et manuscrits"
    },
    "imgmeta": {
     "file": "Voynich_Manuscript_(32).jpg",
@@ -103,13 +128,10 @@
    },
    "wd": {
     "inception": "+1584-00-00T00:00:00Z",
-    "coord": {
-     "latitude": 35.93694444444444,
-     "longitude": -75.7088888888889,
-     "altitude": null,
-     "precision": 0.0002777777777777778,
-     "globe": "http://www.wikidata.org/entity/Q2"
-    },
+    "coord": [
+     35.93694444444444,
+     -75.7088888888889
+    ],
     "label": "Roanoke Colony",
     "inst": [
      "Q74047",
@@ -118,7 +140,17 @@
     "country": [
      "Q30"
     ],
-    "loc": []
+    "loc": [],
+    "date": "+1584-00-00T00:00:00Z",
+    "wikis": 40,
+    "place": [
+     "Q30"
+    ],
+    "classes": [
+     "Q74047",
+     "Q133156"
+    ],
+    "coordFrom": "coordonnées du sujet"
    },
    "imgmeta": {
     "file": "William_Ludwell_Sheppard_&_William_James_Linton_-_CROATOAN,_The_Lost_Colony_(John_White).jpg",
@@ -149,7 +181,10 @@
    },
    "wd": {
     "inception": "-1675-00-00T00:00:00Z",
-    "coord": null,
+    "coord": [
+     35.339166666666664,
+     25.1375
+    ],
     "label": "Phaistos disc",
     "inst": [
      "Q1570005",
@@ -161,7 +196,19 @@
     ],
     "loc": [
      "Q636972"
-    ]
+    ],
+    "date": "-1675-00-00T00:00:00Z",
+    "wikis": 41,
+    "place": [
+     "Q636972",
+     "Q41",
+     "Q4752820"
+    ],
+    "classes": [
+     "Q1570005",
+     "Q1640824"
+    ],
+    "coordFrom": "lieu lié : musée archéologique d'Héraklion"
    },
    "imgmeta": {
     "file": "Phaistos_Disc_—_Side_A.jpg",
@@ -190,13 +237,10 @@
    },
    "wd": {
     "inception": "+1959-02-02T00:00:00Z",
-    "coord": {
-     "latitude": 61.75472222,
-     "longitude": 59.46277778,
-     "altitude": null,
-     "precision": 0.00027777777777778,
-     "globe": "http://www.wikidata.org/entity/Q2"
-    },
+    "coord": [
+     61.75472222,
+     59.46277778
+    ],
     "label": "Dyatlov Pass incident",
     "inst": [
      "Q12890393",
@@ -208,7 +252,19 @@
     "loc": [
      "Q2476466",
      "Q4349969"
-    ]
+    ],
+    "date": "+1959-02-02T00:00:00Z",
+    "wikis": 41,
+    "place": [
+     "Q2476466",
+     "Q4349969",
+     "Q15180"
+    ],
+    "classes": [
+     "Q12890393",
+     "Q171558"
+    ],
+    "coordFrom": "coordonnées du sujet"
    },
    "imgmeta": {
     "file": "Памятник_дятловцам_на_Михайловском_кладбище.jpg",
@@ -239,13 +295,10 @@
    },
    "wd": {
     "inception": null,
-    "coord": {
-     "latitude": 35.864167,
-     "longitude": 23.305,
-     "altitude": null,
-     "precision": 0.000001,
-     "globe": "http://www.wikidata.org/entity/Q2"
-    },
+    "coord": [
+     35.864167,
+     23.305
+    ],
     "label": "Antikythera mechanism",
     "inst": [
      "Q220659",
@@ -255,7 +308,18 @@
     "country": [],
     "loc": [
      "Q637187"
-    ]
+    ],
+    "date": "+1901-05-17T00:00:00Z",
+    "wikis": 70,
+    "place": [
+     "Q637187"
+    ],
+    "classes": [
+     "Q220659",
+     "Q211586",
+     "Q5275"
+    ],
+    "coordFrom": "coordonnées du sujet"
    },
    "imgmeta": {
     "file": "Antikythera_Fragment_A_(Front).webp",
@@ -266,6 +330,440 @@
     "free": true
    },
    "imgfile": "img/antikythere.webp"
+  },
+  {
+   "id": "tunguska",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Tunguska event",
+    "d": "1908 air burst explosion in Siberia, Russia",
+    "x": "The Tunguska event was a large explosion that occurred on the morning of 30 June [O.S. 17 June] 1908, at around 7:14 KRAT in Central Siberia, then part of the Russian Empire. The cataclysm occurred in a remote and sparsely populated region of the taiga, near the Podkamennaya Tunguska River after which it is named. The shock wave knocked several witnesses to the ground, killed at least three people as well as numerous animals, and shattered windows within a 200 km (120 mi) radius. The blast was recorded by various Russian and German seismological stations with a magnitude close to 5 on the Richter scale, while atmospheric waves generated by the shock wave were detected worldwide. From 30 June to 3 July, intense bright nights were observed across western Eurasia over an area of about 12,000,000 km2 (4,600,000 sq mi). Although the Siberian press and various correspondents reported the blast in the following days, it was not until 1921 that a first scientific expedition was organized under the direction of Leonid Kulik, who discovered the site of the epicenter only in 1927.",
+    "u": "https://en.wikipedia.org/wiki/Tunguska_event"
+   },
+   "qid": "Q125953",
+   "fr": {
+    "t": "Événement de la Toungouska",
+    "d": "Puissante explosion s'étant produite le 30 juin 1908 en Sibérie, en Russie",
+    "x": "L'événement de la Toungouska désigne un ensemble d'observations faites sur une puissante explosion qui s'est produite le 30 juin 1908 vers 7 h 14 heure locale en Sibérie centrale, dans l'Empire russe. Si l'hypothèse de l'entrée atmosphérique d'un météoroïde ne semble guère faire de doute, l'ensemble des observations et mesures comporte des inconnues et des contradictions qui ont amené à formuler des hypothèses totalement divergentes et parfois farfelues.",
+    "u": "https://fr.wikipedia.org/wiki/%C3%89v%C3%A9nement_de_la_Toungouska"
+   },
+   "wd": {
+    "date": "+1908-06-30T00:00:00Z",
+    "wikis": 78,
+    "coord": [
+     60.916666666667,
+     101.95
+    ],
+    "place": [
+     "Q214262",
+     "Q34266"
+    ],
+    "classes": [
+     "Q179057"
+    ],
+    "coordFrom": "coordonnées du sujet"
+   }
+  },
+  {
+   "id": "kryptos",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Kryptos",
+    "d": "Encrypted sculpture by American artist Jim Sanborn",
+    "x": "Kryptos is a sculpture by the American artist Jim Sanborn located on the grounds of the Central Intelligence Agency (CIA) headquarters, the George Bush Center for Intelligence in Langley, Virginia.",
+    "u": "https://en.wikipedia.org/wiki/Kryptos"
+   },
+   "qid": "Q1345100",
+   "fr": {
+    "t": "Kryptos",
+    "d": "page d'homonymie de Wikimédia",
+    "x": "Kryptos peut signifier :Kryptos est une sculpture de Jim Sanborn exposée à Langley (Virginie), au QG de la CIA.\nKryptos est un genre de mollusques.\nKryptos est un album d'Andreas Vollenweider (1998).\nKryptos est un groupe indien de heavy metal.",
+    "u": "https://fr.wikipedia.org/wiki/Kryptos"
+   },
+   "wd": {
+    "date": "+1990-01-01T00:00:00Z",
+    "wikis": 25,
+    "coord": [
+     38.952255,
+     -77.145773
+    ],
+    "place": [
+     "Q5425102",
+     "Q30"
+    ],
+    "classes": [
+     "Q860861",
+     "Q483453",
+     "Q1589480"
+    ],
+    "coordFrom": "coordonnées du sujet"
+   }
+  },
+  {
+   "id": "beale",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Beale ciphers",
+    "d": "Set of three ciphertexts",
+    "x": "The Beale ciphers are a set of three ciphertexts, one of which allegedly states the location of a buried treasure of gold, silver and jewels estimated to be worth over $60 million as of January 2025. Comprising three ciphertexts, the first (unsolved) text describes the location, the second (solved) ciphertext accounts the content of the treasure, and the third (unsolved) lists the names of the treasure's owners and their next of kin.",
+    "u": "https://en.wikipedia.org/wiki/Beale_ciphers"
+   },
+   "qid": "Q812923",
+   "wd": {
+    "date": "+1885-00-00T00:00:00Z",
+    "wikis": 14,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q4681865",
+     "Q1589480"
+    ],
+    "coordFrom": null
+   }
+  },
+  {
+   "id": "rongorongo",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Rongorongo",
+    "d": "System of glyphs from Easter Island",
+    "x": "Rongorongo is a system of glyphs discovered in the 19th century on Easter Island that has the appearance of writing or proto-writing. Numerous attempts at decipherment have been made, but none have been successful. Although some calendrical and what might prove to be genealogical information has been identified, none of the glyphs can actually be read. If rongorongo does prove to be writing and to be an independent invention, it would be one of very few inventions of writing in human history.",
+    "u": "https://en.wikipedia.org/wiki/Rongorongo"
+   },
+   "qid": "Q209764",
+   "fr": {
+    "t": "Rongorongo",
+    "d": "écriture non déchiffrée de l'île de Pâques",
+    "x": "Rongorongo est le nom donné à un système de signes gravés sur bois qui pourraient constituer soit une écriture, soit un moyen mnémotechnique pour des récitations de mythes ou de généalogies. Découvertes sur l'île de Pâques en 1864 par le missionnaire Eugène Eyraud[réf. nécessaire], ces inscriptions ont résisté à toutes les tentatives de déchiffrement.",
+    "u": "https://fr.wikipedia.org/wiki/Rongorongo"
+   },
+   "wd": {
+    "date": "+1700-00-00T00:00:00Z",
+    "wikis": 43,
+    "coord": [
+     -33,
+     -71
+    ],
+    "place": [
+     "Q298"
+    ],
+    "classes": [
+     "Q1156875",
+     "Q29517555",
+     "Q4004706",
+     "Q2393642"
+    ],
+    "coordFrom": "lieu lié : Chili"
+   }
+  },
+  {
+   "id": "lineara",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Linear A",
+    "d": "Undeciphered writing system of ancient Crete",
+    "x": "Linear A is a writing system that was used by the Minoans of Crete from 1800 BC to 1450 BC. Linear A was the primary script used in palace and religious writings of the Minoan civilization. It was adapted into Linear B, which was used by the Mycenaeans to write an early form of Greek. Since its modern rediscovery in 1900, no texts in the script have yet been deciphered. Archaeologist Sir Arthur Evans named the script \"Linear\" because its characters consisted simply of lines inscribed in clay, in contrast to the more pictographic characters in Cretan hieroglyphs – likewise undeciphered – that were used during the same period.",
+    "u": "https://en.wikipedia.org/wiki/Linear_A"
+   },
+   "qid": "Q30972",
+   "fr": {
+    "t": "Linéaire A",
+    "d": "système d'écriture crétois indéchiffré",
+    "x": "Le « linéaire A » est une écriture, encore non déchiffrée, qui fut utilisée dans la Crète ancienne à l'époque minoenne. C'est Arthur Evans au début du XXe siècle qui découvrit en Crète les vestiges de cette écriture, ainsi que des autres écritures anciennes, qu'il nomma respectivement « hiéroglyphes crétois », « linéaire A » et « linéaire B », de la plus ancienne à la plus récente. Le « linéaire A » apparaît au plus tôt vers 1900 av. J.-C., avant les invasions grecques. Il cesse d'être utilisé au plus tard vers 1400 av. J.-C., alors que les Mycéniens ont pris le contrôle de l'île et que le linéaire B est apparu ; une utilisation simultanée des deux systèmes graphiques est ponctuellement observée sur certains sites notamment dans le sud de la Crète.",
+    "u": "https://fr.wikipedia.org/wiki/Lin%C3%A9aire_A"
+   },
+   "wd": {
+    "date": "-1800-00-00T00:00:00Z",
+    "wikis": 51,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q182133",
+     "Q1156875",
+     "Q4241360",
+     "Q436240",
+     "Q4004706",
+     "Q3953107",
+     "Q29517555"
+    ],
+    "coordFrom": null
+   }
+  },
+  {
+   "id": "indus",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Indus script",
+    "d": "Symbols of the Indus Valley Civilisation",
+    "x": "The Indus script, also known as the Harappan script and the Indus Valley script, is a corpus of symbols produced by the Indus Valley Civilisation. Most inscriptions containing these symbols are extremely short, making it difficult to judge whether or not they constituted a writing system used to record the Harappan language or languages which are presumed to have been spoken. Despite many attempts, the script has not yet been deciphered. There is no known bilingual inscription to help decipher the script, which shows no significant changes over time. However, there appear to be variations in what might be termed syntax depending upon location.",
+    "u": "https://en.wikipedia.org/wiki/Indus_script"
+   },
+   "qid": "Q601388",
+   "fr": {
+    "t": "Écriture de l'Indus",
+    "d": "système d'écriture",
+    "x": "Le terme écriture de l'Indus fait référence à des suites de symboles associées à la civilisation de la vallée de l'Indus, au cours de la période allant de 3200 à 1900 av. J.-C. La plupart des signes ont été trouvés sur des sceaux, bien qu'ils soient présents aussi sur une douzaine d'autres supports.",
+    "u": "https://fr.wikipedia.org/wiki/%C3%89criture_de_l'Indus"
+   },
+   "wd": {
+    "date": "-2800-00-00T00:00:00Z",
+    "wikis": 45,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q1149626",
+     "Q1156875",
+     "Q4004706",
+     "Q29517555"
+    ],
+    "coordFrom": null
+   }
+  },
+  {
+   "id": "danse",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Dancing plague of 1518",
+    "d": "Mass dancing mania on Strasbourg",
+    "x": "The dancing plague of 1518, or dance epidemic of 1518, was a case of dancing mania that occurred in Strasbourg, Alsace, in the Holy Roman Empire from July 1518 to September 1518. Somewhere between 50 and 400 people took to dancing for weeks. There are many theoretical theories behind the phenomenon, the most popular being stress-induced mass hysteria, suggested by John Waller. Other theories include ergot poisoning. There is controversy concerning the number of deaths, but the total is unknown.",
+    "u": "https://en.wikipedia.org/wiki/Dancing_plague_of_1518"
+   },
+   "qid": "Q3295141",
+   "fr": {
+    "t": "Épidémie dansante de 1518",
+    "d": "cas de manie dansante à Strasbourg en 1518",
+    "x": "L'épidémie dansante de 1518 est un épisode inexpliqué de manie dansante survenu au début du XVIe siècle à Strasbourg, alors ville impériale libre du Saint-Empire, au cœur de la plaine d'Alsace.",
+    "u": "https://fr.wikipedia.org/wiki/%C3%89pid%C3%A9mie_dansante_de_1518"
+   },
+   "wd": {
+    "date": "+1518-00-00T00:00:00Z",
+    "wikis": 45,
+    "coord": [
+     48.573333333333,
+     7.7522222222222
+    ],
+    "place": [
+     "Q6602",
+     "Q142"
+    ],
+    "classes": [
+     "Q2140711",
+     "Q4532199"
+    ],
+    "coordFrom": "lieu lié : Strasbourg"
+   }
+  },
+  {
+   "id": "flannan",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Flannan Isles Lighthouse",
+    "d": "Lighthouse off the northwest coast of Scotland",
+    "x": "Flannan Isles Lighthouse is a lighthouse near the highest point on Eilean Mòr, one of the Flannan Isles in the Outer Hebrides off the west coast of Scotland. In 1900, its three keepers disappeared under mysterious circumstances.",
+    "u": "https://en.wikipedia.org/wiki/Flannan_Isles_Lighthouse"
+   },
+   "qid": "Q15217844",
+   "fr": {
+    "t": "Phare des îles Flannan",
+    "d": "phare au nord-ouest de l'Écosse",
+    "x": "Le phare des îles Flannan est un phare situé sur Eilean Mòr, une des îles Flannan, à l'ouest des Highlands en Écosse. C'est aussi le lieu d'une disparition mystérieuse, celle des trois gardiens du phare en 1900, peu de temps après leur installation.",
+    "u": "https://fr.wikipedia.org/wiki/Phare_des_%C3%AEles_Flannan"
+   },
+   "wd": {
+    "date": "+1899-00-00T00:00:00Z",
+    "wikis": 13,
+    "coord": [
+     58.28811,
+     -7.588285
+    ],
+    "place": [
+     "Q145"
+    ],
+    "classes": [
+     "Q39715"
+    ],
+    "coordFrom": "coordonnées du sujet"
+   }
+  },
+  {
+   "id": "celeste",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Mary Celeste",
+    "d": "Ship found abandoned in the Atlantic Ocean in 1872",
+    "x": "Mary Celeste was a Canadian-built, American-registered, merchant brigantine that was discovered adrift and deserted in the Atlantic Ocean off the Azores on December 4, 1872.",
+    "u": "https://en.wikipedia.org/wiki/Mary_Celeste"
+   },
+   "qid": "Q33209",
+   "fr": {
+    "t": "Mary Celeste",
+    "d": "navire retrouvé abandonné dans l'océan Atlantique en 1872",
+    "x": "La Mary Celeste est un brick-goélette américain découvert abandonné au large des Açores le 4 décembre 1872. Le navire, qui a quitté New York un mois plus tôt, a le gréement endommagé et la cale partiellement inondée mais est toujours en état de naviguer. Sa cargaison d'alcool dénaturé est quasiment intacte tout comme l'intérieur des cabines mais aucun membre de son équipage n'est retrouvé. Le mystère entourant la disparition des marins n'a jamais été résolu et la Mary Celeste reste l'un des exemples les plus connus de vaisseau fantôme.",
+    "u": "https://fr.wikipedia.org/wiki/Mary_Celeste"
+   },
+   "wd": {
+    "date": "+1861-00-00T00:00:00Z",
+    "wikis": 40,
+    "coord": [
+     38.333333333333,
+     -17.25
+    ],
+    "place": [
+     "Q1952"
+    ],
+    "classes": [
+     "Q189418",
+     "Q848944",
+     "Q281019",
+     "Q170483"
+    ],
+    "coordFrom": "coordonnées du sujet"
+   }
+  },
+  {
+   "id": "earhart",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Amelia Earhart",
+    "d": "American aviation pioneer (1897–disappeared 1937)",
+    "x": "Amelia Mary Earhart was an American aviator who became one of the most celebrated aviation pioneers.",
+    "u": "https://en.wikipedia.org/wiki/Amelia_Earhart"
+   },
+   "qid": "Q3355",
+   "wd": {
+    "date": null,
+    "wikis": 109,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q5"
+    ],
+    "coordFrom": null
+   }
+  },
+  {
+   "id": "oak",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Oak Island mystery",
+    "d": "Stories of buried treasure on Oak Island, Nova Scotia, Canada",
+    "x": "The Oak Island mystery refers to stories and legends about buried treasure and unexplained objects found on or near Oak Island in Nova Scotia, Canada. The site consists of digs by numerous individuals and groups of people. The original shaft, the location of which is unknown today, was dug by early explorers, and is known as \"the money pit\".",
+    "u": "https://en.wikipedia.org/wiki/Oak_Island_mystery"
+   },
+   "qid": "Q29025921",
+   "wd": {
+    "date": null,
+    "wikis": 7,
+    "coord": [
+     44.5125,
+     -64.2875
+    ],
+    "place": [
+     "Q1506857",
+     "Q16"
+    ],
+    "classes": [
+     "Q189349"
+    ],
+    "coordFrom": "coordonnées du sujet"
+   }
+  },
+  {
+   "id": "taos",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "The Hum",
+    "d": "Low-frequency noise not audible to all people",
+    "x": "\nThe Hum is a persistent and invasive low-frequency humming, rumbling, or droning noise audible to many, but not all, people in an area. Hums have been reported in many countries, including Australia, Canada, the United Kingdom, and the United States. They are sometimes named according to the locality where the problem has been particularly publicized, such as the \"Taos Hum\" in New Mexico and the \"Windsor Hum\" in Ontario.",
+    "u": "https://en.wikipedia.org/wiki/The_Hum"
+   },
+   "qid": "Q992476",
+   "wd": {
+    "date": null,
+    "wikis": 19,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q332102",
+     "Q92251"
+    ],
+    "coordFrom": null
+   }
+  },
+  {
+   "id": "hessdalen",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Hessdalen lights",
+    "d": "Unidentified phenomenon at Hessdalen valley in Norway",
+    "x": "The Hessdalen lights are unidentified lights which have been observed in a 12-kilometre-long (7.5 mi) stretch of the Hessdalen valley in rural central Norway periodically since at least the 1930s.",
+    "u": "https://en.wikipedia.org/wiki/Hessdalen_lights"
+   },
+   "qid": "Q1342583",
+   "wd": {
+    "date": null,
+    "wikis": 20,
+    "coord": [
+     62.92611111,
+     11.145
+    ],
+    "place": [
+     "Q20"
+    ],
+    "classes": [
+     "Q332102"
+    ],
+    "coordFrom": "coordonnées du sujet"
+   }
+  },
+  {
+   "id": "nazca",
+   "univ": "mystere",
+   "extra": true,
+   "en": {
+    "t": "Nazca lines",
+    "d": "Geoglyphs in the Nazca Desert, Peru",
+    "x": "The Nazca lines are a group of geoglyphs made in the soil of the Nazca Desert in southern Peru. They were created between 500 BC and 500 AD by people making depressions or shallow incisions in the desert floor, removing pebbles and leaving different-colored dirt exposed. There are two major phases of the Nazca lines, Paracas phase, from 400 to 200 BC, and Nazca phase, from 200 BC to 500 AD. In the 21st century, several hundred new figures have been found with the use of drones, and archaeologists believe that there are more to be found.",
+    "u": "https://en.wikipedia.org/wiki/Nazca_lines"
+   },
+   "qid": "Q2620036",
+   "fr": {
+    "t": "Géoglyphes de Nazca",
+    "d": "grandes figures tracées sur le sol au Pérou",
+    "x": "Les géoglyphes de Nazca, appelés communément lignes de Nazca, sont de grandes figures tracées sur le sol représentant des animaux stylisés ou de simples lignes longues de plusieurs kilomètres, visibles dans le désert de Nazca dans le sud du Pérou. Le sol sur lequel se dessinent ces géoglyphes est couvert de cailloux que l'oxyde de fer colore en rouge. En les ôtant, les Nazcas ont fait apparaître un sol gypseux grisâtre, découpant ainsi les contours des figures qu'ils traçaient.",
+    "u": "https://fr.wikipedia.org/wiki/G%C3%A9oglyphes_de_Nazca"
+   },
+   "wd": {
+    "date": "-0200-00-00T00:00:00Z",
+    "wikis": 67,
+    "coord": [
+     -14.6975,
+     -75.135
+    ],
+    "place": [
+     "Q3826419",
+     "Q939994",
+     "Q419"
+    ],
+    "classes": [
+     "Q45791",
+     "Q839954"
+    ],
+    "coordFrom": "coordonnées du sujet"
+   }
   }
  ],
  "folklore": [
@@ -288,7 +786,10 @@
    },
    "wd": {
     "inception": null,
-    "coord": null,
+    "coord": [
+     39.828175,
+     -98.5795
+    ],
     "label": "Mothman",
     "inst": [
      "Q2239243",
@@ -297,7 +798,17 @@
     "country": [
      "Q30"
     ],
-    "loc": []
+    "loc": [],
+    "date": null,
+    "wikis": 37,
+    "place": [
+     "Q30"
+    ],
+    "classes": [
+     "Q2239243",
+     "Q772636"
+    ],
+    "coordFrom": "lieu lié : États-Unis"
    },
    "imgmeta": {
     "file": "Mothman_Artist's_Impression.png",
@@ -328,7 +839,10 @@
    },
    "wd": {
     "inception": null,
-    "coord": null,
+    "coord": [
+     28,
+     84
+    ],
     "label": "Yeti",
     "inst": [
      "Q772636",
@@ -340,7 +854,21 @@
      "Q17269",
      "Q837"
     ],
-    "loc": []
+    "loc": [],
+    "date": null,
+    "wikis": 81,
+    "place": [
+     "Q837",
+     "Q17269",
+     "Q837"
+    ],
+    "classes": [
+     "Q772636",
+     "Q24334685",
+     "Q1049467",
+     "Q25810847"
+    ],
+    "coordFrom": "lieu lié : Népal"
    },
    "imgmeta": {
     "file": "Yeti_colorisé.jpg",
@@ -377,7 +905,15 @@
      "Q15707583"
     ],
     "country": [],
-    "loc": []
+    "loc": [],
+    "date": null,
+    "wikis": 34,
+    "place": [],
+    "classes": [
+     "Q15707583",
+     "Q503186"
+    ],
+    "coordFrom": null
    },
    "imgmeta": {
     "file": "Kyoka_Hyaku-Monogatari_Kappa.jpg",
@@ -408,13 +944,10 @@
    },
    "wd": {
     "inception": null,
-    "coord": {
-     "latitude": 57.2144,
-     "longitude": -4.57059,
-     "altitude": null,
-     "precision": 0.01,
-     "globe": "http://www.wikidata.org/entity/Q2"
-    },
+    "coord": [
+     57.2144,
+     -4.57059
+    ],
     "label": "Loch Ness Monster",
     "inst": [
      "Q2239243",
@@ -426,7 +959,20 @@
     "country": [
      "Q145"
     ],
-    "loc": []
+    "loc": [],
+    "date": null,
+    "wikis": 71,
+    "place": [
+     "Q145"
+    ],
+    "classes": [
+     "Q2239243",
+     "Q1187704",
+     "Q13002315",
+     "Q1114461",
+     "Q123300"
+    ],
+    "coordFrom": "coordonnées du sujet"
    },
    "imgmeta": {
     "file": "Loch_Ness_Monster_Surgeon's_photograph.jpg",
@@ -461,13 +1007,10 @@
    },
    "wd": {
     "inception": null,
-    "coord": {
-     "latitude": 25,
-     "longitude": -71,
-     "altitude": null,
-     "precision": 1,
-     "globe": "http://www.wikidata.org/entity/Q2"
-    },
+    "coord": [
+     25,
+     -71
+    ],
     "label": "Bermuda Triangle",
     "inst": [
      "Q189349",
@@ -480,7 +1023,21 @@
      "Q778",
      "Q30"
     ],
-    "loc": []
+    "loc": [],
+    "date": null,
+    "wikis": 102,
+    "place": [
+     "Q145",
+     "Q778",
+     "Q30"
+    ],
+    "classes": [
+     "Q189349",
+     "Q82794",
+     "Q19821",
+     "Q29430681"
+    ],
+    "coordFrom": "coordonnées du sujet"
    },
    "imgmeta": {
     "file": "Bermuda_Triangle.png",
@@ -518,7 +1075,16 @@
      "Q24334685"
     ],
     "country": [],
-    "loc": []
+    "loc": [],
+    "date": null,
+    "wikis": 24,
+    "place": [],
+    "classes": [
+     "Q636497",
+     "Q24334685",
+     "Q45529"
+    ],
+    "coordFrom": null
    },
    "imgmeta": {
     "file": "Ebenezer_Sibly_-_Edwḍ_Kelly,_a_Magician._in_the_Act_of_invoking_the_Spirit_of_a_Deceased_Person.jpg",
@@ -529,6 +1095,448 @@
     "free": true
    },
    "imgfile": "img/dameblanche.jpg"
+  },
+  {
+   "id": "jersey",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Jersey Devil",
+    "d": "Legendary creature in North American folklore",
+    "x": "In South Jersey and Philadelphia folklore in the United States, the Jersey Devil, also known as the Leeds Devil, is a legendary creature, or cryptid, said to inhabit the forests of the New Jersey Pine Barrens in South Jersey. The creature is often described as a flying biped with hooves, but there are many variations. The common description is that of a bipedal kangaroo-like or wyvern-like creature with a horse- or goat-like head, leathery bat-like wings, horns, small arms with clawed hands, legs with cloven hooves, and a forked or barbed tail. It is also said that it has a strange elongated body and a thick tail. It has been reported to move quickly and is often described as emitting a high-pitched \"blood-curdling scream\".",
+    "u": "https://en.wikipedia.org/wiki/Jersey_Devil"
+   },
+   "qid": "Q668330",
+   "wd": {
+    "date": null,
+    "wikis": 28,
+    "coord": [
+     39.828175,
+     -98.5795
+    ],
+    "place": [
+     "Q30"
+    ],
+    "classes": [
+     "Q2239243"
+    ],
+    "coordFrom": "lieu lié : États-Unis"
+   }
+  },
+  {
+   "id": "chupacabra",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Chupacabra",
+    "d": "Legendary creature in folklore of the Americas",
+    "x": "The chupacabra or chupacabras is a legendary creature, or cryptid, in the folklore of parts of the Americas. It is said to prey on livestock, particularly goats, although reports also attribute attacks to sheep, chickens and other domesticated animals. According to accounts, the chupacabra kills its victims by puncturing the neck and consuming their blood, a characteristic that gave rise to its enduring association with vampirism.",
+    "u": "https://en.wikipedia.org/wiki/Chupacabra"
+   },
+   "qid": "Q183571",
+   "fr": {
+    "t": "Chupacabra",
+    "d": "créature fantastique d'Amérique latine",
+    "x": "Chupacabra, chupacabras au pluriel en espagnol, est une créature fantastique. Ses descriptions varient, mais on lui prête souvent des yeux rouges, deux trous pour les narines, une bouche avec des crocs saillants vers le haut et vers le bas et une apparence glabre. Elle possèderait deux marques arrondies à l'arrière de la croupe, de part et d'autre de la queue, ressemblant selon certains autochtones à une chauve-souris ou au prétendu extraterrestre de l'affaire de Roswell.",
+    "u": "https://fr.wikipedia.org/wiki/Chupacabra"
+   },
+   "wd": {
+    "date": null,
+    "wikis": 55,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q772636",
+     "Q2239243"
+    ],
+    "coordFrom": null
+   }
+  },
+  {
+   "id": "bigfoot",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Bigfoot",
+    "d": "Mythical creature",
+    "x": "Bigfoot, or Sasquatch, is a large, hairy, mythical humanoid creature said to inhabit forests in North America, particularly in the Pacific Northwest. Bigfoot is featured in both American and Canadian folklore, and since the mid-20th century has become a cultural icon, permeating popular culture and becoming the subject of its own distinct subculture.",
+    "u": "https://en.wikipedia.org/wiki/Bigfoot"
+   },
+   "qid": "Q44810",
+   "fr": {
+    "t": "Bigfoot",
+    "d": "créature légendaire, grande et poilue, aux allures de grand singe, qui habiterait les forêts d’Amérique du Nord",
+    "x": "Le Bigfoot ou Sasquatch est une créature légendaire qui vivrait au Canada et aux États-Unis. La multiplication des témoignages pourrait laisser penser qu'il ne s'agirait pas d'un individu, mais de plusieurs hypothétiques créatures.",
+    "u": "https://fr.wikipedia.org/wiki/Bigfoot"
+   },
+   "wd": {
+    "date": null,
+    "wikis": 68,
+    "coord": [
+     56,
+     -109
+    ],
+    "place": [
+     "Q16",
+     "Q30",
+     "Q30"
+    ],
+    "classes": [
+     "Q50996514",
+     "Q772636",
+     "Q2239243"
+    ],
+    "coordFrom": "lieu lié : Canada"
+   }
+  },
+  {
+   "id": "banshee",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Banshee",
+    "d": "Female spirit in Irish mythology",
+    "x": "\n\nA banshee is a female spirit in Irish folklore who heralds the death of a family member, usually by screaming, wailing, shrieking, or keening. Her name is connected to the mythologically important tumuli or \"mounds\" that dot the Irish countryside, which are known as síde in Old Irish.",
+    "u": "https://en.wikipedia.org/wiki/Banshee"
+   },
+   "qid": "Q273112",
+   "fr": {
+    "t": "Banshee",
+    "d": "créature surnaturelle de la mythologie celte irlandaise",
+    "x": "Une banshee, banshie ou bean sí, est une créature féminine surnaturelle de la mythologie celtique irlandaise, considérée comme une magicienne ou une messagère de l'Autre monde. Elle est comparable à d'autres créatures mythologiques d'Europe.",
+    "u": "https://fr.wikipedia.org/wiki/Banshee"
+   },
+   "wd": {
+    "date": null,
+    "wikis": 49,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q193291",
+     "Q2239243",
+     "Q8028",
+     "Q1350132"
+    ],
+    "coordFrom": null
+   }
+  },
+  {
+   "id": "wendigo",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Wendigo",
+    "d": "Mythical being in Native American folklore",
+    "x": "Wendigo is a mythological creature or evil spirit originating from Algonquian folklore. The concept of the wendigo has been widely used in literature and other works of art, such as social commentary and horror fiction.",
+    "u": "https://en.wikipedia.org/wiki/Wendigo"
+   },
+   "qid": "Q370801",
+   "fr": {
+    "t": "Wendigo",
+    "d": "créature mystique amérindienne",
+    "x": "Le wendigo est une créature surnaturelle, maléfique et anthropophage, issue de la mythologie des Premières Nations algonquiennes du Canada, qui s'est étendue dans tout le folklore d'Amérique du Nord.",
+    "u": "https://fr.wikipedia.org/wiki/Wendigo"
+   },
+   "wd": {
+    "date": null,
+    "wikis": 36,
+    "coord": [
+     47,
+     -105
+    ],
+    "place": [
+     "Q49",
+     "Q30"
+    ],
+    "classes": [
+     "Q22988604",
+     "Q177413",
+     "Q3707571"
+    ],
+    "coordFrom": "lieu lié : Amérique du Nord"
+   }
+  },
+  {
+   "id": "kitsune",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Kitsune",
+    "d": "Fox spirits in Japanese folklore",
+    "x": "The kitsune , in popular Japanese folklore, is a fox or fox spirit which possesses the supernatural ability to shapeshift or bewitch other life forms.",
+    "u": "https://en.wikipedia.org/wiki/Kitsune"
+   },
+   "qid": "Q692111",
+   "fr": {
+    "t": "Renard dans la culture japonaise",
+    "d": "renard dans la mythologie et le folklore japonais  considéré comme un messager des divinités",
+    "x": "Dans la culture japonaise, le renard (狐, kitsune) tient une place importante : dans le cadre religieux il est, dans les croyances populaires du Japon, considéré comme un messager des divinités, et dans le folklore populaire transmis par le bouddhisme, il était considéré comme une créature surnaturelle dotée de pouvoirs de métamorphoses, d'illusions et de possessions.Son image est devenue un élément récurrent dans la littérature, le théâtre, si bien qu’elle est devenue prégnante dans l’imaginaire populaire au Japon, à l’international, notamment dans les pays hors Asie du Sud-Est, le terme « kitsune » désigne improprement, dans l'imaginaire populaire, un renard doté de pouvoirs magiques évoquant l'esthétique japonaise ou asiatique en général.",
+    "u": "https://fr.wikipedia.org/wiki/Renard_dans_la_culture_japonaise"
+   },
+   "wd": {
+    "date": null,
+    "wikis": 46,
+    "coord": [
+     35,
+     136
+    ],
+    "place": [
+     "Q17"
+    ],
+    "classes": [
+     "Q15707583",
+     "Q1133563",
+     "Q31854313"
+    ],
+    "coordFrom": "lieu lié : Japon"
+   }
+  },
+  {
+   "id": "slender",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Slender Man",
+    "d": "Fictional supernatural character",
+    "x": "The Slender Man is a fictional supernatural character that originated as a creepypasta Internet meme created by Something Awful forum user Eric Knudsen in June 2009, as an entry to a Photoshop contest in which users were challenged to create \"paranormal images\". He is depicted as a thin, unnaturally tall humanoid with pale white skin and a featureless face, wearing a black suit, with branching tendrils.",
+    "u": "https://en.wikipedia.org/wiki/Slender_Man"
+   },
+   "qid": "Q7540067",
+   "fr": {
+    "t": "Slender Man",
+    "d": "personnage de fiction",
+    "x": "Slender Man ou Slenderman est un personnage de fiction issu d'un mème Internet, créé sur le forum Something Awful par Victor Surge en 2009.",
+    "u": "https://fr.wikipedia.org/wiki/Slender_Man"
+   },
+   "wd": {
+    "date": "+2009-06-10T00:00:00Z",
+    "wikis": 39,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q28020127",
+     "Q111652985",
+     "Q25810847",
+     "Q112865833",
+     "Q1569167",
+     "Q15773347"
+    ],
+    "coordFrom": null
+   }
+  },
+  {
+   "id": "llorona",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "La Llorona",
+    "d": "Vengeful ghost in Latin American folklore",
+    "x": "La Llorona is a vengeful ghost in Hispanic American folklore who is said to roam near bodies of water mourning her children she drowned in the river. Whoever hears her crying is said to either suffer misfortune, death, or become extremely unsuccessful in life.",
+    "u": "https://en.wikipedia.org/wiki/La_Llorona"
+   },
+   "qid": "Q1866923",
+   "fr": {
+    "t": "La Llorona",
+    "d": "fantôme du folklore latino-américain",
+    "x": "La Llorona est un fantôme issu du folklore d'Amérique hispanique. Selon la légende, elle se présente comme l'âme en peine d'une femme ayant tué ses enfants, les cherchant après le regret dans la nuit près d'un fleuve ou d'un lac, effrayant ceux qui entendent ses cris de douleur perçants.",
+    "u": "https://fr.wikipedia.org/wiki/La_Llorona"
+   },
+   "wd": {
+    "date": null,
+    "wikis": 32,
+    "coord": [
+     23,
+     -102
+    ],
+    "place": [
+     "Q96",
+     "Q653884"
+    ],
+    "classes": [
+     "Q45529",
+     "Q25810847"
+    ],
+    "coordFrom": "lieu lié : Mexique"
+   }
+  },
+  {
+   "id": "golem",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Golem",
+    "d": "Being in Jewish folklore made from clay",
+    "x": "A golem is an animated anthropomorphic being in Jewish folklore that is created entirely from inanimate matter, usually clay or mud. The most famous golem narrative involves Rabbi Judah Loew ben Bezalel, the late-16th-century rabbi of Prague. According to Moment magazine, \"the golem is a highly mutable metaphor with seemingly limitless symbolism. It can be a victim or villain, man or woman—or sometimes both. Over the centuries, it has been used to connote war, community, isolation, hope, and despair.\"",
+    "u": "https://en.wikipedia.org/wiki/Golem"
+   },
+   "qid": "Q215085",
+   "fr": {
+    "t": "Golem",
+    "d": "être anthropomorphe animé du folklore juif",
+    "x": "Un golem est, dans la mystique puis la mythologie juive, un être artificiel, généralement humanoïde, fait d’argile, incapable de parole et dépourvu de libre-arbitre, façonné afin d’assister ou défendre son créateur.",
+    "u": "https://fr.wikipedia.org/wiki/Golem"
+   },
+   "wd": {
+    "date": null,
+    "wikis": 53,
+    "coord": [
+     50.0875,
+     14.421388888888888
+    ],
+    "place": [
+     "Q42585"
+    ],
+    "classes": [
+     "Q27921916",
+     "Q25810847",
+     "Q107307973",
+     "Q6949149",
+     "Q2239243"
+    ],
+    "coordFrom": "lieu lié : royaume de Bohême"
+   }
+  },
+  {
+   "id": "babayaga",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Baba Yaga",
+    "d": "Slavic mythological figure",
+    "x": "Baba Yaga is a female character from Slavic folklore who has two contrasting roles. In some narratives, she is described as a repulsive or ferocious-looking old woman who fries and eats children, while in others she is depicted as a nice old woman who helps the hero. Both versions often depict her as a witch. She is often associated with forest wildlife. Her distinctive traits are flying around in a wooden mortar, wielding a pestle, and dwelling deep in the forest in a hut with chicken legs.",
+    "u": "https://en.wikipedia.org/wiki/Baba_Yaga"
+   },
+   "qid": "Q187002",
+   "fr": {
+    "t": "Baba Yaga",
+    "d": "figure marquante du conte russe",
+    "x": "Baba Yaga est une figure marquante de la mythologie slave. La Baba Yaga est la figure féminine surnaturelle la plus fréquente des contes slaves, elle n'existe nulle part ailleurs.",
+    "u": "https://fr.wikipedia.org/wiki/Baba_Yaga"
+   },
+   "wd": {
+    "date": null,
+    "wikis": 68,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q6949149"
+    ],
+    "coordFrom": null
+   }
+  },
+  {
+   "id": "kraken",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Kraken",
+    "d": "Mythical sea cryptid",
+    "x": "The kraken is a legendary cryptid of enormous size, per its etymology something akin to a cephalopod, said to appear in the Norwegian Sea off the coast of Norway. It is believed that the legend of the Kraken may have originated from sightings of giant squid, which may grow to 10.5 metres (34 ft) in length.",
+    "u": "https://en.wikipedia.org/wiki/Kraken"
+   },
+   "qid": "Q193165",
+   "fr": {
+    "t": "Kraken",
+    "d": "monstre marin fantastique issue des légendes scandinaves médiévales",
+    "x": "Le kraken est une créature fantastique issue des légendes scandinaves médiévales. Il s'agit d'un monstre marin de très grande taille et doté de nombreux tentacules.",
+    "u": "https://fr.wikipedia.org/wiki/Kraken"
+   },
+   "wd": {
+    "date": null,
+    "wikis": 52,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q920028"
+    ],
+    "coordFrom": null
+   }
+  },
+  {
+   "id": "mokele",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Mokele-mbembe",
+    "d": "Water-dwelling entity that supposedly lives in the Congo River Basin",
+    "x": "In several Bantu mythologies, mokele-mbembe is a mythical water-dwelling cryptid that is believed to exist in the Congo River Basin. It is variously described as a reptilian creature, a spirit, or a member of the extinct lineage of sauropods.",
+    "u": "https://en.wikipedia.org/wiki/Mokele-mbembe"
+   },
+   "qid": "Q555716",
+   "fr": {
+    "t": "Mokélé-mbembé",
+    "d": "animal légendaire congolais",
+    "x": "Mokélé-mbembé est le nom donné par les Pygmées de la région des marais du Likwala à un animal légendaire supposé vivre, ou avoir vécu, dans les affluents du fleuve Congo qui sert de frontière naturelle entre la république du Congo et la république démocratique du Congo.",
+    "u": "https://fr.wikipedia.org/wiki/Mok%C3%A9l%C3%A9-mbemb%C3%A9"
+   },
+   "wd": {
+    "date": null,
+    "wikis": 38,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q772636"
+    ],
+    "coordFrom": null
+   }
+  },
+  {
+   "id": "tengu",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Tengu",
+    "d": "Type of legendary creature found in Japanese folk religion",
+    "x": "Tengu are a type of legendary creature found in Shinto belief. They are considered a type of yōkai or kami. The Tengu were originally thought to take the forms of birds of prey and a monkey deity, and they were traditionally depicted with human, monkey, and avian characteristics. Sarutahiko Ōkami is considered to be the original model of Konoha-Tengu, which today is widely considered the Tengu's defining characteristic in the popular imagination. He is the Shinto monkey deity who is said to shed light on Heaven and Earth. Some experts theorize that Sarutahiko was a sun god worshiped in the Ise region prior to the popularization of Amaterasu.",
+    "u": "https://en.wikipedia.org/wiki/Tengu"
+   },
+   "qid": "Q742360",
+   "fr": {
+    "t": "Tengu",
+    "d": "page d'homonymie de Wikimédia",
+    "x": "",
+    "u": "https://fr.wikipedia.org/wiki/Tengu"
+   },
+   "wd": {
+    "date": null,
+    "wikis": 41,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q503186",
+     "Q6949149",
+     "Q839254"
+    ],
+    "coordFrom": null
+   }
+  },
+  {
+   "id": "thunderbird",
+   "univ": "folklore",
+   "extra": true,
+   "en": {
+    "t": "Thunderbird (mythology)",
+    "d": "Legendary Indigenous North American creature",
+    "x": "The thunderbird is a mythological birdlike spirit in North American Indigenous peoples' history and culture. It is considered a supernatural being of power and strength.",
+    "u": "https://en.wikipedia.org/wiki/Thunderbird_(mythology)"
+   },
+   "qid": "Q264471",
+   "fr": {
+    "t": "Oiseau-tonnerre",
+    "d": "créature mythologique",
+    "x": "L’oiseau-tonnerre est une créature légendaire sous forme d'oiseau, commune aux religions de plusieurs populations amérindiennes d'Amérique du Nord. C'est un concept populaire dans l'art amérindien de la côte nord-ouest de l'Amérique du Nord, qui apparaît souvent sur les totems. Chez les Premières Nations de la côté ouest des États-Unis et du Canada, il est souvent associé à la baleine dans des récits de pêche abondante ou de tempêtes. Il est aussi considéré comme une créature de la cryptozoologie, issue de rapports d'observations de personnes qui décrivent avoir vu des oiseaux gigantesques dans le ciel américain.",
+    "u": "https://fr.wikipedia.org/wiki/Oiseau-tonnerre"
+   },
+   "wd": {
+    "date": null,
+    "wikis": 31,
+    "coord": null,
+    "place": [],
+    "classes": [
+     "Q115480620"
+    ],
+    "coordFrom": null
+   }
   }
  ],
  "labels": {
@@ -695,6 +1703,266 @@
   "Q636497": {
    "en": "stock character",
    "fr": "personnage type"
+  },
+  "Q214262": {
+   "en": "Evenk Autonomous District",
+   "fr": "Évenkie"
+  },
+  "Q34266": {
+   "en": "Russian Empire",
+   "fr": "Empire russe"
+  },
+  "Q179057": {
+   "en": "explosion",
+   "fr": "explosion"
+  },
+  "Q5425102": {
+   "en": "George Bush Center for Intelligence",
+   "fr": "George Bush Center for Intelligence"
+  },
+  "Q860861": {
+   "en": "sculpture",
+   "fr": "sculpture"
+  },
+  "Q483453": {
+   "en": "fountain",
+   "fr": "fontaine"
+  },
+  "Q1589480": {
+   "en": "ciphertext",
+   "fr": "texte chiffré"
+  },
+  "Q4681865": {
+   "en": "cipher",
+   "fr": "chiffrement"
+  },
+  "Q298": {
+   "en": "Chile",
+   "fr": "Chili"
+  },
+  "Q1156875": {
+   "en": "undeciphered writing system",
+   "fr": "écriture non déchiffrée"
+  },
+  "Q29517555": {
+   "en": "natural writing system",
+   "fr": "écriture naturelle"
+  },
+  "Q4004706": {
+   "en": "unicase alphabet",
+   "fr": "alphabet unicaméral"
+  },
+  "Q2393642": {
+   "en": "handwriting",
+   "fr": "écriture manuscrite personnelle"
+  },
+  "Q182133": {
+   "en": "syllabary",
+   "fr": "syllabaire"
+  },
+  "Q4241360": {
+   "en": "Aegean scripts",
+   "fr": "écriture égéenne"
+  },
+  "Q436240": {
+   "en": "ancient language",
+   "fr": "langue antique"
+  },
+  "Q3953107": {
+   "en": "logographic writing system",
+   "fr": "écriture logographique"
+  },
+  "Q1149626": {
+   "en": "written language",
+   "fr": "langue écrite"
+  },
+  "Q6602": {
+   "en": "Strasbourg",
+   "fr": "Strasbourg"
+  },
+  "Q142": {
+   "en": "France",
+   "fr": "France"
+  },
+  "Q2140711": {
+   "en": "dancing mania",
+   "fr": "manie dansante"
+  },
+  "Q4532199": {
+   "en": "sociogenic illness",
+   "fr": "maladie psychogène de masse"
+  },
+  "Q39715": {
+   "en": "lighthouse",
+   "fr": "phare"
+  },
+  "Q1952": {
+   "en": "Nova Scotia",
+   "fr": "Nouvelle-Écosse"
+  },
+  "Q189418": {
+   "en": "brigantine",
+   "fr": "brigantin"
+  },
+  "Q848944": {
+   "en": "merchant vessel",
+   "fr": "navire de commerce"
+  },
+  "Q281019": {
+   "en": "ghost ship",
+   "fr": "vaisseau fantôme"
+  },
+  "Q170483": {
+   "en": "sailing ship",
+   "fr": "voilier"
+  },
+  "Q5": {
+   "en": "human",
+   "fr": "être humain"
+  },
+  "Q1506857": {
+   "en": "Oak Island",
+   "fr": "île Oak"
+  },
+  "Q16": {
+   "en": "Canada",
+   "fr": "Canada"
+  },
+  "Q332102": {
+   "en": "paranormal",
+   "fr": "paranormal"
+  },
+  "Q92251": {
+   "en": "noise pollution",
+   "fr": "pollution sonore"
+  },
+  "Q20": {
+   "en": "Norway",
+   "fr": "Norvège"
+  },
+  "Q3826419": {
+   "en": "El Ingenio District"
+  },
+  "Q939994": {
+   "en": "Sechura Desert",
+   "fr": "Désert de Sechura"
+  },
+  "Q419": {
+   "en": "Peru",
+   "fr": "Pérou"
+  },
+  "Q45791": {
+   "en": "geoglyph",
+   "fr": "géoglyphe"
+  },
+  "Q839954": {
+   "en": "archaeological site",
+   "fr": "site archéologique"
+  },
+  "Q503186": {
+   "en": "yōkai",
+   "fr": "yōkai"
+  },
+  "Q45529": {
+   "en": "ghost",
+   "fr": "fantôme"
+  },
+  "Q50996514": {
+   "en": "legendary creature in American folklore"
+  },
+  "Q193291": {
+   "en": "spirit",
+   "fr": "esprit"
+  },
+  "Q8028": {
+   "en": "fairy",
+   "fr": "fée"
+  },
+  "Q1350132": {
+   "en": "Aos Sí",
+   "fr": "Aos sí"
+  },
+  "Q49": {
+   "en": "North America",
+   "fr": "Amérique du Nord"
+  },
+  "Q22988604": {
+   "en": "mythological Greek character",
+   "fr": "personnage de la mythologie grecque"
+  },
+  "Q177413": {
+   "en": "demon",
+   "fr": "démon"
+  },
+  "Q3707571": {
+   "en": "giant",
+   "fr": "géant"
+  },
+  "Q17": {
+   "en": "Japan",
+   "fr": "Japon"
+  },
+  "Q1133563": {
+   "en": "shapeshifter",
+   "fr": "métamorphe"
+  },
+  "Q31854313": {
+   "en": "mythological fox",
+   "fr": "renard mythologique"
+  },
+  "Q28020127": {
+   "en": "fictional humanoid",
+   "fr": "humanoïde de fiction"
+  },
+  "Q111652985": {
+   "en": "web series character"
+  },
+  "Q112865833": {
+   "en": "creepypasta character",
+   "fr": "personnage de creepypasta"
+  },
+  "Q1569167": {
+   "en": "video game character",
+   "fr": "personnage de jeu vidéo"
+  },
+  "Q15773347": {
+   "en": "film character",
+   "fr": "personnage de cinéma"
+  },
+  "Q96": {
+   "en": "Mexico",
+   "fr": "Mexique"
+  },
+  "Q653884": {
+   "en": "Hispanic America",
+   "fr": "Amérique hispanique"
+  },
+  "Q42585": {
+   "en": "Kingdom of Bohemia",
+   "fr": "royaume de Bohême"
+  },
+  "Q27921916": {
+   "en": "anthropomorphic character",
+   "fr": "personnage de fiction anthropomorphe"
+  },
+  "Q107307973": {
+   "en": "artificial life form"
+  },
+  "Q6949149": {
+   "en": "mythic humanoid",
+   "fr": "humanoïde mythique"
+  },
+  "Q920028": {
+   "en": "sea monster",
+   "fr": "monstre marin"
+  },
+  "Q839254": {
+   "en": "Yama-no-Kami",
+   "fr": "Yama-no-kami"
+  },
+  "Q115480620": {
+   "en": "thunderbird"
   }
- }
+ },
+ "plus": "2026-11-17"
 }
