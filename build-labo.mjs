@@ -210,23 +210,57 @@ h2.cat{color:#0b1020;background:#cdd9ee;display:inline-block;padding:0 10px;bord
 @media(max-width:720px){.fig{float:none;width:100%;margin:0 0 12px}.sheet{padding:18px}}` }
 };
 
+// M5 : le dossier « administratif » : formulaire dactylographié, champs encadrés, pièces jointes. Agence fictive, aucun emblème réel.
+S.m5 = { univ: 'mystere', nom: "Dossier d'archives", pitch: "Un formulaire d'archives sobre : en-tête à champs, sections numérotées, pièces jointes, photocopie. Ce qu'on ignore y est marqué « non documenté » en bande hachurée : l'inconnu devient une information visible.", risque: "Le plus pro et le plus crédible. Danger : l'allure « agence secrète » peut flatter le complotisme ; ici l'agence est fictive, le ton neutre, rien n'est « caviardé ».", css: `
+body{background:#bfc4c8;background-image:linear-gradient(#0000000a 1px,transparent 1px);background-size:100% 6px;color:#1a1c1e;font:15.5px/1.6 "Courier Prime",monospace}
+.wrap{max-width:900px;margin:0 auto;padding:26px 14px 70px}
+.sheet{background:#f5f5f2;padding:0 0 30px;box-shadow:0 0 0 1px #8d9296,0 18px 40px -14px #000a;position:relative;margin-bottom:50px}
+.sheet::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 60px #00000014;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.agency{display:flex;justify-content:space-between;gap:12px;background:#1a1c1e;color:#f5f5f2;font:700 11.5px "Archivo Narrow",sans-serif;letter-spacing:.22em;text-transform:uppercase;padding:7px 28px}
+.form{display:grid;grid-template-columns:repeat(6,1fr);margin:22px 28px 0;border:1.5px solid #1a1c1e}
+.form>div{padding:5px 10px 6px;border-right:1px solid #1a1c1e;border-bottom:1px solid #1a1c1e;min-width:0}.form>div:last-child{border-bottom:0}
+.form small{display:block;font:700 10.5px "Archivo Narrow",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#4a4f54}
+.form b{font-weight:400;font-size:15px}
+.c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}
+.form .st{background:#1a1c1e;color:#f5f5f2}.form .st small{color:#b9bec3}.form .st b{font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.sheet>section,.sheet>.fig,.sheet>.prov{margin-left:28px;margin-right:28px}
+h1{font:700 clamp(24px,3.4vw,34px)/1.15 "Courier Prime",monospace;margin:0;text-transform:uppercase;letter-spacing:.02em}
+.ref{display:none}.q{margin:2px 0 0;color:#4a4f54}
+h2{font:700 13px "Archivo Narrow",sans-serif;letter-spacing:.2em;text-transform:uppercase;border-bottom:2px solid #1a1c1e;margin:26px 28px 8px;padding-bottom:2px;counter-increment:s}
+h2::before{content:counter(s) ". "}
+.sheet{counter-reset:s}
+ul.l{padding-left:20px;margin:0 28px}.l li{margin-bottom:7px}
+ul.ig{list-style:none;padding:0;margin:0 28px}ul.ig li{display:grid;grid-template-columns:118px 1fr;gap:12px;margin-bottom:8px;align-items:start}ul.ig li::before{content:"NON DOCUMENTÉ";font:700 10px/1 "Archivo Narrow",sans-serif;letter-spacing:.12em;padding:7px 6px;background:#1a1c1e;color:#f5f5f2;text-align:center;border-right:8px solid;border-image:repeating-linear-gradient(135deg,#1a1c1e 0 2px,#f5f5f2 2px 5px) 1}
+.fig{margin:20px 28px 0;border:1px solid #1a1c1e;padding:8px;background:#fff}.fig img{width:100%;max-height:380px;object-fit:cover;filter:grayscale(1) contrast(1.1)}.fig .cap{margin-top:4px;font:12px "Archivo Narrow",sans-serif}.fig .cap::before{content:"PIÈCE JOINTE N°1 · ";font-weight:700}
+.body p{margin:0 28px;text-align:justify}
+.prov{margin-top:24px;border:1.5px solid #1a1c1e;padding:7px 10px;font:12.5px/1.4 "Archivo Narrow",sans-serif}
+.card{background:#f5f5f2;border:1.5px solid #1a1c1e;padding:0}.card .s{display:block;background:#1a1c1e;color:#f5f5f2;font:700 10.5px "Archivo Narrow",sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:3px 10px}.card h3{font:700 17px/1.2 "Courier Prime";margin:8px 10px 2px;text-transform:uppercase}.card p{margin:0 10px 10px;font-size:13.5px;line-height:1.45}
+h2.cat{margin:0 0 12px;color:#1a1c1e;background:#f5f5f2;display:inline-block;padding:2px 12px;border:1.5px solid #1a1c1e}
+@media(max-width:720px){.form{margin:16px 12px 0}.c4,.c3,.c2{grid-column:span 6}.sheet>section,.sheet>.fig,.sheet>.prov,ul.l,ul.ig,h2,.body p{margin-left:14px;margin-right:14px}.fig{margin-left:14px;margin-right:14px}.agency{padding:7px 14px;flex-direction:column;gap:2px}}` };
+// F4 en d'autres couleurs de papier (le bleu est historique : « bibliothèque bleue » vient du papier bleu des couvertures, mais l'encre noire sur papier de couleur marche avec d'autres teintes).
+const F4V = { f4b: ['Colportage brique', "Même gravure sur bois, papier rouge brique (la couleur des images populaires d'Épinal et des estampes de colportage).", '#c24a33', '#a83c27', '#f3dcc2', '#eed36a', '#1a0c08'], f4c: ['Colportage ocre', "Papier jaune ocre : l'almanach, le calendrier populaire. Le plus chaud, le plus lisible.", '#e2ac3a', '#c8932c', '#f7ead0', '#b3201f', '#1a1206'], f4d: ['Colportage sapin', "Papier vert profond, encre noire, accents crème : un colportage plus sombre et plus inattendu.", '#2f6e53', '#235a42', '#d9e8d4', '#eed36a', '#07120d'] };
+for (const [k, [nom, pitch, paper, bg, light, badge, ink]] of Object.entries(F4V)) S[k] = { univ: 'folklore', nom, pitch, risque: "Même grammaire que F4 ; seule la couleur change. À juger sur la lisibilité de l'encre noire et le caractère de la teinte.", css: S.f4.css.replaceAll('#4a74bb', paper).replaceAll('#3d63a8', bg).replaceAll('#cdd9ee', light).replaceAll('#f1d34a', badge).replaceAll('#0b1020', ink) };
+
 const FILTERS = `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <filter id="duo" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues="0.039 0.9"/><feFuncG type="table" tableValues="0.165 0.949"/><feFuncB type="table" tableValues="0.302 0.984"/></feComponentTransfer></filter>
 <filter id="wood" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="discrete" tableValues="0 0 0 0 1 1 1"/><feFuncG type="discrete" tableValues="0 0 0 0 1 1 1"/><feFuncB type="discrete" tableValues="0 0 0 0 1 1 1"/></feComponentTransfer></filter>
 <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/></filter></defs></svg>`;
 
-const nav = cur => `<nav aria-label="Styles"><i>Mystères</i>${['m1', 'm2', 'm3', 'm4'].map(k => `<a href="${k}.html"${k === cur ? ' aria-current="page"' : ''}>${k.toUpperCase()} ${S[k].nom}</a>`).join('')}<i>Folklore</i>${['f1', 'f2', 'f3', 'f4'].map(k => `<a href="${k}.html"${k === cur ? ' aria-current="page"' : ''}>${k.toUpperCase()} ${S[k].nom}</a>`).join('')}</nav>`;
+const ks = u => Object.keys(S).filter(k => S[k].univ === u);
+const nav = cur => `<nav aria-label="Styles"><i>Mystères</i>${ks('mystere').map(k => `<a href="${k}.html"${k === cur ? ' aria-current="page"' : ''}>${k.toUpperCase()} ${S[k].nom}</a>`).join('')}<i>Folklore</i>${ks('folklore').map(k => `<a href="${k}.html"${k === cur ? ' aria-current="page"' : ''}>${k.toUpperCase()} ${S[k].nom}</a>`).join('')}</nav>`;
 
 function figure(e) { if (!e.imgfile) return ''; const m = e.imgmeta || {}; return `<figure class="fig"><div class="ph"><img src="${e.imgfile}" alt="${esc(e.titre)}" loading="lazy"></div><figcaption class="cap">${esc(clean(m.author) || clean(m.credit))} · ${esc(m.lic)} · <a href="${esc(m.page)}" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption></figure>`; }
 function dossier(e, k) {
   const m4 = k === 'm4', ex = esc(e.extrait || '');
-  const sait = e.sait ? `<section><h2>Ce qu'on sait</h2><ul class="l">${e.sait.map(x => `<li>${esc(x)}</li>`).join('')}</ul></section><section><h2>Ce qu'on ignore</h2><ul class="l">${e.ignore.map(x => `<li>${esc(x)}</li>`).join('')}</ul></section>` : `<section><h2>Ce qu'on sait, ce qu'on ignore</h2><p class="small">Fiche à rédiger. Cette maquette ne montre ici que le résumé public ci-dessus.</p></section>`;
+  const ig = k === 'm5' ? ' class="ig"' : ' class="l"';
+  const sait = e.sait ? `<section><h2>Ce qu'on sait</h2><ul class="l">${e.sait.map(x => `<li>${esc(x)}</li>`).join('')}</ul></section><section><h2>Ce qu'on ignore</h2><ul${ig}>${e.ignore.map(x => `<li>${esc(x)}</li>`).join('')}</ul></section>` : `<section><h2>Ce qu'on sait, ce qu'on ignore</h2><p class="small">Fiche à rédiger. Cette maquette ne montre ici que le résumé public ci-dessus.</p></section>`;
   const facts = e.facts.length ? `<section><h2>Repères (Wikidata)</h2><dl class="f">${e.facts.map(f => `<dt>${esc(f[0])}</dt><dd>${esc(f[1])}</dd>`).join('')}<dt>Identifiant</dt><dd><a href="https://www.wikidata.org/wiki/${e.qid}" target="_blank" rel="noopener">${e.qid}</a></dd></dl></section>` : '';
   const head = `<div class="head"><div class="tt"><p class="ref">${esc(e.univ === 'mystere' ? 'Dossier' : 'Fiche')} · ${esc(e.desc)}</p><h1 class="type" data-t="${esc(e.titre)}">${esc(e.titre)}</h1><p class="q">${esc(e.q)}</p></div><span class="stamp">${esc(e.st[1])}</span></div>`;
   const prov = `<p class="prov">Maquette. Brouillon rédigé avec une IA, statut de démonstration, rien n'a été relu par un spécialiste. Résumé : <a href="${esc(e.wiki)}" target="_blank" rel="noopener">Wikipédia</a> (CC BY-SA, ${e.extraitLang === 'fr' ? 'français' : 'anglais'}). Repères : <a href="https://www.wikidata.org/wiki/${e.qid}" target="_blank" rel="noopener">Wikidata</a> (CC0). Image : Wikimedia Commons, licence indiquée sous l'image.</p>`;
   const mast = m4 ? `<div class="mast"><span>La Gazette de l'inconnu</span><span>Journal fictif, maquette</span><span>Édition de démonstration</span></div>` : '';
-  const flow = k === 'f1' || k === 'f4';
+  const flow = k === 'f1' || k === 'f4' || k.startsWith('f4');
   const body = m4 ? `<div class="body">${figure(e)}<p>${ex}</p>${facts}${sait}</div>` : flow ? `${figure(e)}<div class="body"><p>${ex}</p></div>${facts}${sait}` : `${figure(e)}<section class="body"><h2>Résumé</h2><p>${ex}</p></section>${facts}${sait}`;
+  if (k === 'm5') { const f = Object.fromEntries(e.facts); return `<article class="sheet" id="${e.id}"><div class="agency"><span>Bureau d'archives d'Unknownpedia · maquette</span><span>Dossier UNK-${esc(e.id.toUpperCase())}</span></div><div class="form"><div class="c6"><small>Objet</small><h1>${esc(e.titre)}</h1><p class="q">${esc(e.q)}</p></div><div class="c2"><small>Date de référence</small><b>${esc(f['Date de référence'] || 'non établie')}</b></div><div class="c2"><small>Lieu</small><b>${esc(f['Lieu'] || 'non établi')}</b></div><div class="c2"><small>Identifiant Wikidata</small><b>${e.qid}</b></div><div class="c4"><small>Rédaction</small><b>Brouillon IA · non relu par un spécialiste</b></div><div class="c2 st"><small>Statut</small><b>${esc(e.st[1])}</b></div></div>${figure(e)}<section class="body"><h2>Résumé</h2><p>${ex}</p></section>${sait}${prov}</article>`; }
   return `<article class="sheet" id="${e.id}">${mast}${head}${body}${prov}</article>`;
 }
 function cards(list) { return `<ul class="cards">${list.map(e => `<li><a class="card" href="#${e.id}"><span class="s">${esc(e.st[1])}</span><h3>${esc(e.titre)}</h3><p>${esc(e.q || e.desc)}</p></a></li>`).join('')}</ul>`; }
