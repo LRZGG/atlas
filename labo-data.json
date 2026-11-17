@@ -1,0 +1,700 @@
+{
+ "fetched": "2026-11-17",
+ "mystere": [
+  {
+   "id": "wow",
+   "univ": "mystere",
+   "en": {
+    "t": "Wow! signal",
+    "d": "1977 radio signal detected as part of SETI",
+    "x": "The Wow! signal was a strong narrowband radio signal detected on August 15, 1977, by Ohio State University's Big Ear radio telescope in the United States, then used to support the search for extraterrestrial intelligence. The signal appeared to come from the direction of the constellation Sagittarius and bore expected hallmarks of extraterrestrial origin.",
+    "u": "https://en.wikipedia.org/wiki/Wow!_signal"
+   },
+   "qid": "Q33297",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Wow_signal.jpg",
+   "fr": {
+    "t": "Signal Wow!",
+    "d": "signal radio puissant, à bande étroite et centré sur la raie à 21 centimètres, capté le 15 août 1977 par le radiotélescope de l'université d'État de l'Ohio",
+    "x": "Le signal « Wow! » est un signal radio puissant, à bande étroite et centré sur la raie à 21 centimètres, capté le 15 août 1977 par le radiotélescope de l'université d'État de l'Ohio surnommé The Big Ear. D'origine inexpliquée, ce signal, qui a été capté pendant 72 secondes et n'a plus été détecté depuis, a fait l'objet d'une attention significative de la part des médias.",
+    "u": "https://fr.wikipedia.org/wiki/Signal_Wow!"
+   },
+   "wd": {
+    "inception": "+1977-08-15T00:00:00Z",
+    "coord": null,
+    "label": "Wow! signal",
+    "inst": [
+     "Q174984",
+     "Q751989"
+    ],
+    "country": [],
+    "loc": [
+     "Q1138406"
+    ]
+   },
+   "imgmeta": {
+    "file": "Wow_signal.jpg",
+    "lic": "Public domain",
+    "author": "Credit: Big Ear Radio Observatory and North American AstroPhysical Observatory (NAAPO).",
+    "credit": "http://www.bigear.org/Wow30th/wow30th.htm",
+    "page": "https://commons.wikimedia.org/wiki/File:Wow_signal.jpg",
+    "free": true
+   },
+   "imgfile": "img/wow.jpg"
+  },
+  {
+   "id": "voynich",
+   "univ": "mystere",
+   "en": {
+    "t": "Voynich manuscript",
+    "d": "15th-century codex in an unknown script",
+    "x": "The Voynich manuscript is an illustrated codex, hand-written in an undeciphered script referred to as \"Voynichese\". Carbon dating and stylistic analyses indicate it may have been composed in the early 15th century (1404–1438) by someone in or from the area around modern-day Southern Germany, Switzerland and Northern Italy. However, scholars currently lack the translation and context needed to either properly entertain or eliminate any of the possibilities regarding its origin, authorship and purpose. Hypotheses range from a script for a natural language or constructed language, an unreadable code, cipher, or other form of cryptography, or perhaps a hoax, reference work, glossolalia, or work of fiction.",
+    "u": "https://en.wikipedia.org/wiki/Voynich_manuscript"
+   },
+   "qid": "Q179492",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/9/93/Voynich_Manuscript_%2832%29.jpg",
+   "fr": {
+    "t": "Manuscrit de Voynich",
+    "d": "manuscrit illustré écrit dans un alphabet inconnu par un auteur inconnu au XVe siècle",
+    "x": "Le manuscrit de Voynich est un livre illustré anonyme rédigé dans une écriture à ce jour non déchiffrée et une langue non identifiée.",
+    "u": "https://fr.wikipedia.org/wiki/Manuscrit_de_Voynich"
+   },
+   "wd": {
+    "inception": "+1430-00-00T00:00:00Z",
+    "coord": null,
+    "label": "Voynich manuscript",
+    "inst": [
+     "Q48498"
+    ],
+    "country": [],
+    "loc": [
+     "Q814779"
+    ]
+   },
+   "imgmeta": {
+    "file": "Voynich_Manuscript_(32).jpg",
+    "lic": "Public domain",
+    "author": "Unknown authorUnknown author",
+    "credit": "Beinecke Rare Book &amp; Manuscript Library, Yale University ([1]).",
+    "page": "https://commons.wikimedia.org/wiki/File:Voynich_Manuscript_(32).jpg",
+    "free": true
+   },
+   "imgfile": "img/voynich.jpg"
+  },
+  {
+   "id": "roanoke",
+   "univ": "mystere",
+   "en": {
+    "t": "Roanoke Colony",
+    "d": "Failed colony in North America (1584–1590)",
+    "x": "The Roanoke Colony was the site of two attempts by Sir Walter Raleigh to found the first permanent English settlement in North America. The first colony was established at Roanoke Island in 1585 as a military outpost, and was evacuated in 1586. The more famous second colony, known as the Lost Colony, began when a new group of settlers under John White arrived on the island in 1587; a ship in 1590 found the colony abandoned.",
+    "u": "https://en.wikipedia.org/wiki/Roanoke_Colony"
+   },
+   "qid": "Q59222",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/6/64/William_Ludwell_Sheppard_%26_William_James_Linton_-_CROATOAN%2C_The_Lost_Colony_%28John_White%29.jpg",
+   "coord": {
+    "lat": 35.93694444,
+    "lon": -75.70888889
+   },
+   "fr": {
+    "t": "Colonie de Roanoke",
+    "d": "premier établissement anglais en Amérique, Caroline du Nord, États-Unis (1585-1590)",
+    "x": "La colonie de Roanoke sur l'île Roanoke dans la Caroline du Nord actuelle fut le tout premier établissement anglais en Amérique, financé et organisé par Sir Walter Raleigh pour le compte d'Élisabeth Ire d'Angleterre dans les années 1580.",
+    "u": "https://fr.wikipedia.org/wiki/Colonie_de_Roanoke"
+   },
+   "wd": {
+    "inception": "+1584-00-00T00:00:00Z",
+    "coord": {
+     "latitude": 35.93694444444444,
+     "longitude": -75.7088888888889,
+     "altitude": null,
+     "precision": 0.0002777777777777778,
+     "globe": "http://www.wikidata.org/entity/Q2"
+    },
+    "label": "Roanoke Colony",
+    "inst": [
+     "Q74047",
+     "Q133156"
+    ],
+    "country": [
+     "Q30"
+    ],
+    "loc": []
+   },
+   "imgmeta": {
+    "file": "William_Ludwell_Sheppard_&_William_James_Linton_-_CROATOAN,_The_Lost_Colony_(John_White).jpg",
+    "lic": "No restrictions",
+    "author": "Design by William Ludwell Sheppard, Engraving by William James Linton",
+    "credit": "https://www.flickr.com/photos/internetarchivebookimages/14781233224/\n\nSource book page: https://archive.org/stream/popularhistoryof00brya/popularhistoryof00brya",
+    "page": "https://commons.wikimedia.org/wiki/File:William_Ludwell_Sheppard_%26_William_James_Linton_-_CROATOAN,_The_Lost_Colony_(John_White).jpg",
+    "free": true
+   },
+   "imgfile": "img/roanoke.jpg"
+  },
+  {
+   "id": "phaistos",
+   "univ": "mystere",
+   "en": {
+    "t": "Phaistos Disc",
+    "d": "Inscribed clay disc found in Crete, Greece",
+    "x": "The Phaistos Disc, or Phaistos Disk, is a disc of fired clay from the island of Crete, Greece, possibly from the middle or late Minoan Bronze Age, bearing a text in an unknown script and language. Its purpose and its original place of manufacture remain disputed. It is now on display at the archaeological museum of Heraklion. The name is sometimes spelled Phaestos or Festos.",
+    "u": "https://en.wikipedia.org/wiki/Phaistos_Disc"
+   },
+   "qid": "Q465338",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Phaistos_Disc_%E2%80%94_Side_A.jpg/3840px-Phaistos_Disc_%E2%80%94_Side_A.jpg",
+   "fr": {
+    "t": "Disque de Phaistos",
+    "d": "tablette d'argile cuite découverte en Crète et couverte sur ses deux faces d'inscriptions minoennes spiralées non déchiffrées",
+    "x": "Le disque de Phaistos ou disque de Phaestos est un disque d'argile cuite découvert en 1908 par l'archéologue italien Luigi Pernier sur le site archéologique du palais minoen de Phaistos, en Crète. Il pourrait dater du milieu ou de la fin de l'âge du bronze minoen. Son diamètre est d'environ seize centimètres et il est couvert, sur ses deux faces, de hiéroglyphes imprimés à l'aide de poinçons. En tout, ce sont 241 signes, dont 45 différents, qui recouvrent le disque, en formant une spirale partant de l'extérieur vers le centre de l'objet. Son usage, sa signification et même son lieu de fabrication font l'objet d'âpres discussions. À ce jour, aucun autre objet similaire n'a été retrouvé.",
+    "u": "https://fr.wikipedia.org/wiki/Disque_de_Phaistos"
+   },
+   "wd": {
+    "inception": "-1675-00-00T00:00:00Z",
+    "coord": null,
+    "label": "Phaistos disc",
+    "inst": [
+     "Q1570005",
+     "Q1640824"
+    ],
+    "country": [
+     "Q41",
+     "Q4752820"
+    ],
+    "loc": [
+     "Q636972"
+    ]
+   },
+   "imgmeta": {
+    "file": "Phaistos_Disc_—_Side_A.jpg",
+    "lic": "Public domain",
+    "author": "Gleb Simonov",
+    "credit": "Own work",
+    "page": "https://commons.wikimedia.org/wiki/File:Phaistos_Disc_%E2%80%94_Side_A.jpg",
+    "free": true
+   },
+   "imgfile": "img/phaistos.jpg"
+  },
+  {
+   "id": "dyatlov",
+   "univ": "mystere",
+   "en": {
+    "t": "Dyatlov Pass incident",
+    "d": "1959 unsolved deaths in the Soviet Union",
+    "x": "The Dyatlov Pass incident was an event in which nine Soviet ski hikers died in the northern part of the Ural Mountains ridge in the Russian SFSR on 1 or 2 February 1959 under undetermined circumstances. The experienced trekking group from the Ural Polytechnical Institute embarked on a difficult hike led by Igor Dyatlov, and had established a camp on the eastern slopes of Kholat Syakhl mountain. Overnight, the group cut their way out of their tent with knives and fled the campsite, inadequately dressed for the heavy snowfall, strong winds and extreme cold temperatures as low as −40 °C (−40 °F).",
+    "u": "https://en.wikipedia.org/wiki/Dyatlov_Pass_incident"
+   },
+   "qid": "Q814484",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/5/52/%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D0%BD%D0%B8%D0%BA_%D0%B4%D1%8F%D1%82%D0%BB%D0%BE%D0%B2%D1%86%D0%B0%D0%BC_%D0%BD%D0%B0_%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%BC_%D0%BA%D0%BB%D0%B0%D0%B4%D0%B1%D0%B8%D1%89%D0%B5.jpg",
+   "coord": {
+    "lat": 61.75444444,
+    "lon": 59.445
+   },
+   "wd": {
+    "inception": "+1959-02-02T00:00:00Z",
+    "coord": {
+     "latitude": 61.75472222,
+     "longitude": 59.46277778,
+     "altitude": null,
+     "precision": 0.00027777777777778,
+     "globe": "http://www.wikidata.org/entity/Q2"
+    },
+    "label": "Dyatlov Pass incident",
+    "inst": [
+     "Q12890393",
+     "Q171558"
+    ],
+    "country": [
+     "Q15180"
+    ],
+    "loc": [
+     "Q2476466",
+     "Q4349969"
+    ]
+   },
+   "imgmeta": {
+    "file": "Памятник_дятловцам_на_Михайловском_кладбище.jpg",
+    "lic": "Public domain",
+    "author": "Дмитрий Никишин.\n\nThe original uploader was Futball80 at Russian Wikipedia.",
+    "credit": "Transferred from ru.wikipedia to Commons.\n\n(Original text : Own work)",
+    "page": "https://commons.wikimedia.org/wiki/File:%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D0%BD%D0%B8%D0%BA_%D0%B4%D1%8F%D1%82%D0%BB%D0%BE%D0%B2%D1%86%D0%B0%D0%BC_%D0%BD%D0%B0_%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%BC_%D0%BA%D0%BB%D0%B0%D0%B4%D0%B1%D0%B8%D1%89%D0%B5.jpg",
+    "free": true
+   },
+   "imgfile": "img/dyatlov.jpg"
+  },
+  {
+   "id": "antikythere",
+   "univ": "mystere",
+   "en": {
+    "t": "Antikythera mechanism",
+    "d": "Ancient Greek analogue astronomical computer",
+    "x": "The Antikythera mechanism is an ancient Greek hand-powered orrery built in the 2nd century BC and discovered in 1901. It is the oldest known example of an analogue computer. It could be used to predict astronomical positions and eclipses decades in advance. It could also be used to track the four-year cycle of athletic games similar to an olympiad, the cycle of the ancient Olympic Games.",
+    "u": "https://en.wikipedia.org/wiki/Antikythera_mechanism"
+   },
+   "qid": "Q182324",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Antikythera_Fragment_A_%28Front%29.webp",
+   "fr": {
+    "t": "Machine d'Anticythère",
+    "d": "calculateur astronomique antique",
+    "x": "La machine d'Anticythère, appelée également mécanisme d'Anticythère, est considérée comme le premier calculateur analogique antique permettant de calculer des positions astronomiques. C'est un mécanisme de bronze comprenant des dizaines de roues dentées, solidaires et disposées sur plusieurs plans. Il est garni de nombreuses inscriptions grecques.",
+    "u": "https://fr.wikipedia.org/wiki/Machine_d'Anticyth%C3%A8re"
+   },
+   "wd": {
+    "inception": null,
+    "coord": {
+     "latitude": 35.864167,
+     "longitude": 23.305,
+     "altitude": null,
+     "precision": 0.000001,
+     "globe": "http://www.wikidata.org/entity/Q2"
+    },
+    "label": "Antikythera mechanism",
+    "inst": [
+     "Q220659",
+     "Q211586",
+     "Q5275"
+    ],
+    "country": [],
+    "loc": [
+     "Q637187"
+    ]
+   },
+   "imgmeta": {
+    "file": "Antikythera_Fragment_A_(Front).webp",
+    "lic": "CC BY 4.0",
+    "author": "Logg Tandy",
+    "credit": "Own work",
+    "page": "https://commons.wikimedia.org/wiki/File:Antikythera_Fragment_A_(Front).webp",
+    "free": true
+   },
+   "imgfile": "img/antikythere.webp"
+  }
+ ],
+ "folklore": [
+  {
+   "id": "mothman",
+   "univ": "folklore",
+   "en": {
+    "t": "Mothman",
+    "d": "Modern urban legend",
+    "x": "Mothman is the name given to a humanoid creature in American folklore that was purportedly seen around Point Pleasant, West Virginia, from November 15, 1966, to December 15, 1967. Despite its name, the original sightings of the creature described avian, not lepidopteran, features. The first newspaper report was published in the Point Pleasant Register, dated November 16, 1966, titled \"Couples See Man-Sized Bird ... Creature ... Something\". The national press soon picked up the reports and helped spread the story across the United States. The source of the legend is believed to have originated from sightings of out-of-migration sandhill cranes or herons, or possibly the misidentification of barred owls.",
+    "u": "https://en.wikipedia.org/wiki/Mothman"
+   },
+   "qid": "Q746248",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Mothman_Artist%27s_Impression.png",
+   "fr": {
+    "t": "Homme-papillon",
+    "d": "créature légendaire",
+    "x": "L'homme-papillon, ou homme-phalène, est une prétendue créature ailée qui aurait été observée à Point Pleasant, petite ville située dans l'État de la Virginie-Occidentale, aux États-Unis, en 1966 et 1967.",
+    "u": "https://fr.wikipedia.org/wiki/Homme-papillon"
+   },
+   "wd": {
+    "inception": null,
+    "coord": null,
+    "label": "Mothman",
+    "inst": [
+     "Q2239243",
+     "Q772636"
+    ],
+    "country": [
+     "Q30"
+    ],
+    "loc": []
+   },
+   "imgmeta": {
+    "file": "Mothman_Artist's_Impression.png",
+    "lic": "CC BY-SA 4.0",
+    "author": "Tim Bertelink",
+    "credit": "Own work",
+    "page": "https://commons.wikimedia.org/wiki/File:Mothman_Artist%27s_Impression.png",
+    "free": true
+   },
+   "imgfile": "img/mothman.png"
+  },
+  {
+   "id": "yeti",
+   "univ": "folklore",
+   "en": {
+    "t": "Yeti",
+    "d": "Mythical ape-like creature from Asia",
+    "x": "The Yeti, also commonly referred to as the Abominable Snowman in Western popular culture, is a large, hairy, mythical humanoid creature said to inhabit the Himalayan mountain range in Asia. Many dubious articles have been offered in an attempt to prove the existence of the Yeti, including anecdotal visual sightings, disputed video recordings, photographs, and plaster casts of large footprints. Some of these are speculated or known to be hoaxes.",
+    "u": "https://en.wikipedia.org/wiki/Yeti"
+   },
+   "qid": "Q129628",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Yeti_coloris%C3%A9.jpg",
+   "fr": {
+    "t": "Yéti",
+    "d": "être légendaire, créature mythique de l'Himalaya",
+    "x": "Le yéti, également appelé « abominable homme des neiges », est une créature anthropomorphe du folklore du Népal, de l'Inde, du Bhoutan et du Tibet. Du fait de l'absence de preuve matérielle de son existence, la communauté scientifique le considère comme un être légendaire, un cryptide peut-être né de l'observation de fossiles de gigantopithèque par des populations himalayennes dépourvues de connaissances scientifiques. Des créatures équivalentes, grands primates ou « hommes sauvages », existent dans le folklore de plusieurs régions du monde, comme le Bigfoot en Amérique du Nord, l'Almasty dans le Caucase ou Basajaun au pays basque.",
+    "u": "https://fr.wikipedia.org/wiki/Y%C3%A9ti"
+   },
+   "wd": {
+    "inception": null,
+    "coord": null,
+    "label": "Yeti",
+    "inst": [
+     "Q772636",
+     "Q24334685",
+     "Q1049467",
+     "Q25810847"
+    ],
+    "country": [
+     "Q17269",
+     "Q837"
+    ],
+    "loc": []
+   },
+   "imgmeta": {
+    "file": "Yeti_colorisé.jpg",
+    "lic": "CC BY-SA 3.0",
+    "author": "Ipipipourax",
+    "credit": "Own work",
+    "page": "https://commons.wikimedia.org/wiki/File:Yeti_coloris%C3%A9.jpg",
+    "free": true
+   },
+   "imgfile": "img/yeti.jpg"
+  },
+  {
+   "id": "kappa",
+   "univ": "folklore",
+   "en": {
+    "t": "Kappa (folklore)",
+    "d": "Japanese mythical creature",
+    "x": "In Japanese folklore, the kappa  is a familiar type of water monster, considered one of three major yōkai. Kappa are said to be inhabiting the ponds and rivers of Japan. It is also known by various local names, including kawatarō .",
+    "u": "https://en.wikipedia.org/wiki/Kappa_(folklore)"
+   },
+   "qid": "Q335140",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/af/Kyoka_Hyaku-Monogatari_Kappa.jpg",
+   "fr": {
+    "t": "Kappa",
+    "d": "dixième lettre de l'alphabet grec",
+    "x": "Kappa est la dixième lettre de l'alphabet grec, précédée par iota et suivie par lambda. Dérivée de la lettre kaf  de l'alphabet phénicien, elle est l'ancêtre de la lettre K de l'alphabet latin et de la lettre К de l'alphabet cyrillique.",
+    "u": "https://fr.wikipedia.org/wiki/Kappa"
+   },
+   "wd": {
+    "inception": null,
+    "coord": null,
+    "label": "kappa",
+    "inst": [
+     "Q15707583"
+    ],
+    "country": [],
+    "loc": []
+   },
+   "imgmeta": {
+    "file": "Kyoka_Hyaku-Monogatari_Kappa.jpg",
+    "lic": "Public domain",
+    "author": "竜斎閑人正澄 (Japanese)",
+    "credit": "scanned from ISBN 978-4-336-05055-7.",
+    "page": "https://commons.wikimedia.org/wiki/File:Kyoka_Hyaku-Monogatari_Kappa.jpg",
+    "free": true
+   },
+   "imgfile": "img/kappa.jpg"
+  },
+  {
+   "id": "nessie",
+   "univ": "folklore",
+   "en": {
+    "t": "Loch Ness Monster",
+    "d": "Mythical creature in Scottish folklore",
+    "x": "The Loch Ness Monster, known affectionately as Nessie, is a mythical creature in Scottish folklore that is said to inhabit Loch Ness in the Scottish Highlands. It is often described as large, long-necked, and with one or more humps protruding from the water. Popular interest and belief in the creature has varied since it was brought to worldwide attention in 1933. Evidence of its existence is anecdotal, with a number of disputed photographs and sonar readings.",
+    "u": "https://en.wikipedia.org/wiki/Loch_Ness_Monster"
+   },
+   "qid": "Q49658",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Loch_Ness_Monster_Surgeon%27s_photograph.jpg",
+   "fr": {
+    "t": "Monstre du loch Ness",
+    "d": "créature légendaire vivant dans le loch Ness, Écosse",
+    "x": "Le monstre du loch Ness, que l'essor du tourisme a surnommé dans les années 1930 « Nessie » pour supprimer le côté effrayant qu'il avait jusque-là, est une créature lacustre légendaire supposée vivre, ou avoir vécu, dans le loch Ness, un lac des Highlands en Écosse.",
+    "u": "https://fr.wikipedia.org/wiki/Monstre_du_loch_Ness"
+   },
+   "wd": {
+    "inception": null,
+    "coord": {
+     "latitude": 57.2144,
+     "longitude": -4.57059,
+     "altitude": null,
+     "precision": 0.01,
+     "globe": "http://www.wikidata.org/entity/Q2"
+    },
+    "label": "Loch Ness Monster",
+    "inst": [
+     "Q2239243",
+     "Q1187704",
+     "Q13002315",
+     "Q1114461",
+     "Q123300"
+    ],
+    "country": [
+     "Q145"
+    ],
+    "loc": []
+   },
+   "imgmeta": {
+    "file": "Loch_Ness_Monster_Surgeon's_photograph.jpg",
+    "lic": "Public domain",
+    "author": "M. A. Wetherell",
+    "credit": "[1], [2]",
+    "page": "https://commons.wikimedia.org/wiki/File:Loch_Ness_Monster_Surgeon%27s_photograph.jpg",
+    "free": true
+   },
+   "imgfile": "img/nessie.jpg"
+  },
+  {
+   "id": "bermudes",
+   "univ": "folklore",
+   "en": {
+    "t": "Bermuda Triangle",
+    "d": "Urban legend based on a region in North Atlantic",
+    "x": "The Bermuda Triangle, also known as the Devil's Triangle, is a loosely defined region in the North Atlantic Ocean, roughly bounded by Florida, Bermuda, and Puerto Rico. Since the mid-20th century, it has been the focus of an urban legend suggesting that many aircraft, ships, and people have disappeared there under mysterious circumstances. However, extensive investigations by reputable sources, including the U.S. federal government and scientific organizations, have found no evidence of unusual activity, attributing reported incidents to natural phenomena, human error, and misinterpretation.",
+    "u": "https://en.wikipedia.org/wiki/Bermuda_Triangle"
+   },
+   "qid": "Q43708",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/33/Bermuda_Triangle.png",
+   "coord": {
+    "lat": 25,
+    "lon": -71
+   },
+   "fr": {
+    "t": "Triangle des Bermudes",
+    "d": "région maritime triangulaire située au nord-ouest de l'océan Atlantique",
+    "x": "Le triangle des Bermudes est une zone géographique de l’océan Atlantique qui aurait été, selon une croyance répandue, le théâtre d’un grand nombre de disparitions. Néanmoins, cette rumeur se fonde surtout sur des informations erronées, embellies ou mal interprétées et non sur des preuves évidentes, le triangle ne présentant statistiquement parlant aucune anomalie. Ainsi, selon un rapport du World Wide Fund for Nature en 2013, le triangle des Bermudes ne fait pas partie des endroits les plus dangereux pour la navigation.",
+    "u": "https://fr.wikipedia.org/wiki/Triangle_des_Bermudes"
+   },
+   "wd": {
+    "inception": null,
+    "coord": {
+     "latitude": 25,
+     "longitude": -71,
+     "altitude": null,
+     "precision": 1,
+     "globe": "http://www.wikidata.org/entity/Q2"
+    },
+    "label": "Bermuda Triangle",
+    "inst": [
+     "Q189349",
+     "Q82794",
+     "Q19821",
+     "Q29430681"
+    ],
+    "country": [
+     "Q145",
+     "Q778",
+     "Q30"
+    ],
+    "loc": []
+   },
+   "imgmeta": {
+    "file": "Bermuda_Triangle.png",
+    "lic": "Public domain",
+    "author": "Bermudan_kolmio.jpg: Alphaios\nderivative work: -Majestic- (talk)",
+    "credit": "Bermudan_kolmio.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Bermuda_Triangle.png",
+    "free": true
+   },
+   "imgfile": "img/bermudes.png"
+  },
+  {
+   "id": "dameblanche",
+   "univ": "folklore",
+   "en": {
+    "t": "White Lady",
+    "d": "Type of female ghost in folklore",
+    "x": "A White Lady is a type of female ghost, typically dressed in a white dress or similar garment, reportedly seen in rural areas and associated with local legends of tragedy. White Lady legends are found in many countries around the world. Common to many of these legends is an accidental or impending death, murder, or suicide and the theme of loss, betrayed by a husband or fiancé, and unrequited love.",
+    "u": "https://en.wikipedia.org/wiki/White_Lady"
+   },
+   "qid": "Q2166642",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Ebenezer_Sibly_-_Edw%E1%B8%8D_Kelly%2C_a_Magician._in_the_Act_of_invoking_the_Spirit_of_a_Deceased_Person.jpg",
+   "fr": {
+    "t": "Dame blanche",
+    "d": "page d'homonymie de Wikimédia",
+    "x": "Dame blanche peut faire référence à :Dame blanche (légende), personnage de légende ou apparition fantomatique ;La Dame blanche (1825), opéra-comique en trois actes de François-Adrien Boieldieu sur un livret d'Eugène Scribe, inspiré du personnage précédent ;\nLa Dame blanche, réseau d’espionnage belge de la Première Guerre mondiale ;\nLa Dame blanche, peinture rupestre dans le massif du Brandberg en Namibie ;\nLa dame blanche, un dessert à base de glace vanille couverte de chocolat chaud ;\nLa Dame blanche, ouvrage de Christian Bobin, Gallimard, 2007 ;\nLa Dame Blanche, autre nom d'une espèce de chouette, l'Effraie des clochers.",
+    "u": "https://fr.wikipedia.org/wiki/Dame_blanche"
+   },
+   "wd": {
+    "inception": null,
+    "coord": null,
+    "label": "White Lady",
+    "inst": [
+     "Q636497",
+     "Q24334685"
+    ],
+    "country": [],
+    "loc": []
+   },
+   "imgmeta": {
+    "file": "Ebenezer_Sibly_-_Edwḍ_Kelly,_a_Magician._in_the_Act_of_invoking_the_Spirit_of_a_Deceased_Person.jpg",
+    "lic": "Public domain",
+    "author": "engraved by Ames of Bristol (according to Fincham, Artists and engravers of British and American book plates, 1897), ori",
+    "credit": "Astrology, A New and Complete Illustration of the Occult Sciences by Ebenezer Sibly, M.D. F.R.H.S., Embellished with Curious Copper-Plates, London, 1806. Immedi",
+    "page": "https://commons.wikimedia.org/wiki/File:Ebenezer_Sibly_-_Edw%E1%B8%8D_Kelly,_a_Magician._in_the_Act_of_invoking_the_Spirit_of_a_Deceased_Person.jpg",
+    "free": true
+   },
+   "imgfile": "img/dameblanche.jpg"
+  }
+ ],
+ "labels": {
+  "Q174984": {
+   "en": "signal",
+   "fr": "signal électrique"
+  },
+  "Q751989": {
+   "en": "astronomical phenomenon",
+   "fr": "événement céleste"
+  },
+  "Q1138406": {
+   "en": "Ohio State University Radio Observatory",
+   "fr": "observatoire radio de l'université d'État de l'Ohio"
+  },
+  "Q48498": {
+   "en": "illuminated manuscript",
+   "fr": "enluminure"
+  },
+  "Q814779": {
+   "en": "Beinecke Rare Book & Manuscript Library",
+   "fr": "bibliothèque Beinecke de livres rares et manuscrits"
+  },
+  "Q74047": {
+   "en": "ghost town",
+   "fr": "ville fantôme"
+  },
+  "Q133156": {
+   "en": "colony",
+   "fr": "colonie"
+  },
+  "Q30": {
+   "en": "United States",
+   "fr": "États-Unis"
+  },
+  "Q1570005": {
+   "en": "clay tablet",
+   "fr": "tablette d'argile"
+  },
+  "Q1640824": {
+   "en": "inscription",
+   "fr": "inscription"
+  },
+  "Q41": {
+   "en": "Greece",
+   "fr": "Grèce"
+  },
+  "Q4752820": {
+   "en": "Ancient Crete",
+   "fr": "Crète antique"
+  },
+  "Q636972": {
+   "en": "Heraklion Archaeological Museum",
+   "fr": "musée archéologique d'Héraklion"
+  },
+  "Q12890393": {
+   "en": "incident",
+   "fr": "incident"
+  },
+  "Q171558": {
+   "en": "accident",
+   "fr": "accident"
+  },
+  "Q15180": {
+   "en": "Soviet Union",
+   "fr": "Union soviétique"
+  },
+  "Q2476466": {
+   "en": "North Urals",
+   "fr": "Oural du nord"
+  },
+  "Q4349969": {
+   "en": "Dyatlov Pass",
+   "fr": "col Dyatlov"
+  },
+  "Q220659": {
+   "en": "archaeological artefact",
+   "fr": "artefact archéologique"
+  },
+  "Q211586": {
+   "en": "mechanical calculator",
+   "fr": "calculatrice mécanique"
+  },
+  "Q5275": {
+   "en": "astronomical clock",
+   "fr": "horloge astronomique"
+  },
+  "Q637187": {
+   "en": "National Archaeological Museum of Athens",
+   "fr": "musée national archéologique d'Athènes"
+  },
+  "Q2239243": {
+   "en": "mythical creature",
+   "fr": "créature légendaire"
+  },
+  "Q772636": {
+   "en": "cryptid",
+   "fr": "cryptide"
+  },
+  "Q24334685": {
+   "en": "mythical entity",
+   "fr": "entité mythique"
+  },
+  "Q1049467": {
+   "en": "Rakshasa",
+   "fr": "Rākshasa"
+  },
+  "Q25810847": {
+   "en": "folklore character",
+   "fr": "personnage du folklore"
+  },
+  "Q17269": {
+   "en": "Tibet Autonomous Region",
+   "fr": "région autonome du Tibet"
+  },
+  "Q837": {
+   "en": "Nepal",
+   "fr": "Népal"
+  },
+  "Q15707583": {
+   "en": "fictional taxon",
+   "fr": "taxon fictionnel"
+  },
+  "Q1187704": {
+   "en": "lake monster",
+   "fr": "créature lacustre"
+  },
+  "Q13002315": {
+   "en": "legendary figure",
+   "fr": "personnage légendaire"
+  },
+  "Q1114461": {
+   "en": "comics character",
+   "fr": "personnage de bande dessinée"
+  },
+  "Q123300": {
+   "en": "standing wave",
+   "fr": "onde stationnaire"
+  },
+  "Q145": {
+   "en": "United Kingdom",
+   "fr": "Royaume-Uni"
+  },
+  "Q189349": {
+   "en": "urban legend",
+   "fr": "légende urbaine"
+  },
+  "Q82794": {
+   "en": "region",
+   "fr": "zone géographique"
+  },
+  "Q19821": {
+   "en": "triangle",
+   "fr": "triangle"
+  },
+  "Q29430681": {
+   "en": "triad",
+   "fr": "triade"
+  },
+  "Q778": {
+   "en": "The Bahamas",
+   "fr": "Bahamas"
+  },
+  "Q636497": {
+   "en": "stock character",
+   "fr": "personnage type"
+  }
+ }
+}
