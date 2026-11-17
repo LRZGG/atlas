@@ -139,7 +139,7 @@ let x0 = 9, x1 = -9, y0 = 9, y1 = -9;
 for (let i = 0; i < N; i++) { x0 = Math.min(x0, T[i * 5]); x1 = Math.max(x1, T[i * 5]); y0 = Math.min(y0, T[i * 5 + 1]); y1 = Math.max(y1, T[i * 5 + 1]); }
 const mx = (x0 + x1) / 2, my = (y0 + y1) / 2, ext = Math.max(x1 - x0, y1 - y0);
 let W = 0, H = 0, DPR = 1, s0 = 1, tgt = null; const view = { x: 0, y: 0, k: 1 };
-function resize() { const r = cv.getBoundingClientRect(); DPR = Math.min(2, devicePixelRatio || 1); W = r.width; H = r.height; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); s0 = Math.min(W, H) * .72 / ext; }
+function resize() { const r = cv.getBoundingClientRect(); DPR = Math.min(2, devicePixelRatio || 1); W = r.width; H = r.height; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); s0 = Math.min(W, H) * .67 / ext; }
 const toScreen = (wx, wy) => [W / 2 + (wx - mx - view.x) * s0 * view.k, H / 2 + (wy - my - view.y) * s0 * view.k];
 const toWorld = (px, py) => [(px - W / 2) / (s0 * view.k) + mx + view.x, (py - H / 2) / (s0 * view.k) + my + view.y];
 function zoomAt(px, py, f) { const [wx, wy] = toWorld(px, py); view.k = clamp(view.k * f, .8, 14); view.x = wx - mx - (px - W / 2) / (s0 * view.k); view.y = wy - my - (py - H / 2) / (s0 * view.k); tgt = null; }
@@ -152,8 +152,17 @@ const ADJ = S.map(() => []); L.forEach(([i, j]) => { ADJ[i].push(j); ADJ[j].push
 const ORD = [...F.keys()].sort((a, b) => Math.atan2(FC[a].y - my, FC[a].x - mx) - Math.atan2(FC[b].y - my, FC[b].x - mx)), NUM = {};
 ORD.forEach(f => { const a = Math.atan2(FC[f].y - my, FC[f].x - mx), d = Math.hypot(FC[f].x - mx, FC[f].y - my); NUM[f] = { x: mx + Math.cos(a) * (d + .17), y: my + Math.sin(a) * (d + .17) }; });
 for (let it = 0; it < 60; it++) for (const a of ORD) for (const b of ORD) if (a < b) { const p = NUM[a], q = NUM[b], dx = q.x - p.x, dy = q.y - p.y, d = Math.hypot(dx, dy) || 1; if (d < .085) { const s = (.085 - d) / 2 / d; p.x -= dx * s; p.y -= dy * s; q.x += dx * s; q.y += dy * s; } }
-const DOMC = (() => { const h = { x: mx, y: my }; let rmax = 0; ORD.forEach(f => { rmax = Math.max(rmax, Math.hypot(NUM[f].x - h.x, NUM[f].y - h.y)); });
-  return { R: rmax + .06, d: DATA.D.map((d, i) => { let x = 0, y = 0, w = 0; F.forEach((f, j) => { if (f.d === i) { x += FC[j].x * FC[j].w; y += FC[j].y * FC[j].w; w += FC[j].w; } }); const a = Math.atan2(y / w - h.y, x / w - h.x); let lo = 0, hi = 0; F.forEach((f, j) => { if (f.d === i) { let da = Math.atan2(NUM[j].y - h.y, NUM[j].x - h.x) - a; da = Math.atan2(Math.sin(da), Math.cos(da)); lo = Math.min(lo, da); hi = Math.max(hi, da); } }); return { i, a, lo: lo - .05, hi: hi + .05 }; }) }; })();
+const DOMC = (() => {
+  // Les domaines découpent la couronne : chaque numéro de discipline reçoit son domaine, les frontières sont à mi-chemin entre deux numéros voisins. Une discipline isolée au milieu d'un autre domaine est rattachée à la zone qui l'entoure.
+  const wrap = a => Math.atan2(Math.sin(a), Math.cos(a)), ang = f => Math.atan2(NUM[f].y - my, NUM[f].x - mx), o = ORD.slice().sort((a, b) => ang(a) - ang(b)), n = o.length; let dd = o.map(f => F[f].d), rmax = 0;
+  for (let i = 0; i < n; i++) { const p = dd[(i - 1 + n) % n], q = dd[(i + 1) % n]; if (p === q && dd[i] !== p) dd[i] = p; rmax = Math.max(rmax, Math.hypot(NUM[o[i]].x - mx, NUM[o[i]].y - my)); }
+  const st = dd.findIndex((d, i) => d !== dd[(i - 1 + n) % n]), runs = [];
+  for (let c = 0; c < n;) { const i0 = (st + c) % n, d = dd[i0]; let len = 1; while (c + len < n && dd[(st + c + len) % n] === d) len++;
+    const first = o[i0], last = o[(st + c + len - 1) % n], bef = o[(i0 - 1 + n) % n], aft = o[(st + c + len) % n], a0 = ang(bef) + wrap(ang(first) - ang(bef)) / 2, a1 = a0 + ((ang(last) + wrap(ang(aft) - ang(last)) / 2 - a0) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+    runs.push({ d, a0, a1 }); c += len; }
+  const best = {}; runs.forEach(r => { if (!best[r.d] || r.a1 - r.a0 > best[r.d].a1 - best[r.d].a0) best[r.d] = r; });
+  return { R: rmax + .06, runs, best };
+})();
 
 // ---- Relief : densité de recherche (noyaux gaussiens), compression 0,42, huit niveaux ; courbes de niveau et hachures du bord du connu.
 const GN = 220, PAD = .06, gx0 = x0 - PAD, gy0 = y0 - PAD, GW = x1 - x0 + 2 * PAD, GH = y1 - y0 + 2 * PAD, CELLW = GW / GN, CELLH = GH / GN, SIG = .035, G = new Float32Array(GN * GN);
@@ -300,18 +309,23 @@ function draw(dt) {
   const hf = hoverF; ORD.forEach(f => anim(FA[f], f === hf, dt, loc(F[f].nn).length));
   ORD.forEach((f, i) => {
     const a = toScreen(FC[f].x, FC[f].y); let b = toScreen(NUM[f].x, NUM[f].y); NS[f] = null; if (a[0] < -30 || a[0] > W + 30 || a[1] < -30 || a[1] > H + 30) return; b = [clamp(b[0], 18, W - 18), clamp(b[1], 18, H - 18)]; ctx.globalAlpha = na; ctx.strokeStyle = inkA(1.2); ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(b[0], b[1]); ctx.quadraticCurveTo((a[0] + b[0]) / 2 + (a[1] - b[1]) * .12, (a[1] + b[1]) / 2 - (a[0] - b[0]) * .12, a[0], a[1]); ctx.stroke();
-    ctx.fillStyle = inkA(1.4); ctx.beginPath(); ctx.arc(a[0], a[1], 2.2, 0, 7); ctx.fill(); NS[f] = b; const A = FA[f], e = ease(A.g), r = 9 + 5 * e; ctx.fillStyle = COL.paper; ctx.beginPath(); ctx.arc(b[0], b[1], r, 0, 7); ctx.fill(); ctx.lineWidth = .7 + .6 * e; ctx.stroke(); ctx.fillStyle = inkA(1.5); ctx.font = `${11 + 2 * e}px "Archivo Narrow", sans-serif`; ctx.textAlign = 'center'; ctx.fillText(i + 1, b[0], b[1] + 4 + e * .6); ctx.globalAlpha = 1;
+    ctx.fillStyle = inkA(1.4); ctx.beginPath(); ctx.arc(a[0], a[1], 2.2, 0, 7); ctx.fill(); NS[f] = b; ctx.globalAlpha = 1;
+  });
+  // Les numéros sont dessinés après tous les filets, pour qu'aucun filet ne passe par-dessus un numéro.
+  ORD.forEach((f, i) => {
+    const b = NS[f]; if (!b) return; ctx.strokeStyle = inkA(1.2); const A = FA[f], e = ease(A.g), r = 9 + 5 * e; ctx.fillStyle = COL.paper; ctx.beginPath(); ctx.arc(b[0], b[1], r, 0, 7); ctx.fill(); ctx.lineWidth = .7 + .6 * e; ctx.stroke(); ctx.fillStyle = inkA(1.5); ctx.font = `${11 + 2 * e}px "Archivo Narrow", sans-serif`; ctx.textAlign = 'center'; ctx.fillText(i + 1, b[0], b[1] + 4 + e * .6); ctx.globalAlpha = 1;
   });
   const cx = W / 2, sel = cur && cur.q != null ? cur.q : -1;
   const dused = [];
   // Les quatre grands domaines : leur nom est écrit en arc autour de la carte, au-delà des numéros, avec un filet qui montre l'étendue du domaine. Ils s'effacent quand on zoome.
   { const al = clamp((2.3 - k) / .8, 0, 1); if (al > 0) {
     const hc = toScreen(mx, my), R = DOMC.R * s0 * k, size = clamp(17 * Math.sqrt(k), 15, 24), sp = size * .25; ctx.save(); ctx.globalAlpha = al * .9; ctx.fillStyle = `rgb(${COL.rgb})`; ctx.strokeStyle = `rgb(${COL.rgb})`; ctx.textAlign = 'center'; ctx.font = `${size}px "IM Fell DW Pica", serif`;
-    for (const d of DOMC.d) { const txt = loc(DATA.D[d.i]).toUpperCase(), ws = [...txt].map(c => ctx.measureText(c).width + sp), tot = ws.reduce((a, b) => a + b, 0) - sp, up = Math.sin(d.a) <= 0, rt = up ? R + 10 : R + 10 + size * .7;
-      ctx.lineWidth = .8; ctx.beginPath(); ctx.arc(hc[0], hc[1], R, d.a + d.lo, d.a + d.hi); ctx.stroke();
-      for (const e of [d.lo, d.hi]) { const c = Math.cos(d.a + e), n = Math.sin(d.a + e); ctx.beginPath(); ctx.moveTo(hc[0] + (R - 4) * c, hc[1] + (R - 4) * n); ctx.lineTo(hc[0] + (R + 5) * c, hc[1] + (R + 5) * n); ctx.stroke(); }
-      let th = d.a + (up ? -1 : 1) * tot / 2 / rt;
-      for (let i = 0; i < ws.length; i++) { const step = ws[i] / rt, mid = th + (up ? 1 : -1) * step / 2; ctx.save(); ctx.translate(hc[0] + rt * Math.cos(mid), hc[1] + rt * Math.sin(mid)); ctx.rotate(mid + (up ? Math.PI / 2 : -Math.PI / 2)); ctx.fillText([...txt][i], 0, 0); ctx.restore(); th += (up ? 1 : -1) * step; } }
+    for (const r of DOMC.runs) { ctx.lineWidth = .8; const g = .012; ctx.beginPath(); ctx.arc(hc[0], hc[1], R, r.a0 + g, r.a1 - g); ctx.stroke();
+      for (const e of [r.a0 + g, r.a1 - g]) { const c = Math.cos(e), n = Math.sin(e); ctx.beginPath(); ctx.moveTo(hc[0] + (R - 4) * c, hc[1] + (R - 4) * n); ctx.lineTo(hc[0] + (R + 5) * c, hc[1] + (R + 5) * n); ctx.stroke(); }
+      if (DOMC.best[r.d] !== r) continue; const mid = (r.a0 + r.a1) / 2, txt = loc(DATA.D[r.d]).toUpperCase(); let sz = size, ws; const meas = () => { ctx.font = `${sz}px "IM Fell DW Pica", serif`; ws = [...txt].map(c => ctx.measureText(c).width + sz * .25); return ws.reduce((a, b) => a + b, 0) - sz * .25; };
+      let tot = meas(); const arc = (r.a1 - r.a0 - .06) * (R + 12); if (tot > arc) { sz = Math.max(10, sz * arc / tot); tot = meas(); }
+      const up = Math.sin(mid) <= 0, rt = up ? R + 10 : R + 10 + sz * .7; let th = mid + (up ? -1 : 1) * tot / 2 / rt;
+      for (let i = 0; i < ws.length; i++) { const step = ws[i] / rt, m2 = th + (up ? 1 : -1) * step / 2; ctx.save(); ctx.translate(hc[0] + rt * Math.cos(m2), hc[1] + rt * Math.sin(m2)); ctx.rotate(m2 + (up ? Math.PI / 2 : -Math.PI / 2)); ctx.fillText([...txt][i], 0, 0); ctx.restore(); th += (up ? 1 : -1) * step; } }
     ctx.restore(); } }
   // « Terra incognita » au centre du vide, effacée quand on zoome.
   { const h = toScreen(DATA.hole.x, DATA.hole.y), al = clamp(3 - k, 0, 1); if (al > 0 && h[0] > -200 && h[0] < W + 200) { ctx.save(); ctx.globalAlpha = al * .75; ctx.fillStyle = `rgb(${COL.rgb})`; ctx.textAlign = 'center'; if ('letterSpacing' in ctx) ctx.letterSpacing = '5px'; ctx.font = `14px "Archivo Narrow", sans-serif`; ctx.fillText(t('terra').toUpperCase(), h[0] + 2, h[1]); if ('letterSpacing' in ctx) ctx.letterSpacing = '0px'; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; ctx.fillText(t('terra_sub'), h[0], h[1] + 18); ctx.restore(); } }
@@ -334,7 +348,7 @@ function draw(dt) {
     if (A.v < .02) continue; const p = c ? c.p : pushB(TS[i]), e = ease(hot ? Math.max(A.g, i === sel ? 1 : 0) : A.g); QS[i] = p;
     ctx.globalAlpha = A.v; ctx.fillStyle = COL.acc; ctx.textAlign = 'center';
     if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); }
-    ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.fillText('?', p[0], p[1] + 5);
+    ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.globalAlpha = A.v * (hot || on ? 1 : .72 + .28 * clamp((k - 1) / 1.2, 0, 1)); ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = COL.paper; ctx.strokeText('?', p[0], p[1] + 5); ctx.fillText('?', p[0], p[1] + 5); ctx.globalAlpha = A.v;
     if (c && !multi && !hot && la0 > .02 && A.g < .01) { ctx.globalAlpha = A.v * la0; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; const nm = loc(q.nmm), r = p[0] < cx, c2 = [[p[0] + (r ? -11 : 11), p[1] - 7, r ? 'right' : 'left'], [p[0] + (r ? 11 : -11), p[1] - 7, r ? 'left' : 'right'], [p[0], p[1] - 20, 'center'], [p[0], p[1] + 22, 'center']]; for (const z of c2) if (lab(nm, z[0], z[1], 13, z[2])) break; }
     ctx.globalAlpha = 1; if (c && A.g > .01) cards.push([c, multi]);
   }
