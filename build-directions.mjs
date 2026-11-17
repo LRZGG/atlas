@@ -9,6 +9,9 @@ const fr = n => FR[n] || n;
 
 // Les compteurs aberrants (erreurs de classement d'OpenAlex) sont plafonnés au 99e centile.
 const sorted = s.topics.map(t => t.works).sort((a, b) => a - b), cap = sorted[Math.floor(sorted.length * 0.99)];
+// Choix éditorial : le dentaire (un domaine à part dans OpenAlex, 23 sujets) est rattaché à la médecine, dont il est une spécialité. Les 4 sous-disciplines dentaires restent telles quelles.
+for (const sf of Object.values(s.subfields)) if (sf.field === '35') sf.field = '27';
+delete s.fields['35']; s.fields['27'].name = 'Medicine and Dentistry'; FR['Medicine and Dentistry'] = 'Médecine et dentaire';
 const dIds = Object.keys(s.domains), fIds = Object.keys(s.fields).sort((a, b) => s.fields[a].domain.localeCompare(s.fields[b].domain)), sIds = Object.keys(s.subfields);
 const sIdx = Object.fromEntries(sIds.map((id, i) => [id, i])), fIdx = Object.fromEntries(fIds.map((id, i) => [id, i]));
 const sw = sIds.map(() => 0), sn = sIds.map(() => 0);

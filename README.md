@@ -84,3 +84,5 @@ La première commande télécharge le squelette depuis OpenAlex dans `squelette.
 - Le relief mesure l'effort de recherche (articles publiés), pas le savoir établi : une question fondamentale peut être au cœur d'une zone très publiée.
 
 Données : OpenAlex, sous licence CC0.
+
+- **Choix éditorial (17 novembre 2026)** : le dentaire, un domaine à part dans OpenAlex (23 sujets), est rattaché à la médecine (« Médecine et dentaire »). La carte montre donc 25 disciplines au lieu de 26, et la mise en page a été recalculée. « Agriculture et biologie » reste un seul domaine, comme dans OpenAlex.
