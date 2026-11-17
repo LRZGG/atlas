@@ -195,13 +195,14 @@ function openHash() { const i = Q.findIndex(q => q.id === location.hash.slice(1)
 addEventListener('hashchange', openHash);
 
 // ---- Survol et clic ----
-let hoverT = -1, hoverQ = -1; const QS = Q.map(() => [0, 0]);
+let hoverT = -1, hoverQ = -1, hoverF = -1; const QS = Q.map(() => [0, 0]);
 function hover(px, py) {
-  hoverQ = -1; hoverT = -1; if (px < 0) { tip.hidden = true; return; }
+  hoverQ = -1; hoverT = -1; hoverF = -1; if (px < 0) { tip.hidden = true; return; }
   for (const i of QORD) if (Math.hypot(QS[i][0] - px, QS[i][1] - py) < 15) { hoverQ = i; break; }
-  if (hoverQ < 0) { const [wx, wy] = toWorld(px, py); hoverT = nearestTopic(wx, wy, 8 / (s0 * view.k)); }
-  cv.style.cursor = hoverQ >= 0 || hoverT >= 0 ? 'pointer' : 'crosshair';
-  if (hoverQ >= 0) tip.innerHTML = esc(loc(Q[hoverQ].qq)); else if (hoverT >= 0) { const i = hoverT; tip.innerHTML = esc(T[i * 5 + 4]) + '<small>' + esc(loc(F[S[T[i * 5 + 3]].f].nn)) + ' · ' + esc(fmt(T[i * 5 + 2])) + ' ' + esc(t('publies')) + '</small>'; } else { tip.hidden = true; return; }
+  if (hoverQ < 0 && NA > .25) for (const f of ORD) if (NS[f] && Math.hypot(NS[f][0] - px, NS[f][1] - py) < 14) { hoverF = f; break; }
+  if (hoverQ < 0 && hoverF < 0) { const [wx, wy] = toWorld(px, py); hoverT = nearestTopic(wx, wy, 8 / (s0 * view.k)); }
+  cv.style.cursor = hoverQ >= 0 || hoverF >= 0 || hoverT >= 0 ? 'pointer' : 'crosshair';
+  if (hoverQ >= 0 || hoverF >= 0) { tip.hidden = true; return; } else if (hoverT >= 0) { const i = hoverT; tip.innerHTML = esc(T[i * 5 + 4]) + '<small>' + esc(loc(F[S[T[i * 5 + 3]].f].nn)) + ' · ' + esc(fmt(T[i * 5 + 2])) + ' ' + esc(t('publies')) + '</small>'; } else { tip.hidden = true; return; }
   tip.hidden = false; const r = cv.getBoundingClientRect(); tip.style.left = Math.min(r.left + px + 14, innerWidth - 280) + 'px'; tip.style.top = (r.top + py + 14) + 'px';
 }
 const ptrs = new Map(); let moved = 0, pinch = 0;
@@ -214,7 +215,7 @@ cv.addEventListener('pointermove', e => {
   if (moved > 5) { tip.hidden = true; view.x -= (p[0] - o[0]) / (s0 * view.k); view.y -= (p[1] - o[1]) / (s0 * view.k); tgt = null; cv.style.cursor = 'grabbing'; }
 });
 cv.addEventListener('pointerup', e => { const p = rel(e), was = ptrs.size; ptrs.delete(e.pointerId); pinch = 0; cv.style.cursor = '';
-  if (was === 1 && moved < 6) { hover(p[0], p[1]); if (hoverQ >= 0) openQ(hoverQ); else if (hoverT >= 0) openT(hoverT); else if (cur) closePanel(); } });
+  if (was === 1 && moved < 6) { hover(p[0], p[1]); if (hoverQ >= 0) openQ(hoverQ); else if (hoverF >= 0) flyTo(FC[hoverF].x, FC[hoverF].y, 2.6); else if (hoverT >= 0) openT(hoverT); else if (cur) closePanel(); } });
 cv.addEventListener('pointercancel', e => { ptrs.delete(e.pointerId); pinch = 0; });
 cv.addEventListener('pointerleave', () => hover(-1, -1));
 cv.addEventListener('wheel', e => { e.preventDefault(); const [px, py] = rel(e); zoomAt(px, py, Math.exp(-e.deltaY * .0015)); }, { passive: false });
@@ -250,8 +251,25 @@ document.querySelectorAll('#lang button').forEach(b => { b.onclick = () => { con
 if (matchMedia('(max-width: 720px)').matches) $('legend').open = false;
 
 // ---- Dessin ----
-const labeller = () => { const used = []; return (txt, px, py, size, align) => { const w = ctx.measureText(txt).width, bx = align === 'right' ? px - w : align === 'center' ? px - w / 2 : px, r = [bx - 4, py - size, bx + w + 4, py + 5]; if (used.some(u => !(r[2] < u[0] || r[0] > u[2] || r[3] < u[1] || r[1] > u[3]))) return false; used.push(r); ctx.textAlign = align; ctx.fillText(txt, px, py); return true; }; };
-function draw() {
+// ---- Animations : agrandissement lissé et texte « tapé à la machine » au survol d'un numéro de discipline ou d'un « ? ».
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const QA = Q.map(() => ({ g: 0, c: 0 })), FA = F.map(() => ({ g: 0, c: 0 })), OFF = Q.map(() => [0, 0]), NS = {}; let NA = 1, lastTs = 0;
+function anim(a, on, dt, len) { if (REDUCED) { a.g = on ? 1 : 0; a.c = on ? len : 0; return; } a.g += ((on ? 1 : 0) - a.g) * Math.min(1, dt * 14); if (Math.abs(a.g - (on ? 1 : 0)) < .004) a.g = on ? 1 : 0; a.c = on ? Math.min(len, a.c + dt * 62) : Math.max(0, a.c - dt * 500); }
+const ease = g => g * g * (3 - 2 * g);
+function wrap(txt, maxw) { const lines = []; let c = ''; for (const w of txt.split(' ')) { const n = c ? c + ' ' + w : w; if (c && ctx.measureText(n).width > maxw) { lines.push(c); c = w; } else c = n; } if (c) lines.push(c); return lines; }
+// Fiche de survol : un cartouche qui se déroule depuis le point visé, puis le texte s'écrit lettre à lettre, avec un curseur qui clignote tant que ça tape.
+function card(txt, a, px, py, font, lh, maxw, right, color) {
+  if (a.g <= 0.01) return; ctx.font = font; const lines = wrap(txt, maxw), w = Math.max(...lines.map(l => ctx.measureText(l).width)) + 22, h = lines.length * lh + 14, e = ease(a.g);
+  let bx = right ? px + 16 : px - 16 - w, by = clamp(py - h / 2, 6, H - h - 6); bx = clamp(bx, 6, W - w - 6);
+  ctx.save(); ctx.beginPath(); ctx.rect(right ? bx : bx + w * (1 - e), by, w * e, h); ctx.clip();
+  ctx.fillStyle = COL.paper; ctx.fillRect(bx, by, w, h); ctx.strokeStyle = inkA(1.6); ctx.lineWidth = .8; ctx.strokeRect(bx + .5, by + .5, w - 1, h - 1);
+  ctx.fillStyle = color; ctx.textAlign = 'left'; let left = Math.floor(a.c), cx = 0, cy = 0, typing = a.c < txt.length;
+  lines.forEach((l, i) => { const part = l.slice(0, Math.max(0, left)), yy = by + 7 + (i + 1) * lh - 5; ctx.fillText(part, bx + 11, yy); if (left >= 0 && left <= l.length) { cx = bx + 11 + ctx.measureText(part).width; cy = yy; } left -= l.length + 1; });
+  if (typing && Math.floor(performance.now() / 280) % 2 === 0) ctx.fillRect(cx + 1, cy - lh + 6, 1.6, lh - 5);
+  ctx.restore();
+}
+const labeller = (seed) => { const used = seed || []; return (txt, px, py, size, align) => { const w = ctx.measureText(txt).width, bx = align === 'right' ? px - w : align === 'center' ? px - w / 2 : px, r = [bx - 6, py - size - 2, bx + w + 6, py + 7]; if (used.some(u => !(r[2] < u[0] || r[0] > u[2] || r[3] < u[1] || r[1] > u[3]))) return false; used.push(r); ctx.textAlign = align; ctx.fillText(txt, px, py); return true; }; };
+function draw(dt) {
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.clearRect(0, 0, W, H); const k = view.k;
   $('ctx').style.opacity = cur ? 0 : clamp((1.5 - k) / .4, 0, 1);
   LV.forEach((s, l) => { ctx.strokeStyle = inkA(l === 0 ? .8 : .3 + l * .07); ctx.lineWidth = l === 0 ? 1.2 : .5 + l * .12; ctx.beginPath(); for (let i = 0; i < s.length; i += 4) { const a = toScreen(s[i], s[i + 1]), b = toScreen(s[i + 2], s[i + 3]); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); } ctx.stroke(); });
@@ -259,21 +277,39 @@ function draw() {
   ctx.fillStyle = inkA(.62); const grow = 1 + (k - 1) * .22;
   for (let i = 0; i < N; i++) { const p = toScreen(T[i * 5], T[i * 5 + 1]); if (p[0] < -6 || p[0] > W + 6 || p[1] < -6 || p[1] > H + 6) continue; ctx.beginPath(); ctx.arc(p[0], p[1], (.45 + Math.log10(1 + T[i * 5 + 2]) * .17) * grow, 0, 7); ctx.fill(); }
   const ht = cur && cur.t != null ? cur.t : hoverT; if (ht >= 0) { const p = toScreen(T[ht * 5], T[ht * 5 + 1]); ctx.strokeStyle = inkA(1.4); ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(p[0], p[1], 5, 0, 7); ctx.stroke(); }
-  const na = clamp((2.5 - k) / .8, 0, 1);
+  const na = clamp((2.5 - k) / .8, 0, 1); NA = na;
+  const hf = hoverF; ORD.forEach(f => anim(FA[f], na > .25 && f === hf, dt, loc(F[f].nn).length));
   if (na > 0) ORD.forEach((f, i) => {
     const a = toScreen(FC[f].x, FC[f].y), b = toScreen(NUM[f].x, NUM[f].y); ctx.globalAlpha = na; ctx.strokeStyle = inkA(1.2); ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(b[0], b[1]); ctx.quadraticCurveTo((a[0] + b[0]) / 2 + (a[1] - b[1]) * .12, (a[1] + b[1]) / 2 - (a[0] - b[0]) * .12, a[0], a[1]); ctx.stroke();
-    ctx.fillStyle = inkA(1.4); ctx.beginPath(); ctx.arc(a[0], a[1], 2.2, 0, 7); ctx.fill(); ctx.fillStyle = COL.paper; ctx.beginPath(); ctx.arc(b[0], b[1], 9, 0, 7); ctx.fill(); ctx.stroke(); ctx.fillStyle = inkA(1.5); ctx.font = '11px "Archivo Narrow", sans-serif'; ctx.textAlign = 'center'; ctx.fillText(i + 1, b[0], b[1] + 4); ctx.globalAlpha = 1;
+    ctx.fillStyle = inkA(1.4); ctx.beginPath(); ctx.arc(a[0], a[1], 2.2, 0, 7); ctx.fill(); NS[f] = b; const A = FA[f], e = ease(A.g), r = 9 + 5 * e; ctx.fillStyle = COL.paper; ctx.beginPath(); ctx.arc(b[0], b[1], r, 0, 7); ctx.fill(); ctx.lineWidth = .7 + .6 * e; ctx.stroke(); ctx.fillStyle = inkA(1.5); ctx.font = `${11 + 2 * e}px "Archivo Narrow", sans-serif`; ctx.textAlign = 'center'; ctx.fillText(i + 1, b[0], b[1] + 4 + e * .6); ctx.globalAlpha = 1;
   });
-  const lab = labeller(), cx = W / 2, sel = cur && cur.q != null ? cur.q : -1;
-  for (const i of QORD) {
-    const q = Q[i], p = toScreen(q.x, q.y); QS[i] = p; if (p[0] < -20 || p[0] > W + 20 || p[1] < -20 || p[1] > H + 20) continue; const hot = i === hoverQ || i === sel || i === kbQ;
-    if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); }
-    ctx.fillStyle = COL.acc; ctx.font = `700 ${hot ? 22 : 17}px "IM Fell DW Pica", serif`; ctx.textAlign = 'center'; ctx.fillText('?', p[0], p[1] + 5);
-    ctx.font = `italic ${hot ? 15 : 13}px "IM Fell DW Pica", serif`; const name = loc(q.nmm); if (hot) { ctx.textAlign = p[0] < cx ? 'right' : 'left'; ctx.fillText(name, p[0] + (p[0] < cx ? -12 : 12), p[1] - 9); } else lab(name, p[0] + (p[0] < cx ? -10 : 10), p[1] - 9, 13, p[0] < cx ? 'right' : 'left');
+  const cx = W / 2, sel = cur && cur.q != null ? cur.q : -1, vis = [];
+  // Répulsion : chaque « ? » est repoussé des autres et des numéros de discipline, puis rappelé vers son vrai point (un fil fin les relie).
+  for (const i of QORD) { const p = toScreen(Q[i].x, Q[i].y); if (p[0] < -20 || p[0] > W + 20 || p[1] < -20 || p[1] > H + 20) { OFF[i][0] *= .8; OFF[i][1] *= .8; QS[i] = p; continue; } vis.push(i); }
+  for (let it = 0; it < 2; it++) {
+    for (const i of vis) { const o = OFF[i], p = toScreen(Q[i].x, Q[i].y); let fx = -o[0] * .06, fy = -o[1] * .06;
+      for (const j of vis) { if (j === i) continue; const pj = toScreen(Q[j].x, Q[j].y); let dx = p[0] + o[0] - pj[0] - OFF[j][0], dy = p[1] + o[1] - pj[1] - OFF[j][1], d = Math.hypot(dx, dy); if (d >= 19) continue; if (d < .01) { const ang = i * 2.399; dx = Math.cos(ang); dy = Math.sin(ang); d = 1; } const m = (19 - d) * .18 / d; fx += dx * m; fy += dy * m; }
+      if (NA > .2) for (const f of ORD) { const n = NS[f]; if (!n) continue; const dx = p[0] + o[0] - n[0], dy = p[1] + o[1] - n[1], d = Math.hypot(dx, dy); if (d < 24 && d > .01) { const m = (24 - d) * .3 / d; fx += dx * m; fy += dy * m; } }
+      o[0] = clamp(o[0] + fx, -46, 46); o[1] = clamp(o[1] + fy, -46, 46); }
   }
+  const seed = [], pos = {};
+  for (const i of vis) { const p = toScreen(Q[i].x, Q[i].y), q = [p[0] + OFF[i][0], p[1] + OFF[i][1]]; QS[i] = q; pos[i] = q; seed.push([q[0] - 6, q[1] - 14, q[0] + 6, q[1] + 6]); }
+  if (NA > .2) for (const f of ORD) { const n = NS[f]; if (n) seed.push([n[0] - 12, n[1] - 12, n[0] + 12, n[1] + 12]); }
+  const lab = labeller(seed), hotCards = [];
+  for (const i of vis) { const p = pos[i], t = toScreen(Q[i].x, Q[i].y), off = Math.hypot(OFF[i][0], OFF[i][1]);
+    if (off > 5) { ctx.strokeStyle = inkA(.9); ctx.lineWidth = .6; ctx.beginPath(); ctx.moveTo(t[0], t[1]); ctx.lineTo(p[0], p[1] - 3); ctx.stroke(); ctx.fillStyle = inkA(1.2); ctx.beginPath(); ctx.arc(t[0], t[1], 1.6, 0, 7); ctx.fill(); } }
+  for (const i of vis) {
+    const q = Q[i], p = pos[i], on = i === hoverQ || i === kbQ, hot = on || i === sel, A = QA[i]; anim(A, on, dt, loc(q.qq).length); const e = ease(hot ? Math.max(A.g, i === sel ? 1 : 0) : A.g);
+    if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); }
+    ctx.fillStyle = COL.acc; ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.textAlign = 'center'; ctx.fillText('?', p[0], p[1] + 5);
+    if (A.g > .01) hotCards.push([i, p]); else if (!hot) { ctx.font = 'italic 13px "IM Fell DW Pica", serif'; const nm = loc(q.nmm), r = p[0] < cx, c2 = [[p[0] + (r ? -11 : 11), p[1] - 7, r ? 'right' : 'left'], [p[0] + (r ? 11 : -11), p[1] - 7, r ? 'left' : 'right'], [p[0], p[1] - 20, 'center'], [p[0], p[1] + 22, 'center']]; for (const c of c2) if (lab(nm, c[0], c[1], 13, c[2])) break; }
+  }
+  // Les cartouches de survol passent par-dessus tout le reste.
+  for (const [i, p] of hotCards) card(loc(Q[i].qq), QA[i], p[0], p[1] - 3, 'italic 14px "IM Fell DW Pica", serif', 18, 250, p[0] < cx, COL.acc);
+  for (const f of ORD) if (FA[f].g > .01 && NS[f]) card(loc(F[f].nn).toUpperCase(), FA[f], NS[f][0], NS[f][1], '12px "Archivo Narrow", sans-serif', 16, 210, NS[f][0] < cx, `rgb(${COL.rgb})`);
 }
 new ResizeObserver(resize).observe(cv); addEventListener('resize', resize);
 if (document.fonts) document.fonts.ready.then(() => {});
 applyLang(); resize(); openHash();
-(function frame() { stepView(); draw(); requestAnimationFrame(frame); })();
+(function frame(ts) { const dt = Math.min(.05, (ts - lastTs) / 1000 || .016); lastTs = ts; stepView(); draw(dt); requestAnimationFrame(frame); })(0);
 </script>
