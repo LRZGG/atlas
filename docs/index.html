@@ -147,6 +147,7 @@ function stepView() { if (!tgt) return; view.x += (tgt.x - view.x) * .16; view.y
 
 // ---- Disciplines : centre de chacune, numéro de référence et voisinage des sous-disciplines.
 const FC = F.map(() => ({ x: 0, y: 0, w: 0 })); for (let i = 0; i < N; i++) { const f = FC[S[T[i * 5 + 3]].f], w = T[i * 5 + 2] + 1; f.x += T[i * 5] * w; f.y += T[i * 5 + 1] * w; f.w += w; } FC.forEach(f => { f.x /= f.w; f.y /= f.w; });
+const DOMC = DATA.D.map((d, i) => { let x = 0, y = 0, w = 0; F.forEach((f, j) => { if (f.d === i) { x += FC[j].x * FC[j].w; y += FC[j].y * FC[j].w; w += FC[j].w; } }); x /= w; y /= w; const h = DATA.hole, a = Math.atan2(y - h.y, x - h.x); return { i, a }; });
 const ADJ = S.map(() => []); L.forEach(([i, j]) => { ADJ[i].push(j); ADJ[j].push(i); });
 const ORD = [...F.keys()].sort((a, b) => Math.atan2(FC[a].y - my, FC[a].x - mx) - Math.atan2(FC[b].y - my, FC[b].x - mx)), NUM = {};
 ORD.forEach(f => { const a = Math.atan2(FC[f].y - my, FC[f].x - mx), d = Math.hypot(FC[f].x - mx, FC[f].y - my); NUM[f] = { x: mx + Math.cos(a) * (d + .17), y: my + Math.sin(a) * (d + .17) }; });
@@ -303,30 +304,39 @@ function draw(dt) {
   // Les grandes disciplines : leur nom s'écrit à côté du numéro, vers l'extérieur ; il s'efface quand on zoome (le numéro reste).
   const na2 = clamp((3 - k) / .8, 0, 1), dused = [], dl = labeller(dused);
   for (const f of ORD) { const nb = NS[f]; if (nb) dused.push([nb[0] - 12, nb[1] - 13, nb[0] + 12, nb[1] + 13]); }
-  if (na2 > 0) { ctx.save(); ctx.globalAlpha = na2; ctx.fillStyle = inkA(1.5); ctx.font = '12px "Archivo Narrow", sans-serif'; for (const f of ORD) { const nb = NS[f]; if (!nb || FA[f].g > .05) continue; const r = nb[0] >= cx; dl(loc(F[f].nn).toUpperCase(), nb[0] + (r ? 15 : -15), nb[1] + 4, 12, r ? 'left' : 'right'); } ctx.restore(); }
+  if (na2 > 0) { ctx.save(); ctx.globalAlpha = na2; ctx.fillStyle = inkA(1.5); ctx.font = '12px "Archivo Narrow", sans-serif'; for (const f of ORD) { const nb = NS[f]; if (!nb || FA[f].g > .05) continue; const r = nb[0] >= cx; dl(loc(F[f].nn).toUpperCase(), nb[0] + (r ? 21 : -21), nb[1] + 4, 12, r ? 'left' : 'right'); } ctx.restore(); }
+  // Les quatre grands domaines, écrits en arc le long du bord intérieur du vide central, comme les noms d'une carte ; ils s'effacent quand on zoome (les noms de disciplines prennent le relais).
+  { const al = clamp((2.1 - k) / .7, 0, 1); if (al > 0) {
+    const hc = toScreen(DATA.hole.x, DATA.hole.y), R = DATA.hole.r * s0 * k * .74, size = clamp(16 * Math.sqrt(k), 14, 22), sp = size * .22; ctx.save(); ctx.globalAlpha = al * .85; ctx.fillStyle = `rgb(${COL.rgb})`; ctx.textAlign = 'center'; ctx.font = `${size}px "Archivo Narrow", sans-serif`;
+    const L = DOMC.map(d => { const txt = loc(DATA.D[d.i]).toUpperCase(), ws = [...txt].map(c => ctx.measureText(c).width + sp), tot = ws.reduce((a, b) => a + b, 0) - sp; return { txt, ws, tot, a: d.a, hw: tot / 2 / R }; });
+    for (let it = 0; it < 40; it++) { L.sort((p, q) => p.a - q.a); for (let i = 0; i < L.length; i++) { const p = L[i], q = L[(i + 1) % L.length]; let gap = q.a - p.a + (i === L.length - 1 ? 2 * Math.PI : 0) - p.hw - q.hw - .22; if (gap < 0) { p.a += gap / 2; q.a -= gap / 2; } } }
+    for (const l of L) { const up = Math.sin(l.a) <= 0, rr = up ? R : R + size * .7; let th = l.a + (up ? -1 : 1) * l.tot / 2 / R;
+      for (let i = 0; i < l.ws.length; i++) { const step = l.ws[i] / R, mid = th + (up ? 1 : -1) * step / 2; ctx.save(); ctx.translate(hc[0] + rr * Math.cos(mid), hc[1] + rr * Math.sin(mid)); ctx.rotate(mid + (up ? Math.PI / 2 : -Math.PI / 2)); ctx.fillText([...l.txt][i], 0, 0); ctx.restore(); th += (up ? 1 : -1) * step; } }
+    ctx.restore(); } }
   // « Terra incognita » au centre du vide, effacée quand on zoome.
   { const h = toScreen(DATA.hole.x, DATA.hole.y), al = clamp(3 - k, 0, 1); if (al > 0 && h[0] > -200 && h[0] < W + 200) { ctx.save(); ctx.globalAlpha = al * .75; ctx.fillStyle = `rgb(${COL.rgb})`; ctx.textAlign = 'center'; if ('letterSpacing' in ctx) ctx.letterSpacing = '5px'; ctx.font = `14px "Archivo Narrow", sans-serif`; ctx.fillText(t('terra').toUpperCase(), h[0] + 2, h[1]); if ('letterSpacing' in ctx) ctx.letterSpacing = '0px'; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; ctx.fillText(t('terra_sub'), h[0], h[1] + 18); ctx.restore(); } }
-  // Regroupement : dans les zones denses, les « ? » à moins de 21 px forment une grappe marquée du nombre de questions ; on zoome pour les séparer.
-  const CR = clamp(84 / Math.pow(k, .95), 21, 84), TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => !!Q[b].f - !!Q[a].f), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ)], seen = new Set(); CL = [];
+  // Regroupement : dans les zones denses, un seul « ? » représente ceux qui sont à moins de CR pixels (CR diminue quand on zoome). Les autres se fondent : ils apparaissent et disparaissent en douceur.
+  const CR = clamp(84 / Math.pow(k, .95), 21, 84), TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => !!Q[b].f - !!Q[a].f), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ)], seen = new Set(), isLead = new Set(); CL = [];
+  const pushB = p => { let q = p; for (let it = 0; it < 2; it++) for (const f of ORD) { const nb = NS[f]; if (!nb) continue; const dx = q[0] - nb[0], dy = q[1] - nb[1], d = Math.hypot(dx, dy); if (d < 24) q = d < .01 ? [q[0] + 24, q[1]] : [q[0] + dx * (24 - d) / d, q[1] + dy * (24 - d) / d]; } return q; };
   for (const i of order) {
-    const p = TS[i]; if (seen.has(i) || p[0] < -20 || p[0] > W + 20 || p[1] < -20 || p[1] > H + 20) continue; seen.add(i); const ids = [i], forced = i === sel || i === kbQ;
+    const p = TS[i]; if (seen.has(i) || p[0] < -20 || p[0] > W + 20 || p[1] < -20 || p[1] > H + 20) continue; seen.add(i); isLead.add(i); const ids = [i], forced = i === sel || i === kbQ;
     if (!forced) for (const j of order) { if (seen.has(j) || j === sel || j === kbQ) continue; if (Math.hypot(TS[j][0] - p[0], TS[j][1] - p[1]) < CR) { ids.push(j); seen.add(j); } }
-    const n = ids.length, ax = ids.reduce((a, j) => a + TS[j][0], 0) / n, ay = ids.reduce((a, j) => a + TS[j][1], 0) / n; let q = [n > 1 ? ax : p[0], n > 1 ? ay : p[1]];
-    for (let it = 0; it < 2; it++) if (NA > .2) for (const f of ORD) { const nb = NS[f]; if (!nb) continue; const dx = q[0] - nb[0], dy = q[1] - nb[1], d = Math.hypot(dx, dy); if (d < 24) { const m = (24 - d) / (d || 1); q = d < .01 ? [q[0] + 24, q[1]] : [q[0] + dx * m, q[1] + dy * m]; } }
-    CL.push({ lead: i, ids, p: q, t: n > 1 ? [ax, ay] : p, wx: ids.reduce((a, j) => a + Q[j].x, 0) / n, wy: ids.reduce((a, j) => a + Q[j].y, 0) / n });
+    CL.push({ lead: i, ids, p: pushB(p), t: p, wx: ids.reduce((a, j) => a + Q[j].x, 0) / ids.length, wy: ids.reduce((a, j) => a + Q[j].y, 0) / ids.length });
   }
-  const seed = CL.map(c => [c.p[0] - (c.ids.length > 1 ? 12 : 6), c.p[1] - 14, c.p[0] + (c.ids.length > 1 ? 16 : 6), c.p[1] + 6]);
-  seed.push(...dused);
+  const seed = CL.map(c => [c.p[0] - 6, c.p[1] - 14, c.p[0] + 6, c.p[1] + 6]); seed.push(...dused);
   for (const f of ORD) { const nb = NS[f]; if (nb) seed.push([nb[0] - 12, nb[1] - 12, nb[0] + 12, nb[1] + 12]); }
-  const lab = labeller(seed), cards = [];
+  const lab = labeller(seed), cards = [], lead = new Map(CL.map(c => [c.lead, c])), la0 = clamp((k - 1.6) / .5, 0, 1);
   for (const c of CL) { const off = Math.hypot(c.p[0] - c.t[0], c.p[1] - c.t[1]); if (off > 5) { ctx.strokeStyle = inkA(.9); ctx.lineWidth = .6; ctx.beginPath(); ctx.moveTo(c.t[0], c.t[1]); ctx.lineTo(c.p[0], c.p[1] - 3); ctx.stroke(); ctx.fillStyle = inkA(1.2); ctx.beginPath(); ctx.arc(c.t[0], c.t[1], 1.6, 0, 7); ctx.fill(); } }
-  for (const c of CL) {
-    const i = c.lead, p = c.p, q = Q[i], A = QA[i], multi = c.ids.length > 1; QS[i] = p;
-    const on = multi ? i === hoverC : (i === hoverQ || i === kbQ), hot = !multi && (on || i === sel); anim(A, on, dt, multi ? t('cluster_n', { n: c.ids.length }).length : loc(q.qq).length); const e = ease(hot ? Math.max(A.g, i === sel ? 1 : 0) : A.g);
-    ctx.fillStyle = COL.acc; ctx.textAlign = 'center';
-    if (multi) { ctx.strokeStyle = COL.acc; ctx.globalAlpha = .55; ctx.lineWidth = .7; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 12 + 2 * e, 0, 7); ctx.stroke(); ctx.globalAlpha = 1; ctx.font = `700 ${18 + 3 * e}px "IM Fell DW Pica", serif`; ctx.fillText('?', p[0] - 2, p[1] + 3); ctx.font = '700 10px "Archivo Narrow", sans-serif'; ctx.textAlign = 'left'; ctx.fillText(c.ids.length, p[0] + 5, p[1] - 6); }
-    else { if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); } ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.fillText('?', p[0], p[1] + 5); }
-    if (A.g > .01) cards.push([c, multi]); else if (!multi && !hot && k > 1.7) { ctx.font = 'italic 13px "IM Fell DW Pica", serif'; const nm = loc(q.nmm), r = p[0] < cx, c2 = [[p[0] + (r ? -11 : 11), p[1] - 7, r ? 'right' : 'left'], [p[0] + (r ? 11 : -11), p[1] - 7, r ? 'left' : 'right'], [p[0], p[1] - 20, 'center'], [p[0], p[1] + 22, 'center']]; for (const z of c2) if (lab(nm, z[0], z[1], 13, z[2])) break; }
+  for (let i = 0; i < Q.length; i++) {
+    const A = QA[i], c = lead.get(i), q = Q[i], target = c ? 1 : 0; A.v = (A.v || 0) + (target - (A.v || 0)) * (REDUCED ? 1 : Math.min(1, dt * 9)); if (Math.abs(A.v - target) < .01) A.v = target;
+    const multi = c && c.ids.length > 1, on = c && (multi ? i === hoverC : (i === hoverQ || i === kbQ)), hot = c && !multi && (on || i === sel);
+    if (c || A.g > 0) anim(A, !!on, dt, multi ? t('cluster_n', { n: c.ids.length }).length : loc(q.qq).length);
+    if (A.v < .02) continue; const p = c ? c.p : pushB(TS[i]), e = ease(hot ? Math.max(A.g, i === sel ? 1 : 0) : A.g); QS[i] = p;
+    ctx.globalAlpha = A.v; ctx.fillStyle = COL.acc; ctx.textAlign = 'center';
+    if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); }
+    ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.fillText('?', p[0], p[1] + 5);
+    if (c && !multi && !hot && la0 > .02 && A.g < .01) { ctx.globalAlpha = A.v * la0; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; const nm = loc(q.nmm), r = p[0] < cx, c2 = [[p[0] + (r ? -11 : 11), p[1] - 7, r ? 'right' : 'left'], [p[0] + (r ? 11 : -11), p[1] - 7, r ? 'left' : 'right'], [p[0], p[1] - 20, 'center'], [p[0], p[1] + 22, 'center']]; for (const z of c2) if (lab(nm, z[0], z[1], 13, z[2])) break; }
+    ctx.globalAlpha = 1; if (c && A.g > .01) cards.push([c, multi]);
   }
   // Les cartouches de survol passent par-dessus tout le reste ; ils s'ouvrent vers l'extérieur de la carte.
   for (const [c, multi] of cards) card(multi ? t('cluster_n', { n: c.ids.length }) : loc(Q[c.lead].qq), QA[c.lead], c.p[0], c.p[1] - 3, 'italic 14px "IM Fell DW Pica", serif', 18, 250, c.p[0] >= cx, COL.acc);
