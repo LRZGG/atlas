@@ -35,7 +35,7 @@
     "ctx_p": "Chaque point est un sujet de recherche réel ({n}). Les courbes de niveau montrent l'effort de recherche, c'est-à-dire le nombre d'articles publiés, pas le savoir établi ; les petits traits marquent le bord du connu. Chaque « ? » est une question que personne n'a résolue ({q}).",
     "refs_t": "Table des références",
     "refs_q": "Questions ouvertes",
-    "cap": "Fig. 1. Carte de la recherche mondiale ({n} sujets). Au centre, terra incognita : ce que l'on ne sait pas encore.",
+    "cap": "Fig. 1. Carte de la recherche mondiale ({n} sujets).",
     "visa": "VISA : non relu",
     "visa_p": "Brouillon rédigé avec une IA, références vérifiées.",
     "src_t": "Sources et licences",
@@ -55,7 +55,7 @@
     "key_ticks": "Petits traits : le bord du connu, côté peu étudié.",
     "key_dot": "Point : un sujet de recherche réel.",
     "key_disc": "Cercle numéroté : une discipline (liste ci-dessous).",
-    "key_q": "? : une question que personne n'a résolue. Un chiffre à côté = plusieurs questions groupées, à zoomer.",
+    "key_q": "? : une question que personne n'a résolue. Un chiffre à côté : plusieurs questions groupées ; zoomer pour les séparer.",
     "key_center": "Centre vide : peu d'articles relient ces disciplines. Le vide est agrandi pour la lisibilité."
   },
   "en": {
@@ -94,7 +94,7 @@
     "ctx_p": "Each dot is a real research topic ({n}). The contour lines show research effort, meaning the number of papers published, not established knowledge; the small ticks mark the edge of the known. Each “?” is a question nobody has solved ({q}).",
     "refs_t": "Reference table",
     "refs_q": "Open questions",
-    "cap": "Fig. 1. Map of world research ({n} topics). At the centre, terra incognita: what is not yet known.",
+    "cap": "Fig. 1. Map of world research ({n} topics).",
     "visa": "VISA: not reviewed",
     "visa_p": "Draft written with an AI, references checked.",
     "src_t": "Sources and licences",
@@ -114,7 +114,7 @@
     "key_ticks": "Small ticks: the edge of the known, on the little-studied side.",
     "key_dot": "Dot: a real research topic.",
     "key_disc": "Numbered circle: a discipline (list below).",
-    "key_q": "?: a question nobody has solved. A number beside it = several questions grouped; zoom in.",
+    "key_q": "?: a question nobody has solved. A number beside it: several questions grouped; zoom in to separate them.",
     "key_center": "Empty centre: few papers link these disciplines. The gap is enlarged for legibility."
   }
 }

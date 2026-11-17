@@ -101,7 +101,7 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <li><svg viewBox="0 0 30 20"><circle cx="9" cy="10" r="1.6" fill="currentColor"/><circle cx="15" cy="7" r="1.1" fill="currentColor"/><circle cx="20" cy="12" r="1.9" fill="currentColor"/><circle cx="13" cy="14" r="1" fill="currentColor"/></svg><span data-i="key_dot"></span></li>
 <li><svg viewBox="0 0 30 20"><circle cx="15" cy="10" r="7.5"/><text x="15" y="13.6" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" font-family="Archivo Narrow,sans-serif">7</text></svg><span data-i="key_disc"></span></li>
 <li><span class="qm">?</span><span data-i="key_q"></span></li>
-<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><ol id="refs"></ol><h2 data-i="refs_q"></h2><ul id="qlist"></ul><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
+<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><ol id="refs"></ol><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
 <div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></div>
 <div id="cap" class="ov"></div>
 <div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div>
@@ -257,12 +257,10 @@ function applyLang() {
   document.querySelectorAll('[data-ia]').forEach(e => e.setAttribute('aria-label', t(e.dataset.ia)));
   $('siteTitle').textContent = t('titre'); $('ctxP').textContent = t('ctx_p', { n: fmt(N), q: Q.length }); $('cap').textContent = t('cap', { n: fmt(N) });
   $('refs').innerHTML = ORD.map((f, i) => `<li><button type="button" data-f="${f}"><b>${i + 1}</b><span>${esc(loc(F[f].nn))}</span></button></li>`).join('');
-  $('qlist').innerHTML = QORD.map(i => `<li><button type="button" data-q="${i}"><b>?</b><span>${esc(loc(Q[i].nmm))}</span></button></li>`).join('');
   document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
   renderPanel();
 }
 $('refs').onclick = e => { const b = e.target.closest('button'); if (b) flyTo(FC[b.dataset.f].x, FC[b.dataset.f].y, 2.6); };
-$('qlist').onclick = e => { const b = e.target.closest('button'); if (b) openQ(+b.dataset.q); };
 document.querySelectorAll('#lang button').forEach(b => { b.onclick = () => { const l = b.dataset.lang; if (l === LANG) return; try { localStorage.setItem('lang', l); } catch (e) {} if (FORCED) location.href = '../' + l + '/' + location.hash; else { LANG = l; applyLang(); } }; });
 if (matchMedia('(max-width: 720px)').matches) $('legend').open = false;
 
@@ -302,18 +300,23 @@ function draw(dt) {
     ctx.fillStyle = inkA(1.4); ctx.beginPath(); ctx.arc(a[0], a[1], 2.2, 0, 7); ctx.fill(); NS[f] = b; const A = FA[f], e = ease(A.g), r = 9 + 5 * e; ctx.fillStyle = COL.paper; ctx.beginPath(); ctx.arc(b[0], b[1], r, 0, 7); ctx.fill(); ctx.lineWidth = .7 + .6 * e; ctx.stroke(); ctx.fillStyle = inkA(1.5); ctx.font = `${11 + 2 * e}px "Archivo Narrow", sans-serif`; ctx.textAlign = 'center'; ctx.fillText(i + 1, b[0], b[1] + 4 + e * .6); ctx.globalAlpha = 1;
   });
   const cx = W / 2, sel = cur && cur.q != null ? cur.q : -1;
+  // Les grandes disciplines : leur nom s'écrit à côté du numéro, vers l'extérieur ; il s'efface quand on zoome (le numéro reste).
+  const na2 = clamp((3 - k) / .8, 0, 1), dused = [], dl = labeller(dused);
+  for (const f of ORD) { const nb = NS[f]; if (nb) dused.push([nb[0] - 12, nb[1] - 13, nb[0] + 12, nb[1] + 13]); }
+  if (na2 > 0) { ctx.save(); ctx.globalAlpha = na2; ctx.fillStyle = inkA(1.5); ctx.font = '12px "Archivo Narrow", sans-serif'; for (const f of ORD) { const nb = NS[f]; if (!nb || FA[f].g > .05) continue; const r = nb[0] >= cx; dl(loc(F[f].nn).toUpperCase(), nb[0] + (r ? 15 : -15), nb[1] + 4, 12, r ? 'left' : 'right'); } ctx.restore(); }
   // « Terra incognita » au centre du vide, effacée quand on zoome.
   { const h = toScreen(DATA.hole.x, DATA.hole.y), al = clamp(3 - k, 0, 1); if (al > 0 && h[0] > -200 && h[0] < W + 200) { ctx.save(); ctx.globalAlpha = al * .75; ctx.fillStyle = `rgb(${COL.rgb})`; ctx.textAlign = 'center'; if ('letterSpacing' in ctx) ctx.letterSpacing = '5px'; ctx.font = `14px "Archivo Narrow", sans-serif`; ctx.fillText(t('terra').toUpperCase(), h[0] + 2, h[1]); if ('letterSpacing' in ctx) ctx.letterSpacing = '0px'; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; ctx.fillText(t('terra_sub'), h[0], h[1] + 18); ctx.restore(); } }
   // Regroupement : dans les zones denses, les « ? » à moins de 21 px forment une grappe marquée du nombre de questions ; on zoome pour les séparer.
-  const TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => !!Q[b].f - !!Q[a].f), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ)], seen = new Set(); CL = [];
+  const CR = clamp(84 / Math.pow(k, .95), 21, 84), TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => !!Q[b].f - !!Q[a].f), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ)], seen = new Set(); CL = [];
   for (const i of order) {
     const p = TS[i]; if (seen.has(i) || p[0] < -20 || p[0] > W + 20 || p[1] < -20 || p[1] > H + 20) continue; seen.add(i); const ids = [i], forced = i === sel || i === kbQ;
-    if (!forced) for (const j of order) { if (seen.has(j) || j === sel || j === kbQ) continue; if (Math.hypot(TS[j][0] - p[0], TS[j][1] - p[1]) < 21) { ids.push(j); seen.add(j); } }
+    if (!forced) for (const j of order) { if (seen.has(j) || j === sel || j === kbQ) continue; if (Math.hypot(TS[j][0] - p[0], TS[j][1] - p[1]) < CR) { ids.push(j); seen.add(j); } }
     const n = ids.length, ax = ids.reduce((a, j) => a + TS[j][0], 0) / n, ay = ids.reduce((a, j) => a + TS[j][1], 0) / n; let q = [n > 1 ? ax : p[0], n > 1 ? ay : p[1]];
     for (let it = 0; it < 2; it++) if (NA > .2) for (const f of ORD) { const nb = NS[f]; if (!nb) continue; const dx = q[0] - nb[0], dy = q[1] - nb[1], d = Math.hypot(dx, dy); if (d < 24) { const m = (24 - d) / (d || 1); q = d < .01 ? [q[0] + 24, q[1]] : [q[0] + dx * m, q[1] + dy * m]; } }
     CL.push({ lead: i, ids, p: q, t: n > 1 ? [ax, ay] : p, wx: ids.reduce((a, j) => a + Q[j].x, 0) / n, wy: ids.reduce((a, j) => a + Q[j].y, 0) / n });
   }
   const seed = CL.map(c => [c.p[0] - (c.ids.length > 1 ? 12 : 6), c.p[1] - 14, c.p[0] + (c.ids.length > 1 ? 16 : 6), c.p[1] + 6]);
+  seed.push(...dused);
   for (const f of ORD) { const nb = NS[f]; if (nb) seed.push([nb[0] - 12, nb[1] - 12, nb[0] + 12, nb[1] + 12]); }
   const lab = labeller(seed), cards = [];
   for (const c of CL) { const off = Math.hypot(c.p[0] - c.t[0], c.p[1] - c.t[1]); if (off > 5) { ctx.strokeStyle = inkA(.9); ctx.lineWidth = .6; ctx.beginPath(); ctx.moveTo(c.t[0], c.t[1]); ctx.lineTo(c.p[0], c.p[1] - 3); ctx.stroke(); ctx.fillStyle = inkA(1.2); ctx.beginPath(); ctx.arc(c.t[0], c.t[1], 1.6, 0, 7); ctx.fill(); } }
@@ -323,7 +326,7 @@ function draw(dt) {
     ctx.fillStyle = COL.acc; ctx.textAlign = 'center';
     if (multi) { ctx.strokeStyle = COL.acc; ctx.globalAlpha = .55; ctx.lineWidth = .7; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 12 + 2 * e, 0, 7); ctx.stroke(); ctx.globalAlpha = 1; ctx.font = `700 ${18 + 3 * e}px "IM Fell DW Pica", serif`; ctx.fillText('?', p[0] - 2, p[1] + 3); ctx.font = '700 10px "Archivo Narrow", sans-serif'; ctx.textAlign = 'left'; ctx.fillText(c.ids.length, p[0] + 5, p[1] - 6); }
     else { if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); } ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.fillText('?', p[0], p[1] + 5); }
-    if (A.g > .01) cards.push([c, multi]); else if (!multi && !hot) { ctx.font = 'italic 13px "IM Fell DW Pica", serif'; const nm = loc(q.nmm), r = p[0] < cx, c2 = [[p[0] + (r ? -11 : 11), p[1] - 7, r ? 'right' : 'left'], [p[0] + (r ? 11 : -11), p[1] - 7, r ? 'left' : 'right'], [p[0], p[1] - 20, 'center'], [p[0], p[1] + 22, 'center']]; for (const z of c2) if (lab(nm, z[0], z[1], 13, z[2])) break; }
+    if (A.g > .01) cards.push([c, multi]); else if (!multi && !hot && k > 1.7) { ctx.font = 'italic 13px "IM Fell DW Pica", serif'; const nm = loc(q.nmm), r = p[0] < cx, c2 = [[p[0] + (r ? -11 : 11), p[1] - 7, r ? 'right' : 'left'], [p[0] + (r ? 11 : -11), p[1] - 7, r ? 'left' : 'right'], [p[0], p[1] - 20, 'center'], [p[0], p[1] + 22, 'center']]; for (const z of c2) if (lab(nm, z[0], z[1], 13, z[2])) break; }
   }
   // Les cartouches de survol passent par-dessus tout le reste ; ils s'ouvrent vers l'extérieur de la carte.
   for (const [c, multi] of cards) card(multi ? t('cluster_n', { n: c.ids.length }) : loc(Q[c.lead].qq), QA[c.lead], c.p[0], c.p[1] - 3, 'italic 14px "IM Fell DW Pica", serif', 18, 250, c.p[0] >= cx, COL.acc);
