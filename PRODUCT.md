@@ -22,7 +22,7 @@ A cross-science, public-facing, bilingual, open-data registry of open questions 
 Visitors arrive from shared links, one question at a time (per-question pages) or via the map. Content is bilingual FR/EN. Data comes from OpenAlex (CC0) and Wikipedia extracts (CC BY-SA); everything must be citable and openly licensed. One author, helped by an AI; drafts are AI-written and labeled as such until a named specialist has reviewed them.
 
 ## Capabilities and Constraints
-- Map with measured relief (research effort, not knowledge), 4,516 topics, 31 questions (target 100–150), 3 full fiches with verified references.
+- Map with measured relief (research effort, not knowledge), 4,516 topics, 105 questions (target 100–150), 12 full fiches with verified references.
 - Provenance label on every fiche ("draft written with an AI, references checked, not yet reviewed" or "reviewed by NAME, date").
 - All fonts, images and code must be under free licences (OFL, CC0…), credited on a sources-and-licences page reachable from a small bottom-right info bubble.
 - No accounts, votes or rankings at launch. No advertising, ever.

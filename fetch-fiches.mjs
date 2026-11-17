@@ -10,12 +10,14 @@ if (!key && process.env.OPENALEX_KEY_FILE && existsSync(process.env.OPENALEX_KEY
 const OA = key ? { ...HEAD, authorization: 'Bearer ' + key } : HEAD;
 const qs = JSON.parse(readFileSync('questions.json', 'utf8')).questions.filter(q => q.fiche);
 const out = {};
+// Wikipédia et OpenAlex limitent le débit (code 429) : on attend le délai demandé, puis on recommence.
+const get = async (url, opts) => { for (let i = 0; i < 8; i++) { const r = await fetch(url, opts); if (r.status !== 429) { await new Promise(s => setTimeout(s, 700)); return r; } await new Promise(s => setTimeout(s, (+r.headers.get('retry-after') || 15) * 1000 + 500)); } throw new Error('trop de requêtes (429) : ' + url); };
 const cut = (t, max = 520) => { if (t.length <= max) return t; const s = t.slice(0, max), i = Math.max(s.lastIndexOf('. '), s.lastIndexOf('; ')); return (i > 200 ? s.slice(0, i + 1) : s.slice(0, s.lastIndexOf(' ')) + '…'); };
 
 for (const q of qs) {
   const f = q.fiche, w = {};
   for (const [lang, titre] of Object.entries(f.wiki)) {
-    const r = await fetch(`https://${lang}.wikipedia.org/api/rest_v1/page/summary/` + encodeURIComponent(titre.replace(/ /g, '_')), { headers: HEAD });
+    const r = await get(`https://${lang}.wikipedia.org/api/rest_v1/page/summary/` + encodeURIComponent(titre.replace(/ /g, '_')), { headers: HEAD });
     if (!r.ok) throw new Error(`Wikipédia ${lang} : ${r.status} pour « ${titre} » (${q.id})`);
     const j = await r.json();
     if (!j.extract || j.type === 'disambiguation') throw new Error(`page Wikipédia inutilisable : ${lang} « ${titre} »`);
@@ -24,12 +26,13 @@ for (const q of qs) {
   const refs = [];
   for (const ref of f.refs) {
     if (ref.doi) {
-      const a = await fetch(`https://api.openalex.org/works/https://doi.org/${ref.doi}?select=title,publication_year,authorships,doi`, { headers: OA });
+      const a = await get(`https://api.openalex.org/works/https://doi.org/${ref.doi}?select=title,publication_year,authorships,doi`, { headers: OA });
       if (!a.ok) throw new Error(`OpenAlex ${a.status} pour le DOI ${ref.doi} (${q.id})`);
       const j = await a.json(), au = j.authorships.map(x => x.author.display_name);
-      refs.push({ t: j.title, a: au.length > 3 ? au.slice(0, 3).join(', ') + ' et al.' : au.join(', '), y: j.publication_year, u: 'https://doi.org/' + ref.doi });
+      // `t` et `a` facultatifs dans questions.json : à n'utiliser que si OpenAlex a abîmé le titre ou les noms (accents, ponctuation) ; le DOI reste vérifié.
+      refs.push({ t: ref.t || j.title, a: ref.a || (au.length > 3 ? au.slice(0, 3).join(', ') + ' et al.' : au.join(', ')), y: j.publication_year, u: 'https://doi.org/' + ref.doi });
     } else {
-      const a = await fetch(ref.url, { headers: HEAD }); if (!a.ok) throw new Error(`lien inaccessible : ${ref.url} (${a.status})`);
+      const a = await get(ref.url, { headers: HEAD }); if (!a.ok) throw new Error(`lien inaccessible : ${ref.url} (${a.status})`);
       refs.push({ t: ref.t, a: ref.a, y: null, u: ref.url });
     }
   }

@@ -13,6 +13,69 @@
         "en": "Clay Mathematics Institute, Millennium Prize Problems (2000)"
       },
       "u": "https://www.claymath.org/millennium-problems/"
+    },
+    "hilbert": {
+      "n": {
+        "fr": "Problèmes de Hilbert (1900), état d'après Wikipédia",
+        "en": "Hilbert's problems (1900), status as listed on Wikipedia"
+      },
+      "u": "https://en.wikipedia.org/wiki/Hilbert%27s_problems"
+    },
+    "wiki-math": {
+      "n": {
+        "fr": "Wikipédia, liste des problèmes non résolus en mathématiques",
+        "en": "Wikipedia, list of unsolved problems in mathematics"
+      },
+      "u": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics"
+    },
+    "wiki-cs": {
+      "n": {
+        "fr": "Wikipédia, liste des problèmes non résolus en informatique",
+        "en": "Wikipedia, list of unsolved problems in computer science"
+      },
+      "u": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_computer_science"
+    },
+    "wiki-phys": {
+      "n": {
+        "fr": "Wikipédia, liste des problèmes non résolus en physique",
+        "en": "Wikipedia, list of unsolved problems in physics"
+      },
+      "u": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics"
+    },
+    "wiki-astro": {
+      "n": {
+        "fr": "Wikipédia, liste des problèmes non résolus en astronomie",
+        "en": "Wikipedia, list of unsolved problems in astronomy"
+      },
+      "u": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_astronomy"
+    },
+    "wiki-chem": {
+      "n": {
+        "fr": "Wikipédia, liste des problèmes non résolus en chimie",
+        "en": "Wikipedia, list of unsolved problems in chemistry"
+      },
+      "u": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_chemistry"
+    },
+    "wiki-bio": {
+      "n": {
+        "fr": "Wikipédia, liste des problèmes non résolus en biologie",
+        "en": "Wikipedia, list of unsolved problems in biology"
+      },
+      "u": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_biology"
+    },
+    "wiki-neuro": {
+      "n": {
+        "fr": "Wikipédia, liste des problèmes non résolus en neurosciences",
+        "en": "Wikipedia, list of unsolved problems in neuroscience"
+      },
+      "u": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_neuroscience"
+    },
+    "wiki-geo": {
+      "n": {
+        "fr": "Wikipédia, liste des problèmes non résolus en géosciences",
+        "en": "Wikipedia, list of unsolved problems in geoscience"
+      },
+      "u": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_geoscience"
     }
   },
   "questions": [
@@ -654,6 +717,43 @@
       "nom": {
         "fr": "Hypothèse de Riemann",
         "en": "Riemann hypothesis"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Hypothèse de Riemann",
+          "en": "Riemann hypothesis"
+        },
+        "fr": {
+          "savoir": [
+            "Les nombres premiers se répartissent selon une loi moyenne connue (le théorème des nombres premiers, démontré en 1896). Les écarts à cette loi se lisent dans les zéros d'une fonction, la fonction zêta de Riemann.",
+            "En 1859, Riemann a affirmé que tous les zéros « non triviaux » de cette fonction ont une partie réelle égale à 1/2. C'est l'hypothèse de Riemann.",
+            "Les ordinateurs l'ont vérifiée pour tous les zéros jusqu'à une hauteur d'environ 3 000 milliards, sans contre-exemple."
+          ],
+          "ignore": [
+            "Si elle est vraie pour tous les zéros, qui sont en nombre infini.",
+            "Les écarts exacts de la répartition des nombres premiers par rapport à la loi moyenne."
+          ],
+          "dur": [
+            "Aucune vérification par ordinateur ne peut couvrir une infinité de zéros : il faut une démonstration.",
+            "Pour des objets voisins, l'analogue de l'hypothèse a été démontré (par Weil, puis Deligne), mais la méthode n'a pas pu être transposée jusqu'ici aux nombres entiers."
+          ],
+          "enjeu": "De nombreux résultats sur les nombres premiers sont démontrés « si l'hypothèse de Riemann est vraie ». C'est l'un des problèmes du prix du millénaire : un million de dollars à qui la résoudra.",
+          "commencer": [
+            "La théorie analytique des nombres.",
+            "Un premier pas : comprendre ce qu'est un zéro d'une fonction, puis pourquoi leur position contrôle la répartition des nombres premiers.",
+            "Lire la description officielle du problème sur le site de l'institut Clay, ci-dessous."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1112/blms.12460"
+          },
+          {
+            "url": "https://www.claymath.org/millennium/riemann-hypothesis/",
+            "t": "L'hypothèse de Riemann, description officielle du problème",
+            "a": "Clay Mathematics Institute"
+          }
+        ]
       }
     },
     {
@@ -734,6 +834,1689 @@
       "nom": {
         "fr": "Birch et Swinnerton-Dyer",
         "en": "Birch and Swinnerton-Dyer"
+      }
+    },
+    {
+      "id": "goldbach",
+      "src": "hilbert",
+      "q": {
+        "fr": "Tout nombre pair supérieur à 2 est-il la somme de deux nombres premiers ?",
+        "en": "Is every even number greater than 2 the sum of two primes?"
+      },
+      "ctx": {
+        "fr": "Vérifiée par ordinateur sur de très grands nombres, jamais démontrée. Elle fait partie du huitième problème de Hilbert (1900)."
+      },
+      "subs": [
+        "Algebra and Number Theory"
+      ],
+      "nom": {
+        "fr": "Conjecture de Goldbach",
+        "en": "Goldbach's conjecture"
+      }
+    },
+    {
+      "id": "jumeaux",
+      "src": "hilbert",
+      "q": {
+        "fr": "Existe-t-il une infinité de nombres premiers jumeaux ?",
+        "en": "Are there infinitely many twin primes?"
+      },
+      "ctx": {
+        "fr": "Deux nombres premiers jumeaux diffèrent de 2, comme 11 et 13. On a démontré en 2013 qu'il existe une infinité de paires de premiers séparés par un écart borné, sans pouvoir ramener cet écart à 2."
+      },
+      "subs": [
+        "Algebra and Number Theory"
+      ],
+      "nom": {
+        "fr": "Premiers jumeaux",
+        "en": "Twin primes"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Nombres premiers jumeaux",
+          "en": "Twin prime"
+        },
+        "fr": {
+          "savoir": [
+            "Un nombre premier n'a que deux diviseurs : 1 et lui-même. Deux premiers sont jumeaux quand ils diffèrent de 2 : 3 et 5, 11 et 13, 17 et 19.",
+            "Les premiers deviennent plus rares à mesure qu'on avance, mais on continue de trouver des paires jumelles : les plus grandes connues ont des centaines de milliers de chiffres.",
+            "En 2013, Yitang Zhang a démontré qu'il existe une infinité de paires de premiers séparés par moins de 70 millions. Ce plafond a ensuite été abaissé à 246 grâce aux travaux de James Maynard et du projet collaboratif Polymath."
+          ],
+          "ignore": [
+            "S'il existe une infinité de premiers jumeaux : il faudrait faire passer l'écart garanti de 246 à 2, et les méthodes actuelles ne suffisent pas.",
+            "La répartition fine des nombres premiers : on connaît la loi moyenne (le théorème des nombres premiers), pas le détail local."
+          ],
+          "dur": [
+            "Les nombres premiers sont définis par la multiplication, alors que la question des jumeaux porte sur un écart d'addition (2). Les deux opérations se combinent mal.",
+            "Les méthodes de crible, qui éliminent les nombres non premiers, butent sur un obstacle de parité : elles distinguent mal un nombre ayant un nombre pair de facteurs premiers d'un nombre en ayant un nombre impair."
+          ],
+          "enjeu": "Comprendre comment les nombres premiers se répartissent localement, et pas seulement en moyenne.",
+          "commencer": [
+            "La théorie analytique des nombres, et en particulier les méthodes de crible.",
+            "Un premier pas : chercher à la main les jumeaux jusqu'à 100, puis se demander ce qui les empêcherait de s'arrêter un jour.",
+            "Les deux articles ci-dessous sont ceux de Zhang et de Maynard."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.4007/annals.2014.179.3.7"
+          },
+          {
+            "doi": "10.4007/annals.2015.181.1.7"
+          }
+        ]
+      }
+    },
+    {
+      "id": "langlands",
+      "src": "hilbert",
+      "q": {
+        "fr": "Existe-t-il une loi de réciprocité générale reliant les nombres et la symétrie ?",
+        "en": "Is there a general reciprocity law linking numbers and symmetry?"
+      },
+      "ctx": {
+        "fr": "Le neuvième problème de Hilbert demande la loi de réciprocité la plus générale. Beaucoup de spécialistes y voient le programme de Langlands, un réseau de conjectures reliant nombres, géométrie et symétries."
+      },
+      "subs": [
+        "Algebra and Number Theory",
+        "Geometry and Topology"
+      ],
+      "nom": {
+        "fr": "Programme de Langlands",
+        "en": "Langlands program"
+      }
+    },
+    {
+      "id": "cycles-limites",
+      "src": "hilbert",
+      "q": {
+        "fr": "Combien de cycles limites une équation polynomiale du plan peut-elle avoir ?",
+        "en": "How many limit cycles can a polynomial equation in the plane have?"
+      },
+      "ctx": {
+        "fr": "C'est le seizième problème de Hilbert. On a démontré que ce nombre est fini pour chaque équation, mais on ne sait pas le borner d'avance."
+      },
+      "subs": [
+        "Applied Mathematics",
+        "Geometry and Topology"
+      ],
+      "nom": {
+        "fr": "Cycles limites",
+        "en": "Limit cycles"
+      }
+    },
+    {
+      "id": "hilbert-6",
+      "src": "hilbert",
+      "q": {
+        "fr": "Peut-on fonder toute la physique sur des axiomes ?",
+        "en": "Can all of physics be built on axioms?"
+      },
+      "ctx": {
+        "fr": "En 1900, Hilbert demandait de traiter la physique comme les mathématiques, à partir d'axiomes. Le problème est jugé mal défini ou seulement en partie résolu."
+      },
+      "subs": [
+        "Mathematical Physics",
+        "Statistical and Nonlinear Physics"
+      ],
+      "nom": {
+        "fr": "Axiomes de la physique",
+        "en": "Axioms of physics"
+      }
+    },
+    {
+      "id": "collatz",
+      "src": "wiki-math",
+      "q": {
+        "fr": "La règle de Collatz mène-t-elle toujours à 1 ?",
+        "en": "Does the Collatz rule always lead to 1?"
+      },
+      "ctx": {
+        "fr": "On divise un nombre pair par 2 ; on multiplie un nombre impair par 3 puis on ajoute 1 ; on recommence. Tous les nombres testés par ordinateur finissent à 1, mais personne ne l'a démontré."
+      },
+      "subs": [
+        "Algebra and Number Theory",
+        "Discrete Mathematics and Combinatorics"
+      ],
+      "nom": {
+        "fr": "Conjecture de Collatz",
+        "en": "Collatz conjecture"
+      }
+    },
+    {
+      "id": "abc",
+      "src": "wiki-math",
+      "q": {
+        "fr": "Que dit la conjecture abc sur le lien entre addition et multiplication ?",
+        "en": "What does the abc conjecture say about adding versus multiplying?"
+      },
+      "ctx": {
+        "fr": "Elle relie les facteurs premiers de a, de b et de a + b. Une démonstration proposée en 2012 reste contestée."
+      },
+      "subs": [
+        "Algebra and Number Theory"
+      ],
+      "nom": {
+        "fr": "Conjecture abc",
+        "en": "abc conjecture"
+      }
+    },
+    {
+      "id": "parfait-impair",
+      "src": "wiki-math",
+      "q": {
+        "fr": "Existe-t-il un nombre parfait impair ?",
+        "en": "Is there an odd perfect number?"
+      },
+      "ctx": {
+        "fr": "Un nombre parfait égale la somme de ses diviseurs autres que lui-même (6 = 1 + 2 + 3). On en connaît des pairs ; on n'a jamais trouvé d'impair ni prouvé qu'il n'en existe pas."
+      },
+      "subs": [
+        "Algebra and Number Theory"
+      ],
+      "nom": {
+        "fr": "Nombres parfaits impairs",
+        "en": "Odd perfect numbers"
+      }
+    },
+    {
+      "id": "hadwiger-nelson",
+      "src": "wiki-math",
+      "q": {
+        "fr": "Combien de couleurs faut-il pour colorier le plan sans que deux points à distance 1 aient la même ?",
+        "en": "How many colours does it take to colour the plane so no two points at distance 1 share one?"
+      },
+      "ctx": {
+        "fr": "On sait qu'il en faut au moins 5 et que 7 suffisent. La valeur exacte reste inconnue."
+      },
+      "subs": [
+        "Discrete Mathematics and Combinatorics",
+        "Geometry and Topology"
+      ],
+      "nom": {
+        "fr": "Coloriage du plan",
+        "en": "Colouring the plane"
+      }
+    },
+    {
+      "id": "carre-inscrit",
+      "src": "wiki-math",
+      "q": {
+        "fr": "Toute courbe fermée contient-elle les quatre sommets d'un carré ?",
+        "en": "Does every closed curve contain the four corners of a square?"
+      },
+      "ctx": {
+        "fr": "La réponse est oui pour de nombreuses courbes régulières, mais le cas général est ouvert. C'est le problème du carré inscrit."
+      },
+      "subs": [
+        "Geometry and Topology"
+      ],
+      "nom": {
+        "fr": "Carré inscrit",
+        "en": "Inscribed square"
+      }
+    },
+    {
+      "id": "ramsey",
+      "src": "wiki-math",
+      "q": {
+        "fr": "Combien de personnes faut-il réunir pour que cinq se connaissent toutes, ou cinq ne se connaissent pas du tout ?",
+        "en": "How many people must be gathered so that five all know each other, or five are all strangers?"
+      },
+      "ctx": {
+        "fr": "C'est le nombre de Ramsey R(5,5). On n'en connaît qu'un encadrement."
+      },
+      "subs": [
+        "Discrete Mathematics and Combinatorics"
+      ],
+      "nom": {
+        "fr": "Nombres de Ramsey",
+        "en": "Ramsey numbers"
+      }
+    },
+    {
+      "id": "empilement",
+      "src": "wiki-math",
+      "q": {
+        "fr": "Quel est le meilleur empilement de sphères en grande dimension ?",
+        "en": "What is the best way to pack spheres in high dimensions?"
+      },
+      "ctx": {
+        "fr": "Le problème est résolu seulement en dimensions 1, 2, 3, 8 et 24."
+      },
+      "subs": [
+        "Geometry and Topology",
+        "Discrete Mathematics and Combinatorics"
+      ],
+      "nom": {
+        "fr": "Empilement de sphères",
+        "en": "Sphere packing"
+      }
+    },
+    {
+      "id": "factorisation",
+      "src": "wiki-cs",
+      "q": {
+        "fr": "Peut-on factoriser rapidement un grand nombre avec un ordinateur ordinaire ?",
+        "en": "Can a large number be factored quickly on an ordinary computer?"
+      },
+      "ctx": {
+        "fr": "On ne connaît aucun algorithme rapide, et une grande part du chiffrement repose sur cette difficulté. Un ordinateur quantique pourrait le faire vite (algorithme de Shor)."
+      },
+      "subs": [
+        "Theoretical Computer Science",
+        "Computational Theory and Mathematics"
+      ],
+      "nom": {
+        "fr": "Factorisation",
+        "en": "Integer factorisation"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Décomposition en produit de facteurs premiers",
+          "en": "Integer factorization"
+        },
+        "fr": {
+          "savoir": [
+            "Tout entier supérieur à 1 s'écrit de façon unique comme un produit de nombres premiers. Pour de petits nombres, trouver ces facteurs est facile.",
+            "Pour de très grands nombres (des centaines de chiffres), les meilleurs algorithmes connus sur un ordinateur ordinaire demandent un temps qui explose avec le nombre de chiffres.",
+            "Des systèmes de chiffrement très répandus, comme RSA, reposent sur cette difficulté.",
+            "En 1994, Peter Shor a montré qu'un ordinateur quantique assez grand saurait factoriser vite."
+          ],
+          "ignore": [
+            "S'il existe un algorithme rapide pour un ordinateur ordinaire. Personne n'en connaît, et personne n'a montré qu'il n'en existe pas.",
+            "Si la factorisation est aussi difficile que les problèmes les plus durs de la classe NP. On pense que non, sans l'avoir démontré."
+          ],
+          "dur": [
+            "Prouver qu'aucun algorithme, même inconnu, ne réussit : on ne sait le faire pour presque aucun problème.",
+            "Ce problème a une structure particulière qui le rend probablement plus facile que les problèmes NP-complets, sans qu'on sache pour autant qu'il est facile."
+          ],
+          "enjeu": "La sécurité d'une grande partie du chiffrement actuel. C'est ce qui motive les travaux sur la cryptographie capable de résister aux ordinateurs quantiques.",
+          "commencer": [
+            "La théorie de la complexité et la théorie des nombres.",
+            "Un premier pas : factoriser 91, puis 8 633 à la main, et constater comme l'effort grandit.",
+            "Les deux articles ci-dessous : celui de Shor sur le calcul quantique, et celui qui a introduit RSA."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1137/S0097539795293172"
+          },
+          {
+            "doi": "10.1145/359340.359342",
+            "t": "A method for obtaining digital signatures and public-key cryptosystems",
+            "a": "Ronald L. Rivest, Adi Shamir, Leonard M. Adleman"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sens-unique",
+      "src": "wiki-cs",
+      "q": {
+        "fr": "Existe-t-il des opérations faciles à faire mais impossibles à défaire ?",
+        "en": "Are there operations that are easy to do but impossible to undo?"
+      },
+      "ctx": {
+        "fr": "Ces « fonctions à sens unique » fonderaient la cryptographie moderne. On n'a pas démontré qu'elles existent, ce qui entraînerait que P est différent de NP."
+      },
+      "subs": [
+        "Theoretical Computer Science",
+        "Computational Theory and Mathematics"
+      ],
+      "nom": {
+        "fr": "Fonctions à sens unique",
+        "en": "One-way functions"
+      }
+    },
+    {
+      "id": "isomorphisme-graphes",
+      "src": "wiki-cs",
+      "q": {
+        "fr": "Peut-on savoir vite si deux réseaux sont identiques ?",
+        "en": "Can we quickly tell whether two networks are the same?"
+      },
+      "ctx": {
+        "fr": "Pour ce problème d'isomorphisme de graphes, on ne connaît pas d'algorithme rapide en toute généralité, sans avoir montré qu'il n'en existe pas."
+      },
+      "subs": [
+        "Theoretical Computer Science",
+        "Discrete Mathematics and Combinatorics"
+      ],
+      "nom": {
+        "fr": "Isomorphisme de graphes",
+        "en": "Graph isomorphism"
+      }
+    },
+    {
+      "id": "multiplication-matrices",
+      "src": "wiki-cs",
+      "q": {
+        "fr": "Quelle est la vitesse limite pour multiplier deux tableaux de nombres ?",
+        "en": "What is the speed limit for multiplying two grids of numbers?"
+      },
+      "ctx": {
+        "fr": "On sait faire mieux que la méthode apprise à l'école. Le meilleur algorithme possible reste inconnu."
+      },
+      "subs": [
+        "Computational Theory and Mathematics",
+        "Numerical Analysis"
+      ],
+      "nom": {
+        "fr": "Multiplication de matrices",
+        "en": "Matrix multiplication"
+      }
+    },
+    {
+      "id": "multiplication-entiers",
+      "src": "wiki-cs",
+      "q": {
+        "fr": "Quelle est la façon la plus rapide de multiplier deux grands nombres ?",
+        "en": "What is the fastest way to multiply two large numbers?"
+      },
+      "ctx": {
+        "fr": "Un algorithme très rapide existe depuis 2019. On ne sait pas s'il est le meilleur possible."
+      },
+      "subs": [
+        "Computational Theory and Mathematics",
+        "Theoretical Computer Science"
+      ],
+      "nom": {
+        "fr": "Multiplication de grands nombres",
+        "en": "Multiplying large numbers"
+      }
+    },
+    {
+      "id": "hasard-algorithmes",
+      "src": "wiki-cs",
+      "q": {
+        "fr": "Le hasard rend-il les algorithmes plus rapides ?",
+        "en": "Does randomness make algorithms faster?"
+      },
+      "ctx": {
+        "fr": "De nombreux algorithmes utilisent le hasard. On pense qu'on peut toujours s'en passer sans perdre de vitesse, mais ce n'est pas démontré."
+      },
+      "subs": [
+        "Theoretical Computer Science",
+        "Computational Theory and Mathematics"
+      ],
+      "nom": {
+        "fr": "Hasard et algorithmes",
+        "en": "Randomness in algorithms"
+      }
+    },
+    {
+      "id": "programmation-lineaire",
+      "src": "wiki-cs",
+      "q": {
+        "fr": "Existe-t-il un algorithme vraiment rapide pour la programmation linéaire ?",
+        "en": "Is there a truly fast algorithm for linear programming?"
+      },
+      "ctx": {
+        "fr": "Ces problèmes d'optimisation sont résolus tous les jours. On ne sait pas s'il existe un algorithme dont la durée ne dépend que de la taille du problème."
+      },
+      "subs": [
+        "Management Science and Operations Research",
+        "Theoretical Computer Science"
+      ],
+      "nom": {
+        "fr": "Programmation linéaire",
+        "en": "Linear programming"
+      }
+    },
+    {
+      "id": "ordinateur-quantique",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Peut-on construire un ordinateur quantique fiable à grande échelle ?",
+        "en": "Can a large, reliable quantum computer be built?"
+      },
+      "ctx": {
+        "fr": "Les qubits sont fragiles et font des erreurs. On cherche à les corriger assez bien pour réaliser de longs calculs."
+      },
+      "subs": [
+        "Atomic and Molecular Physics, and Optics",
+        "Computational Theory and Mathematics",
+        "Condensed Matter Physics"
+      ],
+      "nom": {
+        "fr": "Ordinateur quantique",
+        "en": "Quantum computer"
+      }
+    },
+    {
+      "id": "inflation",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "L'univers a-t-il connu une phase d'expansion fulgurante au tout début ?",
+        "en": "Did the universe go through a burst of ultra-fast expansion at the very start?"
+      },
+      "ctx": {
+        "fr": "La théorie de l'inflation explique pourquoi l'univers est si uniforme, mais elle n'est pas prouvée et ses détails restent inconnus."
+      },
+      "subs": [
+        "Astronomy and Astrophysics",
+        "Nuclear and High Energy Physics"
+      ],
+      "nom": {
+        "fr": "Inflation cosmique",
+        "en": "Cosmic inflation"
+      }
+    },
+    {
+      "id": "antimatiere",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Pourquoi l'univers contient-il de la matière et presque pas d'antimatière ?",
+        "en": "Why does the universe contain matter and almost no antimatter?"
+      },
+      "ctx": {
+        "fr": "Les modèles prévoient des quantités égales au début de l'univers. Les observations montrent surtout de la matière."
+      },
+      "subs": [
+        "Nuclear and High Energy Physics",
+        "Astronomy and Astrophysics"
+      ],
+      "nom": {
+        "fr": "Matière et antimatière",
+        "en": "Matter and antimatter"
+      }
+    },
+    {
+      "id": "trous-noirs-info",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Que devient l'information qui tombe dans un trou noir ?",
+        "en": "What happens to information that falls into a black hole?"
+      },
+      "ctx": {
+        "fr": "Les trous noirs émettent un rayonnement qui, d'après la théorie, semble effacer l'information. Cela contredit la mécanique quantique."
+      },
+      "subs": [
+        "Astronomy and Astrophysics",
+        "Mathematical Physics"
+      ],
+      "nom": {
+        "fr": "Information et trous noirs",
+        "en": "Black holes and information"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Paradoxe de l'information",
+          "en": "Black hole information paradox"
+        },
+        "fr": {
+          "savoir": [
+            "D'après la relativité générale, un trou noir est une région d'où rien ne ressort, pas même la lumière.",
+            "En 1974-1975, Stephen Hawking a montré qu'en tenant compte de la physique quantique, un trou noir émet un faible rayonnement et perd de la masse, au point de pouvoir disparaître.",
+            "Ce rayonnement, tel que Hawking l'a calculé, est thermique : il ne semble rien porter de ce qui est tombé dans le trou noir."
+          ],
+          "ignore": [
+            "Si l'information sur ce qui est tombé dans un trou noir est perdue pour toujours, ou si elle ressort d'une façon ou d'une autre. La mécanique quantique dit qu'elle ne peut pas être détruite.",
+            "Des calculs récents, à partir de 2019, obtiennent un rayonnement compatible avec la conservation de l'information. Ils reposent sur des hypothèses et ne règlent pas toute la question."
+          ],
+          "dur": [
+            "Il n'existe pas de théorie quantique de la gravité : le problème se pose exactement là où la relativité et la mécanique quantique se heurtent.",
+            "Le rayonnement d'un trou noir astrophysique est bien trop faible pour être observé : aucune expérience ne peut trancher aujourd'hui."
+          ],
+          "enjeu": "C'est un banc d'essai pour toute théorie qui voudrait unifier la gravité et la mécanique quantique.",
+          "commencer": [
+            "La relativité générale, la théorie quantique des champs, puis la gravité quantique.",
+            "Un premier pas : comprendre pourquoi détruire de l'information contredirait la mécanique quantique.",
+            "Le premier article ci-dessous est celui de Hawking ; le second fait le point sur les calculs récents."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1007/BF02345020"
+          },
+          {
+            "doi": "10.1103/RevModPhys.93.035002"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fleche-temps",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Pourquoi le temps a-t-il un sens ?",
+        "en": "Why does time have a direction?"
+      },
+      "ctx": {
+        "fr": "Les lois de la physique fonctionnent presque aussi bien à l'envers. On ignore pourquoi l'univers avait une entropie si basse au départ."
+      },
+      "subs": [
+        "Statistical and Nonlinear Physics",
+        "History and Philosophy of Science"
+      ],
+      "nom": {
+        "fr": "Flèche du temps",
+        "en": "Arrow of time"
+      }
+    },
+    {
+      "id": "neutrinos",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Quelle est la masse des neutrinos ?",
+        "en": "What is the mass of neutrinos?"
+      },
+      "ctx": {
+        "fr": "On sait que les neutrinos ont une masse, pas sa valeur. On ne sait pas non plus s'ils sont leur propre antiparticule."
+      },
+      "subs": [
+        "Nuclear and High Energy Physics"
+      ],
+      "nom": {
+        "fr": "Masse des neutrinos",
+        "en": "Neutrino mass"
+      }
+    },
+    {
+      "id": "proton",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Le proton est-il éternel ?",
+        "en": "Is the proton eternal?"
+      },
+      "ctx": {
+        "fr": "Certaines extensions de la physique actuelle prévoient qu'il se désintègre, très lentement. Aucune désintégration n'a été observée."
+      },
+      "subs": [
+        "Nuclear and High Energy Physics"
+      ],
+      "nom": {
+        "fr": "Stabilité du proton",
+        "en": "Proton stability"
+      }
+    },
+    {
+      "id": "confinement",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Pourquoi ne peut-on jamais isoler un quark ?",
+        "en": "Why can a quark never be isolated?"
+      },
+      "ctx": {
+        "fr": "Les quarks n'existent qu'enfermés dans des particules. Ce confinement n'est pas démontré mathématiquement."
+      },
+      "subs": [
+        "Nuclear and High Energy Physics",
+        "Mathematical Physics"
+      ],
+      "nom": {
+        "fr": "Confinement des quarks",
+        "en": "Quark confinement"
+      }
+    },
+    {
+      "id": "generations",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Pourquoi les particules existent-elles en trois familles ?",
+        "en": "Why do particles come in three families?"
+      },
+      "ctx": {
+        "fr": "Quarks et leptons se répartissent en trois générations de plus en plus lourdes. Aucune théorie n'explique ce nombre ni les masses."
+      },
+      "subs": [
+        "Nuclear and High Energy Physics"
+      ],
+      "nom": {
+        "fr": "Trois générations",
+        "en": "Three generations"
+      }
+    },
+    {
+      "id": "forme-univers",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Quelle est la forme de l'univers ?",
+        "en": "What is the shape of the universe?"
+      },
+      "ctx": {
+        "fr": "On ne connaît que la partie observable. On ignore si l'espace entier est infini ou fini, et comment il se referme."
+      },
+      "subs": [
+        "Astronomy and Astrophysics",
+        "Geometry and Topology"
+      ],
+      "nom": {
+        "fr": "Forme de l'univers",
+        "en": "Shape of the universe"
+      }
+    },
+    {
+      "id": "tension-hubble",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Pourquoi deux mesures de l'expansion de l'univers donnent-elles des valeurs différentes ?",
+        "en": "Why do two measurements of the universe's expansion disagree?"
+      },
+      "ctx": {
+        "fr": "La vitesse d'expansion mesurée dans l'univers proche diffère de celle déduite de l'univers primitif. Erreur de mesure ou physique nouvelle ?"
+      },
+      "subs": [
+        "Astronomy and Astrophysics"
+      ],
+      "nom": {
+        "fr": "Tension sur l'expansion",
+        "en": "Hubble tension"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Tension de Hubble"
+        },
+        "fr": {
+          "savoir": [
+            "L'univers est en expansion : plus une galaxie est lointaine, plus elle s'éloigne vite. Le rapport entre les deux s'appelle la constante de Hubble.",
+            "On peut la mesurer de deux façons : avec des étoiles et des explosions d'étoiles dans l'univers proche, ou à partir du fond diffus cosmologique, la lumière émise environ 380 000 ans après le début de l'univers, en s'appuyant sur un modèle de l'univers.",
+            "Les deux méthodes donnent des valeurs différentes, d'environ 73 et 67 kilomètres par seconde et par mégaparsec."
+          ],
+          "ignore": [
+            "Si l'écart vient d'erreurs de mesure non repérées ou d'une physique encore inconnue.",
+            "Laquelle des deux valeurs est la bonne."
+          ],
+          "dur": [
+            "Les deux séries de mesures sont devenues très précises : l'écart est plus grand que les incertitudes annoncées.",
+            "La comparaison suppose que le modèle cosmologique standard décrit bien l'univers entre le fond diffus et aujourd'hui. S'il est incomplet, la déduction est faussée."
+          ],
+          "enjeu": "Si l'écart est réel, le modèle cosmologique actuel est incomplet.",
+          "commencer": [
+            "La cosmologie observationnelle.",
+            "Un premier pas : comprendre comment on mesure des distances en astronomie, avec des « chandelles standard ».",
+            "Les deux articles ci-dessous donnent chacun l'une des deux mesures."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.3847/2041-8213/ac5c5b"
+          },
+          {
+            "doi": "10.1051/0004-6361/201833910"
+          }
+        ]
+      }
+    },
+    {
+      "id": "supraconducteurs",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Pourquoi certains matériaux conduisent-ils sans résistance à des températures relativement élevées ?",
+        "en": "Why do some materials conduct without resistance at relatively high temperatures?"
+      },
+      "ctx": {
+        "fr": "On ne sait pas expliquer les supraconducteurs dits « à haute température », découverts en 1986."
+      },
+      "subs": [
+        "Condensed Matter Physics",
+        "Electronic, Optical and Magnetic Materials"
+      ],
+      "nom": {
+        "fr": "Supraconducteurs",
+        "en": "High-temperature superconductors"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Supraconducteur à haute température",
+          "en": "High-temperature superconductivity"
+        },
+        "fr": {
+          "savoir": [
+            "Un supraconducteur laisse passer le courant électrique sans aucune résistance. Découvert en 1911, il fallait d'abord le refroidir près du zéro absolu.",
+            "En 1957, la théorie BCS a expliqué les supraconducteurs classiques : des électrons s'associent par paires grâce aux vibrations du cristal.",
+            "En 1986, Bednorz et Müller ont découvert des oxydes de cuivre supraconducteurs à des températures bien plus élevées, ce qui leur a valu le prix Nobel de physique en 1987."
+          ],
+          "ignore": [
+            "Pourquoi ces matériaux sont supraconducteurs : la théorie BCS ne s'y applique pas et aucune explication ne fait l'unanimité.",
+            "S'il existe un matériau supraconducteur à température ambiante et pression ordinaire. Aucun n'a été confirmé."
+          ],
+          "dur": [
+            "Les électrons y interagissent très fortement entre eux, ce qui rend les calculs exacts impossibles, même avec les plus gros ordinateurs.",
+            "Ce sont des cristaux complexes, difficiles à fabriquer proprement et à décrire par un modèle simple."
+          ],
+          "enjeu": "Transporter l'électricité sans pertes, fabriquer des aimants puissants moins coûteux à refroidir, et mieux comprendre la matière quand les électrons interagissent fortement.",
+          "commencer": [
+            "La physique de la matière condensée.",
+            "Un premier pas : comprendre pourquoi une résistance nulle est différente d'une résistance très faible.",
+            "Le premier article ci-dessous est la découverte de 1986 ; le second fait le point sur la compréhension actuelle."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1007/BF01303701",
+            "t": "Possible high Tc superconductivity in the Ba-La-Cu-O system",
+            "a": "Johannes Georg Bednorz, K. Alex Müller"
+          },
+          {
+            "doi": "10.1038/nature14165"
+          }
+        ]
+      }
+    },
+    {
+      "id": "transition-vitreuse",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Qu'est-ce qui fait qu'un liquide devient du verre ?",
+        "en": "What turns a liquid into glass?"
+      },
+      "ctx": {
+        "fr": "On ne sait pas expliquer précisément le passage d'un liquide à un solide désordonné."
+      },
+      "subs": [
+        "Condensed Matter Physics",
+        "Statistical and Nonlinear Physics"
+      ],
+      "nom": {
+        "fr": "Transition vitreuse",
+        "en": "Glass transition"
+      }
+    },
+    {
+      "id": "turbulence",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Peut-on prédire la turbulence ?",
+        "en": "Can turbulence be predicted?"
+      },
+      "ctx": {
+        "fr": "On ne dispose pas d'une théorie complète des écoulements turbulents ni de leurs structures internes."
+      },
+      "subs": [
+        "Statistical and Nonlinear Physics",
+        "Fluid Flow and Transfer Processes"
+      ],
+      "nom": {
+        "fr": "Turbulence",
+        "en": "Turbulence"
+      }
+    },
+    {
+      "id": "energie-du-vide",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Pourquoi l'énergie du vide est-elle si faible ?",
+        "en": "Why is the energy of empty space so small?"
+      },
+      "ctx": {
+        "fr": "La physique quantique prédit une énergie du vide immense. Celle qu'on observe est incomparablement plus petite."
+      },
+      "subs": [
+        "Nuclear and High Energy Physics",
+        "Astronomy and Astrophysics"
+      ],
+      "nom": {
+        "fr": "Énergie du vide",
+        "en": "Vacuum energy"
+      }
+    },
+    {
+      "id": "champs-magnetiques-cosmiques",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "D'où viennent les champs magnétiques de l'univers ?",
+        "en": "Where do the universe's magnetic fields come from?"
+      },
+      "ctx": {
+        "fr": "On en observe dans les galaxies et les amas de galaxies. Leur origine n'est pas expliquée."
+      },
+      "subs": [
+        "Astronomy and Astrophysics"
+      ],
+      "nom": {
+        "fr": "Champs magnétiques cosmiques",
+        "en": "Cosmic magnetic fields"
+      }
+    },
+    {
+      "id": "magnetoreception",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Comment les animaux sentent-ils le champ magnétique de la Terre ?",
+        "en": "How do animals sense the Earth's magnetic field?"
+      },
+      "ctx": {
+        "fr": "Des oiseaux migrateurs s'y repèrent. Le mécanisme n'est pas élucidé."
+      },
+      "subs": [
+        "Sensory Systems",
+        "Biophysics"
+      ],
+      "nom": {
+        "fr": "Sens magnétique",
+        "en": "Magnetic sense"
+      }
+    },
+    {
+      "id": "couronne-solaire",
+      "src": "wiki-astro",
+      "q": {
+        "fr": "Pourquoi l'atmosphère du Soleil est-elle plus chaude que sa surface ?",
+        "en": "Why is the Sun's atmosphere hotter than its surface?"
+      },
+      "ctx": {
+        "fr": "La couronne solaire est bien plus chaude que la surface. Ce chauffage coronal n'est pas expliqué."
+      },
+      "subs": [
+        "Astronomy and Astrophysics",
+        "Space and Planetary Science"
+      ],
+      "nom": {
+        "fr": "Chauffage de la couronne",
+        "en": "Coronal heating"
+      }
+    },
+    {
+      "id": "cycle-solaire",
+      "src": "wiki-astro",
+      "q": {
+        "fr": "Comment le Soleil renverse-t-il son champ magnétique tous les onze ans ?",
+        "en": "How does the Sun flip its magnetic field every eleven years?"
+      },
+      "ctx": {
+        "fr": "Le cycle solaire est observé depuis longtemps. Le mécanisme qui le produit n'est pas entièrement compris."
+      },
+      "subs": [
+        "Astronomy and Astrophysics",
+        "Space and Planetary Science"
+      ],
+      "nom": {
+        "fr": "Cycle solaire",
+        "en": "Solar cycle"
+      }
+    },
+    {
+      "id": "sursauts-radio",
+      "src": "wiki-astro",
+      "q": {
+        "fr": "Qu'est-ce qui produit les sursauts radio rapides ?",
+        "en": "What produces fast radio bursts?"
+      },
+      "ctx": {
+        "fr": "Ces éclairs radio de quelques millisecondes viennent de galaxies lointaines. Certains se répètent à intervalles imprévisibles. Leur cause est inconnue."
+      },
+      "subs": [
+        "Astronomy and Astrophysics"
+      ],
+      "nom": {
+        "fr": "Sursauts radio rapides",
+        "en": "Fast radio bursts"
+      }
+    },
+    {
+      "id": "rayons-cosmiques",
+      "src": "wiki-astro",
+      "q": {
+        "fr": "Qu'est-ce qui accélère les rayons cosmiques les plus énergétiques ?",
+        "en": "What accelerates the most energetic cosmic rays?"
+      },
+      "ctx": {
+        "fr": "Certaines particules arrivent sur Terre avec une énergie immense. On ne sait pas quels phénomènes la leur donnent."
+      },
+      "subs": [
+        "Astronomy and Astrophysics",
+        "Nuclear and High Energy Physics"
+      ],
+      "nom": {
+        "fr": "Rayons cosmiques extrêmes",
+        "en": "Extreme cosmic rays"
+      }
+    },
+    {
+      "id": "trous-noirs-geants",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Comment les trous noirs géants ont-ils pu grossir si vite ?",
+        "en": "How did giant black holes grow so fast?"
+      },
+      "ctx": {
+        "fr": "On observe des quasars alimentés par des trous noirs énormes alors que l'univers était jeune. Leur croissance rapide pose problème."
+      },
+      "subs": [
+        "Astronomy and Astrophysics"
+      ],
+      "nom": {
+        "fr": "Trous noirs supermassifs",
+        "en": "Supermassive black holes"
+      }
+    },
+    {
+      "id": "supernova",
+      "src": "wiki-astro",
+      "q": {
+        "fr": "Comment l'effondrement d'une étoile devient-il une explosion ?",
+        "en": "How does a collapsing star turn into an explosion?"
+      },
+      "ctx": {
+        "fr": "On sait qu'une étoile massive en fin de vie peut exploser en supernova. Le mécanisme exact reste débattu."
+      },
+      "subs": [
+        "Astronomy and Astrophysics"
+      ],
+      "nom": {
+        "fr": "Mécanisme des supernovas",
+        "en": "How supernovae explode"
+      }
+    },
+    {
+      "id": "planete-neuf",
+      "src": "wiki-astro",
+      "q": {
+        "fr": "Existe-t-il d'autres planètes au-delà de Neptune ?",
+        "en": "Are there other planets beyond Neptune?"
+      },
+      "ctx": {
+        "fr": "Les orbites très étirées de certains objets lointains font soupçonner une grande planète encore non observée. Aucune n'a été trouvée."
+      },
+      "subs": [
+        "Space and Planetary Science",
+        "Astronomy and Astrophysics"
+      ],
+      "nom": {
+        "fr": "Planètes lointaines",
+        "en": "Distant planets"
+      }
+    },
+    {
+      "id": "systemes-planetaires",
+      "src": "wiki-astro",
+      "q": {
+        "fr": "Notre système solaire est-il typique ?",
+        "en": "Is our solar system typical?"
+      },
+      "ctx": {
+        "fr": "On a découvert des milliers de planètes autour d'autres étoiles, souvent très différentes des nôtres. On ignore à quel point un système comme le nôtre est courant."
+      },
+      "subs": [
+        "Space and Planetary Science",
+        "Astronomy and Astrophysics"
+      ],
+      "nom": {
+        "fr": "Systèmes planétaires",
+        "en": "Planetary systems"
+      }
+    },
+    {
+      "id": "homochiralite",
+      "src": "wiki-chem",
+      "q": {
+        "fr": "Pourquoi les molécules du vivant n'ont-elles qu'une seule « main » ?",
+        "en": "Why are the molecules of life all one-handed?"
+      },
+      "ctx": {
+        "fr": "Les acides aminés du vivant sont presque tous « gauches » et les sucres « droits ». L'origine de ce choix est inconnue."
+      },
+      "subs": [
+        "Organic Chemistry",
+        "Biochemistry"
+      ],
+      "nom": {
+        "fr": "Chiralité du vivant",
+        "en": "Handedness of life"
+      }
+    },
+    {
+      "id": "tableau-periodique",
+      "src": "wiki-chem",
+      "q": {
+        "fr": "Où s'arrête le tableau périodique ?",
+        "en": "Where does the periodic table end?"
+      },
+      "ctx": {
+        "fr": "On a fabriqué des éléments jusqu'au numéro 118. On ignore s'il existe une limite au nombre d'éléments possibles."
+      },
+      "subs": [
+        "Physical and Theoretical Chemistry",
+        "Nuclear and High Energy Physics"
+      ],
+      "nom": {
+        "fr": "Éléments superlourds",
+        "en": "Superheavy elements"
+      }
+    },
+    {
+      "id": "repliement-proteines",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Comment une protéine trouve-t-elle sa forme ?",
+        "en": "How does a protein find its shape?"
+      },
+      "ctx": {
+        "fr": "On sait aujourd'hui prédire la forme de beaucoup de protéines à partir de leur séquence. On comprend moins comment elles la prennent, ou comment se comportent les protéines désordonnées."
+      },
+      "subs": [
+        "Structural Biology",
+        "Biochemistry",
+        "Biophysics"
+      ],
+      "nom": {
+        "fr": "Repliement des protéines",
+        "en": "Protein folding"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Repliement des protéines",
+          "en": "Protein folding"
+        },
+        "fr": {
+          "savoir": [
+            "Une protéine est une chaîne d'acides aminés qui se replie en une forme précise. Cette forme décide de sa fonction.",
+            "Depuis les expériences d'Anfinsen, dans les années 1960 et 1970, on sait que la séquence d'acides aminés suffit en général à déterminer la forme.",
+            "En 2020-2021, le programme AlphaFold, fondé sur l'apprentissage automatique, a prédit avec une grande précision la forme de nombreuses protéines à partir de leur seule séquence."
+          ],
+          "ignore": [
+            "Comment la chaîne trouve sa forme en une fraction de seconde parmi un nombre astronomique de possibilités (le « paradoxe de Levinthal »).",
+            "Comment se comportent les protéines sans forme fixe, qui ont pourtant une fonction.",
+            "Comment une protéine bouge, et ce que change chaque mutation."
+          ],
+          "dur": [
+            "Prédire la forme finale ne dit pas par quel chemin la protéine y arrive : ce chemin est très rapide et difficile à observer.",
+            "Un programme d'apprentissage automatique donne un résultat, pas une explication physique."
+          ],
+          "enjeu": "Plusieurs maladies sont associées à des protéines mal repliées, et concevoir des médicaments ou de nouvelles enzymes demande de comprendre la forme et le mouvement.",
+          "commencer": [
+            "La biophysique et la biologie structurale.",
+            "Un premier pas : comprendre pourquoi une chaîne de 100 acides aminés ne peut pas « essayer » toutes les formes possibles.",
+            "Le premier article ci-dessous fait le point sur le problème ; le second présente AlphaFold."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1126/science.1219021"
+          },
+          {
+            "doi": "10.1038/s41586-021-03819-2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eau",
+      "src": "wiki-chem",
+      "q": {
+        "fr": "Pourquoi l'eau a-t-elle des propriétés si étranges ?",
+        "en": "Why does water behave so strangely?"
+      },
+      "ctx": {
+        "fr": "L'eau liquide présente de nombreuses anomalies. On étudie le rôle des effets quantiques des atomes d'hydrogène."
+      },
+      "subs": [
+        "Physical and Theoretical Chemistry"
+      ],
+      "nom": {
+        "fr": "Anomalies de l'eau",
+        "en": "Water's anomalies"
+      }
+    },
+    {
+      "id": "photosynthese-artificielle",
+      "src": "wiki-chem",
+      "q": {
+        "fr": "Peut-on fabriquer des carburants avec la lumière, à bas coût ?",
+        "en": "Can fuels be made from light, cheaply?"
+      },
+      "ctx": {
+        "fr": "Séparer l'eau avec la lumière pour produire de l'hydrogène marche en laboratoire. Le faire efficacement et à bas prix reste à réussir."
+      },
+      "subs": [
+        "Catalysis",
+        "Physical and Theoretical Chemistry",
+        "Renewable Energy, Sustainability and the Environment"
+      ],
+      "nom": {
+        "fr": "Photosynthèse artificielle",
+        "en": "Artificial photosynthesis"
+      }
+    },
+    {
+      "id": "ammoniac",
+      "src": "wiki-chem",
+      "q": {
+        "fr": "Peut-on fabriquer l'ammoniac sans chaleur ni haute pression ?",
+        "en": "Can ammonia be made without heat or high pressure?"
+      },
+      "ctx": {
+        "fr": "L'ammoniac des engrais est produit à haute température et sous forte pression. Une méthode à conditions ambiantes, à grande échelle, n'existe pas encore."
+      },
+      "subs": [
+        "Catalysis",
+        "Inorganic Chemistry"
+      ],
+      "nom": {
+        "fr": "Ammoniac des engrais",
+        "en": "Fertiliser ammonia"
+      }
+    },
+    {
+      "id": "sexe",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Pourquoi la reproduction sexuée existe-t-elle ?",
+        "en": "Why does sexual reproduction exist?"
+      },
+      "ctx": {
+        "fr": "Elle semble moins efficace que le clonage, et pourtant elle domine chez les animaux. Les forces qui l'ont fait naître et qui la maintiennent sont débattues."
+      },
+      "subs": [
+        "Ecology, Evolution, Behavior and Systematics",
+        "Genetics"
+      ],
+      "nom": {
+        "fr": "Reproduction sexuée",
+        "en": "Sexual reproduction"
+      }
+    },
+    {
+      "id": "virus-origine",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "D'où viennent les virus ?",
+        "en": "Where do viruses come from?"
+      },
+      "ctx": {
+        "fr": "Plusieurs scénarios existent. On ignore quand et comment les différents groupes de virus sont apparus."
+      },
+      "subs": [
+        "Virology",
+        "Ecology, Evolution, Behavior and Systematics"
+      ],
+      "nom": {
+        "fr": "Origine des virus",
+        "en": "Origin of viruses"
+      }
+    },
+    {
+      "id": "eucaryotes",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Comment les cellules complexes sont-elles nées ?",
+        "en": "How did complex cells arise?"
+      },
+      "ctx": {
+        "fr": "Les cellules à noyau résultent d'une fusion ancienne entre cellules. On ignore comment et pourquoi elle s'est produite."
+      },
+      "subs": [
+        "Cell Biology",
+        "Microbiology",
+        "Ecology, Evolution, Behavior and Systematics"
+      ],
+      "nom": {
+        "fr": "Origine des cellules à noyau",
+        "en": "Origin of complex cells"
+      }
+    },
+    {
+      "id": "luca",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "À quoi ressemblait l'ancêtre commun des bactéries et des archées ?",
+        "en": "What did the common ancestor of bacteria and archaea look like?"
+      },
+      "ctx": {
+        "fr": "Ses caractéristiques ne sont connues qu'avec beaucoup d'incertitude."
+      },
+      "subs": [
+        "Microbiology",
+        "Molecular Biology"
+      ],
+      "nom": {
+        "fr": "Ancêtre commun",
+        "en": "Last common ancestor"
+      }
+    },
+    {
+      "id": "proteines-inconnues",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "À quoi servent les protéines dont on ignore le rôle ?",
+        "en": "What do the proteins of unknown role do?"
+      },
+      "ctx": {
+        "fr": "Vingt ans après les premiers génomes d'eucaryotes, le rôle biologique d'environ un cinquième des protéines reste inconnu."
+      },
+      "subs": [
+        "Molecular Biology",
+        "Biochemistry"
+      ],
+      "nom": {
+        "fr": "Protéines inconnues",
+        "en": "Unknown proteins"
+      }
+    },
+    {
+      "id": "taille-cellule",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Comment une cellule sait-elle quelle taille atteindre avant de se diviser ?",
+        "en": "How does a cell know how big to grow before dividing?"
+      },
+      "ctx": {
+        "fr": "Les cellules se divisent à une taille bien réglée. Comment elles la mesurent n'est pas élucidé."
+      },
+      "subs": [
+        "Cell Biology",
+        "Molecular Biology"
+      ],
+      "nom": {
+        "fr": "Taille des cellules",
+        "en": "Cell size"
+      }
+    },
+    {
+      "id": "anesthesie",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Comment les anesthésiques font-ils perdre conscience ?",
+        "en": "How do anaesthetics switch off consciousness?"
+      },
+      "ctx": {
+        "fr": "On les utilise tous les jours, mais leur mécanisme d'action n'est pas entièrement compris."
+      },
+      "subs": [
+        "Anesthesiology and Pain Medicine",
+        "Cellular and Molecular Neuroscience",
+        "Cognitive Neuroscience"
+      ],
+      "nom": {
+        "fr": "Anesthésie",
+        "en": "Anaesthesia"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Anesthésie générale",
+          "en": "General anaesthesia"
+        },
+        "fr": {
+          "savoir": [
+            "Les anesthésiques généraux font perdre conscience de façon réversible. On les utilise en chirurgie depuis le milieu du XIXe siècle.",
+            "Ils agissent sur plusieurs protéines des neurones, notamment des récepteurs du GABA, et sur des réseaux de neurones impliqués dans le sommeil et l'éveil.",
+            "Des molécules très différentes, gazeuses ou injectées, produisent des effets semblables."
+          ],
+          "ignore": [
+            "Comment ces effets sur les molécules mènent à la perte de conscience.",
+            "Pourquoi des substances chimiquement très différentes ont des effets proches."
+          ],
+          "dur": [
+            "La conscience elle-même n'est pas expliquée : on ne peut donc pas dire exactement ce qu'on éteint.",
+            "Un anesthésique agit à plusieurs niveaux à la fois, des molécules aux réseaux de neurones, ce qui rend ses effets difficiles à isoler."
+          ],
+          "enjeu": "Anesthésier plus sûrement, repérer une conscience chez un patient qui ne peut pas répondre, et obtenir des indices sur ce qu'est la conscience.",
+          "commencer": [
+            "Les neurosciences cellulaires et la neuroscience de la conscience.",
+            "Un premier pas : comprendre en quoi l'anesthésie diffère du sommeil.",
+            "Les deux articles ci-dessous font le point sur ce qu'on sait."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1038/nrn2372"
+          },
+          {
+            "doi": "10.1056/NEJMra0808281"
+          }
+        ]
+      }
+    },
+    {
+      "id": "forme-organes",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Comment un organe atteint-il toujours la bonne forme et la bonne taille ?",
+        "en": "How does an organ always reach the right shape and size?"
+      },
+      "ctx": {
+        "fr": "La forme et la taille finales des organes sont très fiables. On en comprend seulement une partie des commandes."
+      },
+      "subs": [
+        "Developmental Biology",
+        "Cell Biology"
+      ],
+      "nom": {
+        "fr": "Forme des organes",
+        "en": "Organ shape"
+      }
+    },
+    {
+      "id": "cambrien",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Pourquoi la vie animale s'est-elle diversifiée si vite au Cambrien ?",
+        "en": "Why did animal life diversify so fast in the Cambrian?"
+      },
+      "ctx": {
+        "fr": "Presque tous les grands groupes d'animaux apparaissent dans les fossiles sur une période géologiquement courte. La cause est débattue."
+      },
+      "subs": [
+        "Paleontology",
+        "Ecology, Evolution, Behavior and Systematics"
+      ],
+      "nom": {
+        "fr": "Explosion du Cambrien",
+        "en": "Cambrian explosion"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Explosion cambrienne",
+          "en": "Cambrian explosion"
+        },
+        "fr": {
+          "savoir": [
+            "Les fossiles d'animaux complexes sont rares avant le Cambrien, il y a environ 540 millions d'années. Les couches du Cambrien en contiennent beaucoup, et représentent la plupart des grands groupes d'animaux actuels.",
+            "Des organismes plus anciens existaient, comme ceux de l'Édiacarien. La diversification s'est étalée sur quelques dizaines de millions d'années.",
+            "Plusieurs explications sont proposées : plus d'oxygène, l'apparition de prédateurs, de nouveaux gènes de développement, des changements de l'environnement."
+          ],
+          "ignore": [
+            "Quelle cause, ou quel ensemble de causes, a déclenché cette diversification.",
+            "Dans quelle mesure l'« explosion » est réelle, ou due à des lacunes dans les archives fossiles."
+          ],
+          "dur": [
+            "Les fossiles de cette époque sont rares et conservés de façon inégale : seuls les animaux à corps dur ou ceux de sites exceptionnels y figurent.",
+            "Les causes possibles sont nombreuses, liées entre elles (chimie des océans, écologie, génétique) et difficiles à séparer."
+          ],
+          "enjeu": "Comprendre comment la grande diversité des animaux est née, et ce qui rend possible un changement évolutif rapide.",
+          "commencer": [
+            "La paléontologie et la biologie du développement.",
+            "Un premier pas : comparer les faunes de l'Édiacarien et du Cambrien.",
+            "Les deux articles ci-dessous passent en revue les hypothèses."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1146/annurev.earth.33.031504.103001"
+          },
+          {
+            "doi": "10.1126/science.1206375"
+          }
+        ]
+      }
+    },
+    {
+      "id": "plancton",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Pourquoi tant d'espèces de plancton coexistent-elles ?",
+        "en": "Why do so many plankton species coexist?"
+      },
+      "ctx": {
+        "fr": "Elles semblent se disputer les mêmes ressources, ce qui devrait en éliminer la plupart : c'est le « paradoxe du plancton »."
+      },
+      "subs": [
+        "Aquatic Science",
+        "Ecology"
+      ],
+      "nom": {
+        "fr": "Paradoxe du plancton",
+        "en": "Paradox of the plankton"
+      }
+    },
+    {
+      "id": "fleurs",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "D'où viennent les fleurs ?",
+        "en": "Where do flowers come from?"
+      },
+      "ctx": {
+        "fr": "Darwin parlait d'un « abominable mystère » : les plantes à fleurs semblent apparaître brusquement dans les fossiles."
+      },
+      "subs": [
+        "Plant Science",
+        "Paleontology"
+      ],
+      "nom": {
+        "fr": "Origine des fleurs",
+        "en": "Origin of flowers"
+      }
+    },
+    {
+      "id": "neandertal",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Pourquoi les autres espèces humaines ont-elles disparu ?",
+        "en": "Why did the other human species die out?"
+      },
+      "ctx": {
+        "fr": "Néandertal et d'autres espèces humaines se sont éteints, laissant Homo sapiens seul. Les causes restent débattues."
+      },
+      "subs": [
+        "Anthropology",
+        "Paleontology",
+        "Archeology"
+      ],
+      "nom": {
+        "fr": "Disparition de Néandertal",
+        "en": "Neanderthal extinction"
+      }
+    },
+    {
+      "id": "groupes-sanguins",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "À quoi servent les groupes sanguins ?",
+        "en": "What are blood types for?"
+      },
+      "ctx": {
+        "fr": "On ignore leur origine et leur utilité. Des hypothèses existent, par exemple une adaptation au paludisme."
+      },
+      "subs": [
+        "Hematology",
+        "Genetics"
+      ],
+      "nom": {
+        "fr": "Groupes sanguins",
+        "en": "Blood types"
+      }
+    },
+    {
+      "id": "navigation-animale",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Comment les animaux retrouvent-ils leur chemin sur de très longues distances ?",
+        "en": "How do animals find their way over very long distances?"
+      },
+      "ctx": {
+        "fr": "Oiseaux ou papillons monarques regagnent des lieux lointains. Les mécanismes en jeu ne sont pas expliqués."
+      },
+      "subs": [
+        "Animal Science and Zoology",
+        "Behavioral Neuroscience"
+      ],
+      "nom": {
+        "fr": "Orientation des animaux",
+        "en": "Animal navigation"
+      }
+    },
+    {
+      "id": "libre-arbitre",
+      "src": "wiki-neuro",
+      "q": {
+        "fr": "Avons-nous un libre arbitre ?",
+        "en": "Do we have free will?"
+      },
+      "ctx": {
+        "fr": "Des expériences montrent une activité du cerveau avant la décision consciente d'agir, mais leur interprétation est très discutée."
+      },
+      "subs": [
+        "Cognitive Neuroscience",
+        "Philosophy"
+      ],
+      "nom": {
+        "fr": "Libre arbitre",
+        "en": "Free will"
+      }
+    },
+    {
+      "id": "binding",
+      "src": "wiki-neuro",
+      "q": {
+        "fr": "Comment le cerveau assemble-t-il couleur, forme et sens en une seule perception ?",
+        "en": "How does the brain bind colour, shape and meaning into one percept?"
+      },
+      "ctx": {
+        "fr": "C'est le « problème de la liaison ». On ne sait pas comment des informations traitées dans des régions différentes forment une expérience unique."
+      },
+      "subs": [
+        "Cognitive Neuroscience",
+        "Sensory Systems"
+      ],
+      "nom": {
+        "fr": "Problème de la liaison",
+        "en": "The binding problem"
+      }
+    },
+    {
+      "id": "langage-cerveau",
+      "src": "wiki-neuro",
+      "q": {
+        "fr": "Comment le cerveau comprend-il le sens des mots ?",
+        "en": "How does the brain grasp the meaning of words?"
+      },
+      "ctx": {
+        "fr": "On ne sait ni comment le langage est réalisé dans le cerveau ni sur quoi repose le sens."
+      },
+      "subs": [
+        "Cognitive Neuroscience",
+        "Linguistics and Language"
+      ],
+      "nom": {
+        "fr": "Langage et cerveau",
+        "en": "Language and the brain"
+      }
+    },
+    {
+      "id": "acquisition-langage",
+      "src": "wiki-neuro",
+      "q": {
+        "fr": "Comment un enfant apprend-il à parler ?",
+        "en": "How does a child learn to speak?"
+      },
+      "ctx": {
+        "fr": "Les spécialistes débattent de la part de structures innées et de celle de l'apprentissage par l'expérience."
+      },
+      "subs": [
+        "Developmental and Educational Psychology",
+        "Linguistics and Language"
+      ],
+      "nom": {
+        "fr": "Acquisition du langage",
+        "en": "Language acquisition"
+      }
+    },
+    {
+      "id": "conscience-animale",
+      "src": "wiki-neuro",
+      "q": {
+        "fr": "Quels animaux ont une expérience consciente ?",
+        "en": "Which animals have conscious experience?"
+      },
+      "ctx": {
+        "fr": "Il n'existe pas de test accepté par tous pour savoir si un être ressent quelque chose."
+      },
+      "subs": [
+        "Behavioral Neuroscience",
+        "Philosophy",
+        "Animal Science and Zoology"
+      ],
+      "nom": {
+        "fr": "Conscience animale",
+        "en": "Animal consciousness"
+      }
+    },
+    {
+      "id": "plasticite",
+      "src": "wiki-neuro",
+      "q": {
+        "fr": "Jusqu'où le cerveau adulte peut-il se transformer ?",
+        "en": "How far can the adult brain change?"
+      },
+      "ctx": {
+        "fr": "On sait que le cerveau adulte se modifie. On ignore l'étendue de cette plasticité."
+      },
+      "subs": [
+        "Cellular and Molecular Neuroscience",
+        "Neurology"
+      ],
+      "nom": {
+        "fr": "Plasticité du cerveau",
+        "en": "Brain plasticity"
+      }
+    },
+    {
+      "id": "maladies-mentales",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Quelles sont les causes biologiques des maladies mentales ?",
+        "en": "What are the biological causes of mental illness?"
+      },
+      "ctx": {
+        "fr": "Pour la schizophrénie, la maladie de Parkinson, la maladie d'Alzheimer ou les addictions, les bases neuronales restent à établir."
+      },
+      "subs": [
+        "Biological Psychiatry",
+        "Psychiatry and Mental health"
+      ],
+      "nom": {
+        "fr": "Bases biologiques des maladies mentales",
+        "en": "Biology of mental illness"
+      }
+    },
+    {
+      "id": "lune",
+      "src": "wiki-geo",
+      "q": {
+        "fr": "La Lune est-elle née d'une collision avec une autre planète ?",
+        "en": "Was the Moon born from a collision with another planet?"
+      },
+      "ctx": {
+        "fr": "L'hypothèse d'un impact avec un corps nommé Théia est la plus répandue, mais elle n'est pas définitivement établie."
+      },
+      "subs": [
+        "Space and Planetary Science",
+        "Geochemistry and Petrology"
+      ],
+      "nom": {
+        "fr": "Origine de la Lune",
+        "en": "Origin of the Moon"
+      }
+    },
+    {
+      "id": "noyau-terre",
+      "src": "wiki-geo",
+      "q": {
+        "fr": "De quoi est fait le noyau de la Terre ?",
+        "en": "What is the Earth's core made of?"
+      },
+      "ctx": {
+        "fr": "Surtout de fer, mêlé à des éléments plus légers dont on ignore lesquels et en quelles quantités."
+      },
+      "subs": [
+        "Geophysics",
+        "Geochemistry and Petrology"
+      ],
+      "nom": {
+        "fr": "Noyau de la Terre",
+        "en": "Earth's core"
+      }
+    },
+    {
+      "id": "el-nino",
+      "src": "wiki-geo",
+      "q": {
+        "fr": "Pourquoi El Niño apparaît-il de façon irrégulière ?",
+        "en": "Why does El Niño appear irregularly?"
+      },
+      "ctx": {
+        "fr": "Les mécanismes des oscillations du climat équatorial du Pacifique sont toujours à l'étude."
+      },
+      "subs": [
+        "Atmospheric Science",
+        "Oceanography"
+      ],
+      "nom": {
+        "fr": "El Niño",
+        "en": "El Niño"
       }
     }
   ]

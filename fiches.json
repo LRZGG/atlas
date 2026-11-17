@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-11-16",
+  "fetched": "2026-11-17",
   "fiches": {
     "conscience": {
       "w": {
@@ -88,6 +88,253 @@
           "a": "Clay Mathematics Institute",
           "y": null,
           "u": "https://www.claymath.org/millennium/p-vs-np/"
+        }
+      ]
+    },
+    "riemann": {
+      "w": {
+        "fr": {
+          "t": "Hypothèse de Riemann",
+          "x": "En mathématiques, l'hypothèse de Riemann est une conjecture formulée en 1859 par le mathématicien allemand Bernhard Riemann, selon laquelle les zéros non triviaux de la fonction zêta de Riemann ont tous une partie réelle égale à 1/2. Sa démonstration améliorerait la connaissance de la répartition des nombres premiers et ouvrirait des nouveaux domaines aux mathématiques.",
+          "u": "https://fr.wikipedia.org/wiki/Hypoth%C3%A8se_de_Riemann"
+        },
+        "en": {
+          "t": "Riemann hypothesis",
+          "x": "In mathematics, the Riemann hypothesis is the conjecture that the Riemann zeta function has its zeros only at the negative even integers and at complex numbers with real part. Many consider it to be the most important unsolved problem in pure mathematics. It is of great interest in number theory because it implies results about the distribution of prime numbers. It was proposed by Bernhard Riemann, after whom it is named.",
+          "u": "https://en.wikipedia.org/wiki/Riemann_hypothesis"
+        }
+      },
+      "r": [
+        {
+          "t": "The Riemann hypothesis is true up to 3·1012",
+          "a": "David J. Platt, Timothy S. Trudgian",
+          "y": 2021,
+          "u": "https://doi.org/10.1112/blms.12460"
+        },
+        {
+          "t": "L'hypothèse de Riemann, description officielle du problème",
+          "a": "Clay Mathematics Institute",
+          "y": null,
+          "u": "https://www.claymath.org/millennium/riemann-hypothesis/"
+        }
+      ]
+    },
+    "jumeaux": {
+      "w": {
+        "fr": {
+          "t": "Nombres premiers jumeaux",
+          "x": "En mathématiques, deux nombres premiers jumeaux sont deux nombres premiers qui ne diffèrent que de 2. Hormis pour le couple, cet écart entre nombres premiers de 2 est le plus petit possible. Les plus petits nombres premiers jumeaux sont 3 et 5, 5 et 7, 11 et 13.",
+          "u": "https://fr.wikipedia.org/wiki/Nombres_premiers_jumeaux"
+        },
+        "en": {
+          "t": "Twin prime",
+          "x": "A twin prime is a prime number that is either 2 less or 2 more than another prime number—for example, either member of the twin prime pair    or (41, 43). In other words, a twin prime is a prime that has a prime gap of two. Sometimes the term twin prime is used for a pair of twin primes; an alternative name for this is prime twin or prime pair.",
+          "u": "https://en.wikipedia.org/wiki/Twin_prime"
+        }
+      },
+      "r": [
+        {
+          "t": "Bounded gaps between primes",
+          "a": "Zhang Yitang",
+          "y": 2014,
+          "u": "https://doi.org/10.4007/annals.2014.179.3.7"
+        },
+        {
+          "t": "Small gaps between primes",
+          "a": "James Maynard",
+          "y": 2014,
+          "u": "https://doi.org/10.4007/annals.2015.181.1.7"
+        }
+      ]
+    },
+    "factorisation": {
+      "w": {
+        "fr": {
+          "t": "Décomposition en produit de facteurs premiers",
+          "x": "En mathématiques et plus précisément en arithmétique, la décomposition en produit de facteurs premiers, aussi connue comme la factorisation entière en nombres premiers ou encore plus couramment la décomposition en facteurs premiers, consiste à chercher à écrire un entier naturel non nul sous forme d'un produit de nombres premiers. Par exemple, si le nombre donné est 45, la factorisation en nombres premiers est 32 × 5, soit 3 × 3 × 5.",
+          "u": "https://fr.wikipedia.org/wiki/D%C3%A9composition_en_produit_de_facteurs_premiers"
+        },
+        "en": {
+          "t": "Integer factorization",
+          "x": "In mathematics, integer factorization is the decomposition of a positive integer into a product of integers. Every positive integer greater than 1 is either the product of two or more integer factors greater than 1, in which case it is a composite number, or it is not, in which case it is a prime number. For example, 15 is a composite number because 15 = 3 · 5, but 7 is a prime number because it cannot be decomposed in this way.",
+          "u": "https://en.wikipedia.org/wiki/Integer_factorization"
+        }
+      },
+      "r": [
+        {
+          "t": "Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer",
+          "a": "Peter W. Shor",
+          "y": 1997,
+          "u": "https://doi.org/10.1137/S0097539795293172"
+        },
+        {
+          "t": "A method for obtaining digital signatures and public-key cryptosystems",
+          "a": "Ronald L. Rivest, Adi Shamir, Leonard M. Adleman",
+          "y": 1978,
+          "u": "https://doi.org/10.1145/359340.359342"
+        }
+      ]
+    },
+    "trous-noirs-info": {
+      "w": {
+        "fr": {
+          "t": "Paradoxe de l'information",
+          "x": "En astrophysique, le paradoxe de l'information est un paradoxe mis en évidence par Stephen Hawking en 1976 opposant les lois de la mécanique quantique à celles de la relativité générale. En effet, la relativité générale implique qu'une information pourrait fondamentalement disparaître dans un trou noir, à la suite de l'évaporation de celui-ci.",
+          "u": "https://fr.wikipedia.org/wiki/Paradoxe_de_l'information"
+        },
+        "en": {
+          "t": "Black hole information paradox",
+          "x": "The black hole information paradox is an unsolved problem in physics and a paradox that appears when the predictions of quantum mechanics and general relativity are combined. The theory of general relativity predicts the existence of black holes that are regions of spacetime from which nothing—not even light—can escape. In the 1970s, Stephen Hawking applied the semiclassical approach of quantum field theory in curved spacetime to such systems and found that an isolated black hole would emit a form of radiation.",
+          "u": "https://en.wikipedia.org/wiki/Black_hole_information_paradox"
+        }
+      },
+      "r": [
+        {
+          "t": "Particle creation by black holes",
+          "a": "Stephen William Hawking",
+          "y": 1975,
+          "u": "https://doi.org/10.1007/BF02345020"
+        },
+        {
+          "t": "The entropy of Hawking radiation",
+          "a": "Ahmed Almheiri, Thomas Hartman, JUAN M. MALDACENA et al.",
+          "y": 2021,
+          "u": "https://doi.org/10.1103/RevModPhys.93.035002"
+        }
+      ]
+    },
+    "tension-hubble": {
+      "w": {
+        "fr": {
+          "t": "Tension de Hubble",
+          "x": "La tension de Hubble est la différence de mesure de la constante de Hubble qui apparaît entre la méthode directe et la méthode utilisant le fond diffus cosmologique. Cette mesure de la vitesse de fuite des objets extragalactiques varie d'environ 8 % selon ces techniques de mesures.",
+          "u": "https://fr.wikipedia.org/wiki/Tension_de_Hubble"
+        }
+      },
+      "r": [
+        {
+          "t": "A Comprehensive Measurement of the Local Value of the Hubble Constant with 1 km s −1 Mpc −1 Uncertainty from the Hubble Space Telescope and the SH0ES Team",
+          "a": "Adam G. Riess, Wenlong Yuan, Lucas M. Macri et al.",
+          "y": 2022,
+          "u": "https://doi.org/10.3847/2041-8213/ac5c5b"
+        },
+        {
+          "t": "Planck 2018 results: VI. Cosmological parameters",
+          "a": "N. Aghanim, Y. Akrami, M. Ashdown et al.",
+          "y": 2020,
+          "u": "https://doi.org/10.1051/0004-6361/201833910"
+        }
+      ]
+    },
+    "supraconducteurs": {
+      "w": {
+        "fr": {
+          "t": "Supraconducteur à haute température",
+          "x": "Un supraconducteur à haute température est un matériau supraconducteur présentant une température critique relativement élevée par rapport aux supraconducteurs conventionnels, c'est-à-dire en général à des températures supérieures à 30 K.",
+          "u": "https://fr.wikipedia.org/wiki/Supraconducteur_%C3%A0_haute_temp%C3%A9rature"
+        },
+        "en": {
+          "t": "High-temperature superconductivity",
+          "x": "High-temperature superconductivity is superconductivity in materials with a critical temperature above 77 K, the boiling point of liquid nitrogen. They are \"high-temperature\" only relative to previously known superconductors, which function only closer to absolute zero. The first high-temperature superconductor was discovered in 1986 by IBM researchers Georg Bednorz and K. Alex Müller.",
+          "u": "https://en.wikipedia.org/wiki/High-temperature_superconductivity"
+        }
+      },
+      "r": [
+        {
+          "t": "Possible high Tc superconductivity in the Ba-La-Cu-O system",
+          "a": "Johannes Georg Bednorz, K. Alex Müller",
+          "y": 1986,
+          "u": "https://doi.org/10.1007/BF01303701"
+        },
+        {
+          "t": "From quantum matter to high-temperature superconductivity in copper oxides",
+          "a": "B. Keimer, Steven Allan Kivelson, Michael R. Norman et al.",
+          "y": 2015,
+          "u": "https://doi.org/10.1038/nature14165"
+        }
+      ]
+    },
+    "repliement-proteines": {
+      "w": {
+        "fr": {
+          "t": "Repliement des protéines",
+          "x": "Le repliement des protéines est le processus physique par lequel un polypeptide se replie dans sa structure tridimensionnelle caractéristique dans laquelle il est fonctionnel.",
+          "u": "https://fr.wikipedia.org/wiki/Repliement_des_prot%C3%A9ines"
+        },
+        "en": {
+          "t": "Protein folding",
+          "x": "Protein folding is the physical process by which a protein, after synthesis by a ribosome as a linear chain of amino acids, changes from an unstable random coil into a more ordered three-dimensional structure. This structure permits the protein to become biologically functional or active.",
+          "u": "https://en.wikipedia.org/wiki/Protein_folding"
+        }
+      },
+      "r": [
+        {
+          "t": "The Protein-Folding Problem, 50 Years On",
+          "a": "Ken A. Dill, Justin L. MacCallum",
+          "y": 2012,
+          "u": "https://doi.org/10.1126/science.1219021"
+        },
+        {
+          "t": "Highly accurate protein structure prediction with AlphaFold",
+          "a": "John Jumper, Richard Evans, Alexander Pritzel et al.",
+          "y": 2021,
+          "u": "https://doi.org/10.1038/s41586-021-03819-2"
+        }
+      ]
+    },
+    "anesthesie": {
+      "w": {
+        "fr": {
+          "t": "Anesthésie générale",
+          "x": "L'anesthésie générale, ou AG, est un acte médical dont l'objectif principal est la suspension temporaire et réversible de la conscience et de la sensibilité douloureuse, au moyen de médicaments administrés par voie intraveineuse et/ou inhalation.",
+          "u": "https://fr.wikipedia.org/wiki/Anesth%C3%A9sie_g%C3%A9n%C3%A9rale"
+        },
+        "en": {
+          "t": "General anaesthesia",
+          "x": "General anaesthesia (UK) or general anesthesia (US) is drug-induced loss of consciousness that renders a subject unarousable even by painful stimuli. It is achieved through medications, which can be injected or inhaled, often with an analgesic and neuromuscular blocking agent.",
+          "u": "https://en.wikipedia.org/wiki/General_anaesthesia"
+        }
+      },
+      "r": [
+        {
+          "t": "General anaesthesia: from molecular targets to neuronal pathways of sleep and arousal",
+          "a": "Nicholas P. Franks",
+          "y": 2008,
+          "u": "https://doi.org/10.1038/nrn2372"
+        },
+        {
+          "t": "General Anesthesia, Sleep, and Coma",
+          "a": "Emery N. Brown, Ralph Lydic, Nicholas D. Schiff",
+          "y": 2010,
+          "u": "https://doi.org/10.1056/NEJMra0808281"
+        }
+      ]
+    },
+    "cambrien": {
+      "w": {
+        "fr": {
+          "t": "Explosion cambrienne",
+          "x": "L’explosion cambrienne désigne l'apparition soudaine – à l'échelle géologique – de la plupart des grands embranchements actuels de métazoaires ainsi que de quelques autres, disparus entre-temps, initiant ainsi une grande diversification des classes et des espèces animales, végétales et bactériennes. Certains auteurs n'hésitent pas à parler de « big bang zoologique au Cambrien », avec l'apparition en quelques dizaines de millions d'années de la quasi-totalité des grands plans d'organisation connus actuellement.",
+          "u": "https://fr.wikipedia.org/wiki/Explosion_cambrienne"
+        },
+        "en": {
+          "t": "Cambrian explosion",
+          "x": "\nThe Cambrian explosion is a major evolutionary radiation event of the Earth's lifeforms beginning approximately 538.8 million years ago in the early Cambrian period of the Paleozoic era, during which a sudden diversification of complex life occurred in the fossil record.",
+          "u": "https://en.wikipedia.org/wiki/Cambrian_explosion"
+        }
+      },
+      "r": [
+        {
+          "t": "EXPLAINING THE CAMBRIAN “EXPLOSION” OF ANIMALS",
+          "a": "Charles R. Marshall",
+          "y": 2006,
+          "u": "https://doi.org/10.1146/annurev.earth.33.031504.103001"
+        },
+        {
+          "t": "The Cambrian Conundrum: Early Divergence and Later Ecological Success in the Early History of Animals",
+          "a": "Douglas H. Erwin, Marc Laflamme, Sarah M. Tweedt et al.",
+          "y": 2011,
+          "u": "https://doi.org/10.1126/science.1206375"
         }
       ]
     }

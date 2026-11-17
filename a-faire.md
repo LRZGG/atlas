@@ -22,8 +22,8 @@ Direction retenue le 16 novembre 2026 : **la planche de brevet** (clair et sombr
 
 ## 2. Contenu
 
-- [ ] **Passer de 31 à 100–150 questions**, chacune avec sa source. Pistes : liste *Science* 2005 (faite), problèmes du millénaire (faits), problèmes de Hilbert, listes Wikipédia des problèmes non résolus par discipline.
-- [ ] **Une fiche pour chaque question**, par lots, avec contrôle automatique des références et étiquette « brouillon IA » tant qu'aucun spécialiste n'a relu.
+- [x] **Passer de 31 à 100–150 questions**, chacune avec sa source : 105 le 17 novembre 2026 (Science 2005, problèmes du millénaire, Hilbert, listes Wikipédia). Reste à relire les énoncés contre leurs sources ; pistes pour aller plus loin : économie, médecine, statistiques, philosophie, sciences humaines (aucune liste Wikipédia utilisée pour l'instant).
+- [ ] **Une fiche pour chaque question**, par lots, avec contrôle automatique des références et étiquette « brouillon IA » tant qu'aucun spécialiste n'a relu. Fait : 12 fiches sur 105 (lot du 17 novembre : jumeaux, factorisation, repliement des protéines, trous noirs et information, tension de Hubble, supraconducteurs, anesthésie, Cambrien, Riemann).
 - [ ] **Pages HTML par question** (faites pour 3 fiches) : à étendre au fur et à mesure.
 - [ ] **Traduction anglaise** à la fin, quand le contenu ne bouge plus.
 - [ ] **Relecteurs nommés** : en contacter quelques-uns dès que 30 fiches sont prêtes.
