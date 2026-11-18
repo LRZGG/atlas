@@ -400,7 +400,7 @@ const LIVE = `<script>(function(){var b=document.body;if(!b.classList.contains('
 function page(k) {
   const s = S[k], feat = byId[s.univ === 'mystere' ? 'wow' : 'nessie'], others = entries.filter(e => e.univ === s.univ && e.id !== feat.id);
   const title = `${s.nom} · maquette ${s.univ === 'mystere' ? 'Mystères' : 'Folklore'}`;
-  return `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><script src="/menu-mondes.js" defer></script><title>${esc(title)}</title>
+  return `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>${esc(title)}</title>
 <style>${FONTS}${BASE}${s.css}</style>${FILTERS}
 <body class="${k === 'm1' || k === 'm6' || k === 'm1b' ? 'typing' : k === 'm1d' ? 'live' : ''}"><div class="maq"><b>Maquette</b><span>${esc(title)} · données réelles, contenu de démonstration</span><a href="index.html">Tous les styles</a>${nav(k)}</div>
 <div class="wrap"><main>${dossier(feat, k)}<h2 class="cat">Autres dossiers</h2>${cards(others)}</main></div>${SCRIPT}${LIVE}`;
@@ -408,7 +408,7 @@ function page(k) {
 for (const k of Object.keys(S)) if (!HIDE.has(k)) writeFileSync(`docs/labo/${k}.html`, page(k));
 
 // Page d'accueil du labo : les huit styles, leur résumé et leur risque.
-const idx = `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><script src="/menu-mondes.js" defer></script><title>Labo des styles · Unknownpedia</title>
+const idx = `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Labo des styles · Unknownpedia</title>
 <style>${FONTS}${BASE}body{background:#f4f3ef;color:#15181d;font:16px/1.5 "Archivo Narrow",sans-serif}.wrap{max-width:1100px;margin:0 auto;padding:30px 18px 70px}h1{font:400 34px/1.1 "IM Fell DW Pica",serif;margin:.2em 0}h2{font:400 22px "IM Fell DW Pica",serif;margin:34px 0 10px;border-bottom:1px solid #15181d;padding-bottom:4px}.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}.t{border:1px solid #15181d;background:#fff;display:flex;flex-direction:column;text-decoration:none}.t img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border-bottom:1px solid #15181d;background:#ddd}.t div{padding:10px 12px}.t b{font:400 20px "IM Fell DW Pica",serif;display:block}.t small{display:block;margin-top:6px;color:#555}.t span{color:#b3122f;font-size:12px;letter-spacing:.1em;text-transform:uppercase}</style>
 <div class="maq"><b>Maquette</b><span>Labo des styles pour les deux nouveaux univers · hors site, non indexé</span></div>
 <div class="wrap"><h1>Labo des styles</h1><p>Huit directions pour « Mystères » et « Folklore », sur de vraies données publiques (Wikipédia, Wikidata, Wikimedia Commons). Le contenu est de démonstration : statuts non validés, brouillons IA, aucune relecture. La planche de brevet (science) n'est pas touchée.</p>
