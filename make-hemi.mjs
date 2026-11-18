@@ -1,5 +1,5 @@
-// Deux hémisphères (projection stéréographique équatoriale, comme les mappemondes du XVIIe siècle) depuis Natural Earth 1:50 millions (domaine public) via « world-atlas ».
-// Usage : node make-hemi.mjs <dossier du paquet topojson-client> <land-50m.json> → écrit labo-hemi.json. Détourage exact de l'hémisphère visible (Sutherland–Hodgman sur la sphère).
+// Two hemispheres (equatorial stereographic projection, like 17th-century world maps) from Natural Earth 1:50m (public domain) via "world-atlas".
+// Usage: node make-hemi.mjs <topojson-client package folder> <land-50m.json> -> writes labo-hemi.json. Exact clipping of the visible hemisphere (Sutherland–Hodgman on the sphere).
 import { readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 const [tc, landf] = process.argv.slice(2);
@@ -14,7 +14,7 @@ function clip(ring, l0) {
   const cut = (a, b) => { const t = a[2] / (a[2] - b[2]), p = norm([a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1]), 0]); p[2] = 0; return p; };
   for (let i = 0; i < V.length; i++) { const a = V[(i + V.length - 1) % V.length], b = V[i], ia = a[2] >= 0, ib = b[2] >= 0;
     if (ia && ib) out.push(b); else if (ia && !ib) out.push(cut(a, b)); else if (!ia && ib) { out.push(cut(a, b)); out.push(b); } }
-  // arcs de bord : entre une sortie et la rentrée suivante, on suit le cercle limite au lieu d'une corde
+  // edge arcs: between an exit and the next re-entry, follow the limit circle instead of a chord
   const res = []; for (let i = 0; i < out.length; i++) { const a = out[i], b = out[(i + 1) % out.length]; res.push(a);
     if (Math.abs(a[2]) < 1e-9 && Math.abs(b[2]) < 1e-9 && (Math.hypot(a[0] - b[0], a[1] - b[1]) > 0.02)) { const t0 = Math.atan2(a[1], a[0]); let dt = Math.atan2(b[1], b[0]) - t0; dt = Math.atan2(Math.sin(dt), Math.cos(dt)); const n = Math.max(2, Math.ceil(Math.abs(dt) / (3 * rad))); for (let k = 1; k < n; k++) res.push([Math.cos(t0 + dt * k / n), Math.sin(t0 + dt * k / n), 0]); } }
   return res;

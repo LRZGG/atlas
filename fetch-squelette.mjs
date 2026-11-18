@@ -1,6 +1,6 @@
-// Télécharge le squelette réel de la carte depuis OpenAlex : sujets, hiérarchie, liens mesurés.
-// Usage : node fetch-squelette.mjs [--subfields]   (--subfields ajoute les liens entre sous-disciplines, 252 appels)
-// shortcut: sans clé d'API, budget partagé de 0,10 $/jour ; passer OPENALEX_KEY si ça bloque.
+// Downloads the real skeleton of the map from OpenAlex: topics, hierarchy, measured links.
+// Usage: node fetch-squelette.mjs [--subfields]   (--subfields adds links between subfields, 252 calls)
+// shortcut: without an API key the budget is shared (0.10 USD/day); pass OPENALEX_API_KEY if it blocks.
 import { writeFileSync } from 'node:fs';
 import assert from 'node:assert';
 
@@ -8,7 +8,7 @@ const API = 'https://api.openalex.org', KEY = process.env.OPENALEX_KEY ? `&api_k
 let cost = 0;
 async function get(path) {
   const r = await fetch(API + path + KEY);
-  if (!r.ok) throw new Error(`${r.status} sur ${path} : ${(await r.text()).slice(0, 200)}`);
+  if (!r.ok) throw new Error(`${r.status} on ${path}: ${(await r.text()).slice(0, 200)}`);
   const j = await r.json(); cost += j.meta?.cost_usd || 0; return j;
 }
 const short = url => url.split('/').pop();
@@ -28,7 +28,7 @@ while (page) {
 }
 assert.equal(topics.length, total, 'nombre de sujets incomplet');
 
-// 2. Liens mesurés : pour les articles dont la discipline principale est A, combien portent aussi un sujet de B.
+// 2. Measured links: for papers whose main field is A, how many also carry a topic of B.
 async function links(level, ids) {
   const out = [];
   for (const a of ids) {
@@ -42,5 +42,5 @@ const fieldLinks = await links('field', Object.keys(fields));
 const subfieldLinks = process.argv.includes('--subfields') ? await links('subfield', Object.keys(subfields)) : null;
 
 writeFileSync('squelette.json', JSON.stringify({ source: 'OpenAlex', fetched: new Date().toISOString().slice(0, 10), domains, fields, subfields, topics, fieldLinks, subfieldLinks }));
-console.log(`\n${Object.keys(domains).length} domaines, ${Object.keys(fields).length} disciplines, ${Object.keys(subfields).length} sous-disciplines, ${topics.length} sujets`);
-console.log(`${fieldLinks.length} liens entre disciplines${subfieldLinks ? `, ${subfieldLinks.length} entre sous-disciplines` : ''} — coût API ${cost.toFixed(4)} $`);
+console.log(`\n${Object.keys(domains).length} domains, ${Object.keys(fields).length} fields, ${Object.keys(subfields).length} subfields, ${topics.length} topics`);
+console.log(`${fieldLinks.length} links between fields${subfieldLinks ? `, ${subfieldLinks.length} between subfields` : ''} — API cost ${cost.toFixed(4)} USD`);

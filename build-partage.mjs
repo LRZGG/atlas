@@ -1,6 +1,6 @@
-// Images de partage (1200 × 630) : la carte réelle, centrée sur la question, avec son énoncé. Une par page de question, plus une pour l'accueil.
-// Usage : servir docs/ (python -m http.server -d docs 8123), puis node build-partage.mjs → écrit docs/partage/*.png (à commiter).
-// Outil de développement : demande Playwright (déjà installé dans l'environnement cloud), pas utilisé par le site lui-même.
+// Share images (1200 x 630): the real map, centred on the question, with its statement. One per question page, plus one for the home page.
+// Usage: serve docs/ (python -m http.server -d docs 8123), then node build-partage.mjs -> writes docs/partage/*.png (to commit).
+// Development tool: needs Playwright (already installed in the cloud environment); not used by the site itself.
 import { readdirSync, mkdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 const { chromium } = createRequire(import.meta.url)('playwright');
@@ -21,7 +21,7 @@ await bandeau('Ce que personne ne sait encore', 'Atlas des questions non résolu
 await p.screenshot({ path: 'docs/partage/carte.png' });
 for (const id of ids) {
   const r = await p.evaluate(id => { const i = Q.findIndex(q => q.id === id); if (i < 0) return null; const q = Q[i]; tgt = null; view.k = 3.6; view.x = q.x - mx; view.y = q.y - my + 70 / (s0 * view.k); hoverQ = i; return loc(q.qq); }, id);
-  if (!r) { console.log('question inconnue', id); continue; }
+  if (!r) { console.log('unknown question', id); continue; }
   await bandeau(r, 'Question ouverte · brouillon rédigé avec une IA · unknownpedia.org'); await p.waitForTimeout(300);
   await p.screenshot({ path: `docs/partage/${id}.png` }); console.log(id);
 }

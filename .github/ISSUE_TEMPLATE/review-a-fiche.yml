@@ -1,0 +1,30 @@
+name: Review a fiche (named reviewer)
+description: You are a specialist in the field and accept that your name is shown on the reviewed fiche.
+title: "[review] "
+labels: ["review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A fiche is marked "reviewed" only by a **named** person, with the date. Your review may conclude "nothing to fix": that is useful too. You remain free to withdraw your name.
+  - type: input
+    id: question
+    attributes:
+      label: Fiche(s) you review
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Name as it will be displayed
+    validations:
+      required: true
+  - type: input
+    id: orcid
+    attributes:
+      label: ORCID (recommended)
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Your remarks
+      description: For each point, say whether it is correct, to be fixed or wrong, with a source.

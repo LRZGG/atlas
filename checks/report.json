@@ -1,0 +1,743 @@
+{
+ "date": "2026-11-18",
+ "fiches": {
+  "univers": [
+   {
+    "key": "univers:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "conscience": [
+   {
+    "key": "conscience:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "longevite": [
+   {
+    "key": "longevite:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "origine-vie": [
+   {
+    "key": "origine-vie:number-without-source:333f2641",
+    "type": "number-without-source",
+    "text": "The number \"1953\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "origine-vie:strong-claim:0347d2b4",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"Plusieurs scénarios sont étudiés : un « monde à ARN », où l'ARN stocke l'information et catalyse des réactions, des sources hydrothermales a…\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "origine-vie:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "memoire": [
+   {
+    "key": "memoire:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "rechauffement": [
+   {
+    "key": "rechauffement:number-without-source:b87cfe08",
+    "type": "number-without-source",
+    "text": "The number \"1900\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "rechauffement:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "p-np": [
+   {
+    "key": "p-np:strong-claim:575f583e",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"La plupart des spécialistes pensent que P est différent de NP, sans l'avoir prouvé.\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "p-np:strong-claim:9c51e93a",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"Si P est égal à NP ou non. Personne n'a démontré l'un ni l'autre. L'institut Clay offre un million de dollars à qui y parviendra : c'est un …\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "p-np:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "riemann": [
+   {
+    "key": "riemann:number-without-source:db37fb28",
+    "type": "number-without-source",
+    "text": "The number \"1896\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "riemann:number-without-source:75fc234b",
+    "type": "number-without-source",
+    "text": "The number \"3000\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "riemann:strong-claim:700a010a",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"Les nombres premiers se répartissent selon une loi moyenne connue (le théorème des nombres premiers, démontré en 1896). Les écarts à cette l…\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "riemann:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "navier-stokes": [
+   {
+    "key": "navier-stokes:strong-claim:9c36cc97",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"En deux dimensions, on sait démontrer que les solutions existent et restent régulières.\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "navier-stokes:strong-claim:70f2c9ff",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"En trois dimensions, on sait démontrer l'existence de solutions pour un temps court, ou de solutions plus faibles, mais pas pour tout temps …\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "navier-stokes:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "hodge": [
+   {
+    "key": "hodge:strong-claim:965ca972",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"Elle est démontrée dans plusieurs cas particuliers.\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "hodge:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "goldbach": [
+   {
+    "key": "goldbach:number-without-source:81d27cad",
+    "type": "number-without-source",
+    "text": "The number \"100\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "goldbach:number-without-source:3fff1374",
+    "type": "number-without-source",
+    "text": "The number \"97\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "goldbach:number-without-source:259d2c19",
+    "type": "number-without-source",
+    "text": "The number \"50\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "goldbach:strong-claim:42f4015b",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"Une version plus faible, pour les nombres impairs et trois nombres premiers, a été démontrée par Harald Helfgott en 2013.\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "goldbach:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "jumeaux": [
+   {
+    "key": "jumeaux:number-without-source:57d139ef",
+    "type": "number-without-source",
+    "text": "The number \"17\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "jumeaux:number-without-source:41e87404",
+    "type": "number-without-source",
+    "text": "The number \"19\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "jumeaux:number-without-source:dcb08e58",
+    "type": "number-without-source",
+    "text": "The number \"70\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "jumeaux:number-without-source:f1af2ef6",
+    "type": "number-without-source",
+    "text": "The number \"246\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "jumeaux:number-without-source:81d27cad",
+    "type": "number-without-source",
+    "text": "The number \"100\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "jumeaux:strong-claim:79a7e83d",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"En 2013, Yitang Zhang a démontré qu'il existe une infinité de paires de premiers séparés par moins de 70 millions. Ce plafond a ensuite été …\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "jumeaux:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "collatz": [
+   {
+    "key": "collatz:number-without-source:87943307",
+    "type": "number-without-source",
+    "text": "The number \"2019\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "collatz:number-without-source:ee4d62b4",
+    "type": "number-without-source",
+    "text": "The number \"27\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "collatz:strong-claim:a1d40aa4",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"En 2019, Terence Tao a démontré que presque tous les nombres atteignent des valeurs très petites, en un sens précis, sans démontrer qu'ils a…\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "collatz:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "factorisation": [
+   {
+    "key": "factorisation:number-without-source:81d45254",
+    "type": "number-without-source",
+    "text": "The number \"1994\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "factorisation:number-without-source:6c22c0a9",
+    "type": "number-without-source",
+    "text": "The number \"91\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "factorisation:number-without-source:f85b7406",
+    "type": "number-without-source",
+    "text": "The number \"8633\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "factorisation:strong-claim:ee9374e2",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"Si la factorisation est aussi difficile que les problèmes les plus durs de la classe NP. On pense que non, sans l'avoir démontré.\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "factorisation:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "trous-noirs-info": [
+   {
+    "key": "trous-noirs-info:number-without-source:9c82dcf5",
+    "type": "number-without-source",
+    "text": "The number \"1974\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "trous-noirs-info:number-without-source:87943307",
+    "type": "number-without-source",
+    "text": "The number \"2019\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "trous-noirs-info:reference-off-topic:419af8a0",
+    "type": "reference-off-topic",
+    "text": "No word of the title of \"Particle creation by black holes\" is found in the fiche: reference to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "trous-noirs-info:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "neutrinos": [
+   {
+    "key": "neutrinos:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "tension-hubble": [
+   {
+    "key": "tension-hubble:number-without-source:dacca10a",
+    "type": "number-without-source",
+    "text": "The number \"380000\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "tension-hubble:number-without-source:2962b2bd",
+    "type": "number-without-source",
+    "text": "The number \"73\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "tension-hubble:number-without-source:59e46621",
+    "type": "number-without-source",
+    "text": "The number \"67\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "tension-hubble:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "supraconducteurs": [
+   {
+    "key": "supraconducteurs:number-without-source:1e22b794",
+    "type": "number-without-source",
+    "text": "The number \"1911\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "supraconducteurs:number-without-source:2f545c95",
+    "type": "number-without-source",
+    "text": "The number \"1957\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "supraconducteurs:number-without-source:c16358a3",
+    "type": "number-without-source",
+    "text": "The number \"1987\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "supraconducteurs:strong-claim:8f7b8f24",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"Un supraconducteur laisse passer le courant électrique sans aucune résistance. Découvert en 1911, il fallait d'abord le refroidir près du zé…\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "supraconducteurs:strong-claim:45140dce",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"Pourquoi ces matériaux sont supraconducteurs : la théorie BCS ne s'y applique pas et aucune explication ne fait l'unanimité.\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "supraconducteurs:strong-claim:9e9978e5",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"S'il existe un matériau supraconducteur à température ambiante et pression ordinaire. Aucun n'a été confirmé.\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "supraconducteurs:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "repliement-proteines": [
+   {
+    "key": "repliement-proteines:number-without-source:c627a775",
+    "type": "number-without-source",
+    "text": "The number \"1960\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "repliement-proteines:number-without-source:1e9858f8",
+    "type": "number-without-source",
+    "text": "The number \"1970\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "repliement-proteines:number-without-source:1249107a",
+    "type": "number-without-source",
+    "text": "The number \"2020\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "repliement-proteines:number-without-source:81d27cad",
+    "type": "number-without-source",
+    "text": "The number \"100\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "repliement-proteines:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "anesthesie": [
+   {
+    "key": "anesthesie:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "cambrien": [
+   {
+    "key": "cambrien:number-without-source:819ae1d1",
+    "type": "number-without-source",
+    "text": "The number \"540\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "cambrien:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "wow-e": [
+   {
+    "key": "wow-e:number-without-source:0fbddfe2",
+    "type": "number-without-source",
+    "text": "The number \"1420\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "wow-e:strong-claim:2f2cd2c0",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"D'où il venait : un phénomène naturel, une interférence terrestre ou autre chose. Aucune explication ne fait consensus.\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "wow-e:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "voynich-e": [
+   {
+    "key": "voynich-e:number-without-source:b335f199",
+    "type": "number-without-source",
+    "text": "The number \"240\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "voynich-e:strong-claim:b84bcaf9",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"Il est écrit dans une écriture inconnue, avec des dessins de plantes, d'astres et de figures qui ne correspondent à aucun ouvrage connu.\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "voynich-e:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "antikythere-e": [
+   {
+    "key": "antikythere-e:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "tunguska-e": [
+   {
+    "key": "tunguska-e:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "nazca-e": [
+   {
+    "key": "nazca-e:no-reference:63df5f2f",
+    "type": "no-reference",
+    "text": "The fiche cites no article or document verified in OpenAlex.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "nazca-e:strong-claim:d6ec354a",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"Leur fonction : plusieurs hypothèses sont proposées (rituelles, liées à l'eau, à l'astronomie), aucune ne s'impose.\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "nazca-e:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "phaistos-e": [
+   {
+    "key": "phaistos-e:no-reference:63df5f2f",
+    "type": "no-reference",
+    "text": "The fiche cites no article or document verified in OpenAlex.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "phaistos-e:strong-claim:c48dc3b2",
+    "type": "strong-claim",
+    "text": "Strong claim to confirm with a source: \"Aucune lecture n'a été acceptée par les spécialistes.\"",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "phaistos-e:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "lineara-e": [
+   {
+    "key": "lineara-e:no-reference:63df5f2f",
+    "type": "no-reference",
+    "text": "The fiche cites no article or document verified in OpenAlex.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "lineara-e:number-without-source:bf09e806",
+    "type": "number-without-source",
+    "text": "The number \"1952\" appears neither in the Wikipedia excerpt, nor in the references, nor in the question statement: to verify.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "lineara-e:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ],
+  "kryptos-e": [
+   {
+    "key": "kryptos-e:no-reference:63df5f2f",
+    "type": "no-reference",
+    "text": "The fiche cites no article or document verified in OpenAlex.",
+    "status": "open",
+    "by": null,
+    "date": null
+   },
+   {
+    "key": "kryptos-e:not-reviewed:dc86331d",
+    "type": "not-reviewed",
+    "text": "No named specialist has reviewed this fiche.",
+    "status": "open",
+    "by": null,
+    "date": null
+   }
+  ]
+ }
+}

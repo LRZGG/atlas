@@ -1,25 +1,23 @@
-# Compteurs d'articles suspects (OpenAlex)
+# OpenAlex topic counts: check and fix
 
-**Résolu le 18 novembre 2026.** Vérification faite sur le cas le plus extrême, « Magnetic confinement fusion research » (T10346) :
+**Resolved on 18 November 2026.** Check made on the most extreme case, "Magnetic confinement fusion research" (T10346):
 
-| Mesure | Valeur |
+| Measure | Value |
 |---|---:|
-| `works_count` de la fiche du sujet dans OpenAlex (ce qu'on utilisait) | 41 251 603 |
-| Œuvres qui portent ce sujet (`works?filter=topics.id:T10346`) | 385 048 |
-| dont articles de revue | 210 780 |
-| dont jeux de données | 51 057 |
-| Articles avec ce sujet comme sujet principal | 100 557 |
-| Recherche texte « magnetic confinement fusion » dans Crossref (autre base, ordre de grandeur seulement) | 1 405 007 |
+| `works_count` on the topic's page in OpenAlex (what we used to use) | 41,251,603 |
+| Works carrying this topic (`works?filter=topics.id:T10346`) | 385,048 |
+| of which journal articles | 210,780 |
+| of which datasets | 51,057 |
+| Articles with this topic as primary topic | 100,557 |
+| Text search "magnetic confinement fusion" in Crossref (another database, order of magnitude only) | 1,405,007 |
 
-Un échantillon aléatoire des œuvres montre en 2026 des notices de données (« LHD rf9.5-L_tw #191773.1 (analyzed) »), des mesures d'un grand dispositif, et des articles voisins (plasma, vent solaire). Le compteur de 41 millions est donc **faux de plus de 100 fois** : c'est une erreur d'OpenAlex sur la fiche du sujet, pas une réalité de la recherche.
+A random sample of the works shows dataset records in 2026 ("LHD rf9.5-L_tw #191773.1 (analyzed)"), measurements from a large device, and neighbouring articles (plasma, solar wind). The 41 million figure is therefore **wrong by more than 100 times**: it is an OpenAlex error on the topic record, not a feature of research.
 
-**Ce qui a changé** : le relief et les points de la carte n'utilisent plus `works_count` mais la somme des articles publiés de 1990 à 2025 (`annees.json`, filtre `topics.id`). Aucun sujet n'est plus plafonné ni marqué « douteux ». Les positions des sujets (placement) gardent l'ancien calcul : elles n'ont pas été recalculées.
+**What changed**: the relief and the dots of the map no longer use `works_count` but the sum of papers published 1990–2025 (`annees.json`, filter `topics.id`). No topic is capped or flagged "doubtful" any more. Topic positions (layout) keep the old computation: they were not recomputed.
 
-Liste d'origine (conservée pour mémoire) :
+Original list of suspect topics (kept for reference; a topic is listed if its count exceeded the cap or 25 times the median of its subfield):
 
-Un sujet figure ici si son compteur dépasse le plafond, ou s'il dépasse 25 fois la médiane de sa sous-discipline. OpenAlex classe parfois mal certains articles : un compteur très élevé peut être une erreur de classement, ou un sujet réellement énorme. **À trancher sujet par sujet** : la colonne « décision » est vide.
-
-| Sujet | Articles | × médiane de la sous-discipline | Sous-discipline | Décision |
+| Topic | Papers | × subfield median | Subfield | Decision |
 |---|---:|---:|---|---|
 | Magnetic confinement fusion research | 40,482,915 | 317 | Nuclear and High Energy Physics | |
 | Botany and Plant Ecology Studies | 4,630,849 | 106 | Plant Science | |

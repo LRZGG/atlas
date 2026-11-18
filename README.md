@@ -1,93 +1,67 @@
 # Unknownpedia
 
-Un atlas de ce que l'humanité ne sait pas encore. On y entre par curiosité, on s'y promène, et on en sort en sachant où on pourrait aider.
+An open atlas of what humanity does not know yet. Unresolved questions of science are placed on a **measured map of world research**: 4,516 research topics from [OpenAlex](https://openalex.org), positioned by the papers they share. Live at <https://unknownpedia.org> (French and English).
 
-Aujourd'hui, la carte montre le **connu** : les 4 516 sujets de recherche répertoriés par [OpenAlex](https://openalex.org), regroupés par sous-discipline. Les 250 sous-disciplines sont placées d'après les articles qu'elles partagent, puis chacun des 4 516 sujets est placé d'après ses propres liens mesurés (les 8 sujets avec lesquels il partage le plus d'articles), avec une attache à sa sous-discipline (voir les limites). Dessus sont posées 31 **grandes questions ouvertes**, chacune avec sa source (voir `questions.json`) et son propre lien (par exemple `/#conscience`).
+- **Map**: each dot is a real research topic; contour lines show research effort (papers published), *not* knowledge; the red “?” marks an open question (150 so far, 8 of them “documented enigmas”).
+- **Fiches**: 29 questions have a detailed page (what we know, what we don't, why it is hard, where to start, references checked in OpenAlex). They are **drafts written with an AI** and labelled as such until a *named* specialist reviews them.
+- **Time**: a slider replays research output year by year (1990–2025); a Stats window shows papers per year and per decade.
+- **Search**, keyboard control, light and dark themes, no accounts, no votes, no ads, no external requests from the visitor's browser.
 
-- **Vision et méthode** : [methode.md](methode.md)
-- **Ce qui reste à améliorer** : [a-polir.md](a-polir.md)
-- **La carte** : `docs/index.html`, qui détecte la langue du navigateur (français si la première langue connue est le français, anglais sinon, avec un sélecteur FR / EN). `docs/fr/index.html` et `docs/en/index.html` fixent la langue : un lien partagé la garde.
-- **Les trois directions visuelles comparées** : `docs/directions.html`
+Reading order for contributors: [METHOD.md](METHOD.md) (what is measured and how), [PRODUCT.md](PRODUCT.md) (scope), [TODO.md](TODO.md) (priorities), [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Comment lire la carte
+## Build
 
-| Ce qu'on voit | Ce que ça mesure |
-|---|---|
-| Un point | Un sujet de recherche réel ; sa taille croît avec le nombre d'articles |
-| Les courbes de niveau | L'effort de recherche (articles publiés), pas le savoir établi |
-| Les petits traits le long de la première courbe | Le bord du connu, tournés vers le moins étudié |
-| Un numéro dans un cercle, relié par une ligne | Une discipline (table des références, en haut à droite) |
-| Un « ? » rouge (blanc en mode sombre) et son nom en italique | Une grande question ouverte |
-| Le vide au centre | Peu d'articles relient ces disciplines |
-| Deux sujets proches | Leurs sous-disciplines partagent beaucoup d'articles |
-
-Rien n'est décoratif : chaque élément correspond à une donnée.
-
-## Régénérer
-
-Il faut Node 18 ou plus récent, sans aucune dépendance.
+Node 18+ and no dependencies.
 
 ```bash
-node fetch-squelette.mjs --subfields
+BASE=https://unknownpedia.org node build-directions.mjs
 ```
+
+This computes the layout and writes the static site into `docs/` (served by GitHub Pages). To look at it locally:
 
 ```bash
-node build-directions.mjs
+python -m http.server -d docs 8123
 ```
 
-La première commande télécharge le squelette depuis OpenAlex dans `squelette.json` (déjà fourni, relevé le 16 novembre 2026). La seconde calcule les positions et écrit les pages dans `docs/`.
+Fonts are served from `/fonts/`, so `docs/` must be the root of the server.
 
-## Fichiers
+## Data pipeline
 
-| Fichier | Rôle |
+The OpenAlex key is read from the `OPENALEX_API_KEY` environment variable (or `OPENALEX_KEY_FILE`). **Never commit a key.**
+
+| Script | What it does | Output |
+|---|---|---|
+| `fetch-squelette.mjs` | Downloads domains, fields, subfields, topics and subfield links | `squelette.json` |
+| `fetch-liens-sujets.mjs` | For each topic, the 40 topics it shares most papers with (resumable) | `liens-sujets.json` |
+| `fetch-annees.mjs` | Papers per year (1990–2025) for each topic | `annees.json` |
+| `fetch-recent.mjs` | Papers of the last 30 days per topic (run weekly by `.github/workflows/frontiere.yml`) | `recent.json` |
+| `fetch-fiches.mjs` | Downloads each fiche's Wikipedia excerpt and verifies every reference in OpenAlex; fails if one is missing | `fiches.json` |
+| `check-fiches.mjs` | Automatic check of the fiches (no AI, no network): numbers without sources, strong claims, off-topic references, FR/EN mismatches | `checks/report.md` |
+| `build-directions.mjs` | Layout + all pages (`docs/fr`, `docs/en`, 150 question pages per language, Sources and Contribute pages, sitemap) | `docs/` |
+| `build-partage.mjs` | One 1200×630 share image per question page (needs Playwright and a local server) | `docs/partage/` |
+
+## Files
+
+| File | Role |
 |---|---|
-| `fetch-squelette.mjs` | Télécharge sujets, hiérarchie et liens depuis OpenAlex |
-| `squelette.json` | Les données brutes |
-| `fetch-liens-sujets.mjs` | Mesure, pour chaque sujet, les 40 sujets avec lesquels il partage le plus d'articles (clé d'API facultative, reprise automatique) |
-| `liens-sujets.json` | Le résultat de `fetch-liens-sujets.mjs` |
-| `questions.json` | Les grandes questions : nom court, énoncé, contexte (par langue : `fr` et `en`), source, statut, sous-disciplines touchées, et la fiche détaillée quand elle existe |
-| `textes.json` | Tous les textes de l'interface, en français et en anglais. Pour ajouter une langue : une entrée de plus ici, une page de plus dans `build-directions.mjs` |
-| `fetch-fiches.mjs` | Pour chaque fiche, télécharge l'extrait Wikipédia et vérifie chaque référence dans OpenAlex ; échoue si l'une est introuvable |
-| `fiches.json` | Le résultat de `fetch-fiches.mjs` (extraits et références vérifiées) |
-| `build-directions.mjs` | Calcule les positions et génère les pages |
-| `carte.tpl.html` | Le gabarit de la carte (direction « planche de brevet », clair et sombre) |
-| `docs/fonts/` | Polices libres (OFL) hébergées sur le site, avec leurs licences |
-| `a-faire.md`, `PRODUCT.md` | Liste de travail et cadrage du produit |
-| `build-maquettes.mjs`, `maquettes.tpl.html` | Les quatre directions artistiques comparées (maquettes) |
-| `build-proto.mjs`, `proto-common.js`, `proto-chambre.tpl.html` | Prototype de la « chambre à nuages » (non retenu pour l'instant) |
-| `build-sciguessr.mjs`, `sciguessr.tpl.html` | Test d'un jeu de devinettes sur la carte (non publié) |
-| `directions.tpl.html` | Le gabarit de la comparaison des trois directions |
-| `prototype-v1.html` | Le premier prototype, avec 29 questions écrites à la main et des filaments décoratifs |
+| `questions.json` | The questions: short name, statement, context (`fr`, `en`), source (`src`), subfields touched, optional `type: "enigme"`, optional fiche |
+| `textes.json` | All interface texts (FR and EN). To add a language: one more entry here and one more page loop in `build-directions.mjs` |
+| `sous-disciplines-fr.json` | French names of the 250 subfields (editorial translation; OpenAlex names are English) |
+| `carte.tpl.html` | The map template (“patent plate” direction, canvas 2D) |
+| `checks/` | Automatic report and the log of human decisions (`decisions.json`) |
+| `docs/fonts/` | Open-licence fonts (OFL), self-hosted, with licences |
+| `docs/labo/` | Unlisted design experiments (Mysteries and Folklore worlds, 3D rooms, menus). Demo data, not part of the site |
+| `build-maquettes.mjs`, `build-proto.mjs`, `build-sciguessr.mjs` | Early prototypes (outputs are git-ignored) |
 
-## Limites connues
+## How the map is made, and its limits
 
-- Le nombre d'articles mesure la quantité de recherche, pas la quantité de savoir.
-- Certains compteurs d'OpenAlex sont faux. Ils sont plafonnés au 99e centile et signalés au survol.
-- Les liens comptent les articles partagés entre sous-disciplines, pas les citations.
-- La disposition dépend des réglages du placement par forces dans `build-directions.mjs`.
-- Traduction : l'interface, les noms, énoncés et contextes des 150 questions, les 29 fiches, les 26 disciplines et les extraits Wikipédia sont bilingues. Le contexte des questions et le texte des fiches sont **en français seulement** : en anglais, ils s'affichent en français avec un avertissement. Les noms des 250 sous-disciplines et des 4 516 sujets sont en anglais dans les deux langues (c'est la langue d'OpenAlex). Les titres anglais des questions de *Science* sont écrits de mémoire : à confronter à la liste officielle.
-- Référencement : chaque page a sa langue déclarée, ses balises de description et de partage, des liens `hreflang` entre langues, un `robots.txt` et un `sitemap.xml`. Les adresses de ces fichiers viennent de la variable `BASE` (`BASE=https://exemple.org node build-directions.mjs` quand le domaine sera choisi). Le contenu de la carte est dessiné par script : tant que chaque question n'a pas sa propre page HTML, les moteurs de recherche n'y verront presque rien.
-- Les liens entre sujets ont été mesurés le 16 novembre 2026 pour les 4 516 sujets (`liens-sujets.json`, environ 0,29 $ d'API, les 40 liens les plus fréquents de chaque sujet ; 87 sujets n'ont aucun lien et restent près du centre de leur sous-discipline). Le placement combine l'attraction par ces liens et une attache à la sous-discipline (`KANC`, 0,4, dans `build-directions.mjs`).
-- Ce que ce placement apporte, mesuré : la distance moyenne d'un sujet à ses 5 sujets les plus liés passe de 0,296 à 0,184 (deux sujets au hasard : 0,953). Contrôle sans triche : pour les sujets liés de rang 9 à 13, que le placement n'utilise pas, la distance passe de 0,337 à 0,240. Le gain vient donc bien d'une structure réelle, mais il est partiel.
-- Le compromis est volontaire : avec une attache faible (0,03), le gain monte (0,167 sur le contrôle) mais le vide entre les disciplines se comble presque (rayon 0,13 au lieu de 0,38 à 0,46). Ce vide est donc en partie un choix de présentation, à côté de la dilatation du centre.
-- Le relief est calculé avec un noyau de 0,035 (unités de la carte), une compression de 0,42 et un premier niveau visible à 2 sur 8 (`SIG`, `GAM`, `B0`). Avec le noyau plus étroit de la version précédente (0,0176), les amas de sujets rendaient le relief fragmenté.
-- Pour relancer la mesure : `node fetch-liens-sujets.mjs` avec une clé OpenAlex gratuite dans la variable `OPENALEX_API_KEY` (jamais dans le dépôt). Le script reprend là où il s'est arrêté.
-- Les 105 questions viennent de listes publiées : 25 de la revue *Science* (2005, une liste vieille de plus de vingt ans), 6 des 7 problèmes du prix du millénaire (le septième, Poincaré, est résolu), et 74 ajoutées le 17 novembre 2026 d'après les problèmes de Hilbert encore ouverts et les listes Wikipédia des problèmes non résolus (mathématiques, informatique, physique, astronomie, chimie, biologie, neurosciences, géosciences). Chaque question garde sa source (champ `src`). Elles sont choisies et rédigées à la main, pas extraites automatiquement : l'énoncé et le contexte d'une question reprennent l'état que décrit la liste, et sont à faire relire par un spécialiste du domaine. Les listes Wikipédia sont ouvertes à tous et changent : ce n'est pas une source d'autorité.
-- Les 12 fiches détaillées (3 d'origine, 9 du 17 novembre) sont des brouillons rédigés avec une IA. Chaque référence est vérifiée dans OpenAlex par `fetch-fiches.mjs` (le script attend quand Wikipédia ou OpenAlex limite le débit), mais le titre trouvé doit encore être comparé à ce qu'on voulait citer : OpenAlex abîme parfois les accents, d'où les champs facultatifs `t` et `a` d'une référence.
-- **À vérifier avant tout lancement** : seule une partie des 25 questions de *Science* a été confrontée à une source consultée (l'univers, la conscience, les gènes, la longévité, Malthus, et en partie la vie ailleurs, la coopération, l'unification de la physique et l'incertitude quantique). Les autres sont écrites de mémoire et doivent être relues contre le numéro original du 1er juillet 2005. Le champ `note` de la question « reprogrammation » (prix Nobel 2012) est aussi de mémoire.
-- Le statut de Navier-Stokes provient de MathWorld (consulté le 16 novembre 2026) ; la page de l'institut Clay que j'ai ouverte ne mentionne pas ce statut.
-- La position d'une question vient d'un choix éditorial (les sous-disciplines qu'elle touche, listées à la main dans `questions.json`) et d'une règle de placement : au bord du connu si elle touche une région, au centre si elle touche au moins trois disciplines couvrant au moins deux domaines, ou des régions éloignées (« question transversale »). Le seuil d'éloignement (0,4) est un réglage choisi d'après une coupure naturelle dans la répartition des écarts. Une question transversale n'est donc pas toujours dans le vide du centre : elle se pose au barycentre des régions qu'elle relie (la conscience, par exemple, tombe côté sciences sociales).
-- Le centre de la carte est dilaté (`HOLE`, 0,5, dans `build-directions.mjs`) : c'est un choix de présentation. La transformation est radiale et croissante, donc l'ordre autour du centre et le voisinage sont conservés, mais le vide central passe d'un rayon de 0,17 à 0,41 pour pouvoir se lire.
-- Le relief est calculé dans le navigateur (densité de recherche, huit niveaux) puis tracé en courbes de niveau vectorielles, nettes à tout zoom. Il ne dépend plus de WebGL.
-- La disposition combine la mesure des liens et une attraction vers la discipline (`COH` dans `build-directions.mjs`, 0,08). Sans cette attraction, 77 % des sous-disciplines voisines d'une sous-discipline sont du même domaine ; avec, 88 %. Les ponts réels (neurologie clinique, interaction homme-machine, génie biomédical) restent visibles.
-- Seules 3 questions ont une fiche détaillée (la conscience, P contre NP, l'origine de la vie). Elles sont rédigées à la main à partir de connaissances générales ; l'extrait Wikipédia est repris tel quel (licence CC BY-SA, attribuée dans la fiche) et l'existence de chaque référence est vérifiée dans OpenAlex. Le choix des références et la justesse du texte n'ont **pas** été relus par un spécialiste : à faire avant tout lancement. L'année affichée pour l'article de Chalmers (1996) est celle de la version éditée retrouvée dans OpenAlex.
-- Le relief mesure l'effort de recherche (articles publiés), pas le savoir établi : une question fondamentale peut être au cœur d'une zone très publiée.
+See [METHOD.md](METHOD.md) for the full account. In short:
 
-Données : OpenAlex, sous licence CC0.
+- Topic positions come from measured links (shared papers), plus a weak pull to their subfield and a radial dilation of the central void for legibility: the **layout is partly editorial** and the central void is partly a presentation choice.
+- The relief counts papers where the topic appears among a paper's assigned topics (a paper can count for several topics). It compares years and disciplines fairly; it is not an absolute total. OpenAlex's own `works_count` field is wrong for some topics (see [OPENALEX-COUNTS.md](OPENALEX-COUNTS.md)) and is not used.
+- A question's position is editorial: the subfields it touches are listed by hand in `questions.json`.
+- Topic names are in English (OpenAlex); subfield names are translated to French.
 
-- **Choix éditorial (17 novembre 2026)** : « Agricultural and Biological Sciences » est séparée en « Agronomie et alimentation » (agronomie, alimentation, forêts, horticulture, sols) et « Écologie et biologie des organismes » (zoologie, écologie, botanique, insectes, sciences aquatiques, général) ; « Biochimie, génétique et biologie moléculaire » garde son nom complet. Le dentaire reste une discipline à part, comme dans OpenAlex. La carte montre 27 disciplines (26 d'OpenAlex, dont une séparée en deux).
+## Licences
 
-- **18 novembre 2026** : 150 questions (dont 8 « énigmes documentées », champ `type: "enigme"`), 29 fiches bilingues (références vérifiées dans OpenAlex), noms français des 250 sous-disciplines (`sous-disciplines-fr.json`, traduction éditoriale), page « Sources et licences » (`/fr/sources/`), licences proposées (`LICENSE`, `LICENCES.md`, **à confirmer**), curseur du temps (articles par année et par sujet, `fetch-annees.mjs` → `annees.json`, un caractère par année dans la page). Liste des compteurs suspects : `compteurs-suspects.md` (à trancher à la main).
-- Le relief d'une année donnée mesure les articles publiés cette année-là (échelle fixe) ; l'année en cours est exclue (incomplète). Les sujets que OpenAlex classe mal faussent aussi ce relief. Attention : `fetch-annees.mjs` compte les articles qui portent le sujet parmi leurs sujets assignés (filtre `topics.id`), pas seulement comme sujet principal ; la somme sur les années dépasse donc le compteur total de `squelette.json` (environ trois fois). Seule la comparaison entre années d'une même carte a un sens.
-- **Compteurs corrigés (18 novembre)** : le relief et les points utilisent la somme 1990–2025 de `annees.json` au lieu de `works_count` (voir `compteurs-suspects.md`). Le curseur du temps a maintenant « Tout » à la fin ; le mouvement est continu (une image par année précalculée en tâche de fond, mélangée d'une image à l'autre).
-- **Recherche, pages, contrôle, frontière (18 novembre)** : voir `a-faire.md` §7 bis et `methode.md` (« Contrôle des fiches »). Le bloc « Ce qui bouge » écarte les hausses de plus de 3 fois (lots de données, réindexations) ; il compare les 30 derniers jours à la moyenne mensuelle de 2025.
+Code MIT, texts CC BY-SA 4.0, data CC0 (OpenAlex), Wikipedia excerpts CC BY-SA 4.0, fonts OFL. See [LICENSES.md](LICENSES.md). The licence choice is proposed and **to be confirmed by the author**.

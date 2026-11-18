@@ -1,0 +1,30 @@
+name: Propose an open question
+description: An unresolved question of science, with a source saying the answer is missing.
+title: "[new question] "
+labels: ["question"]
+body:
+  - type: input
+    id: statement
+    attributes:
+      label: The question, in one sentence
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source stating it is unresolved (link)
+      description: A recognised list, a review, an institute, an article. Wikipedia alone is not enough for a scientific question.
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - Research question
+        - Documented enigma (facts exist, the answer is missing)
+  - type: textarea
+    id: disciplines
+    attributes:
+      label: Disciplines concerned
+      description: Which fields of research could answer it? (used to place it on the map)

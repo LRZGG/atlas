@@ -1,33 +1,35 @@
-# Unknownpedia : contexte pour Claude
+# Unknownpedia: context for Claude
 
-Atlas ouvert des questions non résolues de la science, posées sur une carte mesurée de la recherche mondiale. Site statique (GitHub Pages) sur https://unknownpedia.org (le .com redirige). Lire d'abord `PRODUCT.md` (cadrage), `a-faire.md` (priorités), `methode.md` et `README.md` (méthode, limites).
+An open atlas of unresolved questions of science, placed on a measured map of world research. Static site (GitHub Pages) at https://unknownpedia.org (.com redirects). Read first: `PRODUCT.md` (scope), `TODO.md` (priorities), `METHOD.md` and `README.md` (method, limits).
 
-L'auteur est francophone et travaille seul : répondre en français, simplement, sans longs documents.
+**Language**: the author is French-speaking and works alone: **reply to the author in French**, simply, without long documents. Everything committed to the repository (code, comments, documentation, issue templates, commit messages) is in **English**. The site itself is bilingual (FR/EN); interface texts live in `textes.json`.
 
-## Commandes
+## Commands
 
-- Reconstruire le site : `BASE=https://unknownpedia.org node build-directions.mjs` (écrit `docs/`). Node 18+, aucune dépendance.
-- Voir le site : servir `docs/` (par exemple `python -m http.server -d docs 8123`). Les polices sont en `/fonts/`, donc à la racine du serveur.
-- Données : `fetch-squelette.mjs`, `fetch-liens-sujets.mjs`, `fetch-fiches.mjs`. La clé OpenAlex vient de la variable `OPENALEX_API_KEY` (ou `OPENALEX_KEY_FILE`), **jamais dans un fichier du dépôt**.
-- Maquettes et prototypes (hors site) : `build-maquettes.mjs`, `build-proto.mjs`, `build-sciguessr.mjs` lisent `carte-de-l-inconnu.html` (fragment produit par le build principal) ; leurs sorties sont ignorées par Git.
+- Rebuild the site: `BASE=https://unknownpedia.org node build-directions.mjs` (writes `docs/`). Node 18+, no dependencies.
+- View the site: serve `docs/` (e.g. `python -m http.server -d docs 8123`). Fonts are in `/fonts/`, so they must be at the server root.
+- Data: `fetch-squelette.mjs`, `fetch-liens-sujets.mjs`, `fetch-annees.mjs`, `fetch-recent.mjs`, `fetch-fiches.mjs`. The OpenAlex key comes from `OPENALEX_API_KEY` (or `OPENALEX_KEY_FILE`), **never in a file of the repository**.
+- Fiche check: `node check-fiches.mjs` (writes `checks/`). Share images: `node build-partage.mjs` (needs a local server and Playwright).
+- Prototypes (outside the site): `build-maquettes.mjs`, `build-proto.mjs`, `build-sciguessr.mjs` read `carte-de-l-inconnu.html` (a fragment produced by the main build); their outputs are git-ignored. `docs/labo/` holds unlisted design experiments with demo data.
 
-## Décisions prises (ne pas rouvrir sans raison)
+## Decisions taken (do not reopen without a reason)
 
-- **Direction artistique : la planche de brevet** (`carte.tpl.html`) : courbes de niveau, clair et sombre, « ? » en carmin (blanc en sombre). Pas de couleurs par domaine, pas d'étoiles, pas de visite guidée, pas de carnet ni de « questions lues ». Le texte en haut à gauche, qui dit ce qu'on regarde, reste et s'efface au zoom.
-- **Honnêteté d'abord** : le relief mesure l'effort de recherche (articles publiés), pas le savoir. Chaque fiche affiche qu'elle est un brouillon rédigé avec une IA tant qu'un spécialiste nommé ne l'a pas relue (`relue: { par, date }` dans la fiche de `questions.json`). Ne jamais cacher l'usage de l'IA.
-- **Pas de comptes, de votes ni de classements au lancement. Jamais de publicité.** Contribution via GitHub.
-- **Licences** : données OpenAlex CC0 ; extraits Wikipédia en CC BY-SA (attribués) ; polices et images uniquement sous licence libre, créditées. Polices actuelles (IM Fell DW Pica, Archivo Narrow, OFL) hébergées dans `docs/fonts/` avec leurs licences : ne pas charger de ressource externe chez le visiteur.
-- **Nom** : Unknownpedia. Les 31 questions viennent de deux listes publiées (*Science* 2005, problèmes du millénaire), rédigées à la main ; chaque question garde sa source.
-- Ne pas inventer de chiffres, de témoignages ni de références : toute référence est vérifiée dans OpenAlex par `fetch-fiches.mjs`.
-- Traduction anglaise des fiches à la fin, quand le contenu ne bouge plus.
+- **Art direction: the patent plate** (`carte.tpl.html`): contour lines, light and dark, “?” in carmine (white in dark mode). No colours per domain, no stars, no guided tour, no notebook, no “questions read”. The top-left text saying what you are looking at stays and fades on zoom.
+- **Honesty first**: the relief measures research effort (papers published), not knowledge. Every fiche says it is an AI-written draft until a named specialist has reviewed it (`relue: { par, date }` in the fiche in `questions.json`). Never hide the use of AI.
+- **No accounts, votes or rankings at launch. Never ads.** Contribution through GitHub.
+- **Licences**: OpenAlex data CC0; Wikipedia excerpts CC BY-SA (credited); fonts and images only under free licences, credited. Fonts (IM Fell DW Pica, Archivo Narrow, OFL) are self-hosted in `docs/fonts/` with their licences: never load an external resource in the visitor's browser. The licence choice for the repository (MIT / CC BY-SA 4.0) is proposed, **not yet confirmed by the author**.
+- **Name**: Unknownpedia. Questions come from published lists (Science 2005, Millennium problems, Hilbert, Wikipedia lists, Smale), hand-picked; each question keeps its source.
+- Never invent numbers, testimonials or references: every reference is verified in OpenAlex by `fetch-fiches.mjs`.
+- Mysteries are on the map as questions of type `enigme` (small square next to the “?”); folklore is not on the map (a legend is not a research topic).
 
-## Pièges connus
+## Known pitfalls
 
-- `textes.json` contient tous les textes de l'interface (FR et EN) ; les noms de sujets sont en anglais (OpenAlex) ; les 250 sous-disciplines ont un nom français (`sous-disciplines-fr.json`).
-- La disposition (cohésion, dilatation du vide central) est en partie éditoriale ; voir le README avant de la présenter comme une mesure.
-- Les gabarits `build-*.mjs` extraient `DATA` de `carte-de-l-inconnu.html` : garder la ligne `const DATA = ...;` suivie de `const { F, S, L` dans `carte.tpl.html`.
-- Le dépôt est public : aucun secret, aucune adresse personnelle, aucun fichier du dossier `.claude/`.
+- `textes.json` holds all interface texts (FR and EN). Topic names are English (OpenAlex); the 250 subfields have French names in `sous-disciplines-fr.json`.
+- The layout (cohesion, dilation of the central void) is partly editorial: read `METHOD.md` before presenting it as a measurement.
+- The relief uses `annees.json` sums, not OpenAlex's `works_count` (wrong for some topics: see `OPENALEX-COUNTS.md`).
+- The `build-*.mjs` templates extract `DATA` from `carte-de-l-inconnu.html`: keep the line `const DATA = ...;` followed by `const { F, S, L` in `carte.tpl.html`.
+- The repository is public: no secrets, no personal address, no file of the `.claude/` folder. The OpenAlex key must live in an environment variable or a repository secret.
 
-## Ensuite (voir `a-faire.md`)
+## Next (see `TODO.md`)
 
-150 questions faites, 29 fiches sur 150. Reste : écrire les 121 fiches autres, trouver des relecteurs nommés (impossible sans l'auteur), confirmer les licences, monitoring sans cookies.
+150 questions done, 29 fiches of 150. Remaining: write the other 121 fiches, find named reviewers (needs the author), confirm the licences, set the repository secret for the weekly workflow, analytics without cookies.

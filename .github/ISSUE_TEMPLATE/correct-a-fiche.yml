@@ -1,0 +1,46 @@
+name: Correct a fiche or challenge a claim
+description: A wrong reference, a number without a source, an overstated claim, a translation error.
+title: "[question] "
+labels: ["fiche"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. A correction is judged on its **sources**, not on how many people ask for it. You do not need an account on the site; a GitHub account is enough.
+  - type: input
+    id: question
+    attributes:
+      label: Question and fiche address
+      description: Identifier (e.g. `p-np`) or page link.
+    validations:
+      required: true
+  - type: dropdown
+    id: point
+    attributes:
+      label: What is wrong
+      options:
+        - A reference (wrong, off-topic, not found)
+        - A number or a date
+        - A claim that is overstated or false
+        - Something important is missing
+        - A translation error
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: What you propose
+      description: The sentence concerned, and what it should say.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source (link, DOI)
+      description: Required to challenge a claim. Prefer a peer-reviewed article, a review, or a recognised institution.
+  - type: input
+    id: expertise
+    attributes:
+      label: Your expertise (optional)
+      description: Name, field, ORCID. A title does not make you right by itself, but it helps route the request.

@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="The big questions science hasn't solved yet, placed on a map of world research."><link rel="canonical" href="https://unknownpedia.org/"><link rel="alternate" hreflang="fr" href="https://unknownpedia.org/fr/"><link rel="alternate" hreflang="en" href="https://unknownpedia.org/en/"><link rel="alternate" hreflang="x-default" href="https://unknownpedia.org/"><meta property="og:type" content="website"><meta property="og:title" content="Unknownpedia"><meta property="og:description" content="The big questions science hasn't solved yet, placed on a map of world research."><meta property="og:url" content="https://unknownpedia.org/"><meta property="og:image" content="https://unknownpedia.org/partage/carte.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://unknownpedia.org/partage/carte.png"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style><title>Unknownpedia</title>
 <style>
-/* Direction « planche de brevet » : la carte de la recherche comme une feuille de dessin technique. Clair : encre sur papier, carmin pour l'inconnu. Sombre : même planche en négatif, tout ce qui ressort est blanc. Polices libres (OFL), hébergées sur le site. */
+/* Direction "patent plate": the research map as a technical drawing sheet. Light: ink on paper, carmine for the unknown. Dark: the same sheet in negative, everything that stands out is white. Free (OFL) fonts, self-hosted. */
 @font-face { font-family: "IM Fell DW Pica"; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/imfell.woff2) format("woff2"); }
 @font-face { font-family: "IM Fell DW Pica"; font-style: italic; font-weight: 400; font-display: swap; src: url(/fonts/imfell-italic.woff2) format("woff2"); }
 @font-face { font-family: "Archivo Narrow"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/fonts/archivo-narrow.woff2) format("woff2"); }
@@ -176,7 +176,7 @@ const DATA = {"fetched":"2026-11-16","cap":1000000000000000,"hole":{"x":-0.05,"y
 const { F, S, L, T, Q, SRC } = DATA, N = T.length / 5;
 const $ = id => document.getElementById(id), clamp = (v, a, b) => Math.max(a, Math.min(b, v)), esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
-// ---- Langue : fixée par la page (/fr/, /en/), sinon choix mémorisé, sinon langue du navigateur (anglais par défaut).
+// ---- Language: fixed by the page (/fr/, /en/), otherwise the remembered choice, otherwise the browser language (English by default).
 const FORCED = window.__LANG || null;
 function detectLang(langs) { const l = (langs || []).find(x => /^(fr|en)(-|_|$)/i.test(x)); return l && /^fr/i.test(l) ? 'fr' : 'en'; }
 let LANG = FORCED;
@@ -187,7 +187,7 @@ const sn = x => LANG === 'fr' ? (x.nf || x.n) : x.n;
 const fb = o => !(o && o[LANG] != null);
 const fmt = n => Math.round(n).toLocaleString(LANG === 'fr' ? 'fr-FR' : 'en-US');
 
-// ---- Thème : clair ou sombre, choix mémorisé, sinon réglage du système.
+// ---- Theme: light or dark, remembered choice, otherwise the system setting.
 const root = document.documentElement; let COL = {}, dark = false;
 function setCols() { dark = root.dataset.theme === 'dark'; const cs = getComputedStyle(root); COL = { rgb: cs.getPropertyValue('--ink-rgb').trim(), acc: cs.getPropertyValue('--acc').trim(), paper: cs.getPropertyValue('--paper').trim(), f: parseFloat(cs.getPropertyValue('--f')) }; }
 { let th = null; try { th = localStorage.getItem('theme'); } catch (e) {} root.dataset.theme = th === 'dark' || th === 'light' ? th : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
@@ -195,7 +195,7 @@ $('theme').onclick = () => { root.dataset.theme = dark ? 'light' : 'dark'; try {
 setCols();
 const inkA = a => `rgba(${COL.rgb},${(a * COL.f).toFixed(3)})`;
 
-// ---- Vue : déplacement, zoom ----
+// ---- View: pan and zoom ----
 const cv = $('c'), ctx = cv.getContext('2d');
 let x0 = 9, x1 = -9, y0 = 9, y1 = -9;
 for (let i = 0; i < N; i++) { x0 = Math.min(x0, T[i * 5]); x1 = Math.max(x1, T[i * 5]); y0 = Math.min(y0, T[i * 5 + 1]); y1 = Math.max(y1, T[i * 5 + 1]); }
@@ -208,14 +208,14 @@ function zoomAt(px, py, f) { const [wx, wy] = toWorld(px, py); view.k = clamp(vi
 const flyTo = (wx, wy, k) => { tgt = { x: wx - mx, y: wy - my, k }; };
 function stepView() { if (!tgt) return; view.x += (tgt.x - view.x) * .16; view.y += (tgt.y - view.y) * .16; view.k += (tgt.k - view.k) * .16; if (Math.abs(tgt.k - view.k) < .004 && Math.abs(tgt.x - view.x) < .0004) tgt = null; }
 
-// ---- Disciplines : centre de chacune, numéro de référence et voisinage des sous-disciplines.
+// ---- Fields: centre of each, reference number and neighbourhood of the subfields.
 const FC = F.map(() => ({ x: 0, y: 0, w: 0 })); for (let i = 0; i < N; i++) { const f = FC[S[T[i * 5 + 3]].f], w = T[i * 5 + 2] + 1; f.x += T[i * 5] * w; f.y += T[i * 5 + 1] * w; f.w += w; } FC.forEach(f => { f.x /= f.w; f.y /= f.w; });
 const ADJ = S.map(() => []); L.forEach(([i, j]) => { ADJ[i].push(j); ADJ[j].push(i); });
 const ORD = [...F.keys()].sort((a, b) => Math.atan2(FC[a].y - my, FC[a].x - mx) - Math.atan2(FC[b].y - my, FC[b].x - mx)), NUM = {};
 ORD.forEach(f => { const a = Math.atan2(FC[f].y - my, FC[f].x - mx), d = Math.hypot(FC[f].x - mx, FC[f].y - my); NUM[f] = { x: mx + Math.cos(a) * (d + .17), y: my + Math.sin(a) * (d + .17) }; });
 for (let it = 0; it < 60; it++) for (const a of ORD) for (const b of ORD) if (a < b) { const p = NUM[a], q = NUM[b], dx = q.x - p.x, dy = q.y - p.y, d = Math.hypot(dx, dy) || 1; if (d < .085) { const s = (.085 - d) / 2 / d; p.x -= dx * s; p.y -= dy * s; q.x += dx * s; q.y += dy * s; } }
 const DOMC = (() => {
-  // Les domaines découpent la couronne : chaque numéro de discipline reçoit son domaine, les frontières sont à mi-chemin entre deux numéros voisins. Une discipline isolée au milieu d'un autre domaine est rattachée à la zone qui l'entoure.
+  // Domains split the ring: each field number gets its domain, boundaries are halfway between two neighbouring numbers. A field isolated in the middle of another domain is attached to the zone around it.
   const wrap = a => Math.atan2(Math.sin(a), Math.cos(a)), ang = f => Math.atan2(NUM[f].y - my, NUM[f].x - mx), o = ORD.slice().sort((a, b) => ang(a) - ang(b)), n = o.length; let dd = o.map(f => F[f].d), rmax = 0;
   for (let i = 0; i < n; i++) { const p = dd[(i - 1 + n) % n], q = dd[(i + 1) % n]; if (p === q && dd[i] !== p) dd[i] = p; rmax = Math.max(rmax, Math.hypot(NUM[o[i]].x - mx, NUM[o[i]].y - my)); }
   const st = dd.findIndex((d, i) => d !== dd[(i - 1 + n) % n]), runs = [];
@@ -226,10 +226,10 @@ const DOMC = (() => {
   return { R: rmax + .06, runs, best };
 })();
 
-// ---- Relief : densité de recherche (noyaux gaussiens), compression 0,42, huit niveaux ; courbes de niveau et hachures du bord du connu.
+// ---- Relief: research density (Gaussian kernels), compression 0.42, eight levels; contour lines and ticks at the edge of the known.
 const GN = 220, PAD = .06, gx0 = x0 - PAD, gy0 = y0 - PAD, GW = x1 - x0 + 2 * PAD, GH = y1 - y0 + 2 * PAD, CELLW = GW / GN, CELLH = GH / GN, SIG = .035, G = new Float32Array(GN * GN), V = new Float32Array(GN * GN);
 let LV = [], TICKS = [], gmaxAll = 0;
-// Densité d'un jeu de poids (wf(i) = articles du sujet i) ; gref fixe l'échelle pour comparer deux années entre elles.
+// Density of a set of weights (wf(i) = papers of topic i); gref fixes the scale so that two years can be compared.
 function density(wf) { G.fill(0); for (let i = 0; i < N; i++) { const w = wf(i); if (!w) continue; const cx = (T[i * 5] - gx0) / CELLW, cy = (T[i * 5 + 1] - gy0) / CELLH, wt = Math.log10(1 + w), rx = Math.ceil(3 * SIG / CELLW), ry = Math.ceil(3 * SIG / CELLH);
   for (let j = Math.max(0, Math.floor(cy) - ry); j <= Math.min(GN - 1, Math.floor(cy) + ry); j++) for (let k = Math.max(0, Math.floor(cx) - rx); k <= Math.min(GN - 1, Math.floor(cx) + rx); k++) { const dx = (k - cx) * CELLW, dy = (j - cy) * CELLH; G[j * GN + k] += wt * Math.exp(-(dx * dx + dy * dy) / (2 * SIG * SIG)); } }
   let m = 0; for (const v of G) m = Math.max(m, v); return m; }
@@ -252,12 +252,12 @@ function finishRelief() { LV = contours([2, 3, 4, 5, 6, 7]); TICKS = [];
 }
 function computeV(wf, gref) { const m = density(wf), gm = gref || m, out = new Float32Array(GN * GN); for (let k = 0; k < out.length; k++) out[k] = Math.pow(Math.min(1, G[k] / gm), .42) * 8; return { v: out, m }; }
 const CUM = computeV(i => T[i * 5 + 2]); V.set(CUM.v); gmaxAll = CUM.m; finishRelief();
-// ---- Le temps : articles publiés par année et par sujet (OpenAlex), un caractère par année (log2 quantifié).
-// Curseur : 1990 … 2025, puis « Tout » (cumul) à la fin. Les années sont calculées en tâche de fond (une par passe) puis mélangées d'une image à l'autre : le mouvement est continu.
+// ---- Time: papers published per year and per topic (OpenAlex), one character per year (log2-quantised).
+// Slider: 1990 ... 2025, then "All" (cumulative) at the end. Years are computed in the background (one per pass), then blended frame to frame: the motion is continuous.
 const YR = DATA.Y, VY = []; let yrRef = 0, curPos = -1;
 const yval = (i, y) => { const c = YR.a.charCodeAt(i * YR.n + (y - YR.y0)) - 48; return c <= 0 ? 0 : Math.pow(2, c / 2) - 1; };
 function yearV(k) { if (!YR) return CUM.v; if (!yrRef) yrRef = density(i => yval(i, YR.y1)); return VY[k] || (VY[k] = computeV(i => yval(i, YR.y0 + k - 1), yrRef).v); }
-function setPos(p) { // p = 1 … n (années, fractionnaire possible), n + 1 = tout
+function setPos(p) { // p = 1 ... n (years, fractional allowed), n + 1 = all
   const n = YR.n; p = clamp(p, 1, n + 1); if (Math.abs(p - curPos) < .002) return; curPos = p; let A, B, t;
   if (p >= n + 1) { V.set(CUM.v); } else { const a = Math.min(n, Math.floor(p)), bb = p >= n ? -1 : a + 1; t = p - a; A = yearV(a); if (bb < 0) { B = CUM.v; t = p - n; } else B = yearV(bb); for (let k = 0; k < V.length; k++) V[k] = A[k] + (B[k] - A[k]) * t; }
   finishRelief(); }
@@ -266,15 +266,15 @@ if (YR) { let k = 1; const warm = () => { if (k > YR.n) return; yearV(k++); setT
 const BK = .03, bucket = new Map(); for (let i = 0; i < N; i++) { const key = Math.floor(T[i * 5] / BK) + ',' + Math.floor(T[i * 5 + 1] / BK); (bucket.get(key) || bucket.set(key, []).get(key)).push(i); }
 function nearestTopic(wx, wy, rw) { let best = -1, bd = rw; const cx = Math.floor(wx / BK), cy = Math.floor(wy / BK), n = Math.ceil(rw / BK); for (let a = -n; a <= n; a++) for (let b = -n; b <= n; b++) for (const i of bucket.get((cx + a) + ',' + (cy + b)) || []) { const d = Math.hypot(T[i * 5] - wx, T[i * 5 + 1] - wy); if (d < bd) { bd = d; best = i; } } return best; }
 
-// ---- Panneau : fiche d'une question ou d'un sujet. `cur` mémorise ce qui est ouvert, pour le réécrire quand la langue change.
+// ---- Panel: fiche of a question or a topic. `cur` remembers what is open, to rewrite it when the language changes.
 const panel = $('panel'), tip = $('tip'); let cur = null;
 const QORD = Q.map((q, i) => i).sort((a, b) => (Q[b].t - Q[a].t) || (a - b));
 const li = a => a.map(x => `<li>${esc(x)}</li>`).join('');
 function ficheHTML(q) {
   if (!q.f) return `<p class="small">${esc(t('fiche_prep'))}</p>`;
   const f = q.f, b = f[LANG] || f.fr, w = f.w[LANG] || f.w.fr, at = t('wiki_attr').split('{t}');
-  const prov = f.rv ? esc(t('prov_rv', { n: f.rv.par, d: f.rv.date })) : esc(t('prov')) + ` <a href="https://github.com/Lorenzo1208/atlas/blob/main/methode.md#qui-écrit-quoi" target="_blank" rel="noopener">${esc(t('prov_lien'))}</a>`;
-  const ck = f.ck != null ? `<p class="small">${esc(f.ck ? t('ck_n', { n: f.ck }) : t('ck_0'))} <a href="https://github.com/Lorenzo1208/atlas/blob/main/controle/rapport.md#${esc(q.id)}" target="_blank" rel="noopener">${esc(t('ck_lien'))}</a></p>` : '';
+  const prov = f.rv ? esc(t('prov_rv', { n: f.rv.par, d: f.rv.date })) : esc(t('prov')) + ` <a href="https://github.com/Lorenzo1208/atlas/blob/main/METHOD.md#who-writes-what" target="_blank" rel="noopener">${esc(t('prov_lien'))}</a>`;
+  const ck = f.ck != null ? `<p class="small">${esc(f.ck ? t('ck_n', { n: f.ck }) : t('ck_0'))} <a href="https://github.com/Lorenzo1208/atlas/blob/main/checks/report.md#${esc(q.id)}" target="_blank" rel="noopener">${esc(t('ck_lien'))}</a></p>` : '';
   return `<p class="prov">${prov}</p>${ck}<h3>${esc(t('f_sait'))}</h3><ul>${li(b.s)}</ul><h3>${esc(t('f_ignore'))}</h3><ul>${li(b.i)}</ul><h3>${esc(t('f_dur'))}</h3><ul>${li(b.d)}</ul><h3>${esc(t('f_compte'))}</h3><p>${esc(b.e)}</p><h3>${esc(t('f_commencer'))}</h3><ul>${li(b.c)}</ul><h3>${esc(t('f_loin'))}</h3><div class="wiki"><p>${esc(w.x)}</p><p class="attr">${esc(at[0])}<a href="${esc(w.u)}" target="_blank" rel="noopener">${esc(w.t)}</a>${esc(at[1] || '')}</p></div><ul class="refs">${f.r.map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a><span>${esc([r.a, r.y].filter(Boolean).join(', '))}</span></li>`).join('')}</ul>`;
 }
 const RC = DATA.R;
@@ -289,18 +289,18 @@ function panelHTML() {
   if (!cur) return '';
   if (cur.q != null) {
     const q = Q[cur.q], src = SRC[q.s], manque = LANG !== 'fr' && (fb(q.cc) || (q.no && fb(q.no)) || (q.f && !q.f[LANG]));
-    return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p><p class="small"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=corriger-une-fiche.yml&title=${encodeURIComponent('[' + q.id + '] ')}&question=${encodeURIComponent(q.id + ' (' + location.origin + '/' + LANG + '/q/' + q.id + '/)')}" target="_blank" rel="noopener">${esc(t('signaler'))}</a> · <a href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></p>`;
+    return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p><p class="small"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=correct-a-fiche.yml&title=${encodeURIComponent('[' + q.id + '] ')}&question=${encodeURIComponent(q.id + ' (' + location.origin + '/' + LANG + '/q/' + q.id + '/)')}" target="_blank" rel="noopener">${esc(t('signaler'))}</a> · <a href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></p>`;
   }
   const i = cur.t, si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2], nb = ADJ[si].slice().sort((a, b) => Math.hypot(S[a].x - s.x, S[a].y - s.y) - Math.hypot(S[b].x - s.x, S[b].y - s.y)).slice(0, 5);
   return `<p class="kicker">${esc(loc(F[s.f].nn))} · ${esc(sn(s))}</p><h2>${esc(T[i * 5 + 4])}</h2><p>${esc(fmt(w))} ${esc(t('publies'))}${YR ? ' (' + YR.y0 + '–' + YR.y1 + ')' : ''}${w > DATA.cap ? ' ' + esc(t('douteux_long')) : ''}</p>${recentLine(i)}<h3>${esc(t('t_voisines'))}</h3><ul class="small">${li(nb.map(j => sn(S[j])))}</ul>`;
 }
 function renderPanel() { if (!cur) return; panel.innerHTML = `<button class="sq" id="pclose" type="button" aria-label="${esc(t('fermer'))}">×</button>` + panelHTML(); panel.hidden = false; document.body.classList.add('panel-open'); $('pclose').onclick = closePanel; panel.scrollTop = 0; }
 function closePanel() { const had = panel.contains(document.activeElement); cur = null; panel.hidden = true; document.body.classList.remove('panel-open'); if (location.hash) history.replaceState(null, '', location.pathname + location.search); if (had) cv.focus(); }
-// Le point visé est décalé vers la gauche pour ne pas passer sous le panneau.
+// The target point is shifted left so it does not go under the panel.
 const fly = (wx, wy, k) => flyTo(wx + (W > 720 ? 210 : 0) / (s0 * k), wy, k);
 function openQ(i) { cur = { q: i }; renderPanel(); fly(Q[i].x, Q[i].y, Math.max(view.k, Q[i].t ? 1.6 : 2)); if (location.hash.slice(1) !== Q[i].id) history.replaceState(null, '', '#' + Q[i].id); }
 function openT(i) { cur = { t: i }; renderPanel(); fly(T[i * 5], T[i * 5 + 1], Math.max(view.k, 3)); if (location.hash) history.replaceState(null, '', location.pathname + location.search); }
-// Chaque question a son adresse (#conscience) : on peut envoyer le lien d'une question précise.
+// Each question has its own address (#conscience): a link to a precise question can be shared.
 function openHash() { const i = Q.findIndex(q => q.id === location.hash.slice(1)); if (i >= 0 && !(cur && cur.q === i)) openQ(i); }
 addEventListener('hashchange', openHash);
 
@@ -331,7 +331,7 @@ cv.addEventListener('pointerleave', () => hover(-1, -1));
 cv.addEventListener('wheel', e => { e.preventDefault(); const [px, py] = rel(e); zoomAt(px, py, Math.exp(-e.deltaY * .0015)); }, { passive: false });
 $('zin').onclick = () => zoomAt(W / 2, H / 2, 1.5); $('zout').onclick = () => zoomAt(W / 2, H / 2, 1 / 1.5); $('zfit').onclick = () => flyTo(mx, my, 1);
 addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
-// Clavier : flèches = déplacer, + / − = zoom, 0 = tout voir, N / P = question suivante / précédente (dans le sens des aiguilles d'une montre), Entrée = ouvrir.
+// Keyboard: arrows = pan, + / - = zoom, 0 = see everything, N / P = next / previous question (clockwise), Enter = open.
 const KORD = Q.map((q, i) => i).sort((a, b) => Math.atan2(Q[a].y - my, Q[a].x - mx) - Math.atan2(Q[b].y - my, Q[b].x - mx)); let kbQ = -1;
 function kbGo(d) { const j = KORD.indexOf(kbQ); kbQ = KORD[(j < 0 ? (d > 0 ? 0 : KORD.length - 1) : (j + d + KORD.length) % KORD.length)]; const q = Q[kbQ]; fly(q.x, q.y, Math.max(view.k, 2)); $('live').textContent = loc(q.qq); tip.hidden = true; }
 cv.addEventListener('keydown', e => {
@@ -388,7 +388,7 @@ $('refs').onclick = e => { const b = e.target.closest('button'); if (b) flyTo(FC
 document.querySelectorAll('#lang button').forEach(b => { b.onclick = () => { const l = b.dataset.lang; if (l === LANG) return; try { localStorage.setItem('lang', l); } catch (e) {} if (FORCED) location.href = '../' + l + '/' + location.hash; else { LANG = l; applyLang(); } }; });
 if (matchMedia('(max-width: 720px)').matches) $('legend').open = false;
 
-// ---- Stats : la recherche par année et par décennie (sommes exactes par discipline calculées au build).
+// ---- Stats: research by year and by decade (exact sums per field computed at build time).
 let stOpen = false, stTab = 'y', stGroup = 'all', stCol = 3, stDir = -1; const stats = $('stats');
 const DECADES = [[0, 10], [10, 20], [20, 30], [30, YR ? YR.n : 36]];
 function stSeries(g) { const a = new Array(YR.n).fill(0); F.forEach((f, j) => { if (g === 'all' || g === 'd' + f.d || g === 'f' + j) YR.f[j].forEach((v, k) => { a[k] += v; }); }); return a; }
@@ -414,20 +414,20 @@ if (YR) { $('stbtn').hidden = false; $('stbtn').onclick = () => (stOpen ? closeS
 addEventListener('keydown', e => { if (e.key === 'Escape' && stOpen) { e.stopPropagation(); closeStats(); } }, true);
 
 // ---- Dessin ----
-// ---- Animations : agrandissement lissé et texte « tapé à la machine » au survol d'un numéro de discipline ou d'un « ? ».
+// ---- Animations: smoothed enlargement and "typewriter" text on hover over a field number or a "?".
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const QA = Q.map(() => ({ g: 0, c: 0 })), FA = F.map(() => ({ g: 0, c: 0 })), OFF = Q.map(() => [0, 0]), NS = {}; let NA = 1, lastTs = 0;
 function anim(a, on, dt, len) { if (REDUCED) { a.g = on ? 1 : 0; a.c = on ? len : 0; return; } a.g += ((on ? 1 : 0) - a.g) * Math.min(1, dt * 14); if (Math.abs(a.g - (on ? 1 : 0)) < .004) a.g = on ? 1 : 0; a.c = on ? Math.min(len, a.c + dt * 62) : Math.max(0, a.c - dt * 500); }
 const ease = g => g * g * (3 - 2 * g);
 function wrap(txt, maxw) { const lines = []; let c = ''; for (const w of txt.split(' ')) { const n = c ? c + ' ' + w : w; if (c && ctx.measureText(n).width > maxw) { lines.push(c); c = w; } else c = n; } if (c) lines.push(c); return lines; }
-// Fiche de survol : un cartouche qui se déroule depuis le point visé, puis le texte s'écrit lettre à lettre, avec un curseur qui clignote tant que ça tape.
+// Hover card: a cartouche that unrolls from the target point, then the text is typed letter by letter, with a blinking cursor while typing.
 function card(txt, a, px, py, font, lh, maxw, right, color) {
   if (a.g <= 0.01) return; ctx.font = font; const lines = wrap(txt, maxw), w = Math.max(...lines.map(l => ctx.measureText(l).width)) + 22, h = lines.length * lh + 14, e = ease(a.g);
   if (right && px + 16 + w > W - 6) right = false; else if (!right && px - 16 - w < 6) right = true;
   const bx = right ? px + 16 : px - 16 - w, by = clamp(py - h / 2, 6, H - h - 6);
   ctx.save(); ctx.beginPath(); ctx.rect(right ? bx : bx + w * (1 - e), by, w * e, h); ctx.clip();
   ctx.fillStyle = COL.paper; ctx.fillRect(bx, by, w, h); ctx.strokeStyle = inkA(1.6); ctx.lineWidth = .8; ctx.strokeRect(bx + .5, by + .5, w - 1, h - 1);
-  // Côté droit : le texte s'écrit vers la droite depuis le point. Côté gauche : il est aligné à droite, contre le point, et s'écrit en se décalant vers la gauche.
+  // Right side: the text is typed to the right from the point. Left side: it is right-aligned against the point and typed by shifting left.
   ctx.fillStyle = color; ctx.textAlign = right ? 'left' : 'right'; const tx = right ? bx + 11 : bx + w - 11; let left = Math.floor(a.c), cx = tx, cy = by + 7 + lh - 5; const typing = a.c < txt.length;
   lines.forEach((l, i) => { const part = l.slice(0, Math.max(0, left)), yy = by + 7 + (i + 1) * lh - 5; ctx.fillText(part, tx, yy); if (left >= 0 && left <= l.length) { cx = right ? tx + ctx.measureText(part).width : tx; cy = yy; } left -= l.length + 1; });
   if (typing && Math.floor(performance.now() / 280) % 2 === 0) ctx.fillRect(right ? cx + 1 : cx + 2, cy - lh + 6, 1.6, lh - 5);
@@ -448,13 +448,13 @@ function draw(dt) {
     const a = toScreen(FC[f].x, FC[f].y); let b = toScreen(NUM[f].x, NUM[f].y); NS[f] = null; if (a[0] < -30 || a[0] > W + 30 || a[1] < -30 || a[1] > H + 30) return; b = [clamp(b[0], 18, W - 18), clamp(b[1], 18, H - 18)]; ctx.globalAlpha = na; ctx.strokeStyle = inkA(1.2); ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(b[0], b[1]); ctx.quadraticCurveTo((a[0] + b[0]) / 2 + (a[1] - b[1]) * .12, (a[1] + b[1]) / 2 - (a[0] - b[0]) * .12, a[0], a[1]); ctx.stroke();
     ctx.fillStyle = inkA(1.4); ctx.beginPath(); ctx.arc(a[0], a[1], 2.2, 0, 7); ctx.fill(); NS[f] = b; ctx.globalAlpha = 1;
   });
-  // Les numéros sont dessinés après tous les filets, pour qu'aucun filet ne passe par-dessus un numéro.
+  // Numbers are drawn after all the leader lines, so no line passes over a number.
   ORD.forEach((f, i) => {
     const b = NS[f]; if (!b) return; ctx.strokeStyle = inkA(1.2); const A = FA[f], e = ease(A.g), r = 9 + 5 * e; ctx.fillStyle = COL.paper; ctx.beginPath(); ctx.arc(b[0], b[1], r, 0, 7); ctx.fill(); ctx.lineWidth = .7 + .6 * e; ctx.stroke(); ctx.fillStyle = inkA(1.5); ctx.font = `${11 + 2 * e}px "Archivo Narrow", sans-serif`; ctx.textAlign = 'center'; ctx.fillText(i + 1, b[0], b[1] + 4 + e * .6); ctx.globalAlpha = 1;
   });
   const cx = W / 2, sel = cur && cur.q != null ? cur.q : -1;
   const dused = [];
-  // Les quatre grands domaines : leur nom est écrit en arc autour de la carte, au-delà des numéros, avec un filet qui montre l'étendue du domaine. Ils s'effacent quand on zoome.
+  // The four broad domains: their name is written in an arc around the map, beyond the numbers, with a rule showing the domain's extent. They fade out on zoom.
   { const al = clamp((2.3 - k) / .8, 0, 1); if (al > 0) {
     const hc = toScreen(mx, my), R = DOMC.R * s0 * k, size = clamp(17 * Math.sqrt(k), 15, 24), sp = size * .25; ctx.save(); ctx.globalAlpha = al * .9; ctx.fillStyle = `rgb(${COL.rgb})`; ctx.strokeStyle = `rgb(${COL.rgb})`; ctx.textAlign = 'center'; ctx.font = `${size}px "IM Fell DW Pica", serif`;
     for (const r of DOMC.runs) { ctx.lineWidth = .8; const g = .012; ctx.beginPath(); ctx.arc(hc[0], hc[1], R, r.a0 + g, r.a1 - g); ctx.stroke();
@@ -464,9 +464,9 @@ function draw(dt) {
       const up = Math.sin(mid) <= 0, rt = up ? R + 10 : R + 10 + sz * .7; let th = mid + (up ? -1 : 1) * tot / 2 / rt;
       for (let i = 0; i < ws.length; i++) { const step = ws[i] / rt, m2 = th + (up ? 1 : -1) * step / 2; ctx.save(); ctx.translate(hc[0] + rt * Math.cos(m2), hc[1] + rt * Math.sin(m2)); ctx.rotate(m2 + (up ? Math.PI / 2 : -Math.PI / 2)); ctx.fillText([...txt][i], 0, 0); ctx.restore(); th += (up ? 1 : -1) * step; } }
     ctx.restore(); } }
-  // « Terra incognita » au centre du vide, effacée quand on zoome.
+  // "Terra incognita" at the centre of the void, faded out on zoom.
   { const h = toScreen(DATA.hole.x, DATA.hole.y), al = clamp(3 - k, 0, 1); if (al > 0 && h[0] > -200 && h[0] < W + 200) { ctx.save(); ctx.globalAlpha = al * .75; ctx.fillStyle = `rgb(${COL.rgb})`; ctx.textAlign = 'center'; if ('letterSpacing' in ctx) ctx.letterSpacing = '5px'; ctx.font = `14px "Archivo Narrow", sans-serif`; ctx.fillText(t('terra').toUpperCase(), h[0] + 2, h[1]); if ('letterSpacing' in ctx) ctx.letterSpacing = '0px'; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; ctx.fillText(t('terra_sub'), h[0], h[1] + 18); ctx.restore(); } }
-  // Regroupement : dans les zones denses, un seul « ? » représente ceux qui sont à moins de CR pixels (CR diminue quand on zoome). Les autres se fondent : ils apparaissent et disparaissent en douceur.
+  // Clustering: in dense areas, a single "?" stands for those within CR pixels (CR shrinks on zoom). The others fade: they appear and disappear smoothly.
   const CR = clamp(84 / Math.pow(k, .95), 21, 84), TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => !!Q[b].f - !!Q[a].f), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ && (FK === 0 || Q[i].k === (FK === 2 ? 1 : 0)))], seen = new Set(), isLead = new Set(); CL = [];
   const pushB = p => { let q = p; for (let it = 0; it < 2; it++) for (const f of ORD) { const nb = NS[f]; if (!nb) continue; const dx = q[0] - nb[0], dy = q[1] - nb[1], d = Math.hypot(dx, dy); if (d < 24) q = d < .01 ? [q[0] + 24, q[1]] : [q[0] + dx * (24 - d) / d, q[1] + dy * (24 - d) / d]; } return q; };
   for (const i of order) {
@@ -490,7 +490,7 @@ function draw(dt) {
     if (c && !multi && !hot && la0 > .02 && A.g < .01) { ctx.globalAlpha = A.v * la0; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; const nm = loc(q.nmm), r = p[0] < cx, c2 = [[p[0] + (r ? -11 : 11), p[1] - 7, r ? 'right' : 'left'], [p[0] + (r ? 11 : -11), p[1] - 7, r ? 'left' : 'right'], [p[0], p[1] - 20, 'center'], [p[0], p[1] + 22, 'center']]; for (const z of c2) if (lab(nm, z[0], z[1], 13, z[2])) break; }
     ctx.globalAlpha = 1; if (c && A.g > .01) cards.push([c, multi]);
   }
-  // Les cartouches de survol passent par-dessus tout le reste ; ils s'ouvrent vers l'extérieur de la carte.
+  // Hover cartouches go over everything else; they open toward the outside of the map.
   for (const [c, multi] of cards) card(multi ? t('cluster_n', { n: c.ids.length }) : loc(Q[c.lead].qq), QA[c.lead], c.p[0], c.p[1] - 3, 'italic 14px "IM Fell DW Pica", serif', 18, 250, c.p[0] >= cx, COL.acc);
   for (const f of ORD) if (FA[f].g > .01 && NS[f]) card(loc(F[f].nn).toUpperCase(), FA[f], NS[f][0], NS[f][1], '12px "Archivo Narrow", sans-serif', 16, 210, NS[f][0] >= cx, `rgb(${COL.rgb})`);
 }
@@ -502,7 +502,7 @@ if (YR) { const r = $('tlr'), pl = $('tlplay'), n = YR.n; r.min = 1; r.max = n +
   const show = p => { pos = p; r.value = p; setPos(p); lab(); };
   r.oninput = () => { cancelAnimationFrame(raf); raf = 0; show(+r.value); };
   const stop = () => { cancelAnimationFrame(raf); raf = 0; lab(); };
-  const step = now => { const dt = Math.min(.1, (now - last) / 1000); last = now; const sp = REDUCED ? 3 : 2.6; // années par seconde ; la fin (n → tout) dure une demi-seconde de plus
+  const step = now => { const dt = Math.min(.1, (now - last) / 1000); last = now; const sp = REDUCED ? 3 : 2.6; // years per second; the end (n -> all) takes half a second more
     pos += dt * sp; if (pos >= n + 1) { show(n + 1); return stop(); } show(pos); raf = requestAnimationFrame(step); };
   pl.onclick = () => { if (raf) return stop(); if (pos >= n + 1 - .01) pos = 1; last = performance.now(); raf = requestAnimationFrame(step); lab(); };
   lab(); }
