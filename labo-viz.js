@@ -71,7 +71,8 @@ ${C.map(hemi).join('')}${lbl}
       if (pts.size === 2) { const [a, b] = [...pts.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pd) zoom(d / pd, (a[0] + b[0]) / 2, (a[1] + b[1]) / 2); pd = d; drag = null; return; }
       if (drag) { const s = at(0, 0)[2]; vb.x = drag.vx - (e.clientX - drag.x) / s; vb.y = drag.vy - (e.clientY - drag.y) / s; apply(); } });
     const up = e => { pts.delete(e.pointerId); pd = 0; drag = null; svg.style.cursor = ''; }; svg.addEventListener('pointerup', up); svg.addEventListener('pointercancel', up);
-    svg.addEventListener('dblclick', e => { if (!e.target.closest('.pin')) zoom(2, e.clientX, e.clientY); });
+    svg.addEventListener('dblclick', e => { e.preventDefault(); if (!e.target.closest('.pin')) zoom(2, e.clientX, e.clientY); });
+    svg.addEventListener('mousedown', e => { if (!e.target.closest('.pin')) e.preventDefault(); });
     const bx = document.createElement('div'); bx.className = 'zoomctl'; bx.innerHTML = '<button type="button" data-z="in" aria-label="Zoomer">+</button><button type="button" data-z="out" aria-label="Dézoomer">−</button><button type="button" data-z="home" aria-label="Vue entière">⌂</button>'; V.appendChild(bx);
     bx.onclick = e => { const b = e.target.closest('button'); if (!b) return; const r = svg.getBoundingClientRect(); if (b.dataset.z === 'home') { vb.x = 0; vb.y = 0; vb.w = W0; apply(); } else zoom(b.dataset.z === 'in' ? 1.6 : 1 / 1.6, r.left + r.width / 2, r.top + r.height / 2); };
     svg.style.touchAction = 'none'; svg.style.cursor = 'grab'; apply();
