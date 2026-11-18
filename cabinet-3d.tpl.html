@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Le cabinet de curiosités · Folklore</title>
+<link rel="stylesheet" href="cabinet-3d.css">
+<script src="/menu-mondes.js" defer></script>
+</head>
+<body>
+<main aria-label="Le cabinet de curiosités">
+  <canvas id="cabinet" aria-label="Étagères de dossiers de folklore"></canvas>
+  <div id="folders" aria-label="Dossiers"></div>
+</main>
+<dialog id="record" aria-labelledby="record-title">
+  <div class="dialog-head"><p id="reference" class="eyebrow"></p><button class="close" aria-label="Ranger le dossier" autofocus>×</button></div>
+  <h2 id="record-title"></h2><p id="description"></p><dl id="facts"></dl><p id="summary"></p>
+  <div id="sources"></div><p class="note">Maquette · Statuts de démonstration.</p>
+</dialog>
+<script id="collection" type="application/json">/* COLLECTION */</script>
+<script type="module" src="cabinet-3d.js"></script>
+</body>
+</html>
