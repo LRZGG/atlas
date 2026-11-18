@@ -1,11 +1,12 @@
 // « La salle des archives » : une travée d'étagères métalliques en 3D (WebGL, three.js hébergé sur place). Chaque boîte est un dossier ; son épaisseur est le nombre de langues de Wikipédia.
 // On parcourt la travée au glisser, on trie les boîtes (elles glissent à leur nouvelle place), on sort une boîte pour ouvrir sa fiche. Lampe torche : la salle s'éteint, le curseur éclaire.
 import * as THREE from './vendor/three.module.js';
-const A = window.ARC, I = A.items, CODES = A.codes, MK = { non: 'N', exp: 'E', par: 'P', deb: 'D', cls: '?', fol: 'F', tem: 'T', fau: 'C', fic: 'A', leg: 'L' };
+const A = window.ARC, TH = Object.assign({ base: ['#b29a72', '#c9b58b', '#a98f66'], label: '#efe9d6', ink: '#1d1c1b', dim: '#5a5750', font: 'Special Elite', card: 0xb59d74, top: 0x9a8461, wall: 0x1b2321, stat: null }, A.theme || {}), I = A.items, CODES = A.codes, MK = { non: 'N', exp: 'E', par: 'P', deb: 'D', cls: '?', fol: 'F', tem: 'T', fau: 'C', fic: 'A', leg: 'L' };
 const $ = id => document.getElementById(id), esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const yr = y => y == null ? 'date non renseignée' : y < 0 ? Math.abs(Math.round(y)) + ' av. J.-C.' : String(Math.floor(y));
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const STAT = { non: '#8f1d22', exp: '#2e3a34', par: '#2e3a34', deb: '#8a6a1f', cls: '#8a6a1f', fol: '#26292b', tem: '#8f1d22', fau: '#26292b', fic: '#26292b', leg: '#26292b' };
+const STAT0 = { non: '#8f1d22', exp: '#2e3a34', par: '#2e3a34', deb: '#8a6a1f', cls: '#8a6a1f', fol: '#26292b', tem: '#8f1d22', fau: '#26292b', fic: '#26292b', leg: '#26292b' };
+const STAT = new Proxy(STAT0, { get: (t, k) => TH.stat || t[k] });
 
 function fail(msg) { $('fallback').hidden = false; $('fallback').querySelector('p').textContent = msg; $('ui').hidden = true; }
 let renderer;
@@ -16,30 +17,30 @@ const scene = new THREE.Scene(); scene.background = new THREE.Color(0x060809); s
 const camera = new THREE.PerspectiveCamera(38, 1, .1, 60);
 
 // ---- Les boîtes ----
-await Promise.all([document.fonts.load('20px "Special Elite"'), document.fonts.load('16px "Courier Prime"')]);
+await Promise.all([document.fonts.load('20px "' + TH.font + '"'), document.fonts.load('16px "Courier Prime"')]);
 const thick = i => .2 + .052 * Math.sqrt(i.wikis || 4), BH = 1.08, BD = .82, GAP = .028, ROWS = 3, ROWY = [0, 1.26, 2.52];
 function spine(item, w) {
   const S = 460, pw = Math.max(96, Math.round(w * S)), ph = Math.round(BH * S), c = document.createElement('canvas'); c.width = pw; c.height = ph; const g = c.getContext('2d');
-  const base = g.createLinearGradient(0, 0, pw, 0); base.addColorStop(0, '#b29a72'); base.addColorStop(.5, '#c9b58b'); base.addColorStop(1, '#a98f66'); g.fillStyle = base; g.fillRect(0, 0, pw, ph);
+  const base = g.createLinearGradient(0, 0, pw, 0); base.addColorStop(0, TH.base[0]); base.addColorStop(.5, TH.base[1]); base.addColorStop(1, TH.base[2]); g.fillStyle = base; g.fillRect(0, 0, pw, ph);
   for (let k = 0; k < pw * ph / 60; k++) { g.fillStyle = `rgba(${Math.random() < .5 ? '60,40,10' : '255,240,200'},${Math.random() * .08})`; g.fillRect(Math.random() * pw, Math.random() * ph, 1 + Math.random() * 2, 1); }
   g.fillStyle = STAT[item.st]; g.fillRect(0, 0, pw, ph * .035);                                  // bandeau de statut
   g.fillStyle = '#2a2016'; g.beginPath(); g.ellipse(pw / 2, ph * .105, pw * .2, ph * .03, 0, 0, 7); g.fill(); g.strokeStyle = '#00000055'; g.lineWidth = 3; g.stroke(); // trou de préhension
-  const lx = pw * .13, ly = ph * .2, lw = pw * .74, lh = ph * .74; g.fillStyle = '#efe9d6'; g.fillRect(lx, ly, lw, lh); g.strokeStyle = '#2a2016'; g.lineWidth = 2; g.strokeRect(lx + 4, ly + 4, lw - 8, lh - 8);
+  const lx = pw * .13, ly = ph * .2, lw = pw * .74, lh = ph * .74; g.fillStyle = TH.label; g.fillRect(lx, ly, lw, lh); g.strokeStyle = '#2a2016'; g.lineWidth = 2; g.strokeRect(lx + 4, ly + 4, lw - 8, lh - 8);
   g.save(); g.translate(lx + lw / 2, ly + lh / 2); g.rotate(-Math.PI / 2);                              // texte vertical, de bas en haut
-  const tt = item.titre.toUpperCase(); let fs = Math.min(lw * .5, 40); g.font = `${fs}px "Special Elite"`; while (g.measureText(tt).width > lh - 80 && fs > 14) { fs -= 2; g.font = `${fs}px "Special Elite"`; }
-  g.fillStyle = '#1d1c1b'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(tt, 0, -lw * .1);
-  g.font = `${Math.min(lw * .26, 22)}px "Courier Prime"`; g.fillStyle = '#5a5750'; g.fillText('UNK-' + item.id.toUpperCase() + (item.year != null ? ' · ' + yr(item.year) : ''), 0, lw * .26); g.restore();
-  g.fillStyle = STAT[item.st]; g.fillRect(lx + 8, ly + 8, pw * .2, pw * .2); g.fillStyle = '#efe9d6'; g.font = `700 ${pw * .15}px "Special Elite"`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(MK[item.st], lx + 8 + pw * .1, ly + 8 + pw * .105);
+  const tt = item.titre.toUpperCase(); let fs = Math.min(lw * .5, 40); g.font = `${fs}px "${TH.font}"`; while (g.measureText(tt).width > lh - 80 && fs > 14) { fs -= 2; g.font = `${fs}px "${TH.font}"`; }
+  g.fillStyle = TH.ink; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(tt, 0, -lw * .1);
+  g.font = `${Math.min(lw * .26, 22)}px "Courier Prime"`; g.fillStyle = TH.dim; g.fillText('UNK-' + item.id.toUpperCase() + (item.year != null ? ' · ' + yr(item.year) : ''), 0, lw * .26); g.restore();
+  g.fillStyle = STAT[item.st]; g.fillRect(lx + 8, ly + 8, pw * .2, pw * .2); g.fillStyle = TH.label; g.font = `700 ${pw * .15}px "${TH.font}"`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(MK[item.st], lx + 8 + pw * .1, ly + 8 + pw * .105);
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
 }
-const cardMat = new THREE.MeshStandardMaterial({ color: 0xb59d74, roughness: .92 }), topMat = new THREE.MeshStandardMaterial({ color: 0x9a8461, roughness: .95 });
+const cardMat = new THREE.MeshStandardMaterial({ color: TH.card, roughness: .92 }), topMat = new THREE.MeshStandardMaterial({ color: TH.top, roughness: .95 });
 const boxes = I.map(item => { const w = thick(item), mat = new THREE.MeshStandardMaterial({ map: spine(item, w), roughness: .85 }), m = new THREE.Mesh(new THREE.BoxGeometry(w, BH, BD), [cardMat, cardMat, topMat, topMat, mat, cardMat]); m.castShadow = true; m.receiveShadow = true; m.userData.item = item; scene.add(m); return { item, w, mesh: m, bx: 0, by: 0, pull: 0, pullT: 0, rot: 0, rotT: 0 }; });
 const byMesh = new Map(boxes.map(b => [b.mesh, b]));
 
 // ---- La travée : sol, mur, montants, planches, plaques de rangée ----
 const mkS = (w, h, d, color, metal) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshStandardMaterial({ color, metalness: metal ? .65 : 0, roughness: metal ? .42 : .9 })); m.castShadow = true; m.receiveShadow = true; scene.add(m); return m; };
 const floor = new THREE.Mesh(new THREE.PlaneGeometry(60, 60), new THREE.MeshStandardMaterial({ color: 0x141718, roughness: .78 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -.06; floor.receiveShadow = true; scene.add(floor);
-const wall = new THREE.Mesh(new THREE.PlaneGeometry(60, 14), new THREE.MeshStandardMaterial({ color: 0x1b2321, roughness: .95 })); wall.position.set(0, 5.5, -.55); wall.receiveShadow = true; scene.add(wall);
+const wall = new THREE.Mesh(new THREE.PlaneGeometry(60, 14), new THREE.MeshStandardMaterial({ color: TH.wall, roughness: .95 })); wall.position.set(0, 5.5, -.55); wall.receiveShadow = true; scene.add(wall);
 const ROWW = 5.6, boards = [], plaques = [];
 for (let r = 0; r < ROWS; r++) { const b = mkS(ROWW + .4, .05, BD + .08, 0x535a5f, true); b.position.set(0, ROWY[r] - .025, 0); boards.push(b);
   const lip = mkS(ROWW + .4, .1, .02, 0x535a5f, true); lip.position.set(0, ROWY[r] - .06, BD / 2 + .05);

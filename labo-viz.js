@@ -109,7 +109,7 @@ ${C.map(hemi).join('')}${lbl}
       const yt = [0, 20, 40, 60, 80, 100, 120].filter(t => t < mw).map(t => `<line x1="${X0}" y1="${Y(t)}" x2="${X1}" y2="${Y(t)}" class="gr"/><text x="${X0 - 8}" y="${Y(t) + 4}" text-anchor="end" class="tt">${t}</text>`).join('');
       const pl = place(d, i => [X(xa(i)), Y(i.wikis)], 11), W2 = { ...W, w: 1000, h: 560 };
       const pts = pl.map(([i, x, y, tx, ty, a]) => `<g class="pin" data-id="${i.id}" tabindex="0" role="button" aria-label="${esc(i.titre)}"><circle cx="${x}" cy="${y}" r="9" class="hit"/><circle cx="${x}" cy="${y}" r="4.6" class="dot"/>${tx != null ? `<text x="${tx}" y="${ty}" text-anchor="${a}" class="lb">${esc(i.titre)}</text>` : ''}</g>`).join('');
-      V.innerHTML = `<p class="note">Chaque point : l'ancienneté du dossier (axe horizontal, échelle logarithmique, vers la gauche = récent) et le nombre de langues de Wikipédia qui ont un article dessus (axe vertical), une mesure de l'attention mondiale, pas de la vérité.</p><svg viewBox="0 0 1000 560" role="img" aria-label="Âge et attention des dossiers">${xt}${yt}<line x1="${X0}" y1="${Y0}" x2="${X1}" y2="${Y0}" class="ax"/><line x1="${X0}" y1="${Y0}" x2="${X0}" y2="${Y1}" class="ax"/><text x="${(X0 + X1) / 2}" y="552" text-anchor="middle" class="tt">ancienneté du dossier</text><text transform="translate(18 ${(Y0 + Y1) / 2}) rotate(-90)" text-anchor="middle" class="tt">langues de Wikipédia</text>${pts}</svg>${nd.length ? `<p class="note">Données manquantes (date ou langues) : ${nd.map(i => `<a href="#" data-id="${i.id}">${esc(i.titre)}</a>`).join(', ')}.</p>` : ''}`;
+      V.innerHTML = `<p class="note">Chaque point : l'ancienneté du dossier (axe horizontal, échelle logarithmique, vers la gauche = récent) et le nombre de langues de Wikipédia qui ont un article dessus (axe vertical), une mesure de l'attention mondiale, pas de la vérité.</p><svg viewBox="0 0 1000 560" class="fit" role="img" aria-label="Âge et attention des dossiers">${xt}${yt}<line x1="${X0}" y1="${Y0}" x2="${X1}" y2="${Y0}" class="ax"/><line x1="${X0}" y1="${Y0}" x2="${X0}" y2="${Y1}" class="ax"/><text x="${(X0 + X1) / 2}" y="552" text-anchor="middle" class="tt">ancienneté du dossier</text><text transform="translate(18 ${(Y0 + Y1) / 2}) rotate(-90)" text-anchor="middle" class="tt">langues de Wikipédia</text>${pts}</svg>${nd.length ? `<p class="note">Données manquantes (date ou langues) : ${nd.map(i => `<a href="#" data-id="${i.id}">${esc(i.titre)}</a>`).join(', ')}.</p>` : ''}`;
     },
     arbre(items) {
       const groups = {}; items.forEach(i => { (groups[i.cls || 'famille non renseignée'] = groups[i.cls || 'famille non renseignée'] || []).push(i); });
@@ -120,7 +120,7 @@ ${C.map(hemi).join('')}${lbl}
         arr.forEach((i, j) => { const a = a0 + (j + .5) / arr.length * (a1 - a0), lx = cx + Math.cos(a) * R2, ly = cy + Math.sin(a) * R2, right = Math.cos(a) >= 0;
           out += `<g class="leaf" data-id="${i.id}" tabindex="0" role="button" aria-label="${esc(i.titre)}"><line x1="${gx}" y1="${gy}" x2="${lx}" y2="${ly}" class="ld"/><circle cx="${lx}" cy="${ly}" r="4" class="dot"/><text x="${lx + (right ? 9 : -9)}" y="${ly + 4}" text-anchor="${right ? 'start' : 'end'}" class="lb">${esc(i.titre)}</text></g>`; });
         k += arr.length; }
-      V.innerHTML = `<p class="note">Les dossiers sont regroupés selon la classe que leur donne Wikidata (« instance de » ou « sous-classe de »), pas selon notre jugement. Les familles à un seul dossier montrent que la classification de Wikidata est inégale.</p><svg viewBox="0 0 1000 940" role="img" aria-label="Arbre des familles">${out}<circle cx="${cx}" cy="${cy}" r="7" class="root"/>${lab}</svg>`;
+      V.innerHTML = `<p class="note">Les dossiers sont regroupés selon la classe que leur donne Wikidata (« instance de » ou « sous-classe de »), pas selon notre jugement. Les familles à un seul dossier montrent que la classification de Wikidata est inégale.</p><svg viewBox="0 0 1000 940" class="fit" role="img" aria-label="Arbre des familles">${out}<circle cx="${cx}" cy="${cy}" r="7" class="root"/>${lab}</svg>`;
     },
     abece(items) {
       const s = items.slice().sort((a, b) => a.titre.localeCompare(b.titre, 'fr')), L = {}; s.forEach(i => { const c = i.titre[0].toUpperCase(); (L[c] = L[c] || []).push(i); });
@@ -139,9 +139,9 @@ ${C.map(hemi).join('')}${lbl}
   };
 
   const cfg = D.views; let cur = 0;
-  function show(k) { cur = k; const c = cfg[k]; TABS.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-selected', String(j === k))); CARD.hidden = true; views[c.fn](I, c); legend(I); location.hash = c.id; }
+  function show(k) { cur = k; const c = cfg[k]; if (c.href) return; TABS.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-selected', String(j === k))); CARD.hidden = true; views[c.fn](I, c); legend(I); location.hash = c.id; }
   TABS.innerHTML = cfg.map((c, k) => `<button type="button" role="tab" aria-selected="false" data-k="${k}"><b>${String.fromCharCode(65 + k)}</b> ${esc(c.nom)}</button>`).join('');
-  TABS.onclick = e => { const b = e.target.closest('button'); if (b) show(+b.dataset.k); };
+  TABS.onclick = e => { const b = e.target.closest('button'); if (!b) return; const c = cfg[+b.dataset.k]; if (c.href) { location.href = c.href; return; } show(+b.dataset.k); };
   const h = cfg.findIndex(c => c.id === location.hash.slice(1)); show(h >= 0 ? h : 0);
   const th = document.getElementById('theme'); if (th) { th.onclick = () => { const d = document.documentElement; d.dataset.theme = d.dataset.theme === 'dark' ? 'light' : 'dark'; }; }
 })();
