@@ -29,7 +29,7 @@ body { background: var(--paper); color: var(--ink); font: 13px/1.4 var(--sans); 
 #legend li button:focus-visible { outline: 2px solid var(--acc); outline-offset: 1px; }
 #legend li b { font-weight: 400; width: 20px; text-align: right; flex: none; }
 #lang { right: 270px; top: 30px; display: flex; }
-#ctl { left: 34px; bottom: 34px; display: flex; gap: 6px; }
+#ctl { right: 0; bottom: clamp(10px, 2vh, 20px); display: flex; background: var(--paper); }
 button.sq { font: 14px var(--sans); color: var(--ink); background: var(--paper); border: .8px solid var(--ink); border-radius: 0; width: 30px; height: 30px; cursor: pointer; padding: 0; }
 #lang button.sq { width: 34px; font-size: 12px; letter-spacing: .06em; }
 #lang button + button { border-left: 0; }
@@ -219,11 +219,10 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 .years-axis { display:flex;justify-content:space-between; margin-left:42px;border-top:1px solid var(--rule);font:12px var(--sans);color:var(--dim); }
 #colophon { grid-row:3;border-top:1px solid var(--ink);gap:16px;padding-bottom:6px; }
 #colophon #cap { width:auto;display:block;text-align:left;font:italic 15px var(--serif); }
-#colophon #ctl { margin-left:auto; gap:0; }
 #ctl button.sq { width:32px; height:32px; border:1px solid var(--rule);background:transparent;font:17px var(--sans); }
 #ctl button.sq + button { border-left:0; }
 #ctl button.sq:hover { background:var(--ink);color:var(--paper); }
-#colophon #stamp {border:0;padding:0 0 0 12px;border-left:1px solid var(--rule);background:transparent;font:12px var(--sans); color:var(--dim);}
+#colophon #stamp {margin-left:auto;border:0;padding:0 0 0 12px;border-left:1px solid var(--rule);background:transparent;font:12px var(--sans); color:var(--dim);}
 #stamp b {font-weight:500;color:var(--ink);}
 #src { background:transparent; }
 #stats { z-index:10; padding:clamp(22px,4vw,65px); }
@@ -264,9 +263,8 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
  #domainIndex {margin-bottom:16px;}
  #colophon {grid-row:5;padding:6px 0 12px;gap:8px;flex-wrap:wrap;}
  #colophon #cap{display:none;}
- #colophon #stamp{display:block;max-width:90px;margin-right:auto;padding-left:0;border:0;font-size:10px;}
+ #colophon #stamp{display:block;max-width:90px;margin:0 auto 0 0;padding-left:0;border:0;font-size:10px;}
  #stamp br{display:none;} #stamp span{display:none;}
- #colophon #ctl {order:1;margin-left:0;}
  #colophon #src {order:2;}
  #panel {position:fixed;inset:6px;width:auto;}
  #src div{width:min(290px,85vw);}
@@ -297,9 +295,9 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <section id="domainIndex"><div class="index-head"><h2 data-i="plate_domains"></h2><small data-i="plate_topics"></small></div><div id="domains"></div></section>
 <div id="tl" class="ov" hidden><div class="index-head"><label data-i="plate_years" for="tlr"></label><output id="tll" for="tlr"></output></div><div class="timeline-track"><button class="sq" id="tlplay" type="button"></button><div class="year-track"><div id="yearBars" aria-hidden="true"></div><input id="tlr" type="range" step="1"></div></div><div class="years-axis" aria-hidden="true"><span id="firstYear"></span><span id="lastYear"></span></div></div>
 </aside>
-<div id="figure"><canvas id="c" tabindex="0" role="application" data-ia="aria_carte" aria-describedby="kbhelp"></canvas></div>
+<div id="figure"><canvas id="c" tabindex="0" role="application" data-ia="aria_carte" aria-describedby="kbhelp"></canvas><div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button></div></div>
 <div id="live" aria-live="polite"></div>
-<footer id="colophon"><div id="cap" class="ov"></div><div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button></div><div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div><details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details></footer>
+<footer id="colophon"><div id="cap" class="ov"></div><div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div><details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details></footer>
 <aside id="stats" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
 <div id="tip" hidden></div>
 <aside id="panel" role="dialog" tabindex="-1" hidden></aside>
