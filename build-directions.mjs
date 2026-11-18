@@ -156,8 +156,10 @@ for (let it = 0; it < 60; it++) for (let i = 0; i < Q.length; i++) for (let j = 
 }
 Q.forEach(q => { q.x = r3(q.x); q.y = r3(q.y); });
 
+// Poids du relief : somme des articles publiés de 1990 à 2025 (annees.json). Le compteur `works_count` des sujets d'OpenAlex est parfois faux (ex. 41 millions pour « Magnetic confinement fusion research », dont 385 000 articles et notices de données réelles) : on ne s'en sert plus pour le relief ni pour les points.
+if (existsSync('annees.json')) { const an = JSON.parse(readFileSync('annees.json', 'utf8')), y1 = Math.min(an.y1, 2025), nY = y1 - an.y0 + 1; s.topics.forEach((t, i) => { const r = an.t[t.id]; if (r) { let m = 0; for (let k = 0; k < nY; k++) m += r[k] || 0; T[i * 5 + 2] = m; } }); }
 const DATA = {
-  fetched: s.fetched, cap, hole, edge: EDGE, rl: RL,
+  fetched: s.fetched, cap: existsSync("annees.json") ? 1e15 : cap, hole, edge: EDGE, rl: RL,
   D: dIds.map(d => ({ fr: fr(s.domains[d]), en: s.domains[d] })),
   F: fIds.map(f => ({ nn: { fr: fr(s.fields[f].name), en: s.fields[f].name }, d: dIds.indexOf(s.fields[f].domain) })),
   S: sIds.map((id, i) => ({ n: s.subfields[id].name, nf: SUBFR[s.subfields[id].name] || s.subfields[id].name, f: fIdx[s.subfields[id].field], x: r3(pos[i][0]), y: r3(pos[i][1]), w: sw[i] })),

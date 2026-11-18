@@ -75,7 +75,7 @@ Il manque un twist. Pistes retenues pour y réfléchir :
 
 - [x] **Plus de questions** (150 atteint ; au-delà : psychologie, linguistique, sociologie n'ont pas de liste Wikipédia dédiée) : listes Wikipédia encore inexploitées (économie, médecine, statistiques, philosophie, psychologie, linguistique), liste « Problèmes ouverts » de revues, 23 problèmes de Smale, DARPA 2008 ; Wikidata « problème non résolu » (Q… à vérifier).
 - [ ] **Énigmes supplémentaires** : colonie de Roanoke, disque de Phaistos déjà fait ; candidates : chiffres de Beale, rongorongo, écriture de l'Indus, épidémie dansante de 1518, Mary Celeste, lumières de Hessdalen (choisir celles qui ont un domaine de recherche).
-- [~] **Compteurs d'OpenAlex** : liste de 45 sujets suspects dans `compteurs-suspects.md`, décision à prendre sujet par sujet.
+- [x] **Compteurs d'OpenAlex** : erreur confirmée sur la fiche du sujet (41 M au lieu de 385 000 œuvres) ; le relief utilise maintenant la somme des articles 1990–2025. Voir `compteurs-suspects.md`. Reste : recalculer le placement avec ces poids (non fait).
 - [x] **Articles par année et par sujet** (1990–2025) : curseur du temps sur la carte. Reste : « 30 derniers jours » (mise à jour régulière).
 - [x] Noms français des 250 sous-disciplines ; [ ] noms français des sujets (4 516, OpenAlex en anglais).
 - [ ] **Images libres** par question (Wikimedia Commons, licence créditée) : seulement si elles apprennent quelque chose.
