@@ -10,7 +10,8 @@ mkdirSync('docs/partage', { recursive: true });
 const b = await chromium.launch(), p = await b.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
 await p.addInitScript(() => localStorage.setItem('theme', 'light'));
 await p.goto(URL0 + '/fr/'); await p.waitForTimeout(1500);
-await p.evaluate(() => { for (const id of ['legend', 'lang', 'ctl', 'cap', 'stamp', 'src']) $(id).style.display = 'none'; $('ctx').style.display = 'none'; });
+await p.addStyleTag({ content: '#mast,#margin,#colophon{display:none} #figure{position:absolute;inset:20px}' });
+await p.evaluate(() => resize());
 const bandeau = (txt, sub) => p.evaluate(([txt, sub]) => {
   document.getElementById('bandeau')?.remove(); const d = document.createElement('div'); d.id = 'bandeau';
   d.style.cssText = 'position:absolute;z-index:9;left:50px;right:50px;bottom:44px;background:var(--paper);border:1px solid var(--ink);padding:14px 18px';
