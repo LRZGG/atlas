@@ -1,0 +1,32 @@
+@font-face{font-family:Standard;src:url(fonts/old-standard-tt-latin-400-normal.woff2)}
+@font-face{font-family:Archivo;src:url(../fonts/archivo-narrow.woff2);font-weight:400 700}
+
+:root{color-scheme:dark;background:#111310;color:#eee7d6;font:16px/1.4 Archivo,sans-serif}
+*{box-sizing:border-box}
+body{margin:0}
+main,canvas{position:fixed;inset:0;width:100%;height:100%}
+canvas{display:block;touch-action:none;user-select:none}
+#folders:not(.fallback){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#folders.fallback{height:100%;overflow:auto;padding:56px max(20px,10vw) 20px}
+.fallback button{display:block;font:1.4rem Standard,serif;text-align:left;width:100%;padding:12px 0;border:0;border-bottom:1px solid #655f51;background:transparent;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid #d3bc83;outline-offset:2px}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;cursor:pointer}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.eyebrow,dt,.note{font:500 .72rem/1.5 Archivo,sans-serif;text-transform:uppercase;letter-spacing:.15em}
+h2{font:400 2.25rem/1.04 Standard,Georgia,serif;margin:0}
+dialog{color-scheme:light;color:#292a21;background:#eee7d6;border:1px solid #a99871;border-radius:5px;padding:clamp(20px,3vw,36px);width:min(490px,calc(100% - 28px));max-height:82dvh;overflow:auto;box-shadow:0 24px 100px #0009}
+dialog::backdrop{background:#070c099c}
+
+dialog .eyebrow,dt,.note{color:#65583c}
+.close{background:transparent;height:40px;width:40px;font-size:1.4rem;border:1px solid #b9af98;border-radius:50%;flex:none}
+dialog button:hover:not(:disabled){background:#ded5be;border-color:#95886d}
+#record-title{font-size:2.25rem;margin-top:14px}
+#description{color:#56584a;font:italic 1.04rem/1.5 Georgia,serif}
+dl{display:grid;grid-template-columns:auto 1fr;gap:7px 15px;padding:16px 0;border-block:1px solid #c8bea6}
+dd{margin:0}
+#summary{font:1rem/1.65 Georgia,serif}
+#sources{display:flex;gap:16px}
+a{color:inherit;text-underline-offset:3px}
+.note{margin:20px 0 0;font-size:.65rem}
+@media(min-width:900px){#record{margin:auto clamp(20px,4vw,70px) auto auto}#record::backdrop{background:#070c0966}}
