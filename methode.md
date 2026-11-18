@@ -148,3 +148,14 @@ Je n'ai pas de chiffre vérifié. Un objectif raisonnable pour la première vers
 ### Proposer une question
 
 Ouvrir une « issue » sur le dépôt GitHub avec l'énoncé, la source et la discipline. Elle est évaluée selon les critères ci-dessus. Pas de comptes ni de vote à construire pour l'instant.
+
+
+## Contrôle des fiches (18 novembre 2026)
+
+1. **Écriture** : brouillon rédigé avec une IA, étiqueté comme tel sur la fiche.
+2. **Références** : `fetch-fiches.mjs` vérifie chaque DOI dans OpenAlex et les liens ; le titre trouvé est comparé à ce qu'on voulait citer.
+3. **Contrôle automatique** : `verifier-fiches.mjs` (sans IA, sans réseau) écrit `controle/rapport.md`. Il repère les nombres absents des sources, les affirmations fortes (« démontré », « jamais »), les références peut-être hors sujet, les écarts de nombres entre français et anglais, les fiches sans référence ou sans traduction.
+4. **Décision humaine** : un point repéré est une question, pas une erreur. Les humains tranchent par GitHub (modèles dans `.github/ISSUE_TEMPLATE/`) ; chaque décision est notée dans `controle/decisions.json` avec son auteur et sa date.
+5. **Relecture nommée** : seule la mention `relue: { par, date }` dans la fiche de `questions.json` remplace l'étiquette « brouillon IA ».
+
+Limite : une seconde IA qui relirait chaque brouillon n'est pas branchée (aucune clé, aucun appel externe dans ce dépôt). Le format du rapport est prévu pour l'accueillir.

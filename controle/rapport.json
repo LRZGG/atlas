@@ -1,0 +1,743 @@
+{
+ "date": "2026-11-18",
+ "fiches": {
+  "univers": [
+   {
+    "cle": "univers:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "conscience": [
+   {
+    "cle": "conscience:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "longevite": [
+   {
+    "cle": "longevite:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "origine-vie": [
+   {
+    "cle": "origine-vie:chiffre-sans-source:32243767",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 1953 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "origine-vie:affirmation-forte:72e030d4",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « Plusieurs scénarios sont étudiés : un « monde à ARN », où l'ARN stocke l'information et catalyse des réactions, des sources hydrothermales a… »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "origine-vie:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "memoire": [
+   {
+    "cle": "memoire:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "rechauffement": [
+   {
+    "cle": "rechauffement:chiffre-sans-source:c4e13cbc",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 1900 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "rechauffement:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "p-np": [
+   {
+    "cle": "p-np:affirmation-forte:69e29367",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « La plupart des spécialistes pensent que P est différent de NP, sans l'avoir prouvé. »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "p-np:affirmation-forte:1a01b630",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « Si P est égal à NP ou non. Personne n'a démontré l'un ni l'autre. L'institut Clay offre un million de dollars à qui y parviendra : c'est un … »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "p-np:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "riemann": [
+   {
+    "cle": "riemann:chiffre-sans-source:59f98cba",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 1896 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "riemann:chiffre-sans-source:4640b4ee",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 3000 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "riemann:affirmation-forte:0579bdfa",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « Les nombres premiers se répartissent selon une loi moyenne connue (le théorème des nombres premiers, démontré en 1896). Les écarts à cette l… »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "riemann:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "navier-stokes": [
+   {
+    "cle": "navier-stokes:affirmation-forte:b2c2e17d",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « En deux dimensions, on sait démontrer que les solutions existent et restent régulières. »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "navier-stokes:affirmation-forte:b844fe2c",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « En trois dimensions, on sait démontrer l'existence de solutions pour un temps court, ou de solutions plus faibles, mais pas pour tout temps … »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "navier-stokes:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "hodge": [
+   {
+    "cle": "hodge:affirmation-forte:f4359315",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « Elle est démontrée dans plusieurs cas particuliers. »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "hodge:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "goldbach": [
+   {
+    "cle": "goldbach:chiffre-sans-source:b81c0b05",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 100 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "goldbach:chiffre-sans-source:ac33a831",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 97 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "goldbach:chiffre-sans-source:ab6ee95a",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 50 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "goldbach:affirmation-forte:2d14cef9",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « Une version plus faible, pour les nombres impairs et trois nombres premiers, a été démontrée par Harald Helfgott en 2013. »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "goldbach:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "jumeaux": [
+   {
+    "cle": "jumeaux:chiffre-sans-source:c432833d",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 17 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "jumeaux:chiffre-sans-source:c2bc6bf6",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 19 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "jumeaux:chiffre-sans-source:b5802443",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 70 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "jumeaux:chiffre-sans-source:1e6972a0",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 246 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "jumeaux:chiffre-sans-source:b81c0b05",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 100 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "jumeaux:affirmation-forte:e175dea0",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « En 2013, Yitang Zhang a démontré qu'il existe une infinité de paires de premiers séparés par moins de 70 millions. Ce plafond a ensuite été … »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "jumeaux:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "collatz": [
+   {
+    "cle": "collatz:chiffre-sans-source:97dc1bf1",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 2019 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "collatz:chiffre-sans-source:852e8602",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 27 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "collatz:affirmation-forte:6949f23d",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « En 2019, Terence Tao a démontré que presque tous les nombres atteignent des valeurs très petites, en un sens précis, sans démontrer qu'ils a… »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "collatz:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "factorisation": [
+   {
+    "cle": "factorisation:chiffre-sans-source:2b7afa1b",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 1994 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "factorisation:chiffre-sans-source:5a05d338",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 91 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "factorisation:chiffre-sans-source:3fb1d5b8",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 8633 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "factorisation:affirmation-forte:dd52d51b",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « Si la factorisation est aussi difficile que les problèmes les plus durs de la classe NP. On pense que non, sans l'avoir démontré. »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "factorisation:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "trous-noirs-info": [
+   {
+    "cle": "trous-noirs-info:chiffre-sans-source:c2ad99d7",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 1974 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "trous-noirs-info:chiffre-sans-source:97dc1bf1",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 2019 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "trous-noirs-info:reference-hors-sujet:4ba16c74",
+    "type": "reference-hors-sujet",
+    "texte": "Aucun mot du titre de « Particle creation by black holes » ne se retrouve dans la fiche : référence à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "trous-noirs-info:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "neutrinos": [
+   {
+    "cle": "neutrinos:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "tension-hubble": [
+   {
+    "cle": "tension-hubble:chiffre-sans-source:941255bd",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 380000 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "tension-hubble:chiffre-sans-source:ae704cac",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 73 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "tension-hubble:chiffre-sans-source:61e26e48",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 67 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "tension-hubble:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "supraconducteurs": [
+   {
+    "cle": "supraconducteurs:chiffre-sans-source:dc95d0f7",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 1911 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "supraconducteurs:chiffre-sans-source:56955d3d",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 1957 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "supraconducteurs:chiffre-sans-source:59f7ff1c",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 1987 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "supraconducteurs:affirmation-forte:9ab8763c",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « Un supraconducteur laisse passer le courant électrique sans aucune résistance. Découvert en 1911, il fallait d'abord le refroidir près du zé… »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "supraconducteurs:affirmation-forte:e2126e3c",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « Pourquoi ces matériaux sont supraconducteurs : la théorie BCS ne s'y applique pas et aucune explication ne fait l'unanimité. »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "supraconducteurs:affirmation-forte:055e2289",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « S'il existe un matériau supraconducteur à température ambiante et pression ordinaire. Aucun n'a été confirmé. »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "supraconducteurs:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "repliement-proteines": [
+   {
+    "cle": "repliement-proteines:chiffre-sans-source:9a0217b7",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 1960 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "repliement-proteines:chiffre-sans-source:344ec7d3",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 1970 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "repliement-proteines:chiffre-sans-source:d47fb40d",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 2020 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "repliement-proteines:chiffre-sans-source:b81c0b05",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 100 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "repliement-proteines:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "anesthesie": [
+   {
+    "cle": "anesthesie:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "cambrien": [
+   {
+    "cle": "cambrien:chiffre-sans-source:339ef6f8",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 540 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "cambrien:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "wow-e": [
+   {
+    "cle": "wow-e:chiffre-sans-source:3e89904e",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 1420 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "wow-e:affirmation-forte:e92d6639",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « D'où il venait : un phénomène naturel, une interférence terrestre ou autre chose. Aucune explication ne fait consensus. »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "wow-e:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "voynich-e": [
+   {
+    "cle": "voynich-e:chiffre-sans-source:f21a050b",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 240 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "voynich-e:affirmation-forte:175be306",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « Il est écrit dans une écriture inconnue, avec des dessins de plantes, d'astres et de figures qui ne correspondent à aucun ouvrage connu. »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "voynich-e:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "antikythere-e": [
+   {
+    "cle": "antikythere-e:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "tunguska-e": [
+   {
+    "cle": "tunguska-e:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "nazca-e": [
+   {
+    "cle": "nazca-e:sans-reference:7e010932",
+    "type": "sans-reference",
+    "texte": "La fiche ne cite aucun article ou document vérifié dans OpenAlex.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "nazca-e:affirmation-forte:a7b27c67",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « Leur fonction : plusieurs hypothèses sont proposées (rituelles, liées à l'eau, à l'astronomie), aucune ne s'impose. »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "nazca-e:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "phaistos-e": [
+   {
+    "cle": "phaistos-e:sans-reference:7e010932",
+    "type": "sans-reference",
+    "texte": "La fiche ne cite aucun article ou document vérifié dans OpenAlex.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "phaistos-e:affirmation-forte:8c704c10",
+    "type": "affirmation-forte",
+    "texte": "Affirmation forte à confirmer par une source : « Aucune lecture n'a été acceptée par les spécialistes. »",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "phaistos-e:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "lineara-e": [
+   {
+    "cle": "lineara-e:sans-reference:7e010932",
+    "type": "sans-reference",
+    "texte": "La fiche ne cite aucun article ou document vérifié dans OpenAlex.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "lineara-e:chiffre-sans-source:28dfbc8e",
+    "type": "chiffre-sans-source",
+    "texte": "Le nombre « 1952 » n'apparaît ni dans l'extrait Wikipédia, ni dans les références, ni dans l'énoncé : à vérifier.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "lineara-e:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ],
+  "kryptos-e": [
+   {
+    "cle": "kryptos-e:sans-reference:7e010932",
+    "type": "sans-reference",
+    "texte": "La fiche ne cite aucun article ou document vérifié dans OpenAlex.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   },
+   {
+    "cle": "kryptos-e:non-relue:b7c00ed7",
+    "type": "non-relue",
+    "texte": "Aucun spécialiste nommé n'a relu cette fiche.",
+    "statut": "ouvert",
+    "par": null,
+    "date": null
+   }
+  ]
+ }
+}

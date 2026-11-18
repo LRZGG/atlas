@@ -1,0 +1,30 @@
+name: Proposer une question ouverte
+description: Une question non résolue de la science, avec une source qui dit que la réponse manque.
+title: "[nouvelle question] "
+labels: ["question"]
+body:
+  - type: input
+    id: enonce
+    attributes:
+      label: La question, en une phrase
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source qui la pose comme non résolue (lien)
+      description: Liste reconnue, revue de synthèse, institut, article. Wikipédia seule ne suffit pas pour une question scientifique.
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - Question de recherche
+        - Énigme documentée (des faits existent, la réponse manque)
+  - type: textarea
+    id: disciplines
+    attributes:
+      label: Disciplines concernées
+      description: Quels domaines de recherche pourraient y répondre ? (sert à la placer sur la carte)

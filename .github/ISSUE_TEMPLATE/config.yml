@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Méthode et limites (lire avant de signaler)
+    url: https://github.com/Lorenzo1208/atlas/blob/main/methode.md
+    about: Ce que le site mesure, ce qu'il ne mesure pas, et comment les fiches sont écrites et contrôlées.

@@ -1,0 +1,46 @@
+name: Corriger une fiche ou contester une affirmation
+description: Une référence fausse, un chiffre sans source, une affirmation trop forte, une erreur de traduction.
+title: "[question] "
+labels: ["fiche"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci. Une correction est examinée sur ses **sources**, pas sur le nombre de personnes qui la demandent. Pas besoin de compte sur le site : un compte GitHub suffit.
+  - type: input
+    id: question
+    attributes:
+      label: Question et adresse de la fiche
+      description: Identifiant (ex. `p-np`) ou lien de la page.
+    validations:
+      required: true
+  - type: dropdown
+    id: point
+    attributes:
+      label: Ce qui pose problème
+      options:
+        - Une référence (fausse, hors sujet, introuvable)
+        - Un chiffre ou une date
+        - Une affirmation trop forte ou fausse
+        - Quelque chose d'important qui manque
+        - Une erreur de traduction
+        - Autre
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: Ce que vous proposez
+      description: La phrase concernée, et ce qu'elle devrait dire.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source (lien, DOI)
+      description: Obligatoire pour contester une affirmation. Préférez un article évalué par les pairs, une revue de synthèse ou un organisme reconnu.
+  - type: input
+    id: expertise
+    attributes:
+      label: Votre expertise (facultatif)
+      description: Nom, domaine, identifiant ORCID. Un titre ne donne pas raison à lui seul, mais aide à orienter la demande.

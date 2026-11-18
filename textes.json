@@ -79,7 +79,10 @@
     "search_k_f": "Discipline",
     "search_k_s": "Sous-discipline",
     "search_k_t": "Sujet",
-    "search_aria": "Rechercher dans les questions, disciplines et sujets"
+    "search_aria": "Rechercher dans les questions, disciplines et sujets",
+    "ck_n": "Contrôle automatique : {n} point(s) à vérifier par un humain.",
+    "ck_0": "Contrôle automatique : aucun point ouvert hors relecture.",
+    "ck_lien": "Voir le rapport"
   },
   "en": {
     "titre": "Unknownpedia",
@@ -161,6 +164,9 @@
     "search_k_f": "Discipline",
     "search_k_s": "Subfield",
     "search_k_t": "Topic",
-    "search_aria": "Search questions, disciplines and topics"
+    "search_aria": "Search questions, disciplines and topics",
+    "ck_n": "Automatic check: {n} point(s) for a human to verify.",
+    "ck_0": "Automatic check: no open point apart from review.",
+    "ck_lien": "See the report"
   }
 }
