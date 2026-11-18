@@ -4,7 +4,7 @@ const byName = (a,b) => a.titre.localeCompare(b.titre,'fr');
 const numbers = new Map([...items].sort(byName).map((item,i) => [item.id,String(i+1).padStart(2,'0')]));
 const dates = new Intl.NumberFormat('fr');
 const folders = [...items].sort(byName);
-let scene;
+let scene, restoringFocus = false;
 
 function showRecord(item) {
   $('reference').textContent = 'FOL / '+numbers.get(item.id)+' · '+codes[item.st];
@@ -37,7 +37,7 @@ for (const [index, item] of folders.entries()) {
   const button = document.createElement('button');
   button.type = 'button';
   button.textContent = item.titre;
-  button.onfocus = () => scene?.focus(index);
+  button.onfocus = () => scene?.focus(index, restoringFocus);
   button.onblur = () => scene?.unfocus();
   button.onclick = () => {
     if (scene) scene.open(index);
@@ -47,7 +47,9 @@ for (const [index, item] of folders.entries()) {
 }
 function closeRecord() {
   scene?.close();
+  restoringFocus = true;
   record.close();
+  restoringFocus = false;
 }
 record.querySelector('.close').onclick = closeRecord;
 record.addEventListener('cancel', event => { event.preventDefault(); closeRecord(); });
