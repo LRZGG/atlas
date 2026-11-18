@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import assert from 'node:assert';
 
 const s = JSON.parse(readFileSync('squelette.json'));
+const SUBFR = JSON.parse(readFileSync('sous-disciplines-fr.json', 'utf8')); // noms français des 250 sous-disciplines (traduction éditoriale)
 const FR = { 'Agricultural and Biological Sciences': 'Agriculture et biologie', 'Arts and Humanities': 'Arts et humanités', 'Biochemistry, Genetics and Molecular Biology': 'Biochimie et génétique', 'Business, Management and Accounting': 'Gestion et commerce', 'Chemical Engineering': 'Génie chimique', 'Chemistry': 'Chimie', 'Computer Science': 'Informatique', 'Decision Sciences': 'Sciences de la décision', 'Earth and Planetary Sciences': 'Terre et planètes', 'Economics, Econometrics and Finance': 'Économie et finance', 'Energy': 'Énergie', 'Engineering': 'Ingénierie', 'Environmental Science': 'Environnement', 'Immunology and Microbiology': 'Immunologie et microbiologie', 'Materials Science': 'Matériaux', 'Mathematics': 'Mathématiques', 'Medicine': 'Médecine', 'Neuroscience': 'Neurosciences', 'Nursing': 'Soins infirmiers', 'Pharmacology, Toxicology and Pharmaceutics': 'Pharmacologie', 'Physics and Astronomy': 'Physique et astronomie', 'Psychology': 'Psychologie', 'Social Sciences': 'Sciences sociales', 'Veterinary': 'Médecine vétérinaire', 'Dentistry': 'Dentaire', 'Health Professions': 'Professions de santé', 'Physical Sciences': 'Sciences physiques', 'Life Sciences': 'Sciences du vivant', 'Health Sciences': 'Sciences de la santé' };
 const fr = n => FR[n] || n;
 
@@ -159,7 +160,7 @@ const DATA = {
   fetched: s.fetched, cap, hole, edge: EDGE, rl: RL,
   D: dIds.map(d => ({ fr: fr(s.domains[d]), en: s.domains[d] })),
   F: fIds.map(f => ({ nn: { fr: fr(s.fields[f].name), en: s.fields[f].name }, d: dIds.indexOf(s.fields[f].domain) })),
-  S: sIds.map((id, i) => ({ n: s.subfields[id].name, f: fIdx[s.subfields[id].field], x: r3(pos[i][0]), y: r3(pos[i][1]), w: sw[i] })),
+  S: sIds.map((id, i) => ({ n: s.subfields[id].name, nf: SUBFR[s.subfields[id].name] || s.subfields[id].name, f: fIdx[s.subfields[id].field], x: r3(pos[i][0]), y: r3(pos[i][1]), w: sw[i] })),
   L: links.map(([i, j]) => [i, j]), T, Q, SRC: qs.sources,
   TXT: JSON.parse(readFileSync('textes.json', 'utf8'))
 };

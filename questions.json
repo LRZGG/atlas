@@ -132,6 +132,34 @@
         "en": "Wikipedia: Kryptos"
       },
       "u": "https://fr.wikipedia.org/wiki/Kryptos"
+    },
+    "wiki-econ": {
+      "n": {
+        "fr": "Wikipédia, liste des problèmes non résolus en économie",
+        "en": "Wikipedia, list of unsolved problems in economics"
+      },
+      "u": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_economics"
+    },
+    "wiki-stat": {
+      "n": {
+        "fr": "Wikipédia, liste des problèmes non résolus en statistiques",
+        "en": "Wikipedia, list of unsolved problems in statistics"
+      },
+      "u": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_statistics"
+    },
+    "wiki-med": {
+      "n": {
+        "fr": "Wikipédia, problèmes non résolus en médecine",
+        "en": "Wikipedia, unsolved problems in medicine"
+      },
+      "u": "https://en.wikipedia.org/wiki/Unsolved_problems_in_medicine"
+    },
+    "smale": {
+      "n": {
+        "fr": "Problèmes de Smale (1998)",
+        "en": "Smale's problems (1998)"
+      },
+      "u": "https://en.wikipedia.org/wiki/Smale%27s_problems"
     }
   },
   "questions": [
@@ -143,7 +171,8 @@
         "en": "What is the universe made of?"
       },
       "ctx": {
-        "fr": "La matière ordinaire, celle des étoiles et des galaxies, compte pour moins de 5 % de ce qui existe. La nature du reste est inconnue."
+        "fr": "La matière ordinaire, celle des étoiles et des galaxies, compte pour moins de 5 % de ce qui existe. La nature du reste est inconnue.",
+        "en": "Ordinary matter, the stuff of stars and galaxies, makes up less than 5% of what exists. The nature of the rest is unknown."
       },
       "subs": [
         "Astronomy and Astrophysics",
@@ -152,6 +181,41 @@
       "nom": {
         "fr": "Composition de l'univers",
         "en": "Makeup of the universe"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Matière noire",
+          "en": "Dark matter"
+        },
+        "fr": {
+          "savoir": [
+            "Les mouvements des galaxies et des amas de galaxies indiquent qu'il y a plus de masse que ce que l'on voit. On l'appelle matière noire.",
+            "Les mesures du fond diffus cosmologique donnent une répartition de l'énergie de l'univers : la matière ordinaire n'en forme qu'une petite part, la matière noire environ cinq fois plus.",
+            "On sait très peu de choses sur sa nature : de nombreux candidats ont été proposés et testés, sans détection directe jusqu'à présent."
+          ],
+          "ignore": [
+            "La nature de la matière noire : particule inconnue, objets sombres, ou modification de la gravité.",
+            "La nature de l'énergie noire, qui rend compte de l'expansion accélérée de l'univers."
+          ],
+          "dur": [
+            "La matière noire n'émet ni ne reçoit de lumière : on ne la détecte que par sa gravité.",
+            "Les détecteurs sont très difficiles à construire, car le signal attendu est extrêmement faible."
+          ],
+          "enjeu": "Savoir de quoi est fait l'essentiel de la matière de l'univers, et si les lois de la gravité sont complètes.",
+          "commencer": [
+            "L'astrophysique et la physique des particules.",
+            "Un premier pas : comprendre comment la vitesse de rotation des galaxies révèle de la masse invisible.",
+            "Les deux articles ci-dessous : la mesure du fond diffus par Planck, et une revue des candidats."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1051/0004-6361/201833910"
+          },
+          {
+            "doi": "10.1016/j.physrep.2004.08.031"
+          }
+        ]
       }
     },
     {
@@ -162,7 +226,8 @@
         "en": "What is the biological basis of consciousness?"
       },
       "ctx": {
-        "fr": "Ce qui se passe dans l'esprit vient de processus dans le cerveau, mais on commence seulement à les démêler."
+        "fr": "Ce qui se passe dans l'esprit vient de processus dans le cerveau, mais on commence seulement à les démêler.",
+        "en": "What happens in the mind comes from processes in the brain, but we are only beginning to disentangle them."
       },
       "subs": [
         "Cognitive Neuroscience",
@@ -217,7 +282,8 @@
         "en": "Why do humans have so few genes?"
       },
       "ctx": {
-        "fr": "Nous avons à peu près autant de gènes qu'une petite plante à fleurs. La façon dont ils sont régulés et exprimés est une question centrale de la biologie."
+        "fr": "Nous avons à peu près autant de gènes qu'une petite plante à fleurs. La façon dont ils sont régulés et exprimés est une question centrale de la biologie.",
+        "en": "We have about as many genes as a small flowering plant. How they are regulated and expressed is a central question in biology."
       },
       "subs": [
         "Genetics",
@@ -236,7 +302,8 @@
         "en": "To what extent do genetic variations determine our health?"
       },
       "ctx": {
-        "fr": "Relier les différences entre génomes aux maladies de chacun reste difficile dès que plusieurs gènes et le mode de vie s'en mêlent."
+        "fr": "Relier les différences entre génomes aux maladies de chacun reste difficile dès que plusieurs gènes et le mode de vie s'en mêlent.",
+        "en": "Linking differences between genomes to individual diseases remains hard as soon as several genes and lifestyle are involved."
       },
       "subs": [
         "Genetics (clinical)",
@@ -256,7 +323,8 @@
         "en": "Can the laws of physics be unified?"
       },
       "ctx": {
-        "fr": "La gravité et la physique quantique sont décrites par deux théories que personne n'a su réunir en une seule."
+        "fr": "La gravité et la physique quantique sont décrites par deux théories que personne n'a su réunir en une seule.",
+        "en": "Gravity and quantum physics are described by two theories that nobody has managed to merge into one."
       },
       "subs": [
         "Nuclear and High Energy Physics",
@@ -275,7 +343,8 @@
         "en": "How far can human lifespan be extended?"
       },
       "ctx": {
-        "fr": "Des souris, des vers et des levures vivent plus longtemps en laboratoire. Certains chercheurs pensent pouvoir ralentir le vieillissement humain, d'autres que notre durée de vie est plus figée."
+        "fr": "Des souris, des vers et des levures vivent plus longtemps en laboratoire. Certains chercheurs pensent pouvoir ralentir le vieillissement humain, d'autres que notre durée de vie est plus figée.",
+        "en": "Mice, worms and yeast live longer in the lab. Some researchers think human ageing can be slowed; others think our lifespan is more fixed."
       },
       "subs": [
         "Aging",
@@ -284,6 +353,38 @@
       "nom": {
         "fr": "Limites de la longévité",
         "en": "Limits of longevity"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Vieillissement",
+          "en": "Ageing"
+        },
+        "fr": {
+          "savoir": [
+            "Le vieillissement correspond à une baisse progressive des fonctions de l'organisme. Des facteurs comme l'instabilité du génome, l'usure des télomères ou l'inflammation y contribuent.",
+            "Chez des animaux de laboratoire, plusieurs interventions allongent la durée de vie, comme la restriction calorique.",
+            "Chez l'être humain, la durée de vie moyenne a beaucoup augmenté, mais la durée de vie maximale observée est restée à peu près la même."
+          ],
+          "ignore": [
+            "Pourquoi on vieillit : usure accumulée ou processus programmé.",
+            "S'il existe une limite à la vie humaine, et laquelle."
+          ],
+          "dur": [
+            "Le vieillissement est lent, ce qui rend les expériences très longues chez l'être humain.",
+            "Il combine de nombreux mécanismes qui interagissent, donc il est difficile d'en isoler un."
+          ],
+          "enjeu": "Mieux comprendre ce qui fait vieillir pourrait retarder les maladies liées à l'âge, qui sont les principales causes de mortalité dans les pays riches.",
+          "commencer": [
+            "La biologie du vieillissement et la gériatrie.",
+            "Un premier pas : lire la liste des « marques du vieillissement ».",
+            "L'article ci-dessous la présente."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1016/j.cell.2013.05.039"
+          }
+        ]
       }
     },
     {
@@ -294,7 +395,8 @@
         "en": "What controls organ regeneration?"
       },
       "ctx": {
-        "fr": "Certains animaux font repousser un membre entier. On ne sait pas pourquoi les mammifères en sont presque incapables."
+        "fr": "Certains animaux font repousser un membre entier. On ne sait pas pourquoi les mammifères en sont presque incapables.",
+        "en": "Some animals regrow an entire limb. We do not know why mammals are almost incapable of it."
       },
       "subs": [
         "Developmental Biology",
@@ -315,10 +417,12 @@
         "en": "How can a skin cell become a nerve cell?"
       },
       "ctx": {
-        "fr": "La question portait sur la possibilité de changer l'identité d'une cellule adulte."
+        "fr": "La question portait sur la possibilité de changer l'identité d'une cellule adulte.",
+        "en": "The question was whether the identity of an adult cell could be changed."
       },
       "note": {
-        "fr": "Depuis 2006, on sait reprogrammer des cellules adultes en cellules souches (prix Nobel 2012). Les mécanismes fins restent étudiés."
+        "fr": "Depuis 2006, on sait reprogrammer des cellules adultes en cellules souches (prix Nobel 2012). Les mécanismes fins restent étudiés.",
+        "en": "Since 2006 adult cells can be reprogrammed into stem cells (Nobel Prize 2012). The fine mechanisms are still being studied."
       },
       "subs": [
         "Cell Biology",
@@ -338,7 +442,8 @@
         "en": "How does a single cell become a whole plant?"
       },
       "ctx": {
-        "fr": "Une cellule végétale isolée peut redonner une plante complète. Ce qui déclenche et guide ce processus n'est pas entièrement compris."
+        "fr": "Une cellule végétale isolée peut redonner une plante complète. Ce qui déclenche et guide ce processus n'est pas entièrement compris.",
+        "en": "A single plant cell can regrow a whole plant. What triggers and guides the process is not fully understood."
       },
       "subs": [
         "Plant Science",
@@ -357,7 +462,8 @@
         "en": "How does Earth's interior work?"
       },
       "ctx": {
-        "fr": "On ne peut pas y aller. Tout ce qu'on sait du manteau et du noyau vient de mesures indirectes, surtout les ondes des séismes."
+        "fr": "On ne peut pas y aller. Tout ce qu'on sait du manteau et du noyau vient de mesures indirectes, surtout les ondes des séismes.",
+        "en": "We cannot go there. Everything we know about the mantle and the core comes from indirect measurements, mostly earthquake waves."
       },
       "subs": [
         "Geophysics",
@@ -376,7 +482,8 @@
         "en": "Are we alone in the universe?"
       },
       "ctx": {
-        "fr": "On ne connaît qu'un seul exemple de vie : la nôtre."
+        "fr": "On ne connaît qu'un seul exemple de vie : la nôtre.",
+        "en": "We know of only one example of life: our own."
       },
       "subs": [
         "Astronomy and Astrophysics",
@@ -395,7 +502,8 @@
         "en": "Where and how did life arise on Earth?"
       },
       "ctx": {
-        "fr": "Il ne reste presque aucune trace de cette époque, et personne n'a recréé en laboratoire un système qui se reproduit seul à partir de chimie simple."
+        "fr": "Il ne reste presque aucune trace de cette époque, et personne n'a recréé en laboratoire un système qui se reproduit seul à partir de chimie simple.",
+        "en": "Almost no trace remains of that era, and nobody has recreated in the lab a system that reproduces itself from simple chemistry."
       },
       "subs": [
         "Biochemistry",
@@ -453,7 +561,8 @@
         "en": "What determines species diversity?"
       },
       "ctx": {
-        "fr": "Certains milieux abritent des milliers d'espèces et d'autres très peu, sans qu'une règle générale l'explique."
+        "fr": "Certains milieux abritent des milliers d'espèces et d'autres très peu, sans qu'une règle générale l'explique.",
+        "en": "Some environments host thousands of species and others very few, with no general rule to explain it."
       },
       "subs": [
         "Ecology, Evolution, Behavior and Systematics",
@@ -472,7 +581,8 @@
         "en": "What genetic changes made us uniquely human?"
       },
       "ctx": {
-        "fr": "Notre génome est très proche de celui du chimpanzé. Quelles différences comptent vraiment reste à établir."
+        "fr": "Notre génome est très proche de celui du chimpanzé. Quelles différences comptent vraiment reste à établir.",
+        "en": "Our genome is very close to the chimpanzee's. Which differences really matter remains to be established."
       },
       "subs": [
         "Genetics",
@@ -491,7 +601,8 @@
         "en": "How are memories stored and retrieved?"
       },
       "ctx": {
-        "fr": "On sait que les connexions entre neurones changent quand on apprend. On ne sait pas lire un souvenir dans un cerveau."
+        "fr": "On sait que les connexions entre neurones changent quand on apprend. On ne sait pas lire un souvenir dans un cerveau.",
+        "en": "We know that connections between neurons change when we learn. We cannot read a memory in a brain."
       },
       "subs": [
         "Cognitive Neuroscience",
@@ -500,6 +611,38 @@
       "nom": {
         "fr": "Mémoire",
         "en": "Memory"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Mémoire (psychologie)",
+          "en": "Memory"
+        },
+        "fr": {
+          "savoir": [
+            "Les souvenirs sont associés à des groupes de neurones, appelés engrammes, qui s'activent quand on se rappelle.",
+            "Chez la souris, on a pu activer artificiellement un engramme et provoquer un comportement de rappel.",
+            "L'hippocampe joue un rôle central dans la formation des souvenirs récents."
+          ],
+          "ignore": [
+            "Où et comment les souvenirs à long terme sont stockés.",
+            "Pourquoi certains souvenirs sont gardés et d'autres perdus."
+          ],
+          "dur": [
+            "On ne peut pas observer un souvenir : on voit seulement l'activité des neurones, ce qui laisse des interprétations différentes.",
+            "La plupart des expériences précises sont faites chez la souris, pas chez l'être humain."
+          ],
+          "enjeu": "Comprendre la mémoire éclaire des maladies comme Alzheimer et la façon d'apprendre.",
+          "commencer": [
+            "Les neurosciences cognitives.",
+            "Un premier pas : lire comment on active un engramme chez la souris.",
+            "L'article ci-dessous est une revue sur les engrammes de mémoire."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1126/science.aaw4325"
+          }
+        ]
       }
     },
     {
@@ -510,7 +653,8 @@
         "en": "How did cooperation evolve?"
       },
       "ctx": {
-        "fr": "La sélection naturelle favorise l'intérêt individuel, et pourtant de nombreuses espèces, dont la nôtre, s'entraident."
+        "fr": "La sélection naturelle favorise l'intérêt individuel, et pourtant de nombreuses espèces, dont la nôtre, s'entraident.",
+        "en": "Natural selection favours individual interest, yet many species, ours included, help one another."
       },
       "subs": [
         "Ecology, Evolution, Behavior and Systematics",
@@ -530,7 +674,8 @@
         "en": "How will big pictures emerge from a sea of biological data?"
       },
       "ctx": {
-        "fr": "La biologie produit plus de mesures qu'elle ne sait en relier pour comprendre un organisme entier."
+        "fr": "La biologie produit plus de mesures qu'elle ne sait en relier pour comprendre un organisme entier.",
+        "en": "Biology produces more measurements than it can connect to understand a whole organism."
       },
       "subs": [
         "Molecular Biology",
@@ -550,7 +695,8 @@
         "en": "How far can we push chemical self-assembly?"
       },
       "ctx": {
-        "fr": "Le vivant construit des structures complexes à partir de molécules qui s'organisent seules. Les chimistes n'en reproduisent que des versions simples."
+        "fr": "Le vivant construit des structures complexes à partir de molécules qui s'organisent seules. Les chimistes n'en reproduisent que des versions simples.",
+        "en": "Living things build complex structures from molecules that organise themselves. Chemists reproduce only simple versions."
       },
       "subs": [
         "Organic Chemistry",
@@ -570,7 +716,8 @@
         "en": "What are the limits of conventional computing?"
       },
       "ctx": {
-        "fr": "Certains problèmes semblent hors de portée de tout ordinateur classique, quelle que soit sa puissance."
+        "fr": "Certains problèmes semblent hors de portée de tout ordinateur classique, quelle que soit sa puissance.",
+        "en": "Some problems seem out of reach of any classical computer, however powerful."
       },
       "subs": [
         "Computational Theory and Mathematics",
@@ -590,7 +737,8 @@
         "en": "Can we selectively shut off immune responses?"
       },
       "ctx": {
-        "fr": "Cela permettrait de traiter les maladies auto-immunes et les rejets de greffe sans affaiblir toutes les défenses du corps."
+        "fr": "Cela permettrait de traiter les maladies auto-immunes et les rejets de greffe sans affaiblir toutes les défenses du corps.",
+        "en": "It would allow treating autoimmune diseases and transplant rejection without weakening all the body's defences."
       },
       "subs": [
         "Immunology",
@@ -610,7 +758,8 @@
         "en": "Do deeper principles underlie quantum uncertainty and nonlocality?"
       },
       "ctx": {
-        "fr": "La mécanique quantique prédit très bien les résultats d'expérience, sans dire pourquoi le hasard et l'action à distance y apparaissent."
+        "fr": "La mécanique quantique prédit très bien les résultats d'expérience, sans dire pourquoi le hasard et l'action à distance y apparaissent.",
+        "en": "Quantum mechanics predicts experimental results very well, without saying why chance and action at a distance appear in it."
       },
       "subs": [
         "Atomic and Molecular Physics, and Optics",
@@ -630,7 +779,8 @@
         "en": "Is an effective HIV vaccine feasible?"
       },
       "ctx": {
-        "fr": "Le virus mute vite et s'attaque aux cellules mêmes qui devraient le combattre."
+        "fr": "Le virus mute vite et s'attaque aux cellules mêmes qui devraient le combattre.",
+        "en": "The virus mutates quickly and attacks the very cells that should fight it."
       },
       "subs": [
         "Virology",
@@ -650,7 +800,8 @@
         "en": "How hot will the greenhouse world be?"
       },
       "ctx": {
-        "fr": "La réponse dépend de la sensibilité du climat aux gaz à effet de serre, que les modèles n'encadrent qu'avec une marge."
+        "fr": "La réponse dépend de la sensibilité du climat aux gaz à effet de serre, que les modèles n'encadrent qu'avec une marge.",
+        "en": "The answer depends on climate sensitivity to greenhouse gases, which models constrain only within a range."
       },
       "subs": [
         "Global and Planetary Change",
@@ -659,6 +810,38 @@
       "nom": {
         "fr": "Ampleur du réchauffement",
         "en": "Extent of warming"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Réchauffement climatique",
+          "en": "Global warming"
+        },
+        "fr": {
+          "savoir": [
+            "La température moyenne de la Terre a augmenté depuis la fin du XIXe siècle. Les rapports du GIEC concluent que l'influence humaine, surtout par les gaz à effet de serre, en est la cause.",
+            "Le dioxyde de carbone de l'atmosphère a fortement augmenté depuis l'ère industrielle, ce qui est mesuré directement.",
+            "Les projections dépendent des émissions futures : plus elles sont élevées, plus le réchauffement est fort."
+          ],
+          "ignore": [
+            "Jusqu'où le climat se réchauffera, car la sensibilité du climat aux gaz à effet de serre reste connue dans une fourchette.",
+            "À quel point certains phénomènes (nuages, glaces, courants océaniques) amplifieront ou freineront le réchauffement."
+          ],
+          "dur": [
+            "Le climat est un système de nombreux éléments qui interagissent, et on ne peut pas faire l'expérience à l'échelle de la planète.",
+            "Les émissions futures dépendent de décisions humaines, pas seulement de la physique."
+          ],
+          "enjeu": "Savoir quelle température sera atteinte permet de décider des mesures à prendre.",
+          "commencer": [
+            "La climatologie et la modélisation du climat.",
+            "Un premier pas : comparer la courbe du CO2 et celle de la température depuis 1900.",
+            "Le rapport ci-dessous est l'évaluation du GIEC de 2021 sur les bases physiques."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1017/9781009157896"
+          }
+        ]
       }
     },
     {
@@ -669,7 +852,8 @@
         "en": "What will replace oil, and when?"
       },
       "ctx": {
-        "fr": "La question est à la fois technique et économique."
+        "fr": "La question est à la fois technique et économique.",
+        "en": "The question is both technical and economic."
       },
       "subs": [
         "Renewable Energy, Sustainability and the Environment",
@@ -689,7 +873,8 @@
         "en": "Will Malthus continue to be wrong?"
       },
       "ctx": {
-        "fr": "En 1798, Malthus prédisait que la croissance de la population serait stoppée par la famine, la guerre ou la maladie. La population a été multipliée par six sans l'effondrement annoncé. Peut-on continuer à l'éviter ?"
+        "fr": "En 1798, Malthus prédisait que la croissance de la population serait stoppée par la famine, la guerre ou la maladie. La population a été multipliée par six sans l'effondrement annoncé. Peut-on continuer à l'éviter ?",
+        "en": "In 1798 Malthus predicted that population growth would be stopped by famine, war or disease. Population has grown sixfold without the announced collapse. Can this continue?"
       },
       "subs": [
         "Demography",
@@ -709,7 +894,8 @@
         "en": "Is checking a solution as hard as finding it?"
       },
       "ctx": {
-        "fr": "C'est le problème « P contre NP », la question centrale de la théorie de la complexité."
+        "fr": "C'est le problème « P contre NP », la question centrale de la théorie de la complexité.",
+        "en": "This is the “P versus NP” problem, the central question of complexity theory."
       },
       "subs": [
         "Computational Theory and Mathematics",
@@ -765,7 +951,8 @@
         "en": "Is the Riemann hypothesis true?"
       },
       "ctx": {
-        "fr": "Formulée en 1859, elle porte sur la répartition des nombres premiers."
+        "fr": "Formulée en 1859, elle porte sur la répartition des nombres premiers.",
+        "en": "Formulated in 1859, it concerns the distribution of prime numbers."
       },
       "subs": [
         "Algebra and Number Theory"
@@ -820,7 +1007,8 @@
         "en": "Can Yang–Mills theory be built rigorously?"
       },
       "ctx": {
-        "fr": "Cette théorie décrit les forces entre particules. Il manque sa construction mathématique rigoureuse, avec la preuve d'un « écart de masse » positif."
+        "fr": "Cette théorie décrit les forces entre particules. Il manque sa construction mathématique rigoureuse, avec la preuve d'un « écart de masse » positif.",
+        "en": "This theory describes the forces between particles. Its rigorous mathematical construction is missing, along with a proof of a positive “mass gap”."
       },
       "subs": [
         "Mathematical Physics",
@@ -840,10 +1028,12 @@
         "en": "Do the Navier–Stokes equations always have a smooth solution?"
       },
       "ctx": {
-        "fr": "Ces équations décrivent l'écoulement des fluides depuis le XIXe siècle. Le problème demande si leurs solutions existent toujours et restent lisses en trois dimensions."
+        "fr": "Ces équations décrivent l'écoulement des fluides depuis le XIXe siècle. Le problème demande si leurs solutions existent toujours et restent lisses en trois dimensions.",
+        "en": "These equations have described fluid flow since the 19th century. The problem asks whether their solutions always exist and stay smooth in three dimensions."
       },
       "note": {
-        "fr": "Une résolution a été proposée en septembre 2026. L'institut Clay classe le problème comme « actif » et n'a pas attribué le prix (d'après MathWorld, consulté le 16 novembre 2026)."
+        "fr": "Une résolution a été proposée en septembre 2026. L'institut Clay classe le problème comme « actif » et n'a pas attribué le prix (d'après MathWorld, consulté le 16 novembre 2026).",
+        "en": "A resolution was proposed in September 2026. The Clay Institute lists the problem as “active” and has not awarded the prize (according to MathWorld, consulted 16 November 2026)."
       },
       "subs": [
         "Applied Mathematics",
@@ -853,6 +1043,40 @@
       "nom": {
         "fr": "Navier-Stokes",
         "en": "Navier–Stokes"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Équations de Navier-Stokes",
+          "en": "Navier–Stokes existence and smoothness"
+        },
+        "fr": {
+          "savoir": [
+            "Les équations de Navier-Stokes décrivent le mouvement des fluides comme l'eau et l'air. Elles sont utilisées en météorologie, en aéronautique et dans de nombreux domaines.",
+            "En deux dimensions, on sait démontrer que les solutions existent et restent régulières.",
+            "En trois dimensions, on sait démontrer l'existence de solutions pour un temps court, ou de solutions plus faibles, mais pas pour tout temps avec régularité."
+          ],
+          "ignore": [
+            "Si, en trois dimensions, les solutions restent toujours régulières, ou si une singularité peut apparaître.",
+            "Quel type de mathématiques permettrait d'y répondre."
+          ],
+          "dur": [
+            "Les équations sont non linéaires : les effets de grande taille et de petite taille se mélangent.",
+            "La turbulence rend le comportement des solutions difficile à décrire."
+          ],
+          "enjeu": "L'institut Clay offre un million de dollars à qui y répondra. C'est aussi une question de base pour la compréhension de la turbulence.",
+          "commencer": [
+            "Les équations aux dérivées partielles et la mécanique des fluides.",
+            "Un premier pas : comprendre pourquoi une équation non linéaire se résout plus mal qu'une équation linéaire.",
+            "La description officielle du problème est ci-dessous."
+          ]
+        },
+        "refs": [
+          {
+            "url": "https://www.claymath.org/millennium/navier-stokes-equation/",
+            "t": "Navier-Stokes equation, description officielle du problème",
+            "a": "Clay Mathematics Institute"
+          }
+        ]
       }
     },
     {
@@ -863,7 +1087,8 @@
         "en": "Is the Hodge conjecture true?"
       },
       "ctx": {
-        "fr": "Elle relie la forme de certains espaces géométriques aux équations algébriques qui les définissent."
+        "fr": "Elle relie la forme de certains espaces géométriques aux équations algébriques qui les définissent.",
+        "en": "It links the shape of certain geometric spaces to the algebraic equations that define them."
       },
       "subs": [
         "Geometry and Topology",
@@ -872,6 +1097,40 @@
       "nom": {
         "fr": "Conjecture de Hodge",
         "en": "Hodge conjecture"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Conjecture de Hodge",
+          "en": "Hodge conjecture"
+        },
+        "fr": {
+          "savoir": [
+            "La conjecture relie la topologie d'objets géométriques définis par des équations (variétés algébriques) à des objets algébriques plus simples.",
+            "Elle est démontrée dans plusieurs cas particuliers.",
+            "Elle fait partie des sept problèmes du prix du millénaire de l'institut Clay."
+          ],
+          "ignore": [
+            "Si elle est vraie en général.",
+            "Si un objet topologique d'un certain type est toujours fait de morceaux algébriques."
+          ],
+          "dur": [
+            "Elle met en relation des outils venus de domaines différents, ce qui demande de nouvelles idées.",
+            "Il n'y a pas de piste générale connue pour la démontrer ou la réfuter."
+          ],
+          "enjeu": "Elle donnerait un lien précis entre deux manières de décrire des formes, et ferait avancer la géométrie algébrique.",
+          "commencer": [
+            "La géométrie algébrique et la topologie.",
+            "Un premier pas : comprendre ce qu'est une courbe algébrique et sa topologie.",
+            "La description officielle du problème est ci-dessous."
+          ]
+        },
+        "refs": [
+          {
+            "url": "https://www.claymath.org/millennium/hodge-conjecture/",
+            "t": "Hodge conjecture, description officielle du problème",
+            "a": "Clay Mathematics Institute"
+          }
+        ]
       }
     },
     {
@@ -882,7 +1141,8 @@
         "en": "Is the Birch and Swinnerton-Dyer conjecture true?"
       },
       "ctx": {
-        "fr": "Elle porte sur le nombre de solutions rationnelles de certaines équations, les courbes elliptiques."
+        "fr": "Elle porte sur le nombre de solutions rationnelles de certaines équations, les courbes elliptiques.",
+        "en": "It concerns the number of rational solutions of certain equations, elliptic curves."
       },
       "subs": [
         "Algebra and Number Theory"
@@ -900,7 +1160,8 @@
         "en": "Is every even number greater than 2 the sum of two primes?"
       },
       "ctx": {
-        "fr": "Vérifiée par ordinateur sur de très grands nombres, jamais démontrée. Elle fait partie du huitième problème de Hilbert (1900)."
+        "fr": "Vérifiée par ordinateur sur de très grands nombres, jamais démontrée. Elle fait partie du huitième problème de Hilbert (1900).",
+        "en": "Checked by computer on very large numbers, never proved. It is part of Hilbert's eighth problem (1900)."
       },
       "subs": [
         "Algebra and Number Theory"
@@ -908,6 +1169,38 @@
       "nom": {
         "fr": "Conjecture de Goldbach",
         "en": "Goldbach's conjecture"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Conjecture de Goldbach",
+          "en": "Goldbach's conjecture"
+        },
+        "fr": {
+          "savoir": [
+            "Tout nombre pair supérieur à 2 serait la somme de deux nombres premiers : 4 = 2 + 2, 10 = 3 + 7, 100 = 3 + 97.",
+            "Les ordinateurs l'ont vérifiée pour tous les nombres pairs jusqu'à plusieurs milliards de milliards.",
+            "Une version plus faible, pour les nombres impairs et trois nombres premiers, a été démontrée par Harald Helfgott en 2013."
+          ],
+          "ignore": [
+            "Si c'est vrai pour tous les nombres pairs, ce qui reste inconnu malgré les vérifications.",
+            "S'il existe un contre-exemple, que personne n'a trouvé."
+          ],
+          "dur": [
+            "Les nombres premiers sont définis par la multiplication, alors que la question porte sur l'addition : les outils manquent pour relier les deux.",
+            "Une vérification par ordinateur, même énorme, ne couvre pas une infinité de nombres."
+          ],
+          "enjeu": "C'est l'un des plus anciens problèmes ouverts de mathématiques, qui fait partie du huitième problème de Hilbert.",
+          "commencer": [
+            "La théorie analytique des nombres.",
+            "Un premier pas : écrire chaque nombre pair jusqu'à 50 comme somme de deux premiers.",
+            "L'article ci-dessous détaille la vérification par ordinateur."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1090/S0025-5718-2013-02787-1"
+          }
+        ]
       }
     },
     {
@@ -918,7 +1211,8 @@
         "en": "Are there infinitely many twin primes?"
       },
       "ctx": {
-        "fr": "Deux nombres premiers jumeaux diffèrent de 2, comme 11 et 13. On a démontré en 2013 qu'il existe une infinité de paires de premiers séparés par un écart borné, sans pouvoir ramener cet écart à 2."
+        "fr": "Deux nombres premiers jumeaux diffèrent de 2, comme 11 et 13. On a démontré en 2013 qu'il existe une infinité de paires de premiers séparés par un écart borné, sans pouvoir ramener cet écart à 2.",
+        "en": "Twin primes differ by 2, like 11 and 13. In 2013 it was proved that there are infinitely many pairs of primes separated by a bounded gap, without being able to bring that gap down to 2."
       },
       "subs": [
         "Algebra and Number Theory"
@@ -971,7 +1265,8 @@
         "en": "Is there a general reciprocity law linking numbers and symmetry?"
       },
       "ctx": {
-        "fr": "Le neuvième problème de Hilbert demande la loi de réciprocité la plus générale. Beaucoup de spécialistes y voient le programme de Langlands, un réseau de conjectures reliant nombres, géométrie et symétries."
+        "fr": "Le neuvième problème de Hilbert demande la loi de réciprocité la plus générale. Beaucoup de spécialistes y voient le programme de Langlands, un réseau de conjectures reliant nombres, géométrie et symétries.",
+        "en": "Hilbert's ninth problem asks for the most general reciprocity law. Many specialists see in it the Langlands programme, a network of conjectures linking numbers, geometry and symmetries."
       },
       "subs": [
         "Algebra and Number Theory",
@@ -990,7 +1285,8 @@
         "en": "How many limit cycles can a polynomial equation in the plane have?"
       },
       "ctx": {
-        "fr": "C'est le seizième problème de Hilbert. On a démontré que ce nombre est fini pour chaque équation, mais on ne sait pas le borner d'avance."
+        "fr": "C'est le seizième problème de Hilbert. On a démontré que ce nombre est fini pour chaque équation, mais on ne sait pas le borner d'avance.",
+        "en": "This is Hilbert's sixteenth problem. It has been proved that this number is finite for each equation, but it cannot be bounded in advance."
       },
       "subs": [
         "Applied Mathematics",
@@ -1009,7 +1305,8 @@
         "en": "Can all of physics be built on axioms?"
       },
       "ctx": {
-        "fr": "En 1900, Hilbert demandait de traiter la physique comme les mathématiques, à partir d'axiomes. Le problème est jugé mal défini ou seulement en partie résolu."
+        "fr": "En 1900, Hilbert demandait de traiter la physique comme les mathématiques, à partir d'axiomes. Le problème est jugé mal défini ou seulement en partie résolu.",
+        "en": "In 1900 Hilbert asked for physics to be treated like mathematics, starting from axioms. The problem is regarded as ill-defined or only partly solved."
       },
       "subs": [
         "Mathematical Physics",
@@ -1028,7 +1325,8 @@
         "en": "Does the Collatz rule always lead to 1?"
       },
       "ctx": {
-        "fr": "On divise un nombre pair par 2 ; on multiplie un nombre impair par 3 puis on ajoute 1 ; on recommence. Tous les nombres testés par ordinateur finissent à 1, mais personne ne l'a démontré."
+        "fr": "On divise un nombre pair par 2 ; on multiplie un nombre impair par 3 puis on ajoute 1 ; on recommence. Tous les nombres testés par ordinateur finissent à 1, mais personne ne l'a démontré.",
+        "en": "Halve an even number; multiply an odd number by 3 and add 1; repeat. Every number tested by computer ends at 1, but nobody has proved it."
       },
       "subs": [
         "Algebra and Number Theory",
@@ -1037,6 +1335,38 @@
       "nom": {
         "fr": "Conjecture de Collatz",
         "en": "Collatz conjecture"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Conjecture de Syracuse",
+          "en": "Collatz conjecture"
+        },
+        "fr": {
+          "savoir": [
+            "Règle : si le nombre est pair, on le divise par 2 ; s'il est impair, on le multiplie par 3 et on ajoute 1. On recommence.",
+            "Tous les nombres testés par ordinateur finissent par arriver à 1.",
+            "En 2019, Terence Tao a démontré que presque tous les nombres atteignent des valeurs très petites, en un sens précis, sans démontrer qu'ils arrivent tous à 1."
+          ],
+          "ignore": [
+            "Si tous les nombres arrivent à 1.",
+            "S'il existe un nombre dont la suite grandit sans fin, ou une boucle autre que 4, 2, 1."
+          ],
+          "dur": [
+            "La règle mélange multiplication et division, ce qui donne des suites sans régularité apparente.",
+            "Il n'existe pas de méthode générale pour étudier ce type de suite."
+          ],
+          "enjeu": "C'est un problème simple à énoncer qui résiste depuis longtemps. Il montre qu'une règle élémentaire peut cacher une difficulté profonde.",
+          "commencer": [
+            "La théorie des nombres et les systèmes dynamiques.",
+            "Un premier pas : calculer à la main la suite de 27.",
+            "L'article ci-dessous est celui de Tao sur le comportement de presque tous les orbites."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1017/fmp.2022.8"
+          }
+        ]
       }
     },
     {
@@ -1047,7 +1377,8 @@
         "en": "What does the abc conjecture say about adding versus multiplying?"
       },
       "ctx": {
-        "fr": "Elle relie les facteurs premiers de a, de b et de a + b. Une démonstration proposée en 2012 reste contestée."
+        "fr": "Elle relie les facteurs premiers de a, de b et de a + b. Une démonstration proposée en 2012 reste contestée.",
+        "en": "It links the prime factors of a, of b and of a + b. A proof proposed in 2012 remains disputed."
       },
       "subs": [
         "Algebra and Number Theory"
@@ -1065,7 +1396,8 @@
         "en": "Is there an odd perfect number?"
       },
       "ctx": {
-        "fr": "Un nombre parfait égale la somme de ses diviseurs autres que lui-même (6 = 1 + 2 + 3). On en connaît des pairs ; on n'a jamais trouvé d'impair ni prouvé qu'il n'en existe pas."
+        "fr": "Un nombre parfait égale la somme de ses diviseurs autres que lui-même (6 = 1 + 2 + 3). On en connaît des pairs ; on n'a jamais trouvé d'impair ni prouvé qu'il n'en existe pas.",
+        "en": "A perfect number equals the sum of its divisors other than itself (6 = 1 + 2 + 3). Even ones are known; no odd one has ever been found, nor proved not to exist."
       },
       "subs": [
         "Algebra and Number Theory"
@@ -1083,7 +1415,8 @@
         "en": "How many colours does it take to colour the plane so no two points at distance 1 share one?"
       },
       "ctx": {
-        "fr": "On sait qu'il en faut au moins 5 et que 7 suffisent. La valeur exacte reste inconnue."
+        "fr": "On sait qu'il en faut au moins 5 et que 7 suffisent. La valeur exacte reste inconnue.",
+        "en": "At least 5 are needed and 7 suffice. The exact value remains unknown."
       },
       "subs": [
         "Discrete Mathematics and Combinatorics",
@@ -1102,7 +1435,8 @@
         "en": "Does every closed curve contain the four corners of a square?"
       },
       "ctx": {
-        "fr": "La réponse est oui pour de nombreuses courbes régulières, mais le cas général est ouvert. C'est le problème du carré inscrit."
+        "fr": "La réponse est oui pour de nombreuses courbes régulières, mais le cas général est ouvert. C'est le problème du carré inscrit.",
+        "en": "The answer is yes for many regular curves, but the general case is open. This is the inscribed square problem."
       },
       "subs": [
         "Geometry and Topology"
@@ -1120,7 +1454,8 @@
         "en": "How many people must be gathered so that five all know each other, or five are all strangers?"
       },
       "ctx": {
-        "fr": "C'est le nombre de Ramsey R(5,5). On n'en connaît qu'un encadrement."
+        "fr": "C'est le nombre de Ramsey R(5,5). On n'en connaît qu'un encadrement.",
+        "en": "This is the Ramsey number R(5,5). Only bounds are known."
       },
       "subs": [
         "Discrete Mathematics and Combinatorics"
@@ -1138,7 +1473,8 @@
         "en": "What is the best way to pack spheres in high dimensions?"
       },
       "ctx": {
-        "fr": "Le problème est résolu seulement en dimensions 1, 2, 3, 8 et 24."
+        "fr": "Le problème est résolu seulement en dimensions 1, 2, 3, 8 et 24.",
+        "en": "The problem is solved only in dimensions 1, 2, 3, 8 and 24."
       },
       "subs": [
         "Geometry and Topology",
@@ -1157,7 +1493,8 @@
         "en": "Can a large number be factored quickly on an ordinary computer?"
       },
       "ctx": {
-        "fr": "On ne connaît aucun algorithme rapide, et une grande part du chiffrement repose sur cette difficulté. Un ordinateur quantique pourrait le faire vite (algorithme de Shor)."
+        "fr": "On ne connaît aucun algorithme rapide, et une grande part du chiffrement repose sur cette difficulté. Un ordinateur quantique pourrait le faire vite (algorithme de Shor).",
+        "en": "No fast algorithm is known, and much of today's encryption relies on this difficulty. A quantum computer could do it quickly (Shor's algorithm)."
       },
       "subs": [
         "Theoretical Computer Science",
@@ -1214,7 +1551,8 @@
         "en": "Are there operations that are easy to do but impossible to undo?"
       },
       "ctx": {
-        "fr": "Ces « fonctions à sens unique » fonderaient la cryptographie moderne. On n'a pas démontré qu'elles existent, ce qui entraînerait que P est différent de NP."
+        "fr": "Ces « fonctions à sens unique » fonderaient la cryptographie moderne. On n'a pas démontré qu'elles existent, ce qui entraînerait que P est différent de NP.",
+        "en": "These “one-way functions” would underpin modern cryptography. Their existence has not been proved, which would imply that P differs from NP."
       },
       "subs": [
         "Theoretical Computer Science",
@@ -1233,7 +1571,8 @@
         "en": "Can we quickly tell whether two networks are the same?"
       },
       "ctx": {
-        "fr": "Pour ce problème d'isomorphisme de graphes, on ne connaît pas d'algorithme rapide en toute généralité, sans avoir montré qu'il n'en existe pas."
+        "fr": "Pour ce problème d'isomorphisme de graphes, on ne connaît pas d'algorithme rapide en toute généralité, sans avoir montré qu'il n'en existe pas.",
+        "en": "For this graph isomorphism problem, no fast algorithm is known in full generality, and it has not been shown that none exists."
       },
       "subs": [
         "Theoretical Computer Science",
@@ -1252,7 +1591,8 @@
         "en": "What is the speed limit for multiplying two grids of numbers?"
       },
       "ctx": {
-        "fr": "On sait faire mieux que la méthode apprise à l'école. Le meilleur algorithme possible reste inconnu."
+        "fr": "On sait faire mieux que la méthode apprise à l'école. Le meilleur algorithme possible reste inconnu.",
+        "en": "We can do better than the method learnt at school. The best possible algorithm remains unknown."
       },
       "subs": [
         "Computational Theory and Mathematics",
@@ -1271,7 +1611,8 @@
         "en": "What is the fastest way to multiply two large numbers?"
       },
       "ctx": {
-        "fr": "Un algorithme très rapide existe depuis 2019. On ne sait pas s'il est le meilleur possible."
+        "fr": "Un algorithme très rapide existe depuis 2019. On ne sait pas s'il est le meilleur possible.",
+        "en": "A very fast algorithm has existed since 2019. It is not known whether it is the best possible."
       },
       "subs": [
         "Computational Theory and Mathematics",
@@ -1290,7 +1631,8 @@
         "en": "Does randomness make algorithms faster?"
       },
       "ctx": {
-        "fr": "De nombreux algorithmes utilisent le hasard. On pense qu'on peut toujours s'en passer sans perdre de vitesse, mais ce n'est pas démontré."
+        "fr": "De nombreux algorithmes utilisent le hasard. On pense qu'on peut toujours s'en passer sans perdre de vitesse, mais ce n'est pas démontré.",
+        "en": "Many algorithms use randomness. It is believed they can always do without it without losing speed, but this is not proved."
       },
       "subs": [
         "Theoretical Computer Science",
@@ -1309,7 +1651,8 @@
         "en": "Is there a truly fast algorithm for linear programming?"
       },
       "ctx": {
-        "fr": "Ces problèmes d'optimisation sont résolus tous les jours. On ne sait pas s'il existe un algorithme dont la durée ne dépend que de la taille du problème."
+        "fr": "Ces problèmes d'optimisation sont résolus tous les jours. On ne sait pas s'il existe un algorithme dont la durée ne dépend que de la taille du problème.",
+        "en": "These optimisation problems are solved every day. It is not known whether an algorithm exists whose running time depends only on the size of the problem."
       },
       "subs": [
         "Management Science and Operations Research",
@@ -1328,7 +1671,8 @@
         "en": "Can a large, reliable quantum computer be built?"
       },
       "ctx": {
-        "fr": "Les qubits sont fragiles et font des erreurs. On cherche à les corriger assez bien pour réaliser de longs calculs."
+        "fr": "Les qubits sont fragiles et font des erreurs. On cherche à les corriger assez bien pour réaliser de longs calculs.",
+        "en": "Qubits are fragile and make errors. The aim is to correct them well enough to run long computations."
       },
       "subs": [
         "Atomic and Molecular Physics, and Optics",
@@ -1348,7 +1692,8 @@
         "en": "Did the universe go through a burst of ultra-fast expansion at the very start?"
       },
       "ctx": {
-        "fr": "La théorie de l'inflation explique pourquoi l'univers est si uniforme, mais elle n'est pas prouvée et ses détails restent inconnus."
+        "fr": "La théorie de l'inflation explique pourquoi l'univers est si uniforme, mais elle n'est pas prouvée et ses détails restent inconnus.",
+        "en": "The theory of inflation explains why the universe is so uniform, but it is not proved and its details remain unknown."
       },
       "subs": [
         "Astronomy and Astrophysics",
@@ -1367,7 +1712,8 @@
         "en": "Why does the universe contain matter and almost no antimatter?"
       },
       "ctx": {
-        "fr": "Les modèles prévoient des quantités égales au début de l'univers. Les observations montrent surtout de la matière."
+        "fr": "Les modèles prévoient des quantités égales au début de l'univers. Les observations montrent surtout de la matière.",
+        "en": "Models predict equal amounts at the beginning of the universe. Observations show mostly matter."
       },
       "subs": [
         "Nuclear and High Energy Physics",
@@ -1386,7 +1732,8 @@
         "en": "What happens to information that falls into a black hole?"
       },
       "ctx": {
-        "fr": "Les trous noirs émettent un rayonnement qui, d'après la théorie, semble effacer l'information. Cela contredit la mécanique quantique."
+        "fr": "Les trous noirs émettent un rayonnement qui, d'après la théorie, semble effacer l'information. Cela contredit la mécanique quantique.",
+        "en": "Black holes emit radiation which, according to theory, seems to erase information. This contradicts quantum mechanics."
       },
       "subs": [
         "Astronomy and Astrophysics",
@@ -1440,7 +1787,8 @@
         "en": "Why does time have a direction?"
       },
       "ctx": {
-        "fr": "Les lois de la physique fonctionnent presque aussi bien à l'envers. On ignore pourquoi l'univers avait une entropie si basse au départ."
+        "fr": "Les lois de la physique fonctionnent presque aussi bien à l'envers. On ignore pourquoi l'univers avait une entropie si basse au départ.",
+        "en": "The laws of physics work almost as well backwards. We do not know why the universe had such low entropy at the start."
       },
       "subs": [
         "Statistical and Nonlinear Physics",
@@ -1459,7 +1807,8 @@
         "en": "What is the mass of neutrinos?"
       },
       "ctx": {
-        "fr": "On sait que les neutrinos ont une masse, pas sa valeur. On ne sait pas non plus s'ils sont leur propre antiparticule."
+        "fr": "On sait que les neutrinos ont une masse, pas sa valeur. On ne sait pas non plus s'ils sont leur propre antiparticule.",
+        "en": "We know neutrinos have a mass, but not its value. We also do not know whether they are their own antiparticle."
       },
       "subs": [
         "Nuclear and High Energy Physics"
@@ -1467,6 +1816,39 @@
       "nom": {
         "fr": "Masse des neutrinos",
         "en": "Neutrino mass"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Neutrino",
+          "en": "Neutrino"
+        },
+        "fr": {
+          "savoir": [
+            "Les neutrinos sont des particules très légères et très nombreuses, qui interagissent très peu avec la matière.",
+            "En 1998, l'expérience Super-Kamiokande a montré que les neutrinos changent de type en voyageant (oscillation), ce qui implique qu'ils ont une masse.",
+            "Les différences de masse entre types sont mesurées, mais pas les masses elles-mêmes."
+          ],
+          "ignore": [
+            "La masse de chaque neutrino.",
+            "S'ils sont leur propre antiparticule (neutrinos de Majorana) ou non.",
+            "L'ordre de leurs masses (hiérarchie normale ou inversée)."
+          ],
+          "dur": [
+            "Leur interaction est si faible qu'il faut de très grands détecteurs pour en voir quelques-uns.",
+            "La masse est si petite qu'elle est difficile à mesurer directement."
+          ],
+          "enjeu": "Leur masse ne rentre pas dans le modèle standard : la connaître indique ce qu'il y a au-delà, et pourrait expliquer pourquoi l'univers contient plus de matière que d'antimatière.",
+          "commencer": [
+            "La physique des particules.",
+            "Un premier pas : comprendre l'oscillation des neutrinos.",
+            "L'article ci-dessous est celui de Super-Kamiokande en 1998."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1103/PhysRevLett.81.1562"
+          }
+        ]
       }
     },
     {
@@ -1477,7 +1859,8 @@
         "en": "Is the proton eternal?"
       },
       "ctx": {
-        "fr": "Certaines extensions de la physique actuelle prévoient qu'il se désintègre, très lentement. Aucune désintégration n'a été observée."
+        "fr": "Certaines extensions de la physique actuelle prévoient qu'il se désintègre, très lentement. Aucune désintégration n'a été observée.",
+        "en": "Some extensions of current physics predict that it decays, very slowly. No decay has been observed."
       },
       "subs": [
         "Nuclear and High Energy Physics"
@@ -1495,7 +1878,8 @@
         "en": "Why can a quark never be isolated?"
       },
       "ctx": {
-        "fr": "Les quarks n'existent qu'enfermés dans des particules. Ce confinement n'est pas démontré mathématiquement."
+        "fr": "Les quarks n'existent qu'enfermés dans des particules. Ce confinement n'est pas démontré mathématiquement.",
+        "en": "Quarks exist only locked inside particles. This confinement has not been proved mathematically."
       },
       "subs": [
         "Nuclear and High Energy Physics",
@@ -1514,7 +1898,8 @@
         "en": "Why do particles come in three families?"
       },
       "ctx": {
-        "fr": "Quarks et leptons se répartissent en trois générations de plus en plus lourdes. Aucune théorie n'explique ce nombre ni les masses."
+        "fr": "Quarks et leptons se répartissent en trois générations de plus en plus lourdes. Aucune théorie n'explique ce nombre ni les masses.",
+        "en": "Quarks and leptons come in three generations of increasing mass. No theory explains this number or the masses."
       },
       "subs": [
         "Nuclear and High Energy Physics"
@@ -1532,7 +1917,8 @@
         "en": "What is the shape of the universe?"
       },
       "ctx": {
-        "fr": "On ne connaît que la partie observable. On ignore si l'espace entier est infini ou fini, et comment il se referme."
+        "fr": "On ne connaît que la partie observable. On ignore si l'espace entier est infini ou fini, et comment il se referme.",
+        "en": "We know only the observable part. We do not know whether the whole of space is infinite or finite, or how it closes up."
       },
       "subs": [
         "Astronomy and Astrophysics",
@@ -1551,7 +1937,8 @@
         "en": "Why do two measurements of the universe's expansion disagree?"
       },
       "ctx": {
-        "fr": "La vitesse d'expansion mesurée dans l'univers proche diffère de celle déduite de l'univers primitif. Erreur de mesure ou physique nouvelle ?"
+        "fr": "La vitesse d'expansion mesurée dans l'univers proche diffère de celle déduite de l'univers primitif. Erreur de mesure ou physique nouvelle ?",
+        "en": "The expansion rate measured in the nearby universe differs from the one inferred from the early universe. Measurement error or new physics?"
       },
       "subs": [
         "Astronomy and Astrophysics"
@@ -1603,7 +1990,8 @@
         "en": "Why do some materials conduct without resistance at relatively high temperatures?"
       },
       "ctx": {
-        "fr": "On ne sait pas expliquer les supraconducteurs dits « à haute température », découverts en 1986."
+        "fr": "On ne sait pas expliquer les supraconducteurs dits « à haute température », découverts en 1986.",
+        "en": "We cannot explain the so-called “high-temperature” superconductors, discovered in 1986."
       },
       "subs": [
         "Condensed Matter Physics",
@@ -1659,7 +2047,8 @@
         "en": "What turns a liquid into glass?"
       },
       "ctx": {
-        "fr": "On ne sait pas expliquer précisément le passage d'un liquide à un solide désordonné."
+        "fr": "On ne sait pas expliquer précisément le passage d'un liquide à un solide désordonné.",
+        "en": "We cannot precisely explain the passage from a liquid to a disordered solid."
       },
       "subs": [
         "Condensed Matter Physics",
@@ -1678,7 +2067,8 @@
         "en": "Can turbulence be predicted?"
       },
       "ctx": {
-        "fr": "On ne dispose pas d'une théorie complète des écoulements turbulents ni de leurs structures internes."
+        "fr": "On ne dispose pas d'une théorie complète des écoulements turbulents ni de leurs structures internes.",
+        "en": "There is no complete theory of turbulent flows or of their internal structures."
       },
       "subs": [
         "Statistical and Nonlinear Physics",
@@ -1697,7 +2087,8 @@
         "en": "Why is the energy of empty space so small?"
       },
       "ctx": {
-        "fr": "La physique quantique prédit une énergie du vide immense. Celle qu'on observe est incomparablement plus petite."
+        "fr": "La physique quantique prédit une énergie du vide immense. Celle qu'on observe est incomparablement plus petite.",
+        "en": "Quantum physics predicts an enormous vacuum energy. The one we observe is incomparably smaller."
       },
       "subs": [
         "Nuclear and High Energy Physics",
@@ -1716,7 +2107,8 @@
         "en": "Where do the universe's magnetic fields come from?"
       },
       "ctx": {
-        "fr": "On en observe dans les galaxies et les amas de galaxies. Leur origine n'est pas expliquée."
+        "fr": "On en observe dans les galaxies et les amas de galaxies. Leur origine n'est pas expliquée.",
+        "en": "They are observed in galaxies and galaxy clusters. Their origin is not explained."
       },
       "subs": [
         "Astronomy and Astrophysics"
@@ -1734,7 +2126,8 @@
         "en": "How do animals sense the Earth's magnetic field?"
       },
       "ctx": {
-        "fr": "Des oiseaux migrateurs s'y repèrent. Le mécanisme n'est pas élucidé."
+        "fr": "Des oiseaux migrateurs s'y repèrent. Le mécanisme n'est pas élucidé.",
+        "en": "Migratory birds find their way by it. The mechanism is not elucidated."
       },
       "subs": [
         "Sensory Systems",
@@ -1753,7 +2146,8 @@
         "en": "Why is the Sun's atmosphere hotter than its surface?"
       },
       "ctx": {
-        "fr": "La couronne solaire est bien plus chaude que la surface. Ce chauffage coronal n'est pas expliqué."
+        "fr": "La couronne solaire est bien plus chaude que la surface. Ce chauffage coronal n'est pas expliqué.",
+        "en": "The solar corona is far hotter than the surface. This coronal heating is not explained."
       },
       "subs": [
         "Astronomy and Astrophysics",
@@ -1772,7 +2166,8 @@
         "en": "How does the Sun flip its magnetic field every eleven years?"
       },
       "ctx": {
-        "fr": "Le cycle solaire est observé depuis longtemps. Le mécanisme qui le produit n'est pas entièrement compris."
+        "fr": "Le cycle solaire est observé depuis longtemps. Le mécanisme qui le produit n'est pas entièrement compris.",
+        "en": "The solar cycle has long been observed. The mechanism producing it is not fully understood."
       },
       "subs": [
         "Astronomy and Astrophysics",
@@ -1791,7 +2186,8 @@
         "en": "What produces fast radio bursts?"
       },
       "ctx": {
-        "fr": "Ces éclairs radio de quelques millisecondes viennent de galaxies lointaines. Certains se répètent à intervalles imprévisibles. Leur cause est inconnue."
+        "fr": "Ces éclairs radio de quelques millisecondes viennent de galaxies lointaines. Certains se répètent à intervalles imprévisibles. Leur cause est inconnue.",
+        "en": "These radio flashes of a few milliseconds come from distant galaxies. Some repeat at unpredictable intervals. Their cause is unknown."
       },
       "subs": [
         "Astronomy and Astrophysics"
@@ -1809,7 +2205,8 @@
         "en": "What accelerates the most energetic cosmic rays?"
       },
       "ctx": {
-        "fr": "Certaines particules arrivent sur Terre avec une énergie immense. On ne sait pas quels phénomènes la leur donnent."
+        "fr": "Certaines particules arrivent sur Terre avec une énergie immense. On ne sait pas quels phénomènes la leur donnent.",
+        "en": "Some particles reach Earth with immense energy. We do not know which phenomena give it to them."
       },
       "subs": [
         "Astronomy and Astrophysics",
@@ -1828,7 +2225,8 @@
         "en": "How did giant black holes grow so fast?"
       },
       "ctx": {
-        "fr": "On observe des quasars alimentés par des trous noirs énormes alors que l'univers était jeune. Leur croissance rapide pose problème."
+        "fr": "On observe des quasars alimentés par des trous noirs énormes alors que l'univers était jeune. Leur croissance rapide pose problème.",
+        "en": "Quasars powered by enormous black holes are observed when the universe was young. Their rapid growth is a problem."
       },
       "subs": [
         "Astronomy and Astrophysics"
@@ -1846,7 +2244,8 @@
         "en": "How does a collapsing star turn into an explosion?"
       },
       "ctx": {
-        "fr": "On sait qu'une étoile massive en fin de vie peut exploser en supernova. Le mécanisme exact reste débattu."
+        "fr": "On sait qu'une étoile massive en fin de vie peut exploser en supernova. Le mécanisme exact reste débattu.",
+        "en": "We know a massive star at the end of its life can explode as a supernova. The exact mechanism remains debated."
       },
       "subs": [
         "Astronomy and Astrophysics"
@@ -1864,7 +2263,8 @@
         "en": "Are there other planets beyond Neptune?"
       },
       "ctx": {
-        "fr": "Les orbites très étirées de certains objets lointains font soupçonner une grande planète encore non observée. Aucune n'a été trouvée."
+        "fr": "Les orbites très étirées de certains objets lointains font soupçonner une grande planète encore non observée. Aucune n'a été trouvée.",
+        "en": "The very elongated orbits of some distant objects suggest a large, still unobserved planet. None has been found."
       },
       "subs": [
         "Space and Planetary Science",
@@ -1883,7 +2283,8 @@
         "en": "Is our solar system typical?"
       },
       "ctx": {
-        "fr": "On a découvert des milliers de planètes autour d'autres étoiles, souvent très différentes des nôtres. On ignore à quel point un système comme le nôtre est courant."
+        "fr": "On a découvert des milliers de planètes autour d'autres étoiles, souvent très différentes des nôtres. On ignore à quel point un système comme le nôtre est courant.",
+        "en": "Thousands of planets have been found around other stars, often very different from ours. How common a system like ours is remains unknown."
       },
       "subs": [
         "Space and Planetary Science",
@@ -1902,7 +2303,8 @@
         "en": "Why are the molecules of life all one-handed?"
       },
       "ctx": {
-        "fr": "Les acides aminés du vivant sont presque tous « gauches » et les sucres « droits ». L'origine de ce choix est inconnue."
+        "fr": "Les acides aminés du vivant sont presque tous « gauches » et les sucres « droits ». L'origine de ce choix est inconnue.",
+        "en": "The amino acids of living things are almost all “left-handed” and sugars “right-handed”. The origin of this choice is unknown."
       },
       "subs": [
         "Organic Chemistry",
@@ -1921,7 +2323,8 @@
         "en": "Where does the periodic table end?"
       },
       "ctx": {
-        "fr": "On a fabriqué des éléments jusqu'au numéro 118. On ignore s'il existe une limite au nombre d'éléments possibles."
+        "fr": "On a fabriqué des éléments jusqu'au numéro 118. On ignore s'il existe une limite au nombre d'éléments possibles.",
+        "en": "Elements up to number 118 have been made. Whether there is a limit to the number of possible elements is unknown."
       },
       "subs": [
         "Physical and Theoretical Chemistry",
@@ -1940,7 +2343,8 @@
         "en": "How does a protein find its shape?"
       },
       "ctx": {
-        "fr": "On sait aujourd'hui prédire la forme de beaucoup de protéines à partir de leur séquence. On comprend moins comment elles la prennent, ou comment se comportent les protéines désordonnées."
+        "fr": "On sait aujourd'hui prédire la forme de beaucoup de protéines à partir de leur séquence. On comprend moins comment elles la prennent, ou comment se comportent les protéines désordonnées.",
+        "en": "We can now predict the shape of many proteins from their sequence. How they take it, or how disordered proteins behave, is less well understood."
       },
       "subs": [
         "Structural Biology",
@@ -1996,7 +2400,8 @@
         "en": "Why does water behave so strangely?"
       },
       "ctx": {
-        "fr": "L'eau liquide présente de nombreuses anomalies. On étudie le rôle des effets quantiques des atomes d'hydrogène."
+        "fr": "L'eau liquide présente de nombreuses anomalies. On étudie le rôle des effets quantiques des atomes d'hydrogène.",
+        "en": "Liquid water shows many anomalies. The role of quantum effects of hydrogen atoms is being studied."
       },
       "subs": [
         "Physical and Theoretical Chemistry"
@@ -2014,7 +2419,8 @@
         "en": "Can fuels be made from light, cheaply?"
       },
       "ctx": {
-        "fr": "Séparer l'eau avec la lumière pour produire de l'hydrogène marche en laboratoire. Le faire efficacement et à bas prix reste à réussir."
+        "fr": "Séparer l'eau avec la lumière pour produire de l'hydrogène marche en laboratoire. Le faire efficacement et à bas prix reste à réussir.",
+        "en": "Splitting water with light to make hydrogen works in the lab. Doing so efficiently and cheaply remains to be achieved."
       },
       "subs": [
         "Catalysis",
@@ -2034,7 +2440,8 @@
         "en": "Can ammonia be made without heat or high pressure?"
       },
       "ctx": {
-        "fr": "L'ammoniac des engrais est produit à haute température et sous forte pression. Une méthode à conditions ambiantes, à grande échelle, n'existe pas encore."
+        "fr": "L'ammoniac des engrais est produit à haute température et sous forte pression. Une méthode à conditions ambiantes, à grande échelle, n'existe pas encore.",
+        "en": "Fertiliser ammonia is made at high temperature and high pressure. A large-scale method at ambient conditions does not exist yet."
       },
       "subs": [
         "Catalysis",
@@ -2053,7 +2460,8 @@
         "en": "Why does sexual reproduction exist?"
       },
       "ctx": {
-        "fr": "Elle semble moins efficace que le clonage, et pourtant elle domine chez les animaux. Les forces qui l'ont fait naître et qui la maintiennent sont débattues."
+        "fr": "Elle semble moins efficace que le clonage, et pourtant elle domine chez les animaux. Les forces qui l'ont fait naître et qui la maintiennent sont débattues.",
+        "en": "It seems less efficient than cloning, yet it dominates in animals. The forces that gave rise to it and maintain it are debated."
       },
       "subs": [
         "Ecology, Evolution, Behavior and Systematics",
@@ -2072,7 +2480,8 @@
         "en": "Where do viruses come from?"
       },
       "ctx": {
-        "fr": "Plusieurs scénarios existent. On ignore quand et comment les différents groupes de virus sont apparus."
+        "fr": "Plusieurs scénarios existent. On ignore quand et comment les différents groupes de virus sont apparus.",
+        "en": "Several scenarios exist. When and how the different groups of viruses appeared is unknown."
       },
       "subs": [
         "Virology",
@@ -2091,7 +2500,8 @@
         "en": "How did complex cells arise?"
       },
       "ctx": {
-        "fr": "Les cellules à noyau résultent d'une fusion ancienne entre cellules. On ignore comment et pourquoi elle s'est produite."
+        "fr": "Les cellules à noyau résultent d'une fusion ancienne entre cellules. On ignore comment et pourquoi elle s'est produite.",
+        "en": "Cells with a nucleus result from an ancient fusion between cells. How and why it happened is unknown."
       },
       "subs": [
         "Cell Biology",
@@ -2111,7 +2521,8 @@
         "en": "What did the common ancestor of bacteria and archaea look like?"
       },
       "ctx": {
-        "fr": "Ses caractéristiques ne sont connues qu'avec beaucoup d'incertitude."
+        "fr": "Ses caractéristiques ne sont connues qu'avec beaucoup d'incertitude.",
+        "en": "Its characteristics are known only with great uncertainty."
       },
       "subs": [
         "Microbiology",
@@ -2130,7 +2541,8 @@
         "en": "What do the proteins of unknown role do?"
       },
       "ctx": {
-        "fr": "Vingt ans après les premiers génomes d'eucaryotes, le rôle biologique d'environ un cinquième des protéines reste inconnu."
+        "fr": "Vingt ans après les premiers génomes d'eucaryotes, le rôle biologique d'environ un cinquième des protéines reste inconnu.",
+        "en": "Twenty years after the first eukaryotic genomes, the biological role of about a fifth of proteins is still unknown."
       },
       "subs": [
         "Molecular Biology",
@@ -2149,7 +2561,8 @@
         "en": "How does a cell know how big to grow before dividing?"
       },
       "ctx": {
-        "fr": "Les cellules se divisent à une taille bien réglée. Comment elles la mesurent n'est pas élucidé."
+        "fr": "Les cellules se divisent à une taille bien réglée. Comment elles la mesurent n'est pas élucidé.",
+        "en": "Cells divide at a well-regulated size. How they measure it is not elucidated."
       },
       "subs": [
         "Cell Biology",
@@ -2168,7 +2581,8 @@
         "en": "How do anaesthetics switch off consciousness?"
       },
       "ctx": {
-        "fr": "On les utilise tous les jours, mais leur mécanisme d'action n'est pas entièrement compris."
+        "fr": "On les utilise tous les jours, mais leur mécanisme d'action n'est pas entièrement compris.",
+        "en": "They are used every day, but their mechanism of action is not fully understood."
       },
       "subs": [
         "Anesthesiology and Pain Medicine",
@@ -2223,7 +2637,8 @@
         "en": "How does an organ always reach the right shape and size?"
       },
       "ctx": {
-        "fr": "La forme et la taille finales des organes sont très fiables. On en comprend seulement une partie des commandes."
+        "fr": "La forme et la taille finales des organes sont très fiables. On en comprend seulement une partie des commandes.",
+        "en": "The final shape and size of organs are very reliable. Only part of the controls is understood."
       },
       "subs": [
         "Developmental Biology",
@@ -2242,7 +2657,8 @@
         "en": "Why did animal life diversify so fast in the Cambrian?"
       },
       "ctx": {
-        "fr": "Presque tous les grands groupes d'animaux apparaissent dans les fossiles sur une période géologiquement courte. La cause est débattue."
+        "fr": "Presque tous les grands groupes d'animaux apparaissent dans les fossiles sur une période géologiquement courte. La cause est débattue.",
+        "en": "Almost all major animal groups appear in the fossil record over a geologically short period. The cause is debated."
       },
       "subs": [
         "Paleontology",
@@ -2296,7 +2712,8 @@
         "en": "Why do so many plankton species coexist?"
       },
       "ctx": {
-        "fr": "Elles semblent se disputer les mêmes ressources, ce qui devrait en éliminer la plupart : c'est le « paradoxe du plancton »."
+        "fr": "Elles semblent se disputer les mêmes ressources, ce qui devrait en éliminer la plupart : c'est le « paradoxe du plancton ».",
+        "en": "They seem to compete for the same resources, which should eliminate most of them: this is the “paradox of the plankton”."
       },
       "subs": [
         "Aquatic Science",
@@ -2315,7 +2732,8 @@
         "en": "Where do flowers come from?"
       },
       "ctx": {
-        "fr": "Darwin parlait d'un « abominable mystère » : les plantes à fleurs semblent apparaître brusquement dans les fossiles."
+        "fr": "Darwin parlait d'un « abominable mystère » : les plantes à fleurs semblent apparaître brusquement dans les fossiles.",
+        "en": "Darwin spoke of an “abominable mystery”: flowering plants seem to appear suddenly in the fossil record."
       },
       "subs": [
         "Plant Science",
@@ -2334,7 +2752,8 @@
         "en": "Why did the other human species die out?"
       },
       "ctx": {
-        "fr": "Néandertal et d'autres espèces humaines se sont éteints, laissant Homo sapiens seul. Les causes restent débattues."
+        "fr": "Néandertal et d'autres espèces humaines se sont éteints, laissant Homo sapiens seul. Les causes restent débattues.",
+        "en": "Neanderthals and other human species died out, leaving Homo sapiens alone. The causes remain debated."
       },
       "subs": [
         "Anthropology",
@@ -2354,7 +2773,8 @@
         "en": "What are blood types for?"
       },
       "ctx": {
-        "fr": "On ignore leur origine et leur utilité. Des hypothèses existent, par exemple une adaptation au paludisme."
+        "fr": "On ignore leur origine et leur utilité. Des hypothèses existent, par exemple une adaptation au paludisme.",
+        "en": "Their origin and usefulness are unknown. Hypotheses exist, for example an adaptation to malaria."
       },
       "subs": [
         "Hematology",
@@ -2373,7 +2793,8 @@
         "en": "How do animals find their way over very long distances?"
       },
       "ctx": {
-        "fr": "Oiseaux ou papillons monarques regagnent des lieux lointains. Les mécanismes en jeu ne sont pas expliqués."
+        "fr": "Oiseaux ou papillons monarques regagnent des lieux lointains. Les mécanismes en jeu ne sont pas expliqués.",
+        "en": "Birds or monarch butterflies return to distant places. The mechanisms involved are not explained."
       },
       "subs": [
         "Animal Science and Zoology",
@@ -2392,7 +2813,8 @@
         "en": "Do we have free will?"
       },
       "ctx": {
-        "fr": "Des expériences montrent une activité du cerveau avant la décision consciente d'agir, mais leur interprétation est très discutée."
+        "fr": "Des expériences montrent une activité du cerveau avant la décision consciente d'agir, mais leur interprétation est très discutée.",
+        "en": "Experiments show brain activity before the conscious decision to act, but their interpretation is much disputed."
       },
       "subs": [
         "Cognitive Neuroscience",
@@ -2411,7 +2833,8 @@
         "en": "How does the brain bind colour, shape and meaning into one percept?"
       },
       "ctx": {
-        "fr": "C'est le « problème de la liaison ». On ne sait pas comment des informations traitées dans des régions différentes forment une expérience unique."
+        "fr": "C'est le « problème de la liaison ». On ne sait pas comment des informations traitées dans des régions différentes forment une expérience unique.",
+        "en": "This is the “binding problem”. We do not know how information processed in different regions forms a single experience."
       },
       "subs": [
         "Cognitive Neuroscience",
@@ -2430,7 +2853,8 @@
         "en": "How does the brain grasp the meaning of words?"
       },
       "ctx": {
-        "fr": "On ne sait ni comment le langage est réalisé dans le cerveau ni sur quoi repose le sens."
+        "fr": "On ne sait ni comment le langage est réalisé dans le cerveau ni sur quoi repose le sens.",
+        "en": "We know neither how language is implemented in the brain nor what meaning rests on."
       },
       "subs": [
         "Cognitive Neuroscience",
@@ -2449,7 +2873,8 @@
         "en": "How does a child learn to speak?"
       },
       "ctx": {
-        "fr": "Les spécialistes débattent de la part de structures innées et de celle de l'apprentissage par l'expérience."
+        "fr": "Les spécialistes débattent de la part de structures innées et de celle de l'apprentissage par l'expérience.",
+        "en": "Specialists debate the share of innate structures and that of learning from experience."
       },
       "subs": [
         "Developmental and Educational Psychology",
@@ -2468,7 +2893,8 @@
         "en": "Which animals have conscious experience?"
       },
       "ctx": {
-        "fr": "Il n'existe pas de test accepté par tous pour savoir si un être ressent quelque chose."
+        "fr": "Il n'existe pas de test accepté par tous pour savoir si un être ressent quelque chose.",
+        "en": "There is no test accepted by everyone for knowing whether a being feels anything."
       },
       "subs": [
         "Behavioral Neuroscience",
@@ -2488,7 +2914,8 @@
         "en": "How far can the adult brain change?"
       },
       "ctx": {
-        "fr": "On sait que le cerveau adulte se modifie. On ignore l'étendue de cette plasticité."
+        "fr": "On sait que le cerveau adulte se modifie. On ignore l'étendue de cette plasticité.",
+        "en": "We know the adult brain changes. The extent of this plasticity is unknown."
       },
       "subs": [
         "Cellular and Molecular Neuroscience",
@@ -2507,7 +2934,8 @@
         "en": "What are the biological causes of mental illness?"
       },
       "ctx": {
-        "fr": "Pour la schizophrénie, la maladie de Parkinson, la maladie d'Alzheimer ou les addictions, les bases neuronales restent à établir."
+        "fr": "Pour la schizophrénie, la maladie de Parkinson, la maladie d'Alzheimer ou les addictions, les bases neuronales restent à établir.",
+        "en": "For schizophrenia, Parkinson's disease, Alzheimer's disease or addictions, the neural bases remain to be established."
       },
       "subs": [
         "Biological Psychiatry",
@@ -2526,7 +2954,8 @@
         "en": "Was the Moon born from a collision with another planet?"
       },
       "ctx": {
-        "fr": "L'hypothèse d'un impact avec un corps nommé Théia est la plus répandue, mais elle n'est pas définitivement établie."
+        "fr": "L'hypothèse d'un impact avec un corps nommé Théia est la plus répandue, mais elle n'est pas définitivement établie.",
+        "en": "The hypothesis of an impact with a body called Theia is the most widespread, but it is not definitively established."
       },
       "subs": [
         "Space and Planetary Science",
@@ -2545,7 +2974,8 @@
         "en": "What is the Earth's core made of?"
       },
       "ctx": {
-        "fr": "Surtout de fer, mêlé à des éléments plus légers dont on ignore lesquels et en quelles quantités."
+        "fr": "Surtout de fer, mêlé à des éléments plus légers dont on ignore lesquels et en quelles quantités.",
+        "en": "Mostly iron, mixed with lighter elements, which ones and in what amounts is unknown."
       },
       "subs": [
         "Geophysics",
@@ -2564,7 +2994,8 @@
         "en": "Why does El Niño appear irregularly?"
       },
       "ctx": {
-        "fr": "Les mécanismes des oscillations du climat équatorial du Pacifique sont toujours à l'étude."
+        "fr": "Les mécanismes des oscillations du climat équatorial du Pacifique sont toujours à l'étude.",
+        "en": "The mechanisms of the oscillations of the equatorial Pacific climate are still under study."
       },
       "subs": [
         "Atmospheric Science",
@@ -2584,7 +3015,8 @@
         "en": "Where did the 1977 radio signal come from?"
       },
       "ctx": {
-        "fr": "Le radiotélescope Big Ear (Ohio) a enregistré pendant 72 secondes un signal étroit et intense. Il n'a jamais été reçu de nouveau."
+        "fr": "Le radiotélescope Big Ear (Ohio) a enregistré pendant 72 secondes un signal étroit et intense. Il n'a jamais été reçu de nouveau.",
+        "en": "The Big Ear radio telescope (Ohio) recorded a narrow, intense signal for 72 seconds. It has never been received again."
       },
       "subs": [
         "Astronomy and Astrophysics",
@@ -2593,6 +3025,38 @@
       "nom": {
         "fr": "Signal Wow!",
         "en": "Wow! signal"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Signal Wow!",
+          "en": "Wow! signal"
+        },
+        "fr": {
+          "savoir": [
+            "Le 15 août 1977, le radiotélescope Big Ear (université d'État de l'Ohio) a enregistré un signal radio intense et à bande étroite, près de la fréquence de 1 420 MHz, celle de l'hydrogène neutre.",
+            "Le signal a duré 72 secondes, le temps que la source traverse le champ de l'antenne. L'astronome Jerry Ehman a entouré les données sur le listing et écrit « Wow! » dans la marge.",
+            "Des recherches ultérieures, avec des radiotélescopes plus sensibles, n'ont pas retrouvé de signal de ce type au même endroit du ciel."
+          ],
+          "ignore": [
+            "D'où il venait : un phénomène naturel, une interférence terrestre ou autre chose. Aucune explication ne fait consensus.",
+            "S'il s'est répété : une seule détection existe, donc impossible de la vérifier par répétition."
+          ],
+          "dur": [
+            "Un événement unique ne se mesure pas deux fois : on ne peut pas le reproduire ni l'étudier de plus près.",
+            "Le télescope observait un point fixe du ciel : la direction de la source est connue seulement à une région près, pas à un point."
+          ],
+          "enjeu": "C'est un test de méthode : que fait-on d'un signal unique, impossible à répéter ? Il sert aussi de référence aux recherches de signaux extraterrestres.",
+          "commencer": [
+            "La radioastronomie et le traitement du signal.",
+            "Un premier pas : lire pourquoi 1 420 MHz est une fréquence si particulière.",
+            "Le premier article ci-dessous décrit une recherche moderne de ce signal."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1086/318272"
+          }
+        ]
       }
     },
     {
@@ -2604,7 +3068,8 @@
         "en": "What does the Voynich manuscript say, if anything?"
       },
       "ctx": {
-        "fr": "Un livre illustré du début du XVe siècle, écrit dans une écriture inconnue. Aucune lecture ne fait consensus."
+        "fr": "Un livre illustré du début du XVe siècle, écrit dans une écriture inconnue. Aucune lecture ne fait consensus.",
+        "en": "An illustrated book from the early 15th century, written in an unknown script. No reading has reached consensus."
       },
       "subs": [
         "Language and Linguistics",
@@ -2614,6 +3079,38 @@
       "nom": {
         "fr": "Manuscrit de Voynich",
         "en": "Voynich manuscript"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Manuscrit de Voynich",
+          "en": "Voynich manuscript"
+        },
+        "fr": {
+          "savoir": [
+            "C'est un livre illustré d'environ 240 pages, conservé à la bibliothèque Beinecke de l'université Yale. La datation au carbone 14 du vélin le place au début du XVe siècle.",
+            "Il est écrit dans une écriture inconnue, avec des dessins de plantes, d'astres et de figures qui ne correspondent à aucun ouvrage connu.",
+            "Le texte suit des régularités statistiques proches de celles d'un langage naturel, mais personne n'a produit de traduction acceptée."
+          ],
+          "ignore": [
+            "Ce que dit le texte, et même si c'est un message : langue inconnue, code, ou texte sans sens, plusieurs hypothèses sont débattues.",
+            "Qui l'a écrit, où et pourquoi."
+          ],
+          "dur": [
+            "On ne connaît ni la langue, ni la clé éventuelle, ni un seul mot sûr : il n'y a aucun point d'appui pour un déchiffrement.",
+            "Les analyses statistiques montrent des régularités sans dire si elles viennent d'un langage ou d'un procédé de génération de texte."
+          ],
+          "enjeu": "C'est un banc d'essai pour le déchiffrement de textes anciens et pour les méthodes de traitement automatique des langues.",
+          "commencer": [
+            "La paléographie, la linguistique de corpus et la cryptographie historique.",
+            "Un premier pas : comparer les distributions de mots d'un texte connu et de ce manuscrit.",
+            "Le premier article ci-dessous étudie les mots-clés et leurs répartitions dans le texte."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1371/journal.pone.0066344"
+          }
+        ]
       }
     },
     {
@@ -2625,7 +3122,8 @@
         "en": "How did the Antikythera mechanism work?"
       },
       "ctx": {
-        "fr": "Un mécanisme à engrenages antique, repêché en 1901 dans une épave. Son fonctionnement exact est encore étudié."
+        "fr": "Un mécanisme à engrenages antique, repêché en 1901 dans une épave. Son fonctionnement exact est encore étudié.",
+        "en": "An ancient geared mechanism, recovered from a wreck in 1901. Exactly how it worked is still being studied."
       },
       "subs": [
         "Archeology",
@@ -2635,6 +3133,41 @@
       "nom": {
         "fr": "Machine d'Anticythère",
         "en": "Antikythera mechanism"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Machine d'Anticythère",
+          "en": "Antikythera mechanism"
+        },
+        "fr": {
+          "savoir": [
+            "Le mécanisme a été repêché en 1901 dans une épave, près de l'île d'Anticythère. Il se compose de nombreux fragments de bronze corrodé qui portent des roues dentées.",
+            "Des tomographies à rayons X ont permis de lire des inscriptions et de compter les dents des engrenages. Il servait à calculer des positions d'astres et des cycles du calendrier.",
+            "Plusieurs reconstructions ont été proposées, dont une modélisation des cadrans pour les planètes publiée en 2021."
+          ],
+          "ignore": [
+            "Comment était exactement la machine entière : une part importante des pièces manque.",
+            "Qui l'a fabriquée et d'où venait ce savoir-faire : on n'a pas retrouvé d'autre objet du même type de cette époque."
+          ],
+          "dur": [
+            "Les fragments sont corrodés et mélangés, certains ont été perdus dans la mer.",
+            "On doit déduire un mécanisme complet à partir de morceaux, sans plan écrit : plusieurs reconstructions restent possibles."
+          ],
+          "enjeu": "Elle montre que l'astronomie antique a été capable d'une mécanique de précision que l'on pensait apparue bien plus tard, et elle pose la question de ce qui s'est perdu.",
+          "commencer": [
+            "L'archéologie, l'histoire des sciences et la mécanique.",
+            "Un premier pas : comprendre comment un jeu d'engrenages peut représenter des cycles de la Lune.",
+            "Les deux articles ci-dessous sont les travaux de l'équipe de Freeth, en 2006 et en 2021."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1038/nature05357"
+          },
+          {
+            "doi": "10.1038/s41598-021-84310-w"
+          }
+        ]
       }
     },
     {
@@ -2646,7 +3179,8 @@
         "en": "What exploded over Tunguska in 1908?"
       },
       "ctx": {
-        "fr": "Une explosion a couché des millions d'arbres en Sibérie. On l'attribue le plus souvent à un astéroïde ou une comète éclatant en altitude ; les détails sont débattus."
+        "fr": "Une explosion a couché des millions d'arbres en Sibérie. On l'attribue le plus souvent à un astéroïde ou une comète éclatant en altitude ; les détails sont débattus.",
+        "en": "An explosion flattened millions of trees in Siberia. It is most often attributed to an asteroid or comet breaking up in the air; details are debated."
       },
       "subs": [
         "Space and Planetary Science",
@@ -2656,6 +3190,38 @@
       "nom": {
         "fr": "Événement de la Toungouska",
         "en": "Tunguska event"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Événement de la Toungouska",
+          "en": "Tunguska event"
+        },
+        "fr": {
+          "savoir": [
+            "Le 30 juin 1908, une explosion a couché des arbres sur une très grande surface de forêt en Sibérie. Il n'y a pas de cratère d'impact.",
+            "L'explication la plus répandue est l'éclatement en altitude d'un petit astéroïde pierreux ou d'une comète.",
+            "Des modélisations de l'entrée atmosphérique d'un astéroïde pierreux reproduisent l'effet de souffle observé."
+          ],
+          "ignore": [
+            "La nature exacte de l'objet (astéroïde, comète, autre) et sa taille.",
+            "Les détails de l'explosion, car l'étude sur place n'a eu lieu que des années après."
+          ],
+          "dur": [
+            "L'événement est ancien, en zone isolée, et les premières expéditions ont eu lieu bien après. Il n'y a presque pas de mesures directes.",
+            "L'absence de cratère oblige à raisonner à partir de dégâts au sol et de modèles."
+          ],
+          "enjeu": "Comprendre ce type d'événement aide à évaluer le risque que fait peser sur la Terre l'impact d'un petit objet, qui reste plus fréquent que celui d'un gros.",
+          "commencer": [
+            "La physique de l'entrée atmosphérique et les sciences planétaires.",
+            "Un premier pas : comprendre comment un objet peut exploser en altitude sans laisser de cratère.",
+            "Le premier article ci-dessous modélise l'éclatement d'un astéroïde pierreux."
+          ]
+        },
+        "refs": [
+          {
+            "doi": "10.1038/361040a0"
+          }
+        ]
       }
     },
     {
@@ -2667,7 +3233,8 @@
         "en": "What were the Nazca lines for?"
       },
       "ctx": {
-        "fr": "De grandes figures et des lignes tracées dans le désert du Pérou. Leur fonction est débattue."
+        "fr": "De grandes figures et des lignes tracées dans le désert du Pérou. Leur fonction est débattue.",
+        "en": "Large figures and lines drawn in the Peruvian desert. Their purpose is debated."
       },
       "subs": [
         "Archeology",
@@ -2676,6 +3243,34 @@
       "nom": {
         "fr": "Lignes de Nazca",
         "en": "Nazca lines"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Lignes de Nazca",
+          "en": "Nazca Lines"
+        },
+        "fr": {
+          "savoir": [
+            "Ce sont de grandes figures et de longues lignes tracées dans le désert du sud du Pérou, en retirant les pierres sombres du sol pour faire apparaître un sol plus clair.",
+            "Elles ont été réalisées par les cultures de la région, sur plusieurs siècles. Elles sont visibles de loin, mais on les voit surtout du ciel.",
+            "Les figures sont très nombreuses et de formes variées : animaux, plantes, figures géométriques, lignes droites."
+          ],
+          "ignore": [
+            "Leur fonction : plusieurs hypothèses sont proposées (rituelles, liées à l'eau, à l'astronomie), aucune ne s'impose.",
+            "Comment les groupes qui les ont tracées s'organisaient pour réaliser des figures aussi régulières."
+          ],
+          "dur": [
+            "Il n'existe aucun texte de ces cultures qui explique leur rôle.",
+            "Le climat très sec les conserve, ce qui aide, mais l'érosion et le tourisme les menacent."
+          ],
+          "enjeu": "Elles posent une question générale : que peut-on conclure de l'usage d'un lieu sans écrit ?",
+          "commencer": [
+            "L'archéologie du paysage et l'étude du climat.",
+            "Un premier pas : comparer les tracés à la répartition des sources d'eau de la région.",
+            "La fiche Wikipédia ci-dessous donne le point d'entrée."
+          ]
+        },
+        "refs": []
       }
     },
     {
@@ -2687,7 +3282,8 @@
         "en": "What does the Phaistos disc say?"
       },
       "ctx": {
-        "fr": "Un disque d'argile crétois couvert de signes en spirale. Il n'a jamais été déchiffré."
+        "fr": "Un disque d'argile crétois couvert de signes en spirale. Il n'a jamais été déchiffré.",
+        "en": "A Cretan clay disc covered in spiral signs. It has never been deciphered."
       },
       "subs": [
         "Language and Linguistics",
@@ -2696,6 +3292,34 @@
       "nom": {
         "fr": "Disque de Phaistos",
         "en": "Phaistos disc"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Disque de Phaistos",
+          "en": "Phaistos Disc"
+        },
+        "fr": {
+          "savoir": [
+            "C'est un disque d'argile cuite découvert en 1908 à Phaistos, en Crète. Il porte sur ses deux faces des signes disposés en spirale, imprimés avec des poinçons.",
+            "Le disque est daté d'environ le deuxième millénaire avant notre ère. Il a été trouvé avec des objets de la même époque.",
+            "Aucune lecture n'a été acceptée par les spécialistes."
+          ],
+          "ignore": [
+            "Ce que disent les signes, et même dans quelle langue.",
+            "S'il s'agit d'un texte, d'un jeu ou d'un autre type d'objet."
+          ],
+          "dur": [
+            "On n'a qu'un seul disque : c'est trop peu de texte pour tester une lecture.",
+            "Il n'existe aucun texte comparable dans cette écriture."
+          ],
+          "enjeu": "Un déchiffrement ajouterait une langue à l'histoire de la Méditerranée ancienne.",
+          "commencer": [
+            "L'archéologie égéenne et l'étude des écritures non déchiffrées.",
+            "Un premier pas : comparer ses signes à ceux du linéaire A.",
+            "Voir la page Wikipédia ci-dessous."
+          ]
+        },
+        "refs": []
       }
     },
     {
@@ -2707,7 +3331,8 @@
         "en": "Can Linear A be deciphered?"
       },
       "ctx": {
-        "fr": "L'écriture de la Crète minoenne. Les signes sont connus, la langue ne l'est pas."
+        "fr": "L'écriture de la Crète minoenne. Les signes sont connus, la langue ne l'est pas.",
+        "en": "The script of Minoan Crete. The signs are known, the language is not."
       },
       "subs": [
         "Language and Linguistics",
@@ -2717,6 +3342,34 @@
       "nom": {
         "fr": "Linéaire A",
         "en": "Linear A"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Linéaire A",
+          "en": "Linear A"
+        },
+        "fr": {
+          "savoir": [
+            "Le linéaire A est l'écriture utilisée en Crète à l'époque minoenne, au deuxième millénaire avant notre ère. On en connaît les signes.",
+            "Certains signes ressemblent à ceux du linéaire B, qui note une forme ancienne de grec et a été déchiffré en 1952. On sait donc lire une partie des valeurs sonores.",
+            "La langue notée n'est pas identifiée, donc les textes ne se comprennent pas."
+          ],
+          "ignore": [
+            "La langue du linéaire A : on ne sait pas à quelle famille elle appartient.",
+            "Le sens de la plupart des textes, qui sont de courtes listes sur des tablettes."
+          ],
+          "dur": [
+            "Les textes retrouvés sont courts et peu nombreux, souvent des comptes.",
+            "Sans texte bilingue, aucune autre langue connue ne sert de point d'appui."
+          ],
+          "enjeu": "Cela permettrait de lire l'écriture de la plus ancienne civilisation européenne de l'âge du bronze.",
+          "commencer": [
+            "La linguistique historique et l'archéologie égéenne.",
+            "Un premier pas : comprendre comment le linéaire B a été déchiffré.",
+            "Voir la page Wikipédia ci-dessous."
+          ]
+        },
+        "refs": []
       }
     },
     {
@@ -2728,7 +3381,8 @@
         "en": "What is the solution to the last passage of Kryptos?"
       },
       "ctx": {
-        "fr": "Une sculpture chiffrée de 1990 devant le siège de la CIA. Trois passages sur quatre ont été déchiffrés ; le dernier est considéré comme non résolu."
+        "fr": "Une sculpture chiffrée de 1990 devant le siège de la CIA. Trois passages sur quatre ont été déchiffrés ; le dernier est considéré comme non résolu.",
+        "en": "An encrypted sculpture of 1990 outside CIA headquarters. Three of four passages have been deciphered; the last is considered unsolved."
       },
       "subs": [
         "Theoretical Computer Science",
@@ -2737,6 +3391,766 @@
       "nom": {
         "fr": "Kryptos",
         "en": "Kryptos"
+      },
+      "fiche": {
+        "wiki": {
+          "fr": "Kryptos (sculpture)",
+          "en": "Kryptos"
+        },
+        "fr": {
+          "savoir": [
+            "Kryptos est une sculpture de Jim Sanborn, installée en 1990 devant le siège de la CIA à Langley. Elle porte quatre messages chiffrés.",
+            "Trois des quatre passages ont été déchiffrés, et les solutions ont été rendues publiques.",
+            "Le dernier passage, appelé K4, est considéré comme non résolu."
+          ],
+          "ignore": [
+            "La solution de K4 et la méthode de chiffrement employée pour lui.",
+            "Si les indices publiés par l'artiste suffisent à y arriver."
+          ],
+          "dur": [
+            "Le passage est court, donc il y a peu de matière pour des analyses statistiques.",
+            "On ne sait pas quelle méthode a été employée, ce qui oblige à les essayer toutes."
+          ],
+          "enjeu": "C'est un exemple vivant de cryptanalyse : une énigme publique, avec des règles claires, qui sert d'exercice depuis plus de trente ans.",
+          "commencer": [
+            "La cryptographie classique et l'analyse de fréquence.",
+            "Un premier pas : déchiffrer à la main un texte chiffré par un chiffre de Vigenère.",
+            "Voir la page Wikipédia ci-dessous."
+          ]
+        },
+        "refs": []
+      }
+    },
+    {
+      "id": "prime-actions",
+      "src": "wiki-econ",
+      "q": {
+        "fr": "Pourquoi les actions rapportent-elles tant plus que les obligations ?",
+        "en": "Why do stocks earn so much more than bonds?"
+      },
+      "ctx": {
+        "fr": "L'écart de rendement observé est bien plus grand que ce que prévoient les modèles économiques standard : c'est l'« énigme de la prime de risque ».",
+        "en": "The observed return gap is much larger than standard economic models predict: this is the “equity premium puzzle”."
+      },
+      "subs": [
+        "Finance",
+        "Economics and Econometrics"
+      ],
+      "nom": {
+        "fr": "Prime de risque des actions",
+        "en": "Equity premium puzzle"
+      }
+    },
+    {
+      "id": "dividendes",
+      "src": "wiki-econ",
+      "q": {
+        "fr": "Pourquoi les entreprises versent-elles des dividendes ?",
+        "en": "Why do companies pay dividends?"
+      },
+      "ctx": {
+        "fr": "Les entreprises qui en versent sont récompensées par les investisseurs, ce que la théorie standard explique mal.",
+        "en": "Companies that pay them are rewarded by investors, which standard theory explains poorly."
+      },
+      "subs": [
+        "Finance"
+      ],
+      "nom": {
+        "fr": "Énigme des dividendes",
+        "en": "Dividend puzzle"
+      }
+    },
+    {
+      "id": "biais-national",
+      "src": "wiki-econ",
+      "q": {
+        "fr": "Pourquoi investit-on surtout dans son propre pays ?",
+        "en": "Why do investors favour their home country?"
+      },
+      "ctx": {
+        "fr": "Les investisseurs détiennent beaucoup plus d'actifs nationaux que ne le prévoit la théorie, malgré les gains possibles de la diversification.",
+        "en": "Investors hold far more domestic assets than theory predicts, despite the possible gains from diversification."
+      },
+      "subs": [
+        "Finance",
+        "Economics and Econometrics"
+      ],
+      "nom": {
+        "fr": "Biais national des placements",
+        "en": "Home bias"
+      }
+    },
+    {
+      "id": "feldstein-horioka",
+      "src": "wiki-econ",
+      "q": {
+        "fr": "Pourquoi l'épargne d'un pays reste-t-elle surtout investie chez lui ?",
+        "en": "Why does a country's saving mostly stay invested at home?"
+      },
+      "ctx": {
+        "fr": "Dans les pays riches, l'épargne et l'investissement nationaux varient ensemble, alors que les capitaux circulent librement.",
+        "en": "In rich countries, national saving and investment move together, although capital flows freely."
+      },
+      "subs": [
+        "Economics and Econometrics"
+      ],
+      "nom": {
+        "fr": "Énigme de Feldstein-Horioka",
+        "en": "Feldstein–Horioka puzzle"
+      }
+    },
+    {
+      "id": "parite-pouvoir-achat",
+      "src": "wiki-econ",
+      "q": {
+        "fr": "Pourquoi les taux de change reviennent-ils si lentement vers la parité des pouvoirs d'achat ?",
+        "en": "Why do exchange rates return so slowly to purchasing power parity?"
+      },
+      "ctx": {
+        "fr": "Les écarts de prix entre pays se résorbent bien plus lentement que ne le prédisent les modèles.",
+        "en": "Price gaps between countries close far more slowly than models predict."
+      },
+      "subs": [
+        "Economics and Econometrics"
+      ],
+      "nom": {
+        "fr": "Parité des pouvoirs d'achat",
+        "en": "PPP puzzle"
+      }
+    },
+    {
+      "id": "biais-comportement",
+      "src": "wiki-econ",
+      "q": {
+        "fr": "Peut-on unifier les modèles des biais de comportement ?",
+        "en": "Can models of behavioural biases be unified?"
+      },
+      "ctx": {
+        "fr": "L'économie classique suppose un agent rationnel. On observe de nombreux biais, sans modèle unique pour les expliquer.",
+        "en": "Classical economics assumes a rational agent. Many biases are observed, with no single model to explain them."
+      },
+      "subs": [
+        "Economics and Econometrics",
+        "Experimental and Cognitive Psychology"
+      ],
+      "nom": {
+        "fr": "Biais de comportement",
+        "en": "Behavioural biases"
+      }
+    },
+    {
+      "id": "capital-cambridge",
+      "src": "wiki-econ",
+      "q": {
+        "fr": "Peut-on mesurer le capital comme une quantité ?",
+        "en": "Can capital be measured as a single quantity?"
+      },
+      "ctx": {
+        "fr": "Un débat ouvert depuis les années 1950 sur la façon de définir et d'additionner le capital dans les modèles de croissance.",
+        "en": "A debate open since the 1950s on how to define and add up capital in growth models."
+      },
+      "subs": [
+        "Economics and Econometrics"
+      ],
+      "nom": {
+        "fr": "Controverse du capital",
+        "en": "Cambridge capital controversy"
+      }
+    },
+    {
+      "id": "definition-maladie",
+      "src": "wiki-med",
+      "q": {
+        "fr": "Qu'est-ce qu'une maladie ?",
+        "en": "What is a disease?"
+      },
+      "ctx": {
+        "fr": "Il n'existe pas de définition claire : le processus physiologique, la souffrance du patient et les normes culturelles ne coïncident pas toujours.",
+        "en": "There is no clear definition: the physiological process, the patient's suffering and cultural norms do not always coincide."
+      },
+      "subs": [
+        "Public Health, Environmental and Occupational Health",
+        "History and Philosophy of Science",
+        "Psychiatry and Mental health"
+      ],
+      "nom": {
+        "fr": "Définition de la maladie",
+        "en": "Defining disease"
+      }
+    },
+    {
+      "id": "medecine-preuves",
+      "src": "wiki-med",
+      "q": {
+        "fr": "Comment appliquer à un patient ce que les grands essais montrent en moyenne ?",
+        "en": "How do we apply to one patient what large trials show on average?"
+      },
+      "ctx": {
+        "fr": "La médecine fondée sur les preuves est devenue la référence, mais son application à l'individu reste débattue.",
+        "en": "Evidence-based medicine has become the reference, but its application to the individual remains debated."
+      },
+      "subs": [
+        "Epidemiology",
+        "Family Practice",
+        "Statistics and Probability"
+      ],
+      "nom": {
+        "fr": "Médecine fondée sur les preuves",
+        "en": "Evidence-based medicine"
+      }
+    },
+    {
+      "id": "diagnostic-psy",
+      "src": "wiki-med",
+      "q": {
+        "fr": "Peut-on diagnostiquer de façon fiable les troubles mentaux ?",
+        "en": "Can mental disorders be diagnosed reliably?"
+      },
+      "ctx": {
+        "fr": "Pour certains troubles, deux cliniciens posent encore souvent des diagnostics différents.",
+        "en": "For some disorders, two clinicians still often reach different diagnoses."
+      },
+      "subs": [
+        "Psychiatry and Mental health",
+        "Clinical Psychology"
+      ],
+      "nom": {
+        "fr": "Fiabilité des diagnostics",
+        "en": "Diagnostic reliability"
+      }
+    },
+    {
+      "id": "classification-causale-psy",
+      "src": "wiki-med",
+      "q": {
+        "fr": "Peut-on classer les troubles mentaux selon leurs causes ?",
+        "en": "Can mental disorders be classified by their causes?"
+      },
+      "ctx": {
+        "fr": "Contrairement à beaucoup de maladies du corps, les classifications psychiatriques ne reposent pas sur la cause.",
+        "en": "Unlike many bodily diseases, psychiatric classifications are not based on cause."
+      },
+      "subs": [
+        "Psychiatry and Mental health",
+        "Biological Psychiatry"
+      ],
+      "nom": {
+        "fr": "Classification des troubles mentaux",
+        "en": "Classifying mental disorders"
+      }
+    },
+    {
+      "id": "maladies-idiopathiques",
+      "src": "wiki-med",
+      "q": {
+        "fr": "Pourquoi tant de maladies n'ont-elles pas de cause connue ?",
+        "en": "Why do so many diseases have no known cause?"
+      },
+      "ctx": {
+        "fr": "Les maladies dites « idiopathiques » n'ont ni cause ni mécanisme établis.",
+        "en": "So-called “idiopathic” diseases have no established cause or mechanism."
+      },
+      "subs": [
+        "Internal Medicine",
+        "Epidemiology"
+      ],
+      "nom": {
+        "fr": "Maladies idiopathiques",
+        "en": "Idiopathic diseases"
+      }
+    },
+    {
+      "id": "mecanisme-medicaments",
+      "src": "wiki-med",
+      "q": {
+        "fr": "Comment agissent certains médicaments ?",
+        "en": "How do some drugs work?"
+      },
+      "ctx": {
+        "fr": "On ignore le mécanisme d'action de plusieurs médicaments très utilisés, y compris l'anesthésie générale.",
+        "en": "The mechanism of action of several widely used drugs is unknown, including general anaesthesia."
+      },
+      "subs": [
+        "Pharmacology",
+        "Drug Discovery"
+      ],
+      "nom": {
+        "fr": "Mécanisme d'action des médicaments",
+        "en": "Mechanism of action of drugs"
+      }
+    },
+    {
+      "id": "erreurs-systematiques",
+      "src": "wiki-stat",
+      "q": {
+        "fr": "Comment détecter et corriger les erreurs systématiques ?",
+        "en": "How can systematic errors be detected and corrected?"
+      },
+      "ctx": {
+        "fr": "Dans les sciences où l'aléatoire est important, les biais de mesure sont difficiles à repérer.",
+        "en": "In sciences where randomness is large, measurement biases are hard to spot."
+      },
+      "subs": [
+        "Statistics and Probability"
+      ],
+      "nom": {
+        "fr": "Erreurs systématiques",
+        "en": "Systematic errors"
+      }
+    },
+    {
+      "id": "comparaisons-multiples",
+      "src": "wiki-stat",
+      "q": {
+        "fr": "Comment tester beaucoup d'hypothèses à la fois sans se tromper ?",
+        "en": "How can many hypotheses be tested at once without errors?"
+      },
+      "ctx": {
+        "fr": "Plusieurs méthodes de correction existent, aucune ne règle tous les cas.",
+        "en": "Several correction methods exist, none settles every case."
+      },
+      "subs": [
+        "Statistics and Probability"
+      ],
+      "nom": {
+        "fr": "Comparaisons multiples",
+        "en": "Multiple comparisons"
+      }
+    },
+    {
+      "id": "especes-statistiques",
+      "src": "wiki-stat",
+      "q": {
+        "fr": "Comment mettre à jour une probabilité devant des données inattendues ?",
+        "en": "How should a probability be updated when unexpected data appear?"
+      },
+      "ctx": {
+        "fr": "C'est le « problème de l'échantillonnage des espèces » : que prédire quand une catégorie jamais vue apparaît ?",
+        "en": "This is the “sampling of species problem”: what to predict when a never-seen category appears?"
+      },
+      "subs": [
+        "Statistics and Probability",
+        "Philosophy"
+      ],
+      "nom": {
+        "fr": "Problème des espèces",
+        "en": "Sampling of species problem"
+      }
+    },
+    {
+      "id": "apocalypse",
+      "src": "wiki-stat",
+      "q": {
+        "fr": "L'argument de l'apocalypse tient-il ?",
+        "en": "Does the doomsday argument hold?"
+      },
+      "ctx": {
+        "fr": "Un raisonnement probabiliste prétend prédire la durée de vie de l'humanité. Sa validité est discutée.",
+        "en": "A probabilistic argument claims to predict the lifespan of humanity. Its validity is disputed."
+      },
+      "subs": [
+        "Statistics and Probability",
+        "Philosophy"
+      ],
+      "nom": {
+        "fr": "Argument de l'apocalypse",
+        "en": "Doomsday argument"
+      }
+    },
+    {
+      "id": "n-corps",
+      "src": "smale",
+      "q": {
+        "fr": "Le problème des n corps a-t-il toujours un nombre fini de configurations d'équilibre ?",
+        "en": "Does the n-body problem always have finitely many equilibrium configurations?"
+      },
+      "ctx": {
+        "fr": "C'est le sixième problème de Smale. Le résultat n'est démontré que pour presque tous les systèmes de cinq corps.",
+        "en": "This is Smale's sixth problem. The result is proved only for almost all five-body systems."
+      },
+      "subs": [
+        "Applied Mathematics",
+        "Space and Planetary Science"
+      ],
+      "nom": {
+        "fr": "Problème des n corps",
+        "en": "The n-body problem"
+      }
+    },
+    {
+      "id": "points-sphere",
+      "src": "smale",
+      "q": {
+        "fr": "Comment répartir au mieux des points sur une sphère ?",
+        "en": "How can points be best spread on a sphere?"
+      },
+      "ctx": {
+        "fr": "Smale demandait un algorithme qui trouve des points minimisant une certaine énergie logarithmique. La question reste ouverte.",
+        "en": "Smale asked for an algorithm that finds points minimising a certain logarithmic energy. The question remains open."
+      },
+      "subs": [
+        "Geometry and Topology",
+        "Numerical Analysis"
+      ],
+      "nom": {
+        "fr": "Points sur la sphère",
+        "en": "Points on the sphere"
+      }
+    },
+    {
+      "id": "tau-conjecture",
+      "src": "smale",
+      "q": {
+        "fr": "Combien d'opérations faut-il pour construire un polynôme ?",
+        "en": "How many operations does it take to build a polynomial?"
+      },
+      "ctx": {
+        "fr": "C'est la conjecture tau de Shub et Smale, quatrième problème de Smale.",
+        "en": "This is the Shub–Smale tau conjecture, Smale's fourth problem."
+      },
+      "subs": [
+        "Theoretical Computer Science",
+        "Algebra and Number Theory"
+      ],
+      "nom": {
+        "fr": "Conjecture tau",
+        "en": "Tau conjecture"
+      }
+    },
+    {
+      "id": "jeux-uniques",
+      "src": "wiki-cs",
+      "q": {
+        "fr": "La conjecture des jeux uniques est-elle vraie ?",
+        "en": "Is the unique games conjecture true?"
+      },
+      "ctx": {
+        "fr": "Elle prédit que certains problèmes d'approximation sont aussi difficiles qu'on le pense. Elle n'est ni démontrée ni réfutée.",
+        "en": "It predicts that certain approximation problems are as hard as believed. It is neither proved nor refuted."
+      },
+      "subs": [
+        "Theoretical Computer Science"
+      ],
+      "nom": {
+        "fr": "Conjecture des jeux uniques",
+        "en": "Unique games conjecture"
+      }
+    },
+    {
+      "id": "temps-exponentiel",
+      "src": "wiki-cs",
+      "q": {
+        "fr": "Les problèmes les plus difficiles exigent-ils vraiment un temps exponentiel ?",
+        "en": "Do the hardest problems really need exponential time?"
+      },
+      "ctx": {
+        "fr": "C'est l'« hypothèse du temps exponentiel », plus forte que P ≠ NP. On la croit vraie, sans l'avoir démontrée.",
+        "en": "This is the “exponential time hypothesis”, stronger than P ≠ NP. It is believed true, without proof."
+      },
+      "subs": [
+        "Theoretical Computer Science",
+        "Computational Theory and Mathematics"
+      ],
+      "nom": {
+        "fr": "Hypothèse du temps exponentiel",
+        "en": "Exponential time hypothesis"
+      }
+    },
+    {
+      "id": "cerny",
+      "src": "wiki-cs",
+      "q": {
+        "fr": "Quelle longueur de mot suffit à remettre un automate dans un état connu ?",
+        "en": "How long a word is needed to reset an automaton to a known state?"
+      },
+      "ctx": {
+        "fr": "La conjecture de Černý propose une borne simple. Elle est démontrée dans des cas particuliers seulement.",
+        "en": "The Černý conjecture proposes a simple bound. It is proved only in special cases."
+      },
+      "subs": [
+        "Theoretical Computer Science",
+        "Discrete Mathematics and Combinatorics"
+      ],
+      "nom": {
+        "fr": "Conjecture de Černý",
+        "en": "Černý conjecture"
+      }
+    },
+    {
+      "id": "coureur-solitaire",
+      "src": "wiki-math",
+      "q": {
+        "fr": "Un coureur est-il toujours seul à un moment donné ?",
+        "en": "Is every runner always alone at some moment?"
+      },
+      "ctx": {
+        "fr": "Des coureurs aux vitesses toutes différentes font le tour d'une piste. Chacun sera-t-il à distance égale de tous les autres à un instant ?",
+        "en": "Runners with all different speeds run round a track. Will each one, at some instant, be equally far from all the others?"
+      },
+      "subs": [
+        "Discrete Mathematics and Combinatorics"
+      ],
+      "nom": {
+        "fr": "Coureur solitaire",
+        "en": "Lonely runner"
+      }
+    },
+    {
+      "id": "canape",
+      "src": "wiki-math",
+      "q": {
+        "fr": "Quel est le plus grand canapé qui passe un coude de couloir ?",
+        "en": "What is the largest sofa that fits around a corridor corner?"
+      },
+      "ctx": {
+        "fr": "On connaît une forme candidate. Une démonstration récente qu'elle est optimale reste à vérifier.",
+        "en": "A candidate shape is known. A recent proof that it is optimal remains to be checked."
+      },
+      "subs": [
+        "Geometry and Topology",
+        "Discrete Mathematics and Combinatorics"
+      ],
+      "nom": {
+        "fr": "Problème du canapé",
+        "en": "Moving sofa problem"
+      }
+    },
+    {
+      "id": "galois-inverse",
+      "src": "wiki-math",
+      "q": {
+        "fr": "Tout groupe fini est-il le groupe de Galois d'une équation sur les rationnels ?",
+        "en": "Is every finite group the Galois group of an equation over the rationals?"
+      },
+      "ctx": {
+        "fr": "C'est le problème de Galois inverse. Il est résolu pour de nombreuses familles de groupes, pas pour tous.",
+        "en": "This is the inverse Galois problem. It is solved for many families of groups, not for all."
+      },
+      "subs": [
+        "Algebra and Number Theory"
+      ],
+      "nom": {
+        "fr": "Problème de Galois inverse",
+        "en": "Inverse Galois problem"
+      }
+    },
+    {
+      "id": "gauchers",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Pourquoi y a-t-il des gauchers ?",
+        "en": "Why are some people left-handed?"
+      },
+      "ctx": {
+        "fr": "On ignore comment la latéralité se met en place, à quoi elle sert et pourquoi la droite domine.",
+        "en": "How handedness develops, what it is for and why the right dominates is unknown."
+      },
+      "subs": [
+        "Behavioral Neuroscience",
+        "Genetics"
+      ],
+      "nom": {
+        "fr": "Gauchers et droitiers",
+        "en": "Handedness"
+      }
+    },
+    {
+      "id": "baillement",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "À quoi sert le bâillement ?",
+        "en": "What is yawning for?"
+      },
+      "ctx": {
+        "fr": "Sa fonction biologique ou sociale n'est pas établie.",
+        "en": "Its biological or social function is not established."
+      },
+      "subs": [
+        "Physiology",
+        "Behavioral Neuroscience"
+      ],
+      "nom": {
+        "fr": "Bâillement",
+        "en": "Yawning"
+      }
+    },
+    {
+      "id": "temperature-corps",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "Pourquoi la température moyenne du corps humain baisse-t-elle ?",
+        "en": "Why is average human body temperature falling?"
+      },
+      "ctx": {
+        "fr": "Des données médicales suggèrent une baisse d'environ 0,6 °C depuis le XIXe siècle. La cause est inconnue.",
+        "en": "Medical data suggest a drop of about 0.6 °C since the 19th century. The cause is unknown."
+      },
+      "subs": [
+        "Physiology (medical)",
+        "Epidemiology"
+      ],
+      "nom": {
+        "fr": "Température du corps",
+        "en": "Body temperature"
+      }
+    },
+    {
+      "id": "serpents",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "D'où viennent les serpents ?",
+        "en": "Where do snakes come from?"
+      },
+      "ctx": {
+        "fr": "Sont-ils issus de lézards fouisseurs ou aquatiques ? Les indices vont dans les deux sens.",
+        "en": "Did they come from burrowing or aquatic lizards? The evidence points both ways."
+      },
+      "subs": [
+        "Paleontology",
+        "Ecology, Evolution, Behavior and Systematics"
+      ],
+      "nom": {
+        "fr": "Origine des serpents",
+        "en": "Origin of snakes"
+      }
+    },
+    {
+      "id": "tortues",
+      "src": "wiki-bio",
+      "q": {
+        "fr": "D'où viennent les tortues ?",
+        "en": "Where do turtles come from?"
+      },
+      "ctx": {
+        "fr": "Descendent-elles de reptiles à un ou deux trous temporaux ? Les indices vont dans les deux sens.",
+        "en": "Do they descend from reptiles with one or two temporal openings? The evidence points both ways."
+      },
+      "subs": [
+        "Paleontology",
+        "Ecology, Evolution, Behavior and Systematics"
+      ],
+      "nom": {
+        "fr": "Origine des tortues",
+        "en": "Origin of turtles"
+      }
+    },
+    {
+      "id": "foudre-boule",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Qu'est-ce que la foudre en boule ?",
+        "en": "What is ball lightning?"
+      },
+      "ctx": {
+        "fr": "La nature physique de ce phénomène atmosphérique rare n'est pas établie.",
+        "en": "The physical nature of this rare atmospheric phenomenon is not established."
+      },
+      "subs": [
+        "Atmospheric Science",
+        "Statistical and Nonlinear Physics"
+      ],
+      "nom": {
+        "fr": "Foudre en boule",
+        "en": "Ball lightning"
+      }
+    },
+    {
+      "id": "sonoluminescence",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Pourquoi des bulles émettent-elles de la lumière sous l'effet du son ?",
+        "en": "Why do bubbles emit light when driven by sound?"
+      },
+      "ctx": {
+        "fr": "Des bulles qui s'effondrent dans un liquide émettent de brefs éclairs. Le mécanisme exact n'est pas élucidé.",
+        "en": "Bubbles collapsing in a liquid emit brief flashes. The exact mechanism is not elucidated."
+      },
+      "subs": [
+        "Acoustics and Ultrasonics",
+        "Condensed Matter Physics"
+      ],
+      "nom": {
+        "fr": "Sonoluminescence",
+        "en": "Sonoluminescence"
+      }
+    },
+    {
+      "id": "lithium-cosmique",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Pourquoi manque-t-il du lithium dans l'univers primitif ?",
+        "en": "Why is lithium missing from the early universe?"
+      },
+      "ctx": {
+        "fr": "Le lithium-7 observé dans de très vieilles étoiles est moins abondant que ne le prévoit la nucléosynthèse primordiale.",
+        "en": "Lithium-7 observed in very old stars is less abundant than primordial nucleosynthesis predicts."
+      },
+      "subs": [
+        "Astronomy and Astrophysics",
+        "Nuclear and High Energy Physics"
+      ],
+      "nom": {
+        "fr": "Problème du lithium",
+        "en": "The lithium problem"
+      }
+    },
+    {
+      "id": "jets-astres",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Pourquoi certains astres émettent-ils des jets ?",
+        "en": "Why do some astronomical objects emit jets?"
+      },
+      "ctx": {
+        "fr": "Seuls certains disques de matière autour d'astres émettent des jets le long de leur axe. Pourquoi ceux-là ?",
+        "en": "Only some discs of matter around astronomical objects emit jets along their axis. Why those?"
+      },
+      "subs": [
+        "Astronomy and Astrophysics"
+      ],
+      "nom": {
+        "fr": "Jets astrophysiques",
+        "en": "Astrophysical jets"
+      }
+    },
+    {
+      "id": "supersymetrie",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "La supersymétrie existe-t-elle dans la nature ?",
+        "en": "Does supersymmetry exist in nature?"
+      },
+      "ctx": {
+        "fr": "Cette symétrie prédit de nouvelles particules. Aucune n'a été observée jusqu'à présent.",
+        "en": "This symmetry predicts new particles. None has been observed so far."
+      },
+      "subs": [
+        "Nuclear and High Energy Physics",
+        "Mathematical Physics"
+      ],
+      "nom": {
+        "fr": "Supersymétrie",
+        "en": "Supersymmetry"
+      }
+    },
+    {
+      "id": "gravite-faible",
+      "src": "wiki-phys",
+      "q": {
+        "fr": "Pourquoi la gravité est-elle si faible ?",
+        "en": "Why is gravity so weak?"
+      },
+      "ctx": {
+        "fr": "La gravité est incomparablement plus faible que les autres interactions. C'est le « problème de la hiérarchie ».",
+        "en": "Gravity is incomparably weaker than the other interactions. This is the “hierarchy problem”."
+      },
+      "subs": [
+        "Nuclear and High Energy Physics",
+        "Astronomy and Astrophysics"
+      ],
+      "nom": {
+        "fr": "Problème de la hiérarchie",
+        "en": "Hierarchy problem"
       }
     }
   ]

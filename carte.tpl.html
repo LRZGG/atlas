@@ -128,6 +128,7 @@ let LANG = FORCED;
 if (!LANG) { let saved = null; try { saved = localStorage.getItem('lang'); } catch (e) {} LANG = saved === 'fr' || saved === 'en' ? saved : detectLang(navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language]); }
 const t = (k, v) => { let s = DATA.TXT[LANG][k] ?? DATA.TXT.en[k] ?? k; if (v) for (const x in v) s = s.replace('{' + x + '}', v[x]); return s; };
 const loc = o => (o && (o[LANG] ?? o.fr)) || '';
+const sn = x => LANG === 'fr' ? (x.nf || x.n) : x.n;
 const fb = o => !(o && o[LANG] != null);
 const fmt = n => Math.round(n).toLocaleString(LANG === 'fr' ? 'fr-FR' : 'en-US');
 
@@ -213,10 +214,10 @@ function panelHTML() {
   if (!cur) return '';
   if (cur.q != null) {
     const q = Q[cur.q], src = SRC[q.s], manque = LANG !== 'fr' && (fb(q.cc) || (q.no && fb(q.no)) || (q.f && !q.f[LANG]));
-    return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(S[j].n)}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p>`;
+    return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p>`;
   }
   const i = cur.t, si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2], nb = ADJ[si].slice().sort((a, b) => Math.hypot(S[a].x - s.x, S[a].y - s.y) - Math.hypot(S[b].x - s.x, S[b].y - s.y)).slice(0, 5);
-  return `<p class="kicker">${esc(loc(F[s.f].nn))} · ${esc(s.n)}</p><h2>${esc(T[i * 5 + 4])}</h2><p>${esc(fmt(w))} ${esc(t('publies'))}${w > DATA.cap ? ' ' + esc(t('douteux_long')) : ''}</p><h3>${esc(t('t_voisines'))}</h3><ul class="small">${li(nb.map(j => S[j].n))}</ul>`;
+  return `<p class="kicker">${esc(loc(F[s.f].nn))} · ${esc(sn(s))}</p><h2>${esc(T[i * 5 + 4])}</h2><p>${esc(fmt(w))} ${esc(t('publies'))}${w > DATA.cap ? ' ' + esc(t('douteux_long')) : ''}</p><h3>${esc(t('t_voisines'))}</h3><ul class="small">${li(nb.map(j => sn(S[j])))}</ul>`;
 }
 function renderPanel() { if (!cur) return; panel.innerHTML = `<button class="sq" id="pclose" type="button" aria-label="${esc(t('fermer'))}">×</button>` + panelHTML(); panel.hidden = false; document.body.classList.add('panel-open'); $('pclose').onclick = closePanel; panel.scrollTop = 0; }
 function closePanel() { const had = panel.contains(document.activeElement); cur = null; panel.hidden = true; document.body.classList.remove('panel-open'); if (location.hash) history.replaceState(null, '', location.pathname + location.search); if (had) cv.focus(); }

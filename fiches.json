@@ -1,6 +1,34 @@
 {
-  "fetched": "2026-11-17",
+  "fetched": "2026-11-18",
   "fiches": {
+    "univers": {
+      "w": {
+        "fr": {
+          "t": "Matière noire",
+          "x": "La matière noire ou matière sombre, est une catégorie de matière hypothétique, invoquée dans le cadre du Modèle ΛCDM pour rendre compte de certaines observations astrophysiques, notamment les estimations de la masse des galaxies ou des amas de galaxies et les propriétés des fluctuations du fond diffus cosmologique.",
+          "u": "https://fr.wikipedia.org/wiki/Mati%C3%A8re_noire"
+        },
+        "en": {
+          "t": "Dark matter",
+          "x": "In astronomy and cosmology, dark matter is an invisible and hypothetical form of matter that does not interact with electromagnetic radiation, including light. Dark matter is implied by gravitational effects that cannot be explained by general relativity unless more matter is present than can be observed.",
+          "u": "https://en.wikipedia.org/wiki/Dark_matter"
+        }
+      },
+      "r": [
+        {
+          "t": "Planck 2018 results: VI. Cosmological parameters",
+          "a": "N. Aghanim, Y. Akrami, M. Ashdown et al.",
+          "y": 2020,
+          "u": "https://doi.org/10.1051/0004-6361/201833910"
+        },
+        {
+          "t": "Particle dark matter: evidence, candidates and constraints",
+          "a": "Gianfranco Bertone, Dan Hooper, Joseph I. Silk",
+          "y": 2004,
+          "u": "https://doi.org/10.1016/j.physrep.2004.08.031"
+        }
+      ]
+    },
     "conscience": {
       "w": {
         "fr": {
@@ -26,6 +54,28 @@
           "a": "Christof Koch, Marcello Massimini, Mélanie Boly et al.",
           "y": 2016,
           "u": "https://doi.org/10.1038/nrn.2016.22"
+        }
+      ]
+    },
+    "longevite": {
+      "w": {
+        "fr": {
+          "t": "Vieillissement",
+          "x": "Le vieillissement est l'ensemble des modifications fonctionnelles diminuant progressivement l'aptitude d'un objet, d'une information ou d'un organisme à assurer ses fonctions dans le temps.",
+          "u": "https://fr.wikipedia.org/wiki/Vieillissement"
+        },
+        "en": {
+          "t": "Ageing",
+          "x": "Ageing is the process of becoming older. The term refers mainly to humans, many other animals, and fungi; whereas for example, bacteria, perennial plants and some simple animals are potentially biologically immortal. In a broader sense, ageing can refer to single cells within an organism which have ceased dividing, or to the population of a species.",
+          "u": "https://en.wikipedia.org/wiki/Ageing"
+        }
+      },
+      "r": [
+        {
+          "t": "The Hallmarks of Aging",
+          "a": "Carlos López-Otín, María A. Blasco, Linda Partridge et al.",
+          "y": 2013,
+          "u": "https://doi.org/10.1016/j.cell.2013.05.039"
         }
       ]
     },
@@ -60,6 +110,50 @@
           "a": "Matthew W. Powner, Béatrice Gerland, John D. Sutherland",
           "y": 2009,
           "u": "https://doi.org/10.1038/nature08013"
+        }
+      ]
+    },
+    "memoire": {
+      "w": {
+        "fr": {
+          "t": "Mémoire (psychologie)",
+          "x": "En psychologie, la mémoire est la faculté de l'esprit d'enregistrer, conserver et rappeler les expériences passées. Son investigation est réalisée par différentes disciplines : psychologie cognitive, neuropsychologie, et psychanalyse.",
+          "u": "https://fr.wikipedia.org/wiki/M%C3%A9moire_(psychologie)"
+        },
+        "en": {
+          "t": "Memory",
+          "x": "Memory is the faculty of the mind by which data or information is encoded, stored, and retrieved when needed. It is the retention of information over time for the purpose of influencing future action. If past events could not be remembered, it would be impossible for language, relationships, or personal identity to develop. Memory loss is usually described as forgetfulness or a disorder such as amnesia.",
+          "u": "https://en.wikipedia.org/wiki/Memory"
+        }
+      },
+      "r": [
+        {
+          "t": "Memory engrams: Recalling the past and imagining the future",
+          "a": "Sheena A. Josselyn, Susumu Tonegawa",
+          "y": 2020,
+          "u": "https://doi.org/10.1126/science.aaw4325"
+        }
+      ]
+    },
+    "rechauffement": {
+      "w": {
+        "fr": {
+          "t": "Changement climatique",
+          "x": "Le changement climatique, également nommé réchauffement climatique ou plus rarement dérèglement climatique, est l'effet de l'augmentation rapide de la température moyenne de la surface terrestre en cours aux XXe et XXIe siècles ainsi que, plus généralement, la modification des régimes météorologiques à grande échelle qui en résulte.",
+          "u": "https://fr.wikipedia.org/wiki/Changement_climatique"
+        },
+        "en": {
+          "t": "Climate change",
+          "x": "Present-day climate change includes both global warming—the ongoing increase in global average temperature—and its wider effects on Earth's climate system. In a broader sense, climate change also includes previous long-term changes to Earth's climate. The modern-day rise in global temperatures is driven by human activities, especially fossil fuel burning since the Industrial Revolution. Fossil fuel use, deforestation, and some agricultural and industrial practices release greenhouse gases.",
+          "u": "https://en.wikipedia.org/wiki/Climate_change"
+        }
+      },
+      "r": [
+        {
+          "t": "Climate Change 2021 – The Physical Science Basis: Working Group I Contribution to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change",
+          "a": "Intergovernmental Panel on Climate Change",
+          "y": 2023,
+          "u": "https://doi.org/10.1017/9781009157896"
         }
       ]
     },
@@ -119,6 +213,72 @@
         }
       ]
     },
+    "navier-stokes": {
+      "w": {
+        "fr": {
+          "t": "Équations de Navier-Stokes",
+          "x": "En mécanique des fluides, les équations de Navier-Stokes sont des équations aux dérivées partielles non linéaires qui décrivent le mouvement des fluides newtoniens. La résolution de ces équations modélisant un fluide comme un milieu continu à une seule phase est difficile, et l'existence mathématique de solutions des équations de Navier-Stokes n'est pas démontrée.",
+          "u": "https://fr.wikipedia.org/wiki/%C3%89quations_de_Navier-Stokes"
+        },
+        "en": {
+          "t": "Navier–Stokes existence and smoothness",
+          "x": "The question of whether the Navier–Stokes equations always have smooth solutions in three-dimensional Euclidean space, given some initial conditions and possibly an external force, has been a longstanding unsolved problem in mathematics since the early 20th century. The equations are a system of partial differential equations that describe the motion of a fluid in space.",
+          "u": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_existence_and_smoothness"
+        }
+      },
+      "r": [
+        {
+          "t": "Navier-Stokes equation, description officielle du problème",
+          "a": "Clay Mathematics Institute",
+          "y": null,
+          "u": "https://www.claymath.org/millennium/navier-stokes-equation/"
+        }
+      ]
+    },
+    "hodge": {
+      "w": {
+        "fr": {
+          "t": "Conjecture de Hodge",
+          "x": "En mathématiques, la conjecture de Hodge est une des grandes conjectures de la géométrie algébrique. Elle établit un lien entre la topologie algébrique d'une variété algébrique complexe non singulière et sa géométrie décrite par des équations polynomiales qui définissent des sous-variétés. Elle provient d'un résultat du mathématicien W. V. D. Hodge qui, entre 1930 et 1940, a enrichi la description de la cohomologie de De Rham afin d'y inclure des structures présentes dans le cas des variétés algébriques.",
+          "u": "https://fr.wikipedia.org/wiki/Conjecture_de_Hodge"
+        },
+        "en": {
+          "t": "Hodge conjecture",
+          "x": "In mathematics, the Hodge conjecture is a major unsolved problem in algebraic geometry and complex geometry that relates the algebraic topology of a non-singular complex algebraic variety to its subvarieties.",
+          "u": "https://en.wikipedia.org/wiki/Hodge_conjecture"
+        }
+      },
+      "r": [
+        {
+          "t": "Hodge conjecture, description officielle du problème",
+          "a": "Clay Mathematics Institute",
+          "y": null,
+          "u": "https://www.claymath.org/millennium/hodge-conjecture/"
+        }
+      ]
+    },
+    "goldbach": {
+      "w": {
+        "fr": {
+          "t": "Conjecture de Goldbach",
+          "x": "La conjecture de Goldbach est l'assertion mathématique qui s’énonce comme suit :\nTout nombre entier pair supérieur à 3 peut s’écrire comme une somme de deux nombres premiers.",
+          "u": "https://fr.wikipedia.org/wiki/Conjecture_de_Goldbach"
+        },
+        "en": {
+          "t": "Goldbach's conjecture",
+          "x": "Goldbach's conjecture is one of the oldest and best-known unsolved problems in number theory and all of mathematics. It states that every even natural number greater than 2 is the sum of two prime numbers.",
+          "u": "https://en.wikipedia.org/wiki/Goldbach's_conjecture"
+        }
+      },
+      "r": [
+        {
+          "t": "Empirical verification of the even Goldbach conjecture and computation of prime gaps up to 4⋅10¹⁸",
+          "a": "Tomas Antonio Mendes Oliveira e Silva, Siegfried Herzog, Silvio Pardi",
+          "y": 2013,
+          "u": "https://doi.org/10.1090/S0025-5718-2013-02787-1"
+        }
+      ]
+    },
     "jumeaux": {
       "w": {
         "fr": {
@@ -144,6 +304,28 @@
           "a": "James Maynard",
           "y": 2014,
           "u": "https://doi.org/10.4007/annals.2015.181.1.7"
+        }
+      ]
+    },
+    "collatz": {
+      "w": {
+        "fr": {
+          "t": "Conjecture de Syracuse",
+          "x": "La conjecture de Syracuse, encore appelée conjecture de Collatz, conjecture d'Ulam, conjecture tchèque, problème de Kakutani ou problème 3x + 1, est l'hypothèse mathématique selon laquelle la suite de Syracuse de n'importe quel entier strictement positif atteint 1.",
+          "u": "https://fr.wikipedia.org/wiki/Conjecture_de_Syracuse"
+        },
+        "en": {
+          "t": "Collatz conjecture",
+          "x": "The Collatz conjecture is one of the most famous unsolved problems in mathematics. The conjecture asks whether repeating two simple arithmetic operations will eventually transform every positive integer into 1. It concerns sequences of integers in which each term is obtained from the previous term as follows: if a term is even, the next term is one half of it. If a term is odd, the next term is 3 times the previous term plus 1.",
+          "u": "https://en.wikipedia.org/wiki/Collatz_conjecture"
+        }
+      },
+      "r": [
+        {
+          "t": "Almost all orbits of the Collatz map attain almost bounded values",
+          "a": "Terence Tao",
+          "y": 2022,
+          "u": "https://doi.org/10.1017/fmp.2022.8"
         }
       ]
     },
@@ -200,6 +382,28 @@
           "a": "Ahmed Almheiri, Thomas Hartman, JUAN M. MALDACENA et al.",
           "y": 2021,
           "u": "https://doi.org/10.1103/RevModPhys.93.035002"
+        }
+      ]
+    },
+    "neutrinos": {
+      "w": {
+        "fr": {
+          "t": "Neutrino",
+          "x": "Le neutrino est une particule élémentaire du modèle standard de la physique des particules. Les neutrinos sont des fermions de spin ½, plus précisément des leptons. Ils sont électriquement neutres. Il en existe trois « saveurs » : électronique, muonique et tauique.",
+          "u": "https://fr.wikipedia.org/wiki/Neutrino"
+        },
+        "en": {
+          "t": "Neutrino",
+          "x": "A neutrino is an elementary particle that interacts with other matter only via the weak interaction and gravity. It is electrically neutral, and its mass is so small that it was long thought to be zero.\nNeutrinos usually pass through other matter with no detectable effect because the weak force has a very short range, and their gravitational interaction is extremely weak due to the tiny mass of the neutrino.",
+          "u": "https://en.wikipedia.org/wiki/Neutrino"
+        }
+      },
+      "r": [
+        {
+          "t": "Evidence for Oscillation of Atmospheric Neutrinos",
+          "a": "Y. Fukuda, Tomokatsu Hayakawa, E. Ichihara et al.",
+          "y": 1998,
+          "u": "https://doi.org/10.1103/PhysRevLett.81.1562"
         }
       ]
     },
@@ -337,6 +541,160 @@
           "u": "https://doi.org/10.1126/science.1206375"
         }
       ]
+    },
+    "wow-e": {
+      "w": {
+        "fr": {
+          "t": "Signal Wow!",
+          "x": "Le signal « Wow! » est un signal radio puissant, à bande étroite et centré sur la raie à 21 centimètres, capté le 15 août 1977 par le radiotélescope de l'université d'État de l'Ohio surnommé The Big Ear. D'origine inexpliquée, ce signal, qui a été capté pendant 72 secondes et n'a plus été détecté depuis, a fait l'objet d'une attention significative de la part des médias.",
+          "u": "https://fr.wikipedia.org/wiki/Signal_Wow!"
+        },
+        "en": {
+          "t": "Wow! signal",
+          "x": "The Wow! signal was a strong narrowband radio signal detected on August 15, 1977, by Ohio State University's Big Ear radio telescope in the United States, then used to support the search for extraterrestrial intelligence. The signal appeared to come from the direction of the constellation Sagittarius and bore expected hallmarks of extraterrestrial origin.",
+          "u": "https://en.wikipedia.org/wiki/Wow!_signal"
+        }
+      },
+      "r": [
+        {
+          "t": "A VLA Search for the Ohio State “Wow”",
+          "a": "Robert H. Gray, Kevin B. Marvel",
+          "y": 2001,
+          "u": "https://doi.org/10.1086/318272"
+        }
+      ]
+    },
+    "voynich-e": {
+      "w": {
+        "fr": {
+          "t": "Manuscrit de Voynich",
+          "x": "Le manuscrit de Voynich est un livre illustré anonyme rédigé dans une écriture à ce jour non déchiffrée et une langue non identifiée.",
+          "u": "https://fr.wikipedia.org/wiki/Manuscrit_de_Voynich"
+        },
+        "en": {
+          "t": "Voynich manuscript",
+          "x": "The Voynich manuscript is an illustrated codex, hand-written in an undeciphered script referred to as \"Voynichese\". Carbon dating and stylistic analyses indicate it may have been composed in the early 15th century (1404–1438) by someone in or from the area around modern-day Southern Germany, Switzerland and Northern Italy. However, scholars currently lack the translation and context needed to either properly entertain or eliminate any of the possibilities regarding its origin, authorship and purpose.",
+          "u": "https://en.wikipedia.org/wiki/Voynich_manuscript"
+        }
+      },
+      "r": [
+        {
+          "t": "Keywords and Co-Occurrence Patterns in the Voynich Manuscript: An Information-Theoretic Analysis",
+          "a": "Marcelo A. Montemurro, Damián H. Zanette",
+          "y": 2013,
+          "u": "https://doi.org/10.1371/journal.pone.0066344"
+        }
+      ]
+    },
+    "antikythere-e": {
+      "w": {
+        "fr": {
+          "t": "Machine d'Anticythère",
+          "x": "La machine d'Anticythère, appelée également mécanisme d'Anticythère, est considérée comme le premier calculateur analogique antique permettant de calculer des positions astronomiques. C'est un mécanisme de bronze comprenant des dizaines de roues dentées, solidaires et disposées sur plusieurs plans. Il est garni de nombreuses inscriptions grecques.",
+          "u": "https://fr.wikipedia.org/wiki/Machine_d'Anticyth%C3%A8re"
+        },
+        "en": {
+          "t": "Antikythera mechanism",
+          "x": "The Antikythera mechanism is an ancient Greek hand-powered orrery built in the 2nd century BC and discovered in 1901. It is the oldest known example of an analogue computer. It could be used to predict astronomical positions and eclipses decades in advance. It could also be used to track the four-year cycle of athletic games similar to an olympiad, the cycle of the ancient Olympic Games.",
+          "u": "https://en.wikipedia.org/wiki/Antikythera_mechanism"
+        }
+      },
+      "r": [
+        {
+          "t": "Decoding the ancient Greek astronomical calculator known as the Antikythera Mechanism",
+          "a": "Tony Freeth, Yanis Bitsakis, X. Moussas et al.",
+          "y": 2006,
+          "u": "https://doi.org/10.1038/nature05357"
+        },
+        {
+          "t": "A Model of the Cosmos in the ancient Greek Antikythera Mechanism",
+          "a": "Tony Freeth, David Higgon, Aris Dacanalis et al.",
+          "y": 2021,
+          "u": "https://doi.org/10.1038/s41598-021-84310-w"
+        }
+      ]
+    },
+    "tunguska-e": {
+      "w": {
+        "fr": {
+          "t": "Événement de la Toungouska",
+          "x": "L'événement de la Toungouska désigne un ensemble d'observations faites sur une puissante explosion qui s'est produite le 30 juin 1908 vers 7 h 14 heure locale en Sibérie centrale, dans l'Empire russe. Si l'hypothèse de l'entrée atmosphérique d'un météoroïde ne semble guère faire de doute, l'ensemble des observations et mesures comporte des inconnues et des contradictions qui ont amené à formuler des hypothèses totalement divergentes et parfois farfelues.",
+          "u": "https://fr.wikipedia.org/wiki/%C3%89v%C3%A9nement_de_la_Toungouska"
+        },
+        "en": {
+          "t": "Tunguska event",
+          "x": "The Tunguska event was a large explosion that occurred on the morning of 30 June [O.S. 17 June] 1908, at around 7:14 KRAT in Central Siberia, then part of the Russian Empire. The cataclysm occurred in a remote and sparsely populated region of the taiga, near the Podkamennaya Tunguska River after which it is named. The shock wave knocked several witnesses to the ground, killed at least three people as well as numerous animals, and shattered windows within a 200 km (120 mi) radius.",
+          "u": "https://en.wikipedia.org/wiki/Tunguska_event"
+        }
+      },
+      "r": [
+        {
+          "t": "The 1908 Tunguska explosion: atmospheric disruption of a stony asteroid",
+          "a": "Christopher F. Chyba, Paul J. Thomas, Kevin J. Zahnle",
+          "y": 1993,
+          "u": "https://doi.org/10.1038/361040a0"
+        }
+      ]
+    },
+    "nazca-e": {
+      "w": {
+        "fr": {
+          "t": "Géoglyphes de Nazca",
+          "x": "Les géoglyphes de Nazca, appelés communément lignes de Nazca, sont de grandes figures tracées sur le sol représentant des animaux stylisés ou de simples lignes longues de plusieurs kilomètres, visibles dans le désert de Nazca dans le sud du Pérou. Le sol sur lequel se dessinent ces géoglyphes est couvert de cailloux que l'oxyde de fer colore en rouge. En les ôtant, les Nazcas ont fait apparaître un sol gypseux grisâtre, découpant ainsi les contours des figures qu'ils traçaient.",
+          "u": "https://fr.wikipedia.org/wiki/G%C3%A9oglyphes_de_Nazca"
+        },
+        "en": {
+          "t": "Nazca lines",
+          "x": "The Nazca lines are a group of geoglyphs made in the soil of the Nazca Desert in southern Peru. They were created between 500 BC and 500 AD by people making depressions or shallow incisions in the desert floor, removing pebbles and leaving different-colored dirt exposed. There are two major phases of the Nazca lines, Paracas phase, from 400 to 200 BC, and Nazca phase, from 200 BC to 500 AD.",
+          "u": "https://en.wikipedia.org/wiki/Nazca_lines"
+        }
+      },
+      "r": []
+    },
+    "phaistos-e": {
+      "w": {
+        "fr": {
+          "t": "Disque de Phaistos",
+          "x": "Le disque de Phaistos ou disque de Phaestos est un disque d'argile cuite découvert en 1908 par l'archéologue italien Luigi Pernier sur le site archéologique du palais minoen de Phaistos, en Crète. Il pourrait dater du milieu ou de la fin de l'âge du bronze minoen. Son diamètre est d'environ seize centimètres et il est couvert, sur ses deux faces, de hiéroglyphes imprimés à l'aide de poinçons.",
+          "u": "https://fr.wikipedia.org/wiki/Disque_de_Phaistos"
+        },
+        "en": {
+          "t": "Phaistos Disc",
+          "x": "The Phaistos Disc, or Phaistos Disk, is a disc of fired clay from the island of Crete, Greece, possibly from the middle or late Minoan Bronze Age, bearing a text in an unknown script and language. Its purpose and its original place of manufacture remain disputed. It is now on display at the archaeological museum of Heraklion. The name is sometimes spelled Phaestos or Festos.",
+          "u": "https://en.wikipedia.org/wiki/Phaistos_Disc"
+        }
+      },
+      "r": []
+    },
+    "lineara-e": {
+      "w": {
+        "fr": {
+          "t": "Linéaire A",
+          "x": "Le « linéaire A » est une écriture, encore non déchiffrée, qui fut utilisée dans la Crète ancienne à l'époque minoenne. C'est Arthur Evans au début du XXe siècle qui découvrit en Crète les vestiges de cette écriture, ainsi que des autres écritures anciennes, qu'il nomma respectivement « hiéroglyphes crétois », « linéaire A » et « linéaire B », de la plus ancienne à la plus récente. Le « linéaire A » apparaît au plus tôt vers 1900 av. J.-C., avant les invasions grecques.",
+          "u": "https://fr.wikipedia.org/wiki/Lin%C3%A9aire_A"
+        },
+        "en": {
+          "t": "Linear A",
+          "x": "Linear A is a writing system that was used by the Minoans of Crete from 1800 BC to 1450 BC. Linear A was the primary script used in palace and religious writings of the Minoan civilization. It was adapted into Linear B, which was used by the Mycenaeans to write an early form of Greek. Since its modern rediscovery in 1900, no texts in the script have yet been deciphered.",
+          "u": "https://en.wikipedia.org/wiki/Linear_A"
+        }
+      },
+      "r": []
+    },
+    "kryptos-e": {
+      "w": {
+        "fr": {
+          "t": "Kryptos (sculpture)",
+          "x": "Kryptos est une sculpture créée par Jim Sanborn (en) exposée à Langley (Virginie) dans l'enceinte du George Bush Center for Intelligence, le quartier général de la Central Intelligence Agency (CIA). Depuis son inauguration en 1990, ce monument est l'objet de nombreuses discussions quant aux messages chiffrés dont il est recouvert. À ce jour, ces messages n'ont été que partiellement déchiffrés.",
+          "u": "https://fr.wikipedia.org/wiki/Kryptos_(sculpture)"
+        },
+        "en": {
+          "t": "Kryptos",
+          "x": "Kryptos is a sculpture by the American artist Jim Sanborn located on the grounds of the Central Intelligence Agency (CIA) headquarters, the George Bush Center for Intelligence in Langley, Virginia.",
+          "u": "https://en.wikipedia.org/wiki/Kryptos"
+        }
+      },
+      "r": []
     }
   }
 }
