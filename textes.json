@@ -117,7 +117,8 @@
     "plate_topics": "Sujets",
     "plate_highlight": "Éclairer les sujets du domaine {name}",
     "plate_years": "Publications par an",
-    "plate_all": "Cumul"
+    "plate_all": "Cumul",
+    "plate_margin": "Marge de lecture"
   },
   "en": {
     "titre": "Unknownpedia",
@@ -237,6 +238,7 @@
     "plate_topics": "Topics",
     "plate_highlight": "Highlight topics in {name}",
     "plate_years": "Papers per year",
-    "plate_all": "All"
+    "plate_all": "All",
+    "plate_margin": "Reading margin"
   }
 }
