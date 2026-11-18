@@ -66,7 +66,7 @@ ol.rows{list-style:none;margin:0;padding:0}.r{display:flex;align-items:baseline;
 .credit{font-size:12px;color:var(--dim);margin-top:22px}`;
 function page(univ, views, title, sub) {
   const data = { items: items(univ), world: WORLD, codes: CODES, views, hemi: univ === 'mystere' ? HEMI : null };
-  return `<!doctype html><html lang="fr" data-theme="light"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>${title} · maquette</title>
+  return `<!doctype html><html lang="fr" data-theme="light"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><script src="/menu-mondes.js" defer></script><title>${title} · maquette</title>
 <style>${CSS}${THEME[univ]}</style>
 <div class="maq"><b>Maquette</b><span>${title} · vraies données (Wikipédia, Wikidata), statuts de démonstration non validés</span><a href="index.html">Labo</a><a href="viz-${univ === 'mystere' ? 'folklore' : 'mystere'}.html">${univ === 'mystere' ? 'Folklore' : 'Mystères'}</a><button id="theme" type="button">Clair / nuit</button></div>
 <div class="wrap"><div class="sheet"><h1>${title}</h1><p class="sub">${sub}</p><div id="tabs" role="tablist"></div><main id="v"></main><div id="leg" aria-label="Légende des statuts"></div><p class="credit">Données : Wikipédia (extraits CC BY-SA), Wikidata (CC0), Wikimedia Commons (images libres, créditées dans les fiches). Date d'extraction : ${D.plus || D.fetched}. Statuts : maquette, éditoriaux, non validés.</p></div></div>
@@ -83,7 +83,7 @@ console.log('viz : 2 pages');
 const J3 = readFileSync('labo-3d.js', 'utf8');
 writeFileSync('docs/labo/archives-3d.js', J3);
 const arc = { items: items('mystere'), codes: CODES };
-writeFileSync('docs/labo/archives-3d.html', `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>La salle des archives · maquette 3D</title>
+writeFileSync('docs/labo/archives-3d.html', `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><script src="/menu-mondes.js" defer></script><title>La salle des archives · maquette 3D</title>
 <style>*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#060809;color:#e9e3cf;font:15px/1.5 "Courier Prime",monospace}
 @font-face{font-family:"Special Elite";src:url(fonts/special-elite-latin-400-normal.woff2) format("woff2")}@font-face{font-family:"Courier Prime";src:url(fonts/courier-prime-latin-400-normal.woff2) format("woff2")}@font-face{font-family:"Archivo Narrow";font-weight:400 700;src:url(../fonts/archivo-narrow.woff2) format("woff2")}
 #gl{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:none}

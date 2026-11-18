@@ -139,7 +139,7 @@ let x0 = 9, x1 = -9, y0 = 9, y1 = -9;
 for (let i = 0; i < N; i++) { x0 = Math.min(x0, T[i * 5]); x1 = Math.max(x1, T[i * 5]); y0 = Math.min(y0, T[i * 5 + 1]); y1 = Math.max(y1, T[i * 5 + 1]); }
 const mx = (x0 + x1) / 2, my = (y0 + y1) / 2, ext = Math.max(x1 - x0, y1 - y0);
 let W = 0, H = 0, DPR = 1, s0 = 1, tgt = null; const view = { x: 0, y: 0, k: 1 };
-function resize() { const r = cv.getBoundingClientRect(); DPR = Math.min(2, devicePixelRatio || 1); W = r.width; H = r.height; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); s0 = Math.min(W, H) * .67 / ext; }
+function resize() { const r = cv.getBoundingClientRect(); DPR = Math.min(2, devicePixelRatio || 1); W = r.width; H = r.height; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); s0 = Math.min(W, H) * .63 / ext; }
 const toScreen = (wx, wy) => [W / 2 + (wx - mx - view.x) * s0 * view.k, H / 2 + (wy - my - view.y) * s0 * view.k];
 const toWorld = (px, py) => [(px - W / 2) / (s0 * view.k) + mx + view.x, (py - H / 2) / (s0 * view.k) + my + view.y];
 function zoomAt(px, py, f) { const [wx, wy] = toWorld(px, py); view.k = clamp(view.k * f, .8, 14); view.x = wx - mx - (px - W / 2) / (s0 * view.k); view.y = wy - my - (py - H / 2) / (s0 * view.k); tgt = null; }
@@ -361,3 +361,4 @@ if (document.fonts) document.fonts.ready.then(() => {});
 applyLang(); resize(); openHash();
 (function frame(ts) { const dt = Math.min(.05, (ts - lastTs) / 1000 || .016); lastTs = ts; stepView(); draw(dt); requestAnimationFrame(frame); })(0);
 </script>
+<script src="/menu-mondes.js" defer></script>
