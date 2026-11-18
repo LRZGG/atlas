@@ -76,10 +76,11 @@ body.fsmap{background:var(--mpaper,#e9dfc7);overflow:hidden}:root{--mpaper:#e9df
 body.fsmap .wrap{padding:0!important;height:100vh;height:100dvh}body.fsmap .sheet{border:0!important;box-shadow:none!important;background:none!important;padding:0!important;margin:0!important}
 body.fsmap h1,body.fsmap .hd2,body.fsmap .sub,body.fsmap #v>.note{display:none!important}body.fsmap #v{overflow:hidden}body.fsmap .mapwrap{border:0;box-shadow:none;height:100%}body.fsmap svg.mappem{width:100%;height:100%}
 body.fsmap #leg{position:fixed;left:30px;bottom:64px;flex-direction:column;gap:2px;border:0;margin:0;padding:6px 10px;font:12px "IM Fell DW Pica",serif;background:var(--mpaper);border:1px solid var(--ink);opacity:.92;z-index:5}
-body.fsmap .credit{position:fixed;left:0;right:0;bottom:3px;margin:0!important;text-align:center;font-size:10px!important;opacity:.7;pointer-events:none;z-index:4}
+body.fsmap .credit{display:none!important}.zoomctl{position:fixed;right:14px;bottom:44px;display:flex;flex-direction:column;gap:4px;z-index:6}.zoomctl button{width:38px;height:38px;background:var(--mpaper,#e9dfc7);color:var(--ink);border:1.2px solid var(--ink);font:20px "IM Fell DW Pica",serif;cursor:pointer}.zoomctl button:hover{background:var(--ink);color:var(--paper)}
 .fsnav{position:fixed;right:14px;top:46px;display:flex;flex-direction:column;gap:6px;z-index:6}.fsnav a,.fsnav button{background:var(--mpaper);color:var(--ink);border:1.2px solid var(--ink);padding:6px 12px;font:13px "IM Fell DW Pica",serif;letter-spacing:.08em;text-decoration:none;text-align:center;cursor:pointer}.fsnav a:hover,.fsnav button:hover{background:var(--ink);color:var(--paper)}
 @media(max-width:700px){body.fsmap #leg{display:none}.fsnav{top:42px}}
 #v>.note{font-size:12px;max-width:none;margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#v>.note.small{display:none}.credit{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mappem .land2,.mappem .gr2,.mappem .nl1,.mappem .nl2,.mappem .ringc,.mappem .ringl,.mappem .water,.mappem .hp{vector-effect:non-scaling-stroke}
 .credit{font-size:12px;color:var(--dim);margin-top:22px}`;
 function page(univ, views, title, sub) {
   const data = { items: items(univ), world: WORLD, codes: CODES, views, hemi: univ === 'mystere' ? HEMI : null };
