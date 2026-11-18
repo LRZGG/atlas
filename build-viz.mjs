@@ -123,5 +123,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #ffd24a;outline-offset:2p
 <script>window.ARC=${JSON.stringify(arc).replace(/</g, '\\u003c')}</script><script type="module" src="archives-3d.js"></script>`);
 }
 salle('archives-3d.html', 'La salle des archives', 'mystere', {}, 'viz-mystere.html#liste', false);
-salle('cabinet-3d.html', 'Le cabinet de curiosités', 'folklore', { base: ['#23252a', '#2d3036', '#1b1d21'], label: '#ece8dd', ink: '#111111', dim: '#4a4a46', font: 'Old Standard TT', card: 0x24262b, top: 0x17181b, wall: 0x14201b, stat: '#8a7a55' }, null, true);
+const cabinet = readFileSync('cabinet-3d.tpl.html', 'utf8');
+const collection = JSON.stringify({ items: items('folklore'), codes: CODES }).replace(/</g, '\\u003c');
+writeFileSync('docs/labo/cabinet-3d.html', cabinet.replace('/* COLLECTION */', () => collection));
 console.log('3d : archives-3d.html, cabinet-3d.html');
