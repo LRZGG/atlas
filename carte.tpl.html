@@ -40,6 +40,19 @@ button:focus-visible, summary:focus-visible { outline: 2px solid var(--acc); out
 #tl #tll { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; min-width: 150px; }
 #tl button.sq { width: 26px; height: 26px; font-size: 12px; }
 @media (max-width: 720px) { #tl { left: 30px; right: 30px; bottom: 80px; } #tl input { flex: 1; width: auto; } }
+#search { left: 50%; top: 26px; transform: translateX(-50%); width: min(340px, calc(100% - 520px)); z-index: 6; }
+#sq { width: 100%; font: 14px var(--sans); letter-spacing: .04em; color: var(--ink); background: var(--paper); border: .8px solid var(--ink); border-radius: 0; padding: 7px 10px; }
+#sq::placeholder { color: var(--dim); }
+#sq:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+#sres { list-style: none; margin: 4px 0 0; padding: 0; background: var(--paper); border: .8px solid var(--ink); max-height: min(60vh, 420px); overflow: auto; }
+#sres li { display: flex; gap: 8px; align-items: baseline; padding: 6px 10px; cursor: pointer; font-size: 14px; border-bottom: .5px solid rgba(var(--ink-rgb), .25); }
+#sres li:last-child { border-bottom: 0; }
+#sres li small { flex: none; width: 78px; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+#sres li[aria-selected="true"], #sres li:hover { background: var(--ink); color: var(--paper); }
+#sres li[aria-selected="true"] small, #sres li:hover small { color: var(--paper); }
+#sres .q { font-family: var(--serif); font-size: 15px; }
+body.panel-open #search { display: none; }
+@media (max-width: 1000px) { #search { left: 30px; transform: none; top: 100px; width: calc(100% - 60px); max-width: 360px; } }
 #cap { left: 50%; bottom: 28px; transform: translateX(-50%); font: italic 14px/1.3 var(--serif); text-align: center; width: min(620px, 56%); pointer-events: none; }
 #stamp { right: 38px; bottom: 74px; border: .8px solid var(--ink); padding: 5px 8px; font-size: 11px; background: var(--paper); max-width: 200px; }
 #stamp b { color: var(--acc); font-weight: 400; letter-spacing: .06em; }
@@ -116,6 +129,7 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><ol id="refs"></ol><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
 <div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></div>
 <div id="tl" class="ov" hidden><button class="sq" id="tlplay" type="button"></button><input id="tlr" type="range" min="0" max="36" step="1" value="0"><span id="tll"></span></div>
+<div id="search" class="ov"><input id="sq" type="search" role="combobox" aria-expanded="false" aria-controls="sres" aria-autocomplete="list" autocomplete="off" spellcheck="false"><ul id="sres" role="listbox" hidden></ul></div>
 <div id="cap" class="ov"></div>
 <div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div>
 <details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details>
@@ -286,12 +300,38 @@ cv.addEventListener('keydown', e => {
 });
 cv.addEventListener('blur', () => { kbQ = -1; });
 
+// ---- Recherche : questions, disciplines, sous-disciplines, sujets. Aucun appel externe, tout se cherche dans la page.
+const norm = x => String(x || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const sq = $('sq'), sres = $('sres'); let sHits = [], sSel = -1;
+function sCenter(j) { return [S[j].x, S[j].y]; }
+function doSearch() {
+  const q = norm(sq.value).trim(); if (!q) { sres.hidden = true; sq.setAttribute('aria-expanded', 'false'); sHits = []; return; }
+  const tok = q.split(/\s+/), score = (txt, nm) => { for (const w of tok) if (!txt.includes(w)) return -1; return nm.startsWith(tok[0]) ? 2 : nm.includes(tok[0]) ? 1 : 0; };
+  const out = [], push = (kind, id, label, sc, cls) => out.push({ kind, id, label, sc, cls });
+  Q.forEach((qu, i) => { const nm = norm(loc(qu.nmm) + ' ' + loc(qu.qq)), sc = score(nm + ' ' + norm(loc(qu.cc)), nm); if (sc >= 0) push('q', i, loc(qu.qq), sc + 4, 'q'); });
+  F.forEach((f, i) => { const nm = norm(loc(f.nn)), sc = score(nm, nm); if (sc >= 0) push('f', i, loc(f.nn), sc + 3); });
+  S.forEach((s, j) => { const nm = norm(sn(s) + ' ' + s.n), sc = score(nm, nm); if (sc >= 0) push('s', j, sn(s), sc + 2); });
+  for (let i = 0; i < N && out.length < 400; i++) { const nm = norm(T[i * 5 + 4]), sc = score(nm, nm); if (sc >= 0) push('t', i, T[i * 5 + 4], sc); }
+  out.sort((a, b) => b.sc - a.sc); sHits = out.slice(0, 12); sSel = sHits.length ? 0 : -1;
+  sres.innerHTML = sHits.length ? sHits.map((h, k) => `<li role="option" id="so${k}" data-k="${k}" aria-selected="${k === 0}"><small>${esc(t('search_k_' + h.kind))}</small><span class="${h.cls || ''}">${esc(h.label)}</span></li>`).join('') : `<li role="option" aria-selected="false"><small></small><span>${esc(t('search_none'))}</span></li>`;
+  sres.hidden = false; sq.setAttribute('aria-expanded', 'true');
+}
+function sGo(k) { const h = sHits[k]; if (!h) return; sres.hidden = true; sq.setAttribute('aria-expanded', 'false'); sq.value = ''; sq.blur();
+  if (h.kind === 'q') openQ(h.id); else if (h.kind === 't') openT(h.id); else if (h.kind === 'f') { closePanel(); flyTo(FC[h.id].x, FC[h.id].y, 2.6); } else { closePanel(); const c = sCenter(h.id); flyTo(c[0], c[1], 3.2); } }
+function sMark() { sres.querySelectorAll('li').forEach((li, k) => li.setAttribute('aria-selected', String(k === sSel))); if (sSel >= 0) { sq.setAttribute('aria-activedescendant', 'so' + sSel); const el = $('so' + sSel); if (el) el.scrollIntoView({ block: 'nearest' }); } }
+sq.addEventListener('input', doSearch); sq.addEventListener('focus', () => { if (sq.value) doSearch(); });
+sq.addEventListener('keydown', e => { if (e.key === 'ArrowDown') { e.preventDefault(); if (sHits.length) { sSel = (sSel + 1) % sHits.length; sMark(); } } else if (e.key === 'ArrowUp') { e.preventDefault(); if (sHits.length) { sSel = (sSel - 1 + sHits.length) % sHits.length; sMark(); } } else if (e.key === 'Enter') { e.preventDefault(); sGo(sSel); } else if (e.key === 'Escape') { if (sq.value) { sq.value = ''; doSearch(); } else sq.blur(); e.stopPropagation(); } });
+sres.addEventListener('mousedown', e => { const li = e.target.closest('li[data-k]'); if (li) { e.preventDefault(); sGo(+li.dataset.k); } });
+sq.addEventListener('blur', () => setTimeout(() => { sres.hidden = true; sq.setAttribute('aria-expanded', 'false'); }, 120));
+addEventListener('keydown', e => { if (e.key === '/' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) { e.preventDefault(); sq.focus(); } });
+
 // ---- Textes selon la langue ----
 function applyLang() {
   if ($('srcpage')) $('srcpage').href = '/' + LANG + '/sources/';
   document.documentElement.lang = LANG; document.title = t('titre'); const md = document.querySelector('meta[name=description]'); if (md) md.content = t('desc');
   document.querySelectorAll('[data-i]').forEach(e => { e.textContent = t(e.dataset.i); });
   document.querySelectorAll('[data-ia]').forEach(e => e.setAttribute('aria-label', t(e.dataset.ia)));
+  sq.placeholder = t('search_ph'); sq.setAttribute('aria-label', t('search_aria')); if (sq.value) doSearch();
   $('siteTitle').textContent = t('titre'); $('ctxP').textContent = t('ctx_p', { n: fmt(N), q: Q.length }); $('cap').textContent = t('cap', { n: fmt(N) });
   $('refs').innerHTML = ORD.map((f, i) => `<li><button type="button" data-f="${f}"><b>${i + 1}</b><span>${esc(loc(F[f].nn))}</span></button></li>`).join('');
   document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));

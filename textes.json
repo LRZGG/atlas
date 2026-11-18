@@ -70,7 +70,16 @@
     "tl_play": "Lecture",
     "tl_pause": "Pause",
     "tl_aria": "Choisir une année : le relief montre les articles publiés cette année-là",
-    "tl_note": "Relief d'une seule année (échelle fixe, comparable d'une année à l'autre)."
+    "tl_note": "Relief d'une seule année (échelle fixe, comparable d'une année à l'autre).",
+    "signaler": "Signaler une erreur ou contester une affirmation",
+    "contribuer": "Comment contribuer",
+    "search_ph": "Chercher une question, un sujet…",
+    "search_none": "Aucun résultat",
+    "search_k_q": "Question",
+    "search_k_f": "Discipline",
+    "search_k_s": "Sous-discipline",
+    "search_k_t": "Sujet",
+    "search_aria": "Rechercher dans les questions, disciplines et sujets"
   },
   "en": {
     "titre": "Unknownpedia",
@@ -143,6 +152,15 @@
     "tl_play": "Play",
     "tl_pause": "Pause",
     "tl_aria": "Choose a year: the relief shows papers published that year",
-    "tl_note": "Relief of a single year (fixed scale, comparable from year to year)."
+    "tl_note": "Relief of a single year (fixed scale, comparable from year to year).",
+    "signaler": "Report an error or challenge a claim",
+    "contribuer": "How to contribute",
+    "search_ph": "Search a question, a topic…",
+    "search_none": "No result",
+    "search_k_q": "Question",
+    "search_k_f": "Discipline",
+    "search_k_s": "Subfield",
+    "search_k_t": "Topic",
+    "search_aria": "Search questions, disciplines and topics"
   }
 }
