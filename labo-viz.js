@@ -30,7 +30,38 @@
   }
 
   // ---- Vues ----
+  // ---- Mappemonde ancienne : deux hémisphères (projection stéréographique équatoriale), mer gravée, rubans de côte, pains à cacheter pour les dossiers ----
+  const HM = D.hemi, RR = HM ? HM.R : 240, rad = Math.PI / 180;
+  const PJ = (lon, lat, l0) => { const d = (lon - l0) * rad, p = lat * rad, x = Math.cos(p) * Math.sin(d), y = Math.sin(p), z = Math.cos(p) * Math.cos(d); return { x: x / (1 + z) * RR, y: -y / (1 + z) * RR, z }; };
+  const SEAL = { non: '#8f1d22', exp: '#4a4a46', par: '#4a4a46', deb: '#8a6a1f', cls: '#8a6a1f', fol: '#3a3a3a', tem: '#8f1d22', fau: '#3a3a3a', fic: '#3a3a3a', leg: '#3a3a3a' };
+  function mappemonde(items, opt) {
+    const C = [{ k: 'west', cx: 296, cy: 300, l0: HM.west.lon0 }, { k: 'east', cx: 824, cy: 300, l0: HM.east.lon0 }];
+    const hemi = h => { const grat = (() => { let d = ''; const seg = pts => { let on = false; pts.forEach(p => { if (p.z >= 0) { d += (on ? 'L' : 'M') + p.x.toFixed(1) + ' ' + p.y.toFixed(1); on = true; } else on = false; }); };
+        for (let lo = -180; lo < 180; lo += 15) { const pts = []; for (let la = -90; la <= 90; la += 3) pts.push(PJ(lo, la, h.l0)); seg(pts); }
+        for (let la = -75; la <= 75; la += 15) { const pts = []; for (let lo = h.l0 - 90; lo <= h.l0 + 90; lo += 3) pts.push(PJ(lo, la, h.l0)); seg(pts); } return d; })();
+      const circ = 2 * Math.PI * (RR + 9), ticks = circ / 72, id = h.k;
+      let water = ''; for (let y = -RR; y <= RR; y += 5) { const w = Math.sqrt(RR * RR - y * y); water += `M${-w} ${y}H${w}`; }
+      const ripples = [20, 15, 10, 6, 3].map((w, i) => `<use href="#land-${id}" class="rip ${i % 2 ? 'r1' : 'r0'}" style="stroke-width:${w}"/>`).join('');
+      return `<g transform="translate(${h.cx} ${h.cy})"><clipPath id="clip-${id}"><circle r="${RR}"/></clipPath><defs><path id="land-${id}" d="${HM[h.k].d}"/></defs>
+<circle r="${RR + 9}" class="ringb" style="stroke-dasharray:${ticks} ${ticks}"/><circle r="${RR + 15}" class="ringl"/><circle r="${RR}" class="sea"/>
+<g clip-path="url(#clip-${id})"><path d="${water}" class="water"/>${ripples}<use href="#land-${id}" class="land2"/><use href="#land-${id}" class="hatch"/><path d="${grat}" class="gr2"/></g><circle r="${RR}" class="ringc"/></g>`; };
+    const lbl = [['Oceanus Atlanticus', -35, 12, 1.0], ['Mare Pacificum', -145, 8, 1.0], ['Oceanus Indicus', 80, -22, 1.0], ['Mare Pacificum', 150, 0, .6], ['AMERICA', -100, 38, 1.4], ['AMERICA', -62, -14, 1.4], ['EUROPA', 12, 49, 1.4], ['AFRICA', 18, 4, 1.4], ['ASIA', 95, 48, 1.4], ['AUSTRALIA', 135, -26, 1.2]].map(([t, lo, la, sz]) => { let best = null; for (const h of C) { const p = PJ(lo, la, h.l0); if (p.z > .35 && (!best || p.z > best.z)) best = { x: h.cx + p.x, y: h.cy + p.y, z: p.z }; } return best ? `<text x="${best.x}" y="${best.y}" text-anchor="middle" class="${sz > 1.1 ? 'cont' : 'oc'}">${t}</text>` : ''; }).join('');
+    const loc = items.filter(i => i.coord), no = items.filter(i => !i.coord);
+    const pos = i => { let best = null; for (const h of C) { const p = PJ(i.coord[1], i.coord[0], h.l0); if (p.z >= 0 && (!best || p.z > best.z)) best = { x: h.cx + p.x, y: h.cy + p.y, z: p.z }; } return best ? [best.x, best.y] : null; };
+    const vis = loc.filter(pos), pl = place(vis, pos, 12.5, [4, 4, 1116, 616]);
+    const pins = pl.map(([i, x, y, tx, ty, a]) => `<g class="pin seal" data-id="${i.id}" tabindex="0" role="button" aria-label="${esc(i.titre)}"><circle cx="${x}" cy="${y}" r="13" class="hit"/><circle cx="${x}" cy="${y}" r="8.2" style="fill:${SEAL[i.st]}" class="wax"/><circle cx="${x}" cy="${y}" r="5.6" class="waxin"/><text x="${x}" y="${y + 3.4}" text-anchor="middle" class="wl">${MK[i.st]}</text>${tx != null ? `<text x="${tx}" y="${ty}" text-anchor="${a}" class="lb2">${esc(i.titre)}</text>` : ''}</g>`).join('');
+    const rose = (() => { const cx = 560, cy = 590, r = 30; let d = ''; for (let k = 0; k < 16; k++) { const a = k * Math.PI / 8, long = k % 4 === 0 ? r : k % 2 === 0 ? r * .72 : r * .5, w = .16, p0 = [cx + Math.sin(a - w) * r * .18, cy - Math.cos(a - w) * r * .18], p1 = [cx + Math.sin(a) * long, cy - Math.cos(a) * long], p2 = [cx + Math.sin(a + w) * r * .18, cy - Math.cos(a + w) * r * .18]; d += `M${cx} ${cy}L${p0}L${p1}L${p2}Z`; } return `<path d="${d}" class="rose"/><circle cx="${cx}" cy="${cy}" r="${r * .22}" class="roseb"/><text x="${cx}" y="${cy - r - 5}" text-anchor="middle" class="cont" style="font-size:11px">N</text>`; })();
+    V.innerHTML = `<p class="note">${esc(opt.note)}</p><div class="mapwrap"><svg class="mappem" viewBox="0 0 1120 626" role="img" aria-label="Mappemonde des dossiers, deux hémisphères"><defs><filter id="wax"><feTurbulence type="fractalNoise" baseFrequency=".08" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/></filter><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="2"/><feColorMatrix values="0 0 0 0 .3  0 0 0 0 .22  0 0 0 0 .1  0 0 0 .22 0"/></filter><radialGradient id="vig" cx="50%" cy="50%" r="75%"><stop offset="60%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".42"/></radialGradient><pattern id="hp" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0V4" class="hp"/></pattern></defs>
+<rect width="1120" height="626" class="paperbg"/><rect width="1120" height="626" filter="url(#grain)" class="grain"/><rect x="10" y="10" width="1100" height="606" class="nl1"/><rect x="18" y="18" width="1084" height="590" class="nl2"/>
+${C.map(hemi).join('')}${lbl}
+<text x="560" y="40" text-anchor="middle" class="title">ORBIS DOSSIERUM · Mappemonde des énigmes</text>
+<g transform="translate(0 0)">${rose}</g><text x="46" y="598" class="oc" style="font-size:12px;text-anchor:start">Deux hémisphères · projection stéréographique · positions selon Wikidata</text>
+<rect width="1120" height="626" fill="url(#vig)" class="vigr"/>${pins}</svg></div>${no.length ? `<p class="note">Sans coordonnées dans Wikidata : ${no.map(i => `<a href="#" data-id="${i.id}">${esc(i.titre)}</a>`).join(', ')}.</p>` : ''}<p class="note small">Fond de carte : ${esc(HM.credit)}. Les rubans le long des côtes, les noms latins et les pains à cacheter sont des conventions de cartes anciennes ; les positions, elles, sont mesurées.</p>`;
+  }
+
   const views = {
+    mappemonde,
+    salle(items, opt) { views.etagere(items, opt); V.insertAdjacentHTML('afterbegin', '<p class="cta"><a href="archives-3d.html">Entrer dans la salle des archives en 3D →</a></p>'); },
     carte(items, opt) {
       const loc = items.filter(i => i.coord), no = items.filter(i => !i.coord), cr = opt.crop || [-180, 180, 84, -58], bx0 = px(cr[0]), bx1 = px(cr[1]), by0 = py(cr[2]), by1 = py(cr[3]), pl = place(loc, i => [px(i.coord[1]), py(i.coord[0])], 11, [bx0 + 2, by0 + 2, bx1 - 2, by1 - 2]);
       let g = ''; for (let lo = -180; lo <= 180; lo += 30) g += `<line x1="${px(lo)}" y1="0" x2="${px(lo)}" y2="${W.h}"/>`; for (let la = -60; la <= 80; la += 20) g += `<line x1="0" y1="${py(la)}" x2="${W.w}" y2="${py(la)}"/>`;
