@@ -5,7 +5,7 @@
   var p = location.pathname, en = /^\/en\//.test(p);
   var FOL = /viz-folklore|cabinet-3d|\/f[1-4][a-z]*\.html/.test(p);
   var cur = FOL ? 2 : /\/labo\//.test(p) && !/passage|menus|menu-onglets|index\.html$|\/labo\/$/.test(p) ? 1 : 0;
-  var W = [{ k: 'sci', n: 'Science', u: en ? '/en/' : '/fr/' }, { k: 'mys', n: en ? 'Mysteries' : 'Mystères', u: '/labo/viz-mystere.html' }, { k: 'fol', n: 'Folklore', u: '/labo/viz-folklore.html' }];
+  var W = [{ k: 'sci', n: 'Science', u: en ? '/en/' : '/fr/' }, { k: 'mys', n: en ? 'Mysteries' : 'Mystères', u: '/labo/viz-mystere.html' }, { k: 'fol', n: 'Folklore', u: '/labo/cabinet-3d.html' }];
   // Couleurs : bande (fond), bordure, texte des onglets inactifs, plaque et encre de la plaque (par monde).
   var C = {
     matieres: { n: 'Matières', strip: '#14161a', bd: '#ffffff55', ti: '#d9d6cc', pl: ['#fbfbf9', '#d8caa7', '#ece8dd'], pi: ['#15181d', '#1d1c1b', '#17181a'] },
