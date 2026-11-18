@@ -69,6 +69,78 @@ function block(parent, w, h, d, x, y, z, material) {
   return mesh;
 }
 
+// Grain continu à l’échelle du meuble, y compris sur le chant chanfreiné.
+function oakGrain() {
+  const map = canvasMap(1024, 256, (g, w, h) => {
+    const image = g.createImageData(w, h);
+    let seed = 524;
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+        const a = x / w * Math.PI * 2, b = y / h * Math.PI * 2;
+        const ripple = 3.6 * Math.sin(a + b) + 1.5 * Math.cos(2*a - b);
+        const rings = b * 10 + ripple + 1.2 * Math.sin(2*b + a);
+        const pore = Math.max(0, Math.sin(rings * 4 + .9*Math.cos(4*a))) ** 9;
+        const grain = 10*Math.sin(rings) - 15*pore + 4*Math.sin(81*b + ripple) + 10*(seed/4294967296 - .5);
+        const i = (y*w+x)*4;
+        image.data[i] = 136 + grain;
+        image.data[i+1] = 105 + grain*.83;
+        image.data[i+2] = 76 + grain*.62;
+        image.data[i+3] = 255;
+      }
+    }
+    g.putImageData(image, 0, 0);
+  });
+  map.wrapS = map.wrapT = THREE.RepeatWrapping;
+  return map;
+}
+
+function shelfBoard(frame, width, top, row, wood) {
+  const shape = new THREE.Shape();
+  const halfDepth = .565, thickness = .119, bevel = .012;
+  // Section de la planche, du fond vers l’arête avant.
+  shape.moveTo(-halfDepth, 0);
+  shape.lineTo(halfDepth-bevel, 0);
+  shape.lineTo(halfDepth, -bevel);
+  shape.lineTo(halfDepth, bevel-thickness);
+  shape.lineTo(halfDepth-bevel, -thickness);
+  shape.lineTo(-halfDepth, -thickness);
+  shape.closePath();
+  const geometry = new THREE.ExtrudeGeometry(shape, {depth:width, bevelEnabled:false});
+  geometry.rotateY(-Math.PI/2);
+  geometry.translate(width/2, 0, 0);
+  const {position, normal, uv} = geometry.attributes;
+  for (let i=0; i<position.count; i++) {
+    const x=position.getX(i), y=position.getY(i), z=position.getZ(i);
+    const along = Math.abs(normal.getX(i))>.9 ? z : x;
+    const across = Math.abs(normal.getY(i))>.9 ? z : y;
+    uv.setXY(i, along/3.5 + row*.31, across/.86 + row*.39);
+  }
+  const mesh = new THREE.Mesh(geometry, wood);
+  mesh.position.y = top;
+  mesh.castShadow = mesh.receiveShadow = true;
+  frame.add(mesh);
+}
+
+function rackPost(frame, x, bottom, iron, uprightFace, boltMaterial) {
+  const postHeight = bottom+2*shelfPitch+.045;
+  // Cornière repliée. Sa semelle porte le bois ; les boulons restent entre les dossiers.
+  for (const z of [-.595,.59]) {
+    const flange = z>0 ? [iron,iron,iron,iron,uprightFace,iron] : iron;
+    block(frame,.103,postHeight,.021,x,postHeight/2,z,flange);
+    block(frame,.017,postHeight,.075,x-.043,postHeight/2,z-Math.sign(z)*.048,iron);
+  }
+  for (let level=0; level<=2; level++) {
+    const top = bottom + level*shelfPitch;
+    block(frame,.17,.025,1.12,x,top-.132,0,iron);
+    const head = new THREE.Mesh(new THREE.CylinderGeometry(.028,.031,.018,6), boltMaterial);
+    head.rotation.x = Math.PI/2;
+    head.position.set(x,top-.06,.609);
+    head.castShadow = true;
+    frame.add(head);
+  }
+}
+
 export function createShelves(canvas, items, showRecord) {
   const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
@@ -79,14 +151,21 @@ export function createShelves(canvas, items, showRecord) {
   scene.background = new THREE.Color('#121510');
   const camera = new THREE.PerspectiveCamera(39, 1, .06, 40);
   const mat = (color, extra={}) => new THREE.MeshStandardMaterial({color,roughness:.84,...extra});
-  const wood = mat('#584a39', {map: canvasMap(512,128,(g,w,h)=>{
-    g.fillStyle='#d6c5ae'; g.fillRect(0,0,w,h);
-    for(let y=0;y<h;y+=2) {
-      g.fillStyle='rgba(72,52,34,'+(.08+.06*Math.sin(y*1.7))+')';
-      g.fillRect(0,y,w,1);
+  const grain = oakGrain();
+  const wood = mat('#dbc8ae', {map:grain, bumpMap:grain, bumpScale:.016, roughness:.71});
+  const iron = mat('#575950', {metalness:.43, roughness:.62});
+  const uprightFace = mat('#aaa797', {metalness:.35, roughness:.66, map:canvasMap(48,1024,(g,w,h)=>{
+    const fold = g.createLinearGradient(0,0,w,0);
+    for (const [x,tone] of [[0,'#aaa697'],[.10,'#656861'],[.18,'#77796f'],[.94,'#7a7b70'],[1,'#a8a69a']]) fold.addColorStop(x,tone);
+    g.fillStyle=fold; g.fillRect(0,0,w,h);
+    for(let y=22;y<h;y+=42) {
+      g.fillStyle='#aaa896';
+      g.fillRect(20,y,9,16);
+      g.fillStyle='#292d2a';
+      g.fillRect(20,y,9,14);
     }
   })});
-  const iron = mat('#53564d',{metalness:.38});
+  const bolts = mat('#968776', {metalness:.55, roughness:.48});
   const backing = mat('#424739');
   const pages = mat('#b9ac8c',{map:canvasMap(128,128,(g,w,h)=>{
     g.fillStyle='#e8decb'; g.fillRect(0,0,w,h);
@@ -105,7 +184,7 @@ export function createShelves(canvas, items, showRecord) {
   const fullWidth = bayWidths.reduce((a,b)=>a+b,0);
   const bottom = .22;
   for (let row=0;row<=2;row++) {
-    block(frame, fullWidth+.15,.09,1.12,0,bottom+row*shelfPitch-.045,0,wood);
+    shelfBoard(frame, fullWidth+.15, bottom+row*shelfPitch, row, wood);
   }
   let left = -fullWidth/2;
   for (const [bay,bayWidth] of bayWidths.entries()) {
@@ -129,18 +208,18 @@ export function createShelves(canvas, items, showRecord) {
         x += w+gap;
       }
     }
-    for(const z of [-.51,.51]) block(frame,.059,shelfPitch*2+.21,.058,left,bottom+shelfPitch-.05,z,iron);
+    rackPost(frame, left, bottom, iron, uprightFace, bolts);
     left += bayWidth;
   }
-  for(const z of [-.51,.51]) block(frame,.059,shelfPitch*2+.21,.058,left,bottom+shelfPitch-.05,z,iron);
+  rackPost(frame, left, bottom, iron, uprightFace, bolts);
   block(frame,fullWidth+.15,shelfPitch*2+.14,.07,0,bottom+shelfPitch-.02,-.61,backing);
   block(scene,55,.10,40,0,-.055,0,mat('#46463d'));
   block(scene,55,18,.1,0,8,-.73,mat('#494a40'));
 
-  const torch = new THREE.SpotLight(0xfff2db, 1, 0, .77, .76, 2);
+  const torch = new THREE.SpotLight(0xfff4e4, 1, 0, .45, .55, 2);
   torch.map = canvasMap(256,256,(g,w,h)=>{
     const gradient = g.createRadialGradient(w/2,h/2,0,w/2,h/2,w/2);
-    for(const [r,c] of [[0,'#ffffff'],[.19,'#f4eee4'],[.44,'#c6c0b5'],[.8,'#aba496'],[1,'#777064']]) gradient.addColorStop(r,c);
+    for(const [r,c] of [[0,'#ffffff'],[.09,'#f8f4ed'],[.22,'#beb9ad'],[.35,'#797469'],[.51,'#48443b'],[.72,'#2b2924'],[1,'#1c1b19']]) gradient.addColorStop(r,c);
     g.fillStyle=gradient; g.fillRect(0,0,w,h);
   });
   torch.castShadow=true;
@@ -149,14 +228,17 @@ export function createShelves(canvas, items, showRecord) {
   torch.shadow.normalBias=.007;
   scene.add(torch, torch.target);
 
-  const ray = new THREE.Raycaster(), cursor = new THREE.Vector2();
+  const ray = new THREE.Raycaster(), cursor = new THREE.Vector2(0, .24);
   const aim = new THREE.Vector3();
   const plane = new THREE.Plane(new THREE.Vector3(0,0,1),-.46);
   let center = -fullWidth/2+.8, limit = 0, viewWidth = 0, distance = 0;
   let selected = -1, focused = -1, pending = false, drag = null;
   let raf = 0, last = 0, running = true;
   function redraw() {
-    if(running && !raf) raf=requestAnimationFrame(render);
+    if(running && !raf) {
+      last=performance.now();
+      raf=requestAnimationFrame(render);
+    }
   }
   function positionCamera() {
     const y = bottom+shelfPitch;
@@ -166,18 +248,17 @@ export function createShelves(canvas, items, showRecord) {
     torch.position.copy(camera.position);
     torch.position.x-=.14;
     torch.position.y+=.09;
-    torch.intensity=distance*distance*4.0;
+    torch.intensity=distance*distance*3.2;
+    updateAim();
+  }
+  function updateAim() {
     ray.setFromCamera(cursor,camera);
     ray.ray.intersectPlane(plane,aim);
-    if(focused>=0 || selected>=0) {
-      const f = folders[selected>=0 ? selected : focused].folder.position;
-      aim.set(f.x,f.y,.5);
-    }
-    torch.target.position.copy(aim);
   }
   function resize() {
     const {width:w,height:h}=canvas.getBoundingClientRect();
     camera.aspect=w/h;
+    torch.angle=Math.atan(.45*Math.min(1,camera.aspect));
     const visibleHeight=3.76;
     distance=.5+visibleHeight/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)));
     viewWidth=visibleHeight*camera.aspect;
@@ -190,9 +271,14 @@ export function createShelves(canvas, items, showRecord) {
   }
   function render(now) {
     raf=0;
-    const ease=reduced.matches ? 1 : 1-Math.exp(-13*Math.max(0,(now-last)/1000));
+    const elapsed = Math.max(0, (now-last)/1000);
     last=now;
-    let moving=false;
+    const ease = reduced.matches ? 1 : 1-Math.exp(-13*elapsed);
+    const tracking = reduced.matches ? 1 : 1-Math.exp(-28*elapsed);
+    const target = torch.target.position;
+    target.lerp(aim,tracking);
+    let moving = target.distanceToSquared(aim)>.000001;
+    if (!moving) target.copy(aim);
     for(const [index,f] of folders.entries()) {
       const target=f.home+(index===selected ? .69 : index===focused ? .11 : 0);
       const delta=target-f.folder.position.z;
@@ -206,12 +292,12 @@ export function createShelves(canvas, items, showRecord) {
       pending=false;
       showRecord(folders[selected].item);
     }
-    if(moving) redraw();
+    if(moving && running && !raf) raf=requestAnimationFrame(render);
   }
   function point(event) {
     const r=canvas.getBoundingClientRect();
     cursor.set(2*(event.clientX-r.left)/r.width-1,1-2*(event.clientY-r.top)/r.height);
-    positionCamera();
+    updateAim();
     redraw();
   }
   function hit() {
@@ -221,23 +307,25 @@ export function createShelves(canvas, items, showRecord) {
   }
   function open(index) {
     if(index<0) return;
-    last=performance.now();
     selected=index;
     pending=true;
-    positionCamera();
     redraw();
   }
   function close() {
-    last=performance.now();
     selected=-1;
     pending=false;
-    positionCamera();
     redraw();
+  }
+  // Le dialogue, son fond et les onglets reçoivent eux aussi les mouvements du pointeur.
+  const trackingEvents = new AbortController();
+  for (const type of ['pointermove','pointerdown','pointerup']) {
+    window.addEventListener(type, event => {
+      if (event.isPrimary) point(event);
+    }, {capture:true, passive:true, signal:trackingEvents.signal});
   }
   canvas.addEventListener('contextmenu',e=>e.preventDefault());
   canvas.addEventListener('pointerdown',e=>{
     if(drag || (e.button!==0 && e.button!==2)) return;
-    point(e);
     drag={id:e.pointerId,x:e.clientX,y:e.clientY,center,pan:e.button===2 || e.pointerType!=='mouse',pick:e.button===0,moved:false};
     canvas.setPointerCapture(e.pointerId);
     if(!drag.pick) canvas.style.cursor='grabbing';
@@ -249,15 +337,14 @@ export function createShelves(canvas, items, showRecord) {
       if(Math.hypot(dx,e.clientY-drag.y)>5) drag.moved=true;
       if(drag.pan && drag.moved) {
         center=clamp(drag.center-dx*viewWidth/canvas.clientWidth,-limit,limit);
+        positionCamera();
         if(pending) close();
       }
     }
-    point(e);
     canvas.style.cursor=drag?.pan ? 'grabbing' : hit()>=0 ? 'pointer' : 'default';
   });
   canvas.addEventListener('pointerup',e=>{
     if(drag?.id!==e.pointerId) return;
-    point(e);
     if(drag.pick && !drag.moved) open(hit());
     drag=null;
     canvas.style.cursor='';
@@ -268,15 +355,22 @@ export function createShelves(canvas, items, showRecord) {
   const observer=new ResizeObserver(resize);
   observer.observe(canvas);
   resize();
+  torch.target.position.copy(aim);
   return {
     open, close,
-    focus(index) {
+    focus(index, restore) {
       focused=index;
+      if(restore) { redraw(); return; }
       center=clamp(folders[index].folder.position.x,-limit,limit);
       positionCamera();
+      const spineCenter = folders[index].folder.position.clone();
+      spineCenter.z+=depth/2;
+      spineCenter.project(camera);
+      cursor.set(spineCenter.x,spineCenter.y);
+      updateAim();
       redraw();
     },
-    unfocus(){focused=-1;positionCamera();redraw();},
-    stop(){running=false;cancelAnimationFrame(raf);observer.disconnect();}
+    unfocus(){focused=-1;redraw();},
+    stop(){running=false;trackingEvents.abort();cancelAnimationFrame(raf);observer.disconnect();}
   };
 }
