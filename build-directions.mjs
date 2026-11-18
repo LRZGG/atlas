@@ -162,7 +162,12 @@ const DATA = {
   F: fIds.map(f => ({ nn: { fr: fr(s.fields[f].name), en: s.fields[f].name }, d: dIds.indexOf(s.fields[f].domain) })),
   S: sIds.map((id, i) => ({ n: s.subfields[id].name, nf: SUBFR[s.subfields[id].name] || s.subfields[id].name, f: fIdx[s.subfields[id].field], x: r3(pos[i][0]), y: r3(pos[i][1]), w: sw[i] })),
   L: links.map(([i, j]) => [i, j]), T, Q, SRC: qs.sources,
-  TXT: JSON.parse(readFileSync('textes.json', 'utf8'))
+  TXT: JSON.parse(readFileSync('textes.json', 'utf8')),
+  Y: (() => { // articles par an et par sujet (annees.json, fetch-annees.mjs) : un caractère par année, log2 quantifié
+    if (!existsSync('annees.json')) return null; const an = JSON.parse(readFileSync('annees.json', 'utf8')), y1 = Math.min(an.y1, 2025), n = y1 - an.y0 + 1; let a = '';
+    for (const t of s.topics) { const r = an.t[t.id] || []; for (let k = 0; k < n; k++) a += String.fromCharCode(48 + Math.min(63, Math.round(Math.log2(1 + (r[k] || 0)) * 2))); }
+    return { y0: an.y0, y1, n, a };
+  })()
 };
 // La carte sort en trois pages pour GitHub Pages : la racine, qui détecte la langue du navigateur (anglais par défaut), puis /fr/ et /en/ qui la fixent
 // (un lien partagé garde sa langue, et chaque page a sa langue déclarée pour les moteurs de recherche). Le fragment sans enveloppe sert d'aperçu.
@@ -186,19 +191,37 @@ writeFileSync('docs/index.html', head('en', '/', false) + titre('en'));
 writeFileSync('docs/fr/index.html', head('fr', '/fr/', true) + titre('fr'));
 writeFileSync('docs/en/index.html', head('en', '/en/', true) + titre('en'));
 // Une page HTML par question qui a une fiche : lisible sans JavaScript, avec son adresse, sa description et sa provenance (français seulement tant que les fiches ne sont pas traduites).
-const T0 = DATA.TXT.fr, PAGES = [];
+const PAGES = [];
 const li = a => a.map(x => '<li>' + esc(x) + '</li>').join('');
-for (const q of Q.filter(q => q.f)) {
-  const f = q.f, b = f.fr, w = f.w.fr, p = '/fr/q/' + q.id + '/', at = T0.wiki_attr.split('{t}');
+for (const lang of ['fr', 'en']) for (const q of Q.filter(q => q.f && q.f[lang])) {
+  const T0 = DATA.TXT[lang], f = q.f, b = f[lang], w = f.w[lang] || f.w.fr, p = '/' + lang + '/q/' + q.id + '/', at = T0.wiki_attr.split('{t}');
   const prov = f.rv ? esc(T0.prov_rv.replace('{n}', f.rv.par).replace('{d}', f.rv.date)) : esc(T0.prov) + ' <a href="https://github.com/Lorenzo1208/atlas/blob/main/methode.md#qui-écrit-quoi">' + esc(T0.prov_lien) + '</a>';
-  const desc = esc(q.cc.fr), titre = esc(q.qq.fr) + ' — ' + esc(T0.titre);
-  const html = '<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>' + titre + '</title><meta name="description" content="' + desc + '"><link rel="canonical" href="' + BASE + p + '"><meta property="og:type" content="article"><meta property="og:title" content="' + esc(q.qq.fr) + '"><meta property="og:description" content="' + desc + '"><meta property="og:url" content="' + BASE + p + '"><meta property="og:image" content="' + BASE + '/partage/' + q.id + '.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="' + BASE + '/partage/' + q.id + '.png">'
+  const desc = esc(q.cc[lang] || q.cc.fr), titre = esc(q.qq[lang] || q.qq.fr) + ' — ' + esc(T0.titre);
+  const html = '<!doctype html><html lang="' + lang + '"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>' + titre + '</title><meta name="description" content="' + desc + '"><link rel="canonical" href="' + BASE + p + '"><meta property="og:type" content="article"><meta property="og:title" content="' + esc(q.qq[lang] || q.qq.fr) + '"><meta property="og:description" content="' + desc + '"><meta property="og:url" content="' + BASE + p + '"><meta property="og:image" content="' + BASE + '/partage/' + q.id + '.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="' + BASE + '/partage/' + q.id + '.png">'
     + '<style>@font-face{font-family:"IM Fell DW Pica";font-style:normal;font-display:swap;src:url(/fonts/imfell.woff2) format("woff2")}@font-face{font-family:"IM Fell DW Pica";font-style:italic;font-display:swap;src:url(/fonts/imfell-italic.woff2) format("woff2")}@font-face{font-family:"Archivo Narrow";font-weight:400 700;font-display:swap;src:url(/fonts/archivo-narrow.woff2) format("woff2")}:root{--paper:#fbfbf9;--ink:#15181d;--dim:#3b4048;--acc:#b3122f;color-scheme:light}@media(prefers-color-scheme:dark){:root{--paper:#0b0d11;--ink:#e9ebee;--dim:#9ba3ad;--acc:#fff;color-scheme:dark}}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Archivo Narrow","Arial Narrow",system-ui,sans-serif;padding:14px}.sheet{border:1.6px solid var(--ink);padding:5px}.sheet>main{border:.6px solid var(--ink);padding:24px max(18px,4vw) 56px}main>*{max-width:660px;margin-left:auto;margin-right:auto}a{color:inherit}a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}h1{font:400 clamp(1.6rem,5vw,2.3rem)/1.2 "IM Fell DW Pica",Georgia,serif;text-wrap:balance;margin:.3em auto}h2{font-size:12px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:1.8em;margin-bottom:.4em}.top{font-size:13px;letter-spacing:.1em;text-transform:uppercase}.kicker{color:var(--acc);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:0}.prov{font-size:13px;border:.8px solid var(--ink);padding:8px 10px}.wiki{border-left:1px solid var(--ink);padding-left:14px;font-family:"IM Fell DW Pica",Georgia,serif}.attr{font:13px "Archivo Narrow",sans-serif;color:var(--dim)}li{margin:0 0 .5em}ul.refs{list-style:none;padding:0}</style>'
-    + '<div class="sheet"><main><p class="top"><a href="' + BASE + '/fr/#' + q.id + '">← ' + esc(T0.titre) + ' : voir sur la carte</a></p><h1>' + esc(q.qq.fr) + '</h1><p class="kicker">' + esc(T0['st_' + q.st]) + '</p><p>' + esc(q.cc.fr) + '</p><p class="prov">' + prov + '</p>'
+    + '<div class="sheet"><main><p class="top"><a href="' + BASE + '/' + lang + '/#' + q.id + '">← ' + esc(T0.titre) + ' : voir sur la carte</a></p><h1>' + esc(q.qq[lang] || q.qq.fr) + '</h1><p class="kicker">' + esc(T0['st_' + q.st]) + '</p><p>' + esc(q.cc[lang] || q.cc.fr) + '</p><p class="prov">' + prov + '</p>'
     + '<h2>' + esc(T0.f_sait) + '</h2><ul>' + li(b.s) + '</ul><h2>' + esc(T0.f_ignore) + '</h2><ul>' + li(b.i) + '</ul><h2>' + esc(T0.f_dur) + '</h2><ul>' + li(b.d) + '</ul><h2>' + esc(T0.f_compte) + '</h2><p>' + esc(b.e) + '</p><h2>' + esc(T0.f_commencer) + '</h2><ul>' + li(b.c) + '</ul>'
     + '<h2>' + esc(T0.f_loin) + '</h2><div class="wiki"><p>' + esc(w.x) + '</p><p class="attr">' + esc(at[0]) + '<a href="' + esc(w.u) + '">' + esc(w.t) + '</a>' + esc(at[1] || '') + '</p></div>'
     + '<ul class="refs">' + f.r.map(r => '<li><a href="' + esc(r.u) + '">' + esc(r.t) + '</a><br><span class="attr">' + esc([r.a, r.y].filter(Boolean).join(', ')) + '</span></li>').join('') + '</ul></main></div>';
-  mkdirSync('docs/fr/q/' + q.id, { recursive: true }); writeFileSync('docs/fr/q/' + q.id + '/index.html', html); PAGES.push(p);
+  mkdirSync('docs/' + lang + '/q/' + q.id, { recursive: true }); writeFileSync('docs/' + lang + '/q/' + q.id + '/index.html', html); PAGES.push(p);
+}
+// Page « Sources et licences » (FR et EN), au style des pages de question.
+{
+  const css = readFileSync('docs/fr/q/p-np/index.html', 'utf8').match(/<style>[\s\S]*?<\/style>/)[0];
+  const rows = {
+    fr: [['Données de recherche (sujets, compteurs d’articles, liens entre sujets)', 'OpenAlex', 'CC0', 'https://openalex.org'], ['Extraits des fiches', 'Wikipédia', 'CC BY-SA 4.0 (attribués dans chaque fiche)', 'https://fr.wikipedia.org'], ['Questions et textes des fiches', 'Unknownpedia (brouillons rédigés avec une IA, relus par personne tant que la mention le dit)', 'CC BY-SA 4.0 (à confirmer)', 'https://github.com/Lorenzo1208/atlas/blob/main/LICENCES.md'], ['Code', 'Unknownpedia', 'MIT (à confirmer)', 'https://github.com/Lorenzo1208/atlas/blob/main/LICENSE'], ['Polices IM Fell DW Pica et Archivo Narrow', 'hébergées sur le site', 'SIL OFL 1.1', 'https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts']],
+    en: [['Research data (topics, paper counts, links between topics)', 'OpenAlex', 'CC0', 'https://openalex.org'], ['Fiche excerpts', 'Wikipedia', 'CC BY-SA 4.0 (credited in each fiche)', 'https://en.wikipedia.org'], ['Questions and fiche texts', 'Unknownpedia (drafts written with an AI, not reviewed by anyone unless the label says so)', 'CC BY-SA 4.0 (to be confirmed)', 'https://github.com/Lorenzo1208/atlas/blob/main/LICENCES.md'], ['Code', 'Unknownpedia', 'MIT (to be confirmed)', 'https://github.com/Lorenzo1208/atlas/blob/main/LICENSE'], ['Fonts IM Fell DW Pica and Archivo Narrow', 'hosted on the site', 'SIL OFL 1.1', 'https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts']]
+  };
+  const txt = {
+    fr: { t: 'Sources et licences', intro: 'Le relief de la carte mesure l’effort de recherche (nombre d’articles publiés), pas le savoir. Les fiches sont des brouillons rédigés avec une IA ; chaque référence est vérifiée dans OpenAlex, mais aucune fiche n’a encore été relue par un spécialiste nommé.', back: '← Retour à la carte', h: ['Quoi', 'Source', 'Licence'] },
+    en: { t: 'Sources and licences', intro: 'The relief of the map measures research effort (number of papers published), not knowledge. The fiches are drafts written with an AI; each reference is checked in OpenAlex, but no fiche has yet been reviewed by a named specialist.', back: '← Back to the map', h: ['What', 'Source', 'Licence'] }
+  };
+  for (const lang of ['fr', 'en']) {
+    const x = txt[lang], p = '/' + lang + '/sources/';
+    const html = '<!doctype html><html lang="' + lang + '"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>' + x.t + ' — Unknownpedia</title><link rel="canonical" href="' + BASE + p + '">' + css.replace('</style>', 'table{border-collapse:collapse;width:100%;font-size:15px}td,th{text-align:left;vertical-align:top;border-bottom:.6px solid var(--ink);padding:8px 10px 8px 0}th{font-weight:400;letter-spacing:.1em;text-transform:uppercase;font-size:12px;color:var(--dim)}</style>')
+      + '<div class="sheet"><main><p class="top"><a href="' + BASE + '/' + lang + '/">' + esc(x.back) + '</a></p><h1>' + esc(x.t) + '</h1><p>' + esc(x.intro) + '</p><table><thead><tr>' + x.h.map(h => '<th>' + esc(h) + '</th>').join('') + '</tr></thead><tbody>' + rows[lang].map(r => '<tr><td>' + esc(r[0]) + '</td><td><a href="' + esc(r[3]) + '">' + esc(r[1]) + '</a></td><td>' + esc(r[2]) + '</td></tr>').join('') + '</tbody></table></main></div>';
+    mkdirSync('docs/' + lang + '/sources', { recursive: true }); writeFileSync('docs/' + lang + '/sources/index.html', html); PAGES.push(p);
+  }
 }
 writeFileSync('docs/robots.txt', `User-agent: *\nAllow: /\nSitemap: ${BASE}/sitemap.xml\n`);
 writeFileSync('docs/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${['/', '/fr/', '/en/', ...PAGES].map(p => `  <url><loc>${BASE}${p}</loc></url>`).join('\n')}\n</urlset>\n`);

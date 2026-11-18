@@ -215,7 +215,28 @@
           {
             "doi": "10.1016/j.physrep.2004.08.031"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "The movements of galaxies and galaxy clusters indicate there is more mass than what we see. It is called dark matter.",
+            "Measurements of the cosmic microwave background give a breakdown of the universe's energy: ordinary matter is only a small part, dark matter about five times more.",
+            "Very little is known about its nature: many candidates have been proposed and tested, with no direct detection so far."
+          ],
+          "ignore": [
+            "The nature of dark matter: an unknown particle, dark objects, or a modification of gravity.",
+            "The nature of dark energy, which accounts for the accelerating expansion of the universe."
+          ],
+          "dur": [
+            "Dark matter neither emits nor receives light: it is detected only through its gravity.",
+            "Detectors are very hard to build, since the expected signal is extremely faint."
+          ],
+          "enjeu": "Knowing what most of the universe's matter is made of, and whether the laws of gravity are complete.",
+          "commencer": [
+            "Astrophysics and particle physics.",
+            "A first step: understand how the rotation speed of galaxies reveals invisible mass.",
+            "The two articles below: the Planck measurement of the microwave background, and a review of candidates."
+          ]
+        }
       }
     },
     {
@@ -271,7 +292,28 @@
           {
             "doi": "10.1038/nrn.2016.22"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "The brain and consciousness are closely linked: a lesion, anaesthesia or deep sleep changes or removes lived experience.",
+            "We can identify “neural correlates”: brain activity that accompanies a conscious experience. For example, what differs in the brain between an image we see and the same image we do not notice.",
+            "Several scientific theories compete to explain it, and researchers are trying to test them against each other."
+          ],
+          "ignore": [
+            "Why neural activity comes with lived experience: the taste of a fruit, the redness of a colour, a pain. The philosopher David Chalmers called this the “hard problem” of consciousness.",
+            "Which beings have it: some animals? Could a machine? There is no test accepted by everyone."
+          ],
+          "dur": [
+            "Lived experience is private: nobody can measure it from outside. We depend on what the person reports, and a baby, an animal or an unresponsive patient cannot report anything.",
+            "There is no definition of consciousness that everyone agrees on, and competing theories are hard to tell apart by experiment."
+          ],
+          "enjeu": "Knowing whether an unresponsive patient feels anything, what we owe to animals, and what machines that claim to feel are worth.",
+          "commencer": [
+            "Cognitive neuroscience studies neural correlates; philosophy of mind studies the underlying question. The two meet here.",
+            "A basic protocol: compare what the brain does for a conscious perception and for one that is not.",
+            "To set out the problem, Chalmers's text below is the starting point."
+          ]
+        }
       }
     },
     {
@@ -384,7 +426,28 @@
           {
             "doi": "10.1016/j.cell.2013.05.039"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "Ageing is a gradual decline of the body's functions. Factors such as genome instability, telomere wear or inflammation contribute.",
+            "In laboratory animals, several interventions extend lifespan, such as calorie restriction.",
+            "In humans, average lifespan has increased a lot, but the maximum observed lifespan has stayed about the same."
+          ],
+          "ignore": [
+            "Why we age: accumulated wear or a programmed process.",
+            "Whether there is a limit to human life, and what it is."
+          ],
+          "dur": [
+            "Ageing is slow, which makes experiments in humans very long.",
+            "It combines many mechanisms that interact, so it is hard to isolate one."
+          ],
+          "enjeu": "Better understanding what causes ageing could delay age-related diseases, which are the main causes of death in rich countries.",
+          "commencer": [
+            "The biology of ageing and geriatrics.",
+            "A first step: read the list of “hallmarks of ageing”.",
+            "The article below presents it."
+          ]
+        }
       }
     },
     {
@@ -550,7 +613,28 @@
           {
             "doi": "10.1038/nature08013"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "Life has existed on Earth for a very long time: the oldest fossil micro-organisms observed are dated to at least 3.5 billion years.",
+            "The building blocks of life (amino acids, components of RNA, lipids) can form under conditions judged plausible for the early Earth. Experiments have shown this, from Miller's in 1953 to the synthesis of RNA components in 2009 (last article below).",
+            "Several scenarios are studied: an “RNA world”, where RNA stores information and catalyses reactions, hydrothermal vents on the ocean floor, warm surface pools. None is demonstrated."
+          ],
+          "ignore": [
+            "The full path, from lifeless chemistry to a cell able to reproduce and evolve: we know some steps, not how they connect.",
+            "Where and when it happened, and whether it is a rare event or a probable one."
+          ],
+          "dur": [
+            "Almost no rock from that era remains: the oldest geological records are rare and heavily altered.",
+            "We cannot repeat the experiment over millions of years or in a whole ocean: labs reproduce only isolated steps.",
+            "These steps often require chemical conditions that are incompatible with each other, which forces us to imagine environments where they follow one another."
+          ],
+          "enjeu": "Knowing whether life is a rare accident or a probable result of chemistry, which changes how we look for life elsewhere.",
+          "commencer": [
+            "Prebiotic chemistry: how simple molecules give more complex ones.",
+            "The three articles below are entry points; the last describes a specific successful step."
+          ]
+        }
       }
     },
     {
@@ -642,7 +726,28 @@
           {
             "doi": "10.1126/science.aaw4325"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "Memories are associated with groups of neurons, called engrams, which activate when we remember.",
+            "In mice, an engram has been artificially activated and a recall behaviour triggered.",
+            "The hippocampus plays a central role in forming recent memories."
+          ],
+          "ignore": [
+            "Where and how long-term memories are stored.",
+            "Why some memories are kept and others lost."
+          ],
+          "dur": [
+            "A memory cannot be observed: we see only neuronal activity, which leaves room for different interpretations.",
+            "Most precise experiments are done in mice, not in humans."
+          ],
+          "enjeu": "Understanding memory sheds light on diseases such as Alzheimer's and on how we learn.",
+          "commencer": [
+            "Cognitive neuroscience.",
+            "A first step: read how an engram is activated in a mouse.",
+            "The article below is a review of memory engrams."
+          ]
+        }
       }
     },
     {
@@ -841,7 +946,28 @@
           {
             "doi": "10.1017/9781009157896"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "Earth's average temperature has risen since the late 19th century. IPCC reports conclude that human influence, mainly through greenhouse gases, is the cause.",
+            "Atmospheric carbon dioxide has risen sharply since the industrial era, which is measured directly.",
+            "Projections depend on future emissions: the higher they are, the stronger the warming."
+          ],
+          "ignore": [
+            "How far the climate will warm, since climate sensitivity to greenhouse gases is still known only within a range.",
+            "How much certain phenomena (clouds, ice, ocean currents) will amplify or dampen the warming."
+          ],
+          "dur": [
+            "The climate is a system of many interacting elements, and we cannot run the experiment on a planetary scale.",
+            "Future emissions depend on human decisions, not only on physics."
+          ],
+          "enjeu": "Knowing what temperature will be reached makes it possible to decide what measures to take.",
+          "commencer": [
+            "Climatology and climate modelling.",
+            "A first step: compare the CO2 curve and the temperature curve since 1900.",
+            "The report below is the IPCC's 2021 assessment of the physical basis."
+          ]
+        }
       }
     },
     {
@@ -940,7 +1066,28 @@
             "t": "P vs NP, description officielle du problème",
             "a": "Clay Mathematics Institute"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "A problem is in P if a computer can solve it in reasonable time, even as the data grow. It is in NP if, when someone proposes a solution, you can check it quickly.",
+            "Every problem in P is in NP: what we can solve fast we can check fast.",
+            "Thousands of useful problems are in NP (planning routes, filling a timetable, packing objects into the fewest boxes), and for many of them nobody knows a fast algorithm.",
+            "Most specialists think P is different from NP, without having proved it."
+          ],
+          "ignore": [
+            "Whether P equals NP or not. Nobody has proved either. The Clay Institute offers a million dollars to whoever does: it is one of the Millennium Prize problems."
+          ],
+          "dur": [
+            "Proving that a problem cannot be solved quickly means reasoning about all possible programs, including ones nobody has imagined yet.",
+            "Results show that several families of proof techniques cannot be enough to settle it. New methods must be invented."
+          ],
+          "enjeu": "If P equalled NP with a practical algorithm, much of today's cryptography would be broken. In the other case, we would know that for thousands of problems no trick will give a fast algorithm.",
+          "commencer": [
+            "Complexity theory, a branch of theoretical computer science and mathematics.",
+            "A first step: understand why checking a sudoku grid is easy while solving this kind of problem in general is not.",
+            "Read the official description of the problem on the Clay Institute site, below."
+          ]
+        }
       }
     },
     {
@@ -996,7 +1143,28 @@
             "t": "L'hypothèse de Riemann, description officielle du problème",
             "a": "Clay Mathematics Institute"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "Prime numbers follow a known average law (the prime number theorem, proved in 1896). Deviations from this law are read in the zeros of a function, the Riemann zeta function.",
+            "In 1859 Riemann asserted that all the “non-trivial” zeros of this function have real part equal to 1/2. This is the Riemann hypothesis.",
+            "Computers have checked it for all zeros up to a height of about 3,000 billion, with no counterexample."
+          ],
+          "ignore": [
+            "Whether it is true for all zeros, of which there are infinitely many.",
+            "The exact deviations of the distribution of primes from the average law."
+          ],
+          "dur": [
+            "No computer check can cover infinitely many zeros: a proof is needed.",
+            "For neighbouring objects, the analogue of the hypothesis has been proved (by Weil, then Deligne), but the method has not so far been transposed to the integers."
+          ],
+          "enjeu": "Many results on primes are proved “if the Riemann hypothesis is true”. It is one of the Millennium Prize problems: a million dollars to whoever solves it.",
+          "commencer": [
+            "Analytic number theory.",
+            "A first step: understand what a zero of a function is, then why their position controls the distribution of primes.",
+            "Read the official description of the problem on the Clay Institute site, below."
+          ]
+        }
       }
     },
     {
@@ -1076,7 +1244,28 @@
             "t": "Navier-Stokes equation, description officielle du problème",
             "a": "Clay Mathematics Institute"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "The Navier–Stokes equations describe the motion of fluids such as water and air. They are used in meteorology, aeronautics and many other fields.",
+            "In two dimensions, it can be proved that solutions exist and stay smooth.",
+            "In three dimensions, existence of solutions is proved for a short time, or weaker solutions, but not for all time with smoothness."
+          ],
+          "ignore": [
+            "Whether, in three dimensions, solutions always stay smooth, or whether a singularity can appear.",
+            "What kind of mathematics could answer it."
+          ],
+          "dur": [
+            "The equations are nonlinear: large-scale and small-scale effects get mixed.",
+            "Turbulence makes the behaviour of solutions hard to describe."
+          ],
+          "enjeu": "The Clay Institute offers a million dollars to whoever answers. It is also a basic question for understanding turbulence.",
+          "commencer": [
+            "Partial differential equations and fluid mechanics.",
+            "A first step: understand why a nonlinear equation is harder to solve than a linear one.",
+            "The official description of the problem is below."
+          ]
+        }
       }
     },
     {
@@ -1130,7 +1319,28 @@
             "t": "Hodge conjecture, description officielle du problème",
             "a": "Clay Mathematics Institute"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "The conjecture links the topology of geometric objects defined by equations (algebraic varieties) to simpler algebraic objects.",
+            "It is proved in several special cases.",
+            "It is one of the seven Millennium Prize problems of the Clay Institute."
+          ],
+          "ignore": [
+            "Whether it is true in general.",
+            "Whether a topological object of a certain type is always made of algebraic pieces."
+          ],
+          "dur": [
+            "It connects tools from different areas, which requires new ideas.",
+            "There is no known general route to prove or refute it."
+          ],
+          "enjeu": "It would give a precise link between two ways of describing shapes, and advance algebraic geometry.",
+          "commencer": [
+            "Algebraic geometry and topology.",
+            "A first step: understand what an algebraic curve is and its topology.",
+            "The official description of the problem is below."
+          ]
+        }
       }
     },
     {
@@ -1200,7 +1410,28 @@
           {
             "doi": "10.1090/S0025-5718-2013-02787-1"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "Every even number greater than 2 would be the sum of two primes: 4 = 2 + 2, 10 = 3 + 7, 100 = 3 + 97.",
+            "Computers have checked it for all even numbers up to several billion billion.",
+            "A weaker version, for odd numbers and three primes, was proved by Harald Helfgott in 2013."
+          ],
+          "ignore": [
+            "Whether it holds for all even numbers, which remains unknown despite the checks.",
+            "Whether a counterexample exists, which nobody has found."
+          ],
+          "dur": [
+            "Primes are defined by multiplication, while the question concerns addition: tools are lacking to link the two.",
+            "A computer check, however huge, does not cover infinitely many numbers."
+          ],
+          "enjeu": "It is one of the oldest open problems in mathematics, part of Hilbert's eighth problem.",
+          "commencer": [
+            "Analytic number theory.",
+            "A first step: write each even number up to 50 as a sum of two primes.",
+            "The article below details the computer verification."
+          ]
+        }
       }
     },
     {
@@ -1254,7 +1485,28 @@
           {
             "doi": "10.4007/annals.2015.181.1.7"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "A prime number has only two divisors: 1 and itself. Two primes are twins when they differ by 2: 3 and 5, 11 and 13, 17 and 19.",
+            "Primes become rarer as we go on, but twin pairs keep turning up: the largest known have hundreds of thousands of digits.",
+            "In 2013 Yitang Zhang proved that there are infinitely many pairs of primes separated by less than 70 million. This ceiling was then lowered to 246 thanks to the work of James Maynard and the collaborative Polymath project."
+          ],
+          "ignore": [
+            "Whether there are infinitely many twin primes: the guaranteed gap would have to go from 246 to 2, and current methods are not enough.",
+            "The fine distribution of primes: we know the average law (the prime number theorem), not the local detail."
+          ],
+          "dur": [
+            "Primes are defined by multiplication, while the twin question concerns a gap of addition (2). The two operations combine badly.",
+            "Sieve methods, which eliminate non-primes, hit a parity obstacle: they distinguish poorly a number with an even number of prime factors from one with an odd number."
+          ],
+          "enjeu": "Understanding how primes are distributed locally, and not just on average.",
+          "commencer": [
+            "Analytic number theory, and in particular sieve methods.",
+            "A first step: find twin primes by hand up to 100, then ask what would stop them from ever ending.",
+            "The two articles below are those of Zhang and Maynard."
+          ]
+        }
       }
     },
     {
@@ -1366,7 +1618,28 @@
           {
             "doi": "10.1017/fmp.2022.8"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "Rule: if the number is even, divide it by 2; if odd, multiply it by 3 and add 1. Repeat.",
+            "Every number tested by computer ends up reaching 1.",
+            "In 2019 Terence Tao proved that almost all numbers reach very small values, in a precise sense, without proving that they all reach 1."
+          ],
+          "ignore": [
+            "Whether all numbers reach 1.",
+            "Whether some number has a sequence that grows without end, or a loop other than 4, 2, 1."
+          ],
+          "dur": [
+            "The rule mixes multiplication and division, giving sequences with no apparent regularity.",
+            "There is no general method for studying this kind of sequence."
+          ],
+          "enjeu": "It is a problem easy to state that has resisted for a long time. It shows that an elementary rule can hide deep difficulty.",
+          "commencer": [
+            "Number theory and dynamical systems.",
+            "A first step: compute by hand the sequence for 27.",
+            "The article below is Tao's, on the behaviour of almost all orbits."
+          ]
+        }
       }
     },
     {
@@ -1540,7 +1813,29 @@
             "t": "A method for obtaining digital signatures and public-key cryptosystems",
             "a": "Ronald L. Rivest, Adi Shamir, Leonard M. Adleman"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "Every integer greater than 1 can be written uniquely as a product of primes. For small numbers, finding these factors is easy.",
+            "For very large numbers (hundreds of digits), the best known algorithms on an ordinary computer take a time that explodes with the number of digits.",
+            "Widely used encryption systems, such as RSA, rely on this difficulty.",
+            "In 1994 Peter Shor showed that a large enough quantum computer would factor quickly."
+          ],
+          "ignore": [
+            "Whether a fast algorithm exists for an ordinary computer. Nobody knows one, and nobody has shown that none exists.",
+            "Whether factoring is as hard as the hardest problems in the class NP. It is thought not, without proof."
+          ],
+          "dur": [
+            "Proving that no algorithm, even an unknown one, succeeds: we know how to do this for almost no problem.",
+            "This problem has a special structure that probably makes it easier than NP-complete problems, without us knowing it to be easy."
+          ],
+          "enjeu": "The security of much of today's encryption. This motivates work on cryptography able to resist quantum computers.",
+          "commencer": [
+            "Complexity theory and number theory.",
+            "A first step: factor 91, then 8,633 by hand, and see how the effort grows.",
+            "The two articles below: Shor's on quantum computing, and the one that introduced RSA."
+          ]
+        }
       }
     },
     {
@@ -1776,7 +2071,28 @@
           {
             "doi": "10.1103/RevModPhys.93.035002"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "According to general relativity, a black hole is a region from which nothing comes back, not even light.",
+            "In 1974–1975 Stephen Hawking showed that, taking quantum physics into account, a black hole emits faint radiation and loses mass, to the point of possibly disappearing.",
+            "This radiation, as Hawking computed it, is thermal: it does not seem to carry anything of what fell into the black hole."
+          ],
+          "ignore": [
+            "Whether the information about what fell into a black hole is lost for ever, or comes back out in some way. Quantum mechanics says it cannot be destroyed.",
+            "Calculations since 2019 obtain radiation compatible with the conservation of information. They rely on assumptions and do not settle the whole question."
+          ],
+          "dur": [
+            "There is no quantum theory of gravity: the problem arises exactly where relativity and quantum mechanics collide.",
+            "The radiation of an astrophysical black hole is far too faint to be observed: no experiment can settle it today."
+          ],
+          "enjeu": "It is a test bench for any theory that would unify gravity and quantum mechanics.",
+          "commencer": [
+            "General relativity, quantum field theory, then quantum gravity.",
+            "A first step: understand why destroying information would contradict quantum mechanics.",
+            "The first article below is Hawking's; the second reviews recent calculations."
+          ]
+        }
       }
     },
     {
@@ -1848,7 +2164,29 @@
           {
             "doi": "10.1103/PhysRevLett.81.1562"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "Neutrinos are very light, very numerous particles that interact very little with matter.",
+            "In 1998 the Super-Kamiokande experiment showed that neutrinos change type as they travel (oscillation), which implies they have mass.",
+            "Mass differences between types are measured, but not the masses themselves."
+          ],
+          "ignore": [
+            "The mass of each neutrino.",
+            "Whether they are their own antiparticle (Majorana neutrinos) or not.",
+            "The ordering of their masses (normal or inverted hierarchy)."
+          ],
+          "dur": [
+            "Their interaction is so weak that very large detectors are needed to see a few of them.",
+            "The mass is so small that it is hard to measure directly."
+          ],
+          "enjeu": "Their mass does not fit in the standard model: knowing it points to what lies beyond, and could explain why the universe contains more matter than antimatter.",
+          "commencer": [
+            "Particle physics.",
+            "A first step: understand neutrino oscillation.",
+            "The article below is the Super-Kamiokande paper of 1998."
+          ]
+        }
       }
     },
     {
@@ -1979,7 +2317,28 @@
           {
             "doi": "10.1051/0004-6361/201833910"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "The universe is expanding: the farther a galaxy, the faster it recedes. The ratio between the two is called the Hubble constant.",
+            "It can be measured in two ways: with stars and exploding stars in the nearby universe, or from the cosmic microwave background, the light emitted about 380,000 years after the start of the universe, relying on a model of the universe.",
+            "The two methods give different values, about 73 and 67 kilometres per second per megaparsec."
+          ],
+          "ignore": [
+            "Whether the gap comes from unnoticed measurement errors or from still unknown physics.",
+            "Which of the two values is right."
+          ],
+          "dur": [
+            "Both series of measurements have become very precise: the gap is larger than the stated uncertainties.",
+            "The comparison assumes the standard cosmological model describes the universe well between the microwave background and today. If it is incomplete, the inference is skewed."
+          ],
+          "enjeu": "If the gap is real, the current cosmological model is incomplete.",
+          "commencer": [
+            "Observational cosmology.",
+            "A first step: understand how distances are measured in astronomy, with “standard candles”.",
+            "The two articles below each give one of the two measurements."
+          ]
+        }
       }
     },
     {
@@ -2036,7 +2395,28 @@
           {
             "doi": "10.1038/nature14165"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "A superconductor lets electric current through with no resistance at all. Discovered in 1911, it first had to be cooled close to absolute zero.",
+            "In 1957 BCS theory explained classical superconductors: electrons pair up thanks to the vibrations of the crystal.",
+            "In 1986 Bednorz and Müller discovered copper oxides that are superconducting at much higher temperatures, which earned them the Nobel Prize in Physics in 1987."
+          ],
+          "ignore": [
+            "Why these materials are superconducting: BCS theory does not apply to them and no explanation is unanimously accepted.",
+            "Whether a room-temperature, ordinary-pressure superconductor exists. None has been confirmed."
+          ],
+          "dur": [
+            "Electrons interact very strongly with one another, which makes exact calculations impossible, even with the biggest computers.",
+            "These are complex crystals, hard to make cleanly and to describe with a simple model."
+          ],
+          "enjeu": "Carrying electricity without losses, making powerful magnets that are cheaper to cool, and better understanding matter when electrons interact strongly.",
+          "commencer": [
+            "Condensed matter physics.",
+            "A first step: understand why zero resistance is different from very low resistance.",
+            "The first article below is the 1986 discovery; the second reviews the current understanding."
+          ]
+        }
       }
     },
     {
@@ -2389,7 +2769,29 @@
           {
             "doi": "10.1038/s41586-021-03819-2"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "A protein is a chain of amino acids that folds into a precise shape. This shape decides its function.",
+            "Since Anfinsen's experiments in the 1960s and 1970s, we know that the amino acid sequence generally suffices to determine the shape.",
+            "In 2020–2021 the AlphaFold program, based on machine learning, predicted with high accuracy the shape of many proteins from their sequence alone."
+          ],
+          "ignore": [
+            "How the chain finds its shape in a fraction of a second among an astronomical number of possibilities (“Levinthal's paradox”).",
+            "How proteins with no fixed shape behave, which nonetheless have a function.",
+            "How a protein moves, and what each mutation changes."
+          ],
+          "dur": [
+            "Predicting the final shape does not say by which path the protein gets there: this path is very fast and hard to observe.",
+            "A machine-learning program gives a result, not a physical explanation."
+          ],
+          "enjeu": "Several diseases are associated with misfolded proteins, and designing drugs or new enzymes requires understanding shape and movement.",
+          "commencer": [
+            "Biophysics and structural biology.",
+            "A first step: understand why a chain of 100 amino acids cannot “try” all possible shapes.",
+            "The first article below reviews the problem; the second presents AlphaFold."
+          ]
+        }
       }
     },
     {
@@ -2626,7 +3028,28 @@
           {
             "doi": "10.1056/NEJMra0808281"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "General anaesthetics cause a reversible loss of consciousness. They have been used in surgery since the mid-19th century.",
+            "They act on several neuronal proteins, notably GABA receptors, and on neural networks involved in sleep and wakefulness.",
+            "Very different molecules, gaseous or injected, produce similar effects."
+          ],
+          "ignore": [
+            "How these molecular effects lead to loss of consciousness.",
+            "Why chemically very different substances have similar effects."
+          ],
+          "dur": [
+            "Consciousness itself is not explained: so we cannot say exactly what is being switched off.",
+            "An anaesthetic acts at several levels at once, from molecules to neural networks, which makes its effects hard to isolate."
+          ],
+          "enjeu": "Anaesthetising more safely, detecting consciousness in a patient who cannot respond, and gaining clues about what consciousness is.",
+          "commencer": [
+            "Cellular neuroscience and the neuroscience of consciousness.",
+            "A first step: understand how anaesthesia differs from sleep.",
+            "The two articles below review what is known."
+          ]
+        }
       }
     },
     {
@@ -2701,7 +3124,28 @@
           {
             "doi": "10.1126/science.1206375"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "Fossils of complex animals are rare before the Cambrian, about 540 million years ago. Cambrian rocks contain many, representing most of today's major animal groups.",
+            "Older organisms existed, such as those of the Ediacaran. The diversification spread over a few tens of millions of years.",
+            "Several explanations are proposed: more oxygen, the appearance of predators, new developmental genes, environmental changes."
+          ],
+          "ignore": [
+            "Which cause, or set of causes, triggered this diversification.",
+            "How far the “explosion” is real, or due to gaps in the fossil record."
+          ],
+          "dur": [
+            "Fossils from that time are rare and unevenly preserved: only hard-bodied animals or those from exceptional sites are included.",
+            "The possible causes are many, linked to one another (ocean chemistry, ecology, genetics) and hard to separate."
+          ],
+          "enjeu": "Understanding how the great diversity of animals arose, and what makes rapid evolutionary change possible.",
+          "commencer": [
+            "Palaeontology and developmental biology.",
+            "A first step: compare the faunas of the Ediacaran and the Cambrian.",
+            "The two articles below review the hypotheses."
+          ]
+        }
       }
     },
     {
@@ -3056,7 +3500,28 @@
           {
             "doi": "10.1086/318272"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "On 15 August 1977 the Big Ear radio telescope (Ohio State University) recorded an intense, narrow-band radio signal near 1,420 MHz, the frequency of neutral hydrogen.",
+            "The signal lasted 72 seconds, the time the source took to cross the antenna's field. The astronomer Jerry Ehman circled the data on the printout and wrote “Wow!” in the margin.",
+            "Later searches, with more sensitive radio telescopes, have not found a signal of this type at the same place in the sky."
+          ],
+          "ignore": [
+            "Where it came from: a natural phenomenon, terrestrial interference or something else. No explanation has consensus.",
+            "Whether it repeated: a single detection exists, so it cannot be checked by repetition."
+          ],
+          "dur": [
+            "A one-off event cannot be measured twice: it cannot be reproduced or studied more closely.",
+            "The telescope was observing a fixed point in the sky: the direction of the source is known only to within a region, not a point."
+          ],
+          "enjeu": "It is a test of method: what do we do with a single signal that cannot be repeated? It also serves as a reference for searches for extraterrestrial signals.",
+          "commencer": [
+            "Radio astronomy and signal processing.",
+            "A first step: read why 1,420 MHz is such a special frequency.",
+            "The first article below describes a modern search for this signal."
+          ]
+        }
       }
     },
     {
@@ -3110,7 +3575,28 @@
           {
             "doi": "10.1371/journal.pone.0066344"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "It is an illustrated book of about 240 pages, held at the Beinecke Library at Yale University. Carbon-14 dating of the vellum places it in the early 15th century.",
+            "It is written in an unknown script, with drawings of plants, stars and figures that match no known work.",
+            "The text follows statistical regularities close to those of a natural language, but nobody has produced an accepted translation."
+          ],
+          "ignore": [
+            "What the text says, and even whether it is a message: unknown language, code, or meaningless text, several hypotheses are debated.",
+            "Who wrote it, where and why."
+          ],
+          "dur": [
+            "We know neither the language, nor the possible key, nor a single certain word: there is no foothold for a decipherment.",
+            "Statistical analyses show regularities without saying whether they come from a language or from a text-generation procedure."
+          ],
+          "enjeu": "It is a test bed for deciphering ancient texts and for methods of automatic language processing.",
+          "commencer": [
+            "Palaeography, corpus linguistics and historical cryptography.",
+            "A first step: compare the word distributions of a known text and of this manuscript.",
+            "The first article below studies keywords and how they are distributed in the text."
+          ]
+        }
       }
     },
     {
@@ -3167,7 +3653,28 @@
           {
             "doi": "10.1038/s41598-021-84310-w"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "The mechanism was recovered in 1901 from a wreck near the island of Antikythera. It consists of many fragments of corroded bronze bearing toothed wheels.",
+            "X-ray tomography made it possible to read inscriptions and count the teeth of the gears. It was used to compute positions of celestial bodies and calendar cycles.",
+            "Several reconstructions have been proposed, including a 2021 model of the planetary dials."
+          ],
+          "ignore": [
+            "What the complete machine looked like: a significant part of the pieces is missing.",
+            "Who made it and where this know-how came from: no other object of the same kind from that period has been found."
+          ],
+          "dur": [
+            "The fragments are corroded and mixed up, and some were lost at sea.",
+            "A complete mechanism must be deduced from pieces, with no written plan: several reconstructions remain possible."
+          ],
+          "enjeu": "It shows that ancient astronomy was capable of precision mechanics thought to have appeared much later, and it raises the question of what was lost.",
+          "commencer": [
+            "Archaeology, the history of science and mechanics.",
+            "A first step: understand how a set of gears can represent the cycles of the Moon.",
+            "The two articles below are the work of Freeth's team, in 2006 and 2021."
+          ]
+        }
       }
     },
     {
@@ -3221,7 +3728,28 @@
           {
             "doi": "10.1038/361040a0"
           }
-        ]
+        ],
+        "en": {
+          "savoir": [
+            "On 30 June 1908 an explosion flattened trees over a very large area of forest in Siberia. There is no impact crater.",
+            "The most widespread explanation is the break-up in the air of a small stony asteroid or a comet.",
+            "Models of the atmospheric entry of a stony asteroid reproduce the observed blast effect."
+          ],
+          "ignore": [
+            "The exact nature of the object (asteroid, comet, other) and its size.",
+            "The details of the explosion, since studies on the ground took place only years later."
+          ],
+          "dur": [
+            "The event is old, in a remote area, and the first expeditions came long after. There are almost no direct measurements.",
+            "The lack of a crater forces reasoning from ground damage and from models."
+          ],
+          "enjeu": "Understanding this kind of event helps assess the risk posed to Earth by the impact of a small object, which remains more frequent than that of a large one.",
+          "commencer": [
+            "The physics of atmospheric entry and planetary science.",
+            "A first step: understand how an object can explode in the air without leaving a crater.",
+            "The first article below models the break-up of a stony asteroid."
+          ]
+        }
       }
     },
     {
@@ -3270,7 +3798,28 @@
             "La fiche Wikipédia ci-dessous donne le point d'entrée."
           ]
         },
-        "refs": []
+        "refs": [],
+        "en": {
+          "savoir": [
+            "These are large figures and long lines drawn in the desert of southern Peru, by removing the dark stones from the ground to expose lighter soil.",
+            "They were made by the region's cultures, over several centuries. They are visible from afar, but are seen above all from the air.",
+            "The figures are very numerous and varied: animals, plants, geometric shapes, straight lines."
+          ],
+          "ignore": [
+            "Their purpose: several hypotheses are proposed (ritual, tied to water, to astronomy), none prevails.",
+            "How the groups that drew them organised themselves to produce such regular figures."
+          ],
+          "dur": [
+            "There is no text from these cultures explaining their role.",
+            "The very dry climate preserves them, which helps, but erosion and tourism threaten them."
+          ],
+          "enjeu": "They raise a general question: what can we conclude from the use of a place without writing?",
+          "commencer": [
+            "Landscape archaeology and the study of climate.",
+            "A first step: compare the layouts with the distribution of water sources in the region.",
+            "The Wikipedia page below gives the entry point."
+          ]
+        }
       }
     },
     {
@@ -3319,7 +3868,28 @@
             "Voir la page Wikipédia ci-dessous."
           ]
         },
-        "refs": []
+        "refs": [],
+        "en": {
+          "savoir": [
+            "It is a baked clay disc found in 1908 at Phaistos, in Crete. On both sides it carries signs arranged in a spiral, stamped with punches.",
+            "The disc is dated to about the second millennium BC. It was found with objects of the same period.",
+            "No reading has been accepted by specialists."
+          ],
+          "ignore": [
+            "What the signs say, and even in which language.",
+            "Whether it is a text, a game or another kind of object."
+          ],
+          "dur": [
+            "We have only one disc: that is too little text to test a reading.",
+            "There is no comparable text in this script."
+          ],
+          "enjeu": "A decipherment would add a language to the history of the ancient Mediterranean.",
+          "commencer": [
+            "Aegean archaeology and the study of undeciphered scripts.",
+            "A first step: compare its signs with those of Linear A.",
+            "See the Wikipedia page below."
+          ]
+        }
       }
     },
     {
@@ -3369,7 +3939,28 @@
             "Voir la page Wikipédia ci-dessous."
           ]
         },
-        "refs": []
+        "refs": [],
+        "en": {
+          "savoir": [
+            "Linear A is the script used in Crete in the Minoan period, in the second millennium BC. Its signs are known.",
+            "Some signs resemble those of Linear B, which records an early form of Greek and was deciphered in 1952. So part of the sound values can be read.",
+            "The language recorded is not identified, so the texts cannot be understood."
+          ],
+          "ignore": [
+            "The language of Linear A: we do not know which family it belongs to.",
+            "The meaning of most texts, which are short lists on tablets."
+          ],
+          "dur": [
+            "The texts found are short and few, often accounts.",
+            "With no bilingual text, no other known language provides a foothold."
+          ],
+          "enjeu": "It would make it possible to read the script of the oldest Bronze Age civilisation in Europe.",
+          "commencer": [
+            "Historical linguistics and Aegean archaeology.",
+            "A first step: understand how Linear B was deciphered.",
+            "See the Wikipedia page below."
+          ]
+        }
       }
     },
     {
@@ -3418,7 +4009,28 @@
             "Voir la page Wikipédia ci-dessous."
           ]
         },
-        "refs": []
+        "refs": [],
+        "en": {
+          "savoir": [
+            "Kryptos is a sculpture by Jim Sanborn, installed in 1990 outside CIA headquarters in Langley. It carries four encrypted messages.",
+            "Three of the four passages have been deciphered, and the solutions made public.",
+            "The last passage, called K4, is considered unsolved."
+          ],
+          "ignore": [
+            "The solution to K4 and the encryption method used for it.",
+            "Whether the clues published by the artist are enough to get there."
+          ],
+          "dur": [
+            "The passage is short, so there is little material for statistical analysis.",
+            "We do not know which method was used, which forces trying them all."
+          ],
+          "enjeu": "It is a living example of cryptanalysis: a public puzzle with clear rules, used as an exercise for more than thirty years.",
+          "commencer": [
+            "Classical cryptography and frequency analysis.",
+            "A first step: decipher by hand a text encrypted with a Vigenère cipher.",
+            "See the Wikipedia page below."
+          ]
+        }
       }
     },
     {

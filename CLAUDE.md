@@ -23,11 +23,11 @@ L'auteur est francophone et travaille seul : répondre en français, simplement,
 
 ## Pièges connus
 
-- `textes.json` contient tous les textes de l'interface (FR et EN) ; les noms de sous-disciplines et de sujets sont en anglais (OpenAlex).
+- `textes.json` contient tous les textes de l'interface (FR et EN) ; les noms de sujets sont en anglais (OpenAlex) ; les 250 sous-disciplines ont un nom français (`sous-disciplines-fr.json`).
 - La disposition (cohésion, dilatation du vide central) est en partie éditoriale ; voir le README avant de la présenter comme une mesure.
 - Les gabarits `build-*.mjs` extraient `DATA` de `carte-de-l-inconnu.html` : garder la ligne `const DATA = ...;` suivie de `const { F, S, L` dans `carte.tpl.html`.
 - Le dépôt est public : aucun secret, aucune adresse personnelle, aucun fichier du dossier `.claude/`.
 
 ## Ensuite (voir `a-faire.md`)
 
-Passer de 31 à 100–150 questions sourcées, écrire les fiches par lots avec contrôle automatique des références, trouver des relecteurs nommés, puis monitoring sans cookies, page « Sources et licences », traduction.
+150 questions faites, 29 fiches sur 150. Reste : écrire les 121 fiches autres, trouver des relecteurs nommés (impossible sans l'auteur), confirmer les licences, monitoring sans cookies.

@@ -35,6 +35,11 @@ button.sq { font: 14px var(--sans); color: var(--ink); background: var(--paper);
 #lang button + button { border-left: 0; }
 button.sq:hover, #lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 button:focus-visible, summary:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+#tl { left: 34px; bottom: 76px; display: flex; gap: 8px; align-items: center; background: var(--paper); border: .8px solid var(--ink); padding: 4px 8px; }
+#tl input { width: 190px; accent-color: var(--ink); }
+#tl #tll { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; min-width: 150px; }
+#tl button.sq { width: 26px; height: 26px; font-size: 12px; }
+@media (max-width: 720px) { #tl { left: 30px; right: 30px; bottom: 80px; } #tl input { flex: 1; width: auto; } }
 #cap { left: 50%; bottom: 28px; transform: translateX(-50%); font: italic 14px/1.3 var(--serif); text-align: center; width: min(620px, 56%); pointer-events: none; }
 #stamp { right: 38px; bottom: 74px; border: .8px solid var(--ink); padding: 5px 8px; font-size: 11px; background: var(--paper); max-width: 200px; }
 #stamp b { color: var(--acc); font-weight: 400; letter-spacing: .06em; }
@@ -110,9 +115,10 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <li><span class="qm">?<i class="sqm"></i></span><span data-i="key_enigme"></span></li>
 <li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><ol id="refs"></ol><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
 <div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></div>
+<div id="tl" class="ov" hidden><button class="sq" id="tlplay" type="button"></button><input id="tlr" type="range" min="0" max="36" step="1" value="0"><span id="tll"></span></div>
 <div id="cap" class="ov"></div>
 <div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div>
-<details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details>
+<details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details>
 <div id="tip" hidden></div>
 <aside id="panel" role="dialog" tabindex="-1" hidden></aside>
 </div>
@@ -172,13 +178,12 @@ const DOMC = (() => {
 })();
 
 // ---- Relief : densité de recherche (noyaux gaussiens), compression 0,42, huit niveaux ; courbes de niveau et hachures du bord du connu.
-const GN = 220, PAD = .06, gx0 = x0 - PAD, gy0 = y0 - PAD, GW = x1 - x0 + 2 * PAD, GH = y1 - y0 + 2 * PAD, CELLW = GW / GN, CELLH = GH / GN, SIG = .035, G = new Float32Array(GN * GN);
-for (let i = 0; i < N; i++) {
-  const cx = (T[i * 5] - gx0) / CELLW, cy = (T[i * 5 + 1] - gy0) / CELLH, wt = Math.log10(1 + T[i * 5 + 2]), rx = Math.ceil(3 * SIG / CELLW), ry = Math.ceil(3 * SIG / CELLH);
-  for (let j = Math.max(0, Math.floor(cy) - ry); j <= Math.min(GN - 1, Math.floor(cy) + ry); j++) for (let k = Math.max(0, Math.floor(cx) - rx); k <= Math.min(GN - 1, Math.floor(cx) + rx); k++) { const dx = (k - cx) * CELLW, dy = (j - cy) * CELLH; G[j * GN + k] += wt * Math.exp(-(dx * dx + dy * dy) / (2 * SIG * SIG)); }
-}
-let gmax = 0; for (const v of G) gmax = Math.max(gmax, v);
-const V = G.map(v => Math.pow(v / gmax, .42) * 8);
+const GN = 220, PAD = .06, gx0 = x0 - PAD, gy0 = y0 - PAD, GW = x1 - x0 + 2 * PAD, GH = y1 - y0 + 2 * PAD, CELLW = GW / GN, CELLH = GH / GN, SIG = .035, G = new Float32Array(GN * GN), V = new Float32Array(GN * GN);
+let LV = [], TICKS = [], gmaxAll = 0;
+// Densité d'un jeu de poids (wf(i) = articles du sujet i) ; gref fixe l'échelle pour comparer deux années entre elles.
+function density(wf) { G.fill(0); for (let i = 0; i < N; i++) { const w = wf(i); if (!w) continue; const cx = (T[i * 5] - gx0) / CELLW, cy = (T[i * 5 + 1] - gy0) / CELLH, wt = Math.log10(1 + w), rx = Math.ceil(3 * SIG / CELLW), ry = Math.ceil(3 * SIG / CELLH);
+  for (let j = Math.max(0, Math.floor(cy) - ry); j <= Math.min(GN - 1, Math.floor(cy) + ry); j++) for (let k = Math.max(0, Math.floor(cx) - rx); k <= Math.min(GN - 1, Math.floor(cx) + rx); k++) { const dx = (k - cx) * CELLW, dy = (j - cy) * CELLH; G[j * GN + k] += wt * Math.exp(-(dx * dx + dy * dy) / (2 * SIG * SIG)); } }
+  let m = 0; for (const v of G) m = Math.max(m, v); return m; }
 function contours(levels) {
   const out = levels.map(() => []);
   for (let j = 0; j < GN - 1; j++) for (let i = 0; i < GN - 1; i++) {
@@ -193,9 +198,15 @@ function contours(levels) {
   return out;
 }
 const valueAt = (wx, wy) => V[clamp(Math.round((wy - gy0) / CELLH), 0, GN - 1) * GN + clamp(Math.round((wx - gx0) / CELLW), 0, GN - 1)];
-const LV = contours([2, 3, 4, 5, 6, 7]), TICKS = [];
+function rebuildRelief(wf, gref) { const m = density(wf); const gm = gref || m; for (let k = 0; k < G.length; k++) V[k] = Math.pow(Math.min(1, G[k] / gm), .42) * 8;
+  LV = contours([2, 3, 4, 5, 6, 7]); TICKS = [];
 { const s = LV[0]; for (let i = 0; i < s.length; i += 16) { const ax = s[i], ay = s[i + 1], bx = s[i + 2], by = s[i + 3], dx = bx - ax, dy = by - ay, d = Math.hypot(dx, dy) || 1, nx = -dy / d, ny = dx / d, m = [(ax + bx) / 2, (ay + by) / 2], e = .012, up = valueAt(m[0] + nx * e, m[1] + ny * e) > valueAt(m[0] - nx * e, m[1] - ny * e); TICKS.push(m[0], m[1], up ? -nx : nx, up ? -ny : ny); } }
-
+  return m; }
+gmaxAll = rebuildRelief(i => T[i * 5 + 2]);
+// ---- Le temps : articles publiés par année et par sujet (OpenAlex), un caractère par année (log2 quantifié). Curseur « Tout » (cumul) puis 1990–2025.
+const YR = DATA.Y; let yearSel = 0, yrRef = 0;
+const yval = (i, y) => { const c = YR.a.charCodeAt(i * YR.n + (y - YR.y0)) - 48; return c <= 0 ? 0 : Math.pow(2, c / 2) - 1; };
+function setYear(y) { yearSel = y; if (!y) { rebuildRelief(i => T[i * 5 + 2]); } else { if (!yrRef) { let m = 0; for (let i = 0; i < N; i++) m += 0; yrRef = density(i => yval(i, YR.y1)); } rebuildRelief(i => yval(i, y), yrRef); } }
 // ---- Recherche du sujet le plus proche d'un point, par cases de 0,03.
 const BK = .03, bucket = new Map(); for (let i = 0; i < N; i++) { const key = Math.floor(T[i * 5] / BK) + ',' + Math.floor(T[i * 5 + 1] / BK); (bucket.get(key) || bucket.set(key, []).get(key)).push(i); }
 function nearestTopic(wx, wy, rw) { let best = -1, bd = rw; const cx = Math.floor(wx / BK), cy = Math.floor(wy / BK), n = Math.ceil(rw / BK); for (let a = -n; a <= n; a++) for (let b = -n; b <= n; b++) for (const i of bucket.get((cx + a) + ',' + (cy + b)) || []) { const d = Math.hypot(T[i * 5] - wx, T[i * 5 + 1] - wy); if (d < bd) { bd = d; best = i; } } return best; }
@@ -271,6 +282,7 @@ cv.addEventListener('blur', () => { kbQ = -1; });
 
 // ---- Textes selon la langue ----
 function applyLang() {
+  if ($('srcpage')) $('srcpage').href = '/' + LANG + '/sources/';
   document.documentElement.lang = LANG; document.title = t('titre'); const md = document.querySelector('meta[name=description]'); if (md) md.content = t('desc');
   document.querySelectorAll('[data-i]').forEach(e => { e.textContent = t(e.dataset.i); });
   document.querySelectorAll('[data-ia]').forEach(e => e.setAttribute('aria-label', t(e.dataset.ia)));
@@ -369,6 +381,12 @@ function draw(dt) {
 new ResizeObserver(resize).observe(cv); addEventListener('resize', resize);
 if (document.fonts) document.fonts.ready.then(() => {});
 applyLang(); resize(); openHash();
+if (YR) { const r = $('tlr'), pl = $('tlplay'); r.max = YR.n; r.setAttribute('aria-label', t('tl_aria')); $('tl').hidden = false; let timer = null;
+  const lab = () => { const y = +r.value; $('tll').textContent = y ? t('tl_year', { y: YR.y0 + y - 1 }) : t('tl_all'); pl.textContent = timer ? '❚❚' : '▶'; pl.setAttribute('aria-label', t(timer ? 'tl_pause' : 'tl_play')); };
+  r.oninput = () => { setYear(+r.value); lab(); };
+  const stop = () => { clearInterval(timer); timer = null; lab(); };
+  pl.onclick = () => { if (timer) return stop(); if (+r.value >= YR.n || +r.value === 0) r.value = 1; setYear(+r.value); lab(); timer = setInterval(() => { if (+r.value >= YR.n) return stop(); r.value = +r.value + 1; setYear(+r.value); lab(); }, REDUCED ? 700 : 420); lab(); };
+  lab(); }
 (function frame(ts) { const dt = Math.min(.05, (ts - lastTs) / 1000 || .016); lastTs = ts; stepView(); draw(dt); requestAnimationFrame(frame); })(0);
 </script>
 
