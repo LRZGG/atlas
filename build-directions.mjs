@@ -172,7 +172,9 @@ const DATA = {
   Y: (() => { // articles par an et par sujet (annees.json, fetch-annees.mjs) : un caractère par année, log2 quantifié
     if (!existsSync('annees.json')) return null; const an = JSON.parse(readFileSync('annees.json', 'utf8')), y1 = Math.min(an.y1, 2025), n = y1 - an.y0 + 1; let a = '';
     for (const t of s.topics) { const r = an.t[t.id] || []; for (let k = 0; k < n; k++) a += String.fromCharCode(48 + Math.min(63, Math.round(Math.log2(1 + (r[k] || 0)) * 2))); }
-    return { y0: an.y0, y1, n, a };
+    const fy = fIds.map(() => new Array(n).fill(0)); // somme exacte par discipline et par année (graphiques de la fenêtre Stats)
+    for (const t of s.topics) { const r = an.t[t.id]; if (!r) continue; const f = fIdx[s.subfields[t.subfield].field]; for (let k = 0; k < n; k++) fy[f][k] += r[k] || 0; }
+    return { y0: an.y0, y1, n, a, f: fy };
   })()
 };
 // La carte sort en trois pages pour GitHub Pages : la racine, qui détecte la langue du navigateur (anglais par défaut), puis /fr/ et /en/ qui la fixent

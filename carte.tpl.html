@@ -53,6 +53,34 @@ button:focus-visible, summary:focus-visible { outline: 2px solid var(--acc); out
 #sres .q { font-family: var(--serif); font-size: 15px; }
 body.panel-open #search { display: none; }
 @media (max-width: 1000px) { #search { left: 30px; transform: none; top: 100px; width: calc(100% - 60px); max-width: 360px; } }
+#stbtn { position: absolute; z-index: 2; right: 346px; top: 30px; width: auto; padding: 0 12px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+@media (max-width: 720px) { #stbtn { right: auto; left: 30px; top: 92px; } }
+body.panel-open #stbtn { display: none; }
+#stats { position: fixed; z-index: 8; inset: 26px; background: var(--paper); border: 1px solid var(--ink); padding: 20px 26px 22px; overflow: auto; }
+#stats h2 { font: 400 24px/1.2 var(--serif); margin: 0 40px 10px 0; }
+#stats .tabs { display: flex; gap: 0; margin: 0 0 14px; border-bottom: .8px solid var(--ink); }
+#stats .tabs button { all: unset; cursor: pointer; padding: 6px 14px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; border: .8px solid var(--ink); border-bottom: 0; margin-right: -1px; }
+#stats .tabs button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+#stats .tabs button:focus-visible, #stats select:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+#stats select { font: 14px var(--sans); color: var(--ink); background: var(--paper); border: .8px solid var(--ink); border-radius: 0; padding: 5px 8px; max-width: 100%; }
+#stats .cap2 { font: italic 15px var(--serif); margin: 10px 0 4px; }
+#stats .note { font-size: 12px; color: var(--dim); max-width: 80ch; margin: 10px 0 0; }
+#stats svg { width: 100%; height: auto; display: block; }
+#stats svg text { font: 11px var(--sans); fill: var(--dim); }
+#stats svg .bar { fill: var(--ink); }
+#stats svg .bar:hover, #stats svg .bar.on { fill: var(--acc); }
+#stats svg line { stroke: var(--ink); opacity: .25; }
+#stats table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+#stats th, #stats td { text-align: right; padding: 4px 8px; border-bottom: .5px solid rgba(var(--ink-rgb), .3); }
+#stats th:first-child, #stats td:first-child { text-align: left; }
+#stats th button { all: unset; cursor: pointer; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+#stats th button:hover { text-decoration: underline; }
+#stats th button:focus-visible { outline: 2px solid var(--acc); }
+#stats td i { display: inline-block; height: 7px; background: var(--ink); vertical-align: middle; margin-left: 6px; }
+#stats .mvl button { all: unset; display: block; cursor: pointer; padding: 3px 0; font-size: 14px; }
+#stats .mvl button:hover { text-decoration: underline; }
+#stats #stclose { position: absolute; right: 10px; top: 10px; }
+@media (max-width: 720px) { #stats { inset: 0; border: 0; padding: 16px 14px 24px; } #stats table { font-size: 12px; } }
 #cap { left: 50%; bottom: 28px; transform: translateX(-50%); font: italic 14px/1.3 var(--serif); text-align: center; width: min(620px, 56%); pointer-events: none; }
 #stamp { right: 38px; bottom: 74px; border: .8px solid var(--ink); padding: 5px 8px; font-size: 11px; background: var(--paper); max-width: 200px; }
 #stamp b { color: var(--acc); font-weight: 400; letter-spacing: .06em; }
@@ -131,10 +159,12 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <li><svg viewBox="0 0 30 20"><circle cx="15" cy="10" r="7.5"/><text x="15" y="13.6" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" font-family="Archivo Narrow,sans-serif">7</text></svg><span data-i="key_disc"></span></li>
 <li><span class="qm">?</span><span data-i="key_q"></span></li>
 <li><span class="qm">?<i class="sqm"></i></span><span data-i="key_enigme"></span></li>
-<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><div id="mv"></div><ol id="refs"></ol><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
+<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><ol id="refs"></ol><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
 <div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></div>
 <div id="tl" class="ov" hidden><button class="sq" id="tlplay" type="button"></button><input id="tlr" type="range" min="0" max="36" step="1" value="0"><span id="tll"></span></div>
 <div id="search" class="ov"><input id="sq" type="search" role="combobox" aria-expanded="false" aria-controls="sres" aria-autocomplete="list" autocomplete="off" spellcheck="false"><ul id="sres" role="listbox" hidden></ul></div>
+<button class="sq" id="stbtn" type="button" hidden></button>
+<aside id="stats" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
 <div id="cap" class="ov"></div>
 <div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div>
 <details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details>
@@ -251,11 +281,10 @@ const RC = DATA.R;
 const monthBase = i => YR ? yval(i, YR.y1) / 12.2 : 0;
 function recentLine(i) { if (!RC || RC.c[i] < 0) return ''; const n = RC.c[i], b = monthBase(i), x = b > 30 ? n / b : 0;
   return `<p class="small">${esc(t('tr_p', { n: fmt(n), a: RC.from, b: RC.to }))}${x ? ' · ' + esc(t('tr_x', { x: x.toFixed(1) })) : ''}</p>`; }
-function renderMoving() { const el = $('mv'); if (!el) return; if (!RC) { el.innerHTML = ''; return; }
+function movingHTML() { if (!RC) return `<p class="note">${esc(t('tr_none'))}</p>`;
   const L = []; for (let i = 0; i < N; i++) { const n = RC.c[i], b = monthBase(i); if (n < 150 || b < 60) continue; const x = n / b; if (x >= 1.25 && x <= 3) L.push([i, x, n]); }
-  L.sort((a, b) => b[1] - a[1]); const top = L.slice(0, 8);
-  el.innerHTML = `<h2>${esc(t('tr_t'))}</h2>` + (top.length ? top.map(([i, x]) => `<button type="button" data-t="${i}">${esc(T[i * 5 + 4])} <small style="display:inline;margin:0">×${x.toFixed(1)}</small></button>`).join('') + `<small>${esc(t('tr_note'))}</small>` : `<small>${esc(t('tr_none'))}</small>`);
-  el.onclick = e => { const b = e.target.closest('button'); if (b) openT(+b.dataset.t); }; }
+  L.sort((a, b) => b[1] - a[1]); const top = L.slice(0, 20);
+  return `<p class="cap2">${esc(t('tr_t'))}</p><div class="mvl">` + (top.length ? top.map(([i, x, n]) => `<button type="button" data-t="${i}">${esc(T[i * 5 + 4])} · ×${x.toFixed(1)} · ${esc(fmt(n))}</button>`).join('') : '') + `</div><p class="note">${esc(t('tr_note'))}</p>`; }
 function panelHTML() {
   if (!cur) return '';
   if (cur.q != null) {
@@ -346,17 +375,43 @@ function applyLang() {
   document.documentElement.lang = LANG; document.title = t('titre'); const md = document.querySelector('meta[name=description]'); if (md) md.content = t('desc');
   document.querySelectorAll('[data-i]').forEach(e => { e.textContent = t(e.dataset.i); });
   document.querySelectorAll('[data-ia]').forEach(e => e.setAttribute('aria-label', t(e.dataset.ia)));
+  $('stbtn').textContent = t('st_btn');
   sq.placeholder = t('search_ph'); sq.setAttribute('aria-label', t('search_aria')); if (sq.value) doSearch();
   $('siteTitle').textContent = t('titre'); $('ctxP').textContent = t('ctx_p', { n: fmt(N), q: Q.length }); $('cap').textContent = t('cap', { n: fmt(N) });
   $('refs').innerHTML = ORD.map((f, i) => `<li><button type="button" data-f="${f}"><b>${i + 1}</b><span>${esc(loc(F[f].nn))}</span></button></li>`).join('');
   document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
-  fkLabels(); renderMoving(); renderPanel();
+  fkLabels(); renderPanel(); if (stOpen) renderStats();
 }
 function fkLabels() { const L = [t('f_tout'), t('f_q'), t('f_e')]; document.querySelectorAll('#fk button').forEach((b, i) => { b.textContent = L[i]; b.setAttribute('aria-pressed', String(+b.dataset.fk === FK)); }); }
 $('fk').onclick = e => { const b = e.target.closest('button'); if (b) { FK = +b.dataset.fk; fkLabels(); } };
 $('refs').onclick = e => { const b = e.target.closest('button'); if (b) flyTo(FC[b.dataset.f].x, FC[b.dataset.f].y, 2.6); };
 document.querySelectorAll('#lang button').forEach(b => { b.onclick = () => { const l = b.dataset.lang; if (l === LANG) return; try { localStorage.setItem('lang', l); } catch (e) {} if (FORCED) location.href = '../' + l + '/' + location.hash; else { LANG = l; applyLang(); } }; });
 if (matchMedia('(max-width: 720px)').matches) $('legend').open = false;
+
+// ---- Stats : la recherche par année et par décennie (sommes exactes par discipline calculées au build).
+let stOpen = false, stTab = 'y', stGroup = 'all', stCol = 3, stDir = -1; const stats = $('stats');
+const DECADES = [[0, 10], [10, 20], [20, 30], [30, YR ? YR.n : 36]];
+function stSeries(g) { const a = new Array(YR.n).fill(0); F.forEach((f, j) => { if (g === 'all' || g === 'd' + f.d || g === 'f' + j) YR.f[j].forEach((v, k) => { a[k] += v; }); }); return a; }
+function stNice(m) { const p = Math.pow(10, Math.floor(Math.log10(m))), r = m / p; return (r <= 1 ? 1 : r <= 2 ? 2 : r <= 5 ? 5 : 10) * p; }
+function stChart() { const a = stSeries(stGroup), n = a.length, max = stNice(Math.max(...a)), W = 720, H = 270, L = 58, B = 26, bw = (W - L - 8) / n; let out = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t('st_y_cap'))}">`;
+  for (let k = 0; k <= 4; k++) { const v = max * k / 4, y = H - B - (H - B - 10) * k / 4; out += `<line x1="${L}" x2="${W - 4}" y1="${y}" y2="${y}"/><text x="${L - 6}" y="${y + 4}" text-anchor="end">${esc(fmt(v))}</text>`; }
+  a.forEach((v, k) => { const h = (H - B - 10) * v / max, x = L + k * bw; out += `<rect class="bar" data-k="${k}" x="${x + 1}" y="${H - B - h}" width="${bw - 2}" height="${h}"><title>${esc(t('st_hover', { y: YR.y0 + k, n: fmt(v) }))}</title></rect>`; if ((YR.y0 + k) % 5 === 0 || k === n - 1) out += `<text x="${x + bw / 2}" y="${H - 8}" text-anchor="middle">${YR.y0 + k}</text>`; });
+  const k2 = 2000 - YR.y0, gx = a[k2] ? a[n - 1] / a[k2] : 0; return `<p class="cap2">${esc(t('st_y_cap'))}${gx ? ' · ' + esc(t('st_y_x', { x: gx.toFixed(1), y: 2000 })) : ''}</p>` + out + '</svg>'; }
+function stSelect() { const o = [`<option value="all">${esc(t('st_all'))}</option>`]; DATA.D.forEach((d, i) => o.push(`<option value="d${i}">${esc(t('st_dom'))} : ${esc(loc(d))}</option>`)); F.forEach((f, j) => o.push(`<option value="f${j}">· ${esc(loc(f.nn))}</option>`)); return `<label>${esc(t('st_group'))} <select id="stsel">${o.join('').replace(`value="${stGroup}"`, `value="${stGroup}" selected`)}</select></label>`; }
+function stTable() { const H = t('st_d_h'), rows = F.map((f, j) => { const s = DECADES.map(([a, b]) => YR.f[j].slice(a, b).reduce((x, y) => x + y, 0)); return { j, s, g: s[1] ? s[2] / s[1] : 0 }; });
+  const val = r => stCol === 0 ? loc(F[r.j].nn) : stCol === 5 ? r.g : r.s[stCol - 1]; rows.sort((p, q) => { const x = val(p), y = val(q); return (typeof x === 'string' ? x.localeCompare(y, LANG) : x - y) * stDir; });
+  const mx = Math.max(...rows.map(r => r.s[2])), th = (c, l) => `<th scope="col"><button type="button" data-c="${c}">${esc(l)}${stCol === c ? (stDir > 0 ? ' ↑' : ' ↓') : ''}</button></th>`;
+  return `<table><thead><tr>${H.map((h, c) => th(c, h)).join('')}${th(5, t('st_d_g'))}</tr></thead><tbody>${rows.map(r => `<tr><td>${esc(loc(F[r.j].nn))}</td>${r.s.map((v, c) => `<td>${esc(fmt(v))}${c === 2 ? `<i style="width:${Math.round(v / mx * 60)}px"></i>` : ''}</td>`).join('')}<td>${r.g ? esc(t('st_x') + r.g.toFixed(2)) : '—'}</td></tr>`).join('')}</tbody></table><p class="note">${esc(t('st_d_foot'))}</p>`; }
+function renderStats() { if (!stOpen) return; const tabs = [['y', 'st_tab_y'], ['d', 'st_tab_d'], ['m', 'st_tab_m']];
+  stats.innerHTML = `<button class="sq" id="stclose" type="button" aria-label="${esc(t('st_close'))}">×</button><h2>${esc(t('st_title'))}</h2><div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${stTab === k}">${esc(t(l))}</button>`).join('')}</div>` + (stTab === 'y' ? stSelect() + stChart() + `<p class="note">${esc(t('st_note'))}</p>` : stTab === 'd' ? stTable() : movingHTML());
+  $('stclose').onclick = closeStats; stats.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { stTab = b.dataset.tab; renderStats(); });
+  const sel = $('stsel'); if (sel) sel.onchange = () => { stGroup = sel.value; renderStats(); $('stsel').focus(); };
+  stats.querySelectorAll('[data-c]').forEach(b => b.onclick = () => { const c = +b.dataset.c; if (stCol === c) stDir = -stDir; else { stCol = c; stDir = c === 0 ? 1 : -1; } renderStats(); });
+  stats.querySelectorAll('.mvl [data-t]').forEach(b => b.onclick = () => { closeStats(); openT(+b.dataset.t); }); }
+function openStats() { if (!YR) return; stOpen = true; stats.hidden = false; renderStats(); stats.focus(); }
+function closeStats() { stOpen = false; stats.hidden = true; $('stbtn').focus(); }
+if (YR) { $('stbtn').hidden = false; $('stbtn').onclick = () => (stOpen ? closeStats() : openStats()); }
+addEventListener('keydown', e => { if (e.key === 'Escape' && stOpen) { e.stopPropagation(); closeStats(); } }, true);
 
 // ---- Dessin ----
 // ---- Animations : agrandissement lissé et texte « tapé à la machine » au survol d'un numéro de discipline ou d'un « ? ».
