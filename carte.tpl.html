@@ -171,6 +171,22 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 #lang button[aria-pressed=true] { color:var(--ink); text-decoration:underline; text-underline-offset:5px; }
 #margin { grid-column:1;grid-row:2;display:flex; flex-direction:column;justify-content:center;align-items:stretch; gap:clamp(20px,4.6vh,56px);min-height:0;overflow-y:auto;padding:18px 2px; }
 #margin #ctx { width:auto; }
+#marginHandle { display:none; }
+#mast #theme { margin-left:-12px; border:0; background:transparent; color:var(--ink); font:21px/1 var(--serif); }
+#mast #theme:hover { background:var(--ink); color:var(--paper); }
+@media(min-width:851px) {
+  #margin { position:relative;z-index:2;background:var(--paper);transition:transform .29s cubic-bezier(.2,.75,.22,1),opacity .21s; }
+  .exploring #margin { transform:translateX(calc(-100% - var(--edge)));opacity:0;pointer-events:none; }
+  .exploring.margin-open #margin { transform:none;opacity:1;pointer-events:auto;padding-right:14px;border-right:1px solid var(--rule); }
+  .exploring #marginHandle { display:grid;grid-column:1;grid-row:2;justify-self:start;align-self:stretch;place-items:center;
+    width:calc(var(--edge) + 3px);margin-left:calc(-1 * var(--edge));position:relative;z-index:3;color:var(--ink);background:transparent;border:0;padding:0;cursor:pointer; }
+  #marginHandle span { background:var(--paper);border:1px solid var(--rule);font:20px/34px var(--serif);width:19px; }
+  #marginHandle[aria-expanded=true] span { transform:scaleX(-1); }
+  #marginHandle:focus-visible { outline:0; }
+  #marginHandle:focus-visible span { outline:2px solid var(--acc); }
+}
+@media(prefers-reduced-motion:reduce) { #margin {transition:none;} }
+
 #ctx h1 { font:400 clamp(48px,4.7vw,79px)/.94 var(--serif); letter-spacing:-.055em;text-transform:none;margin:0 0 19px; }
 #ctx h1 em { display:block; font-weight:400; }
 #ctx p { font:15px/1.5 var(--sans); max-width:29ch; margin:0; }
@@ -183,7 +199,7 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 #domainIndex button::before { content:'';width:0;height:1px;background:var(--ink);transition:width .15s ease; }
 #domainIndex button:is(:hover,:focus-visible,[aria-pressed=true])::before { width:16px; }
 #domainIndex button[aria-pressed=true] { font-style:italic; }
-#figure { grid-column:2;grid-row:2;position:relative;min-height:0;min-width:0; }
+#figure { grid-column:1/-1;grid-row:2;position:relative;min-height:0;min-width:0; }
 #c { inset:0;width:100%;height:100%; }
 #tl { display:block;width:100%;padding:0;border:0;background:transparent; }
 #tl[hidden] { display:none; }
@@ -228,7 +244,8 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
  #frame{inset:6px;}
  #mast {display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:1px 12px;padding:10px 0 5px;}
  #mast #brand {grid-column:1/3;grid-row:1;font-size:28px;}
- #mast #lang {grid-column:3;grid-row:1;justify-self:end;border:0;padding:0;}
+ #mast #lang {grid-column:2/4;grid-row:1;justify-self:end;border:0;padding:0;margin-right:40px;}
+ #mast #theme {grid-column:3;grid-row:1;justify-self:end;margin:0;width:36px;height:38px;}
  #mast #search {grid-column:1;grid-row:2;width:100%;min-width:0;}
  #sq {font-size:14px;padding-right:0;}
  #mast #legend {grid-column:3;grid-row:2;}
@@ -239,7 +256,8 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
  #ctx h1 {font-size:clamp(34px,6.5vw,46px);margin:0 0 6px;line-height:1;}
  #ctx h1 em{display:inline;}
  #ctx p {max-width:55ch;font-size:13px;line-height:1.3;}
- #figure {grid-column:1;grid-row:3;}
+ #figure {grid-column:1;grid-row:2/4;}
+ #margin #ctx {z-index:2; }
  #margin #tl {grid-column:1;grid-row:4;padding-bottom:8px;}
  #tl .index-head {margin:0;}
  .year-track {height:32px;}
@@ -272,7 +290,8 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <li><span class="qm">?</span><span data-i="key_q"></span></li>
 <li><span class="qm">?<i class="sqm"></i></span><span data-i="key_enigme"></span></li>
 <li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><ol id="refs"></ol><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
-<div id="lang" class="ov" role="group" data-ia="lang_aria"><button class="sq" type="button" data-lang="fr" aria-pressed="false">FR</button><button class="sq" type="button" data-lang="en" aria-pressed="false">EN</button></div></header>
+<div id="lang" class="ov" role="group" data-ia="lang_aria"><button class="sq" type="button" data-lang="fr" aria-pressed="false">FR</button><button class="sq" type="button" data-lang="en" aria-pressed="false">EN</button></div><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></header>
+<button id="marginHandle" type="button" aria-controls="margin" aria-expanded="false" data-ia="plate_margin"><span aria-hidden="true">›</span></button>
 <aside id="margin">
 <div id="ctx" class="ov"><h1><span data-i="plate_title"></span> <em data-i="plate_italic"></em></h1><p id="ctxP"></p></div>
 <section id="domainIndex"><div class="index-head"><h2 data-i="plate_domains"></h2><small data-i="plate_topics"></small></div><div id="domains"></div></section>
@@ -280,7 +299,7 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 </aside>
 <div id="figure"><canvas id="c" tabindex="0" role="application" data-ia="aria_carte" aria-describedby="kbhelp"></canvas></div>
 <div id="live" aria-live="polite"></div>
-<footer id="colophon"><div id="cap" class="ov"></div><div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></div><div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div><details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details></footer>
+<footer id="colophon"><div id="cap" class="ov"></div><div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button></div><div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div><details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details></footer>
 <aside id="stats" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
 <div id="tip" hidden></div>
 <aside id="panel" role="dialog" tabindex="-1" hidden></aside>
@@ -315,10 +334,35 @@ let x0 = 9, x1 = -9, y0 = 9, y1 = -9;
 for (let i = 0; i < N; i++) { x0 = Math.min(x0, T[i * 5]); x1 = Math.max(x1, T[i * 5]); y0 = Math.min(y0, T[i * 5 + 1]); y1 = Math.max(y1, T[i * 5 + 1]); }
 const mx = (x0 + x1) / 2, my = (y0 + y1) / 2, ext = Math.max(x1 - x0, y1 - y0);
 let W = 0, H = 0, DPR = 1, s0 = 1, tgt = null; const view = { x: 0, y: 0, k: 1 };
-function resize() { const r = cv.getBoundingClientRect(); DPR = Math.min(2, devicePixelRatio || 1); W = r.width; H = r.height; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); s0 = Math.max(20, Math.min(W - 58, H - 66)) / (2 * DOMC.R); }
-const toScreen = (wx, wy) => [W / 2 + (wx - mx - view.x) * s0 * view.k, H / 2 + (wy - my - view.y) * s0 * view.k];
-const toWorld = (px, py) => [(px - W / 2) / (s0 * view.k) + mx + view.x, (py - H / 2) / (s0 * view.k) + my + view.y];
-function zoomAt(px, py, f) { const [wx, wy] = toWorld(px, py); view.k = clamp(view.k * f, .8, 14); view.x = wx - mx - (px - W / 2) / (s0 * view.k); view.y = wy - my - (py - H / 2) / (s0 * view.k); tgt = null; }
+// Keep the overview framed beside the legend while drawing across the whole sheet.
+let overviewLeft=0, overviewTop=0, originX=0, originY=0;
+function locateOrigin() {
+  const overview=clamp((1.5-view.k)/.5,0,1);
+  originX=(W+overviewLeft*overview)/2;
+  originY=(H+overviewTop*overview)/2;
+}
+function resize() {
+  const r=cv.getBoundingClientRect();
+  DPR=Math.min(2,devicePixelRatio || 1);
+  W=r.width; H=r.height;
+  cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR);
+  const railWidth=$('margin').offsetWidth;
+  overviewLeft=!narrowPlate.matches && railWidth ? railWidth+parseFloat(getComputedStyle($('sheet')).columnGap) : 0;
+  overviewTop=narrowPlate.matches && getComputedStyle($('margin')).display==='contents' ? $('ctx').offsetHeight : 0;
+  s0=Math.max(20,Math.min(W-overviewLeft-58,H-overviewTop-66))/(2*DOMC.R);
+  locateOrigin();
+}
+const toScreen = (wx, wy) => [originX + (wx - mx - view.x) * s0 * view.k, originY + (wy - my - view.y) * s0 * view.k];
+const toWorld = (px, py) => [(px - originX) / (s0 * view.k) + mx + view.x, (py - originY) / (s0 * view.k) + my + view.y];
+function zoomAt(px, py, f) {
+  const [wx,wy]=toWorld(px,py);
+  view.k=clamp(view.k*f,.8,14);
+  locateOrigin();
+  view.x=wx-mx-(px-originX)/(s0*view.k);
+  view.y=wy-my-(py-originY)/(s0*view.k);
+  tgt=null;
+}
+function zoomCentre(factor) { flyTo(mx+view.x,my+view.y,clamp((tgt?.k ?? view.k)*factor,.8,14)); }
 const flyTo = (wx, wy, k) => { tgt = { x: wx - mx, y: wy - my, k }; };
 function stepView() { if (!tgt) return; if (REDUCED) { Object.assign(view, tgt); tgt = null; return; } view.x += (tgt.x - view.x) * .16; view.y += (tgt.y - view.y) * .16; view.k += (tgt.k - view.k) * .16; if (Math.abs(tgt.k - view.k) < .004 && Math.abs(tgt.x - view.x) < .0004) tgt = null; }
 
@@ -444,7 +488,7 @@ cv.addEventListener('pointerup', e => { const p = rel(e), was = ptrs.size; ptrs.
 cv.addEventListener('pointercancel', e => { ptrs.delete(e.pointerId); pinch = 0; });
 cv.addEventListener('pointerleave', () => hover(-1, -1));
 cv.addEventListener('wheel', e => { e.preventDefault(); const [px, py] = rel(e); zoomAt(px, py, Math.exp(-e.deltaY * .0015)); }, { passive: false });
-$('zin').onclick = () => zoomAt(W / 2, H / 2, 1.5); $('zout').onclick = () => zoomAt(W / 2, H / 2, 1 / 1.5); $('zfit').onclick = () => flyTo(mx, my, 1);
+$('zin').onclick = () => zoomCentre(1.5); $('zout').onclick = () => zoomCentre(1/1.5); $('zfit').onclick = () => flyTo(mx, my, 1);
 addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
 // Keyboard: arrows = pan, + / - = zoom, 0 = see everything, N / P = next / previous question (clockwise), Enter = open.
 const KORD = Q.map((q, i) => i).sort((a, b) => Math.atan2(Q[a].y - my, Q[a].x - mx) - Math.atan2(Q[b].y - my, Q[b].x - mx)); let kbQ = -1;
@@ -452,7 +496,7 @@ function kbGo(d) { const j = KORD.indexOf(kbQ); kbQ = KORD[(j < 0 ? (d > 0 ? 0 :
 cv.addEventListener('keydown', e => {
   if (e.altKey || e.ctrlKey || e.metaKey) return; const k = e.key, st = 70 / (s0 * view.k); let used = true;
   if (k === 'ArrowLeft') { view.x -= st; tgt = null; } else if (k === 'ArrowRight') { view.x += st; tgt = null; } else if (k === 'ArrowUp') { view.y -= st; tgt = null; } else if (k === 'ArrowDown') { view.y += st; tgt = null; }
-  else if (k === '+' || k === '=') zoomAt(W / 2, H / 2, 1.4); else if (k === '-' || k === '_') zoomAt(W / 2, H / 2, 1 / 1.4); else if (k === '0') { kbQ = -1; flyTo(mx, my, 1); }
+  else if (k === '+' || k === '=') zoomCentre(1.4); else if (k === '-' || k === '_') zoomCentre(1/1.4); else if (k === '0') { kbQ = -1; flyTo(mx, my, 1); }
   else if (k === 'n' || k === 'N') kbGo(e.shiftKey ? -1 : 1); else if (k === 'p' || k === 'P') kbGo(-1);
   else if ((k === 'Enter' || k === ' ') && kbQ >= 0) { openQ(kbQ); panel.focus(); } else used = false;
   if (used) e.preventDefault();
@@ -519,6 +563,49 @@ function renderDomains() {
   markDomainButtons();
 }
 const narrowPlate = matchMedia('(max-width:850px)');
+const margin=$('margin'), handle=$('marginHandle');
+let exploring=false, pinnedMargin=false, dismissMargin;
+function showMargin(open) {
+  clearTimeout(dismissMargin);
+  document.body.classList.toggle('margin-open',open);
+  handle.setAttribute('aria-expanded',String(open));
+  margin.inert=exploring && !open;
+  if(!open) pinnedMargin=false;
+}
+function syncMargin() {
+  const collapse=!narrowPlate.matches && view.k>1.08;
+  if(collapse===exploring) return;
+  exploring=collapse;
+  document.body.classList.toggle('exploring',collapse);
+  showMargin(collapse && margin.contains(document.activeElement));
+}
+function leaveMargin() {
+  clearTimeout(dismissMargin);
+  dismissMargin=setTimeout(()=>{
+    if (!pinnedMargin && !margin.querySelector(':focus-visible') && !margin.matches(':hover') && !handle.matches(':hover')) showMargin(false);
+  },140);
+}
+handle.addEventListener('pointerenter',e=>{
+  if(e.pointerType==='mouse' && !e.buttons) showMargin(true);
+});
+handle.addEventListener('pointerleave',leaveMargin);
+margin.addEventListener('pointerenter',()=>clearTimeout(dismissMargin));
+margin.addEventListener('pointerleave',leaveMargin);
+handle.onclick=()=>{
+  pinnedMargin=!pinnedMargin;
+  showMargin(pinnedMargin);
+};
+document.addEventListener('pointerdown',e=>{
+  if(exploring && !margin.contains(e.target) && !handle.contains(e.target)) showMargin(false);
+}, true);
+document.addEventListener('focusin',e=>{
+  if(exploring && !margin.contains(e.target) && e.target!==handle) showMargin(false);
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape' && exploring && (margin.contains(e.target) || e.target===handle)) {
+    e.preventDefault(); e.stopImmediatePropagation(); handle.focus(); showMargin(false);
+  }
+},true);
 function placeIndex() {
   const host = narrowPlate.matches ? $('legend').querySelector('.scroll') : $('margin');
   host.insertBefore($('domainIndex'), narrowPlate.matches ? $('key') : $('tl'));
@@ -600,7 +687,8 @@ function card(txt, a, px, py, font, lh, maxw, right, color) {
 const labeller = (seed) => { const used = seed || []; return (txt, px, py, size, align) => { const w = ctx.measureText(txt).width, bx = align === 'right' ? px - w : align === 'center' ? px - w / 2 : px, r = [bx - 6, py - size - 2, bx + w + 6, py + 7]; if (used.some(u => !(r[2] < u[0] || r[0] > u[2] || r[3] < u[1] || r[1] > u[3]))) return false; used.push(r); ctx.textAlign = align; ctx.fillText(txt, px, py); return true; }; };
 function draw(dt) {
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.clearRect(0, 0, W, H); const k = view.k;
-  $('ctx').style.opacity = cur ? 0 : clamp((1.5 - k) / .4, 0, 1);
+  locateOrigin(); syncMargin();
+  $('ctx').style.opacity = narrowPlate.matches ? (cur ? 0 : clamp((1.5-k)/.4,0,1)) : 1;
   LV.forEach((s, l) => { ctx.strokeStyle = inkA(l === 0 ? .8 : .3 + l * .07); ctx.lineWidth = l === 0 ? 1.2 : .5 + l * .12; ctx.beginPath(); for (let i = 0; i < s.length; i += 4) { const a = toScreen(s[i], s[i + 1]), b = toScreen(s[i + 2], s[i + 3]); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); } ctx.stroke(); });
   ctx.strokeStyle = inkA(.6); ctx.lineWidth = .7; ctx.beginPath(); for (let i = 0; i < TICKS.length; i += 4) { const a = toScreen(TICKS[i], TICKS[i + 1]); ctx.moveTo(a[0], a[1]); ctx.lineTo(a[0] + TICKS[i + 2] * 5, a[1] + TICKS[i + 3] * 5); } ctx.stroke();
   const litDomain = hoverDomain>=0 ? hoverDomain : pinnedDomain;

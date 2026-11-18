@@ -10,7 +10,7 @@ mkdirSync('docs/partage', { recursive: true });
 const b = await chromium.launch(), p = await b.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
 await p.addInitScript(() => localStorage.setItem('theme', 'light'));
 await p.goto(URL0 + '/fr/'); await p.waitForTimeout(1500);
-await p.addStyleTag({ content: '#mast,#margin,#colophon{display:none} #figure{position:absolute;inset:20px}' });
+await p.addStyleTag({ content: '#mast,#margin,#sheet #marginHandle,#colophon{display:none} #figure{position:absolute;inset:20px}' });
 await p.evaluate(() => resize());
 const bandeau = (txt, sub) => p.evaluate(([txt, sub]) => {
   document.getElementById('bandeau')?.remove(); const d = document.createElement('div'); d.id = 'bandeau';
