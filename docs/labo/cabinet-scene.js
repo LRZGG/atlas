@@ -1,267 +1,282 @@
-// Le tiroir entier se déplace sur un seul axe, dans une ouverture réservée.
 import * as THREE from './vendor/three.module.js';
 
-const pitch = 2.52;
-const step = 1.56;
-const width = pitch - .12;
-const height = step - .12;
+const height = 1.32;
+const depth = .83;
+const shelfPitch = 1.59;
+const gap = .045;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-const material = (color, extras = {}) => new THREE.MeshStandardMaterial({color, roughness: .78, ...extras});
+const clamp = THREE.MathUtils.clamp;
 
-function texture(canvas) {
+function canvasMap(w, h, draw) {
+  const canvas = document.createElement('canvas');
+  canvas.width = w;
+  canvas.height = h;
+  draw(canvas.getContext('2d'), w, h);
   const map = new THREE.CanvasTexture(canvas);
   map.colorSpace = THREE.SRGBColorSpace;
   map.anisotropy = 4;
   return map;
 }
 
-function walnut() {
-  const canvas = document.createElement('canvas');
-  canvas.width = 768;
-  canvas.height = 256;
-  const ctx = canvas.getContext('2d');
-  const pixels = ctx.createImageData(canvas.width, canvas.height);
-  let seed = 1729;
-  for (let y = 0; y < canvas.height; y++) {
-    for (let x = 0; x < canvas.width; x++) {
-      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
-      const ring = y + 6 * Math.sin(x * .005 + y * .018) + 2.5 * Math.sin(x * .013 + y * .033);
-      const grain = 4 * Math.sin(ring * 2.2) + 4 * Math.sin(ring * .24) - 12 * Math.pow(.5 + .5 * Math.sin(ring * .52), 10) + 9 * (seed / 4294967296 - .5);
-      const i = (y * canvas.width + x) * 4;
-      pixels.data.set([99 + grain, 75 + grain * .72, 53 + grain * .52, 255], i);
-    }
-  }
-  ctx.putImageData(pixels, 0, 0);
-  return texture(canvas);
+const clothColors = ['#4f5247', '#51433c', '#555b56', '#514c43', '#424c49'];
+function spine(item, index, width) {
+  return canvasMap(Math.round(510 * width), Math.round(510 * height), (g, w, h) => {
+    g.fillStyle = clothColors[index % clothColors.length];
+    g.fillRect(0, 0, w, h);
+    g.fillStyle = '#ffffff0a';
+    for (let y = 1; y < h; y += 4) g.fillRect(0, y, w, 1);
+    g.fillStyle = '#0e110d1f';
+    for (let x = 0; x < w; x += 3) g.fillRect(x, 0, 1, h);
+    const fold = g.createLinearGradient(0, 0, w, 0);
+    for (const [stop, tone] of [[0,'#0006'],[.045,'#fff2'],[.085,'#0002'],[.15,'#0000'],[.91,'#0000'],[1,'#0006']]) fold.addColorStop(stop, tone);
+    g.fillStyle = fold;
+    g.fillRect(0, 0, w, h);
+    g.translate(w / 2, h * .45);
+    g.rotate(-Math.PI / 2);
+    const length = h * .69, label = w * .73;
+    g.fillStyle = '#cdbf9f';
+    g.fillRect(-length/2, -label/2, length, label);
+    g.strokeStyle = '#877c67';
+    g.lineWidth = 1.6;
+    g.strokeRect(-length/2+6, -label/2+6, length-12, label-12);
+    g.fillStyle = '#252720';
+    g.textAlign = 'center';
+    let size = 54;
+    do { g.font = size-- + 'px Standard,Georgia,serif'; }
+    while (g.measureText(item.titre).width > length-32 && size > 18);
+    g.textBaseline = 'middle';
+    g.fillText(item.titre, 0, -label*.065);
+    g.font = '18px Archivo,sans-serif';
+    g.fillStyle = '#5c5545';
+    g.fillText('FOL  /  '+String(index+1).padStart(2,'0'), 0, label*.26);
+    g.resetTransform();
+    // Œillet de préhension, imprimé dans le matériau de la tranche.
+    const r = w*.115, cy = h*.884;
+    const ring = g.createLinearGradient(0,cy-r,0,cy+r);
+    ring.addColorStop(0,'#b7a482'); ring.addColorStop(.6,'#605847'); ring.addColorStop(1,'#b0a07e');
+    g.fillStyle = ring;
+    g.beginPath(); g.arc(w/2, cy, r, 0, Math.PI*2); g.fill();
+    g.fillStyle = '#171916';
+    g.beginPath(); g.arc(w/2, cy, r*.75, 0, Math.PI*2); g.fill();
+  });
 }
 
-function box(parent, w, h, d, x, y, z, mat) {
-  const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
-  mesh.position.set(x, y, z);
+function block(parent, w, h, d, x, y, z, material) {
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), material);
+  mesh.position.set(x,y,z);
   mesh.castShadow = mesh.receiveShadow = true;
   parent.add(mesh);
   return mesh;
 }
 
-function makeLabel(item, number) {
-  const c = document.createElement('canvas');
-  c.width = 800;
-  c.height = 240;
-  const g = c.getContext('2d');
-  const wash = g.createLinearGradient(0, 0, 0, 240);
-  wash.addColorStop(0, '#d7c69d');
-  wash.addColorStop(.2, '#eee3c9');
-  wash.addColorStop(1, '#e1d4b6');
-  g.fillStyle = wash;
-  g.fillRect(0, 0, 800, 240);
-  g.strokeStyle = '#b4a47f';
-  g.strokeRect(13, 12, 774, 215);
-  g.textAlign = 'center';
-  g.fillStyle = '#665132';
-  g.font = '32px Archivo, sans-serif';
-  g.fillText('FOL   /   ' + number, 400, 67);
-  g.fillStyle = '#231e18';
-  let size = 79;
-  do { g.font = size-- + 'px Standard, Georgia, serif'; }
-  while (g.measureText(item.titre).width > 730 && size > 20);
-  g.fillText(item.titre, 400, 164);
-  return texture(c);
-}
-
-export function createCabinet(canvas, onPick) {
-  const renderer = new THREE.WebGLRenderer({canvas, antialias: true, powerPreference: 'low-power'});
+export function createShelves(canvas, items, showRecord) {
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color('#111713');
-  const camera = new THREE.PerspectiveCamera(31, 1, .1, 65);
-  const woodMap = walnut();
-  const wood = material('#ffffff', {map: woodMap, roughness:.73});
-  const trim = material('#c7b9a8', {map: woodMap, roughness:.62});
-  const inset = material('#453126');
-  const brass = material('#bc995e', {metalness:.47, roughness:.37});
-  const paper = material('#baaa84');
-  const fileMats = ['#768076','#a18d66','#977563'].map(color => material(color));
-  const cabinet = new THREE.Group();
-  scene.add(cabinet);
-  const floor = box(scene, 80, .1, 60, 0, -.055, -5, material('#34372f'));
-  floor.castShadow = false;
-  box(scene, 45, 22, .2, 0, 10, -1.03, material('#393e33'));
+  scene.background = new THREE.Color('#121510');
+  const camera = new THREE.PerspectiveCamera(39, 1, .06, 40);
+  const mat = (color, extra={}) => new THREE.MeshStandardMaterial({color,roughness:.84,...extra});
+  const wood = mat('#584a39', {map: canvasMap(512,128,(g,w,h)=>{
+    g.fillStyle='#d6c5ae'; g.fillRect(0,0,w,h);
+    for(let y=0;y<h;y+=2) {
+      g.fillStyle='rgba(72,52,34,'+(.08+.06*Math.sin(y*1.7))+')';
+      g.fillRect(0,y,w,1);
+    }
+  })});
+  const iron = mat('#53564d',{metalness:.38});
+  const backing = mat('#424739');
+  const pages = mat('#b9ac8c',{map:canvasMap(128,128,(g,w,h)=>{
+    g.fillStyle='#e8decb'; g.fillRect(0,0,w,h);
+    g.fillStyle='#ae9f82';
+    for(let x=2;x<w;x+=5) g.fillRect(x,0,1,h);
+  })});
+  const folders = [];
+  const frame = new THREE.Group();
+  scene.add(frame);
+  const perRow = Math.ceil(items.length/2);
+  const bays = Math.ceil(perRow/5);
+  const widthOf = item => .40 + .022*Math.sqrt(item.wikis ?? 4);
+  const rows = [items.slice(0,perRow), items.slice(perRow)];
+  const bayWidths = Array.from({length:bays}, (_,i) => .40 + Math.max(...rows.map(row =>
+    row.slice(i*5,i*5+5).reduce((sum,item)=>sum+widthOf(item)+gap,0))));
+  const fullWidth = bayWidths.reduce((a,b)=>a+b,0);
+  const bottom = .22;
+  for (let row=0;row<=2;row++) {
+    block(frame, fullWidth+.15,.09,1.12,0,bottom+row*shelfPitch-.045,0,wood);
+  }
+  let left = -fullWidth/2;
+  for (const [bay,bayWidth] of bayWidths.entries()) {
+    for (const [row,contents] of rows.entries()) {
+      let x = left+.17;
+      for (const [slot,item] of contents.slice(bay*5,bay*5+5).entries()) {
+        const index = row*perRow+bay*5+slot;
+        const w = widthOf(item);
+        const folder = new THREE.Group();
+        const cover = mat(clothColors[index%clothColors.length]);
+        const y = bottom+(1-row)*shelfPitch+height/2+.004;
+        folder.position.set(x+w/2,y,.035+.014*Math.sin(index*3));
+        const home = folder.position.z;
+        frame.add(folder);
+        block(folder,w-.048,height-.06,depth-.09,0,-.009,-.015,pages);
+        for(const side of [-1,1]) block(folder,.018,height,depth-.03,side*(w-.018)/2,0,-.015,cover);
+        const face = new THREE.MeshLambertMaterial({map:spine(item,index,w)});
+        block(folder,w,height,.03,0,0,(depth-.03)/2,[cover,cover,cover,cover,face,cover]);
+        folder.userData.index = index;
+        folders[index] = {folder,home,item};
+        x += w+gap;
+      }
+    }
+    for(const z of [-.51,.51]) block(frame,.059,shelfPitch*2+.21,.058,left,bottom+shelfPitch-.05,z,iron);
+    left += bayWidth;
+  }
+  for(const z of [-.51,.51]) block(frame,.059,shelfPitch*2+.21,.058,left,bottom+shelfPitch-.05,z,iron);
+  block(frame,fullWidth+.15,shelfPitch*2+.14,.07,0,bottom+shelfPitch-.02,-.61,backing);
+  block(scene,55,.10,40,0,-.055,0,mat('#46463d'));
+  block(scene,55,18,.1,0,8,-.73,mat('#494a40'));
 
-  // Une seule source physique, avec un point chaud et une couronne diffuse.
-  const beam = document.createElement('canvas');
-  beam.width = beam.height = 256;
-  const ctx = beam.getContext('2d');
-  const gradient = ctx.createRadialGradient(128,128,0,128,128,129);
-  for (const [radius, color] of [[0,'#fffdf7'],[.16,'#f8f5eb'],[.38,'#d1cbc1'],[.7,'#ada79f'],[.91,'#7d776e'],[1,'#4c4743']]) gradient.addColorStop(radius,color);
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0,0,256,256);
-  const torch = new THREE.SpotLight(0xfff5e3, 1, 0, .71, .52, 2);
-  torch.map = texture(beam);
-  torch.castShadow = true;
+  const torch = new THREE.SpotLight(0xfff2db, 1, 0, .77, .76, 2);
+  torch.map = canvasMap(256,256,(g,w,h)=>{
+    const gradient = g.createRadialGradient(w/2,h/2,0,w/2,h/2,w/2);
+    for(const [r,c] of [[0,'#ffffff'],[.19,'#f4eee4'],[.44,'#c6c0b5'],[.8,'#aba496'],[1,'#777064']]) gradient.addColorStop(r,c);
+    g.fillStyle=gradient; g.fillRect(0,0,w,h);
+  });
+  torch.castShadow=true;
   torch.shadow.mapSize.set(1024,1024);
-  torch.shadow.bias = -.00025;
-  torch.shadow.normalBias = .008;
+  torch.shadow.bias=-.0003;
+  torch.shadow.normalBias=.007;
   scene.add(torch, torch.target);
 
-  const drawers = [];
-  const pulls = new THREE.CatmullRomCurve3([[-.32,0,0],[-.30,-.035,.13],[-.21,-.085,.19],[.21,-.085,.19],[.30,-.035,.13],[.32,0,0]].map(p => new THREE.Vector3(...p)));
-  const handleShape = new THREE.TubeGeometry(pulls,22,.036,8,false);
-  const pinShape = new THREE.SphereGeometry(.033,10,6);
-  const pickRay = new THREE.Raycaster();
-  const cursor = new THREE.Vector2();
-  const beamRay = new THREE.Raycaster();
-  const beamPoint = new THREE.Vector3();
-  const frontPlane = new THREE.Plane(new THREE.Vector3(0,0,1), -.6);
-  let columns = 0, openSlot = -1, frame = 0, last = 0, afterOpen;
-  let cabinetWidth = 0;
-  const base = .33;
-  const caseHeight = step * 2 + base;
-
-  function rebuild(count) {
-    for (const drawer of drawers) drawer.label.material.map?.dispose();
-    cabinet.traverse(o => {
-      if (o.geometry && o.geometry !== handleShape && o.geometry !== pinShape) o.geometry.dispose();
-    });
-    drawers.forEach(d => d.label.material.dispose());
-    cabinet.clear();
-    drawers.length = 0;
-    columns = count;
-    cabinetWidth = columns * pitch + .22;
-    const W = cabinetWidth;
-    box(cabinet,W,caseHeight, .1,0,caseHeight/2,-.82,inset);
-    for (const side of [-1,1]) box(cabinet,.13,caseHeight,1.65,side*(W-.13)/2,caseHeight/2,-.01,wood);
-    for (let row = 0; row <= 2; row++) {
-      box(cabinet,W-.26,.075,1.58,0,base+step*row,-.01,trim);
-    }
-    for (let col=1; col<columns; col++) box(cabinet,.075,step*2,.11,(col-columns/2)*pitch,base+step,.73,trim);
-    for (const [extra,h,y] of [[.08,.23,.12],[.23,.085,.25],[.12,.085,caseHeight+.065],[.27,.105,caseHeight+.16]]) {
-      box(cabinet,W+extra,h,1.7+extra,0,y,0,trim);
-    }
-    for (let i=0; i<columns*2; i++) {
-      const group = new THREE.Group();
-      group.position.set((i%columns-(columns-1)/2)*pitch,base+(1.5-Math.floor(i/columns))*step,0);
-      cabinet.add(group);
-      box(group,width,height,.11,0,0,.76,wood);
-      box(group,width-.14,height-.14,.044,0,0,.83,trim);
-      box(group,width-.23,height-.23,.038,0,0,.859,wood);
-      // Le porte-étiquette et la poignée sont fixés au même panneau.
-      box(group,1.95,.62,.055,0,.20,.907,brass);
-      const label = new THREE.Mesh(new THREE.PlaneGeometry(1.78,.535),new THREE.MeshLambertMaterial({color:'#ffffff'}));
-      label.position.set(0,.20,.937);
-      label.receiveShadow = true;
-      group.add(label);
-      for(const x of [-.925,.925,-.32,.32]) {
-        const pin = new THREE.Mesh(pinShape,brass);
-        pin.position.set(x, Math.abs(x)>.5 ? .20 : -.31, Math.abs(x)>.5 ? .936 : .91);
-        group.add(pin);
-      }
-      const handle = new THREE.Mesh(handleShape,brass);
-      handle.position.set(0,-.31,.91);
-      handle.castShadow = true;
-      group.add(handle);
-      for (const side of [-1,1]) box(group,.045,.63,1.4,side*(width-.16)/2,-.25,0,wood);
-      box(group,width-.16,.05,1.4,0,-.55,0,wood);
-      for (let j=0;j<4;j++) {
-        const z=.43-j*.28;
-        box(group,width-.28,.83,.045,0,-.08,z,fileMats[j%3]);
-        box(group,.52,.085,.045,(j%3-1)*.58,.372,z,fileMats[j%3]);
-        box(group,width-.34,.69,.095,0,-.08,z-.079,paper);
-      }
-      drawers.push({group,label,item:null});
-    }
+  const ray = new THREE.Raycaster(), cursor = new THREE.Vector2();
+  const aim = new THREE.Vector3();
+  const plane = new THREE.Plane(new THREE.Vector3(0,0,1),-.46);
+  let center = -fullWidth/2+.8, limit = 0, viewWidth = 0, distance = 0;
+  let selected = -1, focused = -1, pending = false, drag = null;
+  let raf = 0, last = 0, running = true;
+  function redraw() {
+    if(running && !raf) raf=requestAnimationFrame(render);
   }
-
-  function resize() {
-    const {width:w,height:h} = canvas.getBoundingClientRect();
-    renderer.setSize(Math.max(w,1), Math.max(h,1),false);
-    camera.aspect = w/Math.max(h,1);
-    const middle = caseHeight/2;
-    const distance = Math.max(4.4,(cabinetWidth+.65)/camera.aspect) / (2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2))) + 1.25;
-    camera.position.set(distance*.18,middle+distance*.31,distance);
-    camera.lookAt(0,middle,0);
-    camera.updateProjectionMatrix();
+  function positionCamera() {
+    const y = bottom+shelfPitch;
+    camera.position.set(center+.22,y+.36,distance);
+    camera.lookAt(center,y,0);
     camera.updateMatrixWorld();
     torch.position.copy(camera.position);
-    torch.position.x -= .24;
-    torch.position.y += .11;
-    torch.intensity = distance*distance*3.9;
-    aim(true);
-    requestRender();
+    torch.position.x-=.14;
+    torch.position.y+=.09;
+    torch.intensity=distance*distance*4.0;
+    ray.setFromCamera(cursor,camera);
+    ray.ray.intersectPlane(plane,aim);
+    if(focused>=0 || selected>=0) {
+      const f = folders[selected>=0 ? selected : focused].folder.position;
+      aim.set(f.x,f.y,.5);
+    }
+    torch.target.position.copy(aim);
   }
-
-  function aim(snap) {
-    beamRay.setFromCamera(cursor,camera);
-    beamRay.ray.intersectPlane(frontPlane,beamPoint);
-    if (snap) torch.target.position.copy(beamPoint);
+  function resize() {
+    const {width:w,height:h}=canvas.getBoundingClientRect();
+    camera.aspect=w/h;
+    const visibleHeight=3.76;
+    distance=.5+visibleHeight/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)));
+    viewWidth=visibleHeight*camera.aspect;
+    limit=Math.max(0,fullWidth/2-Math.min(viewWidth*.35,fullWidth*.30));
+    center=clamp(center,-limit,limit);
+    camera.updateProjectionMatrix();
+    renderer.setSize(w,h,false);
+    positionCamera();
+    redraw();
   }
-  function requestRender() {
-    if (!frame) frame = requestAnimationFrame(render);
-  }
-  function render(time) {
-    frame = 0;
-    const dt = Math.min((time-last)/1000,.055);
-    last = time;
-    const ease = reduced.matches ? 1 : 1-Math.exp(-12*dt);
-    let moving = false;
-    torch.target.position.lerp(beamPoint,ease);
-    for (const [i,d] of drawers.entries()) {
-      const target = i===openSlot ? 1.02 : 0;
-      const delta = target-d.group.position.z;
-      if (Math.abs(delta)>.003) {
-        d.group.position.z += delta*ease;
-        moving = true;
-      } else d.group.position.z = target;
+  function render(now) {
+    raf=0;
+    const ease=reduced.matches ? 1 : 1-Math.exp(-13*Math.max(0,(now-last)/1000));
+    last=now;
+    let moving=false;
+    for(const [index,f] of folders.entries()) {
+      const target=f.home+(index===selected ? .69 : index===focused ? .11 : 0);
+      const delta=target-f.folder.position.z;
+      if(Math.abs(delta)>.002) {
+        f.folder.position.z+=delta*ease;
+        moving=true;
+      } else f.folder.position.z=target;
     }
     renderer.render(scene,camera);
-    if (afterOpen && openSlot>=0 && drawers[openSlot].group.position.z>.97) {
-      const done = afterOpen;
-      afterOpen = null;
-      done();
+    if(pending && selected>=0 && folders[selected].folder.position.z-folders[selected].home>.66) {
+      pending=false;
+      showRecord(folders[selected].item);
     }
-    if (moving || torch.target.position.distanceToSquared(beamPoint)>.0001) requestRender();
+    if(moving) redraw();
   }
-
   function point(event) {
-    const r = canvas.getBoundingClientRect();
+    const r=canvas.getBoundingClientRect();
     cursor.set(2*(event.clientX-r.left)/r.width-1,1-2*(event.clientY-r.top)/r.height);
-    aim(reduced.matches);
-    requestRender();
-    pickRay.setFromCamera(cursor,camera);
-    const hit = pickRay.intersectObject(cabinet,true).find(hit => hit.object.parent.visible);
-    return drawers.find(d => d.item && hit?.object.parent===d.group);
+    positionCamera();
+    redraw();
   }
-  canvas.addEventListener('pointermove',e => { canvas.style.cursor = point(e) ? 'pointer' : 'default'; });
-  canvas.addEventListener('pointerleave',() => { if (openSlot>=0) return; cursor.set(0,0); aim(reduced.matches); requestRender(); });
-  canvas.addEventListener('click',e => { const d = point(e); if(d) onPick(d.item); });
-
+  function hit() {
+    ray.setFromCamera(cursor,camera);
+    const nearest=ray.intersectObject(frame,true)[0];
+    return nearest?.object.parent.userData.index ?? -1;
+  }
+  function open(index) {
+    if(index<0) return;
+    last=performance.now();
+    selected=index;
+    pending=true;
+    positionCamera();
+    redraw();
+  }
+  function close() {
+    last=performance.now();
+    selected=-1;
+    pending=false;
+    positionCamera();
+    redraw();
+  }
+  canvas.addEventListener('contextmenu',e=>e.preventDefault());
+  canvas.addEventListener('pointerdown',e=>{
+    if(drag || (e.button!==0 && e.button!==2)) return;
+    point(e);
+    drag={id:e.pointerId,x:e.clientX,y:e.clientY,center,pan:e.button===2 || e.pointerType!=='mouse',pick:e.button===0,moved:false};
+    canvas.setPointerCapture(e.pointerId);
+    if(!drag.pick) canvas.style.cursor='grabbing';
+  });
+  canvas.addEventListener('pointermove',e=>{
+    if(drag && drag.id!==e.pointerId) return;
+    if(drag) {
+      const dx=e.clientX-drag.x;
+      if(Math.hypot(dx,e.clientY-drag.y)>5) drag.moved=true;
+      if(drag.pan && drag.moved) {
+        center=clamp(drag.center-dx*viewWidth/canvas.clientWidth,-limit,limit);
+        if(pending) close();
+      }
+    }
+    point(e);
+    canvas.style.cursor=drag?.pan ? 'grabbing' : hit()>=0 ? 'pointer' : 'default';
+  });
+  canvas.addEventListener('pointerup',e=>{
+    if(drag?.id!==e.pointerId) return;
+    point(e);
+    if(drag.pick && !drag.moved) open(hit());
+    drag=null;
+    canvas.style.cursor='';
+  });
+  function cancelDrag(){drag=null;canvas.style.cursor='';}
+  canvas.addEventListener('pointercancel',cancelDrag);
+  canvas.addEventListener('lostpointercapture',cancelDrag);
+  const observer=new ResizeObserver(resize);
+  observer.observe(canvas);
+  resize();
   return {
-    display(items, count, numbers) {
-      openSlot = -1;
-      afterOpen = null;
-      if (columns!==count) rebuild(count);
-      drawers.forEach((d,i) => {
-        d.group.position.z = 0;
-        d.item = items[i];
-        // Un tiroir vide reste fermé ; il garde une façade sans étiquette.
-        d.label.material.map?.dispose();
-        d.label.material.map = d.item ? makeLabel(d.item,numbers.get(d.item.id)) : null;
-        d.label.material.color.set(d.item ? '#ffffff' : '#a8a08b');
-        d.label.material.needsUpdate = true;
-      });
-      resize();
+    open, close,
+    focus(index) {
+      focused=index;
+      center=clamp(folders[index].folder.position.x,-limit,limit);
+      positionCamera();
+      redraw();
     },
-    open(item,done) {
-      openSlot = drawers.findIndex(d=>d.item===item);
-      if(openSlot<0) { done(); return; }
-      const selected = drawers[openSlot].group.position;
-      beamPoint.set(selected.x,selected.y,.85);
-      afterOpen = done;
-      requestRender();
-    },
-    close() { openSlot=-1; afterOpen=null; requestRender(); },
-    resize
+    unfocus(){focused=-1;positionCamera();redraw();},
+    stop(){running=false;cancelAnimationFrame(raf);observer.disconnect();}
   };
 }

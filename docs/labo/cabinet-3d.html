@@ -9,27 +9,10 @@
 <script src="/menu-mondes.js" defer></script>
 </head>
 <body>
-<main>
-  <header>
-    <div class="heading"><p class="eyebrow">Collection de folklore</p><h1>Le cabinet de curiosités</h1></div>
-    <div class="tools">
-      <label class="ordering"><span>Classer par</span><select id="order">
-        <option value="alpha">Nom</option><option value="date">Date</option><option value="attention">Éditions Wikipédia</option><option value="status">Statut</option><option value="longitude">Longitude</option>
-      </select></label>
-      <button id="index-button" class="index-button" type="button" aria-haspopup="dialog">Index des dossiers</button>
-    </div>
-  </header>
-  <section id="stage" aria-label="Meuble à tiroirs en trois dimensions">
-    <canvas id="cabinet" aria-label="Éclairez les tiroirs et cliquez sur une étiquette. Tous les dossiers sont aussi accessibles depuis l’index."></canvas>
-    <p id="loading" role="status">Ouverture du cabinet…</p>
-    <div id="fallback" hidden></div>
-  </section>
-  <footer>
-    <div class="instructions"><span class="torch-icon" aria-hidden="true">◉</span><div><strong>Lampe torche</strong><small>Touchez ou cliquez sur un tiroir.</small></div></div>
-    <div class="pager"><button id="prev" aria-label="Tiroirs précédents">←</button><span id="range" aria-live="polite"></span><button id="next" aria-label="Tiroirs suivants">→</button></div>
-  </footer>
+<main aria-label="Le cabinet de curiosités">
+  <canvas id="cabinet" aria-label="Étagères de dossiers de folklore"></canvas>
+  <div id="folders" aria-label="Dossiers"></div>
 </main>
-<dialog id="index" aria-labelledby="index-title"><div class="dialog-head"><h2 id="index-title">Index des dossiers</h2><button class="close" aria-label="Fermer l’index" autofocus>×</button></div><ol id="entries"></ol></dialog>
 <dialog id="record" aria-labelledby="record-title">
   <div class="dialog-head"><p id="reference" class="eyebrow"></p><button class="close" aria-label="Ranger le dossier" autofocus>×</button></div>
   <h2 id="record-title"></h2><p id="description"></p><dl id="facts"></dl><p id="summary"></p>
