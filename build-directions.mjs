@@ -144,7 +144,7 @@ const Q = qs.questions.map(q => {
   // Par langue : le texte de la fiche. L'extrait Wikipédia vient de fiches.json (par langue aussi), les références sont communes aux deux langues.
   const f = q.fiche ? { w: fi.w, r: fi.r, rv: q.fiche.relue || null } : null; // relue : { par, date } à remplir quand un spécialiste a relu
   if (f) for (const l of ['fr', 'en']) if (q.fiche[l]) f[l] = { s: q.fiche[l].savoir, i: q.fiche[l].ignore, d: q.fiche[l].dur, e: q.fiche[l].enjeu, c: q.fiche[l].commencer };
-  return { id: q.id, qq: q.q, nmm: q.nom, cc: q.ctx, no: q.note || null, s: q.src, st: q.status || 'ouverte', subs, t, x, y, f };
+  return { id: q.id, qq: q.q, nmm: q.nom, cc: q.ctx, no: q.note || null, s: q.src, st: q.status || 'ouverte', k: q.type === 'enigme' ? 1 : 0, subs, t, x, y, f };
 });
 assert.equal(new Set(Q.map(q => q.id)).size, Q.length, 'identifiants de questions en double');
 // Deux anneaux superposés seraient illisibles : on les écarte du minimum nécessaire.

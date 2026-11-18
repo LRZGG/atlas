@@ -1,6 +1,6 @@
 # À faire
 
-État au 16 novembre 2026. Liste de travail, dans l'ordre de priorité. Voir aussi [a-polir.md](a-polir.md) (défauts constatés) et [methode.md](methode.md).
+État au 18 novembre 2026. Liste de travail, dans l'ordre de priorité. Voir aussi [a-polir.md](a-polir.md) (défauts constatés) et [methode.md](methode.md).
 
 ## 1. Design (priorité)
 
@@ -61,10 +61,34 @@ Il manque un twist. Pistes retenues pour y réfléchir :
 - [ ] Temps de chargement à mesurer.
 - [ ] Noms français des 250 sous-disciplines.
 
-## 7. Univers « Mystères » et « Folklore » (idée, à trancher)
+## 7. Mystères et folklore : décision du 18 novembre
 
-- [~] **Labo des styles** (`docs/labo/`, non indexé, `node fetch-labo.mjs` puis `node build-labo.mjs`) : 8 maquettes sur de vraies données (Wikipédia, Wikidata, Commons). Mystères : dossier tapé, listing, cyanotype, coupure de presse. Folklore : bestiaire, estampe, cabinet de curiosités, bibliothèque bleue. Contenu de démonstration : statuts non validés, brouillons IA.
-- [ ] Choisir un style par univers, puis 3 à 5 dossiers de test. Voir la critique dans la conversation du 17 novembre : le folklore reste hors de la carte mesurée, pas de témoignages d'utilisateurs, la barre de statut est identique partout.
-- [x] Choix du 17 novembre : folklore = **colportage blanc (F4W) et nuit (F4K)** ; mystères : M6 (chemise) écarté, M1 repris en trois versions plus adultes (M1B rapport tapé, M1C fiches de catalogue, M1D dactylo en direct).
-- [~] **Labo, 17 novembre (suite)** : M1R (dossier tapé réaliste, favori) ; vues « centre » : `viz-mystere.html` et `viz-folklore.html` (`node fetch-labo.mjs`, `node fetch-labo-plus.mjs`, `node make-world.mjs`, `node build-labo.mjs`, `node build-viz.mjs`). Constat sur les données : Wikidata n'a presque aucune date ni origine pour les légendes orales, donc une frise du folklore serait vide.
-- [~] **Mystères (18 novembre)** : mappemonde ancienne en deux hémisphères (clair/nuit) et salle des archives en 3D (three.js hébergé, `docs/labo/vendor/`, tri animé, lampe torche). À décider : garder ces deux vues comme page centrale de l'univers.
+- **Une seule entrée : la carte scientifique.** Les trois onglets sont retirés. Les mystères entrent **sur la carte** comme des questions, sous le type « énigme documentée » (petit carré à côté du « ? », filtre Tout / Questions / Énigmes dans la table des références).
+- [x] **8 énigmes sur la carte** (Wow!, Voynich, Anticythère, Toungouska, Nazca, Phaistos, linéaire A, Kryptos) : champ `type: "enigme"` dans `questions.json`, placées par leurs sous-disciplines (donc mesurées, pas dessinées). Fiches : « en préparation ».
+- [ ] Écrire les fiches des 8 énigmes (faits, ce qu'on ignore, références vérifiées, étiquette brouillon IA).
+- [ ] Décider du sort du **labo** (`docs/labo/` : mappemonde ancienne, salle 3D, cabinet 3D, dossier tapé réaliste M1R, menus, transitions). Ce sont des maquettes sur données de démonstration : à garder hors site, ou à recycler (la mappemonde ancienne comme vue alternative de la carte ?).
+- [ ] Règle d'entrée : « y a-t-il des chercheurs qui pourraient y répondre, et une source qui dit que la réponse manque ? » Oui → carte. Non → récit (folklore), hors carte.
+- [ ] Folklore : seulement sa science (« Pourquoi voit-on des fantômes ? ») sur la carte ; les récits (Mothman, yeti) restent hors carte, étiquetés « récit, pas un fait ». Pas de témoignages d'utilisateurs.
+
+## 8. Données à aller chercher
+
+- [ ] **Plus de questions** (cible 150) : listes Wikipédia encore inexploitées (économie, médecine, statistiques, philosophie, psychologie, linguistique), liste « Problèmes ouverts » de revues, 23 problèmes de Smale, DARPA 2008 ; Wikidata « problème non résolu » (Q… à vérifier).
+- [ ] **Énigmes supplémentaires** : colonie de Roanoke, disque de Phaistos déjà fait ; candidates : chiffres de Beale, rongorongo, écriture de l'Indus, épidémie dansante de 1518, Mary Celeste, lumières de Hessdalen (choisir celles qui ont un domaine de recherche).
+- [ ] **Compteurs d'OpenAlex** : corriger sujet par sujet les erreurs de classement (plafonnés au 99e centile aujourd'hui).
+- [ ] **Articles récents par sujet** (OpenAlex, 30 jours) pour la carte qui bouge. Vérifier la faisabilité des comptages.
+- [ ] **Noms français** des 250 sous-disciplines et des sujets les plus lus.
+- [ ] **Images libres** par question (Wikimedia Commons, licence créditée) : seulement si elles apprennent quelque chose.
+- [ ] **Relecteurs** : liste de spécialistes par discipline (ORCID), à contacter dès 30 fiches.
+
+## 9. Idées visuelles et animations (à trier)
+
+Règle : rien de décoratif, chaque effet encode une donnée ou une source.
+- [ ] **Plongée dans le vide** : cliquer « terra incognita » zoome dans le centre et fait apparaître les énigmes (transition déjà testée dans le labo).
+- [ ] **Mappemonde ancienne** comme vue alternative (bouton « géographie ») : les questions placées par lieu d'origine (archéologie, observatoires) quand ce lieu existe.
+- [ ] **Courbes qui respirent** : relief animé quand on change de période (articles publiés par année, 1990 → aujourd'hui) pour voir la frontière avancer.
+- [ ] **Ligne entre questions voisines** au survol (sous-disciplines partagées), seulement entre éléments visibles.
+- [ ] **Mode lecture d'une question** : le panneau se déroule comme une planche, texte « tapé » une fois à l'ouverture (déjà utilisé au survol).
+- [ ] **Carte de partage animée** (court GIF/vidéo libre) pour chaque question.
+- [ ] **Salle 3D** des questions : une travée d'étagères où chaque boîte est une question ; tri par discipline, par année, par nombre d'articles. Maquette faite pour les mystères.
+- [ ] **Son** : aucun par défaut. Si un jour : un seul bruit discret de machine à écrire, désactivable.
+- [ ] **Mobile** : geste de pincement testé en émulation ; à essayer sur un vrai appareil.

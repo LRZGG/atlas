@@ -69,6 +69,11 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 #legend .scroll::-webkit-scrollbar-button, #panel::-webkit-scrollbar-button { display: none; height: 0; }
 #key { border-bottom: .6px solid var(--ink); padding-bottom: 6px; margin-bottom: 4px; }
 #key ul { list-style: none; margin: 0; padding: 0; }
+#key .sqm { display: inline-block; width: 5px; height: 5px; background: var(--acc); margin-left: 2px; vertical-align: super; }
+#fk { display: flex; gap: 5px; align-items: center; margin: 0 0 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; flex-wrap: wrap; }
+#fk button { all: unset; cursor: pointer; border: .8px solid var(--ink); padding: 2px 8px; }
+#fk button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+#fk button:focus-visible { outline: 2px solid var(--acc); outline-offset: 1px; }
 #key li { display: flex; gap: 9px; align-items: flex-start; margin: 0 0 7px; font-size: 12px; line-height: 1.3; }
 #key svg { flex: none; width: 30px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1; }
 #key .qm { flex: none; width: 30px; text-align: center; color: var(--acc); font: 700 19px/1 var(--serif); }
@@ -102,7 +107,8 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <li><svg viewBox="0 0 30 20"><path d="M4 16A13 13 0 0 1 26 16" stroke-width="1.2"/><path d="M4 18v-4M26 18v-4"/></svg><span data-i="key_dom"></span></li>
 <li><svg viewBox="0 0 30 20"><circle cx="15" cy="10" r="7.5"/><text x="15" y="13.6" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" font-family="Archivo Narrow,sans-serif">7</text></svg><span data-i="key_disc"></span></li>
 <li><span class="qm">?</span><span data-i="key_q"></span></li>
-<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><ol id="refs"></ol><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
+<li><span class="qm">?<i class="sqm"></i></span><span data-i="key_enigme"></span></li>
+<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><ol id="refs"></ol><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
 <div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></div>
 <div id="cap" class="ov"></div>
 <div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div>
@@ -207,7 +213,7 @@ function panelHTML() {
   if (!cur) return '';
   if (cur.q != null) {
     const q = Q[cur.q], src = SRC[q.s], manque = LANG !== 'fr' && (fb(q.cc) || (q.no && fb(q.no)) || (q.f && !q.f[LANG]));
-    return `<p class="kicker">${esc(t('st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(S[j].n)}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p>`;
+    return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(S[j].n)}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p>`;
   }
   const i = cur.t, si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2], nb = ADJ[si].slice().sort((a, b) => Math.hypot(S[a].x - s.x, S[a].y - s.y) - Math.hypot(S[b].x - s.x, S[b].y - s.y)).slice(0, 5);
   return `<p class="kicker">${esc(loc(F[s.f].nn))} · ${esc(s.n)}</p><h2>${esc(T[i * 5 + 4])}</h2><p>${esc(fmt(w))} ${esc(t('publies'))}${w > DATA.cap ? ' ' + esc(t('douteux_long')) : ''}</p><h3>${esc(t('t_voisines'))}</h3><ul class="small">${li(nb.map(j => S[j].n))}</ul>`;
@@ -223,7 +229,7 @@ function openHash() { const i = Q.findIndex(q => q.id === location.hash.slice(1)
 addEventListener('hashchange', openHash);
 
 // ---- Survol et clic ----
-let hoverT = -1, hoverQ = -1, hoverF = -1, hoverC = -1, CL = []; const QS = Q.map(() => [0, 0]);
+let FK = 0; let hoverT = -1, hoverQ = -1, hoverF = -1, hoverC = -1, CL = []; const QS = Q.map(() => [0, 0]);
 function hover(px, py) {
   hoverQ = -1; hoverT = -1; hoverF = -1; hoverC = -1; if (px < 0) { tip.hidden = true; return; }
   for (const c of CL) if (Math.hypot(c.p[0] - px, c.p[1] - py) < 15) { if (c.ids.length > 1) hoverC = c.lead; else hoverQ = c.lead; break; }
@@ -270,8 +276,10 @@ function applyLang() {
   $('siteTitle').textContent = t('titre'); $('ctxP').textContent = t('ctx_p', { n: fmt(N), q: Q.length }); $('cap').textContent = t('cap', { n: fmt(N) });
   $('refs').innerHTML = ORD.map((f, i) => `<li><button type="button" data-f="${f}"><b>${i + 1}</b><span>${esc(loc(F[f].nn))}</span></button></li>`).join('');
   document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
-  renderPanel();
+  fkLabels(); renderPanel();
 }
+function fkLabels() { const L = [t('f_tout'), t('f_q'), t('f_e')]; document.querySelectorAll('#fk button').forEach((b, i) => { b.textContent = L[i]; b.setAttribute('aria-pressed', String(+b.dataset.fk === FK)); }); }
+$('fk').onclick = e => { const b = e.target.closest('button'); if (b) { FK = +b.dataset.fk; fkLabels(); } };
 $('refs').onclick = e => { const b = e.target.closest('button'); if (b) flyTo(FC[b.dataset.f].x, FC[b.dataset.f].y, 2.6); };
 document.querySelectorAll('#lang button').forEach(b => { b.onclick = () => { const l = b.dataset.lang; if (l === LANG) return; try { localStorage.setItem('lang', l); } catch (e) {} if (FORCED) location.href = '../' + l + '/' + location.hash; else { LANG = l; applyLang(); } }; });
 if (matchMedia('(max-width: 720px)').matches) $('legend').open = false;
@@ -330,7 +338,7 @@ function draw(dt) {
   // « Terra incognita » au centre du vide, effacée quand on zoome.
   { const h = toScreen(DATA.hole.x, DATA.hole.y), al = clamp(3 - k, 0, 1); if (al > 0 && h[0] > -200 && h[0] < W + 200) { ctx.save(); ctx.globalAlpha = al * .75; ctx.fillStyle = `rgb(${COL.rgb})`; ctx.textAlign = 'center'; if ('letterSpacing' in ctx) ctx.letterSpacing = '5px'; ctx.font = `14px "Archivo Narrow", sans-serif`; ctx.fillText(t('terra').toUpperCase(), h[0] + 2, h[1]); if ('letterSpacing' in ctx) ctx.letterSpacing = '0px'; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; ctx.fillText(t('terra_sub'), h[0], h[1] + 18); ctx.restore(); } }
   // Regroupement : dans les zones denses, un seul « ? » représente ceux qui sont à moins de CR pixels (CR diminue quand on zoome). Les autres se fondent : ils apparaissent et disparaissent en douceur.
-  const CR = clamp(84 / Math.pow(k, .95), 21, 84), TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => !!Q[b].f - !!Q[a].f), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ)], seen = new Set(), isLead = new Set(); CL = [];
+  const CR = clamp(84 / Math.pow(k, .95), 21, 84), TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => !!Q[b].f - !!Q[a].f), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ && (FK === 0 || Q[i].k === (FK === 2 ? 1 : 0)))], seen = new Set(), isLead = new Set(); CL = [];
   const pushB = p => { let q = p; for (let it = 0; it < 2; it++) for (const f of ORD) { const nb = NS[f]; if (!nb) continue; const dx = q[0] - nb[0], dy = q[1] - nb[1], d = Math.hypot(dx, dy); if (d < 24) q = d < .01 ? [q[0] + 24, q[1]] : [q[0] + dx * (24 - d) / d, q[1] + dy * (24 - d) / d]; } return q; };
   for (const i of order) {
     const p = TS[i]; if (seen.has(i) || p[0] < -20 || p[0] > W + 20 || p[1] < -20 || p[1] > H + 20) continue; seen.add(i); isLead.add(i); const ids = [i], forced = i === sel || i === kbQ;
@@ -348,6 +356,7 @@ function draw(dt) {
     if (A.v < .02) continue; const p = c ? c.p : pushB(TS[i]), e = ease(hot ? Math.max(A.g, i === sel ? 1 : 0) : A.g); QS[i] = p;
     ctx.globalAlpha = A.v; ctx.fillStyle = COL.acc; ctx.textAlign = 'center';
     if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); }
+    if (q.k) { ctx.fillStyle = COL.acc; ctx.fillRect(p[0] + 6 + 2 * e, p[1] - 14 - 3 * e, 4.5, 4.5); }
     ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.globalAlpha = A.v * (hot || on ? 1 : .72 + .28 * clamp((k - 1) / 1.2, 0, 1)); ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = COL.paper; ctx.strokeText('?', p[0], p[1] + 5); ctx.fillText('?', p[0], p[1] + 5); ctx.globalAlpha = A.v;
     if (c && !multi && !hot && la0 > .02 && A.g < .01) { ctx.globalAlpha = A.v * la0; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; const nm = loc(q.nmm), r = p[0] < cx, c2 = [[p[0] + (r ? -11 : 11), p[1] - 7, r ? 'right' : 'left'], [p[0] + (r ? 11 : -11), p[1] - 7, r ? 'left' : 'right'], [p[0], p[1] - 20, 'center'], [p[0], p[1] + 22, 'center']]; for (const z of c2) if (lab(nm, z[0], z[1], 13, z[2])) break; }
     ctx.globalAlpha = 1; if (c && A.g > .01) cards.push([c, multi]);

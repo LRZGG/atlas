@@ -76,6 +76,62 @@
         "en": "Wikipedia, list of unsolved problems in geoscience"
       },
       "u": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_geoscience"
+    },
+    "wp-wow": {
+      "n": {
+        "fr": "Wikipédia : Signal Wow!",
+        "en": "Wikipedia: Wow! signal"
+      },
+      "u": "https://fr.wikipedia.org/wiki/Signal_Wow!"
+    },
+    "wp-voynich": {
+      "n": {
+        "fr": "Wikipédia : Manuscrit de Voynich",
+        "en": "Wikipedia: Voynich manuscript"
+      },
+      "u": "https://fr.wikipedia.org/wiki/Manuscrit_de_Voynich"
+    },
+    "wp-antikythere": {
+      "n": {
+        "fr": "Wikipédia : Machine d'Anticythère",
+        "en": "Wikipedia: Antikythera mechanism"
+      },
+      "u": "https://fr.wikipedia.org/wiki/Machine_d'Anticyth%C3%A8re"
+    },
+    "wp-tunguska": {
+      "n": {
+        "fr": "Wikipédia : Événement de la Toungouska",
+        "en": "Wikipedia: Tunguska event"
+      },
+      "u": "https://fr.wikipedia.org/wiki/%C3%89v%C3%A9nement_de_la_Toungouska"
+    },
+    "wp-nazca": {
+      "n": {
+        "fr": "Wikipédia : Géoglyphes de Nazca",
+        "en": "Wikipedia: Nazca lines"
+      },
+      "u": "https://fr.wikipedia.org/wiki/G%C3%A9oglyphes_de_Nazca"
+    },
+    "wp-phaistos": {
+      "n": {
+        "fr": "Wikipédia : Disque de Phaistos",
+        "en": "Wikipedia: Phaistos Disc"
+      },
+      "u": "https://fr.wikipedia.org/wiki/Disque_de_Phaistos"
+    },
+    "wp-lineara": {
+      "n": {
+        "fr": "Wikipédia : Linéaire A",
+        "en": "Wikipedia: Linear A"
+      },
+      "u": "https://fr.wikipedia.org/wiki/Lin%C3%A9aire_A"
+    },
+    "wp-kryptos": {
+      "n": {
+        "fr": "Wikipédia : Kryptos",
+        "en": "Wikipedia: Kryptos"
+      },
+      "u": "https://fr.wikipedia.org/wiki/Kryptos"
     }
   },
   "questions": [
@@ -2517,6 +2573,170 @@
       "nom": {
         "fr": "El Niño",
         "en": "El Niño"
+      }
+    },
+    {
+      "id": "wow-e",
+      "type": "enigme",
+      "src": "wp-wow",
+      "q": {
+        "fr": "D'où venait le signal radio de 1977 ?",
+        "en": "Where did the 1977 radio signal come from?"
+      },
+      "ctx": {
+        "fr": "Le radiotélescope Big Ear (Ohio) a enregistré pendant 72 secondes un signal étroit et intense. Il n'a jamais été reçu de nouveau."
+      },
+      "subs": [
+        "Astronomy and Astrophysics",
+        "Signal Processing"
+      ],
+      "nom": {
+        "fr": "Signal Wow!",
+        "en": "Wow! signal"
+      }
+    },
+    {
+      "id": "voynich-e",
+      "type": "enigme",
+      "src": "wp-voynich",
+      "q": {
+        "fr": "Que dit le manuscrit de Voynich, s'il dit quelque chose ?",
+        "en": "What does the Voynich manuscript say, if anything?"
+      },
+      "ctx": {
+        "fr": "Un livre illustré du début du XVe siècle, écrit dans une écriture inconnue. Aucune lecture ne fait consensus."
+      },
+      "subs": [
+        "Language and Linguistics",
+        "History",
+        "Artificial Intelligence"
+      ],
+      "nom": {
+        "fr": "Manuscrit de Voynich",
+        "en": "Voynich manuscript"
+      }
+    },
+    {
+      "id": "antikythere-e",
+      "type": "enigme",
+      "src": "wp-antikythere",
+      "q": {
+        "fr": "Comment fonctionnait la machine d'Anticythère ?",
+        "en": "How did the Antikythera mechanism work?"
+      },
+      "ctx": {
+        "fr": "Un mécanisme à engrenages antique, repêché en 1901 dans une épave. Son fonctionnement exact est encore étudié."
+      },
+      "subs": [
+        "Archeology",
+        "History and Philosophy of Science",
+        "Mechanical Engineering"
+      ],
+      "nom": {
+        "fr": "Machine d'Anticythère",
+        "en": "Antikythera mechanism"
+      }
+    },
+    {
+      "id": "tunguska-e",
+      "type": "enigme",
+      "src": "wp-tunguska",
+      "q": {
+        "fr": "Qu'est-ce qui a explosé au-dessus de la Toungouska en 1908 ?",
+        "en": "What exploded over Tunguska in 1908?"
+      },
+      "ctx": {
+        "fr": "Une explosion a couché des millions d'arbres en Sibérie. On l'attribue le plus souvent à un astéroïde ou une comète éclatant en altitude ; les détails sont débattus."
+      },
+      "subs": [
+        "Space and Planetary Science",
+        "Geophysics",
+        "Atmospheric Science"
+      ],
+      "nom": {
+        "fr": "Événement de la Toungouska",
+        "en": "Tunguska event"
+      }
+    },
+    {
+      "id": "nazca-e",
+      "type": "enigme",
+      "src": "wp-nazca",
+      "q": {
+        "fr": "À quoi servaient les lignes et les figures de Nazca ?",
+        "en": "What were the Nazca lines for?"
+      },
+      "ctx": {
+        "fr": "De grandes figures et des lignes tracées dans le désert du Pérou. Leur fonction est débattue."
+      },
+      "subs": [
+        "Archeology",
+        "Earth-Surface Processes"
+      ],
+      "nom": {
+        "fr": "Lignes de Nazca",
+        "en": "Nazca lines"
+      }
+    },
+    {
+      "id": "phaistos-e",
+      "type": "enigme",
+      "src": "wp-phaistos",
+      "q": {
+        "fr": "Que dit le disque de Phaistos ?",
+        "en": "What does the Phaistos disc say?"
+      },
+      "ctx": {
+        "fr": "Un disque d'argile crétois couvert de signes en spirale. Il n'a jamais été déchiffré."
+      },
+      "subs": [
+        "Language and Linguistics",
+        "Archeology"
+      ],
+      "nom": {
+        "fr": "Disque de Phaistos",
+        "en": "Phaistos disc"
+      }
+    },
+    {
+      "id": "lineara-e",
+      "type": "enigme",
+      "src": "wp-lineara",
+      "q": {
+        "fr": "Peut-on déchiffrer le linéaire A ?",
+        "en": "Can Linear A be deciphered?"
+      },
+      "ctx": {
+        "fr": "L'écriture de la Crète minoenne. Les signes sont connus, la langue ne l'est pas."
+      },
+      "subs": [
+        "Language and Linguistics",
+        "Archeology",
+        "Classics"
+      ],
+      "nom": {
+        "fr": "Linéaire A",
+        "en": "Linear A"
+      }
+    },
+    {
+      "id": "kryptos-e",
+      "type": "enigme",
+      "src": "wp-kryptos",
+      "q": {
+        "fr": "Quelle est la solution du dernier passage de Kryptos ?",
+        "en": "What is the solution to the last passage of Kryptos?"
+      },
+      "ctx": {
+        "fr": "Une sculpture chiffrée de 1990 devant le siège de la CIA. Trois passages sur quatre ont été déchiffrés ; le dernier est considéré comme non résolu."
+      },
+      "subs": [
+        "Theoretical Computer Science",
+        "Computer Networks and Communications"
+      ],
+      "nom": {
+        "fr": "Kryptos",
+        "en": "Kryptos"
       }
     }
   ]
