@@ -77,6 +77,19 @@ ${C.map(hemi).join('')}${lbl}
       const rows = s.map((i, k) => `<g class="row" data-id="${i.id}" tabindex="0" role="button" aria-label="${esc(i.titre)}"><line x1="170" y1="${Y(i.year)}" x2="215" y2="${ly[k]}" class="ld"/><circle cx="170" cy="${Y(i.year)}" r="4" class="dot"/><text x="222" y="${ly[k] + 4}" class="lb">${esc(i.titre)} <tspan class="yy">${esc(yr(i.year))}</tspan></text></g>`).join('');
       V.innerHTML = `<p class="note">La profondeur est le temps : plus c'est ancien, plus on descend. Échelle en racine carrée du nombre d'années écoulées (les siècles récents sont dilatés pour rester lisibles).</p><svg viewBox="0 0 1000 ${H}" role="img" aria-label="Strates chronologiques">${bands}<line x1="170" y1="${top}" x2="170" y2="${H - top}" class="ax"/>${ticks}${rows}</svg>${nd.length ? `<p class="note">Date non renseignée dans Wikidata : ${nd.map(i => `<a href="#" data-id="${i.id}">${esc(i.titre)}</a>`).join(', ')}.</p>` : ''}`;
     },
+    liste(items) {
+      let q = '', st = null, key = 'titre', dir = 1; const names = { titre: 'Titre', year: 'Date', wikis: 'Attention', st: 'Statut' };
+      const draw = () => { const f = items.filter(i => (!st || i.st === st) && (!q || (i.titre + ' ' + (i.place || '')).toLowerCase().includes(q))).sort((a, b) => { const x = a[key], y = b[key]; if (x == null) return 1; if (y == null) return -1; return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y), 'fr')) * dir; });
+        const used = [...new Set(items.map(i => i.st))], mx = Math.max(...items.map(i => i.wikis || 0));
+        V.innerHTML = `<div class="lst"><div class="lh"><span>REGISTRE DES DOSSIERS</span><span>${f.length} / ${items.length} inscrits</span></div>
+<div class="ctl"><label>Chercher <input type="search" id="lq" value="${esc(q)}" placeholder="titre ou lieu" autocomplete="off"></label><span class="chips">${used.map(c => `<button type="button" data-st="${c}" aria-pressed="${st === c}">${MK[c]} ${esc(CODES[c])}</button>`).join('')}</span><span class="chips">Classer par ${Object.entries(names).map(([k, n]) => `<button type="button" data-sk="${k}" aria-pressed="${key === k}">${n}${key === k ? (dir > 0 ? ' ↑' : ' ↓') : ''}</button>`).join('')}</span></div>
+<ol class="rows">${f.map((i, n) => `<li class="r" data-id="${i.id}" tabindex="0" role="button"><span class="no">${String(n + 1).padStart(3, '0')}</span><span class="ti">${esc(i.titre.toUpperCase())}</span><i class="dl"></i><span class="da">${esc(i.year == null ? 'sans date' : yr(i.year))}</span><span class="sa">${mk(i)} ${esc(CODES[i.st])}</span><span class="xx" title="${i.wikis != null ? i.wikis + ' langues de Wikipédia' : ''}">${'x'.repeat(Math.round((i.wikis || 0) / mx * 14))}</span></li>`).join('')}</ol>
+<p class="tot">${f.length ? '' : 'Aucun dossier ne correspond. '}Total : ${f.length} dossier(s) · ${f.filter(i => i.st === 'non').length} non résolu(s) · ligne de x = nombre de langues de Wikipédia (14 x = le plus grand dossier).</p></div>`;
+        const inp = V.querySelector('#lq'); inp.oninput = () => { q = inp.value.toLowerCase().trim(); const p = inp.selectionStart; draw(); const n = V.querySelector('#lq'); n.focus(); n.setSelectionRange(p, p); };
+        V.querySelectorAll('[data-st]').forEach(b => b.onclick = () => { st = st === b.dataset.st ? null : b.dataset.st; draw(); });
+        V.querySelectorAll('[data-sk]').forEach(b => b.onclick = () => { const k = b.dataset.sk; if (k === key) dir = -dir; else { key = k; dir = 1; } draw(); }); };
+      draw();
+    },
     registre(items) {
       let key = 'titre', dir = 1; const cols = [['titre', 'Dossier'], ['year', 'Date'], ['place', 'Lieu'], ['st', 'Statut'], ['wikis', 'Wikipédia (langues)']];
       const mx = Math.max(...items.map(i => i.wikis || 0));
