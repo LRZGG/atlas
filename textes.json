@@ -82,7 +82,12 @@
     "search_aria": "Rechercher dans les questions, disciplines et sujets",
     "ck_n": "Contrôle automatique : {n} point(s) à vérifier par un humain.",
     "ck_0": "Contrôle automatique : aucun point ouvert hors relecture.",
-    "ck_lien": "Voir le rapport"
+    "ck_lien": "Voir le rapport",
+    "tr_t": "Ce qui bouge",
+    "tr_p": "{n} articles du {a} au {b}",
+    "tr_x": "soit {x} fois la moyenne mensuelle de 2025",
+    "tr_note": "Articles des 30 derniers jours, trois jours de retard compris. Les hausses de plus de 3 fois sont écartées de la liste : elles viennent le plus souvent de lots de données ou de réindexations, pas de la recherche.",
+    "tr_none": "Pas encore de données de la semaine."
   },
   "en": {
     "titre": "Unknownpedia",
@@ -167,6 +172,11 @@
     "search_aria": "Search questions, disciplines and topics",
     "ck_n": "Automatic check: {n} point(s) for a human to verify.",
     "ck_0": "Automatic check: no open point apart from review.",
-    "ck_lien": "See the report"
+    "ck_lien": "See the report",
+    "tr_t": "What is moving",
+    "tr_p": "{n} papers from {a} to {b}",
+    "tr_x": "that is {x} times the 2025 monthly average",
+    "tr_note": "Papers of the last 30 days, with a three-day lag. Rises above 3× are left out of the list: they usually come from data batches or reindexing, not from research.",
+    "tr_none": "No data for this week yet."
   }
 }

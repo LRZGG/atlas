@@ -92,6 +92,11 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 #fk button { all: unset; cursor: pointer; border: .8px solid var(--ink); padding: 2px 8px; }
 #fk button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 #fk button:focus-visible { outline: 2px solid var(--acc); outline-offset: 1px; }
+#mv h2 { font: 12px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin: 8px 0 4px; }
+#mv button { all: unset; box-sizing: border-box; display: block; width: 100%; padding: 2px 0; cursor: pointer; font-size: 13px; }
+#mv button:hover { text-decoration: underline; }
+#mv button:focus-visible { outline: 2px solid var(--acc); outline-offset: 1px; }
+#mv small { color: var(--dim); display: block; font-size: 11.5px; margin: 6px 0 8px; }
 #key li { display: flex; gap: 9px; align-items: flex-start; margin: 0 0 7px; font-size: 12px; line-height: 1.3; }
 #key svg { flex: none; width: 30px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1; }
 #key .qm { flex: none; width: 30px; text-align: center; color: var(--acc); font: 700 19px/1 var(--serif); }
@@ -126,7 +131,7 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <li><svg viewBox="0 0 30 20"><circle cx="15" cy="10" r="7.5"/><text x="15" y="13.6" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" font-family="Archivo Narrow,sans-serif">7</text></svg><span data-i="key_disc"></span></li>
 <li><span class="qm">?</span><span data-i="key_q"></span></li>
 <li><span class="qm">?<i class="sqm"></i></span><span data-i="key_enigme"></span></li>
-<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><ol id="refs"></ol><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
+<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><div id="mv"></div><ol id="refs"></ol><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
 <div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></div>
 <div id="tl" class="ov" hidden><button class="sq" id="tlplay" type="button"></button><input id="tlr" type="range" min="0" max="36" step="1" value="0"><span id="tll"></span></div>
 <div id="search" class="ov"><input id="sq" type="search" role="combobox" aria-expanded="false" aria-controls="sres" aria-autocomplete="list" autocomplete="off" spellcheck="false"><ul id="sres" role="listbox" hidden></ul></div>
@@ -242,6 +247,15 @@ function ficheHTML(q) {
   const ck = f.ck != null ? `<p class="small">${esc(f.ck ? t('ck_n', { n: f.ck }) : t('ck_0'))} <a href="https://github.com/Lorenzo1208/atlas/blob/main/controle/rapport.md#${esc(q.id)}" target="_blank" rel="noopener">${esc(t('ck_lien'))}</a></p>` : '';
   return `<p class="prov">${prov}</p>${ck}<h3>${esc(t('f_sait'))}</h3><ul>${li(b.s)}</ul><h3>${esc(t('f_ignore'))}</h3><ul>${li(b.i)}</ul><h3>${esc(t('f_dur'))}</h3><ul>${li(b.d)}</ul><h3>${esc(t('f_compte'))}</h3><p>${esc(b.e)}</p><h3>${esc(t('f_commencer'))}</h3><ul>${li(b.c)}</ul><h3>${esc(t('f_loin'))}</h3><div class="wiki"><p>${esc(w.x)}</p><p class="attr">${esc(at[0])}<a href="${esc(w.u)}" target="_blank" rel="noopener">${esc(w.t)}</a>${esc(at[1] || '')}</p></div><ul class="refs">${f.r.map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a><span>${esc([r.a, r.y].filter(Boolean).join(', '))}</span></li>`).join('')}</ul>`;
 }
+const RC = DATA.R;
+const monthBase = i => YR ? yval(i, YR.y1) / 12.2 : 0;
+function recentLine(i) { if (!RC || RC.c[i] < 0) return ''; const n = RC.c[i], b = monthBase(i), x = b > 30 ? n / b : 0;
+  return `<p class="small">${esc(t('tr_p', { n: fmt(n), a: RC.from, b: RC.to }))}${x ? ' · ' + esc(t('tr_x', { x: x.toFixed(1) })) : ''}</p>`; }
+function renderMoving() { const el = $('mv'); if (!el) return; if (!RC) { el.innerHTML = ''; return; }
+  const L = []; for (let i = 0; i < N; i++) { const n = RC.c[i], b = monthBase(i); if (n < 150 || b < 60) continue; const x = n / b; if (x >= 1.25 && x <= 3) L.push([i, x, n]); }
+  L.sort((a, b) => b[1] - a[1]); const top = L.slice(0, 8);
+  el.innerHTML = `<h2>${esc(t('tr_t'))}</h2>` + (top.length ? top.map(([i, x]) => `<button type="button" data-t="${i}">${esc(T[i * 5 + 4])} <small style="display:inline;margin:0">×${x.toFixed(1)}</small></button>`).join('') + `<small>${esc(t('tr_note'))}</small>` : `<small>${esc(t('tr_none'))}</small>`);
+  el.onclick = e => { const b = e.target.closest('button'); if (b) openT(+b.dataset.t); }; }
 function panelHTML() {
   if (!cur) return '';
   if (cur.q != null) {
@@ -249,7 +263,7 @@ function panelHTML() {
     return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p><p class="small"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=corriger-une-fiche.yml&title=${encodeURIComponent('[' + q.id + '] ')}&question=${encodeURIComponent(q.id + ' (' + location.origin + '/' + LANG + '/q/' + q.id + '/)')}" target="_blank" rel="noopener">${esc(t('signaler'))}</a> · <a href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></p>`;
   }
   const i = cur.t, si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2], nb = ADJ[si].slice().sort((a, b) => Math.hypot(S[a].x - s.x, S[a].y - s.y) - Math.hypot(S[b].x - s.x, S[b].y - s.y)).slice(0, 5);
-  return `<p class="kicker">${esc(loc(F[s.f].nn))} · ${esc(sn(s))}</p><h2>${esc(T[i * 5 + 4])}</h2><p>${esc(fmt(w))} ${esc(t('publies'))}${YR ? ' (' + YR.y0 + '–' + YR.y1 + ')' : ''}${w > DATA.cap ? ' ' + esc(t('douteux_long')) : ''}</p><h3>${esc(t('t_voisines'))}</h3><ul class="small">${li(nb.map(j => sn(S[j])))}</ul>`;
+  return `<p class="kicker">${esc(loc(F[s.f].nn))} · ${esc(sn(s))}</p><h2>${esc(T[i * 5 + 4])}</h2><p>${esc(fmt(w))} ${esc(t('publies'))}${YR ? ' (' + YR.y0 + '–' + YR.y1 + ')' : ''}${w > DATA.cap ? ' ' + esc(t('douteux_long')) : ''}</p>${recentLine(i)}<h3>${esc(t('t_voisines'))}</h3><ul class="small">${li(nb.map(j => sn(S[j])))}</ul>`;
 }
 function renderPanel() { if (!cur) return; panel.innerHTML = `<button class="sq" id="pclose" type="button" aria-label="${esc(t('fermer'))}">×</button>` + panelHTML(); panel.hidden = false; document.body.classList.add('panel-open'); $('pclose').onclick = closePanel; panel.scrollTop = 0; }
 function closePanel() { const had = panel.contains(document.activeElement); cur = null; panel.hidden = true; document.body.classList.remove('panel-open'); if (location.hash) history.replaceState(null, '', location.pathname + location.search); if (had) cv.focus(); }
@@ -336,7 +350,7 @@ function applyLang() {
   $('siteTitle').textContent = t('titre'); $('ctxP').textContent = t('ctx_p', { n: fmt(N), q: Q.length }); $('cap').textContent = t('cap', { n: fmt(N) });
   $('refs').innerHTML = ORD.map((f, i) => `<li><button type="button" data-f="${f}"><b>${i + 1}</b><span>${esc(loc(F[f].nn))}</span></button></li>`).join('');
   document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
-  fkLabels(); renderPanel();
+  fkLabels(); renderMoving(); renderPanel();
 }
 function fkLabels() { const L = [t('f_tout'), t('f_q'), t('f_e')]; document.querySelectorAll('#fk button').forEach((b, i) => { b.textContent = L[i]; b.setAttribute('aria-pressed', String(+b.dataset.fk === FK)); }); }
 $('fk').onclick = e => { const b = e.target.closest('button'); if (b) { FK = +b.dataset.fk; fkLabels(); } };

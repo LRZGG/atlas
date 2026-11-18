@@ -166,6 +166,9 @@ const DATA = {
   S: sIds.map((id, i) => ({ n: s.subfields[id].name, nf: SUBFR[s.subfields[id].name] || s.subfields[id].name, f: fIdx[s.subfields[id].field], x: r3(pos[i][0]), y: r3(pos[i][1]), w: sw[i] })),
   L: links.map(([i, j]) => [i, j]), T, Q, SRC: qs.sources,
   TXT: JSON.parse(readFileSync('textes.json', 'utf8')),
+  R: (() => { // articles des 30 derniers jours par sujet (recent.json, fetch-recent.mjs)
+    if (!existsSync('recent.json')) return null; const r = JSON.parse(readFileSync('recent.json', 'utf8')); return { from: r.from, to: r.to, c: s.topics.map(t => r.t[t.id] ?? -1) };
+  })(),
   Y: (() => { // articles par an et par sujet (annees.json, fetch-annees.mjs) : un caractère par année, log2 quantifié
     if (!existsSync('annees.json')) return null; const an = JSON.parse(readFileSync('annees.json', 'utf8')), y1 = Math.min(an.y1, 2025), n = y1 - an.y0 + 1; let a = '';
     for (const t of s.topics) { const r = an.t[t.id] || []; for (let k = 0; k < n; k++) a += String.fromCharCode(48 + Math.min(63, Math.round(Math.log2(1 + (r[k] || 0)) * 2))); }

@@ -71,6 +71,12 @@ Il manque un twist. Pistes retenues pour y réfléchir :
 - [ ] Règle d'entrée : « y a-t-il des chercheurs qui pourraient y répondre, et une source qui dit que la réponse manque ? » Oui → carte. Non → récit (folklore), hors carte.
 - [ ] Folklore : seulement sa science (« Pourquoi voit-on des fantômes ? ») sur la carte ; les récits (Mothman, yeti) restent hors carte, étiquetés « récit, pas un fait ». Pas de témoignages d'utilisateurs.
 
+## 7 bis. Grandes fonctionnalités du 18 novembre
+
+- [x] **Recherche** sur la carte (touche `/`) : questions, disciplines, sous-disciplines, sujets. **150 pages par langue** (une par question, avec ou sans fiche).
+- [x] **Contrôle des fiches** : `verifier-fiches.mjs` → `controle/rapport.md` ; décisions humaines dans `controle/decisions.json` ; modèles de demandes GitHub (corriger, proposer, relire) ; page « Comment contribuer ». **Pas de seconde IA branchée** (aucune clé dans le dépôt) : le format du rapport est prêt pour l'accueillir.
+- [~] **Frontière de la semaine** : `fetch-recent.mjs` + `.github/workflows/frontiere.yml` (chaque lundi). **À faire par l'auteur** : ajouter la clé OpenAlex comme secret `OPENALEX_API_KEY` du dépôt (Settings → Secrets and variables → Actions), puis lancer le workflow une fois à la main. Tant que `recent.json` n'existe pas, le bloc « Ce qui bouge » est vide. L'action n'a pas pu être testée ici.
+
 ## 8. Données à aller chercher
 
 - [x] **Plus de questions** (150 atteint ; au-delà : psychologie, linguistique, sociologie n'ont pas de liste Wikipédia dédiée) : listes Wikipédia encore inexploitées (économie, médecine, statistiques, philosophie, psychologie, linguistique), liste « Problèmes ouverts » de revues, 23 problèmes de Smale, DARPA 2008 ; Wikidata « problème non résolu » (Q… à vérifier).
