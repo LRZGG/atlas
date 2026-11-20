@@ -704,8 +704,7 @@ function applyLang() {
   document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
   renderDomains(); fkLabels(); renderPanel(); if (stOpen) renderStats();
 }
-const FEAT = new Set(['wow-e', 'voynich-e', 'nazca-e']);
-const shown = i => { const q = Q[i]; return FK === 0 ? (!q.adv || q.year >= RECENT) && (!q.k || FEAT.has(q.id) || view.k >= 2.2) : FK === 1 ? !q.adv && !q.k : FK === 2 ? !!q.k : !!q.adv; };
+const shown = i => { const q = Q[i]; return FK === 0 ? (!q.adv || q.year >= RECENT) && (!q.k || view.k >= 2.2) : FK === 1 ? !q.adv && !q.k : FK === 2 ? !!q.k : !!q.adv; };
 function fkLabels() { const L = [t('f_tout'), t('f_q'), t('f_e'), t('f_a')]; document.querySelectorAll('#fk button').forEach((b, i) => { b.textContent = L[i]; b.setAttribute('aria-pressed', String(+b.dataset.fk === FK)); }); }
 // Random: a vintage die rolls (faces flicker, the die tumbles), then a question picked at random opens. Never the one already open; always available.
 const PIPS = { 1: [[12, 12]], 2: [[8, 8], [16, 16]], 3: [[8, 8], [12, 12], [16, 16]], 4: [[8, 8], [16, 8], [8, 16], [16, 16]], 5: [[8, 8], [16, 8], [12, 12], [8, 16], [16, 16]], 6: [[8, 7.5], [16, 7.5], [8, 12], [16, 12], [8, 16.5], [16, 16.5]] };
