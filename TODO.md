@@ -47,3 +47,8 @@ Rule: nothing decorative; every effect encodes a datum or a source.
 
 - [ ] GitHub Sponsors, then a legal structure when income arrives.
 - [ ] Mobile-specific layout polish; true offline reading pages.
+
+## AI contributions (`ia` field in `questions.json`)
+
+- Only one entry so far (Navier–Stokes, status `claimed`). Add others only with sources read and checked (Erdős problems, other claims): fields `st` (`claimed` | `assisted` | `related`), `date`, `fr`, `en`, `r` (references).
+- Re-check the Navier–Stokes entry regularly: peer review, Clay Institute decision, and the OpenAI page itself (not readable by our tools, so currently cited through Quanta only).

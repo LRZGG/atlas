@@ -159,7 +159,7 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <li><svg viewBox="0 0 30 20"><circle cx="15" cy="10" r="7.5"/><text x="15" y="13.6" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" font-family="Archivo Narrow,sans-serif">7</text></svg><span data-i="key_disc"></span></li>
 <li><span class="qm">?</span><span data-i="key_q"></span></li>
 <li><span class="qm">?<i class="sqm"></i></span><span data-i="key_enigme"></span></li>
-<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><ol id="refs"></ol><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
+<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><ol id="refs"></ol><p class="small"><a id="ialink" data-i="ia_link" href="/en/ia/"></a></p><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
 <div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></div>
 <div id="tl" class="ov" hidden><button class="sq" id="tlplay" type="button"></button><input id="tlr" type="range" min="0" max="36" step="1" value="0"><span id="tll"></span></div>
 <div id="search" class="ov"><input id="sq" type="search" role="combobox" aria-expanded="false" aria-controls="sres" aria-autocomplete="list" autocomplete="off" spellcheck="false"><ul id="sres" role="listbox" hidden></ul></div>
@@ -270,6 +270,10 @@ function nearestTopic(wx, wy, rw) { let best = -1, bd = rw; const cx = Math.floo
 const panel = $('panel'), tip = $('tip'); let cur = null;
 const QORD = Q.map((q, i) => i).sort((a, b) => (Q[b].t - Q[a].t) || (a - b));
 const li = a => a.map(x => `<li>${esc(x)}</li>`).join('');
+function iaHTML(q) {
+  const i = q.ia; if (!i) return '';
+  return `<h3>${esc(t('ia_h'))}</h3><p class="kicker">${esc(t('ia_st_' + i.st))}${i.date ? ' · ' + esc(i.date) : ''}</p><p>${esc(i[LANG] || i.fr)}</p><ul class="refs">${i.r.map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a><span>${esc([r.a, r.y].filter(Boolean).join(', '))}</span></li>`).join('')}</ul><p class="small"><a href="/${LANG}/ia/">${esc(t('ia_link'))}</a></p>`;
+}
 function ficheHTML(q) {
   if (!q.f) return `<p class="small">${esc(t('fiche_prep'))}</p>`;
   const f = q.f, b = f[LANG] || f.fr, w = f.w[LANG] || f.w.fr, at = t('wiki_attr').split('{t}');
@@ -289,7 +293,7 @@ function panelHTML() {
   if (!cur) return '';
   if (cur.q != null) {
     const q = Q[cur.q], src = SRC[q.s], manque = LANG !== 'fr' && (fb(q.cc) || (q.no && fb(q.no)) || (q.f && !q.f[LANG]));
-    return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p><p class="small"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=correct-a-fiche.yml&title=${encodeURIComponent('[' + q.id + '] ')}&question=${encodeURIComponent(q.id + ' (' + location.origin + '/' + LANG + '/q/' + q.id + '/)')}" target="_blank" rel="noopener">${esc(t('signaler'))}</a> · <a href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></p>`;
+    return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${iaHTML(q)}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p><p class="small"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=correct-a-fiche.yml&title=${encodeURIComponent('[' + q.id + '] ')}&question=${encodeURIComponent(q.id + ' (' + location.origin + '/' + LANG + '/q/' + q.id + '/)')}" target="_blank" rel="noopener">${esc(t('signaler'))}</a> · <a href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></p>`;
   }
   const i = cur.t, si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2], nb = ADJ[si].slice().sort((a, b) => Math.hypot(S[a].x - s.x, S[a].y - s.y) - Math.hypot(S[b].x - s.x, S[b].y - s.y)).slice(0, 5);
   return `<p class="kicker">${esc(loc(F[s.f].nn))} · ${esc(sn(s))}</p><h2>${esc(T[i * 5 + 4])}</h2><p>${esc(fmt(w))} ${esc(t('publies'))}${YR ? ' (' + YR.y0 + '–' + YR.y1 + ')' : ''}${w > DATA.cap ? ' ' + esc(t('douteux_long')) : ''}</p>${recentLine(i)}<h3>${esc(t('t_voisines'))}</h3><ul class="small">${li(nb.map(j => sn(S[j])))}</ul>`;
@@ -373,7 +377,7 @@ addEventListener('keydown', e => { if (e.key === '/' && !/^(INPUT|TEXTAREA)$/.te
 function applyLang() {
   if ($('srcpage')) $('srcpage').href = '/' + LANG + '/sources/';
   document.documentElement.lang = LANG; document.title = t('titre'); const md = document.querySelector('meta[name=description]'); if (md) md.content = t('desc');
-  document.querySelectorAll('[data-i]').forEach(e => { e.textContent = t(e.dataset.i); });
+  document.querySelectorAll('[data-i]').forEach(e => { e.textContent = t(e.dataset.i); }); $('ialink').href = '/' + LANG + '/ia/';
   document.querySelectorAll('[data-ia]').forEach(e => e.setAttribute('aria-label', t(e.dataset.ia)));
   $('stbtn').textContent = t('st_btn');
   sq.placeholder = t('search_ph'); sq.setAttribute('aria-label', t('search_aria')); if (sq.value) doSearch();

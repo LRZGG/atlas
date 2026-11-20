@@ -1266,6 +1266,32 @@
             "The official description of the problem is below."
           ]
         }
+      },
+      "ia": {
+        "st": "claimed",
+        "date": "2026-09-08",
+        "fr": "Le 8 septembre 2026, OpenAI a annoncé qu'un groupe d'agents d'IA, tournant sur un modèle non public, avait trouvé une singularité dans les équations de Navier-Stokes en trois dimensions. Selon Quanta Magazine, le résultat a été vérifié dans le langage de preuve Lean ; il reste à des humains de vérifier que l'énoncé Lean correspond bien à ce qu'on voulait démontrer. Ce n'est pas encore un résultat accepté : l'institut Clay classe toujours le problème comme « actif » et n'a rien attribué (consulté en novembre 2026), la priorité est discutée, et nous n'avons pas trouvé d'examen par des pairs. Plus tôt, en septembre 2025, une équipe menée par DeepMind avait utilisé des réseaux de neurones pour trouver des singularités instables dans d'autres équations (milieux poreux, Euler avec bord), pas dans Navier-Stokes.",
+        "en": "On 8 September 2026 OpenAI announced that a group of AI agents, running on a model that is not public, had found a singularity in the three-dimensional Navier–Stokes equations. According to Quanta Magazine, the result has been checked in the Lean proof language; humans still have to check that the Lean statement matches what was meant to be proved. This is not an accepted result yet: the Clay Institute still lists the problem as “Active” and has awarded nothing (consulted November 2026), priority is disputed, and we found no peer review. Earlier, in September 2025, a DeepMind-led team used neural networks to find unstable singularities in other equations (porous media, Euler with a boundary), not in Navier–Stokes.",
+        "r": [
+          {
+            "t": "AI Has Solved One of Math's $1 Million Millennium Prize Problems",
+            "u": "https://www.quantamagazine.org/ai-has-solved-one-of-maths-1-million-millennium-prize-problems-20260908/",
+            "a": "Konstantin Kakaes, Quanta Magazine",
+            "y": 2026
+          },
+          {
+            "t": "Navier–Stokes equation (Millennium Prize Problems)",
+            "u": "https://www.claymath.org/millennium/navier-stokes-equation/",
+            "a": "Clay Mathematics Institute",
+            "y": null
+          },
+          {
+            "t": "Discovery of Unstable Singularities",
+            "u": "https://arxiv.org/abs/2509.14185",
+            "a": "Wang, Bennani, Martens et al. (arXiv preprint)",
+            "y": 2025
+          }
+        ]
       }
     },
     {
