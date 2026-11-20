@@ -1,6 +1,93 @@
 {
   "entries": [
     {
+      "id": "riemann-anthropic-zeros",
+      "q": [
+        "riemann"
+      ],
+      "st": "assisted",
+      "date": "2026-08-10",
+      "checked": "2026-11-20",
+      "title": {
+        "fr": "Riemann : plus de zéros sur la droite critique (Anthropic)",
+        "en": "Riemann: more zeros on the critical line (Anthropic)"
+      },
+      "fr": "Le 10 août 2026, Anthropic a annoncé qu'un modèle de recherche non publié avait relevé la borne prouvée de la proportion de zéros de la fonction zêta situés sur la droite critique, de 41,6 % à 67,2 %. C'est un résultat partiel : Anthropic dit explicitement ne pas avoir prouvé l'hypothèse de Riemann et ne pas s'attendre à ce que la technique la résolve. Des mathématiciens d'Anthropic ont vérifié le résultat, une formalisation en Lean est publique, et deux experts extérieurs (Conrey et Goldston) ont regardé l'article dans un délai court. Nous n'avons pas trouvé d'évaluation par les pairs terminée.",
+      "en": "On 10 August 2026 Anthropic announced that an unreleased research model had raised the proven lower bound for the proportion of zeta zeros on the critical line from 41.6% to 67.2%. This is a partial result: Anthropic explicitly says it did not prove the Riemann hypothesis and does not expect the technique to resolve it. Anthropic mathematicians checked it, a Lean formalisation is public, and two outside experts (Conrey and Goldston) looked at the paper at short notice. We found no completed peer review.",
+      "r": [
+        {
+          "t": "Riemann zeta (announcement)",
+          "u": "https://www.anthropic.com/news/riemann-zeta",
+          "a": "Anthropic",
+          "y": 2026
+        },
+        {
+          "t": "An unreleased Anthropic model made progress on one of maths' biggest unsolved problems",
+          "u": "https://techcrunch.com/2026/08/11/an-unreleased-anthropic-model-made-progress-on-one-of-maths-biggest-unsolved-problems/",
+          "a": "TechCrunch",
+          "y": 2026
+        }
+      ]
+    },
+    {
+      "id": "riemann-openai-quasi",
+      "q": [
+        "riemann"
+      ],
+      "st": "claimed",
+      "date": "2026-10-07",
+      "checked": "2026-11-20",
+      "title": {
+        "fr": "Riemann : l'« hypothèse de quasi-Riemann » (OpenAI)",
+        "en": "Riemann: the “quasi-Riemann hypothesis” (OpenAI)"
+      },
+      "fr": "Début octobre 2026, OpenAI a publié 722 manuscrits issus d'un modèle interne non publié, dont « The Quasi-Riemann Hypothesis », sur une région sans zéros pour des fonctions L. D'après Quanta, une version place les zéros entre 1/8 et 7/8 (199 pages, vérifiée en Lean) et une autre entre 1/12 et 11/12 (49 pages, éditée par des humains, pas encore vérifiée en Lean) ; une presse relève un écart entre ces chiffres que nous n'avons pas pu lever. Les experts jugent le résultat plutôt correct, mais Peter Sarnak ne l'appelle pas théorème avant vérification humaine des détails, et Will Sawin et Thomas Bloom doutent qu'il mène jusqu'à la droite 1/2. Ce n'est pas l'hypothèse de Riemann.",
+      "en": "In early October 2026 OpenAI released 722 manuscripts from an unreleased internal model, including “The Quasi-Riemann Hypothesis”, about a zero-free region for L-functions. According to Quanta, one version puts the zeros between 1/8 and 7/8 (199 pages, Lean-verified) and another between 1/12 and 11/12 (49 pages, human-edited, not yet Lean-verified); one outlet notes a mismatch between these figures that we could not resolve. Experts largely think the result is correct, but Peter Sarnak will not call it a theorem until humans check the details, and Will Sawin and Thomas Bloom doubt it reaches the 1/2 line. This is not the Riemann hypothesis.",
+      "r": [
+        {
+          "t": "AI proved the quasi-Riemann hypothesis. What happens now?",
+          "u": "https://quantamagazine.org/ai-proved-the-quasi-riemann-hypothesis-what-happens-now-20261019",
+          "a": "Quanta Magazine",
+          "y": 2026
+        },
+        {
+          "t": "OpenAI Solves Quasi Riemann Hypothesis: Understand What It Means",
+          "u": "https://officechai.com/ai/quasi-riemann-hypothesis-explanation/",
+          "a": "OfficeChai",
+          "y": 2026
+        }
+      ]
+    },
+    {
+      "id": "riemann-alpoge-claim",
+      "q": [
+        "riemann"
+      ],
+      "st": "claimed",
+      "date": "2026-11-20",
+      "checked": "2026-11-20",
+      "title": {
+        "fr": "Riemann : une preuve annoncée avec Claude, non vérifiée",
+        "en": "Riemann: a proof announced with Claude, unverified"
+      },
+      "fr": "Le 20 novembre 2026, le mathématicien Levent Alpöge (Anthropic) a mis en ligne une note de 4 pages où il dit croire avoir trouvé, avec Claude, une preuve de l'hypothèse de Riemann et de sa version généralisée, avec des fichiers Lean. D'après l'AFP et OfficeChai, cette annonce n'est vérifiée par personne : aucun expert extérieur ne l'a confirmée, il n'y a pas d'article, et on ne sait pas si l'énoncé Lean traduit fidèlement l'hypothèse de Riemann ni si les fichiers compilent. Nous n'avons pas pu lire la note elle-même. L'institut Clay n'a rien dit, et ses règles exigent une publication évaluée par les pairs puis deux ans d'examen. À traiter comme une revendication, pas comme un résultat.",
+      "en": "On 20 November 2026 mathematician Levent Alpöge (Anthropic) posted a 4-page note saying he believes he found, working with Claude, a proof of the Riemann hypothesis and its generalised version, with Lean files. According to AFP and OfficeChai, nobody has verified this: no outside expert has confirmed it, there is no paper, and it is unclear whether the Lean statement faithfully encodes the Riemann hypothesis or whether the files build. We could not read the note itself. The Clay Institute has said nothing, and its rules require peer-reviewed publication followed by two years of scrutiny. Treat it as a claim, not a result.",
+      "r": [
+        {
+          "t": "Anthropic researcher says Claude solved math's greatest riddle",
+          "u": "https://www.france24.com/en/live-news/20261120-anthropic-researcher-says-claude-solved-math-s-greatest-riddle",
+          "a": "France 24 (AFP)",
+          "y": 2026
+        },
+        {
+          "t": "Claimed Riemann Hypothesis Proof Made With Claude Appears On Anthropic Mathematician Levent Alpöge's Website",
+          "u": "https://officechai.com/ai/claimed-riemann-hypothesis-proof-made-with-claude-appears-on-anthropic-mathematician-levent-alpoges-website/",
+          "a": "OfficeChai",
+          "y": 2026
+        }
+      ]
+    },
+    {
       "id": "navier-stokes-openai",
       "q": [
         "navier-stokes"

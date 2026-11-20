@@ -50,7 +50,7 @@ Rule: nothing decorative; every effect encodes a datum or a source.
 
 ## AI contributions (`ia.json`)
 
-- Six entries (Navier–Stokes, Erdős problems x3, AlphaEvolve, AlphaFold). Each has `st` (`claimed` | `assisted` | `related`), `date`, `checked`, `fr`, `en`, `r` (references) and `q` (ids of the map questions it concerns; `[]` = only on the /ia/ page).
+- Nine entries (Navier–Stokes, Riemann x3, Erdős problems x3, AlphaEvolve, AlphaFold). Each has `st` (`claimed` | `assisted` | `related`), `date`, `checked`, `fr`, `en`, `r` (references) and `q` (ids of the map questions it concerns; `[]` = only on the /ia/ page).
 - Update path: issue template `propose-an-ai-entry.yml` (new entry or status change), then edit `ia.json` and bump `checked`.
 - Read only through secondary sources so far: Navier–Stokes and unit distance (Quanta), AlphaFold and AlphaEvolve (lab pages). Not readable by our tools: erdosproblems.com, OpenAI page, nobelprize.org. Read the primary papers when possible.
 - Re-check regularly: peer review and Clay decision for Navier–Stokes, formal verification for unit distance, DeepMind's 9-of-353 Erdős paper (arXiv 2605.22763, not read).
@@ -61,3 +61,4 @@ Rule: nothing decorative; every effect encodes a datum or a source.
 - 37 entries so far (maths 12, natural sciences 15, AI 10). Sources are mostly Wikipedia: replace with primary sources (IMU, Nobel Committee, arXiv, journals) when readable.
 - Not yet covered: Abel Prize, Breakthrough Prizes, Turing Award, economics, social sciences, earth science, ecology. Add the 2024 Physics Nobel (Hopfield, Hinton) once its citation is read.
 - Idea: show advances by year with the time slider.
+- Riemann (20 Nov 2026): the Alpöge note was read only second-hand (AFP, OfficeChai); re-check for expert reactions, a paper, and whether the Lean files build and state RH correctly. Also check OpenAI's own release for the 7/8 vs 11/12 figures.
