@@ -38,7 +38,7 @@ Two editorial choices depart from OpenAlex: *Agricultural and Biological Science
 | Small ticks along the first contour | The edge of the known, facing the little-studied |
 | A numbered circle | A discipline (reference table) |
 | A red “?” (white in dark mode) | An open question |
-| A “?” of type enigma | A documented enigma: facts exist, the answer is missing (shown in the fiche and with the Enigmas filter, no separate symbol) |
+| A “?” of type enigma | A documented mystery: facts exist, the answer is missing (shown in the fiche and with the Mysteries filter, no separate symbol) |
 | The void in the middle (and beyond the ring) | Few papers link these disciplines: *terra incognita* |
 
 Limits:
@@ -56,7 +56,7 @@ We do not invent questions: we collect them from recognised sources, qualify the
 | Clay Mathematics Institute, Millennium Prize Problems | Done: the 6 problems still open |
 | Hilbert's problems still open | Done (8) |
 | Wikipedia “List of unsolved problems in…” (maths, CS, physics, astronomy, chemistry, biology, neuroscience, geoscience, economics, statistics), unsolved problems in medicine, Smale's problems | Done (secondary source: each question keeps its `src`) |
-| Documented enigmas (Wow! signal, Voynich manuscript…) | 8 so far, from Wikipedia articles |
+| Documented mysteries (Wow! signal, Voynich manuscript…) | 8 so far, from Wikipedia articles |
 
 A question is kept if it is **open** (a reliable source says it is unresolved at the check date), **serious** (mainstream science; marginal or pseudo-scientific questions are excluded), **understandable** (one sentence, no jargon), **important** (in at least one established list), **sourced** and **dated** (a question can get solved: Poincaré is; Navier–Stokes is under evaluation).
 

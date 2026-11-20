@@ -4,11 +4,11 @@ State on 18 November 2026. Priorities first. Legend: `[x]` done, `[~]` partly do
 
 ## Content
 
-- [x] 150 questions, each with its source (Science 2005, Millennium problems, Hilbert, Wikipedia lists, Smale, 8 documented enigmas).
-- [~] **Fiches**: 29 of 150 written (all bilingual, references verified in OpenAlex). 121 to write. Four enigma fiches have no reference yet (Nazca, Phaistos, Linear A, Kryptos).
+- [x] 150 questions, each with its source (Science 2005, Millennium problems, Hilbert, Wikipedia lists, Smale, 8 documented mysteries).
+- [~] **Fiches**: 29 of 150 written (all bilingual, references verified in OpenAlex). 121 to write. Four mystery fiches have no reference yet (Nazca, Phaistos, Linear A, Kryptos).
 - [ ] **Named reviewers**: contact specialists as soon as 30 fiches are ready (needs the author). Use ORCID; list by discipline.
 - [ ] Verify the 25 *Science* 2005 questions against the official list (some were written from memory).
-- [ ] More enigmas (Beale ciphers, rongorongo, Indus script, dancing plague of 1518, Mary Celeste, Hessdalen lights): only those with a research field.
+- [ ] More mysteries (Beale ciphers, rongorongo, Indus script, dancing plague of 1518, Mary Celeste, Hessdalen lights): only those with a research field.
 - [ ] More questions beyond 150: psychology, linguistics, sociology have no dedicated Wikipedia list.
 - [ ] French names of the 4,516 topics (OpenAlex names are English; the 250 subfields are translated).
 
@@ -31,7 +31,7 @@ State on 18 November 2026. Priorities first. Legend: `[x]` done, `[~]` partly do
 - [ ] Analytics without cookies (GoatCounter, Cloudflare Web Analytics or Plausible); distinguish bots.
 - [ ] Measure load time; precompute the relief at build time if needed.
 - [ ] Decide what to do with `docs/labo/` (unlisted design experiments with demo data): keep out of the site, or reuse parts (the old-style world map as an alternate view).
-- [ ] Entry to the Mysteries from the map: clicking *terra incognita* zooms into the centre and reveals the enigmas.
+- [ ] Entry to the Mysteries from the map: clicking *terra incognita* zooms into the centre and reveals the mysteries.
 
 ## Visual ideas (to sort)
 

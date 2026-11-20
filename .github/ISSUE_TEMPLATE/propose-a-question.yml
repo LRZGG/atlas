@@ -22,7 +22,7 @@ body:
       label: Type
       options:
         - Research question
-        - Documented enigma (facts exist, the answer is missing)
+        - Documented mystery (facts exist, the answer is missing)
   - type: textarea
     id: disciplines
     attributes:
