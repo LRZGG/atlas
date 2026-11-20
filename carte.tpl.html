@@ -120,7 +120,6 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 #legend .scroll::-webkit-scrollbar-button, #panel::-webkit-scrollbar-button { display: none; height: 0; }
 #key { border-bottom: .6px solid var(--ink); padding-bottom: 6px; margin-bottom: 4px; }
 #key ul { list-style: none; margin: 0; padding: 0; }
-#key .sqm { display: inline-block; width: 5px; height: 5px; background: var(--acc); margin-left: 2px; vertical-align: super; }
 .qm.ai { background: var(--acc); color: var(--paper); border-radius: 50%; width: 1.4em; height: 1.4em; display: inline-flex; align-items: center; justify-content: center; }
 #fk { display: flex; gap: 5px; align-items: center; margin: 0 0 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; flex-wrap: wrap; }
 #fk button { all: unset; cursor: pointer; border: .8px solid var(--ink); padding: 2px 8px; }
@@ -171,6 +170,10 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 #mast #stbtn,#mast #aibtn,#legend summary { border:none; background:none; font:15px var(--sans); text-transform:none;letter-spacing:0; padding:6px 0; }
 #mast #stbtn:hover,#mast #aibtn:hover,#legend summary:hover { text-decoration:underline; text-underline-offset:4px; }
 #mast #legend { width:auto; border:0; }
+@media (min-width:1180px) {
+  #mast #legend summary { display:none; }
+  #mast #legend .scroll { display:block; position:fixed; right:var(--edge); top:calc(var(--mast) + 22px); width:232px; max-height:calc(100dvh - var(--mast) - var(--foot) - 108px); padding:12px 14px; }
+}
 #legend .scroll { position:absolute;right:0;top:calc(100% + 7px);width:min(300px,calc(100vw - 44px));max-height:65dvh;padding:12px 16px;background:var(--paper);border:1px solid var(--ink); }
 #mast #lang { gap:4px; border-left:1px solid var(--rule); padding-left:16px; }
 #lang button.sq { width:29px;height:31px;border:0;background:none; color:var(--dim); }
@@ -205,6 +208,15 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 #domainIndex button::before { content:'';width:0;height:1px;background:var(--ink);transition:width .15s ease; }
 #domainIndex button:is(:hover,:focus-visible,[aria-pressed=true])::before { width:16px; }
 #domainIndex button[aria-pressed=true] { font-style:italic; }
+#hello { position:absolute; z-index:6; width:min(340px,calc(100% - 24px)); background:var(--paper); border:1px solid var(--ink); box-shadow:6px 6px 0 rgba(var(--ink-rgb),.1); padding:14px 18px 12px; transform:translate(-50%,-50%); }
+#hello[hidden], #aicap[hidden] { display:none; }
+#hello h2 { font:italic 400 20px var(--serif); margin:0 0 6px; }
+#hello ol { margin:0 0 10px; padding-left:20px; font-size:14px; line-height:1.35; }
+#hello li { margin:0 0 5px; }
+#hello button { cursor:pointer; border:.8px solid var(--ink); background:var(--paper); color:var(--ink); font:13px var(--sans); letter-spacing:.06em; text-transform:uppercase; padding:4px 10px; }
+#hello #hiTry { background:var(--ink); color:var(--paper); }
+#aicap { position:absolute; z-index:5; left:50%; bottom:12px; transform:translateX(-50%); margin:0; max-width:min(520px,calc(100% - 24px)); background:var(--paper); border:.8px solid var(--acc); padding:5px 12px; font-size:13px; text-align:center; }
+@media (max-width:850px) { #hello { left:12px!important; right:12px; top:auto!important; bottom:12px; transform:none; width:auto; } }
 #figure { grid-column:1/-1;grid-row:2;position:relative;min-height:0;min-width:0; }
 #c { inset:0;width:100%;height:100%; }
 #tl { display:block;width:100%;padding:0;border:0;background:transparent; }
@@ -294,7 +306,6 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <li><svg viewBox="0 0 30 20"><path d="M4 16A13 13 0 0 1 26 16" stroke-width="1.2"/><path d="M4 18v-4M26 18v-4"/></svg><span data-i="key_dom"></span></li>
 <li><svg viewBox="0 0 30 20"><circle cx="15" cy="10" r="7.5"/><text x="15" y="13.6" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" font-family="Archivo Narrow,sans-serif">7</text></svg><span data-i="key_disc"></span></li>
 <li><span class="qm">?</span><span data-i="key_q"></span></li>
-<li><span class="qm">?<i class="sqm"></i></span><span data-i="key_enigme"></span></li>
 <li><span class="qm ai">?</span><span data-i="key_ai"></span></li>
 <li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><ol id="refs"></ol><p class="small"><a id="ialink" data-i="ia_link" href="/en/ia/"></a></p><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
 <div id="lang" class="ov" role="group" data-ia="lang_aria"><button class="sq" type="button" data-lang="fr" aria-pressed="false">FR</button><button class="sq" type="button" data-lang="en" aria-pressed="false">EN</button></div><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></header>
@@ -305,6 +316,8 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <div id="tl" class="ov" hidden><div class="index-head"><label data-i="plate_years" for="tlr"></label><output id="tll" for="tlr"></output></div><div class="timeline-track"><button class="sq" id="tlplay" type="button"></button><div class="year-track"><div id="yearBars" aria-hidden="true"></div><input id="tlr" type="range" step="1"></div></div><div class="years-axis" aria-hidden="true"><span id="firstYear"></span><span id="lastYear"></span></div></div>
 </aside>
 <div id="figure"><canvas id="c" tabindex="0" role="application" data-ia="aria_carte" aria-describedby="kbhelp"></canvas><div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button></div></div>
+<aside id="hello" role="note" hidden><h2 data-i="hi_t"></h2><ol><li data-i="hi_1"></li><li data-i="hi_2"></li><li data-i="hi_3"></li></ol><p><button type="button" id="hiTry" data-i="hi_try"></button> <button type="button" id="hiOk" data-i="hi_ok"></button></p></aside>
+<p id="aicap" hidden data-i="ai_cap"></p>
 <div id="live" aria-live="polite"></div>
 <footer id="colophon"><div id="cap" class="ov"></div><div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div><details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details></footer>
 <aside id="stats" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
@@ -342,10 +355,11 @@ for (let i = 0; i < N; i++) { x0 = Math.min(x0, T[i * 5]); x1 = Math.max(x1, T[i
 const mx = (x0 + x1) / 2, my = (y0 + y1) / 2, ext = Math.max(x1 - x0, y1 - y0);
 let W = 0, H = 0, DPR = 1, s0 = 1, tgt = null; const view = { x: 0, y: 0, k: 1 };
 // Keep the overview framed beside the legend while drawing across the whole sheet.
-let overviewLeft=0, overviewTop=0, originX=0, originY=0;
+const wideKey = matchMedia('(min-width:1180px)');
+let overviewRight=0, overviewLeft=0, overviewTop=0, originX=0, originY=0;
 function locateOrigin() {
   const overview=clamp((1.5-view.k)/.5,0,1);
-  originX=(W+overviewLeft*overview)/2;
+  originX=(W+(overviewLeft-overviewRight)*overview)/2;
   originY=(H+overviewTop*overview)/2;
 }
 function resize() {
@@ -356,8 +370,9 @@ function resize() {
   const railWidth=$('margin').offsetWidth;
   overviewLeft=!narrowPlate.matches && railWidth ? railWidth+parseFloat(getComputedStyle($('sheet')).columnGap) : 0;
   overviewTop=narrowPlate.matches && getComputedStyle($('margin')).display==='contents' ? $('ctx').offsetHeight : 0;
-  s0=Math.max(20,Math.min(W-overviewLeft-58,H-overviewTop-66))/(2*DOMC.R);
-  locateOrigin();
+  overviewRight=wideKey.matches ? 252 : 0;
+  s0=Math.max(20,Math.min(W-overviewLeft-overviewRight-58,H-overviewTop-66))/(2*DOMC.R);
+  locateOrigin(); placeHello();
 }
 const toScreen = (wx, wy) => [originX + (wx - mx - view.x) * s0 * view.k, originY + (wy - my - view.y) * s0 * view.k];
 const toWorld = (px, py) => [(px - originX) / (s0 * view.k) + mx + view.x, (py - originY) / (s0 * view.k) + my + view.y];
@@ -645,11 +660,21 @@ function applyLang() {
   renderDomains(); fkLabels(); renderPanel(); if (stOpen) renderStats();
 }
 function fkLabels() { const L = [t('f_tout'), t('f_q'), t('f_e')]; document.querySelectorAll('#fk button').forEach((b, i) => { b.textContent = L[i]; b.setAttribute('aria-pressed', String(+b.dataset.fk === FK)); }); }
-$('aibtn').onclick = () => { AI = !AI; $('aibtn').setAttribute('aria-pressed', String(AI)); $('live').textContent = t(AI ? 'ai_on' : 'ai_off', { n: AIN, m: Q.length }); };
+$('aibtn').onclick = () => { AI = !AI; $('aicap').hidden = !AI; $('aibtn').setAttribute('aria-pressed', String(AI)); $('live').textContent = t(AI ? 'ai_on' : 'ai_off', { n: AIN, m: Q.length }); };
 $('fk').onclick = e => { const b = e.target.closest('button'); if (b) { FK = +b.dataset.fk; fkLabels(); } };
 $('refs').onclick = e => { const b = e.target.closest('button'); if (b) flyTo(FC[b.dataset.f].x, FC[b.dataset.f].y, 2.6); };
 document.querySelectorAll('#lang button').forEach(b => { b.onclick = () => { const l = b.dataset.lang; if (l === LANG) return; try { localStorage.setItem('lang', l); } catch (e) {} if (FORCED) location.href = '../' + l + '/' + location.hash; else { LANG = l; applyLang(); } }; });
 if (matchMedia('(max-width: 720px)').matches) $('legend').open = false;
+// First visit: a short card in the middle of the map (dismissible, remembered). Not a guided tour: three sentences and a way in.
+const hello = $('hello'); let helloSeen = false; try { helloSeen = localStorage.getItem('hello') === '1'; } catch (e) {}
+function placeHello() { if (hello.hidden || narrowPlate.matches) return; hello.style.left = originX + 'px'; hello.style.top = originY + 'px'; }
+function closeHello() { hello.hidden = true; try { localStorage.setItem('hello', '1'); } catch (e) {} }
+if (!helloSeen && !location.hash.slice(1)) { hello.hidden = false; placeHello(); }
+$('hiOk').onclick = closeHello;
+$('hiTry').onclick = () => { closeHello(); openQ(Q.findIndex(q => q.id === 'p-np')); };
+cv.addEventListener('pointerdown', () => { if (!hello.hidden) closeHello(); }, true);
+function keyOpen() { if (wideKey.matches) $('legend').open = true; resize(); }
+wideKey.addEventListener('change', keyOpen); if (wideKey.matches) $('legend').open = true;
 
 // ---- Stats: research by year and by decade (exact sums per field computed at build time).
 let stOpen = false, stTab = 'y', stGroup = 'all', stCol = 3, stDir = -1; const stats = $('stats');
@@ -771,7 +796,6 @@ function draw(dt) {
     if (A.v < .02) continue; const p = c ? c.p : pushB(TS[i]), e = ease(hot ? Math.max(A.g, i === sel ? 1 : 0) : A.g); QS[i] = p;
     ctx.globalAlpha = A.v; ctx.fillStyle = COL.acc; ctx.textAlign = 'center';
     if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); }
-    if (q.k) { ctx.fillStyle = COL.acc; ctx.fillRect(p[0] + 6 + 2 * e, p[1] - 14 - 3 * e, 4.5, 4.5); }
     // AI layer: a "?" with a documented AI contribution becomes a solid disc; the others are dimmed, so the gaps show where AI has not helped yet.
     const aiHit = AI && q.ia.length > 0, aiDim = AI && !aiHit && !hot;
     if (aiHit) { ctx.globalAlpha = A.v; ctx.fillStyle = COL.acc; ctx.beginPath(); ctx.arc(p[0], p[1] - 1, 11 + 3 * e, 0, 7); ctx.fill(); }
@@ -781,7 +805,7 @@ function draw(dt) {
     if (multi) {
       ctx.font = '11px "Archivo Narrow", sans-serif'; ctx.textAlign='left';
       const bx=p[0]+7, by=p[1]+7;
-      ctx.strokeText(c.ids.length,bx,by); ctx.fillText(c.ids.length,bx,by);
+      ctx.strokeText('+' + (c.ids.length - 1),bx,by); ctx.fillText('+' + (c.ids.length - 1),bx,by);
     }
     if (c && !multi && !hot && la0 > .02 && A.g < .01) { ctx.globalAlpha = A.v * la0; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; const nm = loc(q.nmm), r = p[0] < cx, c2 = [[p[0] + (r ? -11 : 11), p[1] - 7, r ? 'right' : 'left'], [p[0] + (r ? 11 : -11), p[1] - 7, r ? 'left' : 'right'], [p[0], p[1] - 20, 'center'], [p[0], p[1] + 22, 'center']]; for (const z of c2) if (lab(nm, z[0], z[1], 13, z[2])) break; }
     ctx.globalAlpha = 1; if (c && A.g > .01) cards.push([c, multi]);

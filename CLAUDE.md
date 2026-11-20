@@ -14,13 +14,13 @@ An open atlas of unresolved questions of science, placed on a measured map of wo
 
 ## Decisions taken (do not reopen without a reason)
 
-- **Art direction: the patent plate** (`carte.tpl.html`): contour lines, light and dark, “?” in carmine (white in dark mode). No colours per domain, no stars, no guided tour, no notebook, no “questions read”. The top-left text saying what you are looking at stays and fades on zoom.
+- **Art direction: the patent plate** (`carte.tpl.html`): contour lines, light and dark, “?” in carmine (white in dark mode). No colours per domain, no stars, no multi-step guided tour (a single dismissible first-visit card is allowed), no notebook, no “questions read”. The top-left text saying what you are looking at stays and fades on zoom.
 - **Honesty first**: the relief measures research effort (papers published), not knowledge. Every fiche says it is an AI-written draft until a named specialist has reviewed it (`relue: { par, date }` in the fiche in `questions.json`). Never hide the use of AI.
 - **No accounts, votes or rankings at launch. Never ads.** Contribution through GitHub.
 - **Licences**: OpenAlex data CC0; Wikipedia excerpts CC BY-SA (credited); fonts and images only under free licences, credited. Fonts (IM Fell DW Pica, Archivo Narrow, OFL) are self-hosted in `docs/fonts/` with their licences: never load an external resource in the visitor's browser. The licence choice for the repository (MIT / CC BY-SA 4.0) is proposed, **not yet confirmed by the author**.
 - **Name**: Unknownpedia. Questions come from published lists (Science 2005, Millennium problems, Hilbert, Wikipedia lists, Smale), hand-picked; each question keeps its source.
 - Never invent numbers, testimonials or references: every reference is verified in OpenAlex by `fetch-fiches.mjs`.
-- Mysteries are on the map as questions of type `enigme` (small square next to the “?”); folklore is not on the map (a legend is not a research topic).
+- Mysteries are on the map as questions of type `enigme` (same “?”, told apart by the Enigmas filter and the fiche kicker; the small square was dropped because visitors could not read it); folklore is not on the map (a legend is not a research topic).
 
 ## Known pitfalls
 
