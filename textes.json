@@ -128,7 +128,12 @@
     "plate_years": "Publications par an",
     "plate_all": "Cumul",
     "plate_margin": "Marge de lecture",
-    "ia_checked": "Vérifié pour la dernière fois le"
+    "ia_checked": "Vérifié pour la dernière fois le",
+    "ai_btn": "Couche IA · {n}/{m}",
+    "ai_title": "Montre sur la carte les questions où une IA a contribué ; les autres s'estompent.",
+    "ai_on": "Couche IA activée : {n} questions sur {m} ont une contribution d'IA documentée.",
+    "ai_off": "Couche IA désactivée.",
+    "key_ai": "Disque plein : une IA a contribué à cette question (annonce, avancée ou travail voisin ; voir le statut dans la fiche). Les « ? » estompés : pas encore d'aide documentée."
   },
   "en": {
     "titre": "Unknownpedia",
@@ -259,6 +264,11 @@
     "plate_years": "Papers per year",
     "plate_all": "All",
     "plate_margin": "Reading margin",
-    "ia_checked": "Last checked"
+    "ia_checked": "Last checked",
+    "ai_btn": "AI layer · {n}/{m}",
+    "ai_title": "Shows on the map the questions where an AI contributed; the others fade.",
+    "ai_on": "AI layer on: {n} of {m} questions have a documented AI contribution.",
+    "ai_off": "AI layer off.",
+    "key_ai": "Solid disc: an AI contributed to this question (announcement, progress or related work; see the status in the fiche). Faded “?”: no documented help yet."
   }
 }

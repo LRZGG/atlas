@@ -53,6 +53,10 @@ button:focus-visible, summary:focus-visible { outline: 2px solid var(--acc); out
 #sres .q { font-family: var(--serif); font-size: 15px; }
 body.panel-open #search { display: none; }
 @media (max-width: 1000px) { #search { left: 30px; transform: none; top: 100px; width: calc(100% - 60px); max-width: 360px; } }
+#aibtn { position: absolute; z-index: 2; right: 190px; top: 30px; width: auto; padding: 0 12px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+#aibtn[aria-pressed="true"] { background: var(--acc); color: var(--paper); }
+#mast #aibtn[aria-pressed="true"] { background: none; color: var(--acc); text-decoration: underline; text-underline-offset: 4px; font-weight: 700; }
+body.panel-open #aibtn { display: none; }
 #stbtn { position: absolute; z-index: 2; right: 346px; top: 30px; width: auto; padding: 0 12px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
 @media (max-width: 720px) { #stbtn { right: auto; left: 30px; top: 92px; } }
 body.panel-open #stbtn { display: none; }
@@ -117,6 +121,7 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 #key { border-bottom: .6px solid var(--ink); padding-bottom: 6px; margin-bottom: 4px; }
 #key ul { list-style: none; margin: 0; padding: 0; }
 #key .sqm { display: inline-block; width: 5px; height: 5px; background: var(--acc); margin-left: 2px; vertical-align: super; }
+.qm.ai { background: var(--acc); color: var(--paper); border-radius: 50%; width: 1.4em; height: 1.4em; display: inline-flex; align-items: center; justify-content: center; }
 #fk { display: flex; gap: 5px; align-items: center; margin: 0 0 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; flex-wrap: wrap; }
 #fk button { all: unset; cursor: pointer; border: .8px solid var(--ink); padding: 2px 8px; }
 #fk button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
@@ -157,14 +162,14 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 #mast, #colophon { position:relative; display:flex; align-items:center; gap:24px; grid-column:1/-1; }
 #mast { grid-row:1; z-index:7; border-bottom:3px double var(--ink); padding-top:7px; }
 #brand { margin-right:auto; font:400 clamp(26px,2.4vw,38px)/1 var(--serif); letter-spacing:-.065em; }
-#mast .ov, #mast #stbtn, #colophon .ov, #margin .ov { position:relative; inset:auto; transform:none; }
+#mast .ov, #mast #stbtn, #mast #aibtn, #colophon .ov, #margin .ov { position:relative; inset:auto; transform:none; }
 #mast #search { flex:0 1 260px; width:auto; max-width:none; }
 #search::before { content:''; position:absolute; width:10px;height:10px;border:1.4px solid var(--ink);border-radius:50%;top:50%;left:2px;transform:translateY(-65%);pointer-events:none; }
 #search::after { content:''; position:absolute; width:6px;height:1px;left:11px;top:calc(50% + 4px);background:var(--ink);transform:rotate(48deg);pointer-events:none; }
 #sq { background:transparent; border:0; border-bottom:1px solid var(--rule); padding:8px 20px; font-size:15px; letter-spacing:0; }
 #sres { position:absolute; top:100%; left:0; min-width:100%; width:min(360px,80vw); }
-#mast #stbtn,#legend summary { border:none; background:none; font:15px var(--sans); text-transform:none;letter-spacing:0; padding:6px 0; }
-#mast #stbtn:hover,#legend summary:hover { text-decoration:underline; text-underline-offset:4px; }
+#mast #stbtn,#mast #aibtn,#legend summary { border:none; background:none; font:15px var(--sans); text-transform:none;letter-spacing:0; padding:6px 0; }
+#mast #stbtn:hover,#mast #aibtn:hover,#legend summary:hover { text-decoration:underline; text-underline-offset:4px; }
 #mast #legend { width:auto; border:0; }
 #legend .scroll { position:absolute;right:0;top:calc(100% + 7px);width:min(300px,calc(100vw - 44px));max-height:65dvh;padding:12px 16px;background:var(--paper);border:1px solid var(--ink); }
 #mast #lang { gap:4px; border-left:1px solid var(--rule); padding-left:16px; }
@@ -250,7 +255,8 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
  #sq {font-size:14px;padding-right:0;}
  #mast #legend {grid-column:3;grid-row:2;}
  #mast #stbtn {grid-column:2;grid-row:2;}
- #mast #stbtn,#legend summary {font-size:14px;min-height:36px;}
+ #mast #aibtn {grid-column:1/4;grid-row:3;justify-self:start;}
+ #mast #stbtn,#mast #aibtn,#legend summary {font-size:14px;min-height:36px;}
  #margin { display:contents; }
  #margin #ctx { grid-column:1;grid-row:2;padding-top:16px;pointer-events:none; }
  #ctx h1 {font-size:clamp(34px,6.5vw,46px);margin:0 0 6px;line-height:1;}
@@ -280,6 +286,7 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <header id="mast"><span id="brand" data-i="titre"></span>
 <div id="search" class="ov"><input id="sq" type="search" role="combobox" aria-expanded="false" aria-controls="sres" aria-autocomplete="list" autocomplete="off" spellcheck="false"><ul id="sres" role="listbox" hidden></ul></div>
 <button class="sq" id="stbtn" type="button" hidden></button>
+<button class="sq" id="aibtn" type="button" aria-pressed="false"></button>
 <details id="legend" class="ov"><summary data-i="refs_t"></summary><div class="scroll"><div id="key"><h2 data-i="key_t"></h2><ul>
 <li><svg viewBox="0 0 30 20"><path d="M2 16C4 6 13 3 19 7S28 13 27 17" stroke-width=".7"/><path d="M7 16C9 10 15 8 19 11S24 14 24 17"/><path d="M12 17C13 14 17 13 19 15" stroke-width="1.4"/></svg><span data-i="key_relief"></span></li>
 <li><svg viewBox="0 0 30 20"><path d="M3 15C8 8 16 8 27 13"/><path d="M8 11v-4M13 9.5v-4M18 9.5v-4M23 11v-4" stroke-width=".8"/></svg><span data-i="key_ticks"></span></li>
@@ -288,6 +295,7 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <li><svg viewBox="0 0 30 20"><circle cx="15" cy="10" r="7.5"/><text x="15" y="13.6" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" font-family="Archivo Narrow,sans-serif">7</text></svg><span data-i="key_disc"></span></li>
 <li><span class="qm">?</span><span data-i="key_q"></span></li>
 <li><span class="qm">?<i class="sqm"></i></span><span data-i="key_enigme"></span></li>
+<li><span class="qm ai">?</span><span data-i="key_ai"></span></li>
 <li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><ol id="refs"></ol><p class="small"><a id="ialink" data-i="ia_link" href="/en/ia/"></a></p><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
 <div id="lang" class="ov" role="group" data-ia="lang_aria"><button class="sq" type="button" data-lang="fr" aria-pressed="false">FR</button><button class="sq" type="button" data-lang="en" aria-pressed="false">EN</button></div><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></header>
 <button id="marginHandle" type="button" aria-controls="margin" aria-expanded="false" data-ia="plate_margin"><span aria-hidden="true">›</span></button>
@@ -467,7 +475,7 @@ function openHash() { const i = Q.findIndex(q => q.id === location.hash.slice(1)
 addEventListener('hashchange', openHash);
 
 // ---- Survol et clic ----
-let FK = 0; let hoverT = -1, hoverQ = -1, hoverF = -1, hoverC = -1, CL = []; const QS = Q.map(() => [0, 0]);
+let FK = 0, AI = false; const AIN = Q.filter(q => q.ia.length).length; let hoverT = -1, hoverQ = -1, hoverF = -1, hoverC = -1, CL = []; const QS = Q.map(() => [0, 0]);
 function hover(px, py) {
   hoverQ = -1; hoverT = -1; hoverF = -1; hoverC = -1; if (px < 0) { tip.hidden = true; return; }
   for (const c of CL) if (Math.hypot(c.p[0] - px, c.p[1] - py) < 15) { if (c.ids.length > 1) hoverC = c.lead; else hoverQ = c.lead; break; }
@@ -621,7 +629,7 @@ function applyLang() {
   document.documentElement.lang = LANG; document.title = t('titre'); const md = document.querySelector('meta[name=description]'); if (md) md.content = t('desc');
   document.querySelectorAll('[data-i]').forEach(e => { e.textContent = t(e.dataset.i); }); $('ialink').href = '/' + LANG + '/ia/';
   document.querySelectorAll('[data-ia]').forEach(e => e.setAttribute('aria-label', t(e.dataset.ia)));
-  $('stbtn').textContent = t('st_btn');
+  $('stbtn').textContent = t('st_btn'); $('aibtn').textContent = t('ai_btn', { n: AIN, m: Q.length }); $('aibtn').title = t('ai_title');
   if (YR) {
     const r=$('tlr'), current=Math.round(+r.value);
     $('lastYear').textContent=YR.y1+' / '+t('plate_all');
@@ -637,6 +645,7 @@ function applyLang() {
   renderDomains(); fkLabels(); renderPanel(); if (stOpen) renderStats();
 }
 function fkLabels() { const L = [t('f_tout'), t('f_q'), t('f_e')]; document.querySelectorAll('#fk button').forEach((b, i) => { b.textContent = L[i]; b.setAttribute('aria-pressed', String(+b.dataset.fk === FK)); }); }
+$('aibtn').onclick = () => { AI = !AI; $('aibtn').setAttribute('aria-pressed', String(AI)); $('live').textContent = t(AI ? 'ai_on' : 'ai_off', { n: AIN, m: Q.length }); };
 $('fk').onclick = e => { const b = e.target.closest('button'); if (b) { FK = +b.dataset.fk; fkLabels(); } };
 $('refs').onclick = e => { const b = e.target.closest('button'); if (b) flyTo(FC[b.dataset.f].x, FC[b.dataset.f].y, 2.6); };
 document.querySelectorAll('#lang button').forEach(b => { b.onclick = () => { const l = b.dataset.lang; if (l === LANG) return; try { localStorage.setItem('lang', l); } catch (e) {} if (FORCED) location.href = '../' + l + '/' + location.hash; else { LANG = l; applyLang(); } }; });
@@ -744,7 +753,7 @@ function draw(dt) {
     if(W>520) { ctx.font='12px "Archivo Narrow", sans-serif';ctx.fillText(t('terra_sub'),h[0],h[1]+18); }
     ctx.restore(); } }
   // Clustering: in dense areas, a single "?" stands for those within CR pixels (CR shrinks on zoom). The others fade: they appear and disappear smoothly.
-  const CR = clamp(84 / Math.pow(k, .95), 21, 84), TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => !!Q[b].f - !!Q[a].f), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ && (FK === 0 || Q[i].k === (FK === 2 ? 1 : 0)))], seen = new Set(), isLead = new Set(); CL = [];
+  const CR = clamp(84 / Math.pow(k, .95), 21, 84), TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => (AI ? (Q[b].ia.length > 0) - (Q[a].ia.length > 0) : 0) || (!!Q[b].f - !!Q[a].f)), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ && (FK === 0 || Q[i].k === (FK === 2 ? 1 : 0)))], seen = new Set(), isLead = new Set(); CL = [];
   const pushB = p => { let q = p; for (let it = 0; it < 2; it++) for (const f of ORD) { const nb = NS[f]; if (!nb) continue; const dx = q[0] - nb[0], dy = q[1] - nb[1], d = Math.hypot(dx, dy); if (d < 24) q = d < .01 ? [q[0] + 24, q[1]] : [q[0] + dx * (24 - d) / d, q[1] + dy * (24 - d) / d]; } return q; };
   for (const i of order) {
     const p = TS[i]; if (seen.has(i) || p[0] < -20 || p[0] > W + 20 || p[1] < -20 || p[1] > H + 20) continue; seen.add(i); isLead.add(i); const ids = [i], forced = i === sel || i === kbQ;
@@ -763,7 +772,12 @@ function draw(dt) {
     ctx.globalAlpha = A.v; ctx.fillStyle = COL.acc; ctx.textAlign = 'center';
     if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); }
     if (q.k) { ctx.fillStyle = COL.acc; ctx.fillRect(p[0] + 6 + 2 * e, p[1] - 14 - 3 * e, 4.5, 4.5); }
-    ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.globalAlpha = A.v * (hot || on ? 1 : .72 + .28 * clamp((k - 1) / 1.2, 0, 1)); ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = COL.paper; ctx.strokeText('?', p[0], p[1] + 5); ctx.fillText('?', p[0], p[1] + 5); ctx.globalAlpha = A.v;
+    // AI layer: a "?" with a documented AI contribution becomes a solid disc; the others are dimmed, so the gaps show where AI has not helped yet.
+    const aiHit = AI && q.ia.length > 0, aiDim = AI && !aiHit && !hot;
+    if (aiHit) { ctx.globalAlpha = A.v; ctx.fillStyle = COL.acc; ctx.beginPath(); ctx.arc(p[0], p[1] - 1, 11 + 3 * e, 0, 7); ctx.fill(); }
+    ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.globalAlpha = A.v * (aiDim ? .28 : 1) * (hot || on || aiHit ? 1 : .72 + .28 * clamp((k - 1) / 1.2, 0, 1)); ctx.lineJoin = 'round'; ctx.lineWidth = 4;
+    if (aiHit) { ctx.fillStyle = COL.paper; ctx.fillText('?', p[0], p[1] + 5); ctx.fillStyle = COL.acc; } else { ctx.strokeStyle = COL.paper; ctx.strokeText('?', p[0], p[1] + 5); ctx.fillText('?', p[0], p[1] + 5); }
+    ctx.globalAlpha = A.v;
     if (multi) {
       ctx.font = '11px "Archivo Narrow", sans-serif'; ctx.textAlign='left';
       const bx=p[0]+7, by=p[1]+7;
