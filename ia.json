@@ -1,0 +1,149 @@
+{
+  "entries": [
+    {
+      "id": "navier-stokes-openai",
+      "q": [
+        "navier-stokes"
+      ],
+      "st": "claimed",
+      "date": "2026-09-08",
+      "title": {
+        "fr": "Navier-Stokes : une singularité annoncée par OpenAI",
+        "en": "Navier–Stokes: a singularity announced by OpenAI"
+      },
+      "fr": "Le 8 septembre 2026, OpenAI a annoncé qu'un groupe d'agents d'IA, tournant sur un modèle non public, avait trouvé une singularité dans les équations de Navier-Stokes en trois dimensions. Selon Quanta Magazine, le résultat a été vérifié dans le langage de preuve Lean ; il reste à des humains de vérifier que l'énoncé Lean correspond bien à ce qu'on voulait démontrer. Ce n'est pas encore un résultat accepté : l'institut Clay classe toujours le problème comme « actif » et n'a rien attribué (consulté en novembre 2026), la priorité est discutée, et nous n'avons pas trouvé d'examen par des pairs. Plus tôt, en septembre 2025, une équipe menée par DeepMind avait utilisé des réseaux de neurones pour trouver des singularités instables dans d'autres équations (milieux poreux, Euler avec bord), pas dans Navier-Stokes.",
+      "en": "On 8 September 2026 OpenAI announced that a group of AI agents, running on a model that is not public, had found a singularity in the three-dimensional Navier–Stokes equations. According to Quanta Magazine, the result has been checked in the Lean proof language; humans still have to check that the Lean statement matches what was meant to be proved. This is not an accepted result yet: the Clay Institute still lists the problem as “Active” and has awarded nothing (consulted November 2026), priority is disputed, and we found no peer review. Earlier, in September 2025, a DeepMind-led team used neural networks to find unstable singularities in other equations (porous media, Euler with a boundary), not in Navier–Stokes.",
+      "r": [
+        {
+          "t": "AI Has Solved One of Math's $1 Million Millennium Prize Problems",
+          "u": "https://www.quantamagazine.org/ai-has-solved-one-of-maths-1-million-millennium-prize-problems-20260908/",
+          "a": "Konstantin Kakaes, Quanta Magazine",
+          "y": 2026
+        },
+        {
+          "t": "Navier–Stokes equation (Millennium Prize Problems)",
+          "u": "https://www.claymath.org/millennium/navier-stokes-equation/",
+          "a": "Clay Mathematics Institute",
+          "y": null
+        },
+        {
+          "t": "Discovery of Unstable Singularities",
+          "u": "https://arxiv.org/abs/2509.14185",
+          "a": "Wang, Bennani, Martens et al. (arXiv preprint)",
+          "y": 2025
+        }
+      ],
+      "checked": "2026-11-20"
+    },
+    {
+      "id": "erdos-gemini",
+      "q": [],
+      "st": "assisted",
+      "date": "2026-01-29",
+      "title": {
+        "fr": "Problèmes d'Erdős : un tri par Gemini",
+        "en": "Erdős problems: a sweep by Gemini"
+      },
+      "fr": "Des chercheurs de Google DeepMind ont fait évaluer par Gemini 700 conjectures marquées « ouvertes » dans la base de Thomas Bloom (problèmes d'Erdős), puis fait examiner les résultats par des experts humains. Sur 13 problèmes marqués ouverts, 5 ont reçu une solution apparemment nouvelle et autonome, et 8 se sont révélés déjà résolus dans la littérature. Les auteurs mettent en garde contre le « plagiat inconscient » de l'IA et notent que ces problèmes étaient « ouverts par obscurité plutôt que par difficulté ».",
+      "en": "Google DeepMind researchers had Gemini evaluate 700 conjectures marked “open” in Thomas Bloom's database of Erdős problems, then had human experts examine the results. Of 13 problems marked open, 5 received seemingly novel autonomous solutions and 8 turned out to be already solved in the literature. The authors warn about the AI's “subconscious plagiarism” and note that these problems were open “through obscurity rather than difficulty”.",
+      "r": [
+        {
+          "t": "Semi-Autonomous Mathematics Discovery with Gemini: A Case Study on the Erdős Problems",
+          "u": "https://arxiv.org/abs/2601.22401",
+          "a": "Feng, ..., Luong (arXiv preprint)",
+          "y": 2026
+        }
+      ],
+      "checked": "2026-11-20"
+    },
+    {
+      "id": "erdos-quanta",
+      "q": [],
+      "st": "assisted",
+      "date": "2026-08-03",
+      "title": {
+        "fr": "Problèmes d'Erdős : ce qui tombe, et les pièges",
+        "en": "Erdős problems: what is falling, and the pitfalls"
+      },
+      "fr": "Selon Quanta, des amateurs et des laboratoires utilisent des modèles (GPT-5.2, Gemini, un modèle interne d'OpenAI) sur les problèmes d'Erdős. La base de Bloom compte, d'après l'article, 565 problèmes résolus et 652 ouverts. Le problème 728 a été résolu début 2026 avec GPT-5.2 Pro et vérifié avec l'outil Aristotle, sans travaux antérieurs trouvés. Mais le problème 333, annoncé résolu à Noël 2025, l'avait été par Erdős lui-même en 1977, et l'annonce a été retirée. Bloom dit aussi recevoir des textes de 100 à 200 pages « qu'aucun humain n'a lus ». Un article de DeepMind cité par Quanta affirme que son meilleur agent a résolu 9 problèmes sur 353 ouverts (nous n'avons pas lu cet article).",
+      "en": "According to Quanta, amateurs and labs are using models (GPT-5.2, Gemini, an internal OpenAI model) on the Erdős problems. Bloom's database counts, per the article, 565 solved and 652 open problems. Problem 728 was solved in early 2026 with GPT-5.2 Pro and checked with the Aristotle tool, with no prior work found. But problem 333, announced solved at Christmas 2025, had been solved by Erdős himself in 1977, and the announcement was withdrawn. Bloom also says he receives 100- to 200-page texts that “no human has read”. A DeepMind paper quoted by Quanta claims its best agent resolved 9 of 353 open problems (we have not read that paper).",
+      "r": [
+        {
+          "t": "Why the Legendary Erdős Problems Are Falling to AI",
+          "u": "https://www.quantamagazine.org/why-the-legendary-erdos-problems-are-falling-to-ai-20260803",
+          "a": "Konstantin Kakaes, Quanta Magazine",
+          "y": 2026
+        }
+      ],
+      "checked": "2026-11-20"
+    },
+    {
+      "id": "unit-distance-openai",
+      "q": [],
+      "st": "claimed",
+      "date": "2026-05-20",
+      "title": {
+        "fr": "Conjecture des distances unité d'Erdős : un contre-exemple annoncé",
+        "en": "Erdős unit distance conjecture: a counterexample announced"
+      },
+      "fr": "Le 20 mai 2026, OpenAI a annoncé qu'un modèle interne, non public, avait trouvé un contre-exemple à la conjecture des distances unité d'Erdős (1946). D'après Quanta, ce résultat n'était pas définitif : des mathématiciens l'ont nettement amélioré en quelques semaines, et un article de neuf mathématiciens commente la correction de la preuve. Quanta cite Timothy Gowers : s'il l'avait reçue d'un humain pour les Annals of Mathematics, il en aurait recommandé l'acceptation sans hésiter. Nous n'avons pas trouvé de vérification formelle ; nous n'avons lu que le compte rendu de Quanta.",
+      "en": "On 20 May 2026 OpenAI announced that an internal, non-public model had found a counterexample to Erdős's 1946 unit distance conjecture. According to Quanta, the result was not definitive: mathematicians substantially improved it within weeks, and a paper by nine mathematicians comments on the proof's correctness. Quanta quotes Timothy Gowers: had a human submitted it to the Annals of Mathematics, he would have recommended acceptance without hesitation. We found no formal verification; we only read Quanta's account.",
+      "r": [
+        {
+          "t": "Why the Legendary Erdős Problems Are Falling to AI",
+          "u": "https://www.quantamagazine.org/why-the-legendary-erdos-problems-are-falling-to-ai-20260803",
+          "a": "Konstantin Kakaes, Quanta Magazine",
+          "y": 2026
+        }
+      ],
+      "checked": "2026-11-20"
+    },
+    {
+      "id": "alphaevolve",
+      "q": [
+        "empilement",
+        "multiplication-matrices"
+      ],
+      "st": "assisted",
+      "date": "2025-05-14",
+      "title": {
+        "fr": "AlphaEvolve : records en empilement et en multiplication de matrices",
+        "en": "AlphaEvolve: records in sphere packing and matrix multiplication"
+      },
+      "fr": "Google DeepMind affirme qu'AlphaEvolve, un agent de programmation fondé sur Gemini, a trouvé un algorithme multipliant deux matrices complexes 4×4 avec 48 multiplications scalaires (mieux que Strassen, 1969, dans ce cadre) et une configuration de 593 sphères qui établit une nouvelle borne inférieure du nombre de contact en dimension 11. Sur plus de 50 problèmes ouverts, il aurait retrouvé l'état de l'art dans environ 75 % des cas et l'aurait amélioré dans 20 %. Ce sont des améliorations de bornes, pas des réponses aux questions elles-mêmes. Source : l'annonce du laboratoire (non relue par des pairs ici ; nous n'avons pas vérifié l'article associé).",
+      "en": "Google DeepMind says AlphaEvolve, a Gemini-powered coding agent, found an algorithm multiplying two 4×4 complex matrices with 48 scalar multiplications (better than Strassen, 1969, in that setting) and a configuration of 593 spheres setting a new lower bound for the kissing number in 11 dimensions. On more than 50 open problems it reportedly matched the state of the art about 75% of the time and improved it in 20%. These are improved bounds, not answers to the questions themselves. Source: the lab's own announcement (not peer-reviewed here; we did not check the associated paper).",
+      "r": [
+        {
+          "t": "AlphaEvolve: a Gemini-powered coding agent for designing advanced algorithms",
+          "u": "https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/",
+          "a": "AlphaEvolve team, Google DeepMind",
+          "y": 2025
+        }
+      ],
+      "checked": "2026-11-20"
+    },
+    {
+      "id": "alphafold",
+      "q": [
+        "repliement-proteines"
+      ],
+      "st": "related",
+      "date": "2024-10-09",
+      "title": {
+        "fr": "AlphaFold : prédire la forme des protéines",
+        "en": "AlphaFold: predicting protein shapes"
+      },
+      "fr": "AlphaFold prédit la structure en 3D d'une protéine à partir de sa séquence. D'après la page de DeepMind, les organisateurs du concours CASP14 ont reconnu en 2020 AlphaFold2 comme une solution au « problème du repliement », et Demis Hassabis et John Jumper ont reçu le prix Nobel de chimie 2024 (avec David Baker). Prédire la forme finale n'explique pas comment la protéine la trouve : la question de la carte reste donc ouverte. Sources : la page du laboratoire seulement (la page du prix Nobel n'a pas pu être lue).",
+      "en": "AlphaFold predicts a protein's 3D structure from its sequence. According to DeepMind's page, the CASP14 organisers recognised AlphaFold2 in 2020 as a solution to the “protein folding problem”, and Demis Hassabis and John Jumper were co-awarded the 2024 Nobel Prize in Chemistry (with David Baker). Predicting the final shape does not explain how the protein finds it, so the question on the map stays open. Sources: the lab's page only (the Nobel Prize page could not be read).",
+      "r": [
+        {
+          "t": "AlphaFold",
+          "u": "https://deepmind.google/science/alphafold/",
+          "a": "Google DeepMind",
+          "y": null
+        }
+      ],
+      "checked": "2026-11-20"
+    }
+  ]
+}

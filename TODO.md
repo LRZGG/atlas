@@ -48,7 +48,10 @@ Rule: nothing decorative; every effect encodes a datum or a source.
 - [ ] GitHub Sponsors, then a legal structure when income arrives.
 - [ ] Mobile-specific layout polish; true offline reading pages.
 
-## AI contributions (`ia` field in `questions.json`)
+## AI contributions (`ia.json`)
 
-- Only one entry so far (Navier–Stokes, status `claimed`). Add others only with sources read and checked (Erdős problems, other claims): fields `st` (`claimed` | `assisted` | `related`), `date`, `fr`, `en`, `r` (references).
-- Re-check the Navier–Stokes entry regularly: peer review, Clay Institute decision, and the OpenAI page itself (not readable by our tools, so currently cited through Quanta only).
+- Six entries (Navier–Stokes, Erdős problems x3, AlphaEvolve, AlphaFold). Each has `st` (`claimed` | `assisted` | `related`), `date`, `checked`, `fr`, `en`, `r` (references) and `q` (ids of the map questions it concerns; `[]` = only on the /ia/ page).
+- Update path: issue template `propose-an-ai-entry.yml` (new entry or status change), then edit `ia.json` and bump `checked`.
+- Read only through secondary sources so far: Navier–Stokes and unit distance (Quanta), AlphaFold and AlphaEvolve (lab pages). Not readable by our tools: erdosproblems.com, OpenAI page, nobelprize.org. Read the primary papers when possible.
+- Re-check regularly: peer review and Clay decision for Navier–Stokes, formal verification for unit distance, DeepMind's 9-of-353 Erdős paper (arXiv 2605.22763, not read).
+- Missing: AlphaProof / IMO 2025 (no primary source reached yet).

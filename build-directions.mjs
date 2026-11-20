@@ -130,6 +130,7 @@ const FI = existsSync('fiches.json') ? JSON.parse(readFileSync('fiches.json', 'u
 const SPREAD_MIN = 0.4; // natural break in the distribution of spreads (0.33 then 0.43)
 const qs = JSON.parse(readFileSync('questions.json')), byName = Object.fromEntries(sIds.map((id, i) => [s.subfields[id].name, i]));
 assert.equal(Object.keys(byName).length, sIds.length, 'noms de sous-disciplines en double');
+const IA = existsSync('ia.json') ? JSON.parse(readFileSync('ia.json', 'utf8')).entries : []; // where AI is used or announced (ia.json): each entry has a status, sources and a last-checked date
 const Q = qs.questions.map(q => {
   const subs = q.subs.map(n => { assert(n in byName, `sous-discipline inconnue : ${n} (${q.id})`); return byName[n]; });
   assert(qs.sources[q.src], `source inconnue : ${q.src}`);
@@ -146,7 +147,7 @@ const Q = qs.questions.map(q => {
   const CK = existsSync('checks/report.json') ? JSON.parse(readFileSync('checks/report.json', 'utf8')).fiches : {};
   const f = q.fiche ? { w: fi.w, r: fi.r, rv: q.fiche.relue || null, ck: (CK[q.id] || []).filter(p => p.status === 'open' && p.type !== 'not-reviewed').length } : null; // relue: { par, date } to fill in when a specialist has reviewed
   if (f) for (const l of ['fr', 'en']) if (q.fiche[l]) f[l] = { s: q.fiche[l].savoir, i: q.fiche[l].ignore, d: q.fiche[l].dur, e: q.fiche[l].enjeu, c: q.fiche[l].commencer };
-  return { id: q.id, qq: q.q, nmm: q.nom, cc: q.ctx, no: q.note || null, s: q.src, st: q.status || 'ouverte', k: q.type === 'enigme' ? 1 : 0, subs, t, x, y, f, ia: q.ia || null };
+  return { id: q.id, qq: q.q, nmm: q.nom, cc: q.ctx, no: q.note || null, s: q.src, st: q.status || 'ouverte', k: q.type === 'enigme' ? 1 : 0, subs, t, x, y, f, ia: IA.filter(e => e.q.includes(q.id)) };
 });
 assert.equal(new Set(Q.map(q => q.id)).size, Q.length, 'identifiants de questions en double');
 // Two overlapping rings would be unreadable: push them apart by the minimum needed.
@@ -203,8 +204,9 @@ const PAGES = [];
 const loc2 = (o, lang) => (o && (o[lang] ?? o.fr)) || '', SRC0 = DATA.SRC;
 const ISSUE = (q, lang, tpl) => 'https://github.com/Lorenzo1208/atlas/issues/new?template=' + tpl + '.yml&title=' + encodeURIComponent('[' + q.id + '] ') + '&question=' + encodeURIComponent(q.id + ' (' + BASE + '/' + lang + '/q/' + q.id + '/)');
 const li = a => a.map(x => '<li>' + esc(x) + '</li>').join('');
-// "What the AI did here": a dated, sourced entry with an honest status (announced / assisted / related). Shown in the fiche and on /ia/.
-const iaBlock = (q, lang, h = 'h2') => { if (!q.ia) return ''; const T0 = DATA.TXT[lang], i = q.ia; return '<' + h + '>' + esc(T0.ia_h) + '</' + h + '><p class="kicker">' + esc(T0['ia_st_' + i.st]) + (i.date ? ' · ' + esc(i.date) : '') + '</p><p>' + esc(i[lang] || i.fr) + '</p><ul class="refs">' + i.r.map(r => '<li><a href="' + esc(r.u) + '">' + esc(r.t) + '</a><br><span class="attr">' + esc([r.a, r.y].filter(Boolean).join(', ')) + '</span></li>').join('') + '</ul>'; };
+// "What the AI did here": dated, sourced entries with an honest status (announced / progress / related). Shown in the fiche and on /ia/.
+const iaEntry = (i, lang, h) => { const T0 = DATA.TXT[lang]; return '<' + h + '>' + esc(i.title[lang] || i.title.fr) + '</' + h + '><p class="kicker">' + esc(T0['ia_st_' + i.st]) + ' · ' + esc(i.date) + '</p><p>' + esc(i[lang] || i.fr) + '</p><ul class="refs">' + i.r.map(r => '<li><a href="' + esc(r.u) + '">' + esc(r.t) + '</a><br><span class="attr">' + esc([r.a, r.y].filter(Boolean).join(', ')) + '</span></li>').join('') + '</ul><p class="attr">' + esc(T0.ia_checked) + ' ' + esc(i.checked) + '</p>'; };
+const iaBlock = (q, lang) => q.ia.length ? '<h2>' + esc(DATA.TXT[lang].ia_h) + '</h2>' + q.ia.map(i => iaEntry(i, lang, 'h3')).join('') : '';
 for (const lang of ['fr', 'en']) for (const q of Q) {
   const full = !!(q.f && q.f[lang]), T0 = DATA.TXT[lang], f = q.f || {}, b = f[lang], w = (f.w || {})[lang] || (f.w || {}).fr, p = '/' + lang + '/q/' + q.id + '/', at = T0.wiki_attr.split('{t}');
   const prov = !full ? esc(T0.fiche_prep) : f.rv ? esc(T0.prov_rv.replace('{n}', f.rv.par).replace('{d}', f.rv.date)) : esc(T0.prov) + ' <a href="https://github.com/Lorenzo1208/atlas/blob/main/METHOD.md#who-writes-what">' + esc(T0.prov_lien) + '</a>';
@@ -241,11 +243,11 @@ for (const lang of ['fr', 'en']) for (const q of Q) {
 {
   const css = readFileSync('docs/fr/q/p-np/index.html', 'utf8').match(/<style>[\s\S]*?<\/style>/)[0];
   for (const lang of ['fr', 'en']) {
-    const T0 = DATA.TXT[lang], p = '/' + lang + '/ia/', L = Q.filter(q => q.ia).sort((x, y) => (y.ia.date || '').localeCompare(x.ia.date || ''));
-    const body = L.length ? L.map(q => '<h2><a href="' + BASE + '/' + lang + '/q/' + q.id + '/">' + esc(q.qq[lang] || q.qq.fr) + '</a></h2>' + iaBlock(q, lang, 'h3').replace(/^<h3>[^]*?<\/h3>/, '')).join('') : '<p>' + esc(T0.ia_vide) + '</p>';
+    const T0 = DATA.TXT[lang], p = '/' + lang + '/ia/', L = [...IA].sort((x, y) => y.date.localeCompare(x.date));
+    const body = L.length ? L.map(i => iaEntry(i, lang, 'h2') + (i.q.length ? '<p class="attr">' + i.q.map(id => { const q = Q.find(z => z.id === id); return '<a href="' + BASE + '/' + lang + '/q/' + id + '/">' + esc(q.qq[lang] || q.qq.fr) + '</a>'; }).join(' · ') + '</p>' : '')).join('') : '<p>' + esc(T0.ia_vide) + '</p>';
     const html = '<!doctype html><html lang="' + lang + '"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>' + esc(T0.ia_page_t) + ' — ' + esc(T0.titre) + '</title><meta name="description" content="' + esc(T0.ia_page_intro) + '"><link rel="canonical" href="' + BASE + p + '">' + css
       + '<div class="sheet"><main><p class="top"><a href="' + BASE + '/' + lang + '/">← ' + esc(T0.titre) + '</a></p><h1>' + esc(T0.ia_page_t) + '</h1><p>' + esc(T0.ia_page_intro) + '</p>' + body
-      + '<p class="attr" style="margin-top:2em"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=propose-a-question.yml&title=' + encodeURIComponent('[AI] ') + '">' + esc(T0.ia_prop) + '</a> · <a href="' + BASE + '/' + lang + '/contribuer/">' + esc(T0.contribuer) + '</a></p></main></div>';
+      + '<p class="attr" style="margin-top:2em"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=propose-an-ai-entry.yml">' + esc(T0.ia_prop) + '</a> · <a href="' + BASE + '/' + lang + '/contribuer/">' + esc(T0.contribuer) + '</a></p></main></div>';
     mkdirSync('docs/' + lang + '/ia', { recursive: true }); writeFileSync('docs/' + lang + '/ia/index.html', html); PAGES.push(p);
   }
 }

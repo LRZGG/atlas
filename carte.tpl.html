@@ -95,6 +95,7 @@ body.panel-open #stbtn { display: none; }
 #panel { position: absolute; z-index: 4; right: 26px; top: 26px; bottom: 26px; width: min(400px, calc(100% - 52px)); background: var(--paper); border: 1px solid var(--ink); padding: 18px 20px; overflow: auto; }
 #panel h2 { font: 400 22px/1.2 var(--serif); margin: 4px 0 10px; text-wrap: balance; padding-right: 22px; }
 #panel h3 { font: 12px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin: 16px 0 4px; }
+#panel h4 { font: italic 16px/1.3 var(--serif, serif); margin: 12px 0 2px; }
 #panel p { margin: 0 0 8px; font-size: 14px; }
 #panel ul { margin: 0 0 6px; padding-left: 17px; } #panel li { margin: 0 0 6px; font-size: 14px; }
 #panel .small, #panel .small li { font-size: 13px; color: var(--dim); }
@@ -427,8 +428,8 @@ const panel = $('panel'), tip = $('tip'); let cur = null;
 const QORD = Q.map((q, i) => i).sort((a, b) => (Q[b].t - Q[a].t) || (a - b));
 const li = a => a.map(x => `<li>${esc(x)}</li>`).join('');
 function iaHTML(q) {
-  const i = q.ia; if (!i) return '';
-  return `<h3>${esc(t('ia_h'))}</h3><p class="kicker">${esc(t('ia_st_' + i.st))}${i.date ? ' · ' + esc(i.date) : ''}</p><p>${esc(i[LANG] || i.fr)}</p><ul class="refs">${i.r.map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a><span>${esc([r.a, r.y].filter(Boolean).join(', '))}</span></li>`).join('')}</ul><p class="small"><a href="/${LANG}/ia/">${esc(t('ia_link'))}</a></p>`;
+  if (!q.ia.length) return '';
+  return `<h3>${esc(t('ia_h'))}</h3>` + q.ia.map(i => `<h4>${esc(i.title[LANG] || i.title.fr)}</h4><p class="kicker">${esc(t('ia_st_' + i.st))} · ${esc(i.date)}</p><p>${esc(i[LANG] || i.fr)}</p><ul class="refs">${i.r.map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a><span>${esc([r.a, r.y].filter(Boolean).join(', '))}</span></li>`).join('')}</ul><p class="small">${esc(t('ia_checked'))} ${esc(i.checked)}</p>`).join('') + `<p class="small"><a href="/${LANG}/ia/">${esc(t('ia_link'))}</a></p>`;
 }
 function ficheHTML(q) {
   if (!q.f) return `<p class="small">${esc(t('fiche_prep'))}</p>`;

@@ -113,11 +113,11 @@
     "st_x": "×",
     "ia_h": "Ce que l'IA a fait ici",
     "ia_st_claimed": "Annoncé, non accepté",
-    "ia_st_assisted": "Résolu avec l'aide de l'IA",
+    "ia_st_assisted": "Avancée avec l'aide de l'IA",
     "ia_st_related": "Travaux voisins",
     "ia_link": "Où l'IA a aidé",
     "ia_page_t": "Où l'IA a aidé",
-    "ia_page_intro": "Cette page liste les questions de la carte sur lesquelles une IA a contribué, avec le statut honnête de chaque annonce : annoncé, vérifié, accepté ou non. Une annonce n'est pas une preuve acceptée tant que des spécialistes ne l'ont pas examinée. Chaque entrée cite ses sources.",
+    "ia_page_intro": "Cette page montre où l'IA est utilisée ou annoncée dans la recherche, avec le statut honnête de chaque cas : annoncé, vérifié ou non, avance réelle ou simple travail voisin. Une annonce n'est pas un résultat accepté tant que des spécialistes ne l'ont pas examinée. Chaque entrée cite ses sources, dit ce que nous avons lu, et porte une date de dernière vérification. Elle se met à jour par GitHub.",
     "ia_vide": "Aucune entrée pour l'instant.",
     "ia_prop": "Proposer une entrée",
     "plate_title": "Atlas de",
@@ -127,7 +127,8 @@
     "plate_highlight": "Éclairer les sujets du domaine {name}",
     "plate_years": "Publications par an",
     "plate_all": "Cumul",
-    "plate_margin": "Marge de lecture"
+    "plate_margin": "Marge de lecture",
+    "ia_checked": "Vérifié pour la dernière fois le"
   },
   "en": {
     "titre": "Unknownpedia",
@@ -243,11 +244,11 @@
     "st_x": "×",
     "ia_h": "What the AI did here",
     "ia_st_claimed": "Announced, not accepted",
-    "ia_st_assisted": "Solved with AI help",
+    "ia_st_assisted": "Progress with AI help",
     "ia_st_related": "Related work",
     "ia_link": "Where AI helped",
     "ia_page_t": "Where AI helped",
-    "ia_page_intro": "This page lists the questions on the map where an AI contributed, with the honest status of each announcement: announced, checked, accepted or not. An announcement is not an accepted proof until specialists have examined it. Each entry cites its sources.",
+    "ia_page_intro": "This page shows where AI is being used or announced in research, with the honest status of each case: announced, checked or not, real progress or only related work. An announcement is not an accepted result until specialists have examined it. Each entry cites its sources, says what we read, and carries a last-checked date. It is updated through GitHub.",
     "ia_vide": "No entry yet.",
     "ia_prop": "Propose an entry",
     "plate_title": "Atlas of",
@@ -257,6 +258,7 @@
     "plate_highlight": "Highlight topics in {name}",
     "plate_years": "Papers per year",
     "plate_all": "All",
-    "plate_margin": "Reading margin"
+    "plate_margin": "Reading margin",
+    "ia_checked": "Last checked"
   }
 }

@@ -1,0 +1,31 @@
+name: Propose or update an AI entry
+description: A case where AI is used or announced in research (new entry, or an update to an existing one).
+title: "[AI] "
+labels: ["ai-entry"]
+body:
+  - type: input
+    id: what
+    attributes:
+      label: What happened, in one sentence
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Primary source (link)
+      description: Paper, lab announcement, institute statement, or a serious news article. Say if you could not read the primary source.
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      options:
+        - Announced, not accepted
+        - Progress with AI help (checked by experts or formally)
+        - Related work
+        - Existing entry, status changed (peer review, prize decision, retraction)
+  - type: input
+    id: question
+    attributes:
+      label: Question on the map concerned (id or link), if any
