@@ -29,7 +29,7 @@ body { background: var(--paper); color: var(--ink); font: 13px/1.4 var(--sans); 
 #legend li button:focus-visible { outline: 2px solid var(--acc); outline-offset: 1px; }
 #legend li b { font-weight: 400; width: 20px; text-align: right; flex: none; }
 #lang { right: 270px; top: 30px; display: flex; }
-#ctl { left: 34px; bottom: 34px; display: flex; gap: 6px; }
+#ctl { right: 0; bottom: clamp(10px, 2vh, 20px); display: flex; background: var(--paper); }
 button.sq { font: 14px var(--sans); color: var(--ink); background: var(--paper); border: .8px solid var(--ink); border-radius: 0; width: 30px; height: 30px; cursor: pointer; padding: 0; }
 #lang button.sq { width: 34px; font-size: 12px; letter-spacing: .06em; }
 #lang button + button { border-left: 0; }
@@ -145,12 +145,140 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 }
 @media (pointer: coarse) { button.sq { width: 42px; height: 42px; } #lang button.sq { width: 46px; } #pclose { width: 42px; height: 42px; right: 6px; top: 6px; } #legend li button { padding: 6px 0; } #legend summary { padding: 11px 10px; } }
 @media (prefers-reduced-motion: reduce) { #ctx { transition: none; } }
+/* A reading margin and a figure share one sheet, with a common masthead and colophon. */
+:root { --paper:#f7f4eb; --ink:#292921; --ink-rgb:41,41,33; --dim:#55564b; --acc:#9c2935; --rule:rgba(var(--ink-rgb),.27); }
+:root[data-theme="dark"] { --paper:#191b19; --ink:#e6e4d8; --ink-rgb:230,228,216; --dim:#b5b5a6; }
+#sheet { --edge:clamp(22px,3.2vw,62px); --rail:clamp(230px,23vw,375px); --mast:76px; --foot:60px;
+  display:grid; grid-template-columns:var(--rail) minmax(0,1fr); grid-template-rows:var(--mast) minmax(0,1fr) var(--foot);
+  padding:0 var(--edge); column-gap:clamp(14px,2.6vw,50px); }
+#frame { inset:10px; border:1px solid var(--rule); }
+#frame::after { display:none; }
+#mast, #colophon { position:relative; display:flex; align-items:center; gap:24px; grid-column:1/-1; }
+#mast { grid-row:1; z-index:7; border-bottom:3px double var(--ink); padding-top:7px; }
+#brand { margin-right:auto; font:400 clamp(26px,2.4vw,38px)/1 var(--serif); letter-spacing:-.065em; }
+#mast .ov, #mast #stbtn, #colophon .ov, #margin .ov { position:relative; inset:auto; transform:none; }
+#mast #search { flex:0 1 260px; width:auto; max-width:none; }
+#search::before { content:''; position:absolute; width:10px;height:10px;border:1.4px solid var(--ink);border-radius:50%;top:50%;left:2px;transform:translateY(-65%);pointer-events:none; }
+#search::after { content:''; position:absolute; width:6px;height:1px;left:11px;top:calc(50% + 4px);background:var(--ink);transform:rotate(48deg);pointer-events:none; }
+#sq { background:transparent; border:0; border-bottom:1px solid var(--rule); padding:8px 20px; font-size:15px; letter-spacing:0; }
+#sres { position:absolute; top:100%; left:0; min-width:100%; width:min(360px,80vw); }
+#mast #stbtn,#legend summary { border:none; background:none; font:15px var(--sans); text-transform:none;letter-spacing:0; padding:6px 0; }
+#mast #stbtn:hover,#legend summary:hover { text-decoration:underline; text-underline-offset:4px; }
+#mast #legend { width:auto; border:0; }
+#legend .scroll { position:absolute;right:0;top:calc(100% + 7px);width:min(300px,calc(100vw - 44px));max-height:65dvh;padding:12px 16px;background:var(--paper);border:1px solid var(--ink); }
+#mast #lang { gap:4px; border-left:1px solid var(--rule); padding-left:16px; }
+#lang button.sq { width:29px;height:31px;border:0;background:none; color:var(--dim); }
+#lang button[aria-pressed=true] { color:var(--ink); text-decoration:underline; text-underline-offset:5px; }
+#margin { grid-column:1;grid-row:2;display:flex; flex-direction:column;justify-content:center;align-items:stretch; gap:clamp(20px,4.6vh,56px);min-height:0;overflow-y:auto;padding:18px 2px; }
+#margin #ctx { width:auto; }
+#marginHandle { display:none; }
+#mast #theme { margin-left:-12px; border:0; background:transparent; color:var(--ink); font:21px/1 var(--serif); }
+#mast #theme:hover { background:var(--ink); color:var(--paper); }
+@media(min-width:851px) {
+  #margin { position:relative;z-index:2;background:var(--paper);transition:transform .29s cubic-bezier(.2,.75,.22,1),opacity .21s; }
+  .exploring #margin { transform:translateX(calc(-100% - var(--edge)));opacity:0;pointer-events:none; }
+  .exploring.margin-open #margin { transform:none;opacity:1;pointer-events:auto;padding-right:14px;border-right:1px solid var(--rule); }
+  .exploring #marginHandle { display:grid;grid-column:1;grid-row:2;justify-self:start;align-self:stretch;place-items:center;
+    width:calc(var(--edge) + 3px);margin-left:calc(-1 * var(--edge));position:relative;z-index:3;color:var(--ink);background:transparent;border:0;padding:0;cursor:pointer; }
+  #marginHandle span { background:var(--paper);border:1px solid var(--rule);font:20px/34px var(--serif);width:19px; }
+  #marginHandle[aria-expanded=true] span { transform:scaleX(-1); }
+  #marginHandle:focus-visible { outline:0; }
+  #marginHandle:focus-visible span { outline:2px solid var(--acc); }
+}
+@media(prefers-reduced-motion:reduce) { #margin {transition:none;} }
+
+#ctx h1 { font:400 clamp(48px,4.7vw,79px)/.94 var(--serif); letter-spacing:-.055em;text-transform:none;margin:0 0 19px; }
+#ctx h1 em { display:block; font-weight:400; }
+#ctx p { font:15px/1.5 var(--sans); max-width:29ch; margin:0; }
+#domainIndex { min-width:0; }
+.index-head { display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:1px solid var(--ink);padding-bottom:6px; }
+.index-head h2,#tl label { font:500 12px/1.2 var(--sans);text-transform:uppercase;letter-spacing:.12em;margin:0; }
+.index-head small { color:var(--dim);font:italic 14px var(--serif); }
+#domainIndex button { display:flex;align-items:center;gap:8px;width:100%;padding:7px 1px;text-align:left;border:0;border-bottom:1px solid var(--rule);color:var(--ink);background:transparent;font:17px/1.25 var(--serif);cursor:pointer; }
+#domainIndex button span { margin-left:auto;font:13px var(--sans);font-variant-numeric:tabular-nums;color:var(--dim); }
+#domainIndex button::before { content:'';width:0;height:1px;background:var(--ink);transition:width .15s ease; }
+#domainIndex button:is(:hover,:focus-visible,[aria-pressed=true])::before { width:16px; }
+#domainIndex button[aria-pressed=true] { font-style:italic; }
+#figure { grid-column:1/-1;grid-row:2;position:relative;min-height:0;min-width:0; }
+#c { inset:0;width:100%;height:100%; }
+#tl { display:block;width:100%;padding:0;border:0;background:transparent; }
+#tl[hidden] { display:none; }
+#tl .index-head { margin-bottom:6px; }
+#tl #tll { min-width:0;letter-spacing:0;text-transform:none;font:italic 15px var(--serif); }
+.timeline-track { display:flex; align-items:center; gap:12px; }
+#tlplay { flex:none; width:30px;height:30px;background:transparent; }
+.year-track { flex:1; position:relative;height:46px;min-width:0; }
+#yearBars { position:absolute;inset:6px 8px 12px;display:flex;align-items:flex-end;gap:2px; pointer-events:none; }
+#yearBars i { flex:1;background:var(--dim);opacity:.48; }
+#yearBars i.current { opacity:1;background:var(--ink); }
+#tlr { position:absolute;inset:0;width:100%!important;height:100%;padding:0;margin:0;background:none;appearance:none;cursor:ew-resize; }
+#tlr::-webkit-slider-runnable-track { height:100%;background:transparent; }
+#tlr::-webkit-slider-thumb { appearance:none;width:2px;height:calc(100% - 6px);background:var(--ink);margin-top:3px; }
+#tlr::-moz-range-track { background:transparent; }
+#tlr::-moz-range-thumb { width:2px;height:40px;background:var(--ink);border:0;border-radius:0; }
+.years-axis { display:flex;justify-content:space-between; margin-left:42px;border-top:1px solid var(--rule);font:12px var(--sans);color:var(--dim); }
+#colophon { grid-row:3;border-top:1px solid var(--ink);gap:16px;padding-bottom:6px; }
+#colophon #cap { width:auto;display:block;text-align:left;font:italic 15px var(--serif); }
+#ctl button.sq { width:32px; height:32px; border:1px solid var(--rule);background:transparent;font:17px var(--sans); }
+#ctl button.sq + button { border-left:0; }
+#ctl button.sq:hover { background:var(--ink);color:var(--paper); }
+#colophon #stamp {margin-left:auto;border:0;padding:0 0 0 12px;border-left:1px solid var(--rule);background:transparent;font:12px var(--sans); color:var(--dim);}
+#stamp b {font-weight:500;color:var(--ink);}
+#src { background:transparent; }
+#stats { z-index:10; padding:clamp(22px,4vw,65px); }
+#stats h2,#panel h2 { font:400 clamp(30px,3.3vw,52px)/1.06 var(--serif);letter-spacing:-.035em; }
+#panel {z-index:9;top:calc(var(--mast) + 8px);bottom:calc(var(--foot) + 8px);right:var(--edge);width:min(435px,50vw);padding:24px;box-shadow:-8px 8px 0 rgba(var(--ink-rgb),.07);}
+@media(prefers-reduced-motion:no-preference) {
+ #panel:not([hidden]) {animation:open-folio .18s ease-out both;}
+ @keyframes open-folio {from{opacity:.4;transform:translateX(12px);}to{opacity:1;transform:none;}}
+}
+#panel h3 {border-top:1px solid var(--rule);padding-top:10px;}
+#panel .kicker {margin-right:26px;}
+#tip {max-width:min(260px,80vw);}
+@media (max-height:670px) and (min-width:851px) {
+ #margin {justify-content:flex-start;gap:19px;} #ctx h1 {font-size:42px;} #ctx p {font-size:14px;} #domainIndex button{padding-block:4px;}
+}
+@media(max-width:850px) {
+ #sheet {--edge:20px;--mast:auto;--foot:auto;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto auto;column-gap:0;}
+ #frame{inset:6px;}
+ #mast {display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:1px 12px;padding:10px 0 5px;}
+ #mast #brand {grid-column:1/3;grid-row:1;font-size:28px;}
+ #mast #lang {grid-column:2/4;grid-row:1;justify-self:end;border:0;padding:0;margin-right:40px;}
+ #mast #theme {grid-column:3;grid-row:1;justify-self:end;margin:0;width:36px;height:38px;}
+ #mast #search {grid-column:1;grid-row:2;width:100%;min-width:0;}
+ #sq {font-size:14px;padding-right:0;}
+ #mast #legend {grid-column:3;grid-row:2;}
+ #mast #stbtn {grid-column:2;grid-row:2;}
+ #mast #stbtn,#legend summary {font-size:14px;min-height:36px;}
+ #margin { display:contents; }
+ #margin #ctx { grid-column:1;grid-row:2;padding-top:16px;pointer-events:none; }
+ #ctx h1 {font-size:clamp(34px,6.5vw,46px);margin:0 0 6px;line-height:1;}
+ #ctx h1 em{display:inline;}
+ #ctx p {max-width:55ch;font-size:13px;line-height:1.3;}
+ #figure {grid-column:1;grid-row:2/4;}
+ #margin #ctx {z-index:2; }
+ #margin #tl {grid-column:1;grid-row:4;padding-bottom:8px;}
+ #tl .index-head {margin:0;}
+ .year-track {height:32px;}
+ #domainIndex {margin-bottom:16px;}
+ #colophon {grid-row:5;padding:6px 0 12px;gap:8px;flex-wrap:wrap;}
+ #colophon #cap{display:none;}
+ #colophon #stamp{display:block;max-width:90px;margin:0 auto 0 0;padding-left:0;border:0;font-size:10px;}
+ #stamp br{display:none;} #stamp span{display:none;}
+ #colophon #src {order:2;}
+ #panel {position:fixed;inset:6px;width:auto;}
+ #src div{width:min(290px,85vw);}
+ #lang button.sq,#ctl button.sq{height:40px;}
+}
+@media(max-width:850px) and (max-height:520px) {
+ #margin #ctx {display:none;} #margin #tl {padding:0;} .year-track{height:24px;} #mast{display:flex;flex-wrap:nowrap;padding:7px 0;} #mast #search{flex:1;} #colophon{padding:2px 0;}
+}
+@media(prefers-reduced-motion:reduce){#domainIndex button::before{transition:none;}}
 </style>
-<div id="sheet">
-<canvas id="c" tabindex="0" role="application" data-ia="aria_carte" aria-describedby="kbhelp"></canvas><div id="live" aria-live="polite"></div>
-<div id="frame"></div>
-<div id="ctx" class="ov"><h1 id="siteTitle"></h1><p id="ctxP"></p></div>
-<div id="lang" class="ov" role="group" data-ia="lang_aria"><button class="sq" type="button" data-lang="fr" aria-pressed="false">FR</button><button class="sq" type="button" data-lang="en" aria-pressed="false">EN</button></div>
+<div id="sheet"><div id="frame"></div>
+<header id="mast"><span id="brand" data-i="titre"></span>
+<div id="search" class="ov"><input id="sq" type="search" role="combobox" aria-expanded="false" aria-controls="sres" aria-autocomplete="list" autocomplete="off" spellcheck="false"><ul id="sres" role="listbox" hidden></ul></div>
+<button class="sq" id="stbtn" type="button" hidden></button>
 <details id="legend" class="ov"><summary data-i="refs_t"></summary><div class="scroll"><div id="key"><h2 data-i="key_t"></h2><ul>
 <li><svg viewBox="0 0 30 20"><path d="M2 16C4 6 13 3 19 7S28 13 27 17" stroke-width=".7"/><path d="M7 16C9 10 15 8 19 11S24 14 24 17"/><path d="M12 17C13 14 17 13 19 15" stroke-width="1.4"/></svg><span data-i="key_relief"></span></li>
 <li><svg viewBox="0 0 30 20"><path d="M3 15C8 8 16 8 27 13"/><path d="M8 11v-4M13 9.5v-4M18 9.5v-4M23 11v-4" stroke-width=".8"/></svg><span data-i="key_ticks"></span></li>
@@ -160,14 +288,17 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 <li><span class="qm">?</span><span data-i="key_q"></span></li>
 <li><span class="qm">?<i class="sqm"></i></span><span data-i="key_enigme"></span></li>
 <li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><ol id="refs"></ol><p class="small"><a id="ialink" data-i="ia_link" href="/en/ia/"></a></p><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
-<div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></div>
-<div id="tl" class="ov" hidden><button class="sq" id="tlplay" type="button"></button><input id="tlr" type="range" min="0" max="36" step="1" value="0"><span id="tll"></span></div>
-<div id="search" class="ov"><input id="sq" type="search" role="combobox" aria-expanded="false" aria-controls="sres" aria-autocomplete="list" autocomplete="off" spellcheck="false"><ul id="sres" role="listbox" hidden></ul></div>
-<button class="sq" id="stbtn" type="button" hidden></button>
+<div id="lang" class="ov" role="group" data-ia="lang_aria"><button class="sq" type="button" data-lang="fr" aria-pressed="false">FR</button><button class="sq" type="button" data-lang="en" aria-pressed="false">EN</button></div><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></header>
+<button id="marginHandle" type="button" aria-controls="margin" aria-expanded="false" data-ia="plate_margin"><span aria-hidden="true">›</span></button>
+<aside id="margin">
+<div id="ctx" class="ov"><h1><span data-i="plate_title"></span> <em data-i="plate_italic"></em></h1><p id="ctxP"></p></div>
+<section id="domainIndex"><div class="index-head"><h2 data-i="plate_domains"></h2><small data-i="plate_topics"></small></div><div id="domains"></div></section>
+<div id="tl" class="ov" hidden><div class="index-head"><label data-i="plate_years" for="tlr"></label><output id="tll" for="tlr"></output></div><div class="timeline-track"><button class="sq" id="tlplay" type="button"></button><div class="year-track"><div id="yearBars" aria-hidden="true"></div><input id="tlr" type="range" step="1"></div></div><div class="years-axis" aria-hidden="true"><span id="firstYear"></span><span id="lastYear"></span></div></div>
+</aside>
+<div id="figure"><canvas id="c" tabindex="0" role="application" data-ia="aria_carte" aria-describedby="kbhelp"></canvas><div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button></div></div>
+<div id="live" aria-live="polite"></div>
+<footer id="colophon"><div id="cap" class="ov"></div><div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div><details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details></footer>
 <aside id="stats" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
-<div id="cap" class="ov"></div>
-<div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div>
-<details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details>
 <div id="tip" hidden></div>
 <aside id="panel" role="dialog" tabindex="-1" hidden></aside>
 </div>
@@ -201,12 +332,37 @@ let x0 = 9, x1 = -9, y0 = 9, y1 = -9;
 for (let i = 0; i < N; i++) { x0 = Math.min(x0, T[i * 5]); x1 = Math.max(x1, T[i * 5]); y0 = Math.min(y0, T[i * 5 + 1]); y1 = Math.max(y1, T[i * 5 + 1]); }
 const mx = (x0 + x1) / 2, my = (y0 + y1) / 2, ext = Math.max(x1 - x0, y1 - y0);
 let W = 0, H = 0, DPR = 1, s0 = 1, tgt = null; const view = { x: 0, y: 0, k: 1 };
-function resize() { const r = cv.getBoundingClientRect(); DPR = Math.min(2, devicePixelRatio || 1); W = r.width; H = r.height; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); s0 = Math.min(W, H) * .63 / ext; }
-const toScreen = (wx, wy) => [W / 2 + (wx - mx - view.x) * s0 * view.k, H / 2 + (wy - my - view.y) * s0 * view.k];
-const toWorld = (px, py) => [(px - W / 2) / (s0 * view.k) + mx + view.x, (py - H / 2) / (s0 * view.k) + my + view.y];
-function zoomAt(px, py, f) { const [wx, wy] = toWorld(px, py); view.k = clamp(view.k * f, .8, 14); view.x = wx - mx - (px - W / 2) / (s0 * view.k); view.y = wy - my - (py - H / 2) / (s0 * view.k); tgt = null; }
+// Keep the overview framed beside the legend while drawing across the whole sheet.
+let overviewLeft=0, overviewTop=0, originX=0, originY=0;
+function locateOrigin() {
+  const overview=clamp((1.5-view.k)/.5,0,1);
+  originX=(W+overviewLeft*overview)/2;
+  originY=(H+overviewTop*overview)/2;
+}
+function resize() {
+  const r=cv.getBoundingClientRect();
+  DPR=Math.min(2,devicePixelRatio || 1);
+  W=r.width; H=r.height;
+  cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR);
+  const railWidth=$('margin').offsetWidth;
+  overviewLeft=!narrowPlate.matches && railWidth ? railWidth+parseFloat(getComputedStyle($('sheet')).columnGap) : 0;
+  overviewTop=narrowPlate.matches && getComputedStyle($('margin')).display==='contents' ? $('ctx').offsetHeight : 0;
+  s0=Math.max(20,Math.min(W-overviewLeft-58,H-overviewTop-66))/(2*DOMC.R);
+  locateOrigin();
+}
+const toScreen = (wx, wy) => [originX + (wx - mx - view.x) * s0 * view.k, originY + (wy - my - view.y) * s0 * view.k];
+const toWorld = (px, py) => [(px - originX) / (s0 * view.k) + mx + view.x, (py - originY) / (s0 * view.k) + my + view.y];
+function zoomAt(px, py, f) {
+  const [wx,wy]=toWorld(px,py);
+  view.k=clamp(view.k*f,.8,14);
+  locateOrigin();
+  view.x=wx-mx-(px-originX)/(s0*view.k);
+  view.y=wy-my-(py-originY)/(s0*view.k);
+  tgt=null;
+}
+function zoomCentre(factor) { flyTo(mx+view.x,my+view.y,clamp((tgt?.k ?? view.k)*factor,.8,14)); }
 const flyTo = (wx, wy, k) => { tgt = { x: wx - mx, y: wy - my, k }; };
-function stepView() { if (!tgt) return; view.x += (tgt.x - view.x) * .16; view.y += (tgt.y - view.y) * .16; view.k += (tgt.k - view.k) * .16; if (Math.abs(tgt.k - view.k) < .004 && Math.abs(tgt.x - view.x) < .0004) tgt = null; }
+function stepView() { if (!tgt) return; if (REDUCED) { Object.assign(view, tgt); tgt = null; return; } view.x += (tgt.x - view.x) * .16; view.y += (tgt.y - view.y) * .16; view.k += (tgt.k - view.k) * .16; if (Math.abs(tgt.k - view.k) < .004 && Math.abs(tgt.x - view.x) < .0004) tgt = null; }
 
 // ---- Fields: centre of each, reference number and neighbourhood of the subfields.
 const FC = F.map(() => ({ x: 0, y: 0, w: 0 })); for (let i = 0; i < N; i++) { const f = FC[S[T[i * 5 + 3]].f], w = T[i * 5 + 2] + 1; f.x += T[i * 5] * w; f.y += T[i * 5 + 1] * w; f.w += w; } FC.forEach(f => { f.x /= f.w; f.y /= f.w; });
@@ -302,7 +458,8 @@ function renderPanel() { if (!cur) return; panel.innerHTML = `<button class="sq"
 function closePanel() { const had = panel.contains(document.activeElement); cur = null; panel.hidden = true; document.body.classList.remove('panel-open'); if (location.hash) history.replaceState(null, '', location.pathname + location.search); if (had) cv.focus(); }
 // The target point is shifted left so it does not go under the panel.
 const fly = (wx, wy, k) => flyTo(wx + (W > 720 ? 210 : 0) / (s0 * k), wy, k);
-function openQ(i) { cur = { q: i }; renderPanel(); fly(Q[i].x, Q[i].y, Math.max(view.k, Q[i].t ? 1.6 : 2)); if (location.hash.slice(1) !== Q[i].id) history.replaceState(null, '', '#' + Q[i].id); }
+let openedAt=0;
+function openQ(i) { openedAt=performance.now(); cur = { q: i }; renderPanel(); fly(Q[i].x, Q[i].y, Math.max(view.k, Q[i].t ? 1.6 : 2)); if (location.hash.slice(1) !== Q[i].id) history.replaceState(null, '', '#' + Q[i].id); }
 function openT(i) { cur = { t: i }; renderPanel(); fly(T[i * 5], T[i * 5 + 1], Math.max(view.k, 3)); if (location.hash) history.replaceState(null, '', location.pathname + location.search); }
 // Each question has its own address (#conscience): a link to a precise question can be shared.
 function openHash() { const i = Q.findIndex(q => q.id === location.hash.slice(1)); if (i >= 0 && !(cur && cur.q === i)) openQ(i); }
@@ -317,7 +474,7 @@ function hover(px, py) {
   if (hoverQ < 0 && hoverC < 0 && hoverF < 0) { const [wx, wy] = toWorld(px, py); hoverT = nearestTopic(wx, wy, 8 / (s0 * view.k)); }
   cv.style.cursor = hoverQ >= 0 || hoverC >= 0 || hoverF >= 0 || hoverT >= 0 ? 'pointer' : 'crosshair';
   if (hoverQ >= 0 || hoverC >= 0 || hoverF >= 0) { tip.hidden = true; return; } else if (hoverT >= 0) { const i = hoverT; tip.innerHTML = esc(T[i * 5 + 4]) + '<small>' + esc(loc(F[S[T[i * 5 + 3]].f].nn)) + ' · ' + esc(fmt(T[i * 5 + 2])) + ' ' + esc(t('publies')) + '</small>'; } else { tip.hidden = true; return; }
-  tip.hidden = false; const r = cv.getBoundingClientRect(); tip.style.left = Math.min(r.left + px + 14, innerWidth - 280) + 'px'; tip.style.top = (r.top + py + 14) + 'px';
+  tip.hidden = false; const r = cv.getBoundingClientRect(); tip.style.left = clamp(r.left+px+14,8,innerWidth-tip.offsetWidth-8)+'px'; tip.style.top=clamp(r.top+py+14,8,innerHeight-tip.offsetHeight-8)+'px';
 }
 const ptrs = new Map(); let moved = 0, pinch = 0;
 const rel = e => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
@@ -333,7 +490,7 @@ cv.addEventListener('pointerup', e => { const p = rel(e), was = ptrs.size; ptrs.
 cv.addEventListener('pointercancel', e => { ptrs.delete(e.pointerId); pinch = 0; });
 cv.addEventListener('pointerleave', () => hover(-1, -1));
 cv.addEventListener('wheel', e => { e.preventDefault(); const [px, py] = rel(e); zoomAt(px, py, Math.exp(-e.deltaY * .0015)); }, { passive: false });
-$('zin').onclick = () => zoomAt(W / 2, H / 2, 1.5); $('zout').onclick = () => zoomAt(W / 2, H / 2, 1 / 1.5); $('zfit').onclick = () => flyTo(mx, my, 1);
+$('zin').onclick = () => zoomCentre(1.5); $('zout').onclick = () => zoomCentre(1/1.5); $('zfit').onclick = () => flyTo(mx, my, 1);
 addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
 // Keyboard: arrows = pan, + / - = zoom, 0 = see everything, N / P = next / previous question (clockwise), Enter = open.
 const KORD = Q.map((q, i) => i).sort((a, b) => Math.atan2(Q[a].y - my, Q[a].x - mx) - Math.atan2(Q[b].y - my, Q[b].x - mx)); let kbQ = -1;
@@ -341,7 +498,7 @@ function kbGo(d) { const j = KORD.indexOf(kbQ); kbQ = KORD[(j < 0 ? (d > 0 ? 0 :
 cv.addEventListener('keydown', e => {
   if (e.altKey || e.ctrlKey || e.metaKey) return; const k = e.key, st = 70 / (s0 * view.k); let used = true;
   if (k === 'ArrowLeft') { view.x -= st; tgt = null; } else if (k === 'ArrowRight') { view.x += st; tgt = null; } else if (k === 'ArrowUp') { view.y -= st; tgt = null; } else if (k === 'ArrowDown') { view.y += st; tgt = null; }
-  else if (k === '+' || k === '=') zoomAt(W / 2, H / 2, 1.4); else if (k === '-' || k === '_') zoomAt(W / 2, H / 2, 1 / 1.4); else if (k === '0') { kbQ = -1; flyTo(mx, my, 1); }
+  else if (k === '+' || k === '=') zoomCentre(1.4); else if (k === '-' || k === '_') zoomCentre(1/1.4); else if (k === '0') { kbQ = -1; flyTo(mx, my, 1); }
   else if (k === 'n' || k === 'N') kbGo(e.shiftKey ? -1 : 1); else if (k === 'p' || k === 'P') kbGo(-1);
   else if ((k === 'Enter' || k === ' ') && kbQ >= 0) { openQ(kbQ); panel.focus(); } else used = false;
   if (used) e.preventDefault();
@@ -374,17 +531,109 @@ sq.addEventListener('blur', () => setTimeout(() => { sres.hidden = true; sq.setA
 addEventListener('keydown', e => { if (e.key === '/' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) { e.preventDefault(); sq.focus(); } });
 
 // ---- Textes selon la langue ----
+// The marginal index highlights the same topic membership used in the map.
+const domainOfTopic = Array.from({length:N}, (_,i)=>F[S[T[i*5+3]].f].d);
+const domainCounts = DATA.D.map((_,d)=>domainOfTopic.filter(id=>id===d).length);
+let pinnedDomain = -1, hoverDomain = -1;
+function markDomainButtons() {
+  for (const button of $('domains').children) {
+    button.setAttribute('aria-pressed', String(Number(button.dataset.domain)===pinnedDomain));
+  }
+}
+function renderDomains() {
+  $('domains').replaceChildren();
+  DATA.D.forEach((domain,d)=>{
+    const button = document.createElement('button');
+    button.type='button';
+    button.dataset.domain=d;
+    button.setAttribute('aria-label', t('plate_highlight',{name:loc(domain)}));
+    const count=document.createElement('span');
+    count.textContent=fmt(domainCounts[d]);
+    button.append(loc(domain),count);
+    button.onpointerenter=e=>{if(e.pointerType==='mouse') hoverDomain=d;};
+    button.onpointerleave=()=>{hoverDomain=-1;};
+    button.onfocus=()=>{if(button.matches(':focus-visible')) hoverDomain=d;};
+    button.onblur=()=>{hoverDomain=-1;};
+    button.onclick=()=>{
+      pinnedDomain=pinnedDomain===d ? -1 : d;
+      hoverDomain=-1;
+      markDomainButtons();
+      if(narrowPlate.matches) $('legend').open=false;
+    };
+    $('domains').append(button);
+  });
+  markDomainButtons();
+}
+const narrowPlate = matchMedia('(max-width:850px)');
+const margin=$('margin'), handle=$('marginHandle');
+let exploring=false, pinnedMargin=false, dismissMargin;
+function showMargin(open) {
+  clearTimeout(dismissMargin);
+  document.body.classList.toggle('margin-open',open);
+  handle.setAttribute('aria-expanded',String(open));
+  margin.inert=exploring && !open;
+  if(!open) pinnedMargin=false;
+}
+function syncMargin() {
+  const collapse=!narrowPlate.matches && view.k>1.08;
+  if(collapse===exploring) return;
+  exploring=collapse;
+  document.body.classList.toggle('exploring',collapse);
+  showMargin(collapse && margin.contains(document.activeElement));
+}
+function leaveMargin() {
+  clearTimeout(dismissMargin);
+  dismissMargin=setTimeout(()=>{
+    if (!pinnedMargin && !margin.querySelector(':focus-visible') && !margin.matches(':hover') && !handle.matches(':hover')) showMargin(false);
+  },140);
+}
+handle.addEventListener('pointerenter',e=>{
+  if(e.pointerType==='mouse' && !e.buttons) showMargin(true);
+});
+handle.addEventListener('pointerleave',leaveMargin);
+margin.addEventListener('pointerenter',()=>clearTimeout(dismissMargin));
+margin.addEventListener('pointerleave',leaveMargin);
+handle.onclick=()=>{
+  pinnedMargin=!pinnedMargin;
+  showMargin(pinnedMargin);
+};
+document.addEventListener('pointerdown',e=>{
+  if(exploring && !margin.contains(e.target) && !handle.contains(e.target)) showMargin(false);
+}, true);
+document.addEventListener('focusin',e=>{
+  if(exploring && !margin.contains(e.target) && e.target!==handle) showMargin(false);
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape' && exploring && (margin.contains(e.target) || e.target===handle)) {
+    e.preventDefault(); e.stopImmediatePropagation(); handle.focus(); showMargin(false);
+  }
+},true);
+function placeIndex() {
+  const host = narrowPlate.matches ? $('legend').querySelector('.scroll') : $('margin');
+  host.insertBefore($('domainIndex'), narrowPlate.matches ? $('key') : $('tl'));
+  hoverDomain=-1;
+}
+narrowPlate.addEventListener('change',placeIndex);
+placeIndex();
 function applyLang() {
   if ($('srcpage')) $('srcpage').href = '/' + LANG + '/sources/';
   document.documentElement.lang = LANG; document.title = t('titre'); const md = document.querySelector('meta[name=description]'); if (md) md.content = t('desc');
   document.querySelectorAll('[data-i]').forEach(e => { e.textContent = t(e.dataset.i); }); $('ialink').href = '/' + LANG + '/ia/';
   document.querySelectorAll('[data-ia]').forEach(e => e.setAttribute('aria-label', t(e.dataset.ia)));
   $('stbtn').textContent = t('st_btn');
+  if (YR) {
+    const r=$('tlr'), current=Math.round(+r.value);
+    $('lastYear').textContent=YR.y1+' / '+t('plate_all');
+    r.setAttribute('aria-label',t('tl_aria'));
+    $('tll').textContent=current>YR.n ? t('tl_all') : t('tl_year',{y:YR.y0+current-1});
+    r.setAttribute('aria-valuetext',$('tll').textContent);
+    $('tlplay').setAttribute('aria-label', t($('tlplay').dataset.playing==='true' ? 'tl_pause' : 'tl_play'));
+  }
   sq.placeholder = t('search_ph'); sq.setAttribute('aria-label', t('search_aria')); if (sq.value) doSearch();
-  $('siteTitle').textContent = t('titre'); $('ctxP').textContent = t('ctx_p', { n: fmt(N), q: Q.length }); $('cap').textContent = t('cap', { n: fmt(N) });
+  $('ctxP').textContent = t('ctx_p', { n: fmt(N), q: Q.length }); $('cap').textContent = t('cap', { n: fmt(N) });
   $('refs').innerHTML = ORD.map((f, i) => `<li><button type="button" data-f="${f}"><b>${i + 1}</b><span>${esc(loc(F[f].nn))}</span></button></li>`).join('');
   document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
-  fkLabels(); renderPanel(); if (stOpen) renderStats();
+  renderDomains(); fkLabels(); renderPanel(); if (stOpen) renderStats();
 }
 function fkLabels() { const L = [t('f_tout'), t('f_q'), t('f_e')]; document.querySelectorAll('#fk button').forEach((b, i) => { b.textContent = L[i]; b.setAttribute('aria-pressed', String(+b.dataset.fk === FK)); }); }
 $('fk').onclick = e => { const b = e.target.closest('button'); if (b) { FK = +b.dataset.fk; fkLabels(); } };
@@ -440,16 +689,35 @@ function card(txt, a, px, py, font, lh, maxw, right, color) {
 const labeller = (seed) => { const used = seed || []; return (txt, px, py, size, align) => { const w = ctx.measureText(txt).width, bx = align === 'right' ? px - w : align === 'center' ? px - w / 2 : px, r = [bx - 6, py - size - 2, bx + w + 6, py + 7]; if (used.some(u => !(r[2] < u[0] || r[0] > u[2] || r[3] < u[1] || r[1] > u[3]))) return false; used.push(r); ctx.textAlign = align; ctx.fillText(txt, px, py); return true; }; };
 function draw(dt) {
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.clearRect(0, 0, W, H); const k = view.k;
-  $('ctx').style.opacity = cur ? 0 : clamp((1.5 - k) / .4, 0, 1);
+  locateOrigin(); syncMargin();
+  $('ctx').style.opacity = narrowPlate.matches ? (cur ? 0 : clamp((1.5-k)/.4,0,1)) : 1;
   LV.forEach((s, l) => { ctx.strokeStyle = inkA(l === 0 ? .8 : .3 + l * .07); ctx.lineWidth = l === 0 ? 1.2 : .5 + l * .12; ctx.beginPath(); for (let i = 0; i < s.length; i += 4) { const a = toScreen(s[i], s[i + 1]), b = toScreen(s[i + 2], s[i + 3]); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); } ctx.stroke(); });
   ctx.strokeStyle = inkA(.6); ctx.lineWidth = .7; ctx.beginPath(); for (let i = 0; i < TICKS.length; i += 4) { const a = toScreen(TICKS[i], TICKS[i + 1]); ctx.moveTo(a[0], a[1]); ctx.lineTo(a[0] + TICKS[i + 2] * 5, a[1] + TICKS[i + 3] * 5); } ctx.stroke();
-  ctx.fillStyle = inkA(.62); const grow = 1 + (k - 1) * .22;
-  for (let i = 0; i < N; i++) { const p = toScreen(T[i * 5], T[i * 5 + 1]); if (p[0] < -6 || p[0] > W + 6 || p[1] < -6 || p[1] > H + 6) continue; ctx.beginPath(); ctx.arc(p[0], p[1], (.45 + Math.log10(1 + T[i * 5 + 2]) * .17) * grow, 0, 7); ctx.fill(); }
+  const litDomain = hoverDomain>=0 ? hoverDomain : pinnedDomain;
+  ctx.fillStyle = inkA(.68); const grow = 1 + (k - 1) * .22;
+  for (let i = 0; i < N; i++) { ctx.globalAlpha = litDomain<0 || domainOfTopic[i]===litDomain ? 1 : .14; const p = toScreen(T[i * 5], T[i * 5 + 1]); if (p[0] < -6 || p[0] > W + 6 || p[1] < -6 || p[1] > H + 6) continue; ctx.beginPath(); ctx.arc(p[0], p[1], (.45 + Math.log10(1 + T[i * 5 + 2]) * .17) * grow, 0, 7); ctx.fill(); }
+  ctx.globalAlpha = 1;
   const ht = cur && cur.t != null ? cur.t : hoverT; if (ht >= 0) { const p = toScreen(T[ht * 5], T[ht * 5 + 1]); ctx.strokeStyle = inkA(1.4); ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(p[0], p[1], 5, 0, 7); ctx.stroke(); }
   const na = 1; NA = 1;
+  // Use each question's actual subfield assignments for the engraved leaders.
+  if(cur?.q != null) {
+    const question=Q[cur.q], start=toScreen(question.x,question.y);
+    const progress=REDUCED ? 1 : Math.min(1,(performance.now()-openedAt)/240);
+    ctx.save();ctx.strokeStyle=COL.acc;ctx.globalAlpha=.65;ctx.lineWidth=.95;
+    for(const index of question.subs) {
+      const sub=S[index], end=toScreen(sub.x,sub.y);
+      const x=start[0]+(end[0]-start[0])*progress,y=start[1]+(end[1]-start[1])*progress;
+      ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(...start);ctx.lineTo(x,y);ctx.stroke();
+      ctx.setLineDash([]);ctx.strokeRect(x-2,y-2,4,4);
+    }
+    ctx.restore();
+  }
   const hf = hoverF; ORD.forEach(f => anim(FA[f], f === hf, dt, loc(F[f].nn).length));
+  const placedNumbers=[];
   ORD.forEach((f, i) => {
-    const a = toScreen(FC[f].x, FC[f].y); let b = toScreen(NUM[f].x, NUM[f].y); NS[f] = null; if (a[0] < -30 || a[0] > W + 30 || a[1] < -30 || a[1] > H + 30) return; b = [clamp(b[0], 18, W - 18), clamp(b[1], 18, H - 18)]; ctx.globalAlpha = na; ctx.strokeStyle = inkA(1.2); ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(b[0], b[1]); ctx.quadraticCurveTo((a[0] + b[0]) / 2 + (a[1] - b[1]) * .12, (a[1] + b[1]) / 2 - (a[0] - b[0]) * .12, a[0], a[1]); ctx.stroke();
+    const a = toScreen(FC[f].x, FC[f].y); let b = toScreen(NUM[f].x, NUM[f].y); NS[f] = null; if (a[0] < -30 || a[0] > W + 30 || a[1] < -30 || a[1] > H + 30) return; b = [clamp(b[0], 18, W - 18), clamp(b[1], 18, H - 18)];
+    if (W<520 && placedNumbers.some(p=>Math.hypot(p[0]-b[0],p[1]-b[1])<20)) return;
+    placedNumbers.push(b); ctx.globalAlpha = na; ctx.strokeStyle = inkA(1.2); ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(b[0], b[1]); ctx.quadraticCurveTo((a[0] + b[0]) / 2 + (a[1] - b[1]) * .12, (a[1] + b[1]) / 2 - (a[0] - b[0]) * .12, a[0], a[1]); ctx.stroke();
     ctx.fillStyle = inkA(1.4); ctx.beginPath(); ctx.arc(a[0], a[1], 2.2, 0, 7); ctx.fill(); NS[f] = b; ctx.globalAlpha = 1;
   });
   // Numbers are drawn after all the leader lines, so no line passes over a number.
@@ -461,7 +729,7 @@ function draw(dt) {
   // The four broad domains: their name is written in an arc around the map, beyond the numbers, with a rule showing the domain's extent. They fade out on zoom.
   { const al = clamp((2.3 - k) / .8, 0, 1); if (al > 0) {
     const hc = toScreen(mx, my), R = DOMC.R * s0 * k, size = clamp(17 * Math.sqrt(k), 15, 24), sp = size * .25; ctx.save(); ctx.globalAlpha = al * .9; ctx.fillStyle = `rgb(${COL.rgb})`; ctx.strokeStyle = `rgb(${COL.rgb})`; ctx.textAlign = 'center'; ctx.font = `${size}px "IM Fell DW Pica", serif`;
-    for (const r of DOMC.runs) { ctx.lineWidth = .8; const g = .012; ctx.beginPath(); ctx.arc(hc[0], hc[1], R, r.a0 + g, r.a1 - g); ctx.stroke();
+    for (const r of DOMC.runs) { ctx.globalAlpha = al * (litDomain<0 || litDomain===r.d ? .95 : .27); ctx.lineWidth = litDomain===r.d ? 2 : .8; const g = .012; ctx.beginPath(); ctx.arc(hc[0], hc[1], R, r.a0 + g, r.a1 - g); ctx.stroke();
       for (const e of [r.a0 + g, r.a1 - g]) { const c = Math.cos(e), n = Math.sin(e); ctx.beginPath(); ctx.moveTo(hc[0] + (R - 4) * c, hc[1] + (R - 4) * n); ctx.lineTo(hc[0] + (R + 5) * c, hc[1] + (R + 5) * n); ctx.stroke(); }
       if (DOMC.best[r.d] !== r) continue; const mid = (r.a0 + r.a1) / 2, txt = loc(DATA.D[r.d]).toUpperCase(); let sz = size, ws; const meas = () => { ctx.font = `${sz}px "IM Fell DW Pica", serif`; ws = [...txt].map(c => ctx.measureText(c).width + sz * .25); return ws.reduce((a, b) => a + b, 0) - sz * .25; };
       let tot = meas(); const arc = (r.a1 - r.a0 - .06) * (R + 12); if (tot > arc) { sz = Math.max(10, sz * arc / tot); tot = meas(); }
@@ -469,7 +737,11 @@ function draw(dt) {
       for (let i = 0; i < ws.length; i++) { const step = ws[i] / rt, m2 = th + (up ? 1 : -1) * step / 2; ctx.save(); ctx.translate(hc[0] + rt * Math.cos(m2), hc[1] + rt * Math.sin(m2)); ctx.rotate(m2 + (up ? Math.PI / 2 : -Math.PI / 2)); ctx.fillText([...txt][i], 0, 0); ctx.restore(); th += (up ? 1 : -1) * step; } }
     ctx.restore(); } }
   // "Terra incognita" at the centre of the void, faded out on zoom.
-  { const h = toScreen(DATA.hole.x, DATA.hole.y), al = clamp(3 - k, 0, 1); if (al > 0 && h[0] > -200 && h[0] < W + 200) { ctx.save(); ctx.globalAlpha = al * .75; ctx.fillStyle = `rgb(${COL.rgb})`; ctx.textAlign = 'center'; if ('letterSpacing' in ctx) ctx.letterSpacing = '5px'; ctx.font = `14px "Archivo Narrow", sans-serif`; ctx.fillText(t('terra').toUpperCase(), h[0] + 2, h[1]); if ('letterSpacing' in ctx) ctx.letterSpacing = '0px'; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; ctx.fillText(t('terra_sub'), h[0], h[1] + 18); ctx.restore(); } }
+  { const h = toScreen(DATA.hole.x, DATA.hole.y), al = clamp(3 - k, 0, 1); if (al > 0 && h[0] > -200 && h[0] < W + 200) { ctx.save(); ctx.globalAlpha = al * .75; ctx.fillStyle = `rgb(${COL.rgb})`; ctx.textAlign = 'center'; const scale=DOMC.R*s0*k;
+    const width=clamp(scale*.5,78,173), size=clamp(scale*.085,17,32);
+    ctx.font=`italic ${size}px "IM Fell DW Pica", serif`; ctx.fillText(t('terra'),h[0],h[1],width);
+    if(W>520) { ctx.font='12px "Archivo Narrow", sans-serif';ctx.fillText(t('terra_sub'),h[0],h[1]+18); }
+    ctx.restore(); } }
   // Clustering: in dense areas, a single "?" stands for those within CR pixels (CR shrinks on zoom). The others fade: they appear and disappear smoothly.
   const CR = clamp(84 / Math.pow(k, .95), 21, 84), TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => !!Q[b].f - !!Q[a].f), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ && (FK === 0 || Q[i].k === (FK === 2 ? 1 : 0)))], seen = new Set(), isLead = new Set(); CL = [];
   const pushB = p => { let q = p; for (let it = 0; it < 2; it++) for (const f of ORD) { const nb = NS[f]; if (!nb) continue; const dx = q[0] - nb[0], dy = q[1] - nb[1], d = Math.hypot(dx, dy); if (d < 24) q = d < .01 ? [q[0] + 24, q[1]] : [q[0] + dx * (24 - d) / d, q[1] + dy * (24 - d) / d]; } return q; };
@@ -491,6 +763,11 @@ function draw(dt) {
     if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); }
     if (q.k) { ctx.fillStyle = COL.acc; ctx.fillRect(p[0] + 6 + 2 * e, p[1] - 14 - 3 * e, 4.5, 4.5); }
     ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.globalAlpha = A.v * (hot || on ? 1 : .72 + .28 * clamp((k - 1) / 1.2, 0, 1)); ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = COL.paper; ctx.strokeText('?', p[0], p[1] + 5); ctx.fillText('?', p[0], p[1] + 5); ctx.globalAlpha = A.v;
+    if (multi) {
+      ctx.font = '11px "Archivo Narrow", sans-serif'; ctx.textAlign='left';
+      const bx=p[0]+7, by=p[1]+7;
+      ctx.strokeText(c.ids.length,bx,by); ctx.fillText(c.ids.length,bx,by);
+    }
     if (c && !multi && !hot && la0 > .02 && A.g < .01) { ctx.globalAlpha = A.v * la0; ctx.font = 'italic 13px "IM Fell DW Pica", serif'; const nm = loc(q.nmm), r = p[0] < cx, c2 = [[p[0] + (r ? -11 : 11), p[1] - 7, r ? 'right' : 'left'], [p[0] + (r ? 11 : -11), p[1] - 7, r ? 'left' : 'right'], [p[0], p[1] - 20, 'center'], [p[0], p[1] + 22, 'center']]; for (const z of c2) if (lab(nm, z[0], z[1], 13, z[2])) break; }
     ctx.globalAlpha = 1; if (c && A.g > .01) cards.push([c, multi]);
   }
@@ -502,7 +779,20 @@ new ResizeObserver(resize).observe(cv); addEventListener('resize', resize);
 if (document.fonts) document.fonts.ready.then(() => {});
 applyLang(); resize(); openHash();
 if (YR) { const r = $('tlr'), pl = $('tlplay'), n = YR.n; r.min = 1; r.max = n + 1; r.step = 'any'; r.value = n + 1; r.setAttribute('aria-label', t('tl_aria')); $('tl').hidden = false; let raf = 0, pos = n + 1, last = 0;
-  const lab = () => { const y = Math.round(+r.value); $('tll').textContent = y > n ? t('tl_all') : t('tl_year', { y: YR.y0 + y - 1 }); pl.textContent = raf ? '❚❚' : '▶'; pl.setAttribute('aria-label', t(raf ? 'tl_pause' : 'tl_play')); };
+  const totals=stSeries('all'), peak=Math.max(1,...totals);
+  const bars=totals.map(total=>{
+    const bar=document.createElement('i');
+    bar.style.height=(100*total/peak)+'%';
+    $('yearBars').append(bar);
+    return bar;
+  });
+  // The final stop on the scale is cumulative, so it has no annual bar.
+  $('yearBars').append(document.createElement('i'));
+  $('firstYear').textContent=YR.y0;
+  $('lastYear').textContent=YR.y1+' / '+t('plate_all');
+  const lab = () => { const y = Math.round(+r.value);
+    bars.forEach((bar,i)=>bar.classList.toggle('current', i===y-1));
+ $('tll').textContent = y > n ? t('tl_all') : t('tl_year', { y: YR.y0 + y - 1 }); r.setAttribute('aria-valuetext',$('tll').textContent); pl.dataset.playing=String(!!raf); pl.textContent = raf ? 'Ⅱ' : '▷'; pl.setAttribute('aria-label', t(raf ? 'tl_pause' : 'tl_play')); };
   const show = p => { pos = p; r.value = p; setPos(p); lab(); };
   r.oninput = () => { cancelAnimationFrame(raf); raf = 0; show(+r.value); };
   const stop = () => { cancelAnimationFrame(raf); raf = 0; lab(); };
