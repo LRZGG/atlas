@@ -116,7 +116,7 @@ body.panel-open #legend, body.panel-open #lang { display: none; }
 #legend .scroll::-webkit-scrollbar-button, #panel::-webkit-scrollbar-button { display: none; height: 0; }
 #key { border-bottom: .6px solid var(--ink); padding-bottom: 6px; margin-bottom: 4px; }
 #key ul { list-style: none; margin: 0; padding: 0; }
-.qm.ai { border: 1.4px solid var(--acc); border-radius: 50%; width: 1.5em; height: 1.5em; display: inline-flex; align-items: center; justify-content: center; margin-left: 4px; margin-right: 4px; flex: none; }
+.qm.tag { font: 700 11px/1 var(--sans); letter-spacing: .04em; }
 #fk { display: flex; gap: 5px; align-items: center; margin: 0 0 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; flex-wrap: wrap; }
 #fk button { all: unset; cursor: pointer; border: .8px solid var(--ink); padding: 2px 8px; }
 #fk button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
@@ -309,8 +309,9 @@ body.panel-open #hello { display:none; }
 <li><svg viewBox="0 0 30 20"><path d="M4 16A13 13 0 0 1 26 16" stroke-width="1.2"/><path d="M4 18v-4M26 18v-4"/></svg><span data-i="key_dom"></span></li>
 <li><svg viewBox="0 0 30 20"><circle cx="15" cy="10" r="7.5"/><text x="15" y="13.6" text-anchor="middle" font-size="10" fill="currentColor" stroke="none" font-family="Archivo Narrow,sans-serif">7</text></svg><span data-i="key_disc"></span></li>
 <li><span class="qm">?</span><span data-i="key_q"></span></li>
-<li><span class="qm ai">?</span><span id="keyai"></span></li>
-<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button></div><ol id="refs"></ol><p class="small"><button type="button" id="hiAgain" data-i="hi_again"></button></p><p class="small"><a id="ialink" data-i="ia_link" href="/en/ia/"></a></p><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
+<li><span class="qm">!</span><span data-i="key_adv"></span></li>
+<li><span class="qm tag">IA</span><span id="keyai"></span></li>
+<li><svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="11" ry="6.5" stroke-dasharray="2 2.4"/></svg><span data-i="key_center"></span></li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button><button type="button" data-fk="3">·</button></div><ol id="refs"></ol><p class="small"><button type="button" id="hiAgain" data-i="hi_again"></button></p><p class="small"><a id="ialink" data-i="ia_link" href="/en/ia/"></a></p><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
 <div id="lang" class="ov" role="group" data-ia="lang_aria"><button class="sq" type="button" data-lang="fr" aria-pressed="false">FR</button><button class="sq" type="button" data-lang="en" aria-pressed="false">EN</button></div><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></header>
 <button id="marginHandle" type="button" aria-controls="margin" aria-expanded="false" data-ia="plate_margin"><span aria-hidden="true">›</span></button>
 <aside id="margin">
@@ -319,7 +320,7 @@ body.panel-open #hello { display:none; }
 <div id="tl" class="ov" hidden><div class="index-head"><label data-i="plate_years" for="tlr"></label><output id="tll" for="tlr"></output></div><div class="timeline-track"><button class="sq" id="tlplay" type="button"></button><div class="year-track"><div id="yearBars" aria-hidden="true"></div><input id="tlr" type="range" step="1"></div></div><div class="years-axis" aria-hidden="true"><span id="firstYear"></span><span id="lastYear"></span></div></div>
 </aside>
 <div id="figure"><canvas id="c" tabindex="0" role="application" data-ia="aria_carte" aria-describedby="kbhelp"></canvas><div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button></div></div>
-<aside id="hello" role="note" hidden><h2 data-i="hi_t"></h2><ol><li data-i="hi_1"></li><li data-i="hi_2"></li><li data-i="hi_3"></li></ol><p><button type="button" id="hiTry" data-i="hi_try"></button> <button type="button" id="hiOk" data-i="hi_ok"></button></p></aside>
+<aside id="hello" role="note" hidden><h2 data-i="hi_t"></h2><ol><li data-i="hi_1"></li><li data-i="hi_2"></li><li data-i="hi_3"></li><li data-i="hi_4"></li></ol><p><button type="button" id="hiTry" data-i="hi_try"></button> <button type="button" id="hiOk" data-i="hi_ok"></button></p></aside>
 <div id="live" aria-live="polite"></div>
 <footer id="colophon"><div id="cap" class="ov"></div><div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div><details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details></footer>
 <aside id="stats" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
@@ -471,10 +472,14 @@ function movingHTML() { if (!RC) return `<p class="note">${esc(t('tr_none'))}</p
   const L = []; for (let i = 0; i < N; i++) { const n = RC.c[i], b = monthBase(i); if (n < 150 || b < 60) continue; const x = n / b; if (x >= 1.25 && x <= 3) L.push([i, x, n]); }
   L.sort((a, b) => b[1] - a[1]); const top = L.slice(0, 20);
   return `<p class="cap2">${esc(t('tr_t'))}</p><div class="mvl">` + (top.length ? top.map(([i, x, n]) => `<button type="button" data-t="${i}">${esc(T[i * 5 + 4])} · ×${x.toFixed(1)} · ${esc(fmt(n))}</button>`).join('') : '') + `</div><p class="note">${esc(t('tr_note'))}</p>`; }
+function advHTML(q) {
+  return `<p class="kicker">${esc(t('st_adv'))} · ${esc(t('adv_' + q.ast))} · ${q.year}${q.ai ? ' · ' + esc(t('ai_tag')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p><p class="prov">${esc(t('adv_prov'))} <a href="https://github.com/Lorenzo1208/atlas/blob/main/METHOD.md#who-writes-what" target="_blank" rel="noopener">${esc(t('prov_lien'))}</a></p><h3>${esc(t('adv_src'))}</h3><ul class="refs">${q.ar.map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a><span>${esc([r.a, r.y].filter(Boolean).join(', '))}</span></li>`).join('')}</ul><p class="small">${esc(t('ia_checked'))} ${esc(q.ck)}</p>${iaHTML(q)}<h3>${esc(t('q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><p class="small"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=propose-an-ai-entry.yml&title=${encodeURIComponent('[' + q.id + '] ')}" target="_blank" rel="noopener">${esc(t('signaler'))}</a> · <a href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></p>`;
+}
 function panelHTML() {
   if (!cur) return '';
   if (cur.q != null) {
-    const q = Q[cur.q], src = SRC[q.s], manque = LANG !== 'fr' && (fb(q.cc) || (q.no && fb(q.no)) || (q.f && !q.f[LANG]));
+    const q = Q[cur.q]; if (q.adv) return advHTML(q);
+    const src = SRC[q.s], manque = LANG !== 'fr' && (fb(q.cc) || (q.no && fb(q.no)) || (q.f && !q.f[LANG]));
     return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${iaHTML(q)}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p><p class="small"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=correct-a-fiche.yml&title=${encodeURIComponent('[' + q.id + '] ')}&question=${encodeURIComponent(q.id + ' (' + location.origin + '/' + LANG + '/q/' + q.id + '/)')}" target="_blank" rel="noopener">${esc(t('signaler'))}</a> · <a href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></p>`;
   }
   const i = cur.t, si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2], nb = ADJ[si].slice().sort((a, b) => Math.hypot(S[a].x - s.x, S[a].y - s.y) - Math.hypot(S[b].x - s.x, S[b].y - s.y)).slice(0, 5);
@@ -492,7 +497,7 @@ function openHash() { const i = Q.findIndex(q => q.id === location.hash.slice(1)
 addEventListener('hashchange', openHash);
 
 // ---- Survol et clic ----
-let FK = 0; const AIN = Q.filter(q => q.ia.length).length; let hoverT = -1, hoverQ = -1, hoverF = -1, hoverC = -1, CL = []; const QS = Q.map(() => [0, 0]);
+let FK = 0; const NQ = Q.filter(q => !q.adv).length, AIN = Q.filter(q => !q.adv && q.ia.length).length, RECENT = 2020; let hoverT = -1, hoverQ = -1, hoverF = -1, hoverC = -1, CL = []; const QS = Q.map(() => [0, 0]);
 function hover(px, py) {
   hoverQ = -1; hoverT = -1; hoverF = -1; hoverC = -1; if (px < 0) { tip.hidden = true; return; }
   for (const c of CL) if (Math.hypot(c.p[0] - px, c.p[1] - py) < 15) { if (c.ids.length > 1) hoverC = c.lead; else hoverQ = c.lead; break; }
@@ -646,7 +651,7 @@ function applyLang() {
   document.documentElement.lang = LANG; document.title = t('titre'); const md = document.querySelector('meta[name=description]'); if (md) md.content = t('desc');
   document.querySelectorAll('[data-i]').forEach(e => { e.textContent = t(e.dataset.i); }); $('ialink').href = '/' + LANG + '/ia/';
   document.querySelectorAll('[data-ia]').forEach(e => e.setAttribute('aria-label', t(e.dataset.ia)));
-  $('stbtn').textContent = t('st_btn'); $('rndlbl').textContent = t('rnd_btn'); $('rndbtn').title = t('rnd_title'); $('keyai').textContent = t('key_ai', { n: AIN, m: Q.length });
+  $('stbtn').textContent = t('st_btn'); $('rndlbl').textContent = t('rnd_btn'); $('rndbtn').title = t('rnd_title'); $('keyai').textContent = t('key_ai', { n: AIN, m: NQ });
   if (YR) {
     const r=$('tlr'), current=Math.round(+r.value);
     $('lastYear').textContent=YR.y1+' / '+t('plate_all');
@@ -656,12 +661,13 @@ function applyLang() {
     $('tlplay').setAttribute('aria-label', t($('tlplay').dataset.playing==='true' ? 'tl_pause' : 'tl_play'));
   }
   sq.placeholder = t('search_ph'); sq.setAttribute('aria-label', t('search_aria')); if (sq.value) doSearch();
-  $('ctxP').textContent = t('ctx_p', { n: fmt(N), q: Q.length }); $('cap').textContent = t('cap', { n: fmt(N) });
+  $('ctxP').textContent = t('ctx_p', { n: fmt(N), q: NQ }); $('cap').textContent = t('cap', { n: fmt(N) });
   $('refs').innerHTML = ORD.map((f, i) => `<li><button type="button" data-f="${f}"><b>${i + 1}</b><span>${esc(loc(F[f].nn))}</span></button></li>`).join('');
   document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
   renderDomains(); fkLabels(); renderPanel(); if (stOpen) renderStats();
 }
-function fkLabels() { const L = [t('f_tout'), t('f_q'), t('f_e')]; document.querySelectorAll('#fk button').forEach((b, i) => { b.textContent = L[i]; b.setAttribute('aria-pressed', String(+b.dataset.fk === FK)); }); }
+const shown = i => { const q = Q[i]; return FK === 0 ? !q.adv || q.year >= RECENT : FK === 1 ? !q.adv && !q.k : FK === 2 ? !!q.k : !!q.adv; };
+function fkLabels() { const L = [t('f_tout'), t('f_q'), t('f_e'), t('f_a')]; document.querySelectorAll('#fk button').forEach((b, i) => { b.textContent = L[i]; b.setAttribute('aria-pressed', String(+b.dataset.fk === FK)); }); }
 // Random: a vintage die rolls (faces flicker, the die tumbles), then a question picked at random opens. Never the one already open; always available.
 const PIPS = { 1: [[12, 12]], 2: [[8, 8], [16, 16]], 3: [[8, 8], [12, 12], [16, 16]], 4: [[8, 8], [16, 8], [8, 16], [16, 16]], 5: [[8, 8], [16, 8], [12, 12], [8, 16], [16, 16]], 6: [[8, 7.5], [16, 7.5], [8, 12], [16, 12], [8, 16.5], [16, 16.5]] };
 const showFace = n => { $('pips').innerHTML = PIPS[n].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1.5"/>`).join(''); };
@@ -792,7 +798,7 @@ function draw(dt) {
     if(W>520) { ctx.font='12px "Archivo Narrow", sans-serif';ctx.fillText(t('terra_sub'),h[0],h[1]+18); }
     ctx.restore(); } }
   // Clustering: in dense areas, a single "?" stands for those within CR pixels (CR shrinks on zoom). The others fade: they appear and disappear smoothly.
-  const CR = clamp(84 / Math.pow(k, .95), 21, 84), TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => ((Q[b].ia.length > 0) - (Q[a].ia.length > 0)) || (!!Q[b].f - !!Q[a].f)), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ && (FK === 0 || Q[i].k === (FK === 2 ? 1 : 0)))], seen = new Set(), isLead = new Set(); CL = [];
+  const CR = clamp(84 / Math.pow(k, .95), 21, 84), TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => ((Q[b].ia.length > 0) - (Q[a].ia.length > 0)) || (!!Q[b].f - !!Q[a].f)), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ && shown(i))], seen = new Set(), isLead = new Set(); CL = [];
   const pushB = p => { let q = p; for (let it = 0; it < 2; it++) for (const f of ORD) { const nb = NS[f]; if (!nb) continue; const dx = q[0] - nb[0], dy = q[1] - nb[1], d = Math.hypot(dx, dy); if (d < 24) q = d < .01 ? [q[0] + 24, q[1]] : [q[0] + dx * (24 - d) / d, q[1] + dy * (24 - d) / d]; } return q; };
   for (const i of order) {
     const p = TS[i]; if (seen.has(i) || p[0] < -20 || p[0] > W + 20 || p[1] < -20 || p[1] > H + 20) continue; seen.add(i); isLead.add(i); const ids = [i], forced = i === sel || i === kbQ;
@@ -810,10 +816,10 @@ function draw(dt) {
     if (A.v < .02) continue; const p = c ? c.p : pushB(TS[i]), e = ease(hot ? Math.max(A.g, i === sel ? 1 : 0) : A.g); QS[i] = p;
     ctx.globalAlpha = A.v; ctx.fillStyle = COL.acc; ctx.textAlign = 'center';
     if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); }
-    // A "?" with a documented AI contribution carries a thin ring and an "IA"/"AI" tag, always visible; the others stay plain, so the gaps show where AI has not helped yet.
-    const aiHit = q.ia.length > 0;
-    if (aiHit) { const R = 12 + 3 * e; ctx.globalAlpha = A.v; ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.arc(p[0], p[1] - 1, R, 0, 7); ctx.stroke(); ctx.font = '700 9px "Archivo Narrow", sans-serif'; ctx.textAlign = 'left'; ctx.fillStyle = COL.acc; ctx.lineWidth = 3; ctx.strokeStyle = COL.paper; ctx.strokeText(t('ai_tag'), p[0] + R * .72, p[1] - R * .72 - 1); ctx.fillText(t('ai_tag'), p[0] + R * .72, p[1] - R * .72 - 1); ctx.textAlign = 'center'; }
-    ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.globalAlpha = A.v * (hot || on || aiHit ? 1 : .72 + .28 * clamp((k - 1) / 1.2, 0, 1)); ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = COL.paper; ctx.fillStyle = COL.acc; ctx.strokeText('?', p[0], p[1] + 5); ctx.fillText('?', p[0], p[1] + 5);
+    // A small "IA"/"AI" tag next to a "?" or "!" when an AI is documented in it (advance made with AI, or AI contribution to a question). The others stay plain.
+    const aiHit = q.adv ? !!q.ai : q.ia.length > 0;
+    if (aiHit) { const R = 8 + 3 * e; ctx.globalAlpha = A.v; ctx.font = '700 9px "Archivo Narrow", sans-serif'; ctx.textAlign = 'left'; ctx.fillStyle = COL.acc; ctx.lineJoin = 'round'; ctx.lineWidth = 3; ctx.strokeStyle = COL.paper; ctx.strokeText(t('ai_tag'), p[0] + R, p[1] - R - 3); ctx.fillText(t('ai_tag'), p[0] + R, p[1] - R - 3); ctx.textAlign = 'center'; }
+    ctx.font = `700 ${17 + 6 * e}px "IM Fell DW Pica", serif`; ctx.globalAlpha = A.v * (hot || on || aiHit ? 1 : .72 + .28 * clamp((k - 1) / 1.2, 0, 1)); ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = COL.paper; ctx.fillStyle = COL.acc; ctx.strokeText(q.adv ? '!' : '?', p[0], p[1] + 5); ctx.fillText(q.adv ? '!' : '?', p[0], p[1] + 5);
     ctx.globalAlpha = A.v;
     if (multi) {
       ctx.font = '11px "Archivo Narrow", sans-serif'; ctx.textAlign='left';

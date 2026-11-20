@@ -1,0 +1,1064 @@
+{
+ "entries": [
+  {
+   "id": "fields-medals-2022",
+   "year": 2022,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Algebra and Number Theory",
+    "Geometry and Topology",
+    "Discrete Mathematics and Combinatorics"
+   ],
+   "title": {
+    "en": "Fields Medals 2022",
+    "fr": "Médailles Fields 2022"
+   },
+   "text": {
+    "en": "Hugo Duminil-Copin (probabilistic theory of phase transitions), June Huh (Hodge theory brought into combinatorics), James Maynard (analytic number theory) and Maryna Viazovska (densest sphere packing in 8 dimensions) received the medals.",
+    "fr": "Hugo Duminil-Copin (théorie probabiliste des transitions de phase), June Huh (théorie de Hodge appliquée à la combinatoire), James Maynard (théorie analytique des nombres) et Maryna Viazovska (empilement de sphères le plus dense en dimension 8) ont reçu la médaille."
+   },
+   "r": [
+    {
+     "t": "Fields Medal",
+     "u": "https://en.wikipedia.org/wiki/Fields_Medal",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "fields-medals-2026",
+   "year": 2026,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Applied Mathematics",
+    "Geometry and Topology",
+    "Mathematical Physics"
+   ],
+   "title": {
+    "en": "Fields Medals 2026",
+    "fr": "Médailles Fields 2026"
+   },
+   "text": {
+    "en": "Awarded on 23 July 2026 in Philadelphia, according to Wikipedia (not checked against the IMU): Yu Deng (rigorous derivation of the Boltzmann equation from hard-sphere dynamics), John Pardon (symplectic geometry), Jacob Tsimerman (o-minimality in arithmetic geometry) and Hong Wang (harmonic analysis, geometric measure theory).",
+    "fr": "Décernées le 23 juillet 2026 à Philadelphie, d'après Wikipédia (non vérifié auprès de l'UMI) : Yu Deng (dérivation rigoureuse de l'équation de Boltzmann à partir de sphères dures), John Pardon (géométrie symplectique), Jacob Tsimerman (o-minimalité en géométrie arithmétique) et Hong Wang (analyse harmonique, théorie géométrique de la mesure)."
+   },
+   "r": [
+    {
+     "t": "Fields Medal",
+     "u": "https://en.wikipedia.org/wiki/Fields_Medal",
+     "a": "Wikipedia (en)",
+     "y": null
+    },
+    {
+     "t": "Hong Wang (mathematician)",
+     "u": "https://en.wikipedia.org/wiki/Hong_Wang_(mathematician)",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "fermat-last-theorem",
+   "year": 1995,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Algebra and Number Theory"
+   ],
+   "title": {
+    "en": "Proof of Fermat's Last Theorem",
+    "fr": "Preuve du dernier théorème de Fermat"
+   },
+   "text": {
+    "en": "Andrew Wiles presented a proof in 1993; a flaw was found and he and Richard Taylor repaired it in 1994. It was published in the Annals of Mathematics in 1995 and rests on the modularity of semistable elliptic curves. Wiles received the 2016 Abel Prize.",
+    "fr": "Andrew Wiles a présenté une preuve en 1993 ; une faille a été trouvée puis corrigée en 1994 avec Richard Taylor. Elle a paru dans les Annals of Mathematics en 1995 et repose sur la modularité des courbes elliptiques semi-stables. Wiles a reçu le prix Abel 2016."
+   },
+   "r": [
+    {
+     "t": "Fermat's Last Theorem",
+     "u": "https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "poincare-conjecture",
+   "year": 2003,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Geometry and Topology"
+   ],
+   "title": {
+    "en": "Proof of the Poincaré conjecture",
+    "fr": "Preuve de la conjecture de Poincaré"
+   },
+   "text": {
+    "en": "Grigori Perelman posted three arXiv papers between 2002 and 2003 outlining a proof, building on Richard Hamilton's Ricci flow program. Several groups wrote detailed expositions and found the gaps minor. He declined the 2006 Fields Medal and the 2010 Clay prize.",
+    "fr": "Grigori Perelman a mis en ligne trois articles sur arXiv entre 2002 et 2003 esquissant une preuve, dans le prolongement du flot de Ricci de Richard Hamilton. Plusieurs équipes ont rédigé des exposés détaillés et jugé les lacunes mineures. Il a refusé la médaille Fields 2006 et le prix Clay 2010."
+   },
+   "r": [
+    {
+     "t": "Poincaré conjecture",
+     "u": "https://en.wikipedia.org/wiki/Poincar%C3%A9_conjecture",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "kepler-flyspeck",
+   "year": 2014,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Geometry and Topology",
+    "Discrete Mathematics and Combinatorics"
+   ],
+   "title": {
+    "en": "Kepler conjecture and the Flyspeck formal proof",
+    "fr": "Conjecture de Kepler et preuve formelle Flyspeck"
+   },
+   "text": {
+    "en": "Thomas Hales announced in 1998 a proof that the familiar stacking is the densest sphere packing in 3D; it appeared in 2005. The Flyspeck project completed a computer-checked formal proof on 10 August 2014.",
+    "fr": "Thomas Hales a annoncé en 1998 une preuve que l'empilement usuel est le plus dense en 3D ; elle a paru en 2005. Le projet Flyspeck a achevé une preuve formelle vérifiée par ordinateur le 10 août 2014."
+   },
+   "r": [
+    {
+     "t": "Kepler conjecture",
+     "u": "https://en.wikipedia.org/wiki/Kepler_conjecture",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "bounded-gaps-primes",
+   "year": 2013,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Algebra and Number Theory"
+   ],
+   "title": {
+    "en": "Bounded gaps between primes",
+    "fr": "Écarts bornés entre nombres premiers"
+   },
+   "text": {
+    "en": "In April 2013 Yitang Zhang showed infinitely many pairs of primes differ by less than 70 million. Work by James Maynard and Terence Tao, plus a Polymath collaboration, brought the bound down to 246. The twin prime conjecture (gap 2) remains open.",
+    "fr": "En avril 2013, Yitang Zhang a montré qu'une infinité de paires de nombres premiers diffèrent de moins de 70 millions. Les travaux de James Maynard et Terence Tao, et une collaboration Polymath, ont ramené la borne à 246. La conjecture des nombres premiers jumeaux (écart 2) reste ouverte."
+   },
+   "r": [
+    {
+     "t": "Twin prime",
+     "u": "https://en.wikipedia.org/wiki/Twin_prime",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "sphere-packing-8-24",
+   "year": 2016,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Geometry and Topology",
+    "Discrete Mathematics and Combinatorics"
+   ],
+   "title": {
+    "en": "Optimal sphere packings in dimensions 8 and 24",
+    "fr": "Empilements de sphères optimaux en dimensions 8 et 24"
+   },
+   "text": {
+    "en": "Maryna Viazovska proved that the E8 lattice is the densest sphere packing in 8 dimensions. Soon after, with Cohn, Kumar, Miller and Radchenko, she proved the Leech lattice is optimal in 24 dimensions. Both papers appeared in 2017.",
+    "fr": "Maryna Viazovska a prouvé que le réseau E8 donne l'empilement le plus dense en dimension 8. Peu après, avec Cohn, Kumar, Miller et Radchenko, elle a prouvé l'optimalité du réseau de Leech en dimension 24. Les deux articles ont paru en 2017."
+   },
+   "r": [
+    {
+     "t": "Sphere packing",
+     "u": "https://en.wikipedia.org/wiki/Sphere_packing",
+     "a": "Wikipedia (en)",
+     "y": null
+    },
+    {
+     "t": "Fields Medal",
+     "u": "https://en.wikipedia.org/wiki/Fields_Medal",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "kakeya-3d",
+   "year": 2025,
+   "ast": "claimed",
+   "ai": false,
+   "subs": [
+    "Geometry and Topology",
+    "Applied Mathematics"
+   ],
+   "title": {
+    "en": "Kakeya conjecture in three dimensions",
+    "fr": "Conjecture de Kakeya en dimension trois"
+   },
+   "text": {
+    "en": "Hong Wang and Joshua Zahl posted a 127-page proof in February 2025 (arXiv:2502.17655) that every Kakeya set in 3-space has full dimension 3. The source does not say whether it has been peer reviewed.",
+    "fr": "Hong Wang et Joshua Zahl ont publié en février 2025 une preuve de 127 pages (arXiv:2502.17655) que tout ensemble de Kakeya de l'espace de dimension 3 est de dimension 3. La source ne dit pas si elle a été évaluée par des pairs."
+   },
+   "r": [
+    {
+     "t": "Kakeya set",
+     "u": "https://en.wikipedia.org/wiki/Kakeya_set",
+     "a": "Wikipedia (en)",
+     "y": null
+    },
+    {
+     "t": "Hong Wang (mathematician)",
+     "u": "https://en.wikipedia.org/wiki/Hong_Wang_(mathematician)",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "geometric-langlands",
+   "year": 2024,
+   "ast": "claimed",
+   "ai": false,
+   "subs": [
+    "Algebra and Number Theory",
+    "Geometry and Topology"
+   ],
+   "title": {
+    "en": "Geometric Langlands conjecture",
+    "fr": "Conjecture de Langlands géométrique"
+   },
+   "text": {
+    "en": "On 6 May 2024 a team including Dennis Gaitsgory and Sam Raskin announced a proof of the categorical unramified geometric Langlands conjecture, in over 1,000 pages. Wikipedia calls it a claimed proof and does not say it is fully verified.",
+    "fr": "Le 6 mai 2024, une équipe dont Dennis Gaitsgory et Sam Raskin a annoncé une preuve de la conjecture de Langlands géométrique catégorique non ramifiée, sur plus de 1 000 pages. Wikipédia parle de preuve annoncée sans confirmer une vérification complète."
+   },
+   "r": [
+    {
+     "t": "Geometric Langlands correspondence",
+     "u": "https://en.wikipedia.org/wiki/Geometric_Langlands_correspondence",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "ramsey-bound",
+   "year": 2023,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Discrete Mathematics and Combinatorics"
+   ],
+   "title": {
+    "en": "Exponential improvement of the diagonal Ramsey bound",
+    "fr": "Amélioration exponentielle de la borne de Ramsey diagonale"
+   },
+   "text": {
+    "en": "In 2023 Campos, Griffiths, Morris and Sahasrabudhe proved R(s,s) is at most (4 minus epsilon) to the power s, improving the roughly 4^s bound that stood for decades. The lower bound is unchanged, so a large gap remains.",
+    "fr": "En 2023, Campos, Griffiths, Morris et Sahasrabudhe ont prouvé que R(s,s) est au plus (4 moins epsilon) puissance s, améliorant la borne d'environ 4^s qui tenait depuis des décennies. La borne inférieure est inchangée, un grand écart demeure."
+   },
+   "r": [
+    {
+     "t": "Ramsey's theorem",
+     "u": "https://en.wikipedia.org/wiki/Ramsey%27s_theorem",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "hilbert-sixth-fluids",
+   "year": 2025,
+   "ast": "claimed",
+   "ai": false,
+   "subs": [
+    "Mathematical Physics",
+    "Statistical and Nonlinear Physics",
+    "Fluid Flow and Transfer Processes"
+   ],
+   "title": {
+    "en": "Fluid equations from Newton's laws (Hilbert's sixth problem)",
+    "fr": "Équations des fluides à partir des lois de Newton (sixième problème de Hilbert)"
+   },
+   "text": {
+    "en": "In a 2025 paper (arXiv:2503.01800), Yu Deng, Zaher Hani and Xiao Ma claim to derive fluid equations from Newton's laws via Boltzmann's kinetic theory. Others were still examining it in May 2025, and Wikipedia still lists the problem as open.",
+    "fr": "Dans un article de 2025 (arXiv:2503.01800), Yu Deng, Zaher Hani et Xiao Ma affirment dériver des équations des fluides à partir des lois de Newton via la théorie cinétique de Boltzmann. D'autres l'examinaient encore en mai 2025, et Wikipédia garde le problème comme ouvert."
+   },
+   "r": [
+    {
+     "t": "Hilbert's sixth problem",
+     "u": "https://en.wikipedia.org/wiki/Hilbert%27s_sixth_problem",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "busy-beaver-5",
+   "year": 2024,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Theoretical Computer Science",
+    "Computational Theory and Mathematics"
+   ],
+   "title": {
+    "en": "The fifth Busy Beaver number",
+    "fr": "Le cinquième nombre du Castor affairé"
+   },
+   "text": {
+    "en": "A collaborative online group of amateurs proved in 2024, with a proof formalised in Rocq (Coq), that the largest number of steps for a halting 5-state Turing machine is 47,176,870.",
+    "fr": "Un collectif en ligne d'amateurs a prouvé en 2024, avec une preuve formalisée en Rocq (Coq), que le nombre maximal de pas d'une machine de Turing à 5 états qui s'arrête est 47 176 870."
+   },
+   "r": [
+    {
+     "t": "Busy beaver",
+     "u": "https://en.wikipedia.org/wiki/Busy_beaver",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "nobel-physics-2020-black-holes",
+   "year": 2020,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Astronomy and Astrophysics"
+   ],
+   "title": {
+    "en": "Nobel Prize in Physics 2020: black holes",
+    "fr": "Nobel de physique 2020 : les trous noirs"
+   },
+   "text": {
+    "en": "Roger Penrose was honoured for showing that black hole formation is a robust prediction of general relativity. Reinhard Genzel and Andrea Ghez shared the other half for the discovery of a supermassive compact object at the centre of our galaxy.",
+    "fr": "Roger Penrose a été récompensé pour avoir montré que la formation de trous noirs est une prédiction robuste de la relativité générale. Reinhard Genzel et Andrea Ghez ont reçu l'autre moitié pour la découverte d'un objet compact supermassif au centre de notre galaxie."
+   },
+   "r": [
+    {
+     "t": "Andrea Ghez",
+     "u": "https://en.wikipedia.org/wiki/Andrea_Ghez",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "nobel-physics-2022-bell",
+   "year": 2022,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Atomic and Molecular Physics, and Optics",
+    "Statistical and Nonlinear Physics"
+   ],
+   "title": {
+    "en": "Nobel Prize in Physics 2022: entangled photons",
+    "fr": "Nobel de physique 2022 : photons intriqués"
+   },
+   "text": {
+    "en": "Alain Aspect, John Clauser and Anton Zeilinger were honoured for experiments with entangled photons establishing the violation of Bell inequalities, and for pioneering quantum information science.",
+    "fr": "Alain Aspect, John Clauser et Anton Zeilinger ont été récompensés pour leurs expériences avec des photons intriqués établissant la violation des inégalités de Bell et pour avoir fait avancer la science de l'information quantique."
+   },
+   "r": [
+    {
+     "t": "Alain Aspect",
+     "u": "https://en.wikipedia.org/wiki/Alain_Aspect",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "nobel-physics-2025-quantum-circuit",
+   "year": 2025,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Condensed Matter Physics"
+   ],
+   "title": {
+    "en": "Nobel Prize in Physics 2025: quantum tunnelling in a circuit",
+    "fr": "Nobel de physique 2025 : effet tunnel quantique dans un circuit"
+   },
+   "text": {
+    "en": "John Clarke, Michel Devoret and John Martinis were cited for the discovery of macroscopic quantum tunnelling and energy quantisation in an electric circuit, a basis for superconducting quantum computing.",
+    "fr": "John Clarke, Michel Devoret et John Martinis ont été distingués pour la découverte de l'effet tunnel quantique macroscopique et de la quantification de l'énergie dans un circuit électrique, base des ordinateurs quantiques supraconducteurs."
+   },
+   "r": [
+    {
+     "t": "John Clarke (physicist)",
+     "u": "https://en.wikipedia.org/wiki/John_Clarke_(physicist)",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "icecube-neutrinos",
+   "year": 2026,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Nuclear and High Energy Physics",
+    "Astronomy and Astrophysics"
+   ],
+   "title": {
+    "en": "IceCube: neutrinos from astrophysical sources",
+    "fr": "IceCube : des neutrinos d'origine astrophysique"
+   },
+   "text": {
+    "en": "IceCube reported high-energy neutrinos from outside the Galaxy in 2013, linked one to the blazar TXS 0506+056 (2018), and found emission from NGC 1068 (2022) and the Milky Way plane (2023). Wikipedia lists Francis Halzen as the 2026 Nobel laureate in Physics for it; we could not check this against the Nobel Committee.",
+    "fr": "IceCube a rapporté en 2013 des neutrinos de haute énergie venus de l'extérieur de la Galaxie, en a relié un au blazar TXS 0506+056 (2018), puis a trouvé des émissions de NGC 1068 (2022) et du plan de la Voie lactée (2023). Wikipédia cite Francis Halzen comme lauréat du Nobel de physique 2026 ; nous n'avons pas pu le vérifier auprès du comité Nobel."
+   },
+   "r": [
+    {
+     "t": "IceCube Neutrino Observatory",
+     "u": "https://en.wikipedia.org/wiki/IceCube_Neutrino_Observatory",
+     "a": "Wikipedia (en)",
+     "y": null
+    },
+    {
+     "t": "Francis Halzen",
+     "u": "https://en.wikipedia.org/wiki/Francis_Halzen",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "nobel-chemistry-2020-crispr",
+   "year": 2020,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Molecular Biology",
+    "Genetics"
+   ],
+   "title": {
+    "en": "Nobel Prize in Chemistry 2020: CRISPR-Cas9",
+    "fr": "Nobel de chimie 2020 : CRISPR-Cas9"
+   },
+   "text": {
+    "en": "Emmanuelle Charpentier and Jennifer Doudna were awarded for a method of genome editing. In 2012 their teams showed that Cas9 could be programmed with RNA to cut chosen DNA sequences.",
+    "fr": "Emmanuelle Charpentier et Jennifer Doudna ont été récompensées pour une méthode d'édition du génome. En 2012, leurs équipes ont montré que Cas9 pouvait être programmée par un ARN pour couper des séquences d'ADN choisies."
+   },
+   "r": [
+    {
+     "t": "CRISPR gene editing",
+     "u": "https://en.wikipedia.org/wiki/CRISPR_gene_editing",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "casgevy-crispr-therapy",
+   "year": 2023,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Molecular Medicine",
+    "Hematology",
+    "Genetics (clinical)"
+   ],
+   "title": {
+    "en": "First approved CRISPR therapy: Casgevy",
+    "fr": "Première thérapie CRISPR approuvée : Casgevy"
+   },
+   "text": {
+    "en": "In November 2023 the UK's MHRA approved Casgevy, the first approval worldwide of a CRISPR-based therapy, for sickle-cell anemia and beta thalassemia.",
+    "fr": "En novembre 2023, l'agence britannique MHRA a approuvé Casgevy, première approbation mondiale d'une thérapie fondée sur CRISPR, pour la drépanocytose et la bêta-thalassémie."
+   },
+   "r": [
+    {
+     "t": "CRISPR gene editing",
+     "u": "https://en.wikipedia.org/wiki/CRISPR_gene_editing",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "nobel-medicine-2023-mrna",
+   "year": 2023,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Immunology",
+    "Molecular Medicine"
+   ],
+   "title": {
+    "en": "Nobel Prize in Medicine 2023: mRNA vaccines",
+    "fr": "Nobel de médecine 2023 : vaccins à ARNm"
+   },
+   "text": {
+    "en": "Katalin Karikó and Drew Weissman were honoured for nucleoside base modifications that enabled effective mRNA vaccines against COVID-19. Their 2005 paper showed that replacing uridine with pseudouridine made mRNA non-immunogenic.",
+    "fr": "Katalin Karikó et Drew Weissman ont été récompensés pour les modifications de bases nucléosidiques ayant permis des vaccins à ARNm efficaces contre le COVID-19. Leur article de 2005 montrait que remplacer l'uridine par la pseudouridine rendait l'ARNm non immunogène."
+   },
+   "r": [
+    {
+     "t": "Katalin Karikó",
+     "u": "https://en.wikipedia.org/wiki/Katalin_Karik%C3%B3",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "nobel-medicine-2025-immune-tolerance",
+   "year": 2025,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Immunology"
+   ],
+   "title": {
+    "en": "Nobel Prize in Medicine 2025: peripheral immune tolerance",
+    "fr": "Nobel de médecine 2025 : la tolérance immunitaire périphérique"
+   },
+   "text": {
+    "en": "Mary Brunkow, Fred Ramsdell and Shimon Sakaguchi were honoured for discoveries on peripheral immune tolerance. Sakaguchi's team identified regulatory T cells in 1995 and showed in 2003 that FOXP3 is important for their development.",
+    "fr": "Mary Brunkow, Fred Ramsdell et Shimon Sakaguchi ont été récompensés pour leurs découvertes sur la tolérance immunitaire périphérique. L'équipe de Sakaguchi a identifié les lymphocytes T régulateurs en 1995 et montré en 2003 que FOXP3 est important pour leur développement."
+   },
+   "r": [
+    {
+     "t": "Shimon Sakaguchi",
+     "u": "https://en.wikipedia.org/wiki/Shimon_Sakaguchi",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "nobel-medicine-2026-optogenetics",
+   "year": 2026,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Cellular and Molecular Neuroscience",
+    "Biophysics"
+   ],
+   "title": {
+    "en": "Nobel Prize in Medicine 2026: optogenetics",
+    "fr": "Nobel de médecine 2026 : l'optogénétique"
+   },
+   "text": {
+    "en": "According to Wikipedia (not checked against the Nobel Committee), Karl Deisseroth, Peter Hegemann and Georg Nagel were honoured for light-gated ion channels and optogenetics. Nagel and Hegemann's 2003 paper described channelrhodopsin-2, and the first single-component optogenetic system in neurons was published in 2005.",
+    "fr": "D'après Wikipédia (non vérifié auprès du comité Nobel), Karl Deisseroth, Peter Hegemann et Georg Nagel ont été récompensés pour les canaux ioniques activés par la lumière et l'optogénétique. L'article de Nagel et Hegemann (2003) décrit la channelrhodopsine-2, et le premier système optogénétique à un seul composant dans des neurones a paru en 2005."
+   },
+   "r": [
+    {
+     "t": "Optogenetics",
+     "u": "https://en.wikipedia.org/wiki/Optogenetics",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "nobel-medicine-2022-paabo",
+   "year": 2022,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Genetics",
+    "Anthropology",
+    "Paleontology"
+   ],
+   "title": {
+    "en": "Nobel Prize in Medicine 2022: genomes of extinct hominins",
+    "fr": "Nobel de médecine 2022 : génomes d'hominines disparus"
+   },
+   "text": {
+    "en": "Svante Pääbo was honoured for discoveries on the genomes of extinct hominins and human evolution. His team published a draft Neanderthal genome in 2010 and reported the Denisovans from a Siberian finger bone.",
+    "fr": "Svante Pääbo a été récompensé pour ses découvertes sur les génomes des hominines disparus et l'évolution humaine. Son équipe a publié un génome néandertalien préliminaire en 2010 et révélé les Dénisoviens à partir d'un os de doigt sibérien."
+   },
+   "r": [
+    {
+     "t": "Svante Pääbo",
+     "u": "https://en.wikipedia.org/wiki/Svante_P%C3%A4%C3%A4bo",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "higgs-boson",
+   "year": 2012,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Nuclear and High Energy Physics"
+   ],
+   "title": {
+    "en": "Discovery of the Higgs boson",
+    "fr": "Découverte du boson de Higgs"
+   },
+   "text": {
+    "en": "The ATLAS and CMS experiments at CERN's Large Hadron Collider announced the Higgs boson on 4 July 2012. Its mass is about 125 GeV. Peter Higgs and François Englert won the 2013 Nobel Prize for the prediction.",
+    "fr": "Les expériences ATLAS et CMS du Grand collisionneur de hadrons du CERN ont annoncé le boson de Higgs le 4 juillet 2012. Sa masse est d'environ 125 GeV. Peter Higgs et François Englert ont reçu le Nobel 2013 pour la prédiction."
+   },
+   "r": [
+    {
+     "t": "Higgs boson",
+     "u": "https://en.wikipedia.org/wiki/Higgs_boson",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "ligo-gravitational-waves",
+   "year": 2015,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Astronomy and Astrophysics",
+    "Nuclear and High Energy Physics"
+   ],
+   "title": {
+    "en": "First direct detection of gravitational waves",
+    "fr": "Première détection directe d'ondes gravitationnelles"
+   },
+   "text": {
+    "en": "LIGO detected gravitational waves on 14 September 2015 from two merging black holes of about 36 and 29 solar masses, announced on 11 February 2016. Rainer Weiss, Barry Barish and Kip Thorne received the 2017 Nobel Prize in Physics.",
+    "fr": "LIGO a détecté des ondes gravitationnelles le 14 septembre 2015, issues de la fusion de deux trous noirs d'environ 36 et 29 masses solaires, annoncée le 11 février 2016. Rainer Weiss, Barry Barish et Kip Thorne ont reçu le Nobel de physique 2017."
+   },
+   "r": [
+    {
+     "t": "First observation of gravitational waves",
+     "u": "https://en.wikipedia.org/wiki/First_observation_of_gravitational_waves",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "eht-black-hole-images",
+   "year": 2019,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Astronomy and Astrophysics"
+   ],
+   "title": {
+    "en": "First images of black hole shadows",
+    "fr": "Premières images d'ombres de trous noirs"
+   },
+   "text": {
+    "en": "The Event Horizon Telescope collaboration published the first image of a black hole, M87*, on 10 April 2019, and of the Milky Way's Sagittarius A* on 12 May 2022.",
+    "fr": "La collaboration Event Horizon Telescope a publié la première image d'un trou noir, M87*, le 10 avril 2019, puis celle de Sagittarius A* au centre de la Voie lactée le 12 mai 2022."
+   },
+   "r": [
+    {
+     "t": "Event Horizon Telescope",
+     "u": "https://en.wikipedia.org/wiki/Event_Horizon_Telescope",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "jwst-first-images",
+   "year": 2022,
+   "ast": "accepted",
+   "ai": false,
+   "subs": [
+    "Astronomy and Astrophysics",
+    "Space and Planetary Science"
+   ],
+   "title": {
+    "en": "James Webb Space Telescope begins science",
+    "fr": "Le télescope spatial James Webb commence ses observations"
+   },
+   "text": {
+    "en": "JWST launched on 25 December 2021 and released its first deep field on 11 July 2022. It can detect galaxies back to about redshift 20, beyond Hubble's reach of about 11.",
+    "fr": "JWST a été lancé le 25 décembre 2021 et a publié son premier champ profond le 11 juillet 2022. Il peut détecter des galaxies jusqu'à un redshift d'environ 20, au-delà de la limite de Hubble (environ 11)."
+   },
+   "r": [
+    {
+     "t": "James Webb Space Telescope",
+     "u": "https://en.wikipedia.org/wiki/James_Webb_Space_Telescope",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "desi-dark-energy-hint",
+   "year": 2025,
+   "ast": "claimed",
+   "ai": false,
+   "subs": [
+    "Astronomy and Astrophysics"
+   ],
+   "title": {
+    "en": "DESI: a hint that dark energy may evolve",
+    "fr": "DESI : un indice que l'énergie noire pourrait évoluer"
+   },
+   "text": {
+    "en": "On 19 March 2025 DESI's 3-year data, combined with other probes, suggested dark energy's influence may weaken over time. The significance is 3.2 to 3.4 sigma, below the 5-sigma discovery threshold.",
+    "fr": "Le 19 mars 2025, les données de DESI sur 3 ans, combinées à d'autres sondes, suggèrent que l'influence de l'énergie noire pourrait décroître avec le temps. La significativité est de 3,2 à 3,4 sigma, sous le seuil de découverte de 5 sigma."
+   },
+   "r": [
+    {
+     "t": "Dark Energy Spectroscopic Instrument",
+     "u": "https://en.wikipedia.org/wiki/Dark_Energy_Spectroscopic_Instrument",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "alphafold-2",
+   "year": 2020,
+   "ast": "accepted",
+   "ai": true,
+   "subs": [
+    "Structural Biology",
+    "Biochemistry",
+    "Artificial Intelligence"
+   ],
+   "title": {
+    "en": "AlphaFold predicts protein structures (Nobel 2024)",
+    "fr": "AlphaFold prédit la structure des protéines (Nobel 2024)"
+   },
+   "text": {
+    "en": "At the CASP14 contest in 2020, DeepMind's AlphaFold 2 gave the best prediction for 88 of 97 targets. Demis Hassabis and John Jumper shared half of the 2024 Chemistry Nobel for it. Known limits: low confidence in disordered regions, and it does not explain how proteins fold.",
+    "fr": "Au concours CASP14 en 2020, AlphaFold 2 de DeepMind a donné la meilleure prédiction pour 88 cibles sur 97. Demis Hassabis et John Jumper ont reçu la moitié du Nobel de chimie 2024 pour ce travail. Limites connues : faible confiance dans les régions désordonnées, et le repliement lui-même n'est pas expliqué."
+   },
+   "r": [
+    {
+     "t": "AlphaFold",
+     "u": "https://en.wikipedia.org/wiki/AlphaFold",
+     "a": "Wikipedia (en)",
+     "y": null
+    },
+    {
+     "t": "List of Nobel laureates in Chemistry",
+     "u": "https://en.wikipedia.org/wiki/List_of_Nobel_laureates_in_Chemistry",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "alphatensor",
+   "year": 2022,
+   "ast": "accepted",
+   "ai": true,
+   "subs": [
+    "Computational Theory and Mathematics",
+    "Artificial Intelligence"
+   ],
+   "title": {
+    "en": "AlphaTensor searches for faster matrix multiplication",
+    "fr": "AlphaTensor cherche des multiplications de matrices plus rapides"
+   },
+   "text": {
+    "en": "In October 2022 DeepMind released AlphaTensor, which found many matrix-multiplication algorithms. One multiplies 4x4 matrices over the two-element field with 47 multiplications, where recursive Strassen needs 49. That gain holds only in that setting.",
+    "fr": "En octobre 2022, DeepMind a publié AlphaTensor, qui a trouvé de nombreux algorithmes de multiplication de matrices. L'un d'eux multiplie des matrices 4x4 sur le corps à deux éléments avec 47 multiplications, contre 49 pour Strassen récursif. Ce gain ne vaut que dans ce cadre."
+   },
+   "r": [
+    {
+     "t": "AlphaTensor",
+     "u": "https://en.wikipedia.org/wiki/AlphaTensor",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "funsearch-cap-set",
+   "year": 2023,
+   "ast": "accepted",
+   "ai": true,
+   "subs": [
+    "Discrete Mathematics and Combinatorics",
+    "Artificial Intelligence"
+   ],
+   "title": {
+    "en": "FunSearch finds large cap sets",
+    "fr": "FunSearch trouve de grands « cap sets »"
+   },
+   "text": {
+    "en": "On 14 December 2023 DeepMind presented FunSearch, a language model paired with an automatic checker that rejects wrong programs. It produced the largest cap sets found in some settings. Humans wrote the set-up and a seed program and refined the search with mathematician Jordan Ellenberg.",
+    "fr": "Le 14 décembre 2023, DeepMind a présenté FunSearch, un modèle de langage associé à un vérificateur automatique rejetant les programmes faux. Il a produit les plus grands « cap sets » connus dans certains cas. Les humains ont écrit le cadre et un programme de départ et affiné la recherche avec le mathématicien Jordan Ellenberg."
+   },
+   "r": [
+    {
+     "t": "FunSearch: Making new discoveries in mathematical sciences using LLMs",
+     "u": "https://deepmind.google/discover/blog/funsearch-making-new-discoveries-in-mathematical-sciences-using-large-language-models/",
+     "a": "Google DeepMind",
+     "y": 2023
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "imo-2024-alphaproof",
+   "year": 2024,
+   "ast": "accepted",
+   "ai": true,
+   "subs": [
+    "Artificial Intelligence",
+    "Computational Theory and Mathematics"
+   ],
+   "title": {
+    "en": "AlphaProof and AlphaGeometry 2 at the 2024 Olympiad",
+    "fr": "AlphaProof et AlphaGeometry 2 à l'Olympiade 2024"
+   },
+   "text": {
+    "en": "DeepMind says its two systems solved 4 of 6 problems of the 2024 International Mathematical Olympiad, 28 of 42 points, one point under the gold threshold. Humans first translated the problems into formal language, and some took up to three days. Source: DeepMind's own announcement.",
+    "fr": "DeepMind indique que ses deux systèmes ont résolu 4 problèmes sur 6 de l'Olympiade internationale de mathématiques 2024, soit 28 points sur 42, à un point du seuil d'or. Des humains ont d'abord traduit les problèmes en langage formel, et certains ont pris jusqu'à trois jours. Source : l'annonce de DeepMind elle-même."
+   },
+   "r": [
+    {
+     "t": "AI achieves silver-medal standard solving International Mathematical Olympiad problems",
+     "u": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
+     "a": "Google DeepMind",
+     "y": 2024
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "imo-2025-gold-claims",
+   "year": 2025,
+   "ast": "disputed",
+   "ai": true,
+   "subs": [
+    "Artificial Intelligence",
+    "Computational Theory and Mathematics"
+   ],
+   "title": {
+    "en": "Olympiad 2025: two gold-level claims",
+    "fr": "Olympiade 2025 : deux annonces de niveau or"
+   },
+   "text": {
+    "en": "DeepMind's Gemini Deep Think scored 35 of 42 in natural language, graded by the IMO coordinators, who say this does not validate the system itself. OpenAI claimed the same score for an experimental model graded by the company, not the IMO. Terence Tao and Kevin Buzzard said such claims are not reproducible or comparable with students.",
+    "fr": "Gemini Deep Think de DeepMind a obtenu 35 sur 42 en langage naturel, corrigé par les coordinateurs de l'OMI, qui précisent que cela ne valide pas le système lui-même. OpenAI a revendiqué le même score pour un modèle expérimental corrigé par l'entreprise, pas par l'OMI. Terence Tao et Kevin Buzzard ont jugé ces annonces non reproductibles et non comparables à celles des élèves."
+   },
+   "r": [
+    {
+     "t": "Advanced version of Gemini with Deep Think officially achieves gold-medal standard at the IMO",
+     "u": "https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/",
+     "a": "Google DeepMind",
+     "y": 2025
+    },
+    {
+     "t": "International Mathematical Olympiad",
+     "u": "https://en.wikipedia.org/wiki/International_Mathematical_Olympiad",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "gnome-materials",
+   "year": 2023,
+   "ast": "disputed",
+   "ai": true,
+   "subs": [
+    "Materials Chemistry",
+    "Condensed Matter Physics",
+    "Artificial Intelligence"
+   ],
+   "title": {
+    "en": "GNoME proposes 2.2 million crystals; experts doubt the novelty",
+    "fr": "GNoME propose 2,2 millions de cristaux ; des experts doutent de leur nouveauté"
+   },
+   "text": {
+    "en": "In November 2023 DeepMind said GNoME predicted 2.2 million new crystals, 380,000 of them stable candidates. In 2024 chemists Anthony Cheetham and Ram Seshadri replied that they found no strikingly novel compounds, and that the paper lists proposed compounds rather than new materials.",
+    "fr": "En novembre 2023, DeepMind a annoncé que GNoME avait prédit 2,2 millions de cristaux, dont 380 000 candidats stables. En 2024, les chimistes Anthony Cheetham et Ram Seshadri ont répondu n'avoir trouvé aucun composé vraiment nouveau, et que l'article liste des composés proposés plutôt que de nouveaux matériaux."
+   },
+   "r": [
+    {
+     "t": "Millions of new materials discovered with deep learning",
+     "u": "https://deepmind.google/discover/blog/millions-of-new-materials-discovered-with-deep-learning/",
+     "a": "Google DeepMind",
+     "y": 2023
+    },
+    {
+     "t": "Artificial Intelligence Driving Materials Discovery? Perspective on 'Scaling Deep Learning for Materials Discovery'",
+     "u": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11044265",
+     "a": "Chemistry of Materials (via PMC)",
+     "y": 2024
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "halicin",
+   "year": 2020,
+   "ast": "accepted",
+   "ai": true,
+   "subs": [
+    "Drug Discovery",
+    "Microbiology",
+    "Artificial Intelligence"
+   ],
+   "title": {
+    "en": "Halicin: an antibiotic flagged by deep learning",
+    "fr": "Halicine : un antibiotique repéré par apprentissage profond"
+   },
+   "text": {
+    "en": "A team around James Collins at MIT used a deep-learning screen to flag halicin as a likely broad-spectrum antibiotic (Cell, 2020). Lab tests confirmed activity and mouse tests showed it works against resistant bacteria. The source mentions no human clinical trials.",
+    "fr": "Une équipe autour de James Collins au MIT a utilisé un criblage par apprentissage profond pour repérer l'halicine comme antibiotique probablement à large spectre (Cell, 2020). Les tests en laboratoire ont confirmé l'activité, et des tests sur souris montrent un effet sur des bactéries résistantes. La source ne mentionne aucun essai clinique chez l'humain."
+   },
+   "r": [
+    {
+     "t": "Halicin",
+     "u": "https://en.wikipedia.org/wiki/Halicin",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "alphaevolve",
+   "year": 2025,
+   "ast": "claimed",
+   "ai": true,
+   "subs": [
+    "Artificial Intelligence",
+    "Discrete Mathematics and Combinatorics",
+    "Computational Theory and Mathematics"
+   ],
+   "title": {
+    "en": "AlphaEvolve tackles 50 open maths problems",
+    "fr": "AlphaEvolve s'attaque à 50 problèmes ouverts de mathématiques"
+   },
+   "text": {
+    "en": "In May 2025 Google reported that AlphaEvolve, a Gemini-based system, matched the best known solution on 75% of 50 open maths problems and improved 20% of them, including the kissing number in 11 dimensions. These figures are Google's own.",
+    "fr": "En mai 2025, Google a annoncé qu'AlphaEvolve, un système basé sur Gemini, égalait la meilleure solution connue pour 75 % de 50 problèmes mathématiques ouverts et l'améliorait pour 20 %, dont le nombre de contact (kissing number) en dimension 11. Ces chiffres viennent de Google."
+   },
+   "r": [
+    {
+     "t": "AlphaEvolve: a Gemini-powered coding agent for designing advanced algorithms",
+     "u": "https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/",
+     "a": "Google DeepMind",
+     "y": 2025
+    },
+    {
+     "t": "AlphaEvolve",
+     "u": "https://en.wikipedia.org/wiki/AlphaEvolve",
+     "a": "Wikipedia (en)",
+     "y": null
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "erdos-obscure-problems",
+   "year": 2026,
+   "ast": "accepted",
+   "ai": true,
+   "subs": [
+    "Discrete Mathematics and Combinatorics",
+    "Algebra and Number Theory",
+    "Artificial Intelligence"
+   ],
+   "title": {
+    "en": "AI solves some obscure Erdős problems",
+    "fr": "L'IA résout des problèmes d'Erdős peu connus"
+   },
+   "text": {
+    "en": "In a Gemini case study (arXiv, January 2026), 24 authors screened 700 open Erdős problems. Of 13 addressed, 5 gave apparently new autonomous solutions and 8 matched existing literature. The authors say the problems were open mainly because they were obscure. An earlier claim that GPT-5 solved ten problems was called a misrepresentation by Thomas Bloom: it had found existing solutions.",
+    "fr": "Dans une étude de cas avec Gemini (arXiv, janvier 2026), 24 auteurs ont examiné 700 problèmes d'Erdős ouverts. Sur 13 traités, 5 ont donné des solutions autonomes apparemment nouvelles et 8 correspondaient à la littérature. Les auteurs estiment que ces problèmes étaient ouverts surtout parce qu'obscurs. Une annonce antérieure selon laquelle GPT-5 en aurait résolu dix a été qualifiée de déformation par Thomas Bloom : il avait retrouvé des solutions existantes."
+   },
+   "r": [
+    {
+     "t": "Semi-Autonomous Mathematics Discovery with Gemini: A Case Study on the Erdős Problems",
+     "u": "https://arxiv.org/abs/2601.22401",
+     "a": "arXiv",
+     "y": 2026
+    },
+    {
+     "t": "Erdős problems",
+     "u": "https://en.wikipedia.org/wiki/Erd%C5%91s_problems",
+     "a": "Wikipedia (en)",
+     "y": null
+    },
+    {
+     "t": "Why the Legendary Erdős Problems Are Falling to AI",
+     "u": "https://www.quantamagazine.org/why-the-legendary-erdos-problems-are-falling-to-ai-20260803",
+     "a": "Quanta Magazine",
+     "y": 2026
+    }
+   ],
+   "checked": "2026-11-20"
+  },
+  {
+   "id": "unit-distance-disproof",
+   "year": 2026,
+   "ast": "claimed",
+   "ai": true,
+   "subs": [
+    "Discrete Mathematics and Combinatorics",
+    "Geometry and Topology",
+    "Artificial Intelligence"
+   ],
+   "title": {
+    "en": "Erdős unit distance conjecture: a counterexample announced",
+    "fr": "Conjecture des distances unité d'Erdős : un contre-exemple annoncé"
+   },
+   "text": {
+    "en": "On 20 May 2026 OpenAI announced that an internal model disproved Erdős's 1946 unit distance conjecture. According to Quanta, nine mathematicians commented on the proof, Tim Gowers said he would have recommended acceptance at the Annals of Mathematics, and humans improved the result within weeks. We found no formal verification.",
+    "fr": "Le 20 mai 2026, OpenAI a annoncé qu'un modèle interne avait réfuté la conjecture des distances unité d'Erdős (1946). Selon Quanta, neuf mathématiciens ont commenté la preuve, Tim Gowers aurait recommandé son acceptation aux Annals of Mathematics, et des humains ont amélioré le résultat en quelques semaines. Nous n'avons pas trouvé de vérification formelle."
+   },
+   "r": [
+    {
+     "t": "Why the Legendary Erdős Problems Are Falling to AI",
+     "u": "https://www.quantamagazine.org/why-the-legendary-erdos-problems-are-falling-to-ai-20260803",
+     "a": "Quanta Magazine",
+     "y": 2026
+    }
+   ],
+   "checked": "2026-11-20"
+  }
+ ]
+}

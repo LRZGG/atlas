@@ -1,6 +1,6 @@
 # Automatic fiche check
 
-Generated on 2026-11-18 by `check-fiches.mjs` (no AI, no network). 85 open point(s) out of 85, 29 fiches.
+Generated on 2026-11-20 by `check-fiches.mjs` (no AI, no network). 85 open point(s) out of 85, 29 fiches.
 
 An open point is a **question put to a human**, not a confirmed error. To rule on it: open a "Correct a fiche" issue on GitHub, or add a line to `checks/decisions.json` (`key`, `status`: confirmed / corrected / rejected, `by`, `date`).
 

@@ -91,3 +91,7 @@ Limit: a second AI rereading every draft is not wired in (no key, no external ca
 ## What we deliberately do not do (at launch)
 
 No accounts, no votes, no rankings, no ads. Votes need moderation, are easy to manipulate and measure popularity rather than importance. Instead: a “report an error or propose a source” link on each fiche, through GitHub.
+
+## Advances ("!" on the map)
+
+`advances.json` lists major results, prizes and AI-assisted progress (37 entries). Each has a year, a status (`accepted`, `claimed`, `disputed`), an optional `ai` flag, the subfields it touches, a bilingual summary, and the sources actually read. The summaries are drafted with an AI from those sources, so they carry the same "not reviewed" label as the fiches. Most sources are English Wikipedia pages (secondary); Fields, Abel and Nobel items for 2026 are not checked against the official committees. The default view shows advances since 2020; the "Advances" filter shows the whole history. The `ai` tag appears only when a read source says an AI contributed.

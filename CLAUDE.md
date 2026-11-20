@@ -20,6 +20,7 @@ An open atlas of unresolved questions of science, placed on a measured map of wo
 - **Licences**: OpenAlex data CC0; Wikipedia excerpts CC BY-SA (credited); fonts and images only under free licences, credited. Fonts (IM Fell DW Pica, Archivo Narrow, OFL) are self-hosted in `docs/fonts/` with their licences: never load an external resource in the visitor's browser. The licence choice for the repository (MIT / CC BY-SA 4.0) is proposed, **not yet confirmed by the author**.
 - **Name**: Unknownpedia. Questions come from published lists (Science 2005, Millennium problems, Hilbert, Wikipedia lists, Smale), hand-picked; each question keeps its source.
 - Never invent numbers, testimonials or references: every reference is verified in OpenAlex by `fetch-fiches.mjs`.
+- Advances (`advances.json`) are shown as "!" (same style as "?"), with an "IA" tag only when a read source says an AI contributed. Default view: since 2020; the Advances filter shows all.
 - Mysteries are on the map as questions of type `enigme` (same “?”, told apart by the Mysteries filter and the fiche kicker; the small square was dropped because visitors could not read it); folklore is not on the map (a legend is not a research topic).
 
 ## Known pitfalls

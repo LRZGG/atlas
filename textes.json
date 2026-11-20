@@ -128,7 +128,7 @@
     "plate_all": "Cumul",
     "plate_margin": "Marge de lecture",
     "ia_checked": "Vérifié pour la dernière fois le",
-    "key_ai": "Anneau « IA » : une IA a contribué ({n} questions sur {m}). Sans anneau : pas encore d'aide documentée.",
+    "key_ai": "Tag « IA » : une IA a contribué à cette question ou à cette avancée (voir « Où l'IA a aidé »).",
     "hi_t": "Première visite ?",
     "hi_1": "Les courbes montrent où l'on publie beaucoup : plus c'est haut, plus il y a de recherche.",
     "hi_2": "Chaque point est un sujet de recherche ; chaque numéro, une discipline.",
@@ -138,7 +138,16 @@
     "rnd_btn": "Au hasard",
     "rnd_title": "Ouvre une question au hasard : de quoi donner envie de creuser.",
     "ai_tag": "IA",
-    "hi_again": "Revoir l'introduction"
+    "hi_again": "Revoir l'introduction",
+    "st_adv": "Avancée majeure",
+    "adv_accepted": "acceptée",
+    "adv_claimed": "annoncée",
+    "adv_disputed": "contestée",
+    "adv_prov": "Résumé rédigé avec une IA à partir des sources citées ; pas encore relu par un spécialiste.",
+    "adv_src": "Sources lues",
+    "f_a": "Avancées",
+    "key_adv": "! : une avancée majeure (prix, résolution, découverte). Par défaut, celles depuis 2020 ; le filtre « Avancées » montre tout l'historique.",
+    "hi_4": "Chaque ! est une avancée majeure (prix, résolution, découverte). Le tag IA indique qu'une IA y a contribué."
   },
   "en": {
     "titre": "Unknownpedia",
@@ -269,7 +278,7 @@
     "plate_all": "All",
     "plate_margin": "Reading margin",
     "ia_checked": "Last checked",
-    "key_ai": "“AI” ring: an AI contributed ({n} of {m} questions). No ring: no documented help yet.",
+    "key_ai": "“AI” tag: an AI contributed to this question or advance (see “Where AI helped”).",
     "hi_t": "First visit?",
     "hi_1": "The contours show where a lot is published: the higher, the more research.",
     "hi_2": "Each dot is a research topic; each number, a discipline.",
@@ -279,6 +288,15 @@
     "rnd_btn": "Random",
     "rnd_title": "Opens a random question: a reason to dig in.",
     "ai_tag": "AI",
-    "hi_again": "Replay the introduction"
+    "hi_again": "Replay the introduction",
+    "st_adv": "Major advance",
+    "adv_accepted": "accepted",
+    "adv_claimed": "announced",
+    "adv_disputed": "disputed",
+    "adv_prov": "Summary written with an AI from the cited sources; not yet reviewed by a specialist.",
+    "adv_src": "Sources read",
+    "f_a": "Advances",
+    "key_adv": "!: a major advance (prize, resolution, discovery). By default those since 2020; the “Advances” filter shows the full history.",
+    "hi_4": "Each ! is a major advance (prize, resolution, discovery). The AI tag means an AI contributed."
   }
 }

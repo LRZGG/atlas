@@ -55,3 +55,9 @@ Rule: nothing decorative; every effect encodes a datum or a source.
 - Read only through secondary sources so far: Navier–Stokes and unit distance (Quanta), AlphaFold and AlphaEvolve (lab pages). Not readable by our tools: erdosproblems.com, OpenAI page, nobelprize.org. Read the primary papers when possible.
 - Re-check regularly: peer review and Clay decision for Navier–Stokes, formal verification for unit distance, DeepMind's 9-of-353 Erdős paper (arXiv 2605.22763, not read).
 - Missing: AlphaProof / IMO 2025 (no primary source reached yet).
+
+## Advances (`advances.json`)
+
+- 37 entries so far (maths 12, natural sciences 15, AI 10). Sources are mostly Wikipedia: replace with primary sources (IMU, Nobel Committee, arXiv, journals) when readable.
+- Not yet covered: Abel Prize, Breakthrough Prizes, Turing Award, economics, social sciences, earth science, ecology. Add the 2024 Physics Nobel (Hopfield, Hinton) once its citation is read.
+- Idea: show advances by year with the time slider.
