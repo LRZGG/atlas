@@ -38,7 +38,7 @@ Two editorial choices depart from OpenAlex: *Agricultural and Biological Science
 | Small ticks along the first contour | The edge of the known, facing the little-studied |
 | A numbered circle | A discipline (reference table) |
 | A red “?” (white in dark mode) | An open question |
-| A “?” of type enigma | A documented mystery: facts exist, the answer is missing (shown in the fiche and with the Mysteries filter, no separate symbol) |
+| A “?” of type enigma | A documented mystery: facts exist, the answer is missing (drawn as a “?” inside a thin hollow circle, also in the Mysteries filter and the fiche kicker) |
 | The void in the middle (and beyond the ring) | Few papers link these disciplines: *terra incognita* |
 
 Limits:

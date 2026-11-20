@@ -147,7 +147,8 @@
     "adv_src": "Sources lues",
     "f_a": "Avancées",
     "key_adv": "! : une avancée majeure (prix, résolution, découverte). Par défaut, celles depuis 2020 ; le filtre « Avancées » montre tout l'historique.",
-    "hi_4": "Chaque ! est une avancée majeure (prix, résolution, découverte). Le tag IA indique qu'une IA y a contribué."
+    "hi_4": "Chaque ! est une avancée majeure (prix, résolution, découverte). Le tag IA indique qu'une IA y a contribué.",
+    "key_myst": "? dans un cercle : un mystère documenté (des faits existent, la réponse manque). Un « ? » seul : une question de recherche."
   },
   "en": {
     "titre": "Unknownpedia",
@@ -297,6 +298,7 @@
     "adv_src": "Sources read",
     "f_a": "Advances",
     "key_adv": "!: a major advance (prize, resolution, discovery). By default those since 2020; the “Advances” filter shows the full history.",
-    "hi_4": "Each ! is a major advance (prize, resolution, discovery). The AI tag means an AI contributed."
+    "hi_4": "Each ! is a major advance (prize, resolution, discovery). The AI tag means an AI contributed.",
+    "key_myst": "? in a circle: a documented mystery (facts exist, the answer is missing). A plain “?”: a research question."
   }
 }

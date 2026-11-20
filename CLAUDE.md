@@ -21,7 +21,7 @@ An open atlas of unresolved questions of science, placed on a measured map of wo
 - **Name**: Unknownpedia. Questions come from published lists (Science 2005, Millennium problems, Hilbert, Wikipedia lists, Smale), hand-picked; each question keeps its source.
 - Never invent numbers, testimonials or references: every reference is verified in OpenAlex by `fetch-fiches.mjs`.
 - Advances (`advances.json`) are shown as "!" (same style as "?"), with an "IA" tag only when a read source says an AI contributed. Default view: since 2020; the Advances filter shows all.
-- Mysteries are on the map as questions of type `enigme` (same “?”, told apart by the Mysteries filter and the fiche kicker; the small square was dropped because visitors could not read it); folklore is not on the map (a legend is not a research topic).
+- Mysteries are on the map as questions of type `enigme` (a “?” inside a thin hollow circle; real questions are a plain “?”; the small square was dropped because visitors could not read it); folklore is not on the map (a legend is not a research topic).
 
 ## Known pitfalls
 
