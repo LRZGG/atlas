@@ -782,6 +782,19 @@ function draw(dt) {
     const b = NS[f]; if (!b) return; ctx.strokeStyle = inkA(1.2); const A = FA[f], e = ease(A.g), r = 9 + 5 * e; ctx.fillStyle = COL.paper; ctx.beginPath(); ctx.arc(b[0], b[1], r, 0, 7); ctx.fill(); ctx.lineWidth = .7 + .6 * e; ctx.stroke(); ctx.fillStyle = inkA(1.5); ctx.font = `${11 + 2 * e}px "Archivo Narrow", sans-serif`; ctx.textAlign = 'center'; ctx.fillText(i + 1, b[0], b[1] + 4 + e * .6); ctx.globalAlpha = 1;
   });
   const cx = W / 2, sel = cur && cur.q != null ? cur.q : -1;
+  // Discipline names: once you zoom in (k from 1.7 to 2.2) each numbered circle gets its name beside it and keeps it. The name goes outward if there is room, otherwise
+  // to the other side; a name that would overlap another name or number is skipped (the hover card still shows it). Markers are pushed out of these boxes (see pushB).
+  const LR = [], FLN = clamp((k - 1.7) / .5, 0, 1), rightEdge = cur ? 460 : wideKey.matches ? 262 : 4;
+  if (FLN > 0) { ctx.font = '12px "Archivo Narrow", sans-serif'; ctx.textBaseline = 'alphabetic';
+    ORD.forEach(f => { const b = NS[f]; if (!b) return; const nm = loc(F[f].nn).toUpperCase(), w = ctx.measureText(nm).width, g = 15, pref = b[0] >= cx ? 1 : -1;
+      for (const sd of [pref, -pref]) { const x0 = sd > 0 ? b[0] + g : b[0] - g - w, r = [x0 - 3, b[1] - 9, x0 + w + 3, b[1] + 9];
+        if (r[0] < 4 || r[2] > W - rightEdge) continue;
+        if (LR.some(o => r[0] < o.r[2] && r[2] > o.r[0] && r[1] < o.r[3] && r[3] > o.r[1])) continue;
+        if (ORD.some(g2 => g2 !== f && NS[g2] && NS[g2][0] > r[0] - 12 && NS[g2][0] < r[2] + 12 && NS[g2][1] > r[1] - 12 && NS[g2][1] < r[3] + 12)) continue;
+        LR.push({ f, r, x: x0, y: b[1] + 4, nm, a: FLN }); break; } });
+    ctx.textAlign = 'left'; ctx.lineJoin = 'round'; ctx.lineWidth = 3.4;
+    for (const o of LR) { ctx.globalAlpha = o.a; ctx.strokeStyle = COL.paper; ctx.strokeText(o.nm, o.x, o.y); ctx.fillStyle = inkA(1.6); ctx.fillText(o.nm, o.x, o.y); }
+    ctx.globalAlpha = 1; }
   const dused = [];
   // The four broad domains: their name is written in an arc around the map, beyond the numbers, with a rule showing the domain's extent. They fade out on zoom.
   { const al = clamp((2.3 - k) / .8, 0, 1); if (al > 0) {
@@ -801,13 +814,14 @@ function draw(dt) {
     ctx.restore(); } }
   // Clustering: in dense areas, a single "?" stands for those within CR pixels (CR shrinks on zoom). The others fade: they appear and disappear smoothly.
   const CR = clamp(84 / Math.pow(k, .95), 21, 84), TS = Q.map(q => toScreen(q.x, q.y)), pri = QORD.slice().sort((a, b) => ((Q[b].ia.length > 0) - (Q[a].ia.length > 0)) || (!!Q[b].f - !!Q[a].f)), order = [...[sel, kbQ].filter(i => i >= 0), ...pri.filter(i => i !== sel && i !== kbQ && shown(i))], seen = new Set(), isLead = new Set(); CL = [];
-  const pushB = p => { let q = p; for (let it = 0; it < 2; it++) for (const f of ORD) { const nb = NS[f]; if (!nb) continue; const dx = q[0] - nb[0], dy = q[1] - nb[1], d = Math.hypot(dx, dy); if (d < 24) q = d < .01 ? [q[0] + 24, q[1]] : [q[0] + dx * (24 - d) / d, q[1] + dy * (24 - d) / d]; } return q; };
+  const tagged = i => Q[i].adv ? !!Q[i].ai : Q[i].ia.length > 0;
+  const pushB = (p, tag) => { let q = p; for (let it = 0; it < 2; it++) { for (const o of LR) { const r = tag ? [o.r[0] - 28, o.r[1] - 6, o.r[2] + 8, o.r[3] + 32] : [o.r[0] - 12, o.r[1] - 7, o.r[2] + 8, o.r[3] + 16]; if (q[0] > r[0] && q[0] < r[2] && q[1] > r[1] && q[1] < r[3]) { const m = [[q[0] - r[0], 0], [r[2] - q[0], 1], [q[1] - r[1], 2], [r[3] - q[1], 3]].sort((a, b) => a[0] - b[0])[0][1]; q = m === 0 ? [r[0], q[1]] : m === 1 ? [r[2], q[1]] : m === 2 ? [q[0], r[1]] : [q[0], r[3]]; } } for (const f of ORD) { const nb = NS[f]; if (!nb) continue; const dx = q[0] - nb[0], dy = q[1] - nb[1], d = Math.hypot(dx, dy); if (d < 24) q = d < .01 ? [q[0] + 24, q[1]] : [q[0] + dx * (24 - d) / d, q[1] + dy * (24 - d) / d]; } } return q; };
   for (const i of order) {
     const p = TS[i]; if (seen.has(i) || p[0] < -20 || p[0] > W + 20 || p[1] < -20 || p[1] > H + 20) continue; seen.add(i); isLead.add(i); const ids = [i], forced = i === sel || i === kbQ;
     if (!forced) for (const j of order) { if (seen.has(j) || j === sel || j === kbQ) continue; if (Math.hypot(TS[j][0] - p[0], TS[j][1] - p[1]) < CR) { ids.push(j); seen.add(j); } }
-    CL.push({ lead: i, ids, p: pushB(p), t: p, wx: ids.reduce((a, j) => a + Q[j].x, 0) / ids.length, wy: ids.reduce((a, j) => a + Q[j].y, 0) / ids.length });
+    CL.push({ lead: i, ids, p: pushB(p, tagged(i)), t: p, wx: ids.reduce((a, j) => a + Q[j].x, 0) / ids.length, wy: ids.reduce((a, j) => a + Q[j].y, 0) / ids.length });
   }
-  const seed = CL.map(c => [c.p[0] - 6, c.p[1] - 14, c.p[0] + 6, c.p[1] + 6]); seed.push(...dused);
+  const seed = CL.map(c => [c.p[0] - 6, c.p[1] - 14, c.p[0] + 6, c.p[1] + 6]); seed.push(...dused, ...LR.map(o => o.r));
   for (const f of ORD) { const nb = NS[f]; if (nb) seed.push([nb[0] - 12, nb[1] - 12, nb[0] + 12, nb[1] + 12]); }
   const lab = labeller(seed), cards = [], lead = new Map(CL.map(c => [c.lead, c])), la0 = clamp((k - 1.6) / .5, 0, 1);
   for (const c of CL) { const off = Math.hypot(c.p[0] - c.t[0], c.p[1] - c.t[1]); if (off > 5) { ctx.strokeStyle = inkA(.9); ctx.lineWidth = .6; ctx.beginPath(); ctx.moveTo(c.t[0], c.t[1]); ctx.lineTo(c.p[0], c.p[1] - 3); ctx.stroke(); ctx.fillStyle = inkA(1.2); ctx.beginPath(); ctx.arc(c.t[0], c.t[1], 1.6, 0, 7); ctx.fill(); } }
@@ -815,7 +829,7 @@ function draw(dt) {
     const A = QA[i], c = lead.get(i), q = Q[i], target = c ? 1 : 0; A.v = (A.v || 0) + (target - (A.v || 0)) * (REDUCED ? 1 : Math.min(1, dt * 9)); if (Math.abs(A.v - target) < .01) A.v = target;
     const multi = c && c.ids.length > 1, on = c && (multi ? i === hoverC : (i === hoverQ || i === kbQ)), hot = c && !multi && (on || i === sel);
     if (c || A.g > 0) anim(A, !!on, dt, multi ? t('cluster_n', { n: c.ids.length }).length : loc(q.qq).length);
-    if (A.v < .02) continue; const p = c ? c.p : pushB(TS[i]), e = ease(hot ? Math.max(A.g, i === sel ? 1 : 0) : A.g); QS[i] = p;
+    if (A.v < .02) continue; const p = c ? c.p : pushB(TS[i], tagged(i)), e = ease(hot ? Math.max(A.g, i === sel ? 1 : 0) : A.g); QS[i] = p;
     ctx.globalAlpha = A.v; ctx.fillStyle = COL.acc; ctx.textAlign = 'center';
     if (i === kbQ) { ctx.strokeStyle = COL.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(p[0], p[1] - 4, 15, 0, 7); ctx.stroke(); }
     // A small "IA"/"AI" tag next to a "?" or "!" when an AI is documented in it (advance made with AI, or AI contribution to a question). The others stay plain.
@@ -835,7 +849,7 @@ function draw(dt) {
   }
   // Hover cartouches go over everything else; they open toward the outside of the map.
   for (const [c, multi] of cards) card(multi ? t('cluster_n', { n: c.ids.length }) : loc(Q[c.lead].qq), QA[c.lead], c.p[0], c.p[1] - 3, 'italic 14px "IM Fell DW Pica", serif', 18, 250, c.p[0] >= cx, COL.acc);
-  for (const f of ORD) if (FA[f].g > .01 && NS[f]) card(loc(F[f].nn).toUpperCase(), FA[f], NS[f][0], NS[f][1], '12px "Archivo Narrow", sans-serif', 16, 210, NS[f][0] >= cx, `rgb(${COL.rgb})`);
+  for (const f of ORD) if (FA[f].g > .01 && NS[f] && !LR.some(o => o.f === f && o.a > .6)) card(loc(F[f].nn).toUpperCase(), FA[f], NS[f][0], NS[f][1], '12px "Archivo Narrow", sans-serif', 16, 210, NS[f][0] >= cx, `rgb(${COL.rgb})`);
 }
 new ResizeObserver(resize).observe(cv); addEventListener('resize', resize);
 if (document.fonts) document.fonts.ready.then(() => {});
