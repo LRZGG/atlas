@@ -29,7 +29,7 @@ body { background: var(--paper); color: var(--ink); font: 13px/1.4 var(--sans); 
 #legend li button:focus-visible { outline: 2px solid var(--acc); outline-offset: 1px; }
 #legend li b { font-weight: 400; width: 20px; text-align: right; flex: none; }
 #lang { right: 270px; top: 30px; display: flex; }
-#ctl { right: 0; bottom: clamp(10px, 2vh, 20px); display: flex; background: var(--paper); }
+#ctl { right: auto; left: 50%; transform: translateX(-50%); bottom: clamp(10px, 2vh, 20px); display: flex; background: var(--paper); }
 button.sq { font: 14px var(--sans); color: var(--ink); background: var(--paper); border: .8px solid var(--ink); border-radius: 0; width: 30px; height: 30px; cursor: pointer; padding: 0; }
 #lang button.sq { width: 34px; font-size: 12px; letter-spacing: .06em; }
 #lang button + button { border-left: 0; }
@@ -734,7 +734,7 @@ function resize() {
   overviewLeft=!narrowPlate.matches && railWidth ? railWidth+parseFloat(getComputedStyle($('sheet')).columnGap) : 0;
   overviewTop=narrowPlate.matches && getComputedStyle($('margin')).display==='contents' ? $('ctx').offsetHeight : 0;
   overviewRight=wideKey.matches ? 252 : 0;
-  s0=Math.max(20,Math.min(W-overviewLeft-overviewRight-58,H-overviewTop-116))/(2*DOMC.R);
+  s0=Math.max(20,Math.min(W-overviewLeft-overviewRight-58,H-overviewTop-130))/(2*DOMC.R);
   locateOrigin(); placeHello();
 }
 const toScreen = (wx, wy) => [originX + (wx - mx - view.x) * s0 * view.k, originY + (wy - my - view.y) * s0 * view.k];
