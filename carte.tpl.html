@@ -29,7 +29,7 @@ body { background: var(--paper); color: var(--ink); font: 13px/1.4 var(--sans); 
 #legend li button:focus-visible { outline: 2px solid var(--acc); outline-offset: 1px; }
 #legend li b { font-weight: 400; width: 20px; text-align: right; flex: none; }
 #lang { right: 270px; top: 30px; display: flex; }
-#ctl { display: flex; background: var(--paper); }
+#ctl { right: 0; bottom: clamp(10px, 2vh, 20px); display: flex; background: var(--paper); }
 button.sq { font: 14px var(--sans); color: var(--ink); background: var(--paper); border: .8px solid var(--ink); border-radius: 0; width: 30px; height: 30px; cursor: pointer; padding: 0; }
 #lang button.sq { width: 34px; font-size: 12px; letter-spacing: .06em; }
 #lang button + button { border-left: 0; }
@@ -678,10 +678,10 @@ body.panel-open #hello { display:none; }
 <section id="claimsRail"><div class="index-head"><h2 data-i="cl_rail_t"></h2><button type="button" id="clRailAll"></button></div><div id="clRailList"></div></section>
 <div id="tl" class="ov" hidden><div class="index-head"><label data-i="plate_years" for="tlr"></label><output id="tll" for="tlr"></output></div><div class="timeline-track"><button class="sq" id="tlplay" type="button"></button><div class="year-track"><div id="yearBars" aria-hidden="true"></div><input id="tlr" type="range" step="1"></div></div><div class="years-axis" aria-hidden="true"><span id="firstYear"></span><span id="lastYear"></span></div></div>
 </aside>
-<div id="figure"><canvas id="c" tabindex="0" role="application" data-ia="aria_carte" aria-describedby="kbhelp"></canvas></div>
+<div id="figure"><canvas id="c" tabindex="0" role="application" data-ia="aria_carte" aria-describedby="kbhelp"></canvas><div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button></div></div>
 <aside id="hello" role="note" hidden><h2 data-i="hi_t"></h2><ol><li data-i="hi_1"></li><li data-i="hi_2"></li><li data-i="hi_3"></li><li data-i="hi_4"></li></ol><p><button type="button" id="hiTry" data-i="hi_try"></button> <button type="button" id="hiOk" data-i="hi_ok"></button></p></aside>
 <div id="live" aria-live="polite"></div>
-<footer id="colophon"><button type="button" id="clDock" class="ov" aria-expanded="false"></button><div id="cap" class="ov"></div><div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div><details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details><div id="ctl" class="ov"><button class="sq" id="zin" type="button" data-ia="zin">+</button><button class="sq" id="zout" type="button" data-ia="zout">−</button><button class="sq" id="zfit" type="button" data-ia="zfit">⌂</button></div></footer>
+<footer id="colophon"><button type="button" id="clDock" class="ov" aria-expanded="false"></button><div id="cap" class="ov"></div><div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div><details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details></footer>
 <aside id="stats" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
 <aside id="claims" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
 <div id="tip" hidden></div>
@@ -734,7 +734,7 @@ function resize() {
   overviewLeft=!narrowPlate.matches && railWidth ? railWidth+parseFloat(getComputedStyle($('sheet')).columnGap) : 0;
   overviewTop=narrowPlate.matches && getComputedStyle($('margin')).display==='contents' ? $('ctx').offsetHeight : 0;
   overviewRight=wideKey.matches ? 252 : 0;
-  s0=Math.max(20,Math.min(W-overviewLeft-overviewRight-58,H-overviewTop-66))/(2*DOMC.R);
+  s0=Math.max(20,Math.min(W-overviewLeft-overviewRight-58,H-overviewTop-116))/(2*DOMC.R);
   locateOrigin(); placeHello();
 }
 const toScreen = (wx, wy) => [originX + (wx - mx - view.x) * s0 * view.k, originY + (wy - my - view.y) * s0 * view.k];
