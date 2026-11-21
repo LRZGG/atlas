@@ -95,3 +95,11 @@ No accounts, no votes, no rankings, no ads. Votes need moderation, are easy to m
 ## Advances ("!" on the map)
 
 `advances.json` lists major results, prizes and AI-assisted progress (37 entries). Each has a year, a status (`accepted`, `claimed`, `disputed`), an optional `ai` flag, the subfields it touches, a bilingual summary, and the sources actually read. The summaries are drafted with an AI from those sources, so they carry the same "not reviewed" label as the fiches. Most sources are English Wikipedia pages (secondary); Fields, Abel and Nobel items for 2026 are not checked against the official committees. The default view shows advances since 2020; the "Advances" filter shows the whole history. The `ai` tag appears only when a read source says an AI contributed.
+
+## Claims, verification ladder and forecasts
+
+`ia.json` holds the announcements. Those with a `ladder` are shown in the Claims window and on `/ia/` with five rungs: announced, machine-checked (Lean), examined by independent experts, published and peer reviewed, accepted by a recognised body. Each rung is `yes`, `partial`, `unknown` or `no`, with the sources we read. **Cross-checking rule, enforced by the build**: a rung counts as `yes` only if at least two independent publishers say so, or one primary source does (lab, journal, institute); otherwise it is shown as `partial`. A rung describes what the sources we read say, not a verdict of ours.
+
+A claim with a `forecast` lets visitors give a no-money probability. Estimates stay on the device; with the optional API (`api/README.md`) the estimate of all participants and a track-record-weighted estimate are shown, with the anti-bot protections and their limits listed there. When the outcome is known, edit `outcome` in `ia.json`: visitors then see their calibration (Brier) score.
+
+`fetch-claims.mjs` (weekly) lists candidate announcements from arXiv and Quanta into `claims-inbox.json`. They are shown as "recently detected, not yet assessed". Turning a candidate into a claim with a ladder is a reviewed step. `check-claims.mjs` checks that the sources of every ladder are still reachable.

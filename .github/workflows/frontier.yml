@@ -1,5 +1,6 @@
 # Every week: fetch "what is moving" (papers of the last 30 days per topic, OpenAlex), rebuild the site and record the fiche check.
 # One-time setup: add the OpenAlex key in Settings -> Secrets and variables -> Actions -> New repository secret, named OPENALEX_API_KEY.
+# Optional: once the forecast API is deployed (api/README.md), add a repository VARIABLE named FC_API (e.g. https://api.unknownpedia.org) so the built site uses it.
 name: Weekly frontier
 on:
   schedule:
@@ -23,13 +24,20 @@ jobs:
         env:
           OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
         run: node fetch-recent.mjs
-      - name: Check fiches
-        run: node check-fiches.mjs
+      - name: Watch for new announcements (candidates only, nothing is verified)
+        run: node fetch-claims.mjs
+        continue-on-error: true
+      - name: Check fiches and claim sources
+        run: |
+          node check-fiches.mjs
+          node check-claims.mjs
       - name: Rebuild the site
+        env:
+          FC_API: ${{ vars.FC_API }}
         run: BASE=https://unknownpedia.org node build-directions.mjs
       - name: Commit
         run: |
           git config user.name "unknownpedia-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add recent.json checks docs
+          git add recent.json claims-inbox.json checks docs
           git diff --cached --quiet || (git commit -m "Weekly frontier: automatic update" && git push)

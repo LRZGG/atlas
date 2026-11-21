@@ -23,6 +23,8 @@ An open atlas of unresolved questions of science, placed on a measured map of wo
 - Advances (`advances.json`) are shown as "!" (same style as "?"), with an "IA" tag only when a read source says an AI contributed. Default view: since 2020; the Advances filter shows all.
 - Mysteries are on the map as questions of type `enigme` (a “?” inside a thin hollow circle; real questions are a plain “?”; the small square was dropped because visitors could not read it); folklore is not on the map (a legend is not a research topic).
 
+- Claims (`ia.json` entries with a `ladder`) show a five-rung verification ladder; a rung is `yes` only with two independent publishers or one primary source (the build enforces it). Forecasts are no-money, no-account; the optional API in `api/` must be first-party (never a third-party origin in the visitor's browser).
+
 ## Known pitfalls
 
 - `textes.json` holds all interface texts (FR and EN). Topic names are English (OpenAlex); the 250 subfields have French names in `sous-disciplines-fr.json`.

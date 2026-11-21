@@ -27,7 +27,96 @@
           "a": "TechCrunch",
           "y": 2026
         }
-      ]
+      ],
+      "ladder": [
+        {
+          "k": "announced",
+          "s": "yes",
+          "note": {
+            "fr": "Annonce d'Anthropic (source primaire), reprise par TechCrunch.",
+            "en": "Anthropic's announcement (primary source), covered by TechCrunch."
+          },
+          "src": [
+            {
+              "t": "Anthropic",
+              "u": "https://www.anthropic.com/news/riemann-zeta",
+              "pub": "Anthropic",
+              "primary": true
+            },
+            {
+              "t": "TechCrunch",
+              "u": "https://techcrunch.com/2026/08/11/an-unreleased-anthropic-model-made-progress-on-one-of-maths-biggest-unsolved-problems/",
+              "pub": "TechCrunch",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "formal",
+          "s": "yes",
+          "note": {
+            "fr": "Formalisation Lean publique selon Anthropic ; TechCrunch le rapporte aussi.",
+            "en": "Public Lean formalisation according to Anthropic; TechCrunch reports it too."
+          },
+          "src": [
+            {
+              "t": "Anthropic",
+              "u": "https://www.anthropic.com/news/riemann-zeta",
+              "pub": "Anthropic",
+              "primary": true
+            },
+            {
+              "t": "TechCrunch",
+              "u": "https://techcrunch.com/2026/08/11/an-unreleased-anthropic-model-made-progress-on-one-of-maths-biggest-unsolved-problems/",
+              "pub": "TechCrunch",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "experts",
+          "s": "partial",
+          "note": {
+            "fr": "Deux experts extérieurs (Conrey, Goldston) ont regardé l'article dans un délai court ; pas d'avis public détaillé trouvé.",
+            "en": "Two outside experts (Conrey, Goldston) looked at the paper at short notice; no detailed public opinion found."
+          },
+          "src": [
+            {
+              "t": "Anthropic",
+              "u": "https://www.anthropic.com/news/riemann-zeta",
+              "pub": "Anthropic",
+              "primary": true
+            }
+          ]
+        },
+        {
+          "k": "peer",
+          "s": "unknown",
+          "note": {
+            "fr": "Aucune publication évaluée par des pairs trouvée.",
+            "en": "No peer-reviewed publication found."
+          },
+          "src": []
+        },
+        {
+          "k": "accepted",
+          "s": "unknown",
+          "note": {
+            "fr": "Pas de déclaration du Clay trouvée (le résultat est partiel, il ne résout pas Riemann).",
+            "en": "No Clay statement found (the result is partial and does not resolve Riemann)."
+          },
+          "src": []
+        }
+      ],
+      "forecast": {
+        "q": {
+          "fr": "Le résultat à 67,2 % sera-t-il publié dans une revue à comité de lecture avant le 31 décembre 2027 ?",
+          "en": "Will the 67.2% result be published in a peer-reviewed journal by 31 December 2027?"
+        },
+        "closes": "2027-12-31",
+        "rung": "peer",
+        "outcome": null
+      }
     },
     {
       "id": "riemann-openai-quasi",
@@ -56,7 +145,97 @@
           "a": "OfficeChai",
           "y": 2026
         }
-      ]
+      ],
+      "ladder": [
+        {
+          "k": "announced",
+          "s": "yes",
+          "note": {
+            "fr": "Publiée début octobre 2026 ; rapportée par Quanta et OfficeChai.",
+            "en": "Released in early October 2026; reported by Quanta and OfficeChai."
+          },
+          "src": [
+            {
+              "t": "Quanta Magazine",
+              "u": "https://quantamagazine.org/ai-proved-the-quasi-riemann-hypothesis-what-happens-now-20261019",
+              "pub": "Quanta Magazine",
+              "primary": false
+            },
+            {
+              "t": "OfficeChai",
+              "u": "https://officechai.com/ai/quasi-riemann-hypothesis-explanation/",
+              "pub": "OfficeChai",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "formal",
+          "s": "partial",
+          "note": {
+            "fr": "Une version (1/8–7/8) serait vérifiée en Lean, l'autre (1/12–11/12) pas encore ; les chiffres divergent selon les sources.",
+            "en": "One version (1/8–7/8) is reported Lean-verified, the other (1/12–11/12) not yet; figures differ between sources."
+          },
+          "src": [
+            {
+              "t": "Quanta Magazine",
+              "u": "https://quantamagazine.org/ai-proved-the-quasi-riemann-hypothesis-what-happens-now-20261019",
+              "pub": "Quanta Magazine",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "experts",
+          "s": "partial",
+          "note": {
+            "fr": "Les experts jugent le résultat plutôt correct, mais Sarnak attend une vérification humaine des détails.",
+            "en": "Experts largely think it is correct, but Sarnak waits for humans to check the details."
+          },
+          "src": [
+            {
+              "t": "Quanta Magazine",
+              "u": "https://quantamagazine.org/ai-proved-the-quasi-riemann-hypothesis-what-happens-now-20261019",
+              "pub": "Quanta Magazine",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "peer",
+          "s": "unknown",
+          "note": {
+            "fr": "Aucune publication évaluée par des pairs trouvée (OfficeChai : non relu par des pairs).",
+            "en": "No peer-reviewed publication found (OfficeChai: not peer reviewed)."
+          },
+          "src": [
+            {
+              "t": "OfficeChai",
+              "u": "https://officechai.com/ai/quasi-riemann-hypothesis-explanation/",
+              "pub": "OfficeChai",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "accepted",
+          "s": "unknown",
+          "note": {
+            "fr": "Pas de déclaration du Clay trouvée ; ce n'est pas l'hypothèse de Riemann.",
+            "en": "No Clay statement found; this is not the Riemann hypothesis."
+          },
+          "src": []
+        }
+      ],
+      "forecast": {
+        "q": {
+          "fr": "Des experts indépendants confirmeront-ils publiquement la quasi-hypothèse de Riemann avant le 30 juin 2027 ?",
+          "en": "Will independent experts publicly confirm the quasi-Riemann hypothesis by 30 June 2027?"
+        },
+        "closes": "2027-06-30",
+        "rung": "experts",
+        "outcome": null
+      }
     },
     {
       "id": "riemann-alpoge-claim",
@@ -85,7 +264,103 @@
           "a": "OfficeChai",
           "y": 2026
         }
-      ]
+      ],
+      "ladder": [
+        {
+          "k": "announced",
+          "s": "yes",
+          "note": {
+            "fr": "Note publiée le 20 novembre 2026, rapportée par l'AFP et OfficeChai (note elle-même non lue).",
+            "en": "Note posted on 20 November 2026, reported by AFP and OfficeChai (the note itself not read)."
+          },
+          "src": [
+            {
+              "t": "France 24 (AFP)",
+              "u": "https://www.france24.com/en/live-news/20261120-anthropic-researcher-says-claude-solved-math-s-greatest-riddle",
+              "pub": "AFP",
+              "primary": false
+            },
+            {
+              "t": "OfficeChai",
+              "u": "https://officechai.com/ai/claimed-riemann-hypothesis-proof-made-with-claude-appears-on-anthropic-mathematician-levent-alpoges-website/",
+              "pub": "OfficeChai",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "formal",
+          "s": "unknown",
+          "note": {
+            "fr": "Des fichiers Lean sont annoncés ; on ne sait pas s'ils compilent ni si l'énoncé traduit bien l'hypothèse de Riemann.",
+            "en": "Lean files are announced; unknown whether they build or state the Riemann hypothesis correctly."
+          },
+          "src": [
+            {
+              "t": "OfficeChai",
+              "u": "https://officechai.com/ai/claimed-riemann-hypothesis-proof-made-with-claude-appears-on-anthropic-mathematician-levent-alpoges-website/",
+              "pub": "OfficeChai",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "experts",
+          "s": "no",
+          "note": {
+            "fr": "Aucun expert extérieur n'a confirmé, selon l'AFP et OfficeChai.",
+            "en": "No outside expert has confirmed it, according to AFP and OfficeChai."
+          },
+          "src": [
+            {
+              "t": "France 24 (AFP)",
+              "u": "https://www.france24.com/en/live-news/20261120-anthropic-researcher-says-claude-solved-math-s-greatest-riddle",
+              "pub": "AFP",
+              "primary": false
+            },
+            {
+              "t": "OfficeChai",
+              "u": "https://officechai.com/ai/claimed-riemann-hypothesis-proof-made-with-claude-appears-on-anthropic-mathematician-levent-alpoges-website/",
+              "pub": "OfficeChai",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "peer",
+          "s": "no",
+          "note": {
+            "fr": "Pas d'article : seulement une note de 4 pages.",
+            "en": "No paper: only a 4-page note."
+          },
+          "src": [
+            {
+              "t": "OfficeChai",
+              "u": "https://officechai.com/ai/claimed-riemann-hypothesis-proof-made-with-claude-appears-on-anthropic-mathematician-levent-alpoges-website/",
+              "pub": "OfficeChai",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "accepted",
+          "s": "unknown",
+          "note": {
+            "fr": "Pas de déclaration du Clay trouvée.",
+            "en": "No Clay statement found."
+          },
+          "src": []
+        }
+      ],
+      "forecast": {
+        "q": {
+          "fr": "Des experts indépendants confirmeront-ils publiquement la preuve annoncée de l'hypothèse de Riemann avant le 30 juin 2027 ?",
+          "en": "Will independent experts publicly confirm the announced proof of the Riemann hypothesis by 30 June 2027?"
+        },
+        "closes": "2027-06-30",
+        "rung": "experts",
+        "outcome": null
+      }
     },
     {
       "id": "navier-stokes-openai",
@@ -120,7 +395,97 @@
           "y": 2025
         }
       ],
-      "checked": "2026-11-20"
+      "checked": "2026-11-20",
+      "ladder": [
+        {
+          "k": "announced",
+          "s": "yes",
+          "note": {
+            "fr": "Annoncé le 8 septembre 2026 (page d'OpenAI non lue : accès refusé).",
+            "en": "Announced on 8 September 2026 (OpenAI's own page not read: access denied)."
+          },
+          "src": [
+            {
+              "t": "Quanta Magazine",
+              "u": "https://www.quantamagazine.org/ai-has-solved-one-of-maths-1-million-millennium-prize-problems-20260908/",
+              "pub": "Quanta Magazine",
+              "primary": false
+            },
+            {
+              "t": "Science News",
+              "u": "https://www.sciencenews.org/article/ai-math-puzzle-navier-stokes-openai",
+              "pub": "Science News",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "formal",
+          "s": "partial",
+          "note": {
+            "fr": "Une vérification Lean est rapportée par Quanta ; des humains doivent encore vérifier que l'énoncé correspond au problème.",
+            "en": "A Lean check is reported by Quanta; humans still have to check that the statement matches the problem."
+          },
+          "src": [
+            {
+              "t": "Quanta Magazine",
+              "u": "https://www.quantamagazine.org/ai-has-solved-one-of-maths-1-million-millennium-prize-problems-20260908/",
+              "pub": "Quanta Magazine",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "experts",
+          "s": "no",
+          "note": {
+            "fr": "Pas d'examen d'experts indépendants trouvé ; le physicien Gregory Eyink dit que personne ne l'a vérifiée côté humain.",
+            "en": "No independent expert review found; physicist Gregory Eyink says nobody has verified it on the human side."
+          },
+          "src": [
+            {
+              "t": "Science News",
+              "u": "https://www.sciencenews.org/article/ai-math-puzzle-navier-stokes-openai",
+              "pub": "Science News",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "peer",
+          "s": "unknown",
+          "note": {
+            "fr": "Aucune publication évaluée par des pairs trouvée.",
+            "en": "No peer-reviewed publication found."
+          },
+          "src": []
+        },
+        {
+          "k": "accepted",
+          "s": "no",
+          "note": {
+            "fr": "Le Clay classe toujours le problème « actif » et n'a rien attribué.",
+            "en": "The Clay Institute still lists the problem as “Active” and has awarded nothing."
+          },
+          "src": [
+            {
+              "t": "Clay Mathematics Institute",
+              "u": "https://www.claymath.org/millennium/navier-stokes-equation/",
+              "pub": "Clay Mathematics Institute",
+              "primary": true
+            }
+          ]
+        }
+      ],
+      "forecast": {
+        "q": {
+          "fr": "Le résultat d'OpenAI sur Navier-Stokes sera-t-il publié dans une revue à comité de lecture avant le 31 décembre 2027 ?",
+          "en": "Will OpenAI's Navier–Stokes result be published in a peer-reviewed journal by 31 December 2027?"
+        },
+        "closes": "2027-12-31",
+        "rung": "peer",
+        "outcome": null
+      }
     },
     {
       "id": "erdos-gemini",
@@ -183,7 +548,77 @@
           "y": 2026
         }
       ],
-      "checked": "2026-11-20"
+      "checked": "2026-11-20",
+      "ladder": [
+        {
+          "k": "announced",
+          "s": "partial",
+          "note": {
+            "fr": "Annoncé le 20 mai 2026 ; nous n'avons lu que le compte rendu de Quanta (annonce d'OpenAI non lue).",
+            "en": "Announced on 20 May 2026; we only read Quanta's account (OpenAI's announcement not read)."
+          },
+          "src": [
+            {
+              "t": "Quanta Magazine",
+              "u": "https://www.quantamagazine.org/why-the-legendary-erdos-problems-are-falling-to-ai-20260803",
+              "pub": "Quanta Magazine",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "formal",
+          "s": "unknown",
+          "note": {
+            "fr": "Aucune vérification formelle trouvée.",
+            "en": "No formal verification found."
+          },
+          "src": []
+        },
+        {
+          "k": "experts",
+          "s": "partial",
+          "note": {
+            "fr": "Neuf mathématiciens commentent la preuve dans un article d'accompagnement ; Gowers l'aurait recommandée aux Annals (selon Quanta).",
+            "en": "Nine mathematicians comment on the proof in a companion paper; Gowers would have recommended it to the Annals (per Quanta)."
+          },
+          "src": [
+            {
+              "t": "Quanta Magazine",
+              "u": "https://www.quantamagazine.org/why-the-legendary-erdos-problems-are-falling-to-ai-20260803",
+              "pub": "Quanta Magazine",
+              "primary": false
+            }
+          ]
+        },
+        {
+          "k": "peer",
+          "s": "unknown",
+          "note": {
+            "fr": "Aucune publication évaluée par des pairs trouvée.",
+            "en": "No peer-reviewed publication found."
+          },
+          "src": []
+        },
+        {
+          "k": "accepted",
+          "s": "unknown",
+          "note": {
+            "fr": "Pas de décision d'une instance trouvée.",
+            "en": "No decision by a body found."
+          },
+          "src": []
+        }
+      ],
+      "forecast": {
+        "q": {
+          "fr": "Le contre-exemple d'Erdős sur les distances unité sera-t-il publié dans une revue à comité de lecture avant le 31 décembre 2027 ?",
+          "en": "Will the unit distance counterexample be published in a peer-reviewed journal by 31 December 2027?"
+        },
+        "closes": "2027-12-31",
+        "rung": "peer",
+        "outcome": null
+      }
     },
     {
       "id": "alphaevolve",

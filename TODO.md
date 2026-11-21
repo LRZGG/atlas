@@ -62,3 +62,11 @@ Rule: nothing decorative; every effect encodes a datum or a source.
 - Not yet covered: Abel Prize, Breakthrough Prizes, Turing Award, economics, social sciences, earth science, ecology. Add the 2024 Physics Nobel (Hopfield, Hinton) once its citation is read.
 - Idea: show advances by year with the time slider.
 - Riemann (20 Nov 2026): the Alpöge note was read only second-hand (AFP, OfficeChai); re-check for expert reactions, a paper, and whether the Lean files build and state RH correctly. Also check OpenAI's own release for the 7/8 vs 11/12 figures.
+
+## Claims and forecasts
+
+- [ ] Deploy the forecast API (`api/README.md`) and set the `FC_API` repository variable. Until then forecasts stay on the device.
+- [ ] Read the primary sources behind each ladder (OpenAI's pages return 403 to our tools; the note on alpo.ge was not readable).
+- [ ] Turn good candidates of `claims-inbox.json` into claims with a ladder each week; resolve forecasts by setting `outcome` in `ia.json`.
+- [ ] Named reviewers (maths, physics, biology) for the ladders: without them "established" only means "as the sources we read say".
+- [ ] AI-assisted cross-reading of sources (needs an API key as a repository secret; not wired).

@@ -130,7 +130,10 @@ const FI = existsSync('fiches.json') ? JSON.parse(readFileSync('fiches.json', 'u
 const SPREAD_MIN = 0.4; // natural break in the distribution of spreads (0.33 then 0.43)
 const qs = JSON.parse(readFileSync('questions.json')), byName = Object.fromEntries(sIds.map((id, i) => [s.subfields[id].name, i]));
 assert.equal(Object.keys(byName).length, sIds.length, 'noms de sous-disciplines en double');
-const IA = existsSync('ia.json') ? JSON.parse(readFileSync('ia.json', 'utf8')).entries : []; // where AI is used or announced (ia.json): each entry has a status, sources and a last-checked date
+// Verification ladder: an entry's rung is "yes" only if at least two independent publishers back it, or one primary source does; otherwise it is shown as "partial" (one source).
+const ladderOf = e => (e.ladder || []).map(r => { const pubs = new Set(r.src.map(x => x.pub)), ok = r.src.some(x => x.primary) || pubs.size >= 2; if (r.s === 'yes' && !ok) console.warn(`  ladder: ${e.id}/${r.k} downgraded to partial (one non-primary source)`); return { ...r, s: r.s === 'yes' && !ok ? 'partial' : r.s, n: pubs.size }; });
+const IA = (existsSync('ia.json') ? JSON.parse(readFileSync('ia.json', 'utf8')).entries : []).map(e => ({ ...e, lad: ladderOf(e) })); // where AI is used or announced (ia.json): status, sources, optional verification ladder and forecast question
+const INBOX = existsSync('claims-inbox.json') ? JSON.parse(readFileSync('claims-inbox.json', 'utf8')) : null; // candidate announcements found automatically, not yet reviewed (fetch-claims.mjs)
 // Advances ("!" on the map): major results, prizes and AI-assisted progress, from advances.json. They share the question machinery (position, hover, panel, search).
 const ADV = existsSync('advances.json') ? JSON.parse(readFileSync('advances.json', 'utf8')).entries : [];
 const Q = [...qs.questions, ...ADV.map(a => ({ ...a, adv: true }))].map(q => {
@@ -172,6 +175,9 @@ const DATA = {
   S: sIds.map((id, i) => ({ n: s.subfields[id].name, nf: SUBFR[s.subfields[id].name] || s.subfields[id].name, f: fIdx[s.subfields[id].field], x: r3(pos[i][0]), y: r3(pos[i][1]), w: sw[i] })),
   L: links.map(([i, j]) => [i, j]), T, Q, SRC: qs.sources,
   TXT: JSON.parse(readFileSync('textes.json', 'utf8')),
+  IA: IA.map(e => ({ id: e.id, q: e.q, st: e.st, date: e.date, title: e.title, fr: e.fr, en: e.en, r: e.r, checked: e.checked, lad: e.lad, fc: e.forecast || null })),
+  INBOX: INBOX ? { at: INBOX.at, items: INBOX.items.slice(0, 40) } : null,
+  API: process.env.FC_API || null,
   R: (() => { // papers of the last 30 days per topic (recent.json, fetch-recent.mjs)
     if (!existsSync('recent.json')) return null; const r = JSON.parse(readFileSync('recent.json', 'utf8')); return { from: r.from, to: r.to, c: s.topics.map(t => r.t[t.id] ?? -1) };
   })(),
@@ -193,7 +199,9 @@ function head(lang, path, forced) {
   const t = DATA.TXT[lang], url = BASE + path, alt = [['fr', '/fr/'], ['en', '/en/'], ['x-default', '/']].map(([h, p]) => `<link rel="alternate" hreflang="${h}" href="${BASE}${p}">`).join('');
   return `<!doctype html><html lang="${lang}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="${esc(t.desc)}"><link rel="canonical" href="${url}">${alt}<meta property="og:type" content="website"><meta property="og:title" content="${esc(t.titre)}"><meta property="og:description" content="${esc(t.desc)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${BASE}/partage/carte.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${BASE}/partage/carte.png">${STYLE}${forced ? `<script>window.__LANG="${lang}"</script>` : ''}`;
 }
-const carte = readFileSync('carte.tpl.html', 'utf8').replace('/*DATA*/null', () => JSON.stringify(DATA));
+const carte = readFileSync('carte.tpl.html', 'utf8').replace('/*POW*/', () => readFileSync('api/pow.js', 'utf8')).replace('/*DATA*/null', () => JSON.stringify(DATA));
+// Claims and forecast questions, read by the forecast API (api/worker.js) to know closing dates and outcomes.
+writeFileSync('docs/forecasts.json', JSON.stringify(Object.fromEntries(IA.filter(e => e.forecast).map(e => [e.id, { closes: e.forecast.closes, outcome: e.forecast.outcome ?? null, rung: e.forecast.rung }]))));
 const titre = lang => carte.replace(/<title>[^<]*<\/title>/, `<title>${esc(DATA.TXT[lang].titre)}</title>`);
 const LEG = { ...DATA, D: DATA.D.map(d => d.fr), F: DATA.F.map(f => ({ n: f.nn.fr, d: f.d })) };
 const dirs = readFileSync('directions.tpl.html', 'utf8').replace('/*DATA*/null', () => JSON.stringify(LEG));
@@ -210,7 +218,9 @@ const loc2 = (o, lang) => (o && (o[lang] ?? o.fr)) || '', SRC0 = DATA.SRC;
 const ISSUE = (q, lang, tpl) => 'https://github.com/Lorenzo1208/atlas/issues/new?template=' + tpl + '.yml&title=' + encodeURIComponent('[' + q.id + '] ') + '&question=' + encodeURIComponent(q.id + ' (' + BASE + '/' + lang + '/q/' + q.id + '/)');
 const li = a => a.map(x => '<li>' + esc(x) + '</li>').join('');
 // "What the AI did here": dated, sourced entries with an honest status (announced / progress / related). Shown in the fiche and on /ia/.
-const iaEntry = (i, lang, h) => { const T0 = DATA.TXT[lang]; return '<' + h + '>' + esc(i.title[lang] || i.title.fr) + '</' + h + '><p class="kicker">' + esc(T0['ia_st_' + i.st]) + ' · ' + esc(i.date) + '</p><p>' + esc(i[lang] || i.fr) + '</p><ul class="refs">' + i.r.map(r => '<li><a href="' + esc(r.u) + '">' + esc(r.t) + '</a><br><span class="attr">' + esc([r.a, r.y].filter(Boolean).join(', ')) + '</span></li>').join('') + '</ul><p class="attr">' + esc(T0.ia_checked) + ' ' + esc(i.checked) + '</p>'; };
+const RUNGS = ['announced', 'formal', 'experts', 'peer', 'accepted'];
+const ladderHTML = (i, lang) => { const T0 = DATA.TXT[lang]; return i.lad.length ? '<p class="attr"><b>' + esc(T0.lad_t) + '</b></p><ul class="lad">' + i.lad.map(r => '<li>' + esc(T0['lad_' + r.s]) + ' · <b>' + esc(T0['rung_' + r.k]) + '</b> : ' + esc(r.note[lang] || r.note.fr) + (r.src.length ? ' <span class="attr">(' + r.src.map(x => '<a href="' + esc(x.u) + '">' + esc(x.pub) + '</a>').join(', ') + ')</span>' : '') + '</li>').join('') + '</ul><p class="attr">' + esc(T0.lad_rule) + '</p>' : ''; };
+const iaEntry = (i, lang, h) => { const T0 = DATA.TXT[lang]; return '<' + h + '>' + esc(i.title[lang] || i.title.fr) + '</' + h + '><p class="kicker">' + esc(T0['ia_st_' + i.st]) + ' · ' + esc(i.date) + '</p><p>' + esc(i[lang] || i.fr) + '</p><ul class="refs">' + i.r.map(r => '<li><a href="' + esc(r.u) + '">' + esc(r.t) + '</a><br><span class="attr">' + esc([r.a, r.y].filter(Boolean).join(', ')) + '</span></li>').join('') + '</ul>' + ladderHTML(i, lang) + (i.forecast ? '<p class="attr"><b>' + esc(T0.fc_t) + '</b> ' + esc(i.forecast.q[lang] || i.forecast.q.fr) + '</p>' : '') + '<p class="attr">' + esc(T0.ia_checked) + ' ' + esc(i.checked) + '</p>'; };
 const iaBlock = (q, lang) => q.ia.length ? '<h2>' + esc(DATA.TXT[lang].ia_h) + '</h2>' + q.ia.map(i => iaEntry(i, lang, 'h3')).join('') : '';
 for (const lang of ['fr', 'en']) for (const q of Q) {
   const full = !!(q.f && q.f[lang]), T0 = DATA.TXT[lang], f = q.f || {}, b = f[lang], w = (f.w || {})[lang] || (f.w || {}).fr, p = '/' + lang + '/q/' + q.id + '/', at = T0.wiki_attr.split('{t}');
