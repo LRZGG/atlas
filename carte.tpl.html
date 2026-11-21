@@ -29,7 +29,7 @@ body { background: var(--paper); color: var(--ink); font: 13px/1.4 var(--sans); 
 #legend li button:focus-visible { outline: 2px solid var(--acc); outline-offset: 1px; }
 #legend li b { font-weight: 400; width: 20px; text-align: right; flex: none; }
 #lang { right: 270px; top: 30px; display: flex; }
-#ctl { right: auto; left: 50%; transform: translateX(-50%); bottom: clamp(10px, 2vh, 20px); display: flex; background: var(--paper); }
+#ctl { right: auto; left: 50%; transform: translateX(-50%); bottom: 8px; display: flex; background: var(--paper); }
 button.sq { font: 14px var(--sans); color: var(--ink); background: var(--paper); border: .8px solid var(--ink); border-radius: 0; width: 30px; height: 30px; cursor: pointer; padding: 0; }
 #lang button.sq { width: 34px; font-size: 12px; letter-spacing: .06em; }
 #lang button + button { border-left: 0; }
@@ -723,7 +723,7 @@ let overviewRight=0, overviewLeft=0, overviewTop=0, originX=0, originY=0;
 function locateOrigin() {
   const overview=clamp((1.5-view.k)/.5,0,1);
   originX=(W+(overviewLeft-overviewRight)*overview)/2;
-  originY=(H+overviewTop*overview)/2;
+  originY=(H+(overviewTop-(narrowPlate.matches?0:60))*overview)/2; // wide: lift the disc ~15px so ring labels clear the zoom controls
 }
 function resize() {
   const r=cv.getBoundingClientRect();
