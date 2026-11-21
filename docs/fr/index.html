@@ -735,7 +735,7 @@ function resize() {
   overviewTop=narrowPlate.matches && getComputedStyle($('margin')).display==='contents' ? $('ctx').offsetHeight : 30;
   overviewRight=wideKey.matches ? 252 : 0;
   s0=Math.max(20,Math.min(W-overviewLeft-overviewRight-58,H-overviewTop-170))/(2*DOMC.R);
-  locateOrigin(); placeHello();
+  locateOrigin(); placeHello(); $('ctl').style.left = (W + overviewLeft - overviewRight) / 2 + 'px'; // under the overview disc, not the page middle
 }
 const toScreen = (wx, wy) => [originX + (wx - mx - view.x) * s0 * view.k, originY + (wy - my - view.y) * s0 * view.k];
 const toWorld = (px, py) => [(px - originX) / (s0 * view.k) + mx + view.x, (py - originY) / (s0 * view.k) + my + view.y];
