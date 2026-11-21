@@ -732,7 +732,7 @@ function resize() {
   cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR);
   const railWidth=$('margin').offsetWidth;
   overviewLeft=!narrowPlate.matches && railWidth ? railWidth+parseFloat(getComputedStyle($('sheet')).columnGap) : 0;
-  overviewTop=narrowPlate.matches && getComputedStyle($('margin')).display==='contents' ? $('ctx').offsetHeight : 0;
+  overviewTop=narrowPlate.matches && getComputedStyle($('margin')).display==='contents' ? $('ctx').offsetHeight : 30;
   overviewRight=wideKey.matches ? 252 : 0;
   s0=Math.max(20,Math.min(W-overviewLeft-overviewRight-58,H-overviewTop-170))/(2*DOMC.R);
   locateOrigin(); placeHello();
