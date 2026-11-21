@@ -210,31 +210,151 @@ button:focus-visible, summary:focus-visible { outline: 2px solid var(--acc); out
   #claims .cl-step { grid-template-columns: 36px minmax(0, 1fr); gap: 8px; }
   #claims .cl-mapbtn { margin-left: 0; }
 }
-#stats { position: fixed; z-index: 8; inset: 26px; background: var(--paper); border: 1px solid var(--ink); padding: 20px 26px 22px; overflow: auto; }
-#stats h2 { font: 400 24px/1.2 var(--serif); margin: 0 40px 10px 0; }
-#stats .tabs { display: flex; gap: 0; margin: 0 0 14px; border-bottom: .8px solid var(--ink); }
-#stats .tabs button { all: unset; cursor: pointer; padding: 6px 14px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; border: .8px solid var(--ink); border-bottom: 0; margin-right: -1px; }
-#stats .tabs button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
-#stats .tabs button:focus-visible, #stats select:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
-#stats select { font: 14px var(--sans); color: var(--ink); background: var(--paper); border: .8px solid var(--ink); border-radius: 0; padding: 5px 8px; max-width: 100%; }
-#stats .cap2 { font: italic 15px var(--serif); margin: 10px 0 4px; }
-#stats .note { font-size: 12px; color: var(--dim); max-width: 80ch; margin: 10px 0 0; }
-#stats svg { width: 100%; height: auto; display: block; }
-#stats svg text { font: 11px var(--sans); fill: var(--dim); }
-#stats svg .bar { fill: var(--ink); }
-#stats svg .bar:hover, #stats svg .bar.on { fill: var(--acc); }
-#stats svg line { stroke: var(--ink); opacity: .25; }
-#stats table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
-#stats th, #stats td { text-align: right; padding: 4px 8px; border-bottom: .5px solid rgba(var(--ink-rgb), .3); }
-#stats th:first-child, #stats td:first-child { text-align: left; }
-#stats th button { all: unset; cursor: pointer; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
-#stats th button:hover { text-decoration: underline; }
-#stats th button:focus-visible { outline: 2px solid var(--acc); }
-#stats td i { display: inline-block; height: 7px; background: var(--ink); vertical-align: middle; margin-left: 6px; }
-#stats .mvl button { all: unset; display: block; cursor: pointer; padding: 3px 0; font-size: 14px; }
-#stats .mvl button:hover { text-decoration: underline; }
-#stats #stclose { position: absolute; right: 10px; top: 10px; }
-@media (max-width: 720px) { #stats { inset: 0; border: 0; padding: 16px 14px 24px; } #stats table { font-size: 12px; } }
+/* ---- Statistics plate (matching the patent-plate grammar of the claims register) ---- */
+#stats { position: fixed; z-index: 12; inset: clamp(10px, 1.8vw, 24px); background: var(--paper); border: 1.5px solid var(--ink); box-shadow: 0 0 0 100vmax rgba(var(--ink-rgb), .24), 0 18px 48px rgba(var(--ink-rgb), .18); display: flex; flex-direction: column; overflow: hidden; }
+#stats:focus { outline: none; }
+#stats .st-head { position: relative; flex: none; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px 28px; padding: clamp(14px, 2vw, 24px) clamp(54px, 5vw, 68px) clamp(12px, 1.6vw, 18px) clamp(18px, 3vw, 36px); border-bottom: 3px double var(--ink); }
+#stats .st-kicker { margin: 0 0 3px; font: 500 11.5px/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--acc); }
+#stats .st-head h2 { font: 400 clamp(24px, 2.7vw, 38px)/1.05 var(--serif); letter-spacing: -.035em; margin: 0 0 5px; }
+#stats .st-intro { margin: 0; font-size: 14px; color: var(--dim); max-width: 60ch; }
+#stats .st-hkpis { display: flex; flex-wrap: wrap; border: 1px solid var(--rule); background: rgba(var(--ink-rgb), .02); }
+#stats .st-hkpis > div { padding: 7px 13px; border-right: 1px solid var(--rule); }
+#stats .st-hkpis > div:last-child { border-right: 0; }
+#stats .st-hkpis small { display: block; font: 500 10.5px/1.1 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--dim); margin-bottom: 2px; }
+#stats .st-hkpis b { display: block; font: 400 20px/1.1 var(--serif); font-variant-numeric: tabular-nums; color: var(--ink); }
+#stats .st-hkpis .acc { color: var(--acc); }
+#stats #stclose { position: absolute; right: clamp(12px, 1.8vw, 22px); top: clamp(12px, 1.8vw, 20px); width: 34px; height: 34px; font-size: 20px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); }
+#stats #stclose:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#stats .st-bar { flex: none; display: flex; align-items: center; overflow-x: auto; padding: 0 clamp(18px, 3vw, 36px); border-bottom: 1px solid var(--rule); background: rgba(var(--ink-rgb), .02); }
+#stats .st-bar button { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; padding: 9px 14px 8px; font: 500 12.5px/1 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--dim); border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+#stats .st-bar button:hover { color: var(--ink); }
+#stats .st-bar button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+#stats .st-bar button:focus-visible { outline: 2px solid var(--acc); outline-offset: -2px; }
+#stats .st-body { flex: 1; min-height: 0; display: grid; grid-template-columns: clamp(250px, 25vw, 320px) minmax(0, 1fr); overflow: hidden; }
+#stats .st-side { min-height: 0; overflow-y: auto; border-right: 1px solid var(--rule); background: rgba(var(--ink-rgb), .018); padding: 10px 0 24px; }
+#stats .st-sh { padding: 12px 18px 5px; font: 500 11px/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+#stats .st-pick { all: unset; box-sizing: border-box; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; width: 100%; cursor: pointer; padding: 7px 18px 7px 15px; border-left: 3px solid transparent; border-bottom: 1px solid rgba(var(--ink-rgb), .12); font-size: 14px; color: var(--ink); }
+#stats .st-pick:hover { background: rgba(var(--ink-rgb), .04); }
+#stats .st-pick[aria-current="true"] { background: var(--paper); border-left-color: var(--acc); font-weight: 600; }
+#stats .st-pick:focus-visible { outline: 2px solid var(--acc); outline-offset: -2px; }
+#stats .st-pick .sp-t { font-family: var(--serif); font-size: 15.5px; line-height: 1.2; min-width: 0; }
+#stats .st-pick[aria-current="true"] .sp-t { font-style: italic; font-weight: 400; }
+#stats .st-pick .sp-v { font: 400 12px/1 var(--sans); color: var(--dim); font-variant-numeric: tabular-nums; white-space: nowrap; flex: none; }
+#stats .st-mob-sel { display: none; margin-bottom: 14px; }
+#stats .st-mob-sel select { width: 100%; font: 14px var(--sans); color: var(--ink); background: var(--paper); border: 1px solid var(--ink); border-radius: 0; padding: 7px 10px; }
+#stats .st-stage, #stats .st-scroll { min-height: 0; overflow-y: auto; padding: clamp(18px, 2.8vw, 34px) clamp(18px, 3.4vw, 44px) 44px; flex: 1; }
+#stats .st-inner { max-width: 960px; }
+#stats .st-toprow { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 16px; margin-bottom: 16px; }
+#stats .st-toprow h3 { font: 400 clamp(22px, 2.3vw, 32px)/1.1 var(--serif); letter-spacing: -.03em; margin: 0; }
+#stats .st-act { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--rule); font: 500 12px/1.2 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+#stats .st-act:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#stats .st-act:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+#stats .st-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--rule); background: rgba(var(--ink-rgb), .018); margin-bottom: 18px; }
+#stats .st-kpi { padding: 11px 14px; border-right: 1px solid var(--rule); }
+#stats .st-kpi:last-child { border-right: 0; }
+#stats .st-kpi small { display: block; font: 500 11px/1.15 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--dim); margin-bottom: 4px; }
+#stats .st-kpi strong { display: block; font: 400 clamp(20px, 2vw, 27px)/1.05 var(--serif); font-variant-numeric: tabular-nums; color: var(--ink); }
+#stats .st-kpi span { display: block; font-size: 12px; color: var(--dim); margin-top: 3px; font-variant-numeric: tabular-nums; }
+#stats .st-chart-box { border: 1px solid var(--rule); background: rgba(var(--ink-rgb), .012); padding: 14px 16px 12px; margin-bottom: 22px; }
+#stats .st-readout { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 14px; padding-bottom: 10px; margin-bottom: 8px; border-bottom: 1px solid var(--rule); min-height: 28px; }
+#stats .st-readout .rd-y { font: 400 20px/1 var(--serif); font-variant-numeric: tabular-nums; color: var(--ink); }
+#stats .st-readout .rd-v { font: 600 15px/1 var(--sans); font-variant-numeric: tabular-nums; color: var(--ink); }
+#stats .st-readout .rd-m { font-size: 12.5px; color: var(--dim); font-variant-numeric: tabular-nums; }
+#stats .st-readout .rd-acc { color: var(--acc); font-weight: 600; }
+#stats svg.st-svg { width: 100%; height: auto; display: block; user-select: none; }
+#stats svg.st-svg text { font: 11px var(--sans); fill: var(--dim); font-variant-numeric: tabular-nums; }
+#stats svg.st-svg .grid { stroke: var(--ink); opacity: .16; stroke-dasharray: 2 3; }
+#stats svg.st-svg .axis { stroke: var(--ink); opacity: .45; }
+#stats svg.st-svg .band { fill: rgba(var(--ink-rgb), .035); }
+#stats svg.st-svg .bar { fill: var(--ink); opacity: .82; cursor: pointer; transition: opacity .1s; }
+#stats svg.st-svg .bar:hover, #stats svg.st-svg .bar.on { fill: var(--acc); opacity: 1; }
+#stats svg.st-svg .bar-hit { fill: transparent; cursor: pointer; }
+#stats .st-sech { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px; border-bottom: 1px solid var(--ink); padding-bottom: 6px; margin: 22px 0 10px; }
+#stats .st-sech h4 { font: 500 12px/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); margin: 0; }
+#stats .st-sech small { font: italic 14px var(--serif); color: var(--dim); }
+#stats .st-tops { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+#stats .st-tops li { border-bottom: 1px solid var(--rule); }
+#stats .st-tops button { all: unset; box-sizing: border-box; display: block; width: 100%; padding: 9px 0; cursor: pointer; }
+#stats .st-tops button:hover .tp-n { text-decoration: underline; text-underline-offset: 3px; }
+#stats .st-tops button:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+#stats .tp-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+#stats .tp-n { font: 400 15.5px/1.25 var(--serif); color: var(--ink); }
+#stats .tp-v { font: 400 12.5px/1 var(--sans); color: var(--dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
+#stats .tp-bar { display: block; height: 3px; background: rgba(var(--ink-rgb), .12); margin-top: 6px; }
+#stats .tp-bar i { display: block; height: 100%; background: var(--ink); }
+#stats .st-note { margin: 18px 0 0; padding: 8px 0 8px 12px; border-left: 2px solid var(--rule); font-size: 12.5px; line-height: 1.45; color: var(--dim); max-width: 72ch; }
+#stats .st-pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 14px; }
+#stats .st-pills button { all: unset; cursor: pointer; padding: 4px 10px; border: 1px solid var(--rule); font: 500 12px/1.2 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
+#stats .st-pills button:hover { color: var(--ink); border-color: var(--ink); }
+#stats .st-pills button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#stats .st-pills button:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+#stats .st-tbl-wrap { overflow-x: auto; }
+#stats table.st-tbl { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+#stats .st-tbl th, #stats .st-tbl td { text-align: right; padding: 8px 8px; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+#stats .st-tbl th { border-bottom: 1px solid var(--ink); white-space: nowrap; }
+#stats .st-tbl th:first-child, #stats .st-tbl td:first-child { text-align: left; padding-left: 0; }
+#stats .st-tbl th:last-child, #stats .st-tbl td:last-child { padding-right: 0; }
+#stats .st-tbl th button { all: unset; cursor: pointer; font: 500 11.5px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+#stats .st-tbl th button:hover { color: var(--ink); text-decoration: underline; }
+#stats .st-tbl th button:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+#stats .st-tbl tbody tr:hover { background: rgba(var(--ink-rgb), .03); }
+#stats .st-tbl .df-btn { all: unset; cursor: pointer; display: block; text-align: left; }
+#stats .st-tbl .df-btn:hover strong { text-decoration: underline; text-underline-offset: 3px; }
+#stats .st-tbl .df-btn strong { display: block; font: 400 16px/1.2 var(--serif); color: var(--ink); }
+#stats .st-tbl .df-btn small { display: block; font: 400 11px/1.2 var(--sans); color: var(--dim); letter-spacing: .04em; }
+#stats .st-tbl .sp-cell { width: 84px; }
+#stats .st-tbl .sp-svg { width: 76px; height: 20px; display: block; margin-left: auto; }
+#stats .st-tbl .vbar { display: inline-block; height: 5px; background: var(--ink); opacity: .65; vertical-align: middle; margin-left: 6px; }
+#stats .st-tbl .pace-hi { color: var(--acc); font-weight: 600; }
+#stats .st-tbl .q-cnt { display: inline-block; min-width: 22px; text-align: center; padding: 1px 5px; border: 1px solid var(--rule); font-size: 11.5px; color: var(--ink); }
+#stats .st-tbl .q-cnt.zero { color: var(--dim); border-style: dashed; opacity: .6; }
+#stats .st-tbl .go-map { all: unset; cursor: pointer; padding: 3px 6px; border: 1px solid var(--rule); font-size: 12px; color: var(--dim); }
+#stats .st-tbl .go-map:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#stats .st-dom-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
+#stats .st-dcard { border: 1px solid var(--rule); background: rgba(var(--ink-rgb), .018); padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+#stats .st-dcard-h { display: flex; align-items: center; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--rule); padding-bottom: 7px; }
+#stats .st-dcard-h strong { font: 400 19px/1.15 var(--serif); color: var(--ink); }
+#stats .st-dcard-stats { display: flex; gap: 18px; flex-wrap: wrap; }
+#stats .st-dcard-stats div small { display: block; font: 500 10.5px/1.1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+#stats .st-dcard-stats div b { font: 400 18px/1.2 var(--serif); font-variant-numeric: tabular-nums; }
+#stats .st-dcard-meta { font-size: 12.5px; color: var(--dim); }
+#stats .st-dcard-acts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
+#stats .st-dom-leg { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12.5px; color: var(--ink); margin-top: 8px; }
+#stats .st-dom-leg span { display: inline-flex; align-items: center; gap: 7px; }
+#stats .st-mgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; }
+#stats .st-mlist { list-style: none; margin: 0; padding: 0; }
+#stats .st-mlist li { border-bottom: 1px solid var(--rule); padding: 8px 0; }
+#stats .st-mrow { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+#stats .st-mrow button { all: unset; cursor: pointer; font: 400 16px/1.25 var(--serif); color: var(--ink); text-align: left; }
+#stats .st-mrow button:hover { text-decoration: underline; text-underline-offset: 3px; }
+#stats .st-mrow .mr-val { font: 600 13.5px/1 var(--sans); font-variant-numeric: tabular-nums; white-space: nowrap; }
+#stats .st-mrow .mr-val.hi { color: var(--acc); }
+#stats .st-msub { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 4px; font-size: 12px; color: var(--dim); font-variant-numeric: tabular-nums; }
+#stats .st-mbar { flex: 1; height: 4px; background: rgba(var(--ink-rgb), .1); max-width: 150px; }
+#stats .st-mbar i { display: block; height: 100%; background: var(--ink); }
+#stats .st-mbar.hi i { background: var(--acc); }
+#stats .st-qgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; list-style: none; margin: 0; padding: 0; }
+#stats .st-qgrid li { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+#stats .st-qgrid button { all: unset; cursor: pointer; font: 400 16px/1.25 var(--serif); color: var(--ink); }
+#stats .st-qgrid button:hover { text-decoration: underline; }
+#stats .st-qgrid .qm { font-size: 12.5px; color: var(--dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
+#stats .st-qgrid .qm b { color: var(--acc); font-weight: 600; }
+#stats .st-side, #stats .st-stage, #stats .st-scroll { scrollbar-width: thin; scrollbar-color: var(--ink) var(--paper); }
+@media (max-width: 959px) {
+  #stats .st-body { grid-template-columns: minmax(0, 1fr); }
+  #stats .st-side { display: none; }
+  #stats .st-mob-sel { display: block; }
+  #stats .st-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #stats .st-kpi:nth-child(2) { border-right: 0; }
+  #stats .st-kpi:nth-child(1), #stats .st-kpi:nth-child(2) { border-bottom: 1px solid var(--rule); }
+  #stats .st-mgrid, #stats .st-dom-cards, #stats .st-tops, #stats .st-qgrid { grid-template-columns: minmax(0, 1fr); }
+  #stats .st-hkpis { display: none; }
+}
+@media (max-width: 720px) {
+  #stats { inset: 0; border: 0; box-shadow: none; }
+  #stats .st-tbl { font-size: 12px; }
+  #stats .st-tbl .sp-cell { display: none; }
+}
 #cap { left: 50%; bottom: 28px; transform: translateX(-50%); font: italic 14px/1.3 var(--serif); text-align: center; width: min(620px, 56%); pointer-events: none; }
 #stamp { right: 38px; bottom: 74px; border: .8px solid var(--ink); padding: 5px 8px; font-size: 11px; background: var(--paper); max-width: 200px; }
 #stamp b { color: var(--acc); font-weight: 400; letter-spacing: .06em; }
@@ -321,8 +441,12 @@ button:focus-visible, summary:focus-visible { outline: 2px solid var(--acc); out
 #sres { position:absolute; top:100%; left:0; min-width:100%; width:min(360px,80vw); }
 #mast #stbtn,#mast #rndbtn,#legend summary { border:none; background:none; font:15px var(--sans); text-transform:none;letter-spacing:0; padding:6px 0; }
 #mast #stbtn:hover,#mast #rndbtn:hover,#legend summary:hover { background:none; color:var(--ink); text-decoration:underline; text-underline-offset:4px; }
-#mast #rndbtn { display:inline-flex; align-items:center; gap:8px; width:auto; }
+#mast #stbtn, #mast #rndbtn { display:inline-flex; align-items:center; gap:7px; width:auto; }
 @media (min-width:851px) { #mast #stbtn,#mast #rndbtn { flex:none; white-space:nowrap; } #mast #rndbtn { margin-left:6px; } }
+#stbtn .st-ic { width:18px; height:16px; flex:none; }
+#stbtn .st-ic line { stroke:var(--ink); stroke-width:1.1; }
+#stbtn .st-ic rect { fill:var(--ink); }
+#stbtn .st-ic rect:last-child { fill:var(--acc); }
 #rndbtn .die { width:22px; height:22px; flex:none; stroke:var(--ink); fill:none; stroke-width:1.3; }
 #rndbtn .die circle { fill:var(--ink); stroke:none; }
 #rndbtn.rolling .die { animation:roll .8s cubic-bezier(.3,.7,.4,1); }
@@ -403,8 +527,7 @@ body.panel-open #hello { display:none; }
 #colophon #stamp {margin-left:auto;border:0;padding:0 0 0 12px;border-left:1px solid var(--rule);background:transparent;font:12px var(--sans); color:var(--dim);}
 #stamp b {font-weight:500;color:var(--ink);}
 #src { background:transparent; }
-#stats { z-index:10; padding:clamp(22px,4vw,65px); }
-#stats h2,#panel h2 { font:400 clamp(30px,3.3vw,52px)/1.06 var(--serif);letter-spacing:-.035em; }
+#panel h2 { font:400 clamp(30px,3.3vw,52px)/1.06 var(--serif);letter-spacing:-.035em; }
 #panel {z-index:9;top:calc(var(--mast) + 8px);bottom:calc(var(--foot) + 8px);right:var(--edge);width:min(435px,50vw);padding:24px;box-shadow:-8px 8px 0 rgba(var(--ink-rgb),.07);}
 @media(prefers-reduced-motion:no-preference) {
  #panel:not([hidden]) {animation:open-folio .18s ease-out both;}
@@ -458,7 +581,7 @@ body.panel-open #hello { display:none; }
 <div id="sheet"><div id="frame"></div>
 <header id="mast"><span id="brand" data-i="titre"></span>
 <div id="search" class="ov"><input id="sq" type="search" role="combobox" aria-expanded="false" aria-controls="sres" aria-autocomplete="list" autocomplete="off" spellcheck="false"><ul id="sres" role="listbox" hidden></ul></div>
-<button class="sq" id="stbtn" type="button" hidden></button>
+<button class="sq" id="stbtn" type="button" hidden><svg class="st-ic" viewBox="0 0 20 18" aria-hidden="true"><line x1="1" y1="16.5" x2="19" y2="16.5"/><rect x="2.5" y="11" width="2.6" height="5.5"/><rect x="6.7" y="8.5" width="2.6" height="8"/><rect x="10.9" y="5.5" width="2.6" height="11"/><rect x="15.1" y="2" width="2.6" height="14.5"/></svg><span id="stlbl"></span></button>
 <button class="sq" id="rndbtn" type="button"><svg class="die" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="4"/><rect x="5" y="5" width="14" height="14" rx="2.2" stroke-width=".5"/><g id="pips"></g></svg><span id="rndlbl"></span></button>
 <details id="legend" class="ov"><summary data-i="refs_t"></summary><div class="scroll"><div id="key"><h2 data-i="key_t"></h2><ul>
 <li>
@@ -690,11 +813,12 @@ const fly = (wx, wy, k) => flyTo(wx + (W > 720 ? 210 : 0) / (s0 * k), wy, k);
 let openedAt=0;
 function openQ(i) { openedAt=performance.now(); cur = { q: i }; renderPanel(); fly(Q[i].x, Q[i].y, Math.max(view.k, Q[i].t ? 1.6 : 2)); if (location.hash.slice(1) !== Q[i].id) history.replaceState(null, '', '#' + Q[i].id); }
 function openT(i) { cur = { t: i }; renderPanel(); fly(T[i * 5], T[i * 5 + 1], Math.max(view.k, 3)); if (location.hash) history.replaceState(null, '', location.pathname + location.search); }
-// Each question has its own address (#conscience), and #annonces / #claims / #claim=<id> open the verification register.
+// Each question has its own address (#conscience); #annonces, #claims, #claim=<id> and #stats open the register plates.
 function openHash() {
   const h = location.hash.slice(1);
   if (h === 'annonces' || h === 'claims') { openClaims(); return; }
   if (h.startsWith('claim=')) { openClaims(h.slice(6)); return; }
+  if (h === 'stats' || h === 'statistiques') { openStats(); return; }
   const i = Q.findIndex(q => q.id === h);
   if (i >= 0 && !(cur && cur.q === i)) openQ(i);
 }
@@ -857,7 +981,7 @@ function applyLang() {
   document.documentElement.lang = LANG; document.title = t('titre'); const md = document.querySelector('meta[name=description]'); if (md) md.content = t('desc');
   document.querySelectorAll('[data-i]').forEach(e => { e.textContent = t(e.dataset.i); }); $('ialink').href = '/' + LANG + '/ia/';
   document.querySelectorAll('[data-ia]').forEach(e => e.setAttribute('aria-label', t(e.dataset.ia)));
-  $('stbtn').textContent = t('st_btn'); $('rndlbl').textContent = t('rnd_btn'); $('rndbtn').title = t('rnd_title'); $('keyai').textContent = t('key_ai', { n: AIN, m: NQ });
+  $('stlbl').textContent = t('st_btn'); $('stbtn').title = t('st_btn_title'); $('rndlbl').textContent = t('rnd_btn'); $('rndbtn').title = t('rnd_title'); $('keyai').textContent = t('key_ai', { n: AIN, m: NQ });
   if (YR) {
     const r=$('tlr'), current=Math.round(+r.value);
     $('lastYear').textContent=YR.y1+' / '+t('plate_all');
@@ -902,27 +1026,234 @@ $('hiAgain').onclick = () => { hello.hidden = false; placeHello(); $('legend').o
 function keyOpen() { if (wideKey.matches) $('legend').open = true; resize(); }
 wideKey.addEventListener('change', keyOpen); if (wideKey.matches) $('legend').open = true;
 
-// ---- Stats: research by year and by decade (exact sums per field computed at build time).
-let stOpen = false, stTab = 'y', stGroup = 'all', stCol = 3, stDir = -1; const stats = $('stats');
+// ---- Stats: interactive patent-plate atlas of world research effort (1990–2025, OpenAlex).
+let stOpen = false, stTab = 'y', stGroup = 'all', stCol = 4, stDir = -1, stPinYear = null, stDomFilter = -1, stShareMode = false;
+const stats = $('stats');
 const DECADES = [[0, 10], [10, 20], [20, 30], [30, YR ? YR.n : 36]];
+const DOM_STYLE = [
+  { stroke: 'var(--ink)', w: 2.2, dash: '' },
+  { stroke: 'var(--acc)', w: 2.1, dash: '' },
+  { stroke: 'var(--ink)', w: 1.7, dash: '6 3' },
+  { stroke: 'var(--dim)', w: 1.8, dash: '2 3' }
+];
+function fmtCompact(n) {
+  const sep = LANG === 'fr' ? ',' : '.';
+  if (n >= 1e6) return (n / 1e6).toFixed(n >= 1e7 ? 1 : 2).replace('.', sep) + ' M';
+  if (n >= 1e4) return Math.round(n / 1e3).toLocaleString(LANG === 'fr' ? 'fr-FR' : 'en-US') + ' k';
+  if (n >= 1e3) return (n / 1e3).toFixed(1).replace('.', sep) + ' k';
+  return fmt(n);
+}
+function fmtDec(v, d = 1) { return v.toFixed(d).replace('.', LANG === 'fr' ? ',' : '.'); }
 function stSeries(g) { const a = new Array(YR.n).fill(0); F.forEach((f, j) => { if (g === 'all' || g === 'd' + f.d || g === 'f' + j) YR.f[j].forEach((v, k) => { a[k] += v; }); }); return a; }
-function stNice(m) { const p = Math.pow(10, Math.floor(Math.log10(m))), r = m / p; return (r <= 1 ? 1 : r <= 2 ? 2 : r <= 5 ? 5 : 10) * p; }
-function stChart() { const a = stSeries(stGroup), n = a.length, max = stNice(Math.max(...a)), W = 720, H = 270, L = 58, B = 26, bw = (W - L - 8) / n; let out = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t('st_y_cap'))}">`;
-  for (let k = 0; k <= 4; k++) { const v = max * k / 4, y = H - B - (H - B - 10) * k / 4; out += `<line x1="${L}" x2="${W - 4}" y1="${y}" y2="${y}"/><text x="${L - 6}" y="${y + 4}" text-anchor="end">${esc(fmt(v))}</text>`; }
-  a.forEach((v, k) => { const h = (H - B - 10) * v / max, x = L + k * bw; out += `<rect class="bar" data-k="${k}" x="${x + 1}" y="${H - B - h}" width="${bw - 2}" height="${h}"><title>${esc(t('st_hover', { y: YR.y0 + k, n: fmt(v) }))}</title></rect>`; if ((YR.y0 + k) % 5 === 0 || k === n - 1) out += `<text x="${x + bw / 2}" y="${H - 8}" text-anchor="middle">${YR.y0 + k}</text>`; });
-  const k2 = 2000 - YR.y0, gx = a[k2] ? a[n - 1] / a[k2] : 0; return `<p class="cap2">${esc(t('st_y_cap'))}${gx ? ' · ' + esc(t('st_y_x', { x: gx.toFixed(1), y: 2000 })) : ''}</p>` + out + '</svg>'; }
-function stSelect() { const o = [`<option value="all">${esc(t('st_all'))}</option>`]; DATA.D.forEach((d, i) => o.push(`<option value="d${i}">${esc(t('st_dom'))} : ${esc(loc(d))}</option>`)); F.forEach((f, j) => o.push(`<option value="f${j}">· ${esc(loc(f.nn))}</option>`)); return `<label>${esc(t('st_group'))} <select id="stsel">${o.join('').replace(`value="${stGroup}"`, `value="${stGroup}" selected`)}</select></label>`; }
-function stTable() { const H = t('st_d_h'), rows = F.map((f, j) => { const s = DECADES.map(([a, b]) => YR.f[j].slice(a, b).reduce((x, y) => x + y, 0)); return { j, s, g: s[1] ? s[2] / s[1] : 0 }; });
-  const val = r => stCol === 0 ? loc(F[r.j].nn) : stCol === 5 ? r.g : r.s[stCol - 1]; rows.sort((p, q) => { const x = val(p), y = val(q); return (typeof x === 'string' ? x.localeCompare(y, LANG) : x - y) * stDir; });
-  const mx = Math.max(...rows.map(r => r.s[2])), th = (c, l) => `<th scope="col"><button type="button" data-c="${c}">${esc(l)}${stCol === c ? (stDir > 0 ? ' ↑' : ' ↓') : ''}</button></th>`;
-  return `<table><thead><tr>${H.map((h, c) => th(c, h)).join('')}${th(5, t('st_d_g'))}</tr></thead><tbody>${rows.map(r => `<tr><td>${esc(loc(F[r.j].nn))}</td>${r.s.map((v, c) => `<td>${esc(fmt(v))}${c === 2 ? `<i style="width:${Math.round(v / mx * 60)}px"></i>` : ''}</td>`).join('')}<td>${r.g ? esc(t('st_x') + r.g.toFixed(2)) : '—'}</td></tr>`).join('')}</tbody></table><p class="note">${esc(t('st_d_foot'))}</p>`; }
-function renderStats() { if (!stOpen) return; const tabs = [['y', 'st_tab_y'], ['d', 'st_tab_d'], ['m', 'st_tab_m']];
-  stats.innerHTML = `<button class="sq" id="stclose" type="button" aria-label="${esc(t('st_close'))}">×</button><h2>${esc(t('st_title'))}</h2><div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${stTab === k}">${esc(t(l))}</button>`).join('')}</div>` + (stTab === 'y' ? stSelect() + stChart() + `<p class="note">${esc(t('st_note'))}</p>` : stTab === 'd' ? stTable() : movingHTML());
-  $('stclose').onclick = closeStats; stats.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { stTab = b.dataset.tab; renderStats(); });
-  const sel = $('stsel'); if (sel) sel.onchange = () => { stGroup = sel.value; renderStats(); $('stsel').focus(); };
+function stNice(m) { if (m <= 0) return 1; const p = Math.pow(10, Math.floor(Math.log10(m))), r = m / p; return (r <= 1 ? 1 : r <= 2 ? 2 : r <= 5 ? 5 : 10) * p; }
+const Q_BY_FIELD = F.map(() => new Set()), Q_BY_DOM = DATA.D.map(() => new Set());
+Q.forEach((q, qi) => { if (q.adv) return; q.subs.forEach(si => { const f = S[si].f; Q_BY_FIELD[f].add(qi); Q_BY_DOM[F[f].d].add(qi); }); });
+function stQCount(g) { return g === 'all' ? NQ : g[0] === 'd' ? Q_BY_DOM[+g.slice(1)].size : Q_BY_FIELD[+g.slice(1)].size; }
+function stGroupName(g) { return g === 'all' ? t('st_all') : g[0] === 'd' ? loc(DATA.D[+g.slice(1)]) : loc(F[+g.slice(1)].nn); }
+function stSpark(a) {
+  const max = Math.max(1, ...a), W = 76, H = 20, pad = 2;
+  const pts = a.map((v, k) => `${(pad + k / (a.length - 1) * (W - 2 * pad)).toFixed(1)},${(H - pad - v / max * (H - 2 * pad)).toFixed(1)}`).join(' ');
+  const lastY = (H - pad - a[a.length - 1] / max * (H - 2 * pad)).toFixed(1);
+  return `<svg class="sp-svg" viewBox="0 0 ${W} ${H}" aria-hidden="true"><polyline fill="none" stroke="var(--ink)" stroke-width="1.2" points="${pts}"/><circle cx="${W - pad}" cy="${lastY}" r="2" fill="var(--acc)"/></svg>`;
+}
+function stDomSwatch(i) {
+  const st = DOM_STYLE[i % DOM_STYLE.length];
+  return `<svg width="24" height="10" viewBox="0 0 24 10" aria-hidden="true"><line x1="0" y1="5" x2="24" y2="5" stroke="${st.stroke}" stroke-width="${st.w}"${st.dash ? ` stroke-dasharray="${st.dash}"` : ''}/></svg>`;
+}
+function stTopTopics(g) {
+  const out = [];
+  for (let i = 0; i < N; i++) {
+    const f = S[T[i * 5 + 3]].f;
+    if (g === 'all' || (g[0] === 'd' && F[f].d === +g.slice(1)) || (g[0] === 'f' && f === +g.slice(1))) out.push([i, T[i * 5 + 2]]);
+  }
+  out.sort((a, b) => b[1] - a[1]);
+  return out.slice(0, 6);
+}
+function stReadoutHTML(a, tot, k) {
+  if (k == null || k < 0 || k >= a.length) return `<span class="rd-m">${esc(t('st_read_hint'))}</span>`;
+  const y = YR.y0 + k, v = a[k], sh = tot[k] ? (100 * v / tot[k]) : 0;
+  let yoy = '';
+  if (k > 0 && a[k - 1] > 0) { const p = 100 * (v - a[k - 1]) / a[k - 1]; yoy = ` · <span class="${p >= 0 ? 'rd-acc' : ''}">${esc(t('st_read_yoy', { s: p >= 0 ? '+' : '', p: fmtDec(p, 1), y: y - 1 }))}</span>`; }
+  return `<span><span class="rd-y">${y}</span> &nbsp; <span class="rd-v">${esc(fmt(v))} ${esc(t('articles'))}</span></span><span class="rd-m">${stGroup === 'all' ? '' : esc(t('st_read_share', { p: fmtDec(sh, 1) }))}${yoy}</span>`;
+}
+function stYearTab(tot) {
+  const a = stSeries(stGroup), n = a.length, max = stNice(Math.max(...a)), last = a[n - 1], k00 = 2000 - YR.y0;
+  const g00 = a[k00] ? last / a[k00] : 0, g90 = a[0] ? last / a[0] : 0, sh = tot[n - 1] ? 100 * last / tot[n - 1] : 0;
+  const peakIdx = a.indexOf(Math.max(...a)), peakY = YR.y0 + peakIdx;
+  const W = 760, H = 264, L = 52, R = 10, T0 = 12, B = 28, cw = W - L - R, ch = H - T0 - B, bw = cw / n;
+  const bands = [[10, 20], [30, n]].map(([i0, i1]) => `<rect class="band" x="${(L + i0 * bw).toFixed(1)}" y="${T0}" width="${((i1 - i0) * bw).toFixed(1)}" height="${ch}"/>`).join('');
+  let grid = '';
+  for (let k = 0; k <= 4; k++) {
+    const v = max * k / 4, y = T0 + ch - ch * k / 4;
+    grid += `<line class="${k === 0 ? 'axis' : 'grid'}" x1="${L}" x2="${W - R}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}"/><text x="${L - 7}" y="${(y + 3.5).toFixed(1)}" text-anchor="end">${esc(fmtCompact(v))}</text>`;
+  }
+  let bars = '';
+  a.forEach((v, k) => {
+    const h = ch * v / max, x = L + k * bw, on = stPinYear === k ? ' on' : '';
+    bars += `<rect class="bar${on}" data-bar="${k}" x="${(x + 1.2).toFixed(1)}" y="${(T0 + ch - h).toFixed(1)}" width="${Math.max(2, bw - 2.4).toFixed(1)}" height="${h.toFixed(1)}"/><rect class="bar-hit" data-k="${k}" x="${x.toFixed(1)}" y="${T0}" width="${bw.toFixed(1)}" height="${ch}"><title>${esc(t('st_hover', { y: YR.y0 + k, n: fmt(v) }))}</title></rect>`;
+    if ((YR.y0 + k) % 5 === 0 || k === n - 1) bars += `<text x="${(x + bw / 2).toFixed(1)}" y="${H - 8}" text-anchor="middle">${YR.y0 + k}</text>`;
+  });
+  const fieldsBy25 = F.map((f, j) => ({ j, v: YR.f[j][n - 1], g: YR.f[j][k00] ? YR.f[j][n - 1] / YR.f[j][k00] : 0 })).sort((x, y) => y.v - x.v);
+  const side = `<nav class="st-side" aria-label="${esc(t('st_group'))}">
+    <button type="button" class="st-pick" data-g="all" aria-current="${stGroup === 'all'}"><span class="sp-t">${esc(t('st_all'))}</span><span class="sp-v">${esc(fmtCompact(tot[n - 1]))}</span></button>
+    <div class="st-sh">${esc(t('st_doms'))}</div>
+    ${DATA.D.map((d, i) => { const s = stSeries('d' + i); return `<button type="button" class="st-pick" data-g="d${i}" aria-current="${stGroup === 'd' + i}"><span class="sp-t">${esc(loc(d))}</span><span class="sp-v">${esc(fmtCompact(s[n - 1]))}</span></button>`; }).join('')}
+    <div class="st-sh">${esc(t('st_discs'))}</div>
+    ${fieldsBy25.map(x => `<button type="button" class="st-pick" data-g="f${x.j}" aria-current="${stGroup === 'f' + x.j}"><span class="sp-t">${esc(loc(F[x.j].nn))}</span><span class="sp-v">${esc(fmtCompact(x.v))}</span></button>`).join('')}
+  </nav>`;
+  const mobOpts = [`<option value="all">${esc(t('st_all'))}</option>`, ...DATA.D.map((d, i) => `<option value="d${i}">${esc(t('st_dom'))} : ${esc(loc(d))}</option>`), ...fieldsBy25.map(x => `<option value="f${x.j}">· ${esc(loc(F[x.j].nn))}</option>`)].join('').replace(`value="${stGroup}"`, `value="${stGroup}" selected`);
+  const mapAct = stGroup[0] === 'f' ? `<button type="button" class="st-act" data-flyf="${stGroup.slice(1)}">${esc(t('st_see_map'))}</button>` : stGroup[0] === 'd' ? `<button type="button" class="st-act" data-litd="${stGroup.slice(1)}">${esc(t('st_lit_map'))}</button>` : '';
+  const tops = stTopTopics(stGroup), tmax = tops.length ? Math.max(1, tops[0][1]) : 1;
+  return `<div class="st-body">${side}<div class="st-stage"><div class="st-inner">
+    <div class="st-mob-sel"><select id="stsel" aria-label="${esc(t('st_group'))}">${mobOpts}</select></div>
+    <div class="st-toprow"><h3>${esc(stGroupName(stGroup))}</h3>${mapAct}</div>
+    <div class="st-kpis">
+      <div class="st-kpi"><small>${esc(t('st_kpi_2025'))}</small><strong>${esc(fmtCompact(last))}</strong><span>${esc(t('st_kpi_peak', { y: peakY }))}</span></div>
+      <div class="st-kpi"><small>${esc(t('st_kpi_g00'))}</small><strong>${g00 ? '×' + fmtDec(g00, 1) : '—'}</strong><span>${g90 ? esc(t('st_kpi_g90')) + ' : ×' + fmtDec(g90, 1) : ''}</span></div>
+      <div class="st-kpi"><small>${esc(t('st_kpi_share'))}</small><strong>${fmtDec(sh, 1)} %</strong><span>${esc(t('st_y_cap'))}</span></div>
+      <div class="st-kpi"><small>${esc(t('st_kpi_q'))}</small><strong>${stQCount(stGroup)}</strong><span>${stGroup === 'all' ? esc(t('st_discs')) : esc(stGroup[0] === 'd' ? F.filter(f => f.d === +stGroup.slice(1)).length + ' disciplines' : loc(DATA.D[F[+stGroup.slice(1)].d]))}</span></div>
+    </div>
+    <div class="st-chart-box">
+      <div class="st-readout" id="stReadout">${stReadoutHTML(a, tot, stPinYear)}</div>
+      <svg class="st-svg" id="stBarSvg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t('st_y_cap'))}">${bands}${grid}${bars}</svg>
+    </div>
+    <div class="st-sech"><h4>${esc(t('st_top_topics'))}</h4><small>${esc(t('st_top_sub'))}</small></div>
+    <ul class="st-tops">${tops.map(([i, w]) => `<li><button type="button" data-t="${i}"><span class="tp-row"><span class="tp-n">${esc(T[i * 5 + 4])}</span><span class="tp-v">${esc(fmtCompact(w))}</span></span><span class="tp-bar"><i style="width:${Math.max(4, Math.round(100 * w / tmax))}%"></i></span></button></li>`).join('')}</ul>
+    <p class="st-note">${esc(t('st_note'))}</p>
+  </div></div></div>`;
+}
+function stTableTab() {
+  const H = t('st_d_h');
+  const rows = F.map((f, j) => {
+    const s = DECADES.map(([a, b]) => YR.f[j].slice(a, b).reduce((x, y) => x + y, 0));
+    const avg10 = s[2] / 10, avg20 = s[3] / (YR.n - 30);
+    return { j, d: f.d, s, pace: avg10 ? avg20 / avg10 : 0, q: Q_BY_FIELD[j].size };
+  }).filter(r => stDomFilter < 0 || r.d === stDomFilter);
+  const val = r => stCol === 0 ? loc(F[r.j].nn) : stCol === 5 ? r.pace : stCol === 6 ? r.q : r.s[stCol - 1];
+  rows.sort((p, q) => { const x = val(p), y = val(q); return (typeof x === 'string' ? x.localeCompare(y, LANG) : x - y) * stDir; });
+  const mx = Math.max(1, ...rows.map(r => r.s[3]));
+  const th = (c, l) => `<th scope="col"><button type="button" data-c="${c}">${esc(l)}${stCol === c ? (stDir > 0 ? ' ↑' : ' ↓') : ''}</button></th>`;
+  const pills = `<div class="st-pills"><button type="button" data-df="-1" aria-pressed="${stDomFilter < 0}">${esc(t('st_all_dom'))}</button>${DATA.D.map((d, i) => `<button type="button" data-df="${i}" aria-pressed="${stDomFilter === i}">${esc(loc(d))}</button>`).join('')}</div>`;
+  return `<div class="st-scroll"><div class="st-inner">${pills}<div class="st-tbl-wrap"><table class="st-tbl"><thead><tr>${th(0, H[0])}<th class="sp-cell" scope="col">${esc(t('st_d_spark'))}</th>${H.slice(1).map((h, i) => th(i + 1, h)).join('')}${th(5, t('st_d_g'))}${th(6, t('st_d_q'))}<th scope="col"></th></tr></thead><tbody>${rows.map(r => `<tr><td><button type="button" class="df-btn" data-jump="${r.j}"><strong>${esc(loc(F[r.j].nn))}</strong><small>${esc(loc(DATA.D[r.d]))}</small></button></td><td class="sp-cell">${stSpark(YR.f[r.j])}</td>${r.s.map((v, c) => `<td>${esc(fmtCompact(v))}${c === 3 ? `<i class="vbar" style="width:${Math.max(2, Math.round(v / mx * 44))}px"></i>` : ''}</td>`).join('')}<td class="${r.pace >= 1.3 ? 'pace-hi' : ''}">${r.pace ? '×' + fmtDec(r.pace, 2) : '—'}</td><td><span class="q-cnt${r.q ? '' : ' zero'}">${r.q}</span></td><td><button type="button" class="go-map" data-flyf="${r.j}" title="${esc(t('st_see_map'))}" aria-label="${esc(t('st_see_map'))}">⌖</button></td></tr>`).join('')}</tbody></table></div><p class="st-note">${esc(t('st_d_foot'))}</p></div></div>`;
+}
+function stDomReadoutHTML(domS, tot, k) {
+  const idx = k != null && k >= 0 && k < tot.length ? k : tot.length - 1;
+  const y = YR.y0 + idx;
+  return `<span class="rd-y">${y}</span><span class="rd-m">${DATA.D.map((d, i) => `${esc(loc(d))} : <b>${stShareMode ? fmtDec(tot[idx] ? 100 * domS[i][idx] / tot[idx] : 0, 1) + ' %' : fmtCompact(domS[i][idx])}</b>`).join(' &nbsp;·&nbsp; ')}</span>`;
+}
+function stDomainsTab(tot) {
+  const n = YR.n, domS = DATA.D.map((_, i) => stSeries('d' + i));
+  const series = stShareMode ? domS.map(a => a.map((v, k) => tot[k] ? 100 * v / tot[k] : 0)) : domS;
+  const max = stShareMode ? Math.max(40, Math.ceil(Math.max(...series.flat()) / 10) * 10) : stNice(Math.max(...series.flat()));
+  const W = 760, H = 266, L = 48, R = 16, T0 = 14, B = 28, cw = W - L - R, ch = H - T0 - B;
+  let grid = '';
+  for (let k = 0; k <= 4; k++) {
+    const v = max * k / 4, y = T0 + ch - ch * k / 4;
+    grid += `<line class="${k === 0 ? 'axis' : 'grid'}" x1="${L}" x2="${W - R}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}"/><text x="${L - 7}" y="${(y + 3.5).toFixed(1)}" text-anchor="end">${stShareMode ? Math.round(v) + ' %' : esc(fmtCompact(v))}</text>`;
+  }
+  let xlbl = '';
+  for (let k = 0; k < n; k++) if ((YR.y0 + k) % 5 === 0 || k === n - 1) xlbl += `<text x="${(L + k / (n - 1) * cw).toFixed(1)}" y="${H - 8}" text-anchor="middle">${YR.y0 + k}</text>`;
+  const lines = series.map((a, i) => {
+    const st = DOM_STYLE[i % DOM_STYLE.length];
+    const pts = a.map((v, k) => `${(L + k / (n - 1) * cw).toFixed(1)},${(T0 + ch - ch * v / max).toFixed(1)}`).join(' ');
+    const ey = (T0 + ch - ch * a[n - 1] / max).toFixed(1);
+    return `<polyline fill="none" stroke="${st.stroke}" stroke-width="${st.w}"${st.dash ? ` stroke-dasharray="${st.dash}"` : ''} points="${pts}"/><circle cx="${W - R}" cy="${ey}" r="3" fill="${st.stroke}"/>`;
+  }).join('');
+  const hits = Array.from({ length: n }, (_, k) => `<rect class="bar-hit" data-pk="${k}" x="${(L + (k - .5) / (n - 1) * cw).toFixed(1)}" y="${T0}" width="${(cw / (n - 1)).toFixed(1)}" height="${ch}"/>`).join('');
+  const cards = DATA.D.map((d, i) => {
+    const a = domS[i], s90 = tot[0] ? 100 * a[0] / tot[0] : 0, s25 = tot[n - 1] ? 100 * a[n - 1] / tot[n - 1] : 0, gx = a[0] ? a[n - 1] / a[0] : 0;
+    const nf = F.filter(f => f.d === i).length, nt = domainCounts[i], nq = Q_BY_DOM[i].size;
+    return `<div class="st-dcard"><div class="st-dcard-h"><strong>${esc(loc(d))}</strong>${stDomSwatch(i)}</div><div class="st-dcard-stats"><div><small>${esc(t('st_p_share90'))}</small><b>${fmtDec(s90, 1)} % → ${fmtDec(s25, 1)} %</b></div><div><small>${esc(t('st_kpi_g90'))}</small><b>×${fmtDec(gx, 1)}</b></div><div><small>${esc(t('st_kpi_2025'))}</small><b>${esc(fmtCompact(a[n - 1]))}</b></div></div><div class="st-dcard-meta">${esc(t('st_p_meta', { d: nf, t: fmt(nt), q: nq }))}</div><div class="st-dcard-acts"><button type="button" class="st-act" data-jumpd="${i}">${esc(t('st_see_curve'))}</button><button type="button" class="st-act" data-litd="${i}">${esc(t('st_lit_map'))}</button></div></div>`;
+  }).join('');
+  return `<div class="st-scroll"><div class="st-inner">
+    <div class="st-toprow"><h3>${esc(t('st_p_cap'))}</h3><div class="st-pills" style="margin:0"><button type="button" data-sm="0" aria-pressed="${!stShareMode}">${esc(t('st_p_vol'))}</button><button type="button" data-sm="1" aria-pressed="${stShareMode}">${esc(t('st_p_pct'))}</button></div></div>
+    <div class="st-chart-box">
+      <div class="st-readout" id="stDomReadout">${stDomReadoutHTML(domS, tot, null)}</div>
+      <svg class="st-svg" id="stDomSvg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t('st_p_cap'))}">${grid}${xlbl}<line id="stDomGuide" x1="-10" x2="-10" y1="${T0}" y2="${T0 + ch}" stroke="var(--ink)" stroke-width="1" opacity=".35"/>${lines}${hits}</svg>
+      <div class="st-dom-leg">${DATA.D.map((d, i) => `<span>${stDomSwatch(i)}${esc(loc(d))}</span>`).join('')}</div>
+    </div>
+    <div class="st-dom-cards">${cards}</div>
+    <p class="st-note">${esc(t('st_note'))}</p>
+  </div></div>`;
+}
+function stMomentumTab() {
+  const n = YR.n;
+  const rows = F.map((f, j) => {
+    const a10 = YR.f[j].slice(20, 30).reduce((x, y) => x + y, 0) / 10;
+    const a20 = YR.f[j].slice(30, n).reduce((x, y) => x + y, 0) / (n - 30);
+    return { j, d: f.d, pace: a10 ? a20 / a10 : 0, a20, v25: YR.f[j][n - 1], q: Q_BY_FIELD[j].size };
+  });
+  const fast = rows.slice().sort((a, b) => b.pace - a.pace).slice(0, 9), fmax = Math.max(1, fast[0].pace);
+  const steady = rows.slice().sort((a, b) => a.pace - b.pace).slice(0, 9);
+  const qtop = rows.filter(r => r.q > 0).sort((a, b) => b.q - a.q || b.v25 - a.v25).slice(0, 10);
+  const mitem = (r, hi) => `<li><div class="st-mrow"><button type="button" data-jump="${r.j}">${esc(loc(F[r.j].nn))}</button><span class="mr-val${hi ? ' hi' : ''}">×${fmtDec(r.pace, 2)}</span></div><div class="st-msub"><span>${esc(t('st_m_avg', { n: fmtCompact(r.a20) }))} · ${esc(loc(DATA.D[r.d]))}</span><span class="st-mbar${hi ? ' hi' : ''}"><i style="width:${Math.min(100, Math.round(100 * r.pace / fmax))}%"></i></span></div></li>`;
+  let recentSec = '';
+  if (RC) {
+    const L = []; for (let i = 0; i < N; i++) { const c = RC.c[i], b = monthBase(i); if (c < 150 || b < 60) continue; const x = c / b; if (x >= 1.25 && x <= 3) L.push([i, x, c]); }
+    L.sort((a, b) => b[1] - a[1]); const top = L.slice(0, 12);
+    if (top.length) recentSec = `<div class="st-sech" style="margin-top:0"><h4>${esc(t('st_m_recent'))}</h4><small>${esc(RC.from)} → ${esc(RC.to)}</small></div><ul class="st-qgrid">${top.map(([i, x, c]) => `<li><button type="button" data-t="${i}">${esc(T[i * 5 + 4])}</button><span class="qm"><b>×${fmtDec(x, 1)}</b> · ${esc(fmt(c))}</span></li>`).join('')}</ul><p class="st-note" style="margin-bottom:24px">${esc(t('tr_note'))}</p>`;
+  }
+  return `<div class="st-scroll"><div class="st-inner">${recentSec}
+    <div class="st-mgrid">
+      <section><div class="st-sech" style="margin-top:0"><h4>${esc(t('st_m_fast'))}</h4><small>${esc(t('st_m_fast_s'))}</small></div><ul class="st-mlist">${fast.map(r => mitem(r, true)).join('')}</ul></section>
+      <section><div class="st-sech" style="margin-top:0"><h4>${esc(t('st_m_steady'))}</h4><small>${esc(t('st_m_steady_s'))}</small></div><ul class="st-mlist">${steady.map(r => mitem(r, false)).join('')}</ul></section>
+    </div>
+    <div class="st-sech"><h4>${esc(t('st_m_q_t'))}</h4><small>${esc(t('st_m_q_s'))}</small></div>
+    <ul class="st-qgrid">${qtop.map(r => `<li><button type="button" data-flyf="${r.j}">${esc(loc(F[r.j].nn))}</button><span class="qm"><b>${esc(t('st_m_q_n', { n: r.q }))}</b> · ${esc(fmtCompact(r.v25))} (2025)</span></li>`).join('')}</ul>
+    <p class="st-note">${esc(t('st_d_foot'))}</p>
+  </div></div>`;
+}
+function renderStats() {
+  if (!stOpen) return;
+  const tot = stSeries('all'), n = tot.length, k00 = 2000 - YR.y0;
+  const g00 = tot[k00] ? tot[n - 1] / tot[k00] : 0;
+  const head = `<div class="st-head"><div><p class="st-kicker">${esc(t('st_kicker'))}</p><h2>${esc(t('st_title'))}</h2><p class="st-intro">${esc(t('st_intro'))}</p></div><div class="st-hkpis"><div><small>${esc(t('st_kpi_2025'))}</small><b>${esc(fmtCompact(tot[n - 1]))}</b></div><div><small>${esc(t('st_kpi_g00'))}</small><b class="acc">×${fmtDec(g00, 1)}</b></div><div><small>${esc(t('st_discs'))}</small><b>${F.length}</b></div><div><small>${esc(t('st_kpi_q'))}</small><b>${NQ}</b></div></div><button class="sq" id="stclose" type="button" aria-label="${esc(t('st_close'))}">×</button></div>`;
+  const tabs = [['y', 'st_tab_y'], ['d', 'st_tab_d'], ['p', 'st_tab_p'], ['m', 'st_tab_m']];
+  const bar = `<div class="st-bar" role="tablist">${tabs.map(([k, l]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${stTab === k}">${esc(t(l))}</button>`).join('')}</div>`;
+  const body = stTab === 'y' ? stYearTab(tot) : stTab === 'd' ? stTableTab() : stTab === 'p' ? stDomainsTab(tot) : stMomentumTab();
+  stats.innerHTML = head + bar + body;
+  $('stclose').onclick = closeStats;
+  stats.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { stTab = b.dataset.tab; renderStats(); });
+  stats.querySelectorAll('[data-g]').forEach(b => b.onclick = () => { stGroup = b.dataset.g; renderStats(); });
+  const sel = $('stsel'); if (sel) sel.onchange = () => { stGroup = sel.value; renderStats(); $('stsel')?.focus(); };
   stats.querySelectorAll('[data-c]').forEach(b => b.onclick = () => { const c = +b.dataset.c; if (stCol === c) stDir = -stDir; else { stCol = c; stDir = c === 0 ? 1 : -1; } renderStats(); });
-  stats.querySelectorAll('.mvl [data-t]').forEach(b => b.onclick = () => { closeStats(); openT(+b.dataset.t); }); }
-function openStats() { if (!YR) return; stOpen = true; stats.hidden = false; renderStats(); stats.focus(); }
+  stats.querySelectorAll('[data-df]').forEach(b => b.onclick = () => { stDomFilter = +b.dataset.df; renderStats(); });
+  stats.querySelectorAll('[data-sm]').forEach(b => b.onclick = () => { stShareMode = b.dataset.sm === '1'; renderStats(); });
+  stats.querySelectorAll('[data-jump]').forEach(b => b.onclick = () => { stGroup = 'f' + b.dataset.jump; stTab = 'y'; renderStats(); });
+  stats.querySelectorAll('[data-jumpd]').forEach(b => b.onclick = () => { stGroup = 'd' + b.dataset.jumpd; stTab = 'y'; renderStats(); });
+  stats.querySelectorAll('[data-t]').forEach(b => b.onclick = () => { closeStats(); openT(+b.dataset.t); });
+  stats.querySelectorAll('[data-flyf]').forEach(b => b.onclick = () => { const f = +b.dataset.flyf; closeStats(); closePanel(); flyTo(FC[f].x, FC[f].y, 2.6); });
+  stats.querySelectorAll('[data-litd]').forEach(b => b.onclick = () => { const d = +b.dataset.litd; pinnedDomain = d; markDomainButtons(); closeStats(); closePanel(); flyTo(mx, my, 1); });
+  const barSvg = $('stBarSvg');
+  if (barSvg) {
+    const a = stSeries(stGroup), ro = $('stReadout');
+    const showK = k => { if (ro) ro.innerHTML = stReadoutHTML(a, tot, k); barSvg.querySelectorAll('[data-bar]').forEach(r => r.classList.toggle('on', +r.dataset.bar === k)); };
+    barSvg.querySelectorAll('[data-k]').forEach(hit => {
+      const k = +hit.dataset.k;
+      hit.addEventListener('pointerenter', () => showK(k));
+      hit.addEventListener('click', () => { stPinYear = stPinYear === k ? null : k; showK(stPinYear ?? k); });
+    });
+    barSvg.addEventListener('pointerleave', () => showK(stPinYear));
+  }
+  const domSvg = $('stDomSvg');
+  if (domSvg) {
+    const domS = DATA.D.map((_, i) => stSeries('d' + i)), ro = $('stDomReadout'), g = $('stDomGuide');
+    const L = 48, cw = 760 - 48 - 16;
+    domSvg.querySelectorAll('[data-pk]').forEach(hit => {
+      const k = +hit.dataset.pk;
+      hit.addEventListener('pointerenter', () => {
+        if (ro) ro.innerHTML = stDomReadoutHTML(domS, tot, k);
+        const x = (L + k / (n - 1) * cw).toFixed(1);
+        if (g) { g.setAttribute('x1', x); g.setAttribute('x2', x); }
+      });
+    });
+    domSvg.addEventListener('pointerleave', () => {
+      if (ro) ro.innerHTML = stDomReadoutHTML(domS, tot, null);
+      if (g) { g.setAttribute('x1', -10); g.setAttribute('x2', -10); }
+    });
+  }
+}
+function openStats() { if (!YR) return; if (clOpen) closeClaims(); stOpen = true; stats.hidden = false; renderStats(); stats.focus(); }
 function closeStats() { stOpen = false; stats.hidden = true; $('stbtn').focus(); }
 if (YR) { $('stbtn').hidden = false; $('stbtn').onclick = () => (stOpen ? closeStats() : openStats()); }
 addEventListener('keydown', e => { if (e.key === 'Escape' && stOpen) { e.stopPropagation(); closeStats(); } }, true);
@@ -1038,6 +1369,7 @@ function renderClaims() {
   if (clTab === 'tracked' && active) fcWire(active);
 }
 function openClaims(id) {
+  if (stOpen) closeStats();
   clReturnFocus = document.activeElement;
   clTab = 'tracked';
   if (id) { clSel = id; clMobileDetail = true; } else { clSel = clSel || (CLAIMS[0] && CLAIMS[0].id) || null; clMobileDetail = false; }
