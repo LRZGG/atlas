@@ -758,6 +758,82 @@ body.panel-open #hello { display:none; }
   #daily .df-recap li { grid-template-columns: 24px minmax(0, 1fr); }
   #daily .df-recap li button { grid-column: 2; justify-self: start; }
 }
+/* ---- Compass filters, fiche participation/share, frontier log & submission plate ---- */
+#compass { border-top: .6px solid var(--rule); padding-top: 8px; margin: 6px 0 8px; }
+#compass .cmp-h { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-bottom: 5px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+#compass .cmp-h button { all: unset; cursor: pointer; font: italic 12.5px var(--serif); text-transform: none; letter-spacing: 0; color: var(--acc); }
+#compass .cmp-h button:hover { text-decoration: underline; }
+#compass .cmp-b { display: flex; flex-wrap: wrap; gap: 4px; }
+#compass .cmp-b button { all: unset; cursor: pointer; border: .8px solid var(--rule); padding: 2px 7px; font-size: 11.5px; color: var(--dim); }
+#compass .cmp-b button:hover { border-color: var(--ink); color: var(--ink); }
+#compass .cmp-b button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#cmpList { max-height: 170px; overflow-y: auto; border: .8px solid var(--rule); background: rgba(var(--ink-rgb), .02); margin: 6px 0 10px; padding: 4px 8px; scrollbar-width: thin; scrollbar-color: var(--ink) var(--paper); }
+#cmpList button { all: unset; box-sizing: border-box; display: block; width: 100%; cursor: pointer; padding: 4px 0; border-bottom: .5px solid var(--rule); font: 13.5px/1.25 var(--serif); color: var(--ink); }
+#cmpList button:last-child { border-bottom: 0; }
+#cmpList button:hover { text-decoration: underline; }
+#subOpenBtn { all: unset; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; color: var(--ink); }
+#panel .q-share { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 14px; }
+#panel .q-share button { all: unset; cursor: pointer; padding: 4px 9px; border: .8px solid var(--rule); font: 500 11.5px/1.2 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); background: transparent; }
+#panel .q-share button:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#panel .q-hor { border: 1px solid var(--rule); background: rgba(var(--ink-rgb), .02); padding: 10px 12px; margin: 12px 0; }
+#panel .q-hor-t { font: 500 11px/1.2 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin: 0 0 8px; }
+#panel .q-hor-btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
+#panel .q-hor-btns button { all: unset; box-sizing: border-box; cursor: pointer; text-align: center; padding: 5px 6px; border: .8px solid var(--rule); font-size: 12px; color: var(--ink); background: var(--paper); }
+#panel .q-hor-btns button:hover { border-color: var(--ink); }
+#panel .q-hor-btns button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#panel .q-hor-bars { margin-top: 8px; display: grid; gap: 4px; font-size: 11.5px; color: var(--dim); font-variant-numeric: tabular-nums; }
+#panel .q-hor-row { display: grid; grid-template-columns: 74px 1fr 34px; gap: 6px; align-items: center; }
+#panel .q-hor-row span.b { display: block; height: 5px; background: rgba(var(--ink-rgb), .12); }
+#panel .q-hor-row span.b i { display: block; height: 100%; background: var(--ink); }
+#panel .q-hor-msg { margin: 7px 0 0; font-size: 11.5px; color: var(--dim); }
+#panel .q-rev { border: 1px solid var(--rule); border-left: 3px solid var(--acc); background: rgba(var(--ink-rgb), .02); padding: 8px 10px; margin: 0 0 12px; font-size: 12.5px; }
+#panel .q-rev a { font-weight: 600; }
+#panel .q-rev span { display: block; color: var(--dim); margin-top: 2px; font-size: 12px; }
+#panel .q-foot-act { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 12px; padding-top: 10px; border-top: .6px solid var(--rule); }
+#panel .q-tech { all: unset; cursor: pointer; padding: 3px 9px; border: .8px solid var(--rule); font-size: 12px; color: var(--dim); }
+#panel .q-tech:hover { border-color: var(--ink); color: var(--ink); }
+#panel .q-tech[aria-pressed="true"] { background: rgba(var(--ink-rgb), .08); border-color: var(--ink); color: var(--ink); }
+#claims .cl-share-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+#claims .cl-share-row button { all: unset; cursor: pointer; padding: 5px 11px; border: 1px solid var(--rule); font: 500 12px/1.2 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); }
+#claims .cl-share-row button:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#claims .cl-log-wrap { flex: 1; min-height: 0; overflow-y: auto; padding: clamp(18px, 3vw, 36px); scrollbar-width: thin; scrollbar-color: var(--ink) var(--paper); }
+#claims .cl-log-inner { max-width: 1120px; margin: 0 auto; }
+#claims .cl-log-pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
+#claims .cl-log-pills button { all: unset; cursor: pointer; padding: 5px 10px; border: 1px solid var(--rule); font: 500 12px/1.2 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
+#claims .cl-log-pills button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#claims .cl-log-list { list-style: none; margin: 0; padding: 0; }
+#claims .cl-log-list li { display: grid; grid-template-columns: 94px 140px minmax(0, 1fr) auto; gap: 10px 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--rule); }
+#claims .cl-log-list .lg-d { font-size: 12.5px; color: var(--dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
+#claims .cl-log-list .lg-tag { display: inline-block; padding: 2px 8px; font: 500 11px/1.2 var(--sans); letter-spacing: .07em; text-transform: uppercase; border: 1px solid var(--rule); white-space: nowrap; }
+#claims .cl-log-list .lg-tag.verif { border-color: var(--acc); color: var(--acc); }
+#claims .cl-log-list .lg-tag.solved { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#claims .cl-log-list .lg-tag.partial { border-color: var(--ink); color: var(--ink); }
+#claims .cl-log-list .lg-t { font: 400 17px/1.25 var(--serif); color: var(--ink); }
+#claims .cl-log-list .lg-s { display: block; font-size: 13px; color: var(--dim); margin-top: 2px; }
+#claims .cl-log-list button { all: unset; cursor: pointer; padding: 4px 10px; border: 1px solid var(--rule); font: 500 11.5px/1.2 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+#claims .cl-log-list button:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+@media (max-width: 780px) { #claims .cl-log-list li { grid-template-columns: minmax(0, 1fr); gap: 5px; } }
+#submitModal { position: fixed; z-index: 14; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(560px, calc(100vw - 24px)); max-height: calc(100dvh - 28px); overflow-y: auto; background: var(--paper); border: 1.5px solid var(--ink); box-shadow: 0 0 0 100vmax rgba(var(--ink-rgb), .28), 0 18px 48px rgba(var(--ink-rgb), .2); padding: 22px 24px 24px; }
+#submitModal:focus { outline: none; }
+#submitModal .sm-kicker { margin: 0 0 3px; font: 500 11px/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--acc); }
+#submitModal h2 { font: 400 28px/1.1 var(--serif); margin: 0 38px 6px 0; }
+#submitModal .sm-intro { margin: 0 0 14px; font-size: 13.5px; color: var(--dim); }
+#submitModal #smClose { position: absolute; right: 12px; top: 12px; width: 32px; height: 32px; font-size: 19px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); }
+#submitModal #smClose:hover { background: var(--ink); color: var(--paper); }
+#submitModal .sm-kinds { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 14px; }
+#submitModal .sm-kinds button { all: unset; cursor: pointer; padding: 6px 10px; border: 1px solid var(--rule); font: 500 12px/1.2 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
+#submitModal .sm-kinds button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#submitModal label { display: block; font: 500 11.5px/1.2 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--dim); margin: 12px 0 4px; }
+#submitModal input, #submitModal textarea { width: 100%; font: 15px/1.4 var(--sans); color: var(--ink); background: transparent; border: 1px solid var(--rule); border-radius: 0; padding: 8px 10px; }
+#submitModal input:focus, #submitModal textarea:focus { outline: 2px solid var(--acc); outline-offset: 1px; border-color: var(--ink); }
+#submitModal .sm-acts { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 16px; }
+#submitModal .sm-acts button, #submitModal .sm-acts a { all: unset; cursor: pointer; padding: 8px 14px; border: 1px solid var(--ink); font: 500 12.5px/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+#submitModal .sm-acts .prim { background: var(--ink); color: var(--paper); }
+#submitModal .sm-acts .prim:hover { background: var(--paper); color: var(--ink); }
+#submitModal .sm-acts .sec { border-color: var(--rule); color: var(--ink); }
+#submitModal .sm-acts .sec:hover { border-color: var(--ink); }
+#submitModal .sm-msg { margin: 12px 0 0; font-size: 13px; color: var(--dim); }
+#submitModal .sm-msg.err { color: var(--acc); }
 </style>
 <div id="sheet"><div id="frame"></div>
 <header id="mast"><span id="brand" data-i="titre"></span>
@@ -812,7 +888,7 @@ body.panel-open #hello { display:none; }
     <text x="15" y="14.4" font-size="9.5" fill="var(--paper)" data-i="ai_tag">IA</text>
   </svg>
   <span id="keyai"></span>
-</li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button><button type="button" data-fk="3">·</button></div><ol id="refs"></ol><p class="small"><button type="button" id="hiAgain" data-i="hi_again"></button></p><p class="small"><a id="ialink" data-i="ia_link" href="/en/ia/"></a></p><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
+</li></ul></div><div id="fk" role="group"><span data-i="f_t"></span><button type="button" data-fk="0">·</button><button type="button" data-fk="1">·</button><button type="button" data-fk="2">·</button><button type="button" data-fk="3">·</button></div><div id="compass" role="group"><div class="cmp-h"><span id="cmpLbl"></span><button type="button" id="cmpToggle" hidden></button></div><div class="cmp-b" id="cmpBtns"></div></div><div id="cmpList" hidden></div><ol id="refs"></ol><p class="small"><button type="button" id="subOpenBtn" data-i="sub_btn"></button></p><p class="small"><button type="button" id="hiAgain" data-i="hi_again"></button></p><p class="small"><a id="ialink" data-i="ia_link" href="/en/ia/"></a></p><h2 data-i="kb_t"></h2><p class="kb" id="kbhelp" data-i="kb_p"></p></div></details>
 <div id="lang" class="ov" role="group" data-ia="lang_aria"><button class="sq" type="button" data-lang="fr" aria-pressed="false">FR</button><button class="sq" type="button" data-lang="en" aria-pressed="false">EN</button></div><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></header>
 <button id="marginHandle" type="button" aria-controls="margin" aria-expanded="false" data-ia="plate_margin"><span aria-hidden="true">›</span></button>
 <aside id="margin">
@@ -828,6 +904,7 @@ body.panel-open #hello { display:none; }
 <aside id="stats" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
 <aside id="claims" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
 <aside id="daily" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
+<aside id="submitModal" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
 <div id="tip" hidden></div>
 <aside id="panel" role="dialog" tabindex="-1" hidden></aside>
 </div>
@@ -964,9 +1041,13 @@ function iaHTML(q) {
 function ficheHTML(q) {
   if (!q.f) return `<p class="small">${esc(t('fiche_prep'))}</p>`;
   const f = q.f, b = f[LANG] || f.fr, w = f.w[LANG] || f.w.fr, at = t('wiki_attr').split('{t}');
-  const prov = f.rv ? esc(t('prov_rv', { n: f.rv.par, d: f.rv.date })) : esc(t('prov')) + ` <a href="https://github.com/Lorenzo1208/atlas/blob/main/METHOD.md#who-writes-what" target="_blank" rel="noopener">${esc(t('prov_lien'))}</a>`;
+  const revUrl = `https://github.com/Lorenzo1208/atlas/issues/new?template=review-a-fiche.yml&title=${encodeURIComponent('[' + q.id + '] ')}&question=${encodeURIComponent(q.id + ' (' + location.origin + '/' + LANG + '/q/' + q.id + '/)')}`;
+  const prov = f.rv
+    ? esc(t('prov_rv', { n: f.rv.par, d: f.rv.date })) + (f.rv.orcid ? ` · <a href="https://orcid.org/${esc(f.rv.orcid)}" target="_blank" rel="noopener">ORCID ${esc(f.rv.orcid)}</a>` : '')
+    : esc(t('prov')) + ` <a href="https://github.com/Lorenzo1208/atlas/blob/main/METHOD.md#who-writes-what" target="_blank" rel="noopener">${esc(t('prov_lien'))}</a>`;
+  const revBox = f.rv ? '' : `<div class="q-rev"><a href="${revUrl}" target="_blank" rel="noopener">${esc(t('rev_cta'))} ↗</a><span>${esc(t('rev_cta_s'))}</span></div>`;
   const ck = f.ck != null ? `<p class="small">${esc(f.ck ? t('ck_n', { n: f.ck }) : t('ck_0'))} <a href="https://github.com/Lorenzo1208/atlas/blob/main/checks/report.md#${esc(q.id)}" target="_blank" rel="noopener">${esc(t('ck_lien'))}</a></p>` : '';
-  return `<p class="prov">${prov}</p>${ck}<h3>${esc(t('f_sait'))}</h3><ul>${li(b.s)}</ul><h3>${esc(t('f_ignore'))}</h3><ul>${li(b.i)}</ul><h3>${esc(t('f_dur'))}</h3><ul>${li(b.d)}</ul><h3>${esc(t('f_compte'))}</h3><p>${esc(b.e)}</p><h3>${esc(t('f_commencer'))}</h3><ul>${li(b.c)}</ul><h3>${esc(t('f_loin'))}</h3><div class="wiki"><p>${esc(w.x)}</p><p class="attr">${esc(at[0])}<a href="${esc(w.u)}" target="_blank" rel="noopener">${esc(w.t)}</a>${esc(at[1] || '')}</p></div><ul class="refs">${f.r.map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a><span>${esc([r.a, r.y].filter(Boolean).join(', '))}</span></li>`).join('')}</ul>`;
+  return `<p class="prov">${prov}</p>${revBox}${ck}<h3>${esc(t('f_sait'))}</h3><ul>${li(b.s)}</ul><h3>${esc(t('f_ignore'))}</h3><ul>${li(b.i)}</ul><h3>${esc(t('f_dur'))}</h3><ul>${li(b.d)}</ul><h3>${esc(t('f_compte'))}</h3><p>${esc(b.e)}</p><h3>${esc(t('f_commencer'))}</h3><ul>${li(b.c)}</ul><h3>${esc(t('f_loin'))}</h3><div class="wiki"><p>${esc(w.x)}</p><p class="attr">${esc(at[0])}<a href="${esc(w.u)}" target="_blank" rel="noopener">${esc(w.t)}</a>${esc(at[1] || '')}</p></div><ul class="refs">${f.r.map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a><span>${esc([r.a, r.y].filter(Boolean).join(', '))}</span></li>`).join('')}</ul>`;
 }
 const RC = DATA.R;
 const monthBase = i => YR ? yval(i, YR.y1) / 12.2 : 0;
@@ -976,46 +1057,66 @@ function movingHTML() { if (!RC) return `<p class="note">${esc(t('tr_none'))}</p
   const L = []; for (let i = 0; i < N; i++) { const n = RC.c[i], b = monthBase(i); if (n < 150 || b < 60) continue; const x = n / b; if (x >= 1.25 && x <= 3) L.push([i, x, n]); }
   L.sort((a, b) => b[1] - a[1]); const top = L.slice(0, 20);
   return `<p class="cap2">${esc(t('tr_t'))}</p><div class="mvl">` + (top.length ? top.map(([i, x, n]) => `<button type="button" data-t="${i}">${esc(T[i * 5 + 4])} · ×${x.toFixed(1)} · ${esc(fmt(n))}</button>`).join('') : '') + `</div><p class="note">${esc(t('tr_note'))}</p>`; }
+function qShareBar(q) {
+  return `<div class="q-share"><button type="button" data-qcopy="${esc(q.id)}">${esc(t('sh_copy'))}</button><button type="button" data-qpng="${esc(q.id)}">${esc(t('sh_png'))}</button></div>`;
+}
+function horizonBoxHTML(q) {
+  const mine = horRead()[q.id], opts = [t('hor_0'), t('hor_1'), t('hor_2'), t('hor_3')];
+  const msg = mine != null ? esc(t('hor_saved', { l: opts[mine] })) + (DATA.API ? '' : ' ' + esc(t('hor_offline'))) : '';
+  return `<div class="q-hor" id="qHor"><p class="q-hor-t">${esc(t('hor_t'))}</p><div class="q-hor-btns">${opts.map((l, k) => `<button type="button" data-hb="${k}" aria-pressed="${mine === k}">${esc(l)}</button>`).join('')}</div><div id="qHorAgg"></div><p class="q-hor-msg" id="qHorMsg">${msg}</p></div>`;
+}
 function advHTML(q) {
-  return `<p class="kicker">${esc(t('st_adv'))} · ${esc(t('adv_' + q.ast))} · ${q.year}${q.ai ? ' · ' + esc(t('ai_tag')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p><p class="prov">${esc(t('adv_prov'))} <a href="https://github.com/Lorenzo1208/atlas/blob/main/METHOD.md#who-writes-what" target="_blank" rel="noopener">${esc(t('prov_lien'))}</a></p><h3>${esc(t('adv_src'))}</h3><ul class="refs">${q.ar.map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a><span>${esc([r.a, r.y].filter(Boolean).join(', '))}</span></li>`).join('')}</ul><p class="small">${esc(t('ia_checked'))} ${esc(q.ck)}</p>${iaHTML(q)}<h3>${esc(t('q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><p class="small"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=propose-an-ai-entry.yml&title=${encodeURIComponent('[' + q.id + '] ')}" target="_blank" rel="noopener">${esc(t('signaler'))}</a> · <a href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></p>`;
+  return `<p class="kicker">${esc(t('st_adv'))} · ${esc(t('adv_' + q.ast))} · ${q.year}${q.ai ? ' · ' + esc(t('ai_tag')) : ''}</p><h2>${esc(loc(q.qq))}</h2>${qShareBar(q)}<p>${esc(loc(q.cc))}</p><p class="prov">${esc(t('adv_prov'))} <a href="https://github.com/Lorenzo1208/atlas/blob/main/METHOD.md#who-writes-what" target="_blank" rel="noopener">${esc(t('prov_lien'))}</a></p><h3>${esc(t('adv_src'))}</h3><ul class="refs">${q.ar.map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a><span>${esc([r.a, r.y].filter(Boolean).join(', '))}</span></li>`).join('')}</ul><p class="small">${esc(t('ia_checked'))} ${esc(q.ck)}</p>${iaHTML(q)}<h3>${esc(t('q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><div class="q-foot-act"><button type="button" class="lnk small" data-sub="correction">${esc(t('signaler'))}</button><a class="small" href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></div>`;
 }
 function panelHTML() {
   if (!cur) return '';
   if (cur.q != null) {
     const q = Q[cur.q]; if (q.adv) return advHTML(q);
-    const src = SRC[q.s], manque = LANG !== 'fr' && (fb(q.cc) || (q.no && fb(q.no)) || (q.f && !q.f[LANG]));
-    return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2><p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${iaHTML(q)}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p><p class="small"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=correct-a-fiche.yml&title=${encodeURIComponent('[' + q.id + '] ')}&question=${encodeURIComponent(q.id + ' (' + location.origin + '/' + LANG + '/q/' + q.id + '/)')}" target="_blank" rel="noopener">${esc(t('signaler'))}</a> · <a href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></p>`;
+    const src = SRC[q.s], manque = LANG !== 'fr' && (fb(q.cc) || (q.no && fb(q.no)) || (q.f && !q.f[LANG])), techOn = !!techRead()[q.id];
+    return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2>${qShareBar(q)}<p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${horizonBoxHTML(q)}${iaHTML(q)}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p><div class="q-foot-act"><button type="button" class="q-tech" data-tech="${esc(q.id)}" aria-pressed="${techOn}">${esc(t(techOn ? 'tech_done' : 'tech_btn'))}</button><button type="button" class="lnk small" data-sub="correction">${esc(t('signaler'))}</button><a class="small" href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></div>`;
   }
   const i = cur.t, si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2], nb = ADJ[si].slice().sort((a, b) => Math.hypot(S[a].x - s.x, S[a].y - s.y) - Math.hypot(S[b].x - s.x, S[b].y - s.y)).slice(0, 5);
   return `<p class="kicker">${esc(loc(F[s.f].nn))} · ${esc(sn(s))}</p><h2>${esc(T[i * 5 + 4])}</h2><p>${esc(fmt(w))} ${esc(t('publies'))}${YR ? ' (' + YR.y0 + '–' + YR.y1 + ')' : ''}${w > DATA.cap ? ' ' + esc(t('douteux_long')) : ''}</p>${recentLine(i)}<h3>${esc(t('t_voisines'))}</h3><ul class="small">${li(nb.map(j => sn(S[j])))}</ul>`;
 }
-function renderPanel() { if (!cur) return; panel.innerHTML = `<button class="sq" id="pclose" type="button" aria-label="${esc(t('fermer'))}">×</button>` + panelHTML(); panel.hidden = false; panel.querySelectorAll('[data-claim]').forEach(b => { b.onclick = () => openClaims(b.dataset.claim); }); document.body.classList.add('panel-open'); $('pclose').onclick = closePanel; panel.scrollTop = 0; }
+function renderPanel() {
+  if (!cur) return;
+  panel.innerHTML = `<button class="sq" id="pclose" type="button" aria-label="${esc(t('fermer'))}">×</button>` + panelHTML();
+  panel.hidden = false;
+  panel.querySelectorAll('[data-claim]').forEach(b => { b.onclick = () => openClaims(b.dataset.claim); });
+  panel.querySelectorAll('[data-sub]').forEach(b => { b.onclick = () => openSubmit(b.dataset.sub, cur && cur.q != null ? `[${Q[cur.q].id}] ` : ''); });
+  panel.querySelectorAll('[data-qcopy]').forEach(b => { b.onclick = () => { const q = Q.find(x => x.id === b.dataset.qcopy); if (!q) return; const u = `https://unknownpedia.org/${LANG}/q/${q.id}/`; dfCopy(q.adv ? t('sh_fact_adv', { y: q.year, q: loc(q.qq), u }) : t('sh_fact_q', { q: loc(q.qq), u }), b); }; });
+  panel.querySelectorAll('[data-qpng]').forEach(b => { b.onclick = () => { const q = Q.find(x => x.id === b.dataset.qpng); if (q) downloadQuestionPNG(q); }; });
+  if (cur.q != null && !Q[cur.q].adv) { wireHorizon(Q[cur.q]); wireTech(Q[cur.q]); }
+  document.body.classList.add('panel-open'); $('pclose').onclick = closePanel; panel.scrollTop = 0;
+}
 function closePanel() { const had = panel.contains(document.activeElement); cur = null; panel.hidden = true; document.body.classList.remove('panel-open'); if (location.hash) history.replaceState(null, '', location.pathname + location.search); if (had) cv.focus(); }
 // The target point is shifted left so it does not go under the panel.
 const fly = (wx, wy, k) => flyTo(wx + (W > 720 ? 210 : 0) / (s0 * k), wy, k);
 let openedAt=0;
 function openQ(i) { openedAt=performance.now(); cur = { q: i }; renderPanel(); fly(Q[i].x, Q[i].y, Math.max(view.k, Q[i].t ? 1.6 : 2)); if (location.hash.slice(1) !== Q[i].id) history.replaceState(null, '', '#' + Q[i].id); }
 function openT(i) { cur = { t: i }; renderPanel(); fly(T[i * 5], T[i * 5 + 1], Math.max(view.k, 3)); if (location.hash) history.replaceState(null, '', location.pathname + location.search); }
-// Each question has its own address (#conscience); #annonces, #claims, #claim=<id>, #stats and #defi/#daily open the plates.
+// Each question has its own address (#conscience); #annonces, #claims, #claim=<id>, #stats, #defi/#daily and #proposer/#submit open the plates.
 function openHash() {
   const h = location.hash.slice(1);
   if (h === 'annonces' || h === 'claims') { openClaims(); return; }
   if (h.startsWith('claim=')) { openClaims(h.slice(6)); return; }
   if (h === 'stats' || h === 'statistiques') { openStats(); return; }
   if (h === 'defi' || h === 'daily') { openDaily(); return; }
+  if (h === 'proposer' || h === 'submit') { openSubmit('question'); return; }
   const i = Q.findIndex(q => q.id === h);
   if (i >= 0 && !(cur && cur.q === i)) openQ(i);
 }
 addEventListener('hashchange', openHash);
 
 // ---- Survol et clic ----
-let FK = 0; const NQ = Q.filter(q => !q.adv).length, AIN = Q.filter(q => !q.adv && q.ia.length).length, RECENT = 2020; let hoverT = -1, hoverQ = -1, hoverF = -1, hoverC = -1, CL = []; const QS = Q.map(() => [0, 0]);
+let FK = 0, CMP = 0, cmpOpen = false; const NQ = Q.filter(q => !q.adv).length, AIN = Q.filter(q => !q.adv && q.ia.length).length, RECENT = 2020; let hoverT = -1, hoverQ = -1, hoverF = -1, hoverC = -1, CL = []; const QS = Q.map(() => [0, 0]);
 function hover(px, py) {
   hoverQ = -1; hoverT = -1; hoverF = -1; hoverC = -1; if (px < 0) { tip.hidden = true; return; }
   for (const c of CL) if (Math.hypot(c.p[0] - px, c.p[1] - py) < 15) { if (c.ids.length > 1) hoverC = c.lead; else hoverQ = c.lead; break; }
   if (hoverQ < 0 && hoverC < 0) for (const f of ORD) if (NS[f] && Math.hypot(NS[f][0] - px, NS[f][1] - py) < 14) { hoverF = f; break; }
   if (hoverQ < 0 && hoverC < 0 && hoverF < 0) { const [wx, wy] = toWorld(px, py); hoverT = nearestTopic(wx, wy, 8 / (s0 * view.k)); }
-  cv.style.cursor = hoverQ >= 0 || hoverC >= 0 || hoverF >= 0 || hoverT >= 0 ? 'pointer' : 'crosshair';
+  const hPt = toScreen(DATA.hole.x, DATA.hole.y), onTerra = view.k < 2.2 && Math.hypot(px - hPt[0], py - hPt[1]) < 62;
+  cv.style.cursor = hoverQ >= 0 || hoverC >= 0 || hoverF >= 0 || hoverT >= 0 || onTerra ? 'pointer' : 'crosshair';
   if (hoverQ >= 0 || hoverC >= 0 || hoverF >= 0) { tip.hidden = true; return; } else if (hoverT >= 0) { const i = hoverT; tip.innerHTML = esc(T[i * 5 + 4]) + '<small>' + esc(loc(F[S[T[i * 5 + 3]].f].nn)) + ' · ' + esc(fmt(T[i * 5 + 2])) + ' ' + esc(t('publies')) + '</small>'; } else { tip.hidden = true; return; }
   tip.hidden = false; const r = cv.getBoundingClientRect(); tip.style.left = clamp(r.left+px+14,8,innerWidth-tip.offsetWidth-8)+'px'; tip.style.top=clamp(r.top+py+14,8,innerHeight-tip.offsetHeight-8)+'px';
 }
@@ -1029,7 +1130,7 @@ cv.addEventListener('pointermove', e => {
   if (moved > 5) { tip.hidden = true; view.x -= (p[0] - o[0]) / (s0 * view.k); view.y -= (p[1] - o[1]) / (s0 * view.k); tgt = null; cv.style.cursor = 'grabbing'; }
 });
 cv.addEventListener('pointerup', e => { const p = rel(e), was = ptrs.size; ptrs.delete(e.pointerId); pinch = 0; cv.style.cursor = '';
-  if (was === 1 && moved < 6) { hover(p[0], p[1]); if (hoverQ >= 0) openQ(hoverQ); else if (hoverC >= 0) { const c = CL.find(c => c.lead === hoverC); if (c) flyTo(c.wx, c.wy, Math.min(14, view.k * 2.6)); } else if (hoverF >= 0) flyTo(FC[hoverF].x, FC[hoverF].y, 2.6); else if (hoverT >= 0) openT(hoverT); else if (cur) closePanel(); } });
+  if (was === 1 && moved < 6) { hover(p[0], p[1]); const hPt = toScreen(DATA.hole.x, DATA.hole.y); if (hoverQ >= 0) openQ(hoverQ); else if (hoverC >= 0) { const c = CL.find(c => c.lead === hoverC); if (c) flyTo(c.wx, c.wy, Math.min(14, view.k * 2.6)); } else if (hoverF >= 0) flyTo(FC[hoverF].x, FC[hoverF].y, 2.6); else if (hoverT >= 0) openT(hoverT); else if (view.k < 2.2 && Math.hypot(p[0] - hPt[0], p[1] - hPt[1]) < 62) { flyTo(DATA.hole.x, DATA.hole.y, 2.5); } else if (cur) closePanel(); } });
 cv.addEventListener('pointercancel', e => { ptrs.delete(e.pointerId); pinch = 0; });
 cv.addEventListener('pointerleave', () => hover(-1, -1));
 cv.addEventListener('wheel', e => { e.preventDefault(); const [px, py] = rel(e); zoomAt(px, py, Math.exp(-e.deltaY * .0015)); }, { passive: false });
@@ -1178,9 +1279,40 @@ function applyLang() {
   $('ctxP').textContent = t('ctx_p', { n: fmt(N), q: NQ }); $('cap').textContent = t('cap', { n: fmt(N) });
   $('refs').innerHTML = ORD.map((f, i) => `<li><button type="button" data-f="${f}"><b>${i + 1}</b><span>${esc(loc(F[f].nn))}</span></button></li>`).join('');
   document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
-  renderDomains(); renderClaimsRail(); renderClaimsDock(); syncDailyBtn(); fkLabels(); renderPanel(); if (stOpen) renderStats(); if (clOpen) renderClaims(); if (dfOpen) renderDaily();
+  renderDomains(); renderClaimsRail(); renderClaimsDock(); syncDailyBtn(); fkLabels(); renderCompass(); renderPanel(); if (stOpen) renderStats(); if (clOpen) renderClaims(); if (dfOpen) renderDaily(); if (smOpen) renderSubmit();
 }
-const shown = i => { const q = Q[i]; return FK === 0 ? (!q.adv || q.year >= RECENT) && (!q.k || view.k >= 2.2) : FK === 1 ? !q.adv && !q.k : FK === 2 ? !!q.k : !!q.adv; };
+const BOOM_FIELDS = (() => {
+  if (!YR) return new Set();
+  const n = YR.n, arr = F.map((_, j) => { const a10 = YR.f[j].slice(20, 30).reduce((x, y) => x + y, 0) / 10, a20 = YR.f[j].slice(30, n).reduce((x, y) => x + y, 0) / (n - 30); return [j, a10 ? a20 / a10 : 0]; }).sort((a, b) => b[1] - a[1]);
+  return new Set(arr.slice(0, 8).map(x => x[0]));
+})();
+function cmpHit(q) {
+  if (CMP === 0) return true;
+  if (CMP === 1) return !q.adv && EVERYDAY_OPEN.has(q.id);
+  if (CMP === 2) return !q.adv && (q.s === 'clay' || q.s === 'hilbert');
+  if (CMP === 3) return q.subs.some(si => BOOM_FIELDS.has(S[si].f));
+  if (CMP === 4) return q.adv ? !!q.ai : q.ia.length > 0;
+  if (CMP === 5) return !!q.f;
+  return true;
+}
+const shown = i => { const q = Q[i]; const base = FK === 0 ? (!q.adv || q.year >= RECENT) && (!q.k || view.k >= 2.2 || CMP > 0) : FK === 1 ? !q.adv && !q.k : FK === 2 ? !!q.k : !!q.adv; return base && cmpHit(q); };
+function renderCompass() {
+  const btns = $('cmpBtns'), lbl = $('cmpLbl'), tog = $('cmpToggle'), list = $('cmpList');
+  if (!btns || !lbl || !tog || !list) return;
+  const items = [['cmp_all', 0], ['cmp_day', 1], ['cmp_prize', 2], ['cmp_boom', 3], ['cmp_ai', 4], ['cmp_full', 5]];
+  const matches = Q.map((q, i) => i).filter(i => cmpHit(Q[i]) && (FK === 0 ? (!Q[i].adv || Q[i].year >= RECENT) : FK === 1 ? !Q[i].adv && !Q[i].k : FK === 2 ? !!Q[i].k : !!Q[i].adv));
+  lbl.textContent = CMP === 0 ? t('cmp_t') : t('cmp_t') + ' · ' + t('cmp_count', { n: matches.length });
+  tog.hidden = CMP === 0;
+  tog.textContent = t(cmpOpen ? 'cmp_hide' : 'cmp_browse');
+  tog.onclick = () => { cmpOpen = !cmpOpen; renderCompass(); };
+  btns.innerHTML = items.map(([k, v]) => `<button type="button" data-cmp="${v}" aria-pressed="${CMP === v}">${esc(t(k))}</button>`).join('');
+  btns.querySelectorAll('[data-cmp]').forEach(b => b.onclick = () => { CMP = +b.dataset.cmp; if (CMP === 0) cmpOpen = false; renderCompass(); });
+  if (CMP > 0 && cmpOpen) {
+    list.hidden = false;
+    list.innerHTML = matches.map(i => `<button type="button" data-cmpq="${i}">${esc(loc(Q[i].qq))}</button>`).join('');
+    list.querySelectorAll('[data-cmpq]').forEach(b => b.onclick = () => { if (narrowPlate.matches) $('legend').open = false; openQ(+b.dataset.cmpq); });
+  } else list.hidden = true;
+}
 function fkLabels() { const L = [t('f_tout'), t('f_q'), t('f_e'), t('f_a')]; document.querySelectorAll('#fk button').forEach((b, i) => { b.textContent = L[i]; b.setAttribute('aria-pressed', String(+b.dataset.fk === FK)); }); }
 // Random: a vintage die rolls (faces flicker, the die tumbles), then a question picked at random opens. Never the one already open; always available.
 const PIPS = { 1: [[12, 12]], 2: [[8, 8], [16, 16]], 3: [[8, 8], [12, 12], [16, 16]], 4: [[8, 8], [16, 8], [8, 16], [16, 16]], 5: [[8, 8], [16, 8], [12, 12], [8, 16], [16, 16]], 6: [[8, 7.5], [16, 7.5], [8, 12], [16, 12], [8, 16.5], [16, 16.5]] };
@@ -1194,7 +1326,7 @@ $('rndbtn').onclick = () => {
   setTimeout(() => { clearInterval(tick); showFace(1 + Math.floor(Math.random() * 6)); }, 760);
   setTimeout(() => { b.classList.remove('rolling'); rolling = false; openQ(i); }, 900);
 };
-$('fk').onclick = e => { const b = e.target.closest('button'); if (b) { FK = +b.dataset.fk; fkLabels(); } };
+$('fk').onclick = e => { const b = e.target.closest('button'); if (b) { FK = +b.dataset.fk; fkLabels(); renderCompass(); } };
 $('refs').onclick = e => { const b = e.target.closest('button'); if (b) flyTo(FC[b.dataset.f].x, FC[b.dataset.f].y, 2.6); };
 document.querySelectorAll('#lang button').forEach(b => { b.onclick = () => { const l = b.dataset.lang; if (l === LANG) return; try { localStorage.setItem('lang', l); } catch (e) {} if (FORCED) location.href = '../' + l + '/' + location.hash; else { LANG = l; applyLang(); } }; });
 if (matchMedia('(max-width: 720px)').matches) $('legend').open = false;
@@ -1482,7 +1614,7 @@ addEventListener('keydown', e => { if (e.key === 'Escape' && stOpen) { e.stopPro
 
 // ---- Claims: announcements and where they stand on the verification ladder, plus no-money forecasts (api/ holds the server, see METHOD.md).
 /*POW*/
-const claimsEl = $('claims'); let clOpen = false, clSel = null, clTab = 'tracked', clMobileDetail = false, clReturnFocus = null;
+const claimsEl = $('claims'); let clOpen = false, clSel = null, clTab = 'tracked', clLogFilter = 'all', clMobileDetail = false, clReturnFocus = null;
 const RUNGS = ['announced', 'formal', 'experts', 'peer', 'accepted'];
 const CLAIMS = (DATA.IA || []).filter(e => e.lad && e.lad.length).sort((a, b) => b.date.localeCompare(a.date));
 function fmtDate(iso) {
@@ -1549,12 +1681,29 @@ function claimDetail(e) {
   const railNodes = e.lad.map((r, idx) => `<button type="button" class="cl-node" data-step="${idx}">${rungSVG(r.s, 22)}<strong>${esc(t('rung_short_' + r.k))}</strong><em>${esc(t('lad_' + r.s))}</em></button>`).join('');
   const steps = e.lad.map((r, idx) => `<li class="cl-step" id="clstep-${idx}"><div class="cl-step-ic"><span class="cl-step-num">0${idx + 1}</span>${rungSVG(r.s, 18)}</div><div><div class="cl-step-top"><b>${esc(t('rung_' + r.k))}</b><span class="cl-badge s-${r.s}">${esc(t('lad_' + r.s))}</span></div><p class="cl-step-note">${esc(loc(r.note))}</p>${r.src.length ? `<div class="cl-step-src">${r.src.map(x => `<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.pub)} ↗</a>${x.primary ? `<span class="cl-prim">${esc(t('cl_primary'))}</span>` : ''}`).join('')}</div>` : ''}</div></li>`).join('');
   const fcBox = f ? `<section class="cl-fc" id="fcbox"><div class="cl-fc-head"><span>${esc(t('fc_t').replace(/[:：]\s*$/, ''))}</span><small>${esc(t('fc_closes', { d: fmtDate(f.closes) }))}</small></div><p class="cl-fc-q">${esc(loc(f.q))}</p>` + (f.outcome == null ? `<div class="cl-fc-ctrl"><output id="fco">${mine ? mine.p : 30} %</output><div class="cl-fc-slider"><input id="fcr" type="range" min="1" max="99" step="1" value="${mine ? mine.p : 30}" aria-label="${esc(t('fc_your'))}"><div class="cl-fc-scale" aria-hidden="true"><span>1 %</span><span>50 %</span><span>99 %</span></div></div><button type="button" id="fcs">${esc(t('fc_save'))}</button></div><p class="cl-fc-msg" id="fcm">${mine ? esc(t('fc_saved', { p: mine.p })) : ''}</p>` : `<p><b>${esc(t('fc_score', { o: t(f.outcome ? 'fc_yes' : 'fc_no'), b: mine ? ((mine.p / 100 - (f.outcome ? 1 : 0)) ** 2).toFixed(2) : '—' }))}</b></p>`) + `<div id="fca">${DATA.API ? '' : `<p class="cl-fc-msg">${esc(t('fc_offline'))}</p>`}</div><details class="cl-how"><summary>${esc(t('fc_how'))}</summary><p>${esc(t('fc_how_p'))}</p></details></section>` : '';
-  return `<article class="cl-dossier"><button type="button" class="cl-back" id="clback">${esc(t('cl_back'))}</button><div class="cl-dmeta"><span class="cl-stpill st-${esc(e.st)}">${esc(t('ia_st_' + e.st))}</span><span>${esc(fmtDate(e.date))}</span>${mapBtns}</div><h3 class="cl-dtitle">${esc(loc(e.title))}</h3><p class="cl-lead">${esc(loc({ fr: e.fr, en: e.en }))}</p><div class="cl-sech"><h3>${esc(t('lad_t'))}</h3><small>${esc(ladderSummary(e))}</small></div><div class="cl-rail" role="group" aria-label="${esc(t('lad_t'))}">${railNodes}</div><ol class="cl-steps">${steps}</ol><p class="cl-rule">${esc(t('lad_rule'))}</p>${fcBox}<div class="cl-sech"><h3>${esc(t('adv_src'))}</h3><small>${esc(t('ia_checked'))} ${esc(fmtDate(e.checked))}</small></div><ul class="cl-refs">${e.r.map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)} ↗</a><span>${esc([r.a, r.y].filter(Boolean).join(', '))}</span></li>`).join('')}</ul><div class="cl-foot"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=propose-an-ai-entry.yml&title=${encodeURIComponent('[' + e.id + '] ')}" target="_blank" rel="noopener">${esc(t('cl_update'))} ↗</a><a href="/${LANG}/ia/">${esc(t('ia_link'))} →</a></div></article>`;
+  return `<article class="cl-dossier"><button type="button" class="cl-back" id="clback">${esc(t('cl_back'))}</button><div class="cl-dmeta"><span class="cl-stpill st-${esc(e.st)}">${esc(t('ia_st_' + e.st))}</span><span>${esc(fmtDate(e.date))}</span>${mapBtns}</div><h3 class="cl-dtitle">${esc(loc(e.title))}</h3><div class="cl-share-row"><button type="button" data-clcopy="${esc(e.id)}">${esc(t('cl_copy_verdict'))}</button><button type="button" data-clpng="${esc(e.id)}">${esc(t('cl_dl_png'))}</button><button type="button" data-clsub="claim">${esc(t('sub_btn'))}</button></div><p class="cl-lead">${esc(loc({ fr: e.fr, en: e.en }))}</p><div class="cl-sech"><h3>${esc(t('lad_t'))}</h3><small>${esc(ladderSummary(e))}</small></div><div class="cl-rail" role="group" aria-label="${esc(t('lad_t'))}">${railNodes}</div><ol class="cl-steps">${steps}</ol><p class="cl-rule">${esc(t('lad_rule'))}</p>${fcBox}<div class="cl-sech"><h3>${esc(t('adv_src'))}</h3><small>${esc(t('ia_checked'))} ${esc(fmtDate(e.checked))}</small></div><ul class="cl-refs">${e.r.map(r => `<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)} ↗</a><span>${esc([r.a, r.y].filter(Boolean).join(', '))}</span></li>`).join('')}</ul><div class="cl-foot"><a href="/${LANG}/c/${esc(e.id)}/">${esc(t('cl_svg_card').replace('(SVG)', ''))} ↗</a><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=propose-an-ai-entry.yml&title=${encodeURIComponent('[' + e.id + '] ')}" target="_blank" rel="noopener">${esc(t('cl_update'))} ↗</a><a href="/${LANG}/ia/">${esc(t('ia_link'))} →</a></div></article>`;
+}
+function frontierLogHTML() {
+  const entries = [];
+  (DATA.IA || []).forEach(e => {
+    const type = e.st === 'claimed' ? 'verif' : 'partial';
+    entries.push({ date: e.date, sort: e.date, type, title: loc(e.title), sub: e.lad && e.lad.length ? ladderSummary(e) : t('ia_st_' + e.st), claimId: e.lad && e.lad.length ? e.id : null, qi: e.q && e.q.length ? Q.findIndex(q => q.id === e.q[0]) : -1 });
+  });
+  Q.forEach((q, qi) => {
+    if (!q.adv) return;
+    const type = q.ast === 'accepted' ? 'solved' : 'verif';
+    entries.push({ date: String(q.year), sort: q.year + '-06-01', type, title: loc(q.qq), sub: t('adv_' + q.ast) + (q.ai ? ' · ' + t('ai_tag') : ''), claimId: null, qi });
+  });
+  entries.sort((a, b) => b.sort.localeCompare(a.sort));
+  const shownLog = clLogFilter === 'all' ? entries : entries.filter(x => x.type === clLogFilter);
+  const pills = `<div class="cl-log-pills">${[['all', 'cl_log_all'], ['verif', 'cl_log_verif'], ['partial', 'cl_log_partial'], ['solved', 'cl_log_solved']].map(([k, l]) => `<button type="button" data-lgf="${k}" aria-pressed="${clLogFilter === k}">${esc(t(l))}</button>`).join('')}</div>`;
+  const tagTxt = tp => tp === 'verif' ? '? → ◐ ' + t('cl_flip_verif') : tp === 'solved' ? '? → ! ' + t('cl_flip_solved') : '? → ◒ ' + t('cl_flip_partial');
+  return `<div class="cl-log-wrap"><div class="cl-log-inner"><p class="cl-inbox-note">${esc(t('cl_log_intro'))}</p>${pills}<ol class="cl-log-list">${shownLog.map(x => `<li><span class="lg-d">${esc(x.date.length === 10 ? fmtDate(x.date) : x.date)}</span><span><span class="lg-tag ${x.type}">${esc(tagTxt(x.type))}</span></span><div><span class="lg-t">${esc(x.title)}</span><span class="lg-s">${esc(x.sub)}</span></div>${x.claimId ? `<button type="button" data-lgcl="${esc(x.claimId)}">${esc(t('cl_open_detail'))} →</button>` : x.qi >= 0 ? `<button type="button" data-q="${x.qi}">${esc(t('cl_q'))} →</button>` : ''}</li>`).join('')}</ol></div></div>`;
 }
 function inboxHTML() {
   const items = DATA.INBOX && DATA.INBOX.items ? DATA.INBOX.items : [];
   if (!items.length) return `<div class="cl-inbox-wrap"><div class="cl-inbox-inner"><p class="cl-lead">${esc(t('cl_none'))}</p></div></div>`;
-  return `<div class="cl-inbox-wrap"><div class="cl-inbox-inner"><p class="cl-inbox-note">${esc(t('cl_new_note', { d: fmtDate(DATA.INBOX.at.slice(0, 10)) }))}</p><table class="cl-inbox-tbl"><thead><tr><th>${esc(t('cl_inbox_h_date'))}</th><th>${esc(t('cl_inbox_h_src'))}</th><th>${esc(t('cl_inbox_h_title'))}</th></tr></thead><tbody>${items.map(x => `<tr><td class="d">${esc(fmtDate(x.d))}</td><td class="s"><span class="tag">${esc(x.src)}</span></td><td><a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.t)} ↗</a></td></tr>`).join('')}</tbody></table><div class="cl-foot"><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=propose-an-ai-entry.yml" target="_blank" rel="noopener">${esc(t('ia_prop'))} ↗</a></div></div></div>`;
+  return `<div class="cl-inbox-wrap"><div class="cl-inbox-inner"><p class="cl-inbox-note">${esc(t('cl_new_note', { d: fmtDate(DATA.INBOX.at.slice(0, 10)) }))}</p><table class="cl-inbox-tbl"><thead><tr><th>${esc(t('cl_inbox_h_date'))}</th><th>${esc(t('cl_inbox_h_src'))}</th><th>${esc(t('cl_inbox_h_title'))}</th></tr></thead><tbody>${items.map(x => `<tr><td class="d">${esc(fmtDate(x.d))}</td><td class="s"><span class="tag">${esc(x.src)}</span></td><td><a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.t)} ↗</a></td></tr>`).join('')}</tbody></table><div class="cl-foot"><button type="button" class="lnk" data-clsub="claim">${esc(t('sub_btn'))}</button><a href="https://github.com/Lorenzo1208/atlas/issues/new?template=propose-an-ai-entry.yml" target="_blank" rel="noopener">${esc(t('ia_prop'))} ↗</a></div></div></div>`;
 }
 async function fcWire(e) {
   const r = $('fcr'); if (!r) { if (DATA.API && e.fc) fcApi('/api/claim/' + e.id).then(a => { const d = $('fca'); if (d) d.innerHTML = fcAggHTML(a); }).catch(() => {}); return; }
@@ -1573,10 +1722,12 @@ function renderClaims() {
   claimsEl.classList.toggle('cl-show-detail', clTab === 'tracked' && clMobileDetail && !!active);
   const key = `<div class="cl-key" aria-hidden="true">${['yes', 'partial', 'no', 'unknown'].map(s => `<span>${rungSVG(s, 14)}${esc(t('lad_' + s))}</span>`).join('')}</div>`;
   const head = `<div class="cl-head"><div><p class="cl-kicker">${esc(t('cl_kicker'))}</p><h2>${esc(t('cl_title'))}</h2><p class="cl-intro">${esc(t('cl_intro'))}</p></div>${key}<button class="sq" id="clclose" type="button" aria-label="${esc(t('cl_close'))}">×</button></div>`;
-  const bar = `<div class="cl-bar" role="tablist"><button type="button" role="tab" data-cltab="tracked" aria-selected="${clTab === 'tracked'}">${esc(t('cl_tab_tracked'))} <b>${CLAIMS.length}</b></button>${inboxN ? `<button type="button" role="tab" data-cltab="inbox" aria-selected="${clTab === 'inbox'}">${esc(t('cl_tab_inbox'))} <b>${inboxN}</b></button>` : ''}</div>`;
+  const bar = `<div class="cl-bar" role="tablist"><button type="button" role="tab" data-cltab="tracked" aria-selected="${clTab === 'tracked'}">${esc(t('cl_tab_tracked'))} <b>${CLAIMS.length}</b></button><button type="button" role="tab" data-cltab="log" aria-selected="${clTab === 'log'}">${esc(t('cl_tab_log'))}</button>${inboxN ? `<button type="button" role="tab" data-cltab="inbox" aria-selected="${clTab === 'inbox'}">${esc(t('cl_tab_inbox'))} <b>${inboxN}</b></button>` : ''}</div>`;
   let content;
   if (clTab === 'inbox') {
     content = inboxHTML();
+  } else if (clTab === 'log') {
+    content = frontierLogHTML();
   } else {
     const cards = CLAIMS.length ? CLAIMS.map(e => `<button type="button" class="cl-card" data-c="${esc(e.id)}" aria-current="${active && active.id === e.id ? 'true' : 'false'}"><span class="cl-cmeta"><span class="st-${esc(e.st)}">${esc(t('ia_st_' + e.st))}</span><span>${esc(fmtDate(e.date))}</span></span><span class="cl-ctitle">${esc(loc(e.title))}</span><span class="cl-cfoot">${rungsTrackHTML(e)}<span>${esc(ladderSummary(e))}</span></span></button>`).join('') : `<p class="cl-lead" style="padding:20px">${esc(t('cl_none'))}</p>`;
     content = `<div class="cl-body"><nav class="cl-list" aria-label="${esc(t('cl_title'))}">${cards}</nav><div class="cl-main" id="clMain">${active ? claimDetail(active) : ''}</div></div>`;
@@ -1584,10 +1735,20 @@ function renderClaims() {
   claimsEl.innerHTML = head + bar + content;
   $('clclose').onclick = closeClaims;
   claimsEl.querySelectorAll('[data-cltab]').forEach(b => b.onclick = () => { clTab = b.dataset.cltab; renderClaims(); });
+  claimsEl.querySelectorAll('[data-lgf]').forEach(b => b.onclick = () => { clLogFilter = b.dataset.lgf; renderClaims(); });
+  claimsEl.querySelectorAll('[data-lgcl]').forEach(b => b.onclick = () => { clSel = b.dataset.lgcl; clTab = 'tracked'; clMobileDetail = true; renderClaims(); });
   claimsEl.querySelectorAll('[data-c]').forEach(b => b.onclick = () => { clSel = b.dataset.c; clMobileDetail = true; renderClaims(); const m = $('clMain'); if (m) m.scrollTop = 0; });
   const bk = $('clback'); if (bk) bk.onclick = () => { clMobileDetail = false; renderClaims(); };
   claimsEl.querySelectorAll('[data-q]').forEach(b => b.onclick = () => { closeClaims(); openQ(+b.dataset.q); });
   claimsEl.querySelectorAll('[data-step]').forEach(b => b.onclick = () => { const el = $('clstep-' + b.dataset.step); if (el) el.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'nearest' }); });
+  claimsEl.querySelectorAll('[data-clcopy]').forEach(b => b.onclick = () => {
+    const c = CLAIMS.find(x => x.id === b.dataset.clcopy); if (!c) return;
+    const sym = { yes: '●', partial: '◐', no: '○', unknown: '◌' };
+    const g = c.lad.map(r => sym[r.s] || '◌').join(' ');
+    dfCopy(t('cl_share_line', { t: loc(c.title), g, s: ladderSummary(c), u: `https://unknownpedia.org/${LANG}/c/${c.id}/` }), b);
+  });
+  claimsEl.querySelectorAll('[data-clpng]').forEach(b => b.onclick = () => { const c = CLAIMS.find(x => x.id === b.dataset.clpng); if (c) downloadClaimPNG(c); });
+  claimsEl.querySelectorAll('[data-clsub]').forEach(b => b.onclick = () => openSubmit(b.dataset.clsub));
   if (clTab === 'tracked' && active) fcWire(active);
 }
 function openClaims(id) {
@@ -1846,6 +2007,137 @@ addEventListener('keydown', e => {
   else if (e.key === '2' || e.key === 'ArrowRight') { const b = dailyEl.querySelector('[data-pick="0"]:not(:disabled), [data-vpick="1"]:not(:disabled)'); if (b) { e.preventDefault(); b.click(); } }
   else if (e.key === 'Enter') { const b = $('dfNext') || $('dfBetSave'); if (b) { e.preventDefault(); b.click(); } }
 }, true);
+
+// ---- Shareable 1200x630 patent-plate PNG cards (client-side Canvas, self-hosted fonts), horizon estimates, technical feedback, and no-account submission modal.
+function drawCardBase(titleLines, kicker, footLeft, footRight) {
+  const c = document.createElement('canvas'); c.width = 1200; c.height = 630;
+  const g = c.getContext('2d');
+  g.fillStyle = '#f7f4eb'; g.fillRect(0, 0, 1200, 630);
+  g.strokeStyle = '#292921'; g.lineWidth = 2.5; g.strokeRect(24, 24, 1152, 582);
+  g.lineWidth = 0.9; g.strokeRect(34, 34, 1132, 562);
+  g.fillStyle = '#9c2935'; g.font = '700 17px "Archivo Narrow", sans-serif'; g.fillText(kicker.toUpperCase(), 72, 90);
+  g.strokeStyle = '#292921'; g.lineWidth = 2.4; g.beginPath(); g.moveTo(72, 108); g.lineTo(1128, 108); g.stroke();
+  g.lineWidth = 0.9; g.beginPath(); g.moveTo(72, 114); g.lineTo(1128, 114); g.stroke();
+  g.fillStyle = '#292921'; g.font = '400 48px "IM Fell DW Pica", Georgia, serif';
+  titleLines.forEach((l, i) => g.fillText(l, 72, 184 + i * 56));
+  g.strokeStyle = 'rgba(41,41,33,.32)'; g.lineWidth = 1; g.beginPath(); g.moveTo(72, 532); g.lineTo(1128, 532); g.stroke();
+  g.fillStyle = '#55564b'; g.font = '400 16px "Archivo Narrow", sans-serif'; g.fillText(footLeft, 72, 566);
+  g.fillStyle = '#292921'; g.font = 'italic 400 20px "IM Fell DW Pica", Georgia, serif'; g.textAlign = 'right'; g.fillText(footRight, 1128, 566); g.textAlign = 'left';
+  return { c, g };
+}
+function wrapCanvas(g, txt, maxW, maxLines) {
+  const words = String(txt || '').split(/\s+/), lines = []; let cur = '';
+  for (const w of words) { const n = cur ? cur + ' ' + w : w; if (cur && g.measureText(n).width > maxW) { lines.push(cur); cur = w; } else cur = n; }
+  if (cur) lines.push(cur);
+  if (lines.length > maxLines) { lines.length = maxLines; lines[maxLines - 1] = lines[maxLines - 1].replace(/\s+\S*$/, '') + '…'; }
+  return lines;
+}
+function triggerPNG(canvas, name) {
+  const a = document.createElement('a'); a.download = name; a.href = canvas.toDataURL('image/png'); a.click();
+}
+function downloadClaimPNG(e) {
+  const probe = document.createElement('canvas').getContext('2d'); probe.font = '400 48px "IM Fell DW Pica", Georgia, serif';
+  const lines = wrapCanvas(probe, loc(e.title), 1040, 3);
+  const { c, g } = drawCardBase(lines, `Unknownpedia · ${t('ia_st_' + e.st)} · ${fmtDate(e.date)}`, `${t('cl_intro').split('.')[0]}. · ${t('ia_checked')} ${fmtDate(e.checked)}`, `unknownpedia.org/${LANG}/c/${e.id}/`);
+  g.fillStyle = '#55564b'; g.font = '700 16px "Archivo Narrow", sans-serif'; g.fillText(`${t('lad_t').toUpperCase()} · ${ladderSummary(e).toUpperCase()}`, 72, 356);
+  g.strokeStyle = 'rgba(41,41,33,.28)'; g.lineWidth = 2; g.beginPath(); g.moveTo(156, 422); g.lineTo(1044, 422); g.stroke();
+  e.lad.forEach((r, idx) => {
+    const cx = 156 + idx * 222, cy = 422;
+    g.save();
+    if (r.s === 'yes') { g.fillStyle = '#292921'; g.beginPath(); g.arc(cx, cy, 22, 0, 7); g.fill(); g.strokeStyle = '#f7f4eb'; g.lineWidth = 3.5; g.beginPath(); g.moveTo(cx - 8, cy + 1); g.lineTo(cx - 2, cy + 7); g.lineTo(cx + 10, cy - 6); g.stroke(); }
+    else if (r.s === 'partial') { g.fillStyle = '#f7f4eb'; g.strokeStyle = '#292921'; g.lineWidth = 2.6; g.beginPath(); g.arc(cx, cy, 21, 0, 7); g.fill(); g.stroke(); g.fillStyle = '#292921'; g.beginPath(); g.arc(cx, cy, 21, Math.PI / 2, Math.PI * 1.5); g.closePath(); g.fill(); }
+    else if (r.s === 'no') { g.fillStyle = '#f7f4eb'; g.strokeStyle = 'rgba(41,41,33,.72)'; g.lineWidth = 2.4; g.beginPath(); g.arc(cx, cy, 21, 0, 7); g.fill(); g.stroke(); }
+    else { g.fillStyle = '#f7f4eb'; g.strokeStyle = '#55564b'; g.lineWidth = 2.2; g.setLineDash([5, 4]); g.beginPath(); g.arc(cx, cy, 21, 0, 7); g.fill(); g.stroke(); g.setLineDash([]); g.fillStyle = '#55564b'; g.font = '700 20px "Archivo Narrow", sans-serif'; g.textAlign = 'center'; g.fillText('?', cx, cy + 7); }
+    g.textAlign = 'center'; g.fillStyle = '#292921'; g.font = '700 16px "Archivo Narrow", sans-serif'; g.fillText(t('rung_short_' + r.k), cx, cy + 48);
+    g.fillStyle = '#55564b'; g.font = '400 13px "Archivo Narrow", sans-serif'; g.fillText(t('lad_' + r.s).toUpperCase(), cx, cy + 70);
+    g.restore();
+  });
+  triggerPNG(c, `unknownpedia-${e.id}.png`);
+}
+function downloadQuestionPNG(q) {
+  const probe = document.createElement('canvas').getContext('2d'); probe.font = '400 48px "IM Fell DW Pica", Georgia, serif';
+  const lines = wrapCanvas(probe, loc(q.qq), 940, 3);
+  const fld = q.subs.length ? loc(F[S[q.subs[0]].f].nn) : '';
+  const kicker = q.adv ? `Unknownpedia · ${t('st_adv')} · ${q.year}` : `Unknownpedia · ${t('sh_still_unknown')}`;
+  const { c, g } = drawCardBase(lines, kicker, fld + (q.adv ? '' : ' · ' + t(q.k ? 'st_enigme' : 'st_' + q.st)), `unknownpedia.org/${LANG}/q/${q.id}/`);
+  g.fillStyle = '#9c2935'; g.font = '700 132px "IM Fell DW Pica", Georgia, serif'; g.textAlign = 'right'; g.fillText(q.adv ? '!' : '?', 1122, 265); g.textAlign = 'left';
+  g.fillStyle = '#55564b'; g.font = '400 22px "Archivo Narrow", sans-serif';
+  const ctxLines = wrapCanvas(g, loc(q.cc), 980, 4);
+  ctxLines.forEach((l, i) => g.fillText(l, 72, 366 + i * 32));
+  triggerPNG(c, `unknownpedia-${q.id}.png`);
+}
+function horRead() { try { return JSON.parse(localStorage.getItem('uf_horizons') || '{}'); } catch (e) { return {}; } }
+function horWrite(o) { try { localStorage.setItem('uf_horizons', JSON.stringify(o)); } catch (e) {} }
+function techRead() { try { return JSON.parse(localStorage.getItem('uf_tech') || '{}'); } catch (e) { return {}; } }
+function techWrite(o) { try { localStorage.setItem('uf_tech', JSON.stringify(o)); } catch (e) {} }
+function horAggHTML(a) {
+  if (!a) return '';
+  if (!a.bins) return `<p class="q-hor-msg">${esc(t('hor_n', { n: a.n }))} · ${esc(t('hor_few', { m: a.min }))}</p>`;
+  const opts = [t('hor_0'), t('hor_1'), t('hor_2'), t('hor_3')], tot = Math.max(1, a.n);
+  return `<div class="q-hor-bars">${a.bins.map((c, k) => { const pct = Math.round(100 * c / tot); return `<div class="q-hor-row"><span>${esc(opts[k])}</span><span class="b"><i style="width:${pct}%"></i></span><span>${pct} %</span></div>`; }).join('')}</div><p class="q-hor-msg">${esc(t('hor_n', { n: a.n }))}</p>`;
+}
+function wireHorizon(q) {
+  const box = $('qHor'); if (!box) return;
+  const opts = [t('hor_0'), t('hor_1'), t('hor_2'), t('hor_3')], agg = $('qHorAgg'), msg = $('qHorMsg');
+  if (DATA.API) fcApi('/api/horizon/' + q.id).then(a => { if (agg) agg.innerHTML = horAggHTML(a); }).catch(() => {});
+  box.querySelectorAll('[data-hb]').forEach(b => b.onclick = () => {
+    const bin = +b.dataset.hb, o = horRead(); o[q.id] = bin; horWrite(o);
+    box.querySelectorAll('[data-hb]').forEach(x => x.setAttribute('aria-pressed', String(+x.dataset.hb === bin)));
+    if (msg) msg.textContent = t('hor_saved', { l: opts[bin] }) + (DATA.API ? '' : ' ' + t('hor_offline'));
+    if (DATA.API) fcApi('/api/horizon', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ qid: q.id, token: fcToken(), bin }) }).then(a => { if (agg) agg.innerHTML = horAggHTML(a); }).catch(() => {});
+  });
+}
+function wireTech(q) {
+  const b = panel.querySelector('[data-tech]'); if (!b) return;
+  b.onclick = () => {
+    const o = techRead(), on = !o[q.id]; if (on) o[q.id] = 1; else delete o[q.id]; techWrite(o);
+    b.setAttribute('aria-pressed', String(on)); b.textContent = t(on ? 'tech_done' : 'tech_btn');
+    if (DATA.API) fcApi('/api/feedback', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ qid: q.id, token: fcToken(), on }) }).catch(() => {});
+  };
+}
+const submitEl = $('submitModal'); let smOpen = false, smKind = 'question', smPrefill = '', smReturnFocus = null;
+function renderSubmit() {
+  if (!smOpen) return;
+  const kinds = [['question', 'sub_k_q'], ['claim', 'sub_k_c'], ['correction', 'sub_k_e']];
+  submitEl.innerHTML = `<button class="sq" id="smClose" type="button" aria-label="${esc(t('st_close'))}">×</button><p class="sm-kicker">${esc(t('sub_kicker'))}</p><h2>${esc(t('sub_title'))}</h2><p class="sm-intro">${esc(t('sub_intro'))}</p><div class="sm-kinds">${kinds.map(([k, l]) => `<button type="button" data-smk="${k}" aria-pressed="${smKind === k}">${esc(t(l))}</button>`).join('')}</div><form id="smForm"><label for="smT">${esc(t('sub_f_title'))}</label><input id="smT" type="text" maxlength="220" value="${esc(smPrefill)}" placeholder="${esc(t('sub_f_title_ph'))}" required><label for="smU">${esc(t('sub_f_url'))}</label><input id="smU" type="url" maxlength="400" placeholder="${esc(t('sub_f_url_ph'))}" required><label for="smN">${esc(t('sub_f_note'))}</label><textarea id="smN" rows="3" maxlength="600" placeholder="${esc(t('sub_f_note_ph'))}"></textarea><div class="sm-acts"><button type="submit" class="prim" id="smSend">${esc(t('sub_send'))}</button><button type="button" class="sec" id="smCopy">${esc(t('sub_copy'))}</button><a class="sec" id="smGh" href="#" target="_blank" rel="noopener" hidden>${esc(t('sub_gh'))}</a></div><p class="sm-msg" id="smMsg"></p></form>`;
+  $('smClose').onclick = closeSubmit;
+  submitEl.querySelectorAll('[data-smk]').forEach(b => b.onclick = () => { smKind = b.dataset.smk; smPrefill = $('smT')?.value || ''; renderSubmit(); });
+  const buildGh = (title, url, note) => {
+    const tpl = smKind === 'claim' ? 'propose-an-ai-entry.yml' : smKind === 'correction' ? 'correct-a-fiche.yml' : 'propose-a-question.yml';
+    const body = `Source: ${url}${note ? '\n\n' + note : ''}`;
+    return `https://github.com/Lorenzo1208/atlas/issues/new?template=${tpl}&title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+  };
+  $('smCopy').onclick = () => {
+    const title = $('smT').value.trim(), url = $('smU').value.trim(), note = $('smN').value.trim();
+    dfCopy(`[${smKind}] ${title}\nSource: ${url}${note ? '\n' + note : ''}`, $('smCopy'));
+  };
+  $('smForm').onsubmit = async ev => {
+    ev.preventDefault();
+    const title = $('smT').value.trim(), url = $('smU').value.trim(), note = $('smN').value.trim(), msg = $('smMsg'), gh = $('smGh');
+    msg.classList.remove('err');
+    if (title.length < 6) { msg.textContent = t('sub_err_title'); msg.classList.add('err'); return; }
+    if (!/^https?:\/\/\S+$/i.test(url)) { msg.textContent = t('sub_err_url'); msg.classList.add('err'); return; }
+    gh.href = buildGh(title, url, note); gh.hidden = false;
+    if (!DATA.API) { msg.textContent = t('sub_ok_local'); return; }
+    try {
+      msg.textContent = t('fc_work');
+      const tok = fcToken(), ch = await fcApi('/api/challenge'), counter = await fcSolve(ch, 'submit:' + smKind, tok);
+      await fcApi('/api/submit', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ kind: smKind, title, url, note, token: tok, ...ch, counter }) });
+      msg.textContent = t('sub_ok_api'); $('smT').value = ''; $('smU').value = ''; $('smN').value = '';
+    } catch { msg.textContent = t('sub_ok_local'); }
+  };
+}
+function openSubmit(kind, prefill) {
+  smReturnFocus = document.activeElement;
+  smKind = kind || 'question'; smPrefill = prefill || '';
+  smOpen = true; submitEl.hidden = false; renderSubmit(); submitEl.focus();
+}
+function closeSubmit() {
+  smOpen = false; submitEl.hidden = true;
+  if (smReturnFocus && smReturnFocus.isConnected && smReturnFocus.focus) smReturnFocus.focus();
+}
+if ($('subOpenBtn')) $('subOpenBtn').onclick = () => openSubmit('question');
+addEventListener('keydown', e => { if (e.key === 'Escape' && smOpen) { e.stopPropagation(); closeSubmit(); } }, true);
 
 // ---- Dessin ----
 // ---- Animations: smoothed enlargement and "typewriter" text on hover over a field number or a "?".

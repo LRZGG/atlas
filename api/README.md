@@ -7,6 +7,9 @@ The site works without it: forecasts then stay on the visitor's device and the p
 - `GET /api/challenge` gives a small proof-of-work puzzle (about half a second in the browser).
 - `POST /api/vote` records one estimate (1 to 99 %) per device token and per question.
 - `GET /api/claim/<id>` returns the number of participants and, from 10 participants, the median of all and the median weighted by track record, a 10-bin histogram, and an "unusual activity" flag.
+- `GET /api/horizon/<qid>` and `POST /api/horizon` record one resolution-horizon estimate per device (`0`: < 2035, `1`: 2035–2070, `2`: > 2070, `3`: never) and return the distribution from 10 participants.
+- `POST /api/feedback` records an anonymous, deduplicated "too technical?" flag per fiche.
+- `POST /api/submit` accepts a no-account question, claim or correction proposal (title + https source URL + optional note), protected by the same proof-of-work puzzle and network rate limit.
 - The list of questions, their closing dates and outcomes comes from `https://unknownpedia.org/forecasts.json`, built from `ia.json` (field `forecast`), so resolving a question only needs an edit of `ia.json` (`outcome: true|false`) and a site rebuild.
 
 ## Protection against bot armies (honest limits)

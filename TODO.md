@@ -31,7 +31,7 @@ State on 18 November 2026. Priorities first. Legend: `[x]` done, `[~]` partly do
 - [ ] Analytics without cookies (GoatCounter, Cloudflare Web Analytics or Plausible); distinguish bots.
 - [ ] Measure load time; precompute the relief at build time if needed.
 - [ ] Decide what to do with `docs/labo/` (unlisted design experiments with demo data): keep out of the site, or reuse parts (the old-style world map as an alternate view).
-- [ ] Entry to the Mysteries from the map: clicking *terra incognita* zooms into the centre and reveals the mysteries.
+- [x] Entry to the Mysteries from the map: clicking *terra incognita* zooms into the centre and reveals the mysteries.
 
 ## Visual ideas (to sort)
 
@@ -78,12 +78,12 @@ Combining all three pillars around the measured map, without ads or accounts:
 1. **Daily curiosity & retention ("Today's Frontier")**
    - [x] Daily 5-round challenge (`#defi` / `#daily`): 3 "Resolved or Unknown?" cards + 1 OpenAlex research-effort duel ("Which publishes more?") + 1 participative forecast, shareable score card, daily streak, and endless replay mode.
 2. **Anti-hype science & AI watch (viral shareability)**
-   - [ ] Dedicated per-claim shareable verdict cards (auto-generated OG PNGs showing the 5-rung verification scale `● ◌ ○ ○ ◌`, date, and factual status for X / Reddit / HN / Bluesky).
-   - [ ] Shareable "Did you know science still doesn't know..." engraved fact cards on each question fiche (copy text + generated share image).
-   - [ ] Live "Frontier log" showing recent status flips (`?` → under verification → `!`).
+   - [x] Dedicated per-claim shareable verdict pages (`/fr/c/<id>/`, `/en/c/<id>/`), self-contained 1200×630 SVG verdict cards (`docs/partage/claim-<id>.svg`), Playwright PNG pipeline (`build-partage.mjs`), and instant client-side Canvas PNG + verdict text sharing in the Claims register.
+   - [x] Shareable "Did you know science still doesn't know..." engraved fact cards on every question fiche (one-click text copy + 1200×630 Canvas PNG card download).
+   - [x] Live "Frontier log" tab inside the Claims register showing chronological status flips (`? → ◐` under verification, `? → ◒` partial advance, `? → !` resolved).
 3. **Lightweight participation & student/curious compass**
-   - [ ] Direct no-account submission form for proposing a missing question or announcement (title + source URL, routed cleanly to moderation / GitHub queue).
-   - [ ] Collective horizon estimates on major open questions ("Before 2035 / Before 2100 / Never?"), showing how visitors compare once enough estimates exist.
-   - [ ] One-click anonymous "Too technical?" feedback button on fiches to prioritise plain-language rewrites.
-   - [ ] Dedicated "Are you a specialist? Review this fiche (5 min)" CTA with named ORCID credit badge to encourage researcher participation and sharing.
-   - [ ] Compass filters on the map & directory: accessible / everyday mysteries, $1M prize problems, fastest-growing topics, student project / thesis ideas.
+   - [x] Direct no-account submission modal (`#proposer` / `#submit`) for proposing a missing question, claim or correction (PoW-protected `/api/submit` when API is live, with pre-filled GitHub issue & copy fallback when offline).
+   - [x] Collective horizon estimates on every open question ("Before 2035 / 2035–2070 / After 2070 / Never") stored locally and synced via `/api/horizon` when API is connected.
+   - [x] One-click anonymous "Too technical?" feedback button on open question fiches (`/api/feedback` + local state).
+   - [x] Dedicated "Are you a specialist? Review this fiche (5 min)" CTA with named ORCID credit support on unreviewed fiches (interactive panel and static `/q/` pages).
+   - [x] Compass filters on the map & legend: Everyday mysteries, $1M & classics, Fastest rising (live from `DATA.Y`), With AI, and Full fiches, with a browseable matching list.

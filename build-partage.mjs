@@ -26,4 +26,9 @@ for (const id of ids) {
   await bandeau(r, 'Question ouverte · brouillon rédigé avec une IA · unknownpedia.org'); await p.waitForTimeout(300);
   await p.screenshot({ path: `docs/partage/${id}.png` }); console.log(id);
 }
+for (const f of readdirSync('docs/partage').filter(x => x.startsWith('claim-') && x.endsWith('.svg'))) {
+  await p.goto(URL0 + '/partage/' + f); await p.waitForTimeout(150);
+  const out = f.replace(/\.svg$/, '.png');
+  await p.screenshot({ path: `docs/partage/${out}` }); console.log(out);
+}
 await b.close();

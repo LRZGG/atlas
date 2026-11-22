@@ -36,4 +36,16 @@ assert.equal(r.weighted, 20, 'weighted estimate holds against the bot army'); as
 assert.equal(weightOf({ votes: {} }, {}), 0.05);
 const good = { votes: { a: 90, b: 10, c: 90, d: 10, e: 90 } }, o = { a: true, b: false, c: true, d: false, e: true };
 assert.ok(weightOf(good, o) > .9, 'well calibrated history weighs a lot'); assert.ok(weightOf({ votes: { a: 5, b: 95, c: 5, d: 95, e: 5 } }, o) < .06, 'badly calibrated history weighs little');
+// horizon estimates: deduplicated per device, hidden below MIN_SHOW, shown once MIN_SHOW reached
+for (let i = 0; i < MIN_SHOW; i++) { [s, r] = await call('POST', '/api/horizon', { qid: 'p-np', token: tok(), bin: i % 4 }, '7.7.7.' + i); assert.equal(s, 200); }
+[s, r] = await call('GET', '/api/horizon/p-np'); assert.equal(s, 200); assert.equal(r.n, MIN_SHOW); assert.equal(r.bins.reduce((a, b) => a + b, 0), MIN_SHOW);
+// anonymous "too technical" toggle
+const ft = tok(); [s, r] = await call('POST', '/api/feedback', { qid: 'p-np', token: ft, on: true }, '8.8.8.1'); assert.equal(s, 200); assert.equal(r.n, 1);
+[s, r] = await call('POST', '/api/feedback', { qid: 'p-np', token: ft, on: false }, '8.8.8.1'); assert.equal(s, 200); assert.equal(r.n, 0);
+// no-account submission with PoW
+const st = tok(), [, chS] = await call('GET', '/api/challenge'); let cS = 0; while (!pow.powOk(chS.nonce, 'submit:question', st, cS, chS.bits)) cS++;
+[s, r] = await call('POST', '/api/submit', { kind: 'question', title: 'Why does glass stay disordered?', url: 'https://example.org/glass', note: 'Solid review.', token: st, ...chS, counter: cS }, '8.8.8.2');
+assert.equal(s, 200); assert.equal(r.ok, true);
+[s] = await call('POST', '/api/submit', { kind: 'question', title: 'Bad URL', url: 'javascript:alert(1)', token: st, ...chS, counter: cS }, '8.8.8.2');
+assert.equal(s, 400, 'non-http URL refused');
 console.log('api tests passed');

@@ -80,6 +80,54 @@ export function createApi(opts) {
       await store.put('claim:' + b.claim, JSON.stringify(votes)); await store.put('tok:' + th, JSON.stringify(tok)); await store.put('agg:' + b.claim, '', 1);
       return J({ ok: true, ...(await aggregate(b.claim, C)) });
     }
+    const hm = path.match(/^\/api\/horizon\/([a-z0-9-]+)$/);
+    if (req.method === 'GET' && hm) {
+      const votes = (await rd('hor:' + hm[1])) || {}, vals = Object.values(votes), n = vals.length;
+      const out = { n, min: MIN_SHOW };
+      if (n >= MIN_SHOW) out.bins = [0, 1, 2, 3].map(k => vals.filter(v => v === k).length);
+      return J(out);
+    }
+    if (req.method === 'POST' && path === '/api/horizon') {
+      let b; try { b = await req.json(); } catch { return J({ error: 'bad json' }, 400); }
+      if (!/^[a-z0-9-]{2,64}$/.test(b.qid || '') || !/^[0-9a-f]{32}$/.test(b.token || '') || !Number.isInteger(b.bin) || b.bin < 0 || b.bin > 3) return J({ error: 'bad horizon' }, 400);
+      const ip = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for') || 'local', day = new Date(now()).toISOString().slice(0, 10);
+      const rlk = 'rl:' + (await sha(`${secret}|${day}|${ip}`)).slice(0, 24) + ':' + Math.floor(now() / 36e5), cnt = +((await store.get(rlk)) || 0);
+      if (cnt >= MAX_PER_HOUR) return J({ error: 'rate limited' }, 429);
+      await store.put(rlk, String(cnt + 1), 3700);
+      const th = (await sha(secret + '|tok|' + b.token)).slice(0, 32), votes = (await rd('hor:' + b.qid)) || {};
+      votes[th] = b.bin; await store.put('hor:' + b.qid, JSON.stringify(votes));
+      const vals = Object.values(votes), n = vals.length, out = { ok: true, n, min: MIN_SHOW };
+      if (n >= MIN_SHOW) out.bins = [0, 1, 2, 3].map(k => vals.filter(v => v === k).length);
+      return J(out);
+    }
+    if (req.method === 'POST' && path === '/api/feedback') {
+      let b; try { b = await req.json(); } catch { return J({ error: 'bad json' }, 400); }
+      if (!/^[a-z0-9-]{2,64}$/.test(b.qid || '') || !/^[0-9a-f]{32}$/.test(b.token || '')) return J({ error: 'bad feedback' }, 400);
+      const ip = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for') || 'local', day = new Date(now()).toISOString().slice(0, 10);
+      const rlk = 'rl:' + (await sha(`${secret}|${day}|${ip}`)).slice(0, 24) + ':' + Math.floor(now() / 36e5), cnt = +((await store.get(rlk)) || 0);
+      if (cnt >= MAX_PER_HOUR) return J({ error: 'rate limited' }, 429);
+      await store.put(rlk, String(cnt + 1), 3700);
+      const th = (await sha(secret + '|tok|' + b.token)).slice(0, 32), set = (await rd('tech:' + b.qid)) || {};
+      if (b.on === false) delete set[th]; else set[th] = 1;
+      await store.put('tech:' + b.qid, JSON.stringify(set));
+      return J({ ok: true, n: Object.keys(set).length });
+    }
+    if (req.method === 'POST' && path === '/api/submit') {
+      let b; try { b = await req.json(); } catch { return J({ error: 'bad json' }, 400); }
+      const kind = b.kind, title = String(b.title || '').trim(), src = String(b.url || '').trim(), note = String(b.note || '').trim();
+      if (!['question', 'claim', 'correction'].includes(kind) || title.length < 6 || title.length > 220 || !/^https?:\/\/\S+$/i.test(src) || src.length > 400 || note.length > 600 || !/^[0-9a-f]{32}$/.test(b.token || '')) return J({ error: 'bad submission' }, 400);
+      if (!(b.exp > now()) || b.bits !== POW_BITS || b.sig !== await hmac(secret, `${b.nonce}.${b.exp}.${b.bits}`)) return J({ error: 'bad challenge' }, 403);
+      if (!Number.isInteger(b.counter) || !powOk(b.nonce, 'submit:' + kind, b.token, b.counter, POW_BITS)) return J({ error: 'bad work' }, 403);
+      const ip = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for') || 'local', day = new Date(now()).toISOString().slice(0, 10);
+      const rlk = 'rl:' + (await sha(`${secret}|${day}|${ip}`)).slice(0, 24) + ':' + Math.floor(now() / 36e5), cnt = +((await store.get(rlk)) || 0);
+      if (cnt >= MAX_PER_HOUR) return J({ error: 'rate limited' }, 429);
+      await store.put(rlk, String(cnt + 1), 3700);
+      const id = now() + '-' + (await sha(b.token + '|' + title)).slice(0, 8);
+      const list = (await rd('subs:list')) || [];
+      list.unshift({ id, at: new Date(now()).toISOString(), kind, title, url: src, note });
+      await store.put('subs:list', JSON.stringify(list.slice(0, 500)));
+      return J({ ok: true, id });
+    }
     return J({ error: 'not found' }, 404);
   };
 }
