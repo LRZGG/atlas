@@ -70,3 +70,20 @@ Rule: nothing decorative; every effect encodes a datum or a source.
 - [ ] Turn good candidates of `claims-inbox.json` into claims with a ladder each week; resolve forecasts by setting `outcome` in `ia.json`.
 - [ ] Named reviewers (maths, physics, biology) for the ladders: without them "established" only means "as the sources we read say".
 - [ ] AI-assisted cross-reading of sources (needs an API key as a repository secret; not wired).
+
+## Three-angle product roadmap (next)
+
+Combining all three pillars around the measured map, without ads or accounts:
+
+1. **Daily curiosity & retention ("Today's Frontier")**
+   - [x] Daily 5-round challenge (`#defi` / `#daily`): 3 "Resolved or Unknown?" cards + 1 OpenAlex research-effort duel ("Which publishes more?") + 1 participative forecast, shareable score card, daily streak, and endless replay mode.
+2. **Anti-hype science & AI watch (viral shareability)**
+   - [ ] Dedicated per-claim shareable verdict cards (auto-generated OG PNGs showing the 5-rung verification scale `● ◌ ○ ○ ◌`, date, and factual status for X / Reddit / HN / Bluesky).
+   - [ ] Shareable "Did you know science still doesn't know..." engraved fact cards on each question fiche (copy text + generated share image).
+   - [ ] Live "Frontier log" showing recent status flips (`?` → under verification → `!`).
+3. **Lightweight participation & student/curious compass**
+   - [ ] Direct no-account submission form for proposing a missing question or announcement (title + source URL, routed cleanly to moderation / GitHub queue).
+   - [ ] Collective horizon estimates on major open questions ("Before 2035 / Before 2100 / Never?"), showing how visitors compare once enough estimates exist.
+   - [ ] One-click anonymous "Too technical?" feedback button on fiches to prioritise plain-language rewrites.
+   - [ ] Dedicated "Are you a specialist? Review this fiche (5 min)" CTA with named ORCID credit badge to encourage researcher participation and sharing.
+   - [ ] Compass filters on the map & directory: accessible / everyday mysteries, $1M prize problems, fastest-growing topics, student project / thesis ideas.

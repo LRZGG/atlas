@@ -472,16 +472,22 @@ button:focus-visible, summary:focus-visible { outline: 2px solid var(--acc); out
 #mast, #colophon { position:relative; display:flex; align-items:center; gap:24px; grid-column:1/-1; }
 #mast { grid-row:1; z-index:7; border-bottom:3px double var(--ink); padding-top:7px; }
 #brand { margin-right:auto; font:400 clamp(26px,2.4vw,38px)/1 var(--serif); letter-spacing:-.065em; }
-#mast .ov, #mast #stbtn, #mast #rndbtn, #colophon .ov, #margin .ov { position:relative; inset:auto; transform:none; }
-#mast #search { flex:0 1 260px; width:auto; max-width:none; }
+#mast .ov, #mast #dfbtn, #mast #stbtn, #mast #rndbtn, #colophon .ov, #margin .ov { position:relative; inset:auto; transform:none; }
+#mast #search { flex:0 1 250px; width:auto; max-width:none; }
 #search::before { content:''; position:absolute; width:10px;height:10px;border:1.4px solid var(--ink);border-radius:50%;top:50%;left:2px;transform:translateY(-65%);pointer-events:none; }
 #search::after { content:''; position:absolute; width:6px;height:1px;left:11px;top:calc(50% + 4px);background:var(--ink);transform:rotate(48deg);pointer-events:none; }
 #sq { background:transparent; border:0; border-bottom:1px solid var(--rule); padding:8px 20px; font-size:15px; letter-spacing:0; }
 #sres { position:absolute; top:100%; left:0; min-width:100%; width:min(360px,80vw); }
 #mast #stbtn,#mast #rndbtn,#legend summary { border:none; background:none; font:15px var(--sans); text-transform:none;letter-spacing:0; padding:6px 0; }
 #mast #stbtn:hover,#mast #rndbtn:hover,#legend summary:hover { background:none; color:var(--ink); text-decoration:underline; text-underline-offset:4px; }
+#mast #dfbtn { display:inline-flex; align-items:center; gap:7px; width:auto; height:auto; padding:5px 11px; border:1px solid var(--ink); background:transparent; color:var(--ink); font:500 13.5px/1.2 var(--sans); letter-spacing:.04em; }
+#mast #dfbtn:hover { background:var(--ink); color:var(--paper); }
+#mast #dfbtn:hover .df-dot { background:var(--paper); }
+#mast #dfbtn:hover .df-sc { background:var(--paper); color:var(--ink); }
+#dfbtn .df-dot { width:7px; height:7px; border-radius:50%; background:var(--acc); flex:none; }
+#dfbtn .df-sc { font-size:11.5px; font-variant-numeric:tabular-nums; padding:1px 5px; background:var(--ink); color:var(--paper); }
 #mast #stbtn, #mast #rndbtn { display:inline-flex; align-items:center; gap:7px; width:auto; }
-@media (min-width:851px) { #mast #stbtn,#mast #rndbtn { flex:none; white-space:nowrap; } #mast #rndbtn { margin-left:6px; } }
+@media (min-width:851px) { #mast #dfbtn,#mast #stbtn,#mast #rndbtn { flex:none; white-space:nowrap; } #mast #rndbtn { margin-left:4px; } }
 #stbtn .st-ic { width:18px; height:16px; flex:none; }
 #stbtn .st-ic line { stroke:var(--ink); stroke-width:1.1; }
 #stbtn .st-ic rect { fill:var(--ink); }
@@ -589,7 +595,8 @@ body.panel-open #hello { display:none; }
  #sq {font-size:14px;padding-right:0;}
  #mast #legend {grid-column:3;grid-row:2;}
  #mast #stbtn {grid-column:2;grid-row:2;}
- #mast #rndbtn {grid-column:1/4;grid-row:3;justify-self:start;}
+ #mast #dfbtn {grid-column:1/3;grid-row:3;justify-self:start;padding:4px 10px;min-height:32px;}
+ #mast #rndbtn {grid-column:3;grid-row:3;justify-self:end;}
  #mast #stbtn,#mast #rndbtn,#legend summary {font-size:14px;min-height:36px;}
  #margin { display:contents; }
  #margin #ctx { grid-column:1;grid-row:2;padding-top:16px;pointer-events:none; }
@@ -616,10 +623,146 @@ body.panel-open #hello { display:none; }
  #margin #ctx {display:none;} #margin #tl {padding:0;} .year-track{height:24px;} #mast{display:flex;flex-wrap:nowrap;padding:7px 0;} #mast #search{flex:1;} #colophon{padding:2px 0;}
 }
 @media(prefers-reduced-motion:reduce){#domainIndex button::before{transition:none;}}
+/* ---- Daily frontier challenge & endless mode ---- */
+#daily { position: fixed; z-index: 12; inset: clamp(10px, 1.8vw, 24px); background: var(--paper); border: 1.5px solid var(--ink); box-shadow: 0 0 0 100vmax rgba(var(--ink-rgb), .24), 0 18px 48px rgba(var(--ink-rgb), .18); display: flex; flex-direction: column; overflow: hidden; }
+#daily:focus { outline: none; }
+#daily .df-head { position: relative; flex: none; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px 24px; padding: clamp(14px, 2vw, 22px) clamp(54px, 5vw, 68px) clamp(12px, 1.5vw, 16px) clamp(18px, 3vw, 36px); border-bottom: 3px double var(--ink); }
+#daily .df-kicker { margin: 0 0 3px; font: 500 11.5px/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--acc); }
+#daily .df-head h2 { font: 400 clamp(24px, 2.7vw, 38px)/1.05 var(--serif); letter-spacing: -.035em; margin: 0; }
+#daily .df-hmeta { display: flex; align-items: center; gap: 10px; font: 500 12px/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--dim); font-variant-numeric: tabular-nums; }
+#daily .df-hmeta span { padding: 5px 10px; border: 1px solid var(--rule); background: rgba(var(--ink-rgb), .02); }
+#daily .df-hmeta b { color: var(--ink); font-weight: 600; }
+#daily #dfclose { position: absolute; right: clamp(12px, 1.8vw, 22px); top: clamp(12px, 1.8vw, 20px); width: 34px; height: 34px; font-size: 20px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); }
+#daily #dfclose:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#daily .df-bar { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; padding: 0 clamp(18px, 3vw, 36px); border-bottom: 1px solid var(--rule); background: rgba(var(--ink-rgb), .02); }
+#daily .df-bar::-webkit-scrollbar { display: none; }
+#daily .df-tabs { display: flex; align-items: center; }
+#daily .df-tabs button { all: unset; cursor: pointer; padding: 10px 14px; font: 500 12.5px/1 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
+#daily .df-tabs button:hover { color: var(--ink); }
+#daily .df-tabs button[aria-selected="true"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--ink); }
+#daily .df-tabs button:focus-visible { outline: 2px solid var(--acc); outline-offset: -2px; }
+#daily .df-inf-pills { display: flex; gap: 6px; padding: 6px 0; }
+#daily .df-inf-pills button { all: unset; cursor: pointer; padding: 4px 9px; border: 1px solid var(--rule); font: 500 11px/1.2 var(--sans); letter-spacing: .07em; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
+#daily .df-inf-pills button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#daily .df-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: clamp(18px, 3vw, 34px) clamp(16px, 3.2vw, 40px) 44px; scrollbar-width: thin; scrollbar-color: var(--ink) var(--paper); }
+#daily .df-scroll::-webkit-scrollbar { width: 8px; }
+#daily .df-scroll::-webkit-scrollbar-track { background: transparent; border-left: .6px solid var(--rule); }
+#daily .df-scroll::-webkit-scrollbar-thumb { background: var(--ink); border: 2px solid var(--paper); }
+#daily .df-wrap { max-width: 860px; margin: 0 auto; }
+#daily .df-prog { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; margin: 0 0 22px; padding: 10px 8px; border: 1px solid var(--rule); background: rgba(var(--ink-rgb), .015); }
+#daily .df-prog::before { content: ""; position: absolute; left: 10%; right: 10%; top: 20px; height: 1px; background: var(--rule); z-index: 0; }
+#daily .df-pst { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: var(--dim); letter-spacing: .05em; text-transform: uppercase; }
+#daily .df-pdot { width: 20px; height: 20px; border-radius: 50%; border: 1.2px solid var(--rule); background: var(--paper); display: grid; place-items: center; font: 700 10.5px/1 var(--sans); color: var(--dim); }
+#daily .df-pst.cur .df-pdot { border-color: var(--ink); border-width: 1.8px; color: var(--ink); box-shadow: 0 0 0 3px var(--paper); }
+#daily .df-pst.cur { color: var(--ink); font-weight: 600; }
+#daily .df-pst.ok .df-pdot { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+#daily .df-pst.ko .df-pdot { border-color: var(--acc); color: var(--acc); }
+#daily .df-pst.bet .df-pdot { background: var(--acc); border-color: var(--acc); color: var(--paper); }
+#daily .df-card { border: 1px solid var(--ink); background: rgba(var(--ink-rgb), .018); padding: clamp(20px, 3vw, 34px) clamp(18px, 3.2vw, 38px); }
+#daily .df-eyebrow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 14px; font: 500 11.5px/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); border-bottom: 1px solid var(--rule); padding-bottom: 8px; margin-bottom: 16px; }
+#daily .df-eyebrow .acc { color: var(--acc); }
+#daily .df-sub { margin: 0 0 12px; font-size: 14px; color: var(--dim); }
+#daily .df-q { font: 400 clamp(24px, 3vw, 38px)/1.16 var(--serif); letter-spacing: -.025em; margin: 0 0 24px; text-wrap: balance; color: var(--ink); }
+#daily .df-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+#daily .df-choice { all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 18px 20px; border: 1.2px solid var(--ink); background: var(--paper); color: var(--ink); transition: background .12s, transform .1s; position: relative; }
+#daily .df-choice:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+#daily .df-choice:hover:not(:disabled) .df-csym, #daily .df-choice:hover:not(:disabled) small, #daily .df-choice:hover:not(:disabled) .df-ckey { color: var(--paper); border-color: rgba(255,255,255,.35); }
+#daily .df-choice:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+#daily .df-choice:disabled { cursor: default; }
+#daily .df-csym { font: 700 34px/1 var(--serif); color: var(--ink); }
+#daily .df-choice.is-open-opt .df-csym { color: var(--acc); }
+#daily .df-choice strong { font: 600 16.5px/1.2 var(--sans); letter-spacing: .02em; }
+#daily .df-choice small { font: 400 13px/1.3 var(--sans); color: var(--dim); }
+#daily .df-ckey { position: absolute; right: 12px; top: 12px; width: 20px; height: 20px; border: 1px solid var(--rule); font: 500 11px/18px var(--sans); text-align: center; color: var(--dim); }
+#daily .df-choice.is-true { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#daily .df-choice.is-true .df-csym, #daily .df-choice.is-true small, #daily .df-choice.is-true .df-ckey { color: var(--paper); }
+#daily .df-choice.is-wrong { border-color: var(--acc); background: rgba(var(--ink-rgb), .04); opacity: .78; }
+#daily .df-choice.is-dim { opacity: .45; }
+#daily .df-vs-grid { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+#daily .df-vs-badge { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1.2px solid var(--ink); display: grid; place-items: center; font: italic 400 13px/1 var(--serif); color: var(--ink); pointer-events: none; }
+#daily .df-vtopic { all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; min-height: 158px; padding: 18px 22px; border: 1.2px solid var(--ink); background: var(--paper); color: var(--ink); transition: background .12s; position: relative; }
+#daily .df-vtopic:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+#daily .df-vtopic:hover:not(:disabled) small, #daily .df-vtopic:hover:not(:disabled) .df-ckey { color: var(--paper); }
+#daily .df-vtopic:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+#daily .df-vtopic:disabled { cursor: default; }
+#daily .df-vtopic strong { font: 400 clamp(19px, 2vw, 24px)/1.2 var(--serif); padding-right: 24px; }
+#daily .df-vtopic small { font: 500 11px/1.3 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--dim); }
+#daily .df-vtopic.is-true { border-width: 2px; border-color: var(--ink); background: rgba(var(--ink-rgb), .045); }
+#daily .df-vtopic.is-wrong { border-color: var(--acc); opacity: .75; }
+#daily .df-vnum { font: 400 clamp(24px, 2.5vw, 32px)/1 var(--serif); font-variant-numeric: tabular-nums; color: var(--ink); }
+#daily .df-vbar { display: block; height: 5px; background: rgba(var(--ink-rgb), .12); margin: 6px 0 4px; }
+#daily .df-vbar i { display: block; height: 100%; background: var(--ink); }
+#daily .df-vtopic.is-true .df-vbar i { background: var(--acc); }
+#daily .df-vfoot { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+#daily .df-vfoot .sp-svg { width: 76px; height: 20px; display: block; }
+#daily .df-rev { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--ink); animation: df-in .18s ease-out both; }
+@keyframes df-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #daily .df-rev { animation: none; } }
+#daily .df-verdict { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 14px; margin-bottom: 10px; }
+#daily .df-verdict b { font: 600 15px/1.2 var(--sans); letter-spacing: .06em; text-transform: uppercase; }
+#daily .df-verdict.ok b { color: var(--ink); }
+#daily .df-verdict.ko b { color: var(--acc); }
+#daily .df-rev p { margin: 0 0 14px; font-size: 15px; line-height: 1.56; color: var(--ink); max-width: 68ch; }
+#daily .df-cl-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px; padding: 9px 12px; border: 1px solid var(--rule); border-left: 3px solid var(--acc); background: var(--paper); margin: 0 0 14px; font-size: 13px; color: var(--dim); }
+#daily .df-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+#daily .df-btn-p { all: unset; cursor: pointer; padding: 9px 18px; border: 1.2px solid var(--ink); background: var(--ink); color: var(--paper); font: 500 13px/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+#daily .df-btn-p:hover { background: var(--paper); color: var(--ink); }
+#daily .df-btn-s { all: unset; cursor: pointer; padding: 8px 13px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); font: 500 12.5px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+#daily .df-btn-s:hover { border-color: var(--ink); background: rgba(var(--ink-rgb), .05); }
+#daily .df-btn-p:focus-visible, #daily .df-btn-s:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+#daily .df-acts .df-btn-p { margin-left: auto; }
+#daily .df-bet-ctrl { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin: 18px 0 22px; }
+#daily .df-bet-ctrl output { font: 400 44px/1 var(--serif); font-variant-numeric: tabular-nums; min-width: 96px; color: var(--ink); }
+#daily .df-bet-sl { flex: 1 1 220px; min-width: 180px; }
+#daily .df-bet-sl input[type=range] { width: 100%; height: 28px; margin: 0; background: none; appearance: none; cursor: ew-resize; }
+#daily .df-bet-sl input[type=range]::-webkit-slider-runnable-track { height: 2px; background: var(--ink); }
+#daily .df-bet-sl input[type=range]::-webkit-slider-thumb { appearance: none; width: 14px; height: 24px; background: var(--paper); border: 1.6px solid var(--ink); margin-top: -11px; border-radius: 0; }
+#daily .df-bet-sl input[type=range]::-moz-range-track { height: 2px; background: var(--ink); }
+#daily .df-bet-sl input[type=range]::-moz-range-thumb { width: 14px; height: 24px; background: var(--paper); border: 1.6px solid var(--ink); border-radius: 0; }
+#daily .df-bet-scale { display: flex; justify-content: space-between; font-size: 11px; color: var(--dim); font-variant-numeric: tabular-nums; }
+#daily .df-kb { margin: 14px 0 0; font-size: 12px; color: var(--dim); text-align: center; }
+#daily .df-done-card { border-top: 3px double var(--ink); border-bottom: 3px double var(--ink); padding: 24px 0; margin-bottom: 24px; text-align: center; }
+#daily .df-done-card h3 { font: 400 clamp(26px, 3vw, 38px)/1.1 var(--serif); margin: 0 0 6px; }
+#daily .df-done-card > p { margin: 0 0 18px; font-size: 14px; color: var(--dim); }
+#daily .df-glyphs { display: inline-flex; gap: 10px; align-items: center; margin: 0 0 20px; }
+#daily .df-g { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font: 700 13px/1 var(--sans); border: 1.5px solid var(--ink); }
+#daily .df-g.ok { background: var(--ink); color: var(--paper); }
+#daily .df-g.ko { border-color: var(--acc); color: var(--acc); }
+#daily .df-g.bet { background: var(--acc); border-color: var(--acc); color: var(--paper); }
+#daily .df-done-kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 520px; margin: 0 auto 22px; border: 1px solid var(--rule); background: rgba(var(--ink-rgb), .02); }
+#daily .df-done-kpis div { padding: 10px 12px; border-right: 1px solid var(--rule); }
+#daily .df-done-kpis div:last-child { border-right: 0; }
+#daily .df-done-kpis small { display: block; font: 500 10.5px/1.1 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--dim); margin-bottom: 3px; }
+#daily .df-done-kpis b { font: 400 24px/1.1 var(--serif); font-variant-numeric: tabular-nums; }
+#daily .df-done-acts { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+#daily .df-recap-h { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--ink); padding-bottom: 6px; margin: 0 0 8px; }
+#daily .df-recap-h h4 { font: 500 12px/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; margin: 0; }
+#daily .df-recap-h small { font: italic 13.5px var(--serif); color: var(--dim); }
+#daily .df-recap { list-style: none; margin: 0; padding: 0; }
+#daily .df-recap li { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+#daily .df-recap .rc-t { font: 400 16.5px/1.25 var(--serif); color: var(--ink); }
+#daily .df-recap .rc-m { display: block; font-size: 12px; color: var(--dim); margin-top: 2px; }
+@media (max-width: 720px) {
+  #daily { inset: 0; border: 0; box-shadow: none; }
+  #daily .df-head { padding: 14px 48px 12px 14px; }
+  #daily .df-hmeta { display: none; }
+  #daily .df-bar { padding: 0 10px; }
+  #daily .df-scroll { padding: 14px 12px 32px; }
+  #daily .df-card { padding: 16px 14px; }
+  #daily .df-choices, #daily .df-vs-grid { grid-template-columns: minmax(0, 1fr); }
+  #daily .df-vs-badge { display: none; }
+  #daily .df-vtopic { min-height: 110px; padding: 14px 16px; }
+  #daily .df-acts .df-btn-p { margin-left: 0; width: 100%; text-align: center; }
+  #daily .df-kb { display: none; }
+  #daily .df-pst span:last-child { display: none; }
+  #daily .df-recap li { grid-template-columns: 24px minmax(0, 1fr); }
+  #daily .df-recap li button { grid-column: 2; justify-self: start; }
+}
 </style>
 <div id="sheet"><div id="frame"></div>
 <header id="mast"><span id="brand" data-i="titre"></span>
 <div id="search" class="ov"><input id="sq" type="search" role="combobox" aria-expanded="false" aria-controls="sres" aria-autocomplete="list" autocomplete="off" spellcheck="false"><ul id="sres" role="listbox" hidden></ul></div>
+<button class="sq" id="dfbtn" type="button"><span class="df-dot" aria-hidden="true"></span><span id="dflbl"></span><span class="df-sc" id="dfsc" hidden></span></button>
 <button class="sq" id="stbtn" type="button" hidden><svg class="st-ic" viewBox="0 0 20 18" aria-hidden="true"><line x1="1" y1="16.5" x2="19" y2="16.5"/><rect x="2.5" y="11" width="2.6" height="5.5"/><rect x="6.7" y="8.5" width="2.6" height="8"/><rect x="10.9" y="5.5" width="2.6" height="11"/><rect x="15.1" y="2" width="2.6" height="14.5"/></svg><span id="stlbl"></span></button>
 <button class="sq" id="rndbtn" type="button"><svg class="die" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="4"/><rect x="5" y="5" width="14" height="14" rx="2.2" stroke-width=".5"/><g id="pips"></g></svg><span id="rndlbl"></span></button>
 <details id="legend" class="ov"><summary data-i="refs_t"></summary><div class="scroll"><div id="key"><h2 data-i="key_t"></h2><ul>
@@ -684,6 +827,7 @@ body.panel-open #hello { display:none; }
 <footer id="colophon"><button type="button" id="clDock" class="ov" aria-expanded="false"></button><div id="cap" class="ov"></div><div id="stamp" class="ov"><b data-i="visa"></b><br><span data-i="visa_p"></span></div><details id="src" class="ov"><summary><span data-i="src_t"></span> <i>i</i></summary><div><p data-i="src_body"></p><a data-i="src_page" id="srcpage" href="#"></a><a href="https://github.com/Lorenzo1208/atlas" target="_blank" rel="noopener" data-i="src_code"></a><a href="https://github.com/Lorenzo1208/atlas/tree/main/docs/fonts" target="_blank" rel="noopener" data-i="src_fonts"></a></div></details></footer>
 <aside id="stats" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
 <aside id="claims" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
+<aside id="daily" role="dialog" aria-modal="true" tabindex="-1" hidden></aside>
 <div id="tip" hidden></div>
 <aside id="panel" role="dialog" tabindex="-1" hidden></aside>
 </div>
@@ -852,12 +996,13 @@ const fly = (wx, wy, k) => flyTo(wx + (W > 720 ? 210 : 0) / (s0 * k), wy, k);
 let openedAt=0;
 function openQ(i) { openedAt=performance.now(); cur = { q: i }; renderPanel(); fly(Q[i].x, Q[i].y, Math.max(view.k, Q[i].t ? 1.6 : 2)); if (location.hash.slice(1) !== Q[i].id) history.replaceState(null, '', '#' + Q[i].id); }
 function openT(i) { cur = { t: i }; renderPanel(); fly(T[i * 5], T[i * 5 + 1], Math.max(view.k, 3)); if (location.hash) history.replaceState(null, '', location.pathname + location.search); }
-// Each question has its own address (#conscience); #annonces, #claims, #claim=<id> and #stats open the register plates.
+// Each question has its own address (#conscience); #annonces, #claims, #claim=<id>, #stats and #defi/#daily open the plates.
 function openHash() {
   const h = location.hash.slice(1);
   if (h === 'annonces' || h === 'claims') { openClaims(); return; }
   if (h.startsWith('claim=')) { openClaims(h.slice(6)); return; }
   if (h === 'stats' || h === 'statistiques') { openStats(); return; }
+  if (h === 'defi' || h === 'daily') { openDaily(); return; }
   const i = Q.findIndex(q => q.id === h);
   if (i >= 0 && !(cur && cur.q === i)) openQ(i);
 }
@@ -1020,7 +1165,7 @@ function applyLang() {
   document.documentElement.lang = LANG; document.title = t('titre'); const md = document.querySelector('meta[name=description]'); if (md) md.content = t('desc');
   document.querySelectorAll('[data-i]').forEach(e => { e.textContent = t(e.dataset.i); }); $('ialink').href = '/' + LANG + '/ia/';
   document.querySelectorAll('[data-ia]').forEach(e => e.setAttribute('aria-label', t(e.dataset.ia)));
-  $('stlbl').textContent = t('st_btn'); $('stbtn').title = t('st_btn_title'); $('rndlbl').textContent = t('rnd_btn'); $('rndbtn').title = t('rnd_title'); $('keyai').textContent = t('key_ai', { n: AIN, m: NQ });
+  $('dflbl').textContent = t('df_btn'); $('dfbtn').title = t('df_btn_title'); $('stlbl').textContent = t('st_btn'); $('stbtn').title = t('st_btn_title'); $('rndlbl').textContent = t('rnd_btn'); $('rndbtn').title = t('rnd_title'); $('keyai').textContent = t('key_ai', { n: AIN, m: NQ });
   if (YR) {
     const r=$('tlr'), current=Math.round(+r.value);
     $('lastYear').textContent=YR.y1+' / '+t('plate_all');
@@ -1033,7 +1178,7 @@ function applyLang() {
   $('ctxP').textContent = t('ctx_p', { n: fmt(N), q: NQ }); $('cap').textContent = t('cap', { n: fmt(N) });
   $('refs').innerHTML = ORD.map((f, i) => `<li><button type="button" data-f="${f}"><b>${i + 1}</b><span>${esc(loc(F[f].nn))}</span></button></li>`).join('');
   document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
-  renderDomains(); renderClaimsRail(); renderClaimsDock(); fkLabels(); renderPanel(); if (stOpen) renderStats(); if (clOpen) renderClaims();
+  renderDomains(); renderClaimsRail(); renderClaimsDock(); syncDailyBtn(); fkLabels(); renderPanel(); if (stOpen) renderStats(); if (clOpen) renderClaims(); if (dfOpen) renderDaily();
 }
 const shown = i => { const q = Q[i]; return FK === 0 ? (!q.adv || q.year >= RECENT) && (!q.k || view.k >= 2.2) : FK === 1 ? !q.adv && !q.k : FK === 2 ? !!q.k : !!q.adv; };
 function fkLabels() { const L = [t('f_tout'), t('f_q'), t('f_e'), t('f_a')]; document.querySelectorAll('#fk button').forEach((b, i) => { b.textContent = L[i]; b.setAttribute('aria-pressed', String(+b.dataset.fk === FK)); }); }
@@ -1330,7 +1475,7 @@ function renderStats() {
     });
   }
 }
-function openStats() { if (!YR) return; if (clOpen) closeClaims(); stOpen = true; stats.hidden = false; renderStats(); stats.focus(); }
+function openStats() { if (!YR) return; if (clOpen) closeClaims(); if (dfOpen) closeDaily(); stOpen = true; stats.hidden = false; renderStats(); stats.focus(); }
 function closeStats() { stOpen = false; stats.hidden = true; $('stbtn').focus(); }
 if (YR) { $('stbtn').hidden = false; $('stbtn').onclick = () => (stOpen ? closeStats() : openStats()); }
 addEventListener('keydown', e => { if (e.key === 'Escape' && stOpen) { e.stopPropagation(); closeStats(); } }, true);
@@ -1447,6 +1592,7 @@ function renderClaims() {
 }
 function openClaims(id) {
   if (stOpen) closeStats();
+  if (dfOpen) closeDaily();
   clReturnFocus = document.activeElement;
   clTab = 'tracked';
   if (id) { clSel = id; clMobileDetail = true; } else { clSel = clSel || (CLAIMS[0] && CLAIMS[0].id) || null; clMobileDetail = false; }
@@ -1460,6 +1606,246 @@ function closeClaims() {
 $('clDock').onclick = () => (clOpen ? closeClaims() : openClaims());
 narrowPlate.addEventListener('change', renderClaimsDock);
 addEventListener('keydown', e => { if (e.key === 'Escape' && clOpen) { e.stopPropagation(); closeClaims(); } }, true);
+
+// ---- Daily challenge ("Today's Frontier") & Endless mode: Resolved or Unknown + OpenAlex research duel + participative forecast.
+const dailyEl = $('daily'); let dfOpen = false, dfMode = 'daily', dfInfFilter = 'mix', dfInfStreak = 0, dfInfCard = null, dfInfAns = null, dfInfSeen = new Set(), dfReturnFocus = null;
+const SOLVED_PROMPTS = {
+  'fermat-last-theorem': { fr: 'Existe-t-il des entiers positifs x, y, z tels que xⁿ + yⁿ = zⁿ pour n > 2 ? (Théorème de Fermat)', en: 'Do positive integers x, y, z exist with xⁿ + yⁿ = zⁿ for n > 2? (Fermat’s Last Theorem)' },
+  'poincare-conjecture': { fr: 'Toute forme fermée de dimension 3 sans trou est-elle équivalente à une sphère ? (Conjecture de Poincaré)', en: 'Is every closed 3D shape without holes equivalent to a sphere? (Poincaré conjecture)' },
+  'kepler-flyspeck': { fr: 'L’empilement classique des oranges est-il prouvé comme le plus dense en 3D ? (Conjecture de Kepler)', en: 'Is the familiar pyramid stacking of oranges proven to be the densest in 3D? (Kepler conjecture)' },
+  'bounded-gaps-primes': { fr: 'Sait-on prouver qu’une infinité de nombres premiers sont séparés par un écart fini borné ?', en: 'Has it been proved that infinitely many primes are separated by a fixed bounded gap?' },
+  'sphere-packing-8-24': { fr: 'Connaît-on l’empilement de sphères le plus dense en dimensions 8 et 24 ?', en: 'Is the densest possible sphere packing known in dimensions 8 and 24?' },
+  'busy-beaver-5': { fr: 'Connaît-on la valeur exacte du 5ᵉ nombre du Castor affairé (Busy Beaver BB(5)) ?', en: 'Is the exact value of the 5th Busy Beaver number BB(5) known?' },
+  'ramsey-bound': { fr: 'A-t-on battu la borne exponentielle classique de 1935 sur les nombres de Ramsey diagonaux ?', en: 'Has the classic 1935 exponential bound on diagonal Ramsey numbers been beaten?' },
+  'higgs-boson': { fr: 'Le boson de Higgs a-t-il été observé expérimentalement ?', en: 'Has the Higgs boson been experimentally observed?' },
+  'ligo-gravitational-waves': { fr: 'A-t-on déjà détecté directement des ondes gravitationnelles ?', en: 'Have gravitational waves ever been detected directly?' },
+  'eht-black-hole-images': { fr: 'A-t-on déjà obtenu une image directe de l’ombre d’un trou noir ?', en: 'Has a direct image of a black hole’s shadow ever been captured?' },
+  'alphafold-2': { fr: 'Sait-on prédire avec précision la structure 3D d’une protéine à partir de sa séquence ?', en: 'Can we accurately predict a protein’s 3D structure from its amino-acid sequence?' },
+  'casgevy-crispr-therapy': { fr: 'Existe-t-il déjà une thérapie génique CRISPR approuvée chez l’humain ?', en: 'Is there already an approved CRISPR gene therapy for humans?' },
+  'halicin': { fr: 'Une IA a-t-elle déjà identifié un nouvel antibiotique actif en laboratoire ?', en: 'Has an AI already identified a new antibiotic shown to work in the lab?' },
+  'nobel-physics-2022-bell': { fr: 'A-t-on tranché expérimentalement si l’intrication quantique cache des variables locales ?', en: 'Have experiments settled whether quantum entanglement can be explained by local hidden variables?' },
+  'nobel-medicine-2022-paabo': { fr: 'A-t-on réussi à séquencer le génome complet de Néandertal ?', en: 'Have scientists succeeded in sequencing the complete Neanderthal genome?' },
+  'icecube-neutrinos': { fr: 'A-t-on identifié des neutrinos venus d’en dehors de notre galaxie ?', en: 'Have neutrinos originating outside our galaxy been identified?' },
+  'nobel-medicine-2026-optogenetics': { fr: 'Peut-on activer ou éteindre des neurones précis chez un animal vivant grâce à la lumière ?', en: 'Can specific neurons in a living animal be switched on or off with light?' },
+  'nobel-medicine-2025-immune-tolerance': { fr: 'A-t-on identifié les cellules qui empêchent notre système immunitaire d’attaquer nos propres organes ?', en: 'Have the cells preventing our immune system from attacking our own organs been identified?' },
+  'nobel-physics-2025-quantum-circuit': { fr: 'A-t-on observé l’effet tunnel quantique dans un circuit électrique macroscopique ?', en: 'Has quantum tunnelling been observed in a macroscopic electrical circuit?' },
+  'imo-2024-alphaproof': { fr: 'Une IA a-t-elle déjà atteint le niveau médaille d’argent à l’Olympiade internationale de maths ?', en: 'Has an AI already reached silver-medal level at the International Mathematical Olympiad?' }
+};
+const EVERYDAY_OPEN = new Set(['anesthesie', 'baillement', 'gauchers', 'transition-vitreuse', 'eau', 'foudre-boule', 'temperature-corps', 'groupes-sanguins', 'repliement-proteines', 'magnetoreception', 'navigation-animale', 'canape', 'taille-cellule', 'forme-organes', 'serpents', 'tortues', 'fleurs', 'memoire', 'conscience', 'conscience-animale', 'wow-e', 'voynich-e', 'tunguska-e', 'nazca-e', 'kryptos-e', 'lineara-e', 'riemann', 'navier-stokes', 'p-np', 'goldbach', 'jumeaux', 'collatz', 'seuls', 'origine-vie', 'trous-noirs-info', 'antimatiere', 'tension-hubble', 'couronne-solaire', 'supraconducteurs', 'turbulence', 'fleche-temps', 'planete-neuf', 'vaccin-vih', 'longevite']);
+const DF_SOLVED_POOL = Object.keys(SOLVED_PROMPTS).map(id => Q.findIndex(q => q.id === id)).filter(i => i >= 0);
+const DF_OPEN_ALL = Q.map((q, i) => !q.adv && q.st !== 'avancee' ? i : -1).filter(i => i >= 0);
+const DF_OPEN_TOP = DF_OPEN_ALL.filter(i => EVERYDAY_OPEN.has(Q[i].id));
+const DF_VOL_POOL = (() => { const a = []; for (let i = 0; i < N; i++) { const w = T[i * 5 + 2], nm = T[i * 5 + 4]; if (w >= 25000 && w <= 950000 && nm.length >= 10 && nm.length <= 54) a.push(i); } return a; })();
+const DF_BET_FALLBACK = ['conscience', 'seuls', 'vaccin-vih', 'p-np', 'ordinateur-quantique', 'longevite', 'supraconducteurs', 'origine-vie', 'anesthesie', 'turbulence'].map(id => Q.findIndex(q => q.id === id)).filter(i => i >= 0);
+function dfTodayKey() { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+function dfPrevKey(key) { const [y, m, d] = key.split('-').map(Number), dt = new Date(Date.UTC(y, m - 1, d - 1)); return dt.getUTCFullYear() + '-' + String(dt.getUTCMonth() + 1).padStart(2, '0') + '-' + String(dt.getUTCDate()).padStart(2, '0'); }
+function dfDayNum(key) { const [y, m, d] = key.split('-').map(Number); return Math.max(1, Math.round((Date.UTC(y, m - 1, d) - Date.UTC(2026, 10, 22)) / 86400000) + 1); }
+function dfRng(seedStr) { let h = 2166136261; for (let i = 0; i < seedStr.length; i++) { h ^= seedStr.charCodeAt(i); h = Math.imul(h, 16777619); } let s = h >>> 0; return () => { s = (s + 0x6D2B79F5) | 0; let r = Math.imul(s ^ (s >>> 15), 1 | s); r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r; return ((r ^ (r >>> 14)) >>> 0) / 4294967296; }; }
+function dfReadStore() { try { return JSON.parse(localStorage.getItem('uf_daily') || '{}'); } catch (e) { return {}; } }
+function dfWriteStore(o) { try { localStorage.setItem('uf_daily', JSON.stringify(o)); } catch (e) {} }
+function dfPickVolDuel(rng) {
+  for (let tries = 0; tries < 80; tries++) {
+    const a = DF_VOL_POOL[Math.floor(rng() * DF_VOL_POOL.length)];
+    const b = DF_VOL_POOL[Math.floor(rng() * DF_VOL_POOL.length)];
+    if (a === b || S[T[a * 5 + 3]].f === S[T[b * 5 + 3]].f) continue;
+    const wa = T[a * 5 + 2], wb = T[b * 5 + 2], ratio = Math.max(wa, wb) / Math.min(wa, wb);
+    if (ratio >= 1.45 && ratio <= 4.8) return { kind: 'vol', a, b };
+  }
+  return { kind: 'vol', a: DF_VOL_POOL[0], b: DF_VOL_POOL[Math.min(1, DF_VOL_POOL.length - 1)] };
+}
+function dfBuildDay(key) {
+  const rng = dfRng('unknownpedia-daily-' + key);
+  const pickUnique = (pool, used) => { const avail = pool.filter(i => !used.has(i)); const p = avail.length ? avail : pool; const c = p[Math.floor(rng() * p.length)]; used.add(c); return c; };
+  const used = new Set();
+  const nSolved = rng() < 0.5 ? 1 : 2;
+  const ru = [];
+  for (let k = 0; k < nSolved; k++) ru.push({ kind: 'ru', qi: pickUnique(DF_SOLVED_POOL, used), solved: true });
+  for (let k = 0; k < 3 - nSolved; k++) ru.push({ kind: 'ru', qi: pickUnique(k === 0 && DF_OPEN_TOP.length ? DF_OPEN_TOP : DF_OPEN_ALL, used), solved: false });
+  for (let i = ru.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [ru[i], ru[j]] = [ru[j], ru[i]]; }
+  const vol = dfPickVolDuel(rng);
+  const fcClaims = CLAIMS.filter(c => c.fc && c.fc.outcome == null);
+  let bet;
+  if (fcClaims.length && rng() < 0.55) {
+    const c = fcClaims[Math.floor(rng() * fcClaims.length)];
+    bet = { kind: 'bet', claimId: c.id, qi: c.q.length ? Q.findIndex(q => q.id === c.q[0]) : -1 };
+  } else {
+    const qi = pickUnique(DF_BET_FALLBACK, used);
+    bet = { kind: 'bet', claimId: null, qi };
+  }
+  return [...ru, vol, bet];
+}
+function dfGetDayState() {
+  const key = dfTodayKey(), st = dfReadStore();
+  if (!st.days) st.days = {};
+  if (!st.days[key]) st.days[key] = { ans: [null, null, null, null, null], step: 0, done: false };
+  return { key, store: st, day: st.days[key] };
+}
+function syncDailyBtn() {
+  const sc = $('dfsc'), dot = document.querySelector('#dfbtn .df-dot');
+  if (!sc || !dot) return;
+  const { day } = dfGetDayState();
+  if (day.done) {
+    const score = day.ans.slice(0, 4).filter(a => a && a.ok).length;
+    sc.textContent = score + '/4'; sc.hidden = false; dot.hidden = true;
+  } else { sc.hidden = true; dot.hidden = false; }
+}
+function dfCopy(txt, btn) {
+  const done = () => { if (!btn) return; const old = btn.textContent; btn.textContent = t('df_copied'); setTimeout(() => { if (btn.isConnected) btn.textContent = old; }, 1600); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done).catch(() => { const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); });
+  else { const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+}
+function dfTopicSpark(ti) {
+  if (!YR) return '';
+  const a = Array.from({ length: YR.n }, (_, k) => yval(ti, YR.y0 + k));
+  return stSpark(a);
+}
+function dfRuPrompt(qi, solved) {
+  const q = Q[qi];
+  if (solved && SOLVED_PROMPTS[q.id]) return SOLVED_PROMPTS[q.id][LANG] || SOLVED_PROMPTS[q.id].fr;
+  return loc(q.qq);
+}
+function dfNextInfCard() {
+  const useVol = dfInfFilter === 'vol' || (dfInfFilter === 'mix' && Math.random() < 0.35);
+  if (useVol) { dfInfCard = dfPickVolDuel(Math.random); dfInfAns = null; return; }
+  const solved = Math.random() < 0.42;
+  const pool = solved ? DF_SOLVED_POOL : (Math.random() < 0.65 && DF_OPEN_TOP.length ? DF_OPEN_TOP : DF_OPEN_ALL);
+  let avail = pool.filter(i => !dfInfSeen.has(i));
+  if (!avail.length) { dfInfSeen.clear(); avail = pool; }
+  const qi = avail[Math.floor(Math.random() * avail.length)];
+  dfInfSeen.add(qi);
+  dfInfCard = { kind: 'ru', qi, solved }; dfInfAns = null;
+}
+function dfCardHTML(card, ans, stepLabel, isLast, isInf) {
+  if (card.kind === 'ru') {
+    const q = Q[card.qi], prompt = dfRuPrompt(card.qi, card.solved), field = q.subs.length ? loc(F[S[q.subs[0]].f].nn) : '';
+    const dis = ans ? ' disabled' : '';
+    const cls = want => !ans ? '' : (card.solved === want ? ' is-true' : ans.pick === want ? ' is-wrong' : ' is-dim');
+    const claim = !card.solved && q.ia && q.ia.find(e => e.lad && e.lad.length);
+    const rev = ans ? `<div class="df-rev"><div class="df-verdict ${ans.ok ? 'ok' : 'ko'}"><b>${ans.ok ? '✓ ' : '× '}${esc(card.solved ? t(ans.ok ? 'df_ok_solved' : 'df_ko_solved', { y: q.year }) : t(ans.ok ? 'df_ok_open' : 'df_ko_open'))}</b></div><p>${esc(loc(q.cc))}</p>${claim ? `<div class="df-cl-strip"><span>${esc(t('df_claim_note'))}</span><button type="button" class="df-btn-s" data-dfcl="${esc(claim.id)}">${esc(t('df_claim_btn'))}</button></div>` : ''}<div class="df-acts"><button type="button" class="df-btn-s" data-dfq="${card.qi}">${esc(t('df_map'))}</button><button type="button" class="df-btn-s" data-dffact="1">${esc(t('df_share_fact'))}</button><button type="button" class="df-btn-p" id="dfNext">${esc(isInf ? t('df_inf_next') : isLast ? t('df_finish') : t('df_next'))}</button></div></div>` : '';
+    return `<section class="df-card"><div class="df-eyebrow"><span class="acc">${esc(stepLabel)} · ${esc(t('df_ru_prompt'))}</span><span>${esc(field)}</span></div><p class="df-sub">${esc(t('df_ru_sub'))}</p><h3 class="df-q">${esc(prompt)}</h3><div class="df-choices"><button type="button" class="df-choice${cls(true)}" data-pick="1"${dis}><span class="df-ckey" aria-hidden="true">1</span><span class="df-csym" aria-hidden="true">!</span><strong>${esc(t('df_opt_solved'))}</strong><small>${esc(t('df_opt_solved_s'))}</small></button><button type="button" class="df-choice is-open-opt${cls(false)}" data-pick="0"${dis}><span class="df-ckey" aria-hidden="true">2</span><span class="df-csym" aria-hidden="true">?</span><strong>${esc(t('df_opt_open'))}</strong><small>${esc(t('df_opt_open_s'))}</small></button></div>${rev}</section>`;
+  }
+  if (card.kind === 'vol') {
+    const wa = T[card.a * 5 + 2], wb = T[card.b * 5 + 2], win = wa >= wb ? 0 : 1, mx = Math.max(wa, wb), ratio = mx / Math.max(1, Math.min(wa, wb));
+    const dis = ans ? ' disabled' : '';
+    const vplate = (ti, idx, w) => {
+      const si = T[ti * 5 + 3], f = F[S[si].f];
+      const cls = !ans ? '' : (win === idx ? ' is-true' : ans.pick === idx ? ' is-wrong' : '');
+      const stats = ans ? `<div><div class="df-vnum">${esc(fmt(w))}</div><span class="df-vbar"><i style="width:${Math.max(5, Math.round(100 * w / mx))}%"></i></span><div class="df-vfoot"><small>${win === idx ? esc(t('df_vol_more', { x: fmtDec(ratio, 1) })) : esc(t('articles')) + ' (1990–2025)'}</small>${dfTopicSpark(ti)}</div></div>` : `<small>${esc(t('df_vol_pick'))} →</small>`;
+      return `<button type="button" class="df-vtopic${cls}" data-vpick="${idx}"${dis}><span class="df-ckey" aria-hidden="true">${idx + 1}</span><div><small>${esc(loc(f.nn))} · ${esc(loc(DATA.D[f.d]))}</small><strong>${esc(T[ti * 5 + 4])}</strong></div>${stats}</button>`;
+    };
+    const rev = ans ? `<div class="df-rev"><div class="df-verdict ${ans.ok ? 'ok' : 'ko'}"><b>${ans.ok ? '✓ ' : '× '}${esc(t(ans.ok ? 'df_ok_vol' : 'df_ko_vol', { n: fmtCompact(mx), m: fmtCompact(Math.min(wa, wb)) }))}</b></div><div class="df-acts"><button type="button" class="df-btn-s" data-dft="${card.a}">${esc(T[card.a * 5 + 4].slice(0, 26))}${T[card.a * 5 + 4].length > 26 ? '…' : ''} →</button><button type="button" class="df-btn-s" data-dft="${card.b}">${esc(T[card.b * 5 + 4].slice(0, 26))}${T[card.b * 5 + 4].length > 26 ? '…' : ''} →</button><button type="button" class="df-btn-p" id="dfNext">${esc(isInf ? t('df_inf_next') : isLast ? t('df_finish') : t('df_next'))}</button></div></div>` : '';
+    return `<section class="df-card"><div class="df-eyebrow"><span class="acc">${esc(stepLabel)} · ${esc(t('df_vol_prompt'))}</span><span>OpenAlex · 1990–2025</span></div><p class="df-sub">${esc(t('df_vol_sub'))}</p><div class="df-vs-grid">${vplate(card.a, 0, wa)}<span class="df-vs-badge" aria-hidden="true">vs</span>${vplate(card.b, 1, wb)}</div>${rev}</section>`;
+  }
+  const cl = card.claimId ? CLAIMS.find(c => c.id === card.claimId) : null;
+  const qTxt = cl ? loc(cl.fc.q) : t('df_bet_q_gen', { q: loc(Q[card.qi].qq) });
+  const existing = cl && fcRead()[cl.id] ? fcRead()[cl.id].p : (ans ? ans.p : 35);
+  return `<section class="df-card"><div class="df-eyebrow"><span class="acc">${esc(stepLabel)} · ${esc(t('df_bet_prompt'))}</span><span>${cl ? esc(t('fc_closes', { d: fmtDate(cl.fc.closes) })) : 'Horizon 2040'}</span></div><p class="df-sub">${esc(t('df_bet_sub'))}</p><h3 class="df-q">${esc(qTxt)}</h3><div class="df-bet-ctrl"><output id="dfBetOut">${existing} %</output><div class="df-bet-sl"><input id="dfBetR" type="range" min="1" max="99" step="1" value="${existing}" aria-label="${esc(t('fc_your'))}"><div class="df-bet-scale" aria-hidden="true"><span>1 %</span><span>25 %</span><span>50 %</span><span>75 %</span><span>99 %</span></div></div></div><div class="df-acts">${cl ? `<button type="button" class="df-btn-s" data-dfcl="${esc(cl.id)}">${esc(t('df_claim_btn'))}</button>` : card.qi >= 0 ? `<button type="button" class="df-btn-s" data-dfq="${card.qi}">${esc(t('df_map'))}</button>` : ''}<button type="button" class="df-btn-p" id="dfBetSave">${esc(t('df_bet_save'))}</button></div></section>`;
+}
+function dfDoneHTML(key, store, day, rounds) {
+  const num = dfDayNum(key), score = day.ans.slice(0, 4).filter(a => a && a.ok).length, betP = day.ans[4] ? day.ans[4].p : 50;
+  const glyphs = day.ans.map((a, i) => i === 4 ? '<span class="df-g bet">◆</span>' : `<span class="df-g ${a && a.ok ? 'ok' : 'ko'}">${a && a.ok ? '✓' : '×'}</span>`).join('');
+  const recap = rounds.map((r, i) => {
+    const a = day.ans[i];
+    if (r.kind === 'ru') {
+      const q = Q[r.qi], meta = r.solved ? `${t('df_opt_solved')} (${q.year})` : t('df_opt_open');
+      return `<li><span class="df-pdot" style="${a && a.ok ? 'background:var(--ink);border-color:var(--ink);color:var(--paper)' : 'border-color:var(--acc);color:var(--acc)'}">${a && a.ok ? '✓' : '×'}</span><div><span class="rc-t">${esc(dfRuPrompt(r.qi, r.solved))}</span><span class="rc-m">${esc(meta)}</span></div><button type="button" class="df-btn-s" data-dfq="${r.qi}">${esc(t('df_map'))}</button></li>`;
+    }
+    if (r.kind === 'vol') {
+      const wa = T[r.a * 5 + 2], wb = T[r.b * 5 + 2], hi = wa >= wb ? r.a : r.b;
+      return `<li><span class="df-pdot" style="${a && a.ok ? 'background:var(--ink);border-color:var(--ink);color:var(--paper)' : 'border-color:var(--acc);color:var(--acc)'}">${a && a.ok ? '✓' : '×'}</span><div><span class="rc-t">${esc(T[r.a * 5 + 4])} vs ${esc(T[r.b * 5 + 4])}</span><span class="rc-m">${esc(fmtCompact(wa))} vs ${esc(fmtCompact(wb))}</span></div><button type="button" class="df-btn-s" data-dft="${hi}">${esc(t('df_map'))}</button></li>`;
+    }
+    const cl = r.claimId ? CLAIMS.find(c => c.id === r.claimId) : null;
+    const qt = cl ? loc(cl.fc.q) : t('df_bet_q_gen', { q: loc(Q[r.qi].qq) });
+    return `<li><span class="df-pdot" style="background:var(--acc);border-color:var(--acc);color:var(--paper)">◆</span><div><span class="rc-t">${esc(qt)}</span><span class="rc-m">${esc(t('df_bet_lbl'))} : ${betP} %</span></div>${cl ? `<button type="button" class="df-btn-s" data-dfcl="${esc(cl.id)}">${esc(t('df_claim_btn'))}</button>` : r.qi >= 0 ? `<button type="button" class="df-btn-s" data-dfq="${r.qi}">${esc(t('df_map'))}</button>` : ''}</li>`;
+  }).join('');
+  return `<div class="df-done-card"><h3>${esc(t('df_done_t', { n: num }))}</h3><p>${esc(t('df_done_sub'))}</p><div class="df-glyphs" aria-hidden="true">${glyphs}</div><div class="df-done-kpis"><div><small>${esc(t('df_score_lbl'))}</small><b>${score} / 4</b></div><div><small>${esc(t('df_streak_lbl'))}</small><b>${store.streak || 1}${LANG === 'fr' ? ' j' : 'd'}</b></div><div><small>${esc(t('df_bet_lbl'))}</small><b>${betP} %</b></div></div><div class="df-done-acts"><button type="button" class="df-btn-p" id="dfCopyRes">${esc(t('df_copy_res'))}</button>${navigator.share ? `<button type="button" class="df-btn-s" id="dfNatShare">${esc(t('df_share_res'))}</button>` : ''}<button type="button" class="df-btn-s" id="dfGoInf">${esc(t('df_play_inf'))}</button></div></div><div class="df-recap-h"><h4>${esc(t('df_recap_t'))}</h4><small>${esc(t('df_recap_s'))}</small></div><ol class="df-recap">${recap}</ol>`;
+}
+function renderDaily() {
+  if (!dfOpen) return;
+  const { key, store, day } = dfGetDayState(), num = dfDayNum(key), rounds = dfBuildDay(key);
+  const meta = dfMode === 'daily'
+    ? (store.streak ? `<span>${esc(t('df_streak', { n: store.streak }))}</span>` : '')
+    : `<span>${esc(t('df_inf_streak', { n: dfInfStreak }))}</span><span>${esc(t('df_inf_best', { n: store.infBest || 0 }))}</span>`;
+  const head = `<div class="df-head"><div><p class="df-kicker">${esc(dfMode === 'daily' ? t('df_kicker', { n: num, d: fmtDate(key) }) : t('df_kicker_inf'))}</p><h2>${esc(t('df_title'))}</h2></div><div class="df-hmeta">${meta}</div><button class="sq" id="dfclose" type="button" aria-label="${esc(t('st_close'))}">×</button></div>`;
+  const infPills = dfMode === 'inf' ? `<div class="df-inf-pills">${[['mix', 'df_inf_mix'], ['ru', 'df_inf_ru'], ['vol', 'df_inf_vol']].map(([k, l]) => `<button type="button" data-inff="${k}" aria-pressed="${dfInfFilter === k}">${esc(t(l))}</button>`).join('')}</div>` : '';
+  const bar = `<div class="df-bar"><div class="df-tabs" role="tablist"><button type="button" role="tab" data-dfm="daily" aria-selected="${dfMode === 'daily'}">${esc(t('df_tab_daily'))}</button><button type="button" role="tab" data-dfm="inf" aria-selected="${dfMode === 'inf'}">${esc(t('df_tab_inf'))}</button></div>${infPills}</div>`;
+  let body = '';
+  if (dfMode === 'daily') {
+    const labels = [t('df_step_ru'), t('df_step_ru'), t('df_step_ru'), t('df_step_vol'), t('df_step_bet')];
+    const prog = `<div class="df-prog" aria-hidden="true">${rounds.map((_, i) => { const a = day.ans[i], cls = a ? (i === 4 ? 'bet' : a.ok ? 'ok' : 'ko') : (!day.done && day.step === i ? 'cur' : ''); const sym = a ? (i === 4 ? '◆' : a.ok ? '✓' : '×') : '0' + (i + 1); return `<div class="df-pst ${cls}"><span class="df-pdot">${sym}</span><span>${esc(labels[i])}</span></div>`; }).join('')}</div>`;
+    body = day.done ? dfDoneHTML(key, store, day, rounds) : prog + dfCardHTML(rounds[day.step], day.ans[day.step], `${day.step + 1} / 5`, day.step === 4, false) + `<p class="df-kb">${esc(t('df_kb_hint'))}</p>`;
+  } else {
+    if (!dfInfCard) dfNextInfCard();
+    body = dfCardHTML(dfInfCard, dfInfAns, `${t('df_inf_streak', { n: dfInfStreak })} · ${t('df_inf_best', { n: store.infBest || 0 })}`, false, true) + `<p class="df-kb">${esc(t('df_kb_hint'))}</p>`;
+  }
+  dailyEl.innerHTML = head + bar + `<div class="df-scroll"><div class="df-wrap">${body}</div></div>`;
+  $('dfclose').onclick = closeDaily;
+  dailyEl.querySelectorAll('[data-dfm]').forEach(b => b.onclick = () => { dfMode = b.dataset.dfm; if (dfMode === 'inf' && !dfInfCard) dfNextInfCard(); renderDaily(); });
+  dailyEl.querySelectorAll('[data-inff]').forEach(b => b.onclick = () => { dfInfFilter = b.dataset.inff; dfNextInfCard(); renderDaily(); });
+  const activeCard = dfMode === 'daily' ? (!day.done ? rounds[day.step] : null) : dfInfCard;
+  const recordAnswer = ans => {
+    if (dfMode === 'daily') { day.ans[day.step] = ans; dfWriteStore(store); }
+    else { dfInfAns = ans; if (ans.ok) { dfInfStreak++; if (dfInfStreak > (store.infBest || 0)) { store.infBest = dfInfStreak; dfWriteStore(store); } } else dfInfStreak = 0; }
+    renderDaily();
+  };
+  dailyEl.querySelectorAll('[data-pick]').forEach(b => b.onclick = () => { if (!activeCard) return; const pick = b.dataset.pick === '1'; recordAnswer({ pick, ok: pick === activeCard.solved }); });
+  dailyEl.querySelectorAll('[data-vpick]').forEach(b => b.onclick = () => { if (!activeCard) return; const pick = +b.dataset.vpick, win = T[activeCard.a * 5 + 2] >= T[activeCard.b * 5 + 2] ? 0 : 1; recordAnswer({ pick, ok: pick === win }); });
+  const nx = $('dfNext');
+  if (nx) nx.onclick = () => { if (dfMode === 'daily') { if (day.step < 4) day.step++; dfWriteStore(store); renderDaily(); } else { dfNextInfCard(); renderDaily(); } };
+  const br = $('dfBetR'), bo = $('dfBetOut'), bs = $('dfBetSave');
+  if (br && bo) br.oninput = () => { bo.textContent = br.value + ' %'; };
+  if (bs && br && activeCard && activeCard.kind === 'bet') {
+    bs.onclick = () => {
+      const p = +br.value;
+      day.ans[4] = { p, ok: true }; day.done = true;
+      if (store.lastDone !== key) { store.streak = store.lastDone === dfPrevKey(key) ? (store.streak || 0) + 1 : 1; store.lastDone = key; }
+      dfWriteStore(store); syncDailyBtn();
+      if (activeCard.claimId) {
+        const o = fcRead(); o[activeCard.claimId] = { p, t: Date.now() }; fcWrite(o);
+        if (DATA.API) { const tok = fcToken(); fcApi('/api/challenge').then(ch => fcSolve(ch, activeCard.claimId, tok).then(counter => fcApi('/api/vote', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ claim: activeCard.claimId, token: tok, p, ...ch, counter }) }))).catch(() => {}); }
+      }
+      renderDaily();
+    };
+  }
+  const shareText = () => {
+    const score = day.ans.slice(0, 4).filter(a => a && a.ok).length, betP = day.ans[4] ? day.ans[4].p : 50;
+    const g = day.ans.map((a, i) => i === 4 ? '◆' : (a && a.ok ? '●' : '○')).join(' ');
+    return t('df_share_line', { n: num, g, s: score, p: betP, u: `https://unknownpedia.org/${LANG}/${LANG === 'fr' ? '#defi' : '#daily'}` });
+  };
+  const cp = $('dfCopyRes'); if (cp) cp.onclick = () => dfCopy(shareText(), cp);
+  const ns = $('dfNatShare'); if (ns) ns.onclick = () => navigator.share({ title: t('df_title'), text: shareText() }).catch(() => {});
+  const gi = $('dfGoInf'); if (gi) gi.onclick = () => { dfMode = 'inf'; dfNextInfCard(); renderDaily(); };
+  dailyEl.querySelectorAll('[data-dfq]').forEach(b => b.onclick = () => { closeDaily(); openQ(+b.dataset.dfq); });
+  dailyEl.querySelectorAll('[data-dft]').forEach(b => b.onclick = () => { closeDaily(); openT(+b.dataset.dft); });
+  dailyEl.querySelectorAll('[data-dfcl]').forEach(b => b.onclick = () => { closeDaily(); openClaims(b.dataset.dfcl); });
+  dailyEl.querySelectorAll('[data-dffact]').forEach(b => b.onclick = () => {
+    if (!activeCard || activeCard.kind !== 'ru') return;
+    const q = Q[activeCard.qi], u = `https://unknownpedia.org/${LANG}/#${q.id}`;
+    const txt = activeCard.solved ? t('df_fact_solved', { y: q.year, q: loc(q.qq), u }) : t('df_fact_open', { q: loc(q.qq), u });
+    dfCopy(txt, b);
+  });
+}
+function openDaily(mode) {
+  if (stOpen) closeStats();
+  if (clOpen) closeClaims();
+  dfReturnFocus = document.activeElement;
+  if (mode) dfMode = mode;
+  dfOpen = true; dailyEl.hidden = false; renderDaily(); dailyEl.focus();
+}
+function closeDaily() {
+  dfOpen = false; dailyEl.hidden = true; syncDailyBtn();
+  if (dfReturnFocus && dfReturnFocus.isConnected && dfReturnFocus.focus) dfReturnFocus.focus();
+  else if ($('dfbtn')) $('dfbtn').focus();
+}
+$('dfbtn').onclick = () => (dfOpen ? closeDaily() : openDaily('daily'));
+addEventListener('keydown', e => {
+  if (!dfOpen) return;
+  if (e.key === 'Escape') { e.stopPropagation(); closeDaily(); return; }
+  if (e.target && e.target.tagName === 'INPUT') return;
+  if (e.key === '1' || e.key === 'ArrowLeft') { const b = dailyEl.querySelector('[data-pick="1"]:not(:disabled), [data-vpick="0"]:not(:disabled)'); if (b) { e.preventDefault(); b.click(); } }
+  else if (e.key === '2' || e.key === 'ArrowRight') { const b = dailyEl.querySelector('[data-pick="0"]:not(:disabled), [data-vpick="1"]:not(:disabled)'); if (b) { e.preventDefault(); b.click(); } }
+  else if (e.key === 'Enter') { const b = $('dfNext') || $('dfBetSave'); if (b) { e.preventDefault(); b.click(); } }
+}, true);
 
 // ---- Dessin ----
 // ---- Animations: smoothed enlargement and "typewriter" text on hover over a field number or a "?".
