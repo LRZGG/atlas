@@ -128,6 +128,52 @@ export function createApi(opts) {
       await store.put('subs:list', JSON.stringify(list.slice(0, 500)));
       return J({ ok: true, id });
     }
+    const im = path.match(/^\/api\/illusion\/([a-z0-9-]+)$/);
+    if (req.method === 'GET' && im) {
+      const votes = (await rd('ill:' + im[1])) || {}, vals = Object.values(votes), n = vals.length;
+      const out = { n, min: MIN_SHOW };
+      if (n >= MIN_SHOW) { const known = vals.filter(v => v === 1).length; out.known = known; out.pct = Math.round(100 * known / n); }
+      return J(out);
+    }
+    if (req.method === 'POST' && path === '/api/illusion') {
+      let b; try { b = await req.json(); } catch { return J({ error: 'bad json' }, 400); }
+      if (!/^[a-z0-9-]{2,64}$/.test(b.qid || '') || !/^[0-9a-f]{32}$/.test(b.token || '') || typeof b.thoughtKnown !== 'boolean') return J({ error: 'bad illusion' }, 400);
+      const ip = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for') || 'local', day = new Date(now()).toISOString().slice(0, 10);
+      const rlk = 'rl:' + (await sha(`${secret}|${day}|${ip}`)).slice(0, 24) + ':' + Math.floor(now() / 36e5), cnt = +((await store.get(rlk)) || 0);
+      if (cnt >= MAX_PER_HOUR) return J({ error: 'rate limited' }, 429);
+      await store.put(rlk, String(cnt + 1), 3700);
+      const th = (await sha(secret + '|tok|' + b.token)).slice(0, 32), votes = (await rd('ill:' + b.qid)) || {};
+      votes[th] = b.thoughtKnown ? 1 : 0; await store.put('ill:' + b.qid, JSON.stringify(votes));
+      const vals = Object.values(votes), n = vals.length, out = { ok: true, n, min: MIN_SHOW };
+      if (n >= MIN_SHOW) { const known = vals.filter(v => v === 1).length; out.known = known; out.pct = Math.round(100 * known / n); }
+      return J(out);
+    }
+    const PR_IDS = new Set(['longevite', 'conscience', 'mental', 'climat', 'cancer', 'vaccins', 'cosmos', 'physique', 'quantique', 'origine', 'ia', 'anesthesie']);
+    const prioSummary = votes => {
+      const voters = Object.values(votes), n = voters.length, out = { n, min: MIN_SHOW };
+      if (n >= MIN_SHOW) {
+        const counts = {}; for (const id of PR_IDS) counts[id] = 0;
+        for (const picks of voters) if (Array.isArray(picks)) for (const id of picks) if (PR_IDS.has(id)) counts[id]++;
+        out.counts = counts;
+      }
+      return out;
+    };
+    if (req.method === 'GET' && path === '/api/priorities') {
+      const votes = (await rd('prio:votes')) || {};
+      return J(prioSummary(votes));
+    }
+    if (req.method === 'POST' && path === '/api/priorities') {
+      let b; try { b = await req.json(); } catch { return J({ error: 'bad json' }, 400); }
+      const picks = Array.isArray(b.picks) ? [...new Set(b.picks)].filter(id => PR_IDS.has(id)) : [];
+      if (!/^[0-9a-f]{32}$/.test(b.token || '') || picks.length < 1 || picks.length > 3 || picks.length !== (Array.isArray(b.picks) ? b.picks.length : 0)) return J({ error: 'bad priorities' }, 400);
+      const ip = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for') || 'local', day = new Date(now()).toISOString().slice(0, 10);
+      const rlk = 'rl:' + (await sha(`${secret}|${day}|${ip}`)).slice(0, 24) + ':' + Math.floor(now() / 36e5), cnt = +((await store.get(rlk)) || 0);
+      if (cnt >= MAX_PER_HOUR) return J({ error: 'rate limited' }, 429);
+      await store.put(rlk, String(cnt + 1), 3700);
+      const th = (await sha(secret + '|tok|' + b.token)).slice(0, 32), votes = (await rd('prio:votes')) || {};
+      votes[th] = picks; await store.put('prio:votes', JSON.stringify(votes));
+      return J({ ok: true, ...prioSummary(votes) });
+    }
     return J({ error: 'not found' }, 404);
   };
 }

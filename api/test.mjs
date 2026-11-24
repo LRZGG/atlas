@@ -48,4 +48,11 @@ const st = tok(), [, chS] = await call('GET', '/api/challenge'); let cS = 0; whi
 assert.equal(s, 200); assert.equal(r.ok, true);
 [s] = await call('POST', '/api/submit', { kind: 'question', title: 'Bad URL', url: 'javascript:alert(1)', token: st, ...chS, counter: cS }, '8.8.8.2');
 assert.equal(s, 400, 'non-http URL refused');
+// illusion of knowledge reaction ("I thought science knew" vs "I knew we didn't know")
+for (let i = 0; i < MIN_SHOW; i++) { [s, r] = await call('POST', '/api/illusion', { qid: 'anesthesie', token: tok(), thoughtKnown: i < 8 }, '10.0.0.' + i); assert.equal(s, 200); }
+[s, r] = await call('GET', '/api/illusion/anesthesie'); assert.equal(s, 200); assert.equal(r.n, MIN_SHOW); assert.equal(r.pct, 80);
+// humanity priorities vs OpenAlex research
+for (let i = 0; i < MIN_SHOW; i++) { [s, r] = await call('POST', '/api/priorities', { token: tok(), picks: ['longevite', 'conscience', i % 2 ? 'cosmos' : 'climat'] }, '11.0.0.' + i); assert.equal(s, 200); }
+[s, r] = await call('GET', '/api/priorities'); assert.equal(s, 200); assert.equal(r.n, MIN_SHOW); assert.equal(r.counts.longevite, MIN_SHOW);
+[s] = await call('POST', '/api/priorities', { token: tok(), picks: ['longevite', 'conscience', 'cosmos', 'climat'] }, '11.0.1.1'); assert.equal(s, 400, 'max 3 priorities enforced');
 console.log('api tests passed');

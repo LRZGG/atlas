@@ -5,8 +5,8 @@
 @font-face { font-family: "IM Fell DW Pica"; font-style: italic; font-weight: 400; font-display: swap; src: url(/fonts/imfell-italic.woff2) format("woff2"); }
 @font-face { font-family: "Archivo Narrow"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/fonts/archivo-narrow.woff2) format("woff2"); }
 @font-face { font-family: "Archivo Narrow"; font-style: italic; font-weight: 400; font-display: swap; src: url(/fonts/archivo-narrow-italic.woff2) format("woff2"); }
-:root { --paper: #fbfbf9; --ink: #15181d; --ink-rgb: 21,24,29; --dim: #3b4048; --acc: #b3122f; --f: 1; --serif: "IM Fell DW Pica", Georgia, serif; --sans: "Archivo Narrow", "Arial Narrow", system-ui, sans-serif; color-scheme: light; }
-:root[data-theme="dark"] { --paper: #0b0d11; --ink: #e9ebee; --ink-rgb: 233,235,238; --dim: #9ba3ad; --acc: #ffffff; --f: .72; color-scheme: dark; }
+:root { --paper: #ece5d5; --surface: #e3dac6; --ink: #171e29; --ink-rgb: 23,30,41; --dim: #525965; --acc: #a5242c; --gold: #7c6434; --f: 1; --serif: "IM Fell DW Pica", Georgia, serif; --sans: "Archivo Narrow", "Arial Narrow", system-ui, sans-serif; color-scheme: light; }
+:root[data-theme="dark"] { --paper: #0b111c; --surface: #111929; --ink: #e5decb; --ink-rgb: 229,222,203; --dim: #8f9bb0; --acc: #e36246; --gold: #c9b98b; --f: .78; color-scheme: dark; }
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }
 body { background: var(--paper); color: var(--ink); font: 13px/1.4 var(--sans); overflow: hidden; }
@@ -462,56 +462,57 @@ button:focus-visible, summary:focus-visible { outline: 2px solid var(--acc); out
 @media (pointer: coarse) { button.sq { width: 42px; height: 42px; } #lang button.sq { width: 46px; } #pclose { width: 42px; height: 42px; right: 6px; top: 6px; } #legend li button { padding: 6px 0; } #legend summary { padding: 11px 10px; } }
 @media (prefers-reduced-motion: reduce) { #ctx { transition: none; } }
 /* A reading margin and a figure share one sheet, with a common masthead and colophon. */
-:root { --paper:#f7f4eb; --ink:#292921; --ink-rgb:41,41,33; --dim:#55564b; --acc:#9c2935; --rule:rgba(var(--ink-rgb),.27); }
-:root[data-theme="dark"] { --paper:#191b19; --ink:#e6e4d8; --ink-rgb:230,228,216; --dim:#b5b5a6; }
-#sheet { --edge:clamp(22px,3.2vw,62px); --rail:clamp(230px,23vw,375px); --mast:76px; --foot:60px;
+:root { --paper:#ece5d5; --surface:#e3dac6; --ink:#171e29; --ink-rgb:23,30,41; --dim:#525965; --acc:#a5242c; --gold:#7c6434; --rule:rgba(var(--ink-rgb),.24); }
+:root[data-theme="dark"] { --paper:#0b111c; --surface:#111929; --ink:#e5decb; --ink-rgb:229,222,203; --dim:#8f9bb0; --acc:#e36246; --gold:#c9b98b; --rule:rgba(var(--ink-rgb),.22); }
+#sheet { --edge:clamp(18px,2.6vw,48px); --rail:clamp(220px,19.5vw,305px); --mast:70px; --foot:52px;
   display:grid; grid-template-columns:var(--rail) minmax(0,1fr); grid-template-rows:var(--mast) minmax(0,1fr) var(--foot);
-  padding:0 var(--edge); column-gap:clamp(14px,2.6vw,50px); }
+  padding:0 var(--edge); column-gap:clamp(14px,2.2vw,42px); }
 #frame { inset:10px; border:1px solid var(--rule); }
 #frame::after { display:none; }
-#mast, #colophon { position:relative; display:flex; align-items:center; gap:24px; grid-column:1/-1; }
-#mast { grid-row:1; z-index:7; border-bottom:3px double var(--ink); padding-top:7px; }
-#brand { margin-right:auto; font:400 clamp(26px,2.4vw,38px)/1 var(--serif); letter-spacing:-.065em; }
-#mast .ov, #mast #dfbtn, #mast #stbtn, #mast #rndbtn, #colophon .ov, #margin .ov { position:relative; inset:auto; transform:none; }
-#mast #search { flex:0 1 250px; width:auto; max-width:none; }
+#mast, #colophon { position:relative; display:flex; align-items:center; gap:18px; grid-column:1/-1; }
+#mast { grid-row:1; z-index:7; border-bottom:3px double var(--ink); padding-top:6px; }
+#brand { margin-right:auto; font:400 clamp(25px,2.2vw,35px)/1 var(--serif); letter-spacing:-.06em; }
+#mast .ov, #mast #dfbtn, #mast #prbtn, #mast #stbtn, #mast #rndbtn, #colophon .ov, #margin .ov { position:relative; inset:auto; transform:none; }
+#mast #search { flex:0 1 220px; width:auto; max-width:none; }
 #search::before { content:''; position:absolute; width:10px;height:10px;border:1.4px solid var(--ink);border-radius:50%;top:50%;left:2px;transform:translateY(-65%);pointer-events:none; }
 #search::after { content:''; position:absolute; width:6px;height:1px;left:11px;top:calc(50% + 4px);background:var(--ink);transform:rotate(48deg);pointer-events:none; }
 #sq { background:transparent; border:0; border-bottom:1px solid var(--rule); padding:8px 20px; font-size:15px; letter-spacing:0; }
 #sres { position:absolute; top:100%; left:0; min-width:100%; width:min(360px,80vw); }
-#mast #stbtn,#mast #rndbtn,#legend summary { border:none; background:none; font:15px var(--sans); text-transform:none;letter-spacing:0; padding:6px 0; }
-#mast #stbtn:hover,#mast #rndbtn:hover,#legend summary:hover { background:none; color:var(--ink); text-decoration:underline; text-underline-offset:4px; }
+#mast #prbtn,#mast #stbtn,#mast #rndbtn,#legend summary { border:none; background:none; font:14.5px var(--sans); text-transform:none;letter-spacing:0; padding:6px 0; color:var(--ink); }
+#mast #prbtn:hover,#mast #stbtn:hover,#mast #rndbtn:hover,#legend summary:hover { background:none; color:var(--ink); text-decoration:underline; text-underline-offset:4px; }
 #mast #dfbtn { display:inline-flex; align-items:center; gap:7px; width:auto; height:auto; padding:5px 11px; border:1px solid var(--ink); background:transparent; color:var(--ink); font:500 13.5px/1.2 var(--sans); letter-spacing:.04em; }
 #mast #dfbtn:hover { background:var(--ink); color:var(--paper); }
 #mast #dfbtn:hover .df-dot { background:var(--paper); }
 #mast #dfbtn:hover .df-sc { background:var(--paper); color:var(--ink); }
 #dfbtn .df-dot { width:7px; height:7px; border-radius:50%; background:var(--acc); flex:none; }
 #dfbtn .df-sc { font-size:11.5px; font-variant-numeric:tabular-nums; padding:1px 5px; background:var(--ink); color:var(--paper); }
-#mast #stbtn, #mast #rndbtn { display:inline-flex; align-items:center; gap:7px; width:auto; }
-@media (min-width:851px) { #mast #dfbtn,#mast #stbtn,#mast #rndbtn { flex:none; white-space:nowrap; } #mast #rndbtn { margin-left:4px; } }
-#stbtn .st-ic { width:18px; height:16px; flex:none; }
+#mast #prbtn, #mast #stbtn, #mast #rndbtn { display:inline-flex; align-items:center; gap:6px; width:auto; }
+@media (min-width:851px) { #mast #dfbtn,#mast #prbtn,#mast #stbtn,#mast #rndbtn { flex:none; white-space:nowrap; } }
+#stbtn .st-ic { width:17px; height:15px; flex:none; }
 #stbtn .st-ic line { stroke:var(--ink); stroke-width:1.1; }
 #stbtn .st-ic rect { fill:var(--ink); }
 #stbtn .st-ic rect:last-child { fill:var(--acc); }
-#rndbtn .die { width:22px; height:22px; flex:none; stroke:var(--ink); fill:none; stroke-width:1.3; }
+#rndbtn .die { width:20px; height:20px; flex:none; stroke:var(--ink); fill:none; stroke-width:1.3; }
 #rndbtn .die circle { fill:var(--ink); stroke:none; }
 #rndbtn.rolling .die { animation:roll .8s cubic-bezier(.3,.7,.4,1); }
 @keyframes roll { 0% { transform:translateY(0) rotate(0); } 20% { transform:translateY(-9px) rotate(140deg); } 45% { transform:translateY(0) rotate(300deg); } 62% { transform:translateY(-4px) rotate(450deg); } 80% { transform:translateY(0) rotate(660deg); } 100% { transform:translateY(0) rotate(720deg); } }
 @media (prefers-reduced-motion:reduce) { #rndbtn.rolling .die { animation:none; } }
 #mast #legend { width:auto; border:0; }
-@media (min-width:1180px) {
-  #mast #legend summary { display:none; }
-  #mast #legend .scroll { display:block; position:fixed; right:var(--edge); top:calc(var(--mast) + 22px); width:232px; max-height:calc(100dvh - var(--mast) - var(--foot) - 108px); padding:12px 14px; }
-}
-#legend .scroll { position:absolute;right:0;top:calc(100% + 7px);width:min(300px,calc(100vw - 44px));max-height:65dvh;padding:12px 16px;background:var(--paper);border:1px solid var(--ink); }
-#mast #lang { gap:4px; border-left:1px solid var(--rule); padding-left:16px; }
+#legend .scroll { position:absolute;right:0;top:calc(100% + 7px);width:min(310px,calc(100vw - 44px));max-height:72dvh;padding:12px 16px;background:var(--paper);border:1px solid var(--ink);box-shadow:6px 6px 0 rgba(var(--ink-rgb),.1); }
+#mast #lang { gap:4px; border-left:1px solid var(--rule); padding-left:14px; }
 #lang button.sq { width:29px;height:31px;border:0;background:none; color:var(--dim); }
 #lang button[aria-pressed=true] { color:var(--ink); text-decoration:underline; text-underline-offset:5px; }
-#margin { grid-column:1;grid-row:2;display:flex; flex-direction:column;justify-content:center;align-items:stretch; gap:clamp(14px,3vh,34px);min-height:0;overflow-y:auto;padding:16px 2px; }
-#margin #ctx { width:auto; }
+#margin { grid-column:1;grid-row:2;display:flex; flex-direction:column;justify-content:flex-start;align-items:stretch; gap:clamp(10px,1.8vh,18px);min-height:0;overflow-y:auto;padding:14px 2px 12px;scrollbar-width:thin;scrollbar-color:var(--rule) transparent; }
+#margin::-webkit-scrollbar { width:5px; }
+#margin::-webkit-scrollbar-thumb { background:var(--rule); }
+#margin #ctx { width:auto; pointer-events:auto; }
+#marginClose { all:unset; cursor:pointer; display:none; font:500 10.5px/1 var(--sans); letter-spacing:.09em; text-transform:uppercase; color:var(--dim); border:1px solid var(--rule); padding:3px 7px; margin-bottom:8px; width:fit-content; }
+#marginClose:hover { color:var(--ink); border-color:var(--ink); }
 #marginHandle { display:none; }
-#mast #theme { margin-left:-12px; border:0; background:transparent; color:var(--ink); font:21px/1 var(--serif); }
+#mast #theme { margin-left:-10px; border:0; background:transparent; color:var(--ink); font:21px/1 var(--serif); }
 #mast #theme:hover { background:var(--ink); color:var(--paper); }
 @media(min-width:851px) {
+  #marginClose { display:inline-block; }
   #margin { position:relative;z-index:2;background:var(--paper);transition:transform .29s cubic-bezier(.2,.75,.22,1),opacity .21s; }
   .exploring #margin { transform:translateX(calc(-100% - var(--edge)));opacity:0;pointer-events:none; }
   .exploring.margin-open #margin { transform:none;opacity:1;pointer-events:auto;padding-right:14px;border-right:1px solid var(--rule); }
@@ -524,9 +525,9 @@ button:focus-visible, summary:focus-visible { outline: 2px solid var(--acc); out
 }
 @media(prefers-reduced-motion:reduce) { #margin {transition:none;} }
 
-#ctx h1 { font:400 clamp(48px,4.7vw,79px)/.94 var(--serif); letter-spacing:-.055em;text-transform:none;margin:0 0 19px; }
+#ctx h1 { font:400 clamp(38px,3.6vw,56px)/.95 var(--serif); letter-spacing:-.05em;text-transform:none;margin:0 0 10px; }
 #ctx h1 em { display:block; font-weight:400; }
-#ctx p { font:15px/1.5 var(--sans); max-width:29ch; margin:0; }
+#ctx p { font:14px/1.42 var(--sans); max-width:30ch; margin:0; }
 #domainIndex { min-width:0; }
 .index-head { display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:1px solid var(--ink);padding-bottom:6px; }
 .index-head h2,#tl label { font:500 12px/1.2 var(--sans);text-transform:uppercase;letter-spacing:.12em;margin:0; }
@@ -585,19 +586,20 @@ body.panel-open #hello { display:none; }
  #margin {justify-content:flex-start;gap:14px;} #ctx h1 {font-size:clamp(36px,4vw,54px);margin-bottom:10px;} #ctx p {font-size:14px;} #domainIndex button{padding-block:5px;} #clRailList button{padding-block:5px;}
 }
 @media(max-width:850px) {
- #sheet {--edge:20px;--mast:auto;--foot:auto;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto auto;column-gap:0;}
- #frame{inset:6px;}
- #mast {display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:1px 12px;padding:10px 0 5px;}
- #mast #brand {grid-column:1/3;grid-row:1;font-size:28px;}
- #mast #lang {grid-column:2/4;grid-row:1;justify-self:end;border:0;padding:0;margin-right:40px;}
- #mast #theme {grid-column:3;grid-row:1;justify-self:end;margin:0;width:36px;height:38px;}
- #mast #search {grid-column:1;grid-row:2;width:100%;min-width:0;}
- #sq {font-size:14px;padding-right:0;}
- #mast #legend {grid-column:3;grid-row:2;}
- #mast #stbtn {grid-column:2;grid-row:2;}
- #mast #dfbtn {grid-column:1/3;grid-row:3;justify-self:start;padding:4px 10px;min-height:32px;}
- #mast #rndbtn {grid-column:3;grid-row:3;justify-self:end;}
- #mast #stbtn,#mast #rndbtn,#legend summary {font-size:14px;min-height:36px;}
+ #sheet {--edge:14px;--mast:auto;--foot:auto;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto auto;column-gap:0;}
+ #frame{inset:5px;}
+ #mast {display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:8px 0 6px;}
+ #mast #brand {order:1;margin-right:auto;font-size:26px;}
+ #mast #lang {order:2;border:0;padding:0;gap:2px;}
+ #mast #theme {order:3;margin:0;width:32px;height:32px;font-size:19px;}
+ #mast #search {order:4;flex:1 0 100%;width:100%;min-width:0;}
+ #sq {font-size:14px;padding:6px 0 6px 20px;}
+ #mast #dfbtn {order:5;padding:4px 9px;min-height:30px;font-size:13px;}
+ #mast #prbtn {order:6;}
+ #mast #stbtn {order:7;}
+ #mast #rndbtn {order:8;}
+ #mast #legend {order:9;margin-left:auto;}
+ #mast #prbtn,#mast #stbtn,#mast #rndbtn,#legend summary {font-size:13.5px;min-height:30px;padding:4px 0;}
  #margin { display:contents; }
  #margin #ctx { grid-column:1;grid-row:2;padding-top:16px;pointer-events:none; }
  #ctx h1 {font-size:clamp(34px,6.5vw,46px);margin:0 0 6px;line-height:1;}
@@ -649,7 +651,7 @@ body.panel-open #hello { display:none; }
 #daily .df-scroll::-webkit-scrollbar-track { background: transparent; border-left: .6px solid var(--rule); }
 #daily .df-scroll::-webkit-scrollbar-thumb { background: var(--ink); border: 2px solid var(--paper); }
 #daily .df-wrap { max-width: 860px; margin: 0 auto; }
-#daily .df-prog { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; margin: 0 0 22px; padding: 10px 8px; border: 1px solid var(--rule); background: rgba(var(--ink-rgb), .015); }
+#daily .df-prog { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; margin: 0 0 22px; padding: 10px 8px; border: 1px solid var(--rule); background: rgba(var(--ink-rgb), .015); }
 #daily .df-prog::before { content: ""; position: absolute; left: 10%; right: 10%; top: 20px; height: 1px; background: var(--rule); z-index: 0; }
 #daily .df-pst { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: var(--dim); letter-spacing: .05em; text-transform: uppercase; }
 #daily .df-pdot { width: 20px; height: 20px; border-radius: 50%; border: 1.2px solid var(--rule); background: var(--paper); display: grid; place-items: center; font: 700 10.5px/1 var(--sans); color: var(--dim); }
@@ -834,11 +836,48 @@ body.panel-open #hello { display:none; }
 #submitModal .sm-acts .sec:hover { border-color: var(--ink); }
 #submitModal .sm-msg { margin: 12px 0 0; font-size: 13px; color: var(--dim); }
 #submitModal .sm-msg.err { color: var(--acc); }
+/* ---- Illusion-of-knowledge fiche reaction & Priorities vs Research plate ---- */
+#panel .q-il { border: 1px solid var(--rule); border-left: 3px solid var(--acc); background: rgba(var(--ink-rgb), .025); padding: 10px 12px; margin: 12px 0; }
+#panel .q-il-t { font: 500 11.5px/1.25 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); margin: 0 0 8px; }
+#panel .q-il-btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+#panel .q-il-btns button { all: unset; box-sizing: border-box; cursor: pointer; text-align: center; padding: 6px 8px; border: .8px solid var(--rule); font-size: 12.5px; color: var(--ink); background: var(--paper); }
+#panel .q-il-btns button:hover { border-color: var(--ink); }
+#panel .q-il-btns button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#panel .q-il-bar { margin-top: 8px; height: 5px; background: rgba(var(--ink-rgb), .12); }
+#panel .q-il-bar i { display: block; height: 100%; background: var(--acc); }
+#panel .q-il-msg { margin: 7px 0 0; font-size: 12px; color: var(--dim); font-variant-numeric: tabular-nums; }
+#stats .pr-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 18px; margin-bottom: 14px; }
+#stats .pr-top h3 { font: 400 clamp(22px, 2.2vw, 32px)/1.1 var(--serif); letter-spacing: -.03em; margin: 0; }
+#stats .pr-intro { margin: 0 0 16px; font-size: 14.5px; color: var(--dim); max-width: 74ch; }
+#stats .pr-picker { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 20px; }
+#stats .pr-chip { all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border: 1px solid var(--rule); background: rgba(var(--ink-rgb), .018); transition: background .12s, border-color .12s; }
+#stats .pr-chip:hover { border-color: var(--ink); background: rgba(var(--ink-rgb), .045); }
+#stats .pr-chip[aria-pressed="true"] { border-color: var(--acc); background: rgba(var(--ink-rgb), .07); box-shadow: inset 3px 0 0 var(--acc); }
+#stats .pr-chip strong { font: 400 16px/1.2 var(--serif); color: var(--ink); }
+#stats .pr-chip small { font: 500 11px/1.2 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--dim); font-variant-numeric: tabular-nums; }
+#stats .pr-chip[aria-pressed="true"] small { color: var(--acc); }
+#stats .pr-gap { border: 1px solid var(--rule); border-left: 3px solid var(--acc); background: rgba(var(--ink-rgb), .025); padding: 10px 14px; font-size: 14px; color: var(--ink); margin: 0 0 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+#stats .pr-bars { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+#stats .pr-row { display: grid; grid-template-columns: minmax(190px, 1.15fr) minmax(220px, 1.45fr) auto; gap: 10px 22px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--rule); }
+#stats .pr-row.picked { background: rgba(var(--ink-rgb), .03); padding-left: 10px; padding-right: 10px; border-left: 3px solid var(--acc); }
+#stats .pr-name strong { display: block; font: 400 17px/1.2 var(--serif); color: var(--ink); }
+#stats .pr-name small { display: block; font-size: 12px; color: var(--dim); margin-top: 2px; font-variant-numeric: tabular-nums; }
+#stats .pr-badge { display: inline-block; font: 500 10.5px/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; padding: 2px 6px; background: var(--acc); color: var(--paper); margin-left: 6px; vertical-align: middle; }
+#stats .pr-viz { display: flex; flex-direction: column; gap: 6px; }
+#stats .pr-bline { display: grid; grid-template-columns: 116px 1fr 50px; gap: 8px; align-items: center; font-size: 11.5px; color: var(--dim); font-variant-numeric: tabular-nums; }
+#stats .pr-track { height: 7px; background: rgba(var(--ink-rgb), .12); }
+#stats .pr-track i { display: block; height: 100%; background: var(--ink); }
+#stats .pr-track.want i { background: var(--acc); }
+#stats .pr-bline b { text-align: right; color: var(--ink); font-weight: 600; }
+@media (max-width: 1100px) { #stats .pr-picker { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 820px) { #stats .pr-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); } #stats .pr-row { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
+@media (max-width: 520px) { #stats .pr-picker { grid-template-columns: minmax(0, 1fr); } #stats .pr-bline { grid-template-columns: 96px 1fr 44px; } }
 </style>
 <div id="sheet"><div id="frame"></div>
 <header id="mast"><span id="brand" data-i="titre"></span>
 <div id="search" class="ov"><input id="sq" type="search" role="combobox" aria-expanded="false" aria-controls="sres" aria-autocomplete="list" autocomplete="off" spellcheck="false"><ul id="sres" role="listbox" hidden></ul></div>
 <button class="sq" id="dfbtn" type="button"><span class="df-dot" aria-hidden="true"></span><span id="dflbl"></span><span class="df-sc" id="dfsc" hidden></span></button>
+<button class="sq" id="prbtn" type="button" hidden><span id="prlbl"></span></button>
 <button class="sq" id="stbtn" type="button" hidden><svg class="st-ic" viewBox="0 0 20 18" aria-hidden="true"><line x1="1" y1="16.5" x2="19" y2="16.5"/><rect x="2.5" y="11" width="2.6" height="5.5"/><rect x="6.7" y="8.5" width="2.6" height="8"/><rect x="10.9" y="5.5" width="2.6" height="11"/><rect x="15.1" y="2" width="2.6" height="14.5"/></svg><span id="stlbl"></span></button>
 <button class="sq" id="rndbtn" type="button"><svg class="die" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="4"/><rect x="5" y="5" width="14" height="14" rx="2.2" stroke-width=".5"/><g id="pips"></g></svg><span id="rndlbl"></span></button>
 <details id="legend" class="ov"><summary data-i="refs_t"></summary><div class="scroll"><div id="key"><h2 data-i="key_t"></h2><ul>
@@ -892,7 +931,7 @@ body.panel-open #hello { display:none; }
 <div id="lang" class="ov" role="group" data-ia="lang_aria"><button class="sq" type="button" data-lang="fr" aria-pressed="false">FR</button><button class="sq" type="button" data-lang="en" aria-pressed="false">EN</button></div><button class="sq" id="theme" type="button" data-ia="theme_aria">◐</button></header>
 <button id="marginHandle" type="button" aria-controls="margin" aria-expanded="false" data-ia="plate_margin"><span aria-hidden="true">›</span></button>
 <aside id="margin">
-<div id="ctx" class="ov"><h1><span data-i="plate_title"></span> <em data-i="plate_italic"></em></h1><p id="ctxP"></p></div>
+<div id="ctx" class="ov"><button type="button" id="marginClose" data-i="margin_hide"></button><h1><span data-i="plate_title"></span> <em data-i="plate_italic"></em></h1><p id="ctxP"></p></div>
 <section id="domainIndex"><div class="index-head"><h2 data-i="plate_domains"></h2><small data-i="plate_topics"></small></div><div id="domains"></div></section>
 <section id="claimsRail"><div class="index-head"><h2 data-i="cl_rail_t"></h2><button type="button" id="clRailAll"></button></div><div id="clRailList"></div></section>
 <div id="tl" class="ov" hidden><div class="index-head"><label data-i="plate_years" for="tlr"></label><output id="tll" for="tlr"></output></div><div class="timeline-track"><button class="sq" id="tlplay" type="button"></button><div class="year-track"><div id="yearBars" aria-hidden="true"></div><input id="tlr" type="range" step="1"></div></div><div class="years-axis" aria-hidden="true"><span id="firstYear"></span><span id="lastYear"></span></div></div>
@@ -926,7 +965,7 @@ const fmt = n => Math.round(n).toLocaleString(LANG === 'fr' ? 'fr-FR' : 'en-US')
 
 // ---- Theme: light or dark, remembered choice, otherwise the system setting.
 const root = document.documentElement; let COL = {}, dark = false;
-function setCols() { dark = root.dataset.theme === 'dark'; const cs = getComputedStyle(root); COL = { rgb: cs.getPropertyValue('--ink-rgb').trim(), acc: cs.getPropertyValue('--acc').trim(), paper: cs.getPropertyValue('--paper').trim(), f: parseFloat(cs.getPropertyValue('--f')) }; }
+function setCols() { dark = root.dataset.theme === 'dark'; const cs = getComputedStyle(root); COL = { rgb: cs.getPropertyValue('--ink-rgb').trim(), acc: cs.getPropertyValue('--acc').trim(), gold: cs.getPropertyValue('--gold').trim(), paper: cs.getPropertyValue('--paper').trim(), f: parseFloat(cs.getPropertyValue('--f')) }; }
 { let th = null; try { th = localStorage.getItem('theme'); } catch (e) {} root.dataset.theme = th === 'dark' || th === 'light' ? th : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
 $('theme').onclick = () => { root.dataset.theme = dark ? 'light' : 'dark'; try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {} setCols(); };
 setCols();
@@ -938,13 +977,13 @@ let x0 = 9, x1 = -9, y0 = 9, y1 = -9;
 for (let i = 0; i < N; i++) { x0 = Math.min(x0, T[i * 5]); x1 = Math.max(x1, T[i * 5]); y0 = Math.min(y0, T[i * 5 + 1]); y1 = Math.max(y1, T[i * 5 + 1]); }
 const mx = (x0 + x1) / 2, my = (y0 + y1) / 2, ext = Math.max(x1 - x0, y1 - y0);
 let W = 0, H = 0, DPR = 1, s0 = 1, tgt = null; const view = { x: 0, y: 0, k: 1 };
-// Keep the overview framed beside the legend while drawing across the whole sheet.
+// Keep the overview framed cleanly across the open sheet (legend is collapsible on all sizes).
 const wideKey = matchMedia('(min-width:1180px)');
-let overviewRight=0, overviewLeft=0, overviewTop=0, originX=0, originY=0;
+let overviewRight=0, overviewLeft=0, overviewTop=0, originX=0, originY=0, manualHideMargin=false;
 function locateOrigin() {
-  const overview=clamp((1.5-view.k)/.5,0,1);
+  const overview=manualHideMargin ? 0 : clamp((1.5-view.k)/.5,0,1);
   originX=(W+(overviewLeft-overviewRight)*overview)/2;
-  originY=(H+(overviewTop-(narrowPlate.matches?0:60))*overview)/2; // wide: lift the disc ~15px so ring labels clear the zoom controls
+  originY=(H+(overviewTop-(narrowPlate.matches?0:54))*overview)/2; // wide: lift the disc slightly so ring labels clear the zoom controls
 }
 function resize() {
   const r=cv.getBoundingClientRect();
@@ -952,10 +991,10 @@ function resize() {
   W=r.width; H=r.height;
   cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR);
   const railWidth=$('margin').offsetWidth;
-  overviewLeft=!narrowPlate.matches && railWidth ? railWidth+parseFloat(getComputedStyle($('sheet')).columnGap) : 0;
-  overviewTop=narrowPlate.matches && getComputedStyle($('margin')).display==='contents' ? $('ctx').offsetHeight : 30;
-  overviewRight=wideKey.matches ? 252 : 0;
-  s0=Math.max(20,Math.min(W-overviewLeft-overviewRight-58,H-overviewTop-170))/(2*DOMC.R);
+  overviewLeft=!narrowPlate.matches && !manualHideMargin && railWidth ? railWidth+parseFloat(getComputedStyle($('sheet')).columnGap) : 0;
+  overviewTop=narrowPlate.matches && getComputedStyle($('margin')).display==='contents' ? $('ctx').offsetHeight : 24;
+  overviewRight=0;
+  s0=Math.max(20,Math.min(W-overviewLeft-overviewRight-54,H-overviewTop-150))/(2*DOMC.R);
   locateOrigin(); placeHello(); $('ctl').style.left = (W + overviewLeft - overviewRight) / 2 + 'px'; // under the overview disc, not the page middle
 }
 const toScreen = (wx, wy) => [originX + (wx - mx - view.x) * s0 * view.k, originY + (wy - my - view.y) * s0 * view.k];
@@ -1060,6 +1099,11 @@ function movingHTML() { if (!RC) return `<p class="note">${esc(t('tr_none'))}</p
 function qShareBar(q) {
   return `<div class="q-share"><button type="button" data-qcopy="${esc(q.id)}">${esc(t('sh_copy'))}</button><button type="button" data-qpng="${esc(q.id)}">${esc(t('sh_png'))}</button></div>`;
 }
+function illusionBoxHTML(q) {
+  const mine = ilRead()[q.id];
+  const msg = mine != null ? esc(t(mine === 1 ? 'il_saved_yes' : 'il_saved_no')) : '';
+  return `<div class="q-il" id="qIl"><p class="q-il-t">${esc(t('il_t'))}</p><div class="q-il-btns"><button type="button" data-il="1" aria-pressed="${mine === 1}">${esc(t('il_yes'))}</button><button type="button" data-il="0" aria-pressed="${mine === 0}">${esc(t('il_no'))}</button></div><div id="qIlAgg"></div><p class="q-il-msg" id="qIlMsg">${msg}</p></div>`;
+}
 function horizonBoxHTML(q) {
   const mine = horRead()[q.id], opts = [t('hor_0'), t('hor_1'), t('hor_2'), t('hor_3')];
   const msg = mine != null ? esc(t('hor_saved', { l: opts[mine] })) + (DATA.API ? '' : ' ' + esc(t('hor_offline'))) : '';
@@ -1073,7 +1117,7 @@ function panelHTML() {
   if (cur.q != null) {
     const q = Q[cur.q]; if (q.adv) return advHTML(q);
     const src = SRC[q.s], manque = LANG !== 'fr' && (fb(q.cc) || (q.no && fb(q.no)) || (q.f && !q.f[LANG])), techOn = !!techRead()[q.id];
-    return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2>${qShareBar(q)}<p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${horizonBoxHTML(q)}${iaHTML(q)}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p><div class="q-foot-act"><button type="button" class="q-tech" data-tech="${esc(q.id)}" aria-pressed="${techOn}">${esc(t(techOn ? 'tech_done' : 'tech_btn'))}</button><button type="button" class="lnk small" data-sub="correction">${esc(t('signaler'))}</button><a class="small" href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></div>`;
+    return `<p class="kicker">${esc(t(q.k ? 'st_enigme' : 'st_' + q.st))}${q.t ? esc(t('transversale')) : ''}</p><h2>${esc(loc(q.qq))}</h2>${qShareBar(q)}<p>${esc(loc(q.cc))}</p>${q.no ? `<p class="small">${esc(loc(q.no))}</p>` : ''}${manque ? `<p class="note">${esc(t('non_traduit'))}</p>` : ''}${illusionBoxHTML(q)}${horizonBoxHTML(q)}${iaHTML(q)}${ficheHTML(q)}<h3>${esc(t(q.t ? 'q_relie' : 'q_concernees'))}</h3><ul class="small">${q.subs.map(j => `<li>${esc(loc(F[S[j].f].nn))} · ${esc(sn(S[j]))}</li>`).join('')}</ul><h3>${esc(t('source').replace(/[:：]\s*$/, ''))}</h3><p class="small"><a href="${esc(src.u)}" target="_blank" rel="noopener">${esc(loc(src.n))}</a></p><div class="q-foot-act"><button type="button" class="q-tech" data-tech="${esc(q.id)}" aria-pressed="${techOn}">${esc(t(techOn ? 'tech_done' : 'tech_btn'))}</button><button type="button" class="lnk small" data-sub="correction">${esc(t('signaler'))}</button><a class="small" href="/${LANG}/contribuer/">${esc(t('contribuer'))}</a></div>`;
   }
   const i = cur.t, si = T[i * 5 + 3], s = S[si], w = T[i * 5 + 2], nb = ADJ[si].slice().sort((a, b) => Math.hypot(S[a].x - s.x, S[a].y - s.y) - Math.hypot(S[b].x - s.x, S[b].y - s.y)).slice(0, 5);
   return `<p class="kicker">${esc(loc(F[s.f].nn))} · ${esc(sn(s))}</p><h2>${esc(T[i * 5 + 4])}</h2><p>${esc(fmt(w))} ${esc(t('publies'))}${YR ? ' (' + YR.y0 + '–' + YR.y1 + ')' : ''}${w > DATA.cap ? ' ' + esc(t('douteux_long')) : ''}</p>${recentLine(i)}<h3>${esc(t('t_voisines'))}</h3><ul class="small">${li(nb.map(j => sn(S[j])))}</ul>`;
@@ -1086,7 +1130,7 @@ function renderPanel() {
   panel.querySelectorAll('[data-sub]').forEach(b => { b.onclick = () => openSubmit(b.dataset.sub, cur && cur.q != null ? `[${Q[cur.q].id}] ` : ''); });
   panel.querySelectorAll('[data-qcopy]').forEach(b => { b.onclick = () => { const q = Q.find(x => x.id === b.dataset.qcopy); if (!q) return; const u = `https://unknownpedia.org/${LANG}/q/${q.id}/`; dfCopy(q.adv ? t('sh_fact_adv', { y: q.year, q: loc(q.qq), u }) : t('sh_fact_q', { q: loc(q.qq), u }), b); }; });
   panel.querySelectorAll('[data-qpng]').forEach(b => { b.onclick = () => { const q = Q.find(x => x.id === b.dataset.qpng); if (q) downloadQuestionPNG(q); }; });
-  if (cur.q != null && !Q[cur.q].adv) { wireHorizon(Q[cur.q]); wireTech(Q[cur.q]); }
+  if (cur.q != null && !Q[cur.q].adv) { wireIllusion(Q[cur.q]); wireHorizon(Q[cur.q]); wireTech(Q[cur.q]); }
   document.body.classList.add('panel-open'); $('pclose').onclick = closePanel; panel.scrollTop = 0;
 }
 function closePanel() { const had = panel.contains(document.activeElement); cur = null; panel.hidden = true; document.body.classList.remove('panel-open'); if (location.hash) history.replaceState(null, '', location.pathname + location.search); if (had) cv.focus(); }
@@ -1095,11 +1139,12 @@ const fly = (wx, wy, k) => flyTo(wx + (W > 720 ? 210 : 0) / (s0 * k), wy, k);
 let openedAt=0;
 function openQ(i) { openedAt=performance.now(); cur = { q: i }; renderPanel(); fly(Q[i].x, Q[i].y, Math.max(view.k, Q[i].t ? 1.6 : 2)); if (location.hash.slice(1) !== Q[i].id) history.replaceState(null, '', '#' + Q[i].id); }
 function openT(i) { cur = { t: i }; renderPanel(); fly(T[i * 5], T[i * 5 + 1], Math.max(view.k, 3)); if (location.hash) history.replaceState(null, '', location.pathname + location.search); }
-// Each question has its own address (#conscience); #annonces, #claims, #claim=<id>, #stats, #defi/#daily and #proposer/#submit open the plates.
+// Each question has its own address (#conscience); #annonces, #claims, #claim=<id>, #stats, #priorites, #defi/#daily and #proposer/#submit open the plates.
 function openHash() {
   const h = location.hash.slice(1);
   if (h === 'annonces' || h === 'claims') { openClaims(); return; }
   if (h.startsWith('claim=')) { openClaims(h.slice(6)); return; }
+  if (h === 'priorites' || h === 'priorities') { openStats('pr'); return; }
   if (h === 'stats' || h === 'statistiques') { openStats(); return; }
   if (h === 'defi' || h === 'daily') { openDaily(); return; }
   if (h === 'proposer' || h === 'submit') { openSubmit('question'); return; }
@@ -1219,12 +1264,13 @@ function showMargin(open) {
   if(!open) pinnedMargin=false;
 }
 function syncMargin() {
-  const collapse=!narrowPlate.matches && view.k>1.08;
+  const collapse=!narrowPlate.matches && (manualHideMargin || view.k>1.08);
   if(collapse===exploring) return;
   exploring=collapse;
   document.body.classList.toggle('exploring',collapse);
-  showMargin(collapse && margin.contains(document.activeElement));
+  showMargin(collapse && !manualHideMargin && margin.contains(document.activeElement));
 }
+if ($('marginClose')) $('marginClose').onclick = () => { manualHideMargin = true; syncMargin(); showMargin(false); resize(); };
 function leaveMargin() {
   clearTimeout(dismissMargin);
   dismissMargin=setTimeout(()=>{
@@ -1238,6 +1284,7 @@ handle.addEventListener('pointerleave',leaveMargin);
 margin.addEventListener('pointerenter',()=>clearTimeout(dismissMargin));
 margin.addEventListener('pointerleave',leaveMargin);
 handle.onclick=()=>{
+  if(manualHideMargin && view.k<=1.08) { manualHideMargin=false; syncMargin(); resize(); return; }
   pinnedMargin=!pinnedMargin;
   showMargin(pinnedMargin);
 };
@@ -1266,7 +1313,7 @@ function applyLang() {
   document.documentElement.lang = LANG; document.title = t('titre'); const md = document.querySelector('meta[name=description]'); if (md) md.content = t('desc');
   document.querySelectorAll('[data-i]').forEach(e => { e.textContent = t(e.dataset.i); }); $('ialink').href = '/' + LANG + '/ia/';
   document.querySelectorAll('[data-ia]').forEach(e => e.setAttribute('aria-label', t(e.dataset.ia)));
-  $('dflbl').textContent = t('df_btn'); $('dfbtn').title = t('df_btn_title'); $('stlbl').textContent = t('st_btn'); $('stbtn').title = t('st_btn_title'); $('rndlbl').textContent = t('rnd_btn'); $('rndbtn').title = t('rnd_title'); $('keyai').textContent = t('key_ai', { n: AIN, m: NQ });
+  $('dflbl').textContent = t('df_il_btn'); $('dfbtn').title = t('df_il_btn_title'); if ($('prlbl')) { $('prlbl').textContent = t('pr_btn'); $('prbtn').title = t('pr_btn_title'); } $('stlbl').textContent = t('st_btn'); $('stbtn').title = t('st_btn_title'); $('rndlbl').textContent = t('rnd_btn'); $('rndbtn').title = t('rnd_title'); $('keyai').textContent = t('key_ai', { n: AIN, m: NQ });
   if (YR) {
     const r=$('tlr'), current=Math.round(+r.value);
     $('lastYear').textContent=YR.y1+' / '+t('plate_all');
@@ -1338,9 +1385,9 @@ if (!helloSeen && !location.hash.slice(1)) { hello.hidden = false; placeHello();
 $('hiOk').onclick = closeHello;
 $('hiTry').onclick = () => { closeHello(); openQ(Q.findIndex(q => q.id === 'p-np')); };
 addEventListener('keydown', e => { if (e.key === 'Escape' && !hello.hidden) closeHello(); });
-$('hiAgain').onclick = () => { hello.hidden = false; placeHello(); $('legend').open = wideKey.matches || $('legend').open; hello.scrollIntoView?.({ block: 'nearest' }); };
-function keyOpen() { if (wideKey.matches) $('legend').open = true; resize(); }
-wideKey.addEventListener('change', keyOpen); if (wideKey.matches) $('legend').open = true;
+$('hiAgain').onclick = () => { hello.hidden = false; placeHello(); hello.scrollIntoView?.({ block: 'nearest' }); };
+function keyOpen() { resize(); }
+wideKey.addEventListener('change', keyOpen);
 
 // ---- Stats: interactive patent-plate atlas of world research effort (1990–2025, OpenAlex).
 let stOpen = false, stTab = 'y', stGroup = 'all', stCol = 4, stDir = -1, stPinYear = null, stDecFilter = -1, stDomFilter = -1, stShareMode = false, stMomPeriod = '20';
@@ -1545,17 +1592,82 @@ function stMomentumTab() {
     <p class="st-note">${esc(t('st_d_foot'))}</p>
   </div></div>`;
 }
+const PR_THEMES = [
+  { id: 'longevite', qid: 'longevite', fr: 'Vieillissement & longévité', en: 'Aging & longevity', sfs: ['Aging', 'Geriatrics and Gerontology'] },
+  { id: 'conscience', qid: 'conscience', fr: 'Conscience & esprit', en: 'Consciousness & the mind', sfs: ['Cognitive Neuroscience', 'Neuropsychology and Physiological Psychology', 'Behavioral Neuroscience'] },
+  { id: 'mental', qid: 'maladies-mentales', fr: 'Causes des maladies mentales', en: 'Root causes of mental illness', sfs: ['Psychiatry and Mental health', 'Biological Psychiatry', 'Clinical Psychology'] },
+  { id: 'climat', qid: 'rechauffement', fr: 'Climat & transition énergétique', en: 'Climate & clean energy', sfs: ['Global and Planetary Change', 'Renewable Energy, Sustainability and the Environment', 'Atmospheric Science'] },
+  { id: 'cancer', qid: 'regeneration', fr: 'Cancer & régénération d’organes', en: 'Cancer & organ regeneration', sfs: ['Cancer Research', 'Oncology', 'Developmental Biology'] },
+  { id: 'vaccins', qid: 'vaccin-vih', fr: 'Immunité, VIH & virus', en: 'Immunity, HIV & emerging viruses', sfs: ['Virology', 'Immunology', 'Infectious Diseases'] },
+  { id: 'cosmos', qid: 'seuls', fr: 'Sommes-nous seuls ? & cosmos', en: 'Are we alone? & dark universe', sfs: ['Astronomy and Astrophysics', 'Space and Planetary Science'] },
+  { id: 'physique', qid: 'unification', fr: 'Unifier la physique', en: 'Unifying physics & gravity', sfs: ['Nuclear and High Energy Physics', 'Mathematical Physics', 'Statistical and Nonlinear Physics'] },
+  { id: 'quantique', qid: 'ordinateur-quantique', fr: 'Quantique & supraconducteurs', en: 'Quantum & superconductors', sfs: ['Condensed Matter Physics', 'Atomic and Molecular Physics, and Optics'] },
+  { id: 'origine', qid: 'origine-vie', fr: 'Origine de la vie & humains', en: 'Origin of life & human origins', sfs: ['Paleontology', 'Ecology, Evolution, Behavior and Systematics', 'Anthropology'] },
+  { id: 'ia', qid: 'p-np', fr: 'Limites de l’IA & du calcul', en: 'Limits of AI & computation', sfs: ['Artificial Intelligence', 'Theoretical Computer Science', 'Computational Theory and Mathematics'] },
+  { id: 'anesthesie', qid: 'anesthesie', fr: 'Anesthésie, douleur & médicaments', en: 'Anesthesia, pain & how drugs work', sfs: ['Anesthesiology and Pain Medicine', 'Pharmacology', 'Drug Discovery'] }
+];
+const PR_REAL = (() => {
+  const sfSum = new Map(); let tot = 0;
+  for (let i = 0; i < N; i++) { const w = T[i * 5 + 2], nm = S[T[i * 5 + 3]].n; tot += w; sfSum.set(nm, (sfSum.get(nm) || 0) + w); }
+  const out = {};
+  for (const th of PR_THEMES) { const papers = th.sfs.reduce((a, n) => a + (sfSum.get(n) || 0), 0); out[th.id] = { papers, pct: tot ? 100 * papers / tot : 0 }; }
+  return { tot, byId: out, maxPct: Math.max(0.1, ...Object.values(out).map(x => x.pct)) };
+})();
+let prAgg = null;
+function prRead() { try { const a = JSON.parse(localStorage.getItem('uf_priorities') || '[]'); return Array.isArray(a) ? a.filter(id => PR_THEMES.some(x => x.id === id)).slice(0, 3) : []; } catch (e) { return []; } }
+function prWrite(a) { try { localStorage.setItem('uf_priorities', JSON.stringify(a)); } catch (e) {} }
+function stPrioritiesTab() {
+  const picks = prRead(), pickSet = new Set(picks), hasAgg = prAgg && prAgg.counts;
+  const maxVotes = hasAgg ? Math.max(1, ...Object.values(prAgg.counts)) : 1;
+  const rows = PR_THEMES.slice().sort((a, b) => {
+    if (hasAgg) return (prAgg.counts[b.id] || 0) - (prAgg.counts[a.id] || 0) || PR_REAL.byId[a.id].pct - PR_REAL.byId[b.id].pct;
+    return (pickSet.has(b.id) ? 1 : 0) - (pickSet.has(a.id) ? 1 : 0) || PR_REAL.byId[a.id].pct - PR_REAL.byId[b.id].pct;
+  });
+  let gapNote = '';
+  if (picks.length) {
+    const rarest = picks.slice().sort((a, b) => PR_REAL.byId[a].pct - PR_REAL.byId[b].pct)[0];
+    const th = PR_THEMES.find(x => x.id === rarest), real = PR_REAL.byId[rarest];
+    gapNote = `<div class="pr-gap"><span>${esc(t('pr_gap_note', { t: th[LANG] || th.fr, p: fmtDec(real.pct, 2) }))}</span><button type="button" class="st-act" id="prShareBtn">${esc(t('pr_share'))}</button></div>`;
+  }
+  const chips = PR_THEMES.map(th => {
+    const on = pickSet.has(th.id), real = PR_REAL.byId[th.id];
+    return `<button type="button" class="pr-chip" data-pr="${th.id}" aria-pressed="${on}"><strong>${esc(th[LANG] || th.fr)}</strong><small>${on ? '✓ ' + esc(t('pr_your_pick')) : fmtDec(real.pct, 2) + ' % OpenAlex'}</small></button>`;
+  }).join('');
+  const list = rows.map(th => {
+    const real = PR_REAL.byId[th.id], on = pickSet.has(th.id), qi = Q.findIndex(q => q.id === th.qid);
+    const wantPct = hasAgg ? Math.round(100 * (prAgg.counts[th.id] || 0) / Math.max(1, prAgg.n)) : (on ? 100 : 0);
+    const wantBarW = hasAgg ? Math.max(2, Math.round(100 * (prAgg.counts[th.id] || 0) / maxVotes)) : (on ? 100 : 0);
+    const realBarW = Math.max(3, Math.round(100 * real.pct / PR_REAL.maxPct));
+    return `<li class="pr-row${on ? ' picked' : ''}"><div class="pr-name"><strong>${esc(th[LANG] || th.fr)}${on ? `<span class="pr-badge">${esc(t('pr_your_pick'))}</span>` : ''}</strong><small>${esc(t('pr_papers', { n: fmtCompact(real.papers) }))}</small></div><div class="pr-viz"><div class="pr-bline"><span>${esc(t('pr_col_want'))}</span><span class="pr-track want"><i style="width:${wantBarW}%"></i></span><b>${hasAgg ? wantPct + ' %' : (on ? '✓' : '—')}</b></div><div class="pr-bline"><span>${esc(t('pr_col_real'))}</span><span class="pr-track"><i style="width:${realBarW}%"></i></span><b>${fmtDec(real.pct, 2)} %</b></div></div>${qi >= 0 ? `<button type="button" class="st-act" data-prq="${qi}">${esc(t('pr_map'))}</button>` : ''}</li>`;
+  }).join('');
+  const status = hasAgg ? t('pr_votes_n', { n: prAgg.n }) : DATA.API && prAgg ? t('pr_votes_few', { m: prAgg.min, n: prAgg.n }) : t('pr_votes_offline');
+  return `<div class="st-scroll"><div class="st-inner"><div class="st-toprow"><h3>${esc(t('pr_title'))}</h3><span class="st-note" style="margin:0;border:0;padding:0">${esc(t('pr_pick_hint', { n: picks.length }))}</span></div><p class="pr-intro">${esc(t('pr_intro'))}</p><div class="pr-picker">${chips}</div>${gapNote}<ul class="pr-bars">${list}</ul><p class="st-note">${esc(status)} · ${esc(t('st_note'))}</p></div></div>`;
+}
 function renderStats() {
   if (!stOpen) return;
   const tot = stSeries('all'), n = tot.length, k00 = 2000 - YR.y0, k10 = 2010 - YR.y0;
   const g90 = tot[0] ? tot[n - 1] / tot[0] : 0, g0010 = tot[k00] ? tot[k10] / tot[k00] : 0;
   const head = `<div class="st-head"><div><p class="st-kicker">${esc(t('st_kicker'))}</p><h2>${esc(t('st_title'))}</h2><p class="st-intro">${esc(t('st_intro'))}</p></div><div class="st-hkpis"><div><small>${esc(t('st_kpi_2025'))}</small><b>${esc(fmtCompact(tot[n - 1]))}</b></div><div><small>${esc(t('st_kpi_g90'))}</small><b class="acc">×${fmtDec(g90, 1)}</b></div><div><small>${esc(t('st_kpi_0010'))}</small><b>×${fmtDec(g0010, 1)}</b></div><div><small>${esc(t('st_kpi_q'))}</small><b>${NQ}</b></div></div><button class="sq" id="stclose" type="button" aria-label="${esc(t('st_close'))}">×</button></div>`;
-  const tabs = [['y', 'st_tab_y'], ['d', 'st_tab_d'], ['p', 'st_tab_p'], ['m', 'st_tab_m']];
+  const tabs = [['pr', 'st_tab_pr'], ['y', 'st_tab_y'], ['d', 'st_tab_d'], ['p', 'st_tab_p'], ['m', 'st_tab_m']];
   const bar = `<div class="st-bar" role="tablist">${tabs.map(([k, l]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${stTab === k}">${esc(t(l))}</button>`).join('')}</div>`;
-  const body = stTab === 'y' ? stYearTab(tot) : stTab === 'd' ? stTableTab() : stTab === 'p' ? stDomainsTab(tot) : stMomentumTab();
+  const body = stTab === 'pr' ? stPrioritiesTab() : stTab === 'y' ? stYearTab(tot) : stTab === 'd' ? stTableTab() : stTab === 'p' ? stDomainsTab(tot) : stMomentumTab();
   stats.innerHTML = head + bar + body;
   $('stclose').onclick = closeStats;
-  stats.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { stTab = b.dataset.tab; renderStats(); });
+  stats.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { stTab = b.dataset.tab; renderStats(); if (stTab === 'pr' && DATA.API && !prAgg) fcApi('/api/priorities').then(a => { prAgg = a; if (stOpen && stTab === 'pr') renderStats(); }).catch(() => {}); });
+  stats.querySelectorAll('[data-pr]').forEach(b => b.onclick = () => {
+    const id = b.dataset.pr; let p = prRead();
+    if (p.includes(id)) p = p.filter(x => x !== id);
+    else if (p.length < 3) p = [...p, id];
+    else p = [...p.slice(1), id];
+    prWrite(p); renderStats();
+    if (DATA.API && p.length) fcApi('/api/priorities', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ token: fcToken(), picks: p }) }).then(a => { prAgg = a; if (stOpen && stTab === 'pr') renderStats(); }).catch(() => {});
+  });
+  stats.querySelectorAll('[data-prq]').forEach(b => b.onclick = () => { closeStats(); openQ(+b.dataset.prq); });
+  const prSh = $('prShareBtn');
+  if (prSh) prSh.onclick = () => {
+    const lines = prRead().map((id, idx) => { const th = PR_THEMES.find(x => x.id === id); return `${idx + 1}. ${th[LANG] || th.fr} (${fmtDec(PR_REAL.byId[id].pct, 2)} % OpenAlex)`; }).join('\n');
+    dfCopy(t('pr_share_txt', { l: lines, u: `https://unknownpedia.org/${LANG}/${LANG === 'fr' ? '#priorites' : '#priorities'}` }), prSh);
+  };
   stats.querySelectorAll('[data-g]').forEach(b => b.onclick = () => { stGroup = b.dataset.g; renderStats(); });
   const sel = $('stsel'); if (sel) sel.onchange = () => { stGroup = sel.value; renderStats(); $('stsel')?.focus(); };
   stats.querySelectorAll('[data-dec]').forEach(b => b.onclick = () => { const di = +b.dataset.dec; stDecFilter = stDecFilter === di ? -1 : di; stPinYear = null; renderStats(); });
@@ -1607,9 +1719,16 @@ function renderStats() {
     });
   }
 }
-function openStats() { if (!YR) return; if (clOpen) closeClaims(); if (dfOpen) closeDaily(); stOpen = true; stats.hidden = false; renderStats(); stats.focus(); }
+function openStats(tab) {
+  if (!YR) return;
+  if (clOpen) closeClaims();
+  if (dfOpen) closeDaily();
+  if (tab) stTab = tab;
+  stOpen = true; stats.hidden = false; renderStats(); stats.focus();
+  if (stTab === 'pr' && DATA.API && !prAgg) fcApi('/api/priorities').then(a => { prAgg = a; if (stOpen && stTab === 'pr') renderStats(); }).catch(() => {});
+}
 function closeStats() { stOpen = false; stats.hidden = true; $('stbtn').focus(); }
-if (YR) { $('stbtn').hidden = false; $('stbtn').onclick = () => (stOpen ? closeStats() : openStats()); }
+if (YR) { $('stbtn').hidden = false; $('stbtn').onclick = () => (stOpen && stTab !== 'pr' ? closeStats() : openStats('y')); if ($('prbtn')) { $('prbtn').hidden = false; $('prbtn').onclick = () => (stOpen && stTab === 'pr' ? closeStats() : openStats('pr')); } }
 addEventListener('keydown', e => { if (e.key === 'Escape' && stOpen) { e.stopPropagation(); closeStats(); } }, true);
 
 // ---- Claims: announcements and where they stand on the verification ladder, plus no-money forecasts (api/ holds the server, see METHOD.md).
@@ -1768,8 +1887,44 @@ $('clDock').onclick = () => (clOpen ? closeClaims() : openClaims());
 narrowPlate.addEventListener('change', renderClaimsDock);
 addEventListener('keydown', e => { if (e.key === 'Escape' && clOpen) { e.stopPropagation(); closeClaims(); } }, true);
 
-// ---- Daily challenge ("Today's Frontier") & Endless mode: Resolved or Unknown + OpenAlex research duel + participative forecast.
-const dailyEl = $('daily'); let dfOpen = false, dfMode = 'daily', dfInfFilter = 'mix', dfInfStreak = 0, dfInfCard = null, dfInfAns = null, dfInfSeen = new Set(), dfReturnFocus = null;
+// ---- Illusion of Knowledge daily challenge (6 everyday Yes/No rounds) & Endless mode (Everyday or Full Atlas).
+const dailyEl = $('daily'); let dfOpen = false, dfMode = 'daily', dfInfFilter = 'day', dfInfStreak = 0, dfInfCard = null, dfInfAns = null, dfInfSeen = new Set(), dfReturnFocus = null;
+const ILLUSION_BANK = [
+  // Everyday open unknowns (mostly linked straight to real questions on the map)
+  { id: 'il-ice', qid: 'eau', known: false, cat: { fr: 'Quotidien · Physique', en: 'Everyday · Physics' }, q: { fr: 'Pourquoi la glace est-elle glissante ?', en: 'Why is ice slippery?' }, exp: { fr: 'La vieille explication scolaire (« la pression du patin fait fondre la glace ») est fausse. La nature exacte de la fine couche quasi-liquide en surface reste débattue en physique.', en: 'The old textbook claim that skate pressure melts ice is false. The exact physics of ice’s ultra-thin quasi-liquid surface layer is still actively debated.' } },
+  { id: 'il-yawn', qid: 'baillement', known: false, cat: { fr: 'Corps humain · Biologie', en: 'Human body · Biology' }, q: { fr: 'À quoi sert vraiment le bâillement ?', en: 'Why do we yawn?' }, exp: { fr: 'Manque d’oxygène ? Réfuté. Refroidissement du cerveau, état d’alerte, synchronisation sociale : aucune hypothèse n’explique tous les cas, y compris chez le fœtus.', en: 'Low oxygen? Disproved. Brain cooling, arousal shifts, social empathy: no single explanation accounts for all yawning, including in fetuses.' } },
+  { id: 'il-glass', qid: 'transition-vitreuse', known: false, cat: { fr: 'Quotidien · Matière', en: 'Everyday · Matter' }, q: { fr: 'Qu’est-ce qui fait qu’un liquide devient du verre solide ?', en: 'What makes a liquid turn into solid glass?' }, exp: { fr: 'On fabrique du verre depuis plus de 4 000 ans, mais la physique n’a toujours pas de théorie complète expliquant la transition vitreuse.', en: 'Humans have made glass for over 4,000 years, yet physics still lacks a complete theory of the glass transition.' } },
+  { id: 'il-anesth', qid: 'anesthesie', known: false, cat: { fr: 'Médecine · Cerveau', en: 'Medicine · Brain' }, q: { fr: 'Comment l’anesthésie générale éteint-elle la conscience ?', en: 'How does general anesthesia turn off consciousness?' }, exp: { fr: 'Des centaines de millions d’opérations par an, mais le mécanisme exact par lequel des molécules très différentes coupent la conscience reste incomplet.', en: 'Used in hundreds of millions of surgeries a year, yet the exact mechanism by which chemically unrelated anesthetics switch off consciousness remains unresolved.' } },
+  { id: 'il-ball', qid: 'foudre-boule', known: false, cat: { fr: 'Météo · Physique', en: 'Weather · Physics' }, q: { fr: 'Comment fonctionne la foudre en boule ?', en: 'What causes ball lightning?' }, exp: { fr: 'Des milliers de témoignages concordants et quelques spectres mesurés, mais aucun modèle physique ne parvient à expliquer toutes ses propriétés ni à la reproduire fidèlement.', en: 'Thousands of consistent reports and a few measured spectra exist, yet no physical model fully explains or reliably reproduces ball lightning.' } },
+  { id: 'il-temp', qid: 'temperature-corps', known: false, cat: { fr: 'Corps humain · Santé', en: 'Human body · Health' }, q: { fr: 'Pourquoi la température moyenne du corps humain baisse-t-elle depuis 1860 ?', en: 'Why has average human body temperature been dropping since 1860?' }, exp: { fr: 'Autour de 36,6 °C aujourd’hui contre 37 °C au XIXᵉ siècle : baisse des infections chroniques, microbiote, métabolisme… les causes exactes restent ouvertes.', en: 'Average readings fell from ~37 °C in the 1860s to ~36.6 °C today. Lower chronic inflammation, microbes, and metabolism are suspected, but the full cause is still open.' } },
+  { id: 'il-left', qid: 'gauchers', known: false, cat: { fr: 'Corps humain · Évolution', en: 'Human body · Evolution' }, q: { fr: 'Pourquoi y a-t-il environ 10 % de gauchers chez les humains ?', en: 'Why are roughly 10% of humans left-handed?' }, exp: { fr: 'La proportion est stable depuis la préhistoire et partout sur Terre, sans qu’on comprenne encore pourquoi la génétique et l’évolution maintiennent exactement cet équilibre.', en: 'The ratio has stayed around 10% across cultures and prehistory, yet why genetics and evolution stabilize that exact balance remains unexplained.' } },
+  { id: 'il-blood', qid: 'groupes-sanguins', known: false, cat: { fr: 'Corps humain · Biologie', en: 'Human body · Biology' }, q: { fr: 'À quoi servent vraiment nos groupes sanguins (A, B, AB, O) ?', en: 'Why do humans have different blood types (A, B, AB, O)?' }, exp: { fr: 'On sait transfuser en sécurité depuis 1901, et certains groupes protègent un peu contre le paludisme ou le choléra, mais leur fonction biologique fondamentale reste mystérieuse.', en: 'Safe transfusions date back to 1901 and some blood types affect disease risk, yet the core biological purpose of the ABO system is still unclear.' } },
+  { id: 'il-birds', qid: 'magnetoreception', known: false, cat: { fr: 'Animaux · Physique', en: 'Animals · Physics' }, q: { fr: 'Comment les oiseaux migrateurs sentent-ils le champ magnétique terrestre ?', en: 'How do migrating birds sense Earth’s magnetic field?' }, exp: { fr: 'Boussole quantique dans la rétine (cryptochrome) ou cristaux de magnétite dans le bec ? Le mécanisme biologique exact reste à trancher.', en: 'A quantum compass in the retina (cryptochrome) or magnetite crystals in the beak? The exact sensory mechanism is not yet settled.' } },
+  { id: 'il-organ', qid: 'forme-organes', known: false, cat: { fr: 'Biologie · Corps humain', en: 'Biology · Human body' }, q: { fr: 'Comment un organe sait-il à quelle taille exacte arrêter de grandir ?', en: 'How does an organ know the exact size to stop growing?' }, exp: { fr: 'Vos deux bras ont presque exactement la même longueur, mais comment des milliards de cellules coordonnent-elles cette limite globale reste une question ouverte.', en: 'Your left and right arms stop at nearly identical lengths, yet how billions of cells coordinate exact global organ size remains open.' } },
+  { id: 'il-mem', qid: 'memoire', known: false, cat: { fr: 'Cerveau · Neurosciences', en: 'Brain · Neuroscience' }, q: { fr: 'Comment le cerveau stocke-t-il et retrouve-t-il exactement un souvenir ?', en: 'How does the brain store and retrieve a specific memory?' }, exp: { fr: 'On observe des synapses qui se renforcent, mais le code précis qui transforme une expérience en souvenir récupérable des décennies plus tard manque encore.', en: 'We see synapses strengthen, yet the exact neural code that turns an experience into a retrievable memory decades later is still unknown.' } },
+  { id: 'il-drugs', qid: 'mecanisme-medicaments', known: false, cat: { fr: 'Médecine · Quotidien', en: 'Medicine · Everyday' }, q: { fr: 'Connaît-on le mécanisme exact de médicaments courants comme le paracétamol ou le lithium ?', en: 'Do we know the exact mechanism of common drugs like paracetamol or lithium?' }, exp: { fr: 'On connaît très bien leurs effets cliniques et leurs doses, mais le mode d’action précis de plusieurs médicaments parmi les plus prescrits reste débattu.', en: 'Their clinical effects and safe doses are well tested, yet the precise molecular mechanism of several widely used drugs remains debated.' } },
+  { id: 'il-sun', qid: 'couronne-solaire', known: false, cat: { fr: 'Astronomie · Soleil', en: 'Astronomy · Sun' }, q: { fr: 'Pourquoi l’atmosphère du Soleil est-elle 200 fois plus chaude que sa surface ?', en: 'Why is the Sun’s atmosphere 200 times hotter than its surface?' }, exp: { fr: 'La surface solaire est à ~5 500 °C, mais la couronne dépasse 1 000 000 °C. Ondes magnétiques et nano-éruptions sont en lice sans réponse définitive.', en: 'The Sun’s surface is ~5,500 °C while its corona exceeds 1,000,000 °C. Magnetic waves and nanoflares are leading contenders, not a closed case.' } },
+  { id: 'il-time', qid: 'fleche-temps', known: false, cat: { fr: 'Physique · Temps', en: 'Physics · Time' }, q: { fr: 'Pourquoi le temps ne s’écoule-t-il que du passé vers le futur ?', en: 'Why does time only flow forward?' }, exp: { fr: 'Les équations fondamentales de la physique marchent presque toutes à l’envers. Pourquoi l’univers a-t-il démarré dans un état d’entropie aussi bas reste inexpliqué.', en: 'Almost all fundamental equations of physics work backwards in time. Why the early universe started in such a low-entropy state remains unexplained.' } },
+  { id: 'il-sex', qid: 'sexe', known: false, cat: { fr: 'Biologie · Évolution', en: 'Biology · Evolution' }, q: { fr: 'Pourquoi la reproduction sexuée s’est-elle imposée face au clonage ?', en: 'Why did sexual reproduction win out over cloning?' }, exp: { fr: 'Se cloner transmet 100 % de ses gènes et produit deux fois plus de descendants. L’avantage évolutif exact qui compense ce coût massif est encore débattu.', en: 'Cloning passes on 100% of one’s genes at half the cost. Which evolutionary benefit decisively outweighs that penalty is still debated.' } },
+  { id: 'il-virus', qid: 'virus-origine', known: false, cat: { fr: 'Biologie · Santé', en: 'Biology · Health' }, q: { fr: 'D’où viennent les virus à l’origine ?', en: 'Where did viruses originally come from?' }, exp: { fr: 'Sont-ils plus anciens que les cellules, issus de cellules réduites ou de morceaux d’ADN échappés ? Aucun consensus ne tranche entre les trois scénarios.', en: 'Did viruses predate cells, evolve from reduced cells, or escape from cellular DNA? No consensus settles which origin came first.' } },
+  { id: 'il-flower', qid: 'fleurs', known: false, cat: { fr: 'Nature · Évolution', en: 'Nature · Evolution' }, q: { fr: 'Pourquoi les fleurs sont-elles apparues si brutalement dans l’histoire de la Terre ?', en: 'Why did flowering plants appear so suddenly in Earth’s history?' }, exp: { fr: 'Darwin parlait d’« abominable mystère ». L’origine exacte et l’explosion rapide des plantes à fleurs au Crétacé restent en partie inexpliquées.', en: 'Darwin called it an “abominable mystery.” The exact ancestor and explosive Cretaceous rise of flowering plants still have major gaps.' } },
+  { id: 'il-neand', qid: 'neandertal', known: false, cat: { fr: 'Préhistoire · Humains', en: 'Prehistory · Humans' }, q: { fr: 'Pourquoi Néandertal et les autres espèces humaines ont-elles disparu ?', en: 'Why did Neanderthals and all other human species go extinct?' }, exp: { fr: 'Climat, démographie, compétition avec Homo sapiens, assimilation génétique : la part réelle de chaque cause reste débattue.', en: 'Climate swings, tiny populations, competition with Homo sapiens, or genetic absorption: the decisive cause remains debated.' } },
+  // Surprising settled "trap" questions (science DOES know!)
+  { id: 'il-sky', qid: null, known: true, cat: { fr: 'Quotidien · Physique', en: 'Everyday · Physics' }, q: { fr: 'Pourquoi le ciel est-il bleu ?', en: 'Why is the sky blue?' }, exp: { fr: 'Bien établi ! La diffusion de Rayleigh disperse beaucoup plus les courtes longueurs d’onde (bleu) que le rouge dans les molécules de l’atmosphère.', en: 'Settled science! Rayleigh scattering deflects shorter blue wavelengths far more strongly than red light in Earth’s atmosphere.' } },
+  { id: 'il-onion', qid: null, known: true, cat: { fr: 'Quotidien · Chimie', en: 'Everyday · Chemistry' }, q: { fr: 'Pourquoi couper un oignon fait-il pleurer ?', en: 'Why do onions make you cry?' }, exp: { fr: 'Bien établi ! Couper les cellules libère une enzyme qui produit un gaz (syn-propanethial-S-oxyde) qui irrite la cornée et déclenche les larmes.', en: 'Settled science! Slicing cells releases an enzyme that forms a volatile gas (syn-propanethial-S-oxide), irritating the cornea and triggering tears.' } },
+  { id: 'il-float', qid: null, known: true, cat: { fr: 'Quotidien · Chimie', en: 'Everyday · Chemistry' }, q: { fr: 'Pourquoi les glaçons flottent-ils sur l’eau ?', en: 'Why does ice float on liquid water?' }, exp: { fr: 'Bien établi ! En gelant, les liaisons hydrogène forment un cristal hexagonal plus espacé, donc ~9 % moins dense que l’eau liquide.', en: 'Settled science! Freezing locks hydrogen bonds into an open hexagonal crystal that is ~9% less dense than liquid water.' } },
+  { id: 'il-wrinkle', qid: null, known: true, cat: { fr: 'Corps humain · Biologie', en: 'Human body · Biology' }, q: { fr: 'Pourquoi les doigts fripent-ils dans le bain ?', en: 'Why do fingers wrinkle in the bath?' }, exp: { fr: 'Bien établi ! Ce n’est pas la peau qui gonfle d’eau : c’est une vasoconstriction active commandée par le système nerveux (absente si le nerf est sectionné).', en: 'Settled science! Skin does not simply absorb water: it is active blood-vessel constriction triggered by the nervous system (it stops if the nerve is cut).' } },
+  { id: 'il-chili', qid: null, known: true, cat: { fr: 'Corps humain · Chimie', en: 'Human body · Chemistry' }, q: { fr: 'Pourquoi le piment donne-t-il une sensation de brûlure ?', en: 'Why do chili peppers feel hot?' }, exp: { fr: 'Bien établi (Nobel 2021) ! La capsaïcine active directement le récepteur nerveux TRPV1 qui signale normalement une chaleur supérieure à 43 °C.', en: 'Settled science (2021 Nobel)! Capsaicin directly activates the TRPV1 nerve receptor that normally fires above 43 °C.' } },
+  { id: 'il-knuckle', qid: null, known: true, cat: { fr: 'Corps humain · Physique', en: 'Human body · Physics' }, q: { fr: 'Pourquoi entend-on un « pop » quand on fait craquer ses doigts ?', en: 'What causes the pop when you crack your knuckles?' }, exp: { fr: 'Bien établi ! Filmé en IRM temps réel (2015) : tirer l’articulation chute la pression et crée brutalement une cavité de gaz dans le liquide synovial.', en: 'Settled science! Real-time MRI (2015) confirmed that pulling the joint drops pressure and rapidly forms a gas cavity in synovial fluid.' } },
+  { id: 'il-moon', qid: null, known: true, cat: { fr: 'Astronomie · Lune', en: 'Astronomy · Moon' }, q: { fr: 'Pourquoi la Lune nous montre-t-elle toujours la même face ?', en: 'Why does the Moon always show the same face to Earth?' }, exp: { fr: 'Bien établi ! Les forces de marée ont synchronisé sa rotation sur elle-même avec sa révolution autour de la Terre (verrouillage gravitationnel).', en: 'Settled science! Tidal forces locked the Moon’s spin period to match its orbit around Earth (tidal locking).' } },
+  { id: 'il-salt', qid: null, known: true, cat: { fr: 'Terre · Océans', en: 'Earth · Oceans' }, q: { fr: 'Pourquoi les océans sont-ils salés ?', en: 'Why is the ocean salty?' }, exp: { fr: 'Bien établi ! La pluie légèrement acide dissout les minéraux des roches continentales, transportés par les fleuves vers la mer où seule l’eau s’évapore.', en: 'Settled science! Slightly acidic rain dissolves mineral salts from land rocks; rivers carry them to the sea while pure water evaporates.' } },
+  { id: 'il-autumn', qid: null, known: true, cat: { fr: 'Nature · Botanique', en: 'Nature · Botany' }, q: { fr: 'Pourquoi les feuilles changent-elles de couleur en automne ?', en: 'Why do leaves change color in autumn?' }, exp: { fr: 'Bien établi ! Quand les jours raccourcissent, l’arbre arrête de produire la chlorophylle verte, laissant apparaître les pigments jaunes (caroténoïdes) et rouges.', en: 'Settled science! As days shorten, trees break down green chlorophyll, revealing yellow carotenoids and newly made red anthocyanins.' } },
+  { id: 'il-rainbow', qid: null, known: true, cat: { fr: 'Quotidien · Optique', en: 'Everyday · Optics' }, q: { fr: 'Pourquoi voit-on un arc-en-ciel après la pluie ?', en: 'Why do rainbows appear after rain?' }, exp: { fr: 'Bien établi ! Les gouttes d’eau réfractent, réfléchissent à l’intérieur et séparent les longueurs d’onde de la lumière solaire selon un angle précis (~42°).', en: 'Settled science! Raindrops refract, internally reflect, and disperse sunlight into its spectrum around a 42° cone.' } },
+  { id: 'il-bh', qid: 'eht-black-hole-images', known: true, cat: { fr: 'Astronomie · Percée', en: 'Astronomy · Breakthrough' }, q: { fr: 'A-t-on déjà photographié directement l’ombre d’un trou noir ?', en: 'Have scientists directly imaged the shadow of a black hole?' }, exp: { fr: 'Oui ! Le réseau de télescopes Event Horizon Telescope a publié l’image de M87* en 2019 puis celle du trou noir au centre de notre galaxie en 2022.', en: 'Yes! The Event Horizon Telescope imaged M87* in 2019 and Sagittarius A* at the center of our Milky Way in 2022.' } },
+  { id: 'il-gw', qid: 'ligo-gravitational-waves', known: true, cat: { fr: 'Physique · Percée', en: 'Physics · Breakthrough' }, q: { fr: 'A-t-on déjà détecté directement des ondes gravitationnelles ?', en: 'Have gravitational waves been detected directly?' }, exp: { fr: 'Oui ! Les interféromètres LIGO ont détecté la fusion de deux trous noirs en 2015, un siècle après la prédiction d’Einstein (Nobel 2017).', en: 'Yes! LIGO detected two merging black holes in 2015, a century after Einstein’s prediction (2017 Nobel Prize).' } },
+  { id: 'il-crispr', qid: 'casgevy-crispr-therapy', known: true, cat: { fr: 'Médecine · Percée', en: 'Medicine · Breakthrough' }, q: { fr: 'Existe-t-il déjà une thérapie génique CRISPR approuvée chez l’humain ?', en: 'Is there already an approved CRISPR gene therapy for humans?' }, exp: { fr: 'Oui ! Casgevy a été approuvé fin 2023 au Royaume-Uni, aux États-Unis puis en Europe contre la drépanocytose et la bêta-thalassémie.', en: 'Yes! Casgevy was approved in late 2023 in the UK, US, and Europe for sickle-cell disease and beta-thalassemia.' } },
+  { id: 'il-neand-dna', qid: 'nobel-medicine-2022-paabo', known: true, cat: { fr: 'Génétique · Percée', en: 'Genetics · Breakthrough' }, q: { fr: 'A-t-on réussi à séquencer le génome complet de Néandertal ?', en: 'Have scientists sequenced the complete Neanderthal genome?' }, exp: { fr: 'Oui ! L’équipe de Svante Pääbo y est parvenue en 2010 (Nobel 2022), révélant que la plupart des humains actuels portent 1 à 2 % d’ADN néandertalien.', en: 'Yes! Svante Pääbo’s team achieved this in 2010 (2022 Nobel Prize), showing most living humans carry 1–2% Neanderthal DNA.' } }
+];
 const SOLVED_PROMPTS = {
   'fermat-last-theorem': { fr: 'Existe-t-il des entiers positifs x, y, z tels que xⁿ + yⁿ = zⁿ pour n > 2 ? (Théorème de Fermat)', en: 'Do positive integers x, y, z exist with xⁿ + yⁿ = zⁿ for n > 2? (Fermat’s Last Theorem)' },
   'poincare-conjecture': { fr: 'Toute forme fermée de dimension 3 sans trou est-elle équivalente à une sphère ? (Conjecture de Poincaré)', en: 'Is every closed 3D shape without holes equivalent to a sphere? (Poincaré conjecture)' },
@@ -1792,53 +1947,29 @@ const SOLVED_PROMPTS = {
   'nobel-physics-2025-quantum-circuit': { fr: 'A-t-on observé l’effet tunnel quantique dans un circuit électrique macroscopique ?', en: 'Has quantum tunnelling been observed in a macroscopic electrical circuit?' },
   'imo-2024-alphaproof': { fr: 'Une IA a-t-elle déjà atteint le niveau médaille d’argent à l’Olympiade internationale de maths ?', en: 'Has an AI already reached silver-medal level at the International Mathematical Olympiad?' }
 };
-const EVERYDAY_OPEN = new Set(['anesthesie', 'baillement', 'gauchers', 'transition-vitreuse', 'eau', 'foudre-boule', 'temperature-corps', 'groupes-sanguins', 'repliement-proteines', 'magnetoreception', 'navigation-animale', 'canape', 'taille-cellule', 'forme-organes', 'serpents', 'tortues', 'fleurs', 'memoire', 'conscience', 'conscience-animale', 'wow-e', 'voynich-e', 'tunguska-e', 'nazca-e', 'kryptos-e', 'lineara-e', 'riemann', 'navier-stokes', 'p-np', 'goldbach', 'jumeaux', 'collatz', 'seuls', 'origine-vie', 'trous-noirs-info', 'antimatiere', 'tension-hubble', 'couronne-solaire', 'supraconducteurs', 'turbulence', 'fleche-temps', 'planete-neuf', 'vaccin-vih', 'longevite']);
+const EVERYDAY_OPEN = new Set(['anesthesie', 'baillement', 'gauchers', 'transition-vitreuse', 'eau', 'foudre-boule', 'temperature-corps', 'groupes-sanguins', 'repliement-proteines', 'magnetoreception', 'navigation-animale', 'taille-cellule', 'forme-organes', 'serpents', 'tortues', 'fleurs', 'memoire', 'conscience', 'conscience-animale', 'wow-e', 'voynich-e', 'tunguska-e', 'nazca-e', 'kryptos-e', 'lineara-e', 'riemann', 'navier-stokes', 'p-np', 'goldbach', 'jumeaux', 'collatz', 'seuls', 'origine-vie', 'trous-noirs-info', 'antimatiere', 'tension-hubble', 'couronne-solaire', 'supraconducteurs', 'turbulence', 'fleche-temps', 'planete-neuf', 'vaccin-vih', 'longevite']);
 const DF_SOLVED_POOL = Object.keys(SOLVED_PROMPTS).map(id => Q.findIndex(q => q.id === id)).filter(i => i >= 0);
 const DF_OPEN_ALL = Q.map((q, i) => !q.adv && q.st !== 'avancee' ? i : -1).filter(i => i >= 0);
-const DF_OPEN_TOP = DF_OPEN_ALL.filter(i => EVERYDAY_OPEN.has(Q[i].id));
-const DF_VOL_POOL = (() => { const a = []; for (let i = 0; i < N; i++) { const w = T[i * 5 + 2], nm = T[i * 5 + 4]; if (w >= 25000 && w <= 950000 && nm.length >= 10 && nm.length <= 54) a.push(i); } return a; })();
-const DF_BET_FALLBACK = ['conscience', 'seuls', 'vaccin-vih', 'p-np', 'ordinateur-quantique', 'longevite', 'supraconducteurs', 'origine-vie', 'anesthesie', 'turbulence'].map(id => Q.findIndex(q => q.id === id)).filter(i => i >= 0);
+const IL_KNOWN = ILLUSION_BANK.filter(x => x.known), IL_OPEN = ILLUSION_BANK.filter(x => !x.known);
 function dfTodayKey() { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 function dfPrevKey(key) { const [y, m, d] = key.split('-').map(Number), dt = new Date(Date.UTC(y, m - 1, d - 1)); return dt.getUTCFullYear() + '-' + String(dt.getUTCMonth() + 1).padStart(2, '0') + '-' + String(dt.getUTCDate()).padStart(2, '0'); }
 function dfDayNum(key) { const [y, m, d] = key.split('-').map(Number); return Math.max(1, Math.round((Date.UTC(y, m - 1, d) - Date.UTC(2026, 10, 22)) / 86400000) + 1); }
 function dfRng(seedStr) { let h = 2166136261; for (let i = 0; i < seedStr.length; i++) { h ^= seedStr.charCodeAt(i); h = Math.imul(h, 16777619); } let s = h >>> 0; return () => { s = (s + 0x6D2B79F5) | 0; let r = Math.imul(s ^ (s >>> 15), 1 | s); r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r; return ((r ^ (r >>> 14)) >>> 0) / 4294967296; }; }
-function dfReadStore() { try { return JSON.parse(localStorage.getItem('uf_daily') || '{}'); } catch (e) { return {}; } }
-function dfWriteStore(o) { try { localStorage.setItem('uf_daily', JSON.stringify(o)); } catch (e) {} }
-function dfPickVolDuel(rng) {
-  for (let tries = 0; tries < 80; tries++) {
-    const a = DF_VOL_POOL[Math.floor(rng() * DF_VOL_POOL.length)];
-    const b = DF_VOL_POOL[Math.floor(rng() * DF_VOL_POOL.length)];
-    if (a === b || S[T[a * 5 + 3]].f === S[T[b * 5 + 3]].f) continue;
-    const wa = T[a * 5 + 2], wb = T[b * 5 + 2], ratio = Math.max(wa, wb) / Math.min(wa, wb);
-    if (ratio >= 1.45 && ratio <= 4.8) return { kind: 'vol', a, b };
-  }
-  return { kind: 'vol', a: DF_VOL_POOL[0], b: DF_VOL_POOL[Math.min(1, DF_VOL_POOL.length - 1)] };
-}
+function dfReadStore() { try { return JSON.parse(localStorage.getItem('uf_illusion_daily') || '{}'); } catch (e) { return {}; } }
+function dfWriteStore(o) { try { localStorage.setItem('uf_illusion_daily', JSON.stringify(o)); } catch (e) {} }
 function dfBuildDay(key) {
-  const rng = dfRng('unknownpedia-daily-' + key);
-  const pickUnique = (pool, used) => { const avail = pool.filter(i => !used.has(i)); const p = avail.length ? avail : pool; const c = p[Math.floor(rng() * p.length)]; used.add(c); return c; };
-  const used = new Set();
-  const nSolved = rng() < 0.5 ? 1 : 2;
-  const ru = [];
-  for (let k = 0; k < nSolved; k++) ru.push({ kind: 'ru', qi: pickUnique(DF_SOLVED_POOL, used), solved: true });
-  for (let k = 0; k < 3 - nSolved; k++) ru.push({ kind: 'ru', qi: pickUnique(k === 0 && DF_OPEN_TOP.length ? DF_OPEN_TOP : DF_OPEN_ALL, used), solved: false });
-  for (let i = ru.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [ru[i], ru[j]] = [ru[j], ru[i]]; }
-  const vol = dfPickVolDuel(rng);
-  const fcClaims = CLAIMS.filter(c => c.fc && c.fc.outcome == null);
-  let bet;
-  if (fcClaims.length && rng() < 0.55) {
-    const c = fcClaims[Math.floor(rng() * fcClaims.length)];
-    bet = { kind: 'bet', claimId: c.id, qi: c.q.length ? Q.findIndex(q => q.id === c.q[0]) : -1 };
-  } else {
-    const qi = pickUnique(DF_BET_FALLBACK, used);
-    bet = { kind: 'bet', claimId: null, qi };
-  }
-  return [...ru, vol, bet];
+  const rng = dfRng('unknownpedia-illusion-' + key);
+  const pick = (pool, used) => { const avail = pool.filter(x => !used.has(x.id)); const p = avail.length ? avail : pool; const c = p[Math.floor(rng() * p.length)]; used.add(c.id); return c; };
+  const used = new Set(), nKnown = rng() < 0.5 ? 2 : 3, out = [];
+  for (let k = 0; k < nKnown; k++) out.push({ kind: 'il', item: pick(IL_KNOWN, used) });
+  for (let k = 0; k < 6 - nKnown; k++) out.push({ kind: 'il', item: pick(IL_OPEN, used) });
+  for (let i = out.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [out[i], out[j]] = [out[j], out[i]]; }
+  return out;
 }
 function dfGetDayState() {
   const key = dfTodayKey(), st = dfReadStore();
   if (!st.days) st.days = {};
-  if (!st.days[key]) st.days[key] = { ans: [null, null, null, null, null], step: 0, done: false };
+  if (!st.days[key]) st.days[key] = { ans: [null, null, null, null, null, null], step: 0, done: false };
   return { key, store: st, day: st.days[key] };
 }
 function syncDailyBtn() {
@@ -1846,8 +1977,8 @@ function syncDailyBtn() {
   if (!sc || !dot) return;
   const { day } = dfGetDayState();
   if (day.done) {
-    const score = day.ans.slice(0, 4).filter(a => a && a.ok).length;
-    sc.textContent = score + '/4'; sc.hidden = false; dot.hidden = true;
+    const score = day.ans.filter(a => a && a.ok).length;
+    sc.textContent = score + '/6'; sc.hidden = false; dot.hidden = true;
   } else { sc.hidden = true; dot.hidden = false; }
 }
 function dfCopy(txt, btn) {
@@ -1855,71 +1986,53 @@ function dfCopy(txt, btn) {
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done).catch(() => { const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); });
   else { const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
 }
-function dfTopicSpark(ti) {
-  if (!YR) return '';
-  const a = Array.from({ length: YR.n }, (_, k) => yval(ti, YR.y0 + k));
-  return stSpark(a);
-}
 function dfRuPrompt(qi, solved) {
   const q = Q[qi];
   if (solved && SOLVED_PROMPTS[q.id]) return SOLVED_PROMPTS[q.id][LANG] || SOLVED_PROMPTS[q.id].fr;
   return loc(q.qq);
 }
 function dfNextInfCard() {
-  const useVol = dfInfFilter === 'vol' || (dfInfFilter === 'mix' && Math.random() < 0.35);
-  if (useVol) { dfInfCard = dfPickVolDuel(Math.random); dfInfAns = null; return; }
-  const solved = Math.random() < 0.42;
-  const pool = solved ? DF_SOLVED_POOL : (Math.random() < 0.65 && DF_OPEN_TOP.length ? DF_OPEN_TOP : DF_OPEN_ALL);
-  let avail = pool.filter(i => !dfInfSeen.has(i));
+  if (dfInfFilter === 'day') {
+    let avail = ILLUSION_BANK.filter(x => !dfInfSeen.has(x.id));
+    if (!avail.length) { dfInfSeen.clear(); avail = ILLUSION_BANK; }
+    const item = avail[Math.floor(Math.random() * avail.length)];
+    dfInfSeen.add(item.id);
+    dfInfCard = { kind: 'il', item }; dfInfAns = null; return;
+  }
+  const solved = Math.random() < 0.4;
+  const pool = solved ? DF_SOLVED_POOL : DF_OPEN_ALL;
+  let avail = pool.filter(i => !dfInfSeen.has('q:' + i));
   if (!avail.length) { dfInfSeen.clear(); avail = pool; }
   const qi = avail[Math.floor(Math.random() * avail.length)];
-  dfInfSeen.add(qi);
+  dfInfSeen.add('q:' + qi);
   dfInfCard = { kind: 'ru', qi, solved }; dfInfAns = null;
 }
 function dfCardHTML(card, ans, stepLabel, isLast, isInf) {
-  if (card.kind === 'ru') {
-    const q = Q[card.qi], prompt = dfRuPrompt(card.qi, card.solved), field = q.subs.length ? loc(F[S[q.subs[0]].f].nn) : '';
-    const dis = ans ? ' disabled' : '';
-    const cls = want => !ans ? '' : (card.solved === want ? ' is-true' : ans.pick === want ? ' is-wrong' : ' is-dim');
-    const claim = !card.solved && q.ia && q.ia.find(e => e.lad && e.lad.length);
-    const rev = ans ? `<div class="df-rev"><div class="df-verdict ${ans.ok ? 'ok' : 'ko'}"><b>${ans.ok ? '✓ ' : '× '}${esc(card.solved ? t(ans.ok ? 'df_ok_solved' : 'df_ko_solved', { y: q.year }) : t(ans.ok ? 'df_ok_open' : 'df_ko_open'))}</b></div><p>${esc(loc(q.cc))}</p>${claim ? `<div class="df-cl-strip"><span>${esc(t('df_claim_note'))}</span><button type="button" class="df-btn-s" data-dfcl="${esc(claim.id)}">${esc(t('df_claim_btn'))}</button></div>` : ''}<div class="df-acts"><button type="button" class="df-btn-s" data-dfq="${card.qi}">${esc(t('df_map'))}</button><button type="button" class="df-btn-s" data-dffact="1">${esc(t('df_share_fact'))}</button><button type="button" class="df-btn-p" id="dfNext">${esc(isInf ? t('df_inf_next') : isLast ? t('df_finish') : t('df_next'))}</button></div></div>` : '';
-    return `<section class="df-card"><div class="df-eyebrow"><span class="acc">${esc(stepLabel)} · ${esc(t('df_ru_prompt'))}</span><span>${esc(field)}</span></div><p class="df-sub">${esc(t('df_ru_sub'))}</p><h3 class="df-q">${esc(prompt)}</h3><div class="df-choices"><button type="button" class="df-choice${cls(true)}" data-pick="1"${dis}><span class="df-ckey" aria-hidden="true">1</span><span class="df-csym" aria-hidden="true">!</span><strong>${esc(t('df_opt_solved'))}</strong><small>${esc(t('df_opt_solved_s'))}</small></button><button type="button" class="df-choice is-open-opt${cls(false)}" data-pick="0"${dis}><span class="df-ckey" aria-hidden="true">2</span><span class="df-csym" aria-hidden="true">?</span><strong>${esc(t('df_opt_open'))}</strong><small>${esc(t('df_opt_open_s'))}</small></button></div>${rev}</section>`;
-  }
-  if (card.kind === 'vol') {
-    const wa = T[card.a * 5 + 2], wb = T[card.b * 5 + 2], win = wa >= wb ? 0 : 1, mx = Math.max(wa, wb), ratio = mx / Math.max(1, Math.min(wa, wb));
-    const dis = ans ? ' disabled' : '';
-    const vplate = (ti, idx, w) => {
-      const si = T[ti * 5 + 3], f = F[S[si].f];
-      const cls = !ans ? '' : (win === idx ? ' is-true' : ans.pick === idx ? ' is-wrong' : '');
-      const stats = ans ? `<div><div class="df-vnum">${esc(fmt(w))}</div><span class="df-vbar"><i style="width:${Math.max(5, Math.round(100 * w / mx))}%"></i></span><div class="df-vfoot"><small>${win === idx ? esc(t('df_vol_more', { x: fmtDec(ratio, 1) })) : esc(t('articles')) + ' (1990–2025)'}</small>${dfTopicSpark(ti)}</div></div>` : `<small>${esc(t('df_vol_pick'))} →</small>`;
-      return `<button type="button" class="df-vtopic${cls}" data-vpick="${idx}"${dis}><span class="df-ckey" aria-hidden="true">${idx + 1}</span><div><small>${esc(loc(f.nn))} · ${esc(loc(DATA.D[f.d]))}</small><strong>${esc(T[ti * 5 + 4])}</strong></div>${stats}</button>`;
-    };
-    const rev = ans ? `<div class="df-rev"><div class="df-verdict ${ans.ok ? 'ok' : 'ko'}"><b>${ans.ok ? '✓ ' : '× '}${esc(t(ans.ok ? 'df_ok_vol' : 'df_ko_vol', { n: fmtCompact(mx), m: fmtCompact(Math.min(wa, wb)) }))}</b></div><div class="df-acts"><button type="button" class="df-btn-s" data-dft="${card.a}">${esc(T[card.a * 5 + 4].slice(0, 26))}${T[card.a * 5 + 4].length > 26 ? '…' : ''} →</button><button type="button" class="df-btn-s" data-dft="${card.b}">${esc(T[card.b * 5 + 4].slice(0, 26))}${T[card.b * 5 + 4].length > 26 ? '…' : ''} →</button><button type="button" class="df-btn-p" id="dfNext">${esc(isInf ? t('df_inf_next') : isLast ? t('df_finish') : t('df_next'))}</button></div></div>` : '';
-    return `<section class="df-card"><div class="df-eyebrow"><span class="acc">${esc(stepLabel)} · ${esc(t('df_vol_prompt'))}</span><span>OpenAlex · 1990–2025</span></div><p class="df-sub">${esc(t('df_vol_sub'))}</p><div class="df-vs-grid">${vplate(card.a, 0, wa)}<span class="df-vs-badge" aria-hidden="true">vs</span>${vplate(card.b, 1, wb)}</div>${rev}</section>`;
-  }
-  const cl = card.claimId ? CLAIMS.find(c => c.id === card.claimId) : null;
-  const qTxt = cl ? loc(cl.fc.q) : t('df_bet_q_gen', { q: loc(Q[card.qi].qq) });
-  const existing = cl && fcRead()[cl.id] ? fcRead()[cl.id].p : (ans ? ans.p : 35);
-  return `<section class="df-card"><div class="df-eyebrow"><span class="acc">${esc(stepLabel)} · ${esc(t('df_bet_prompt'))}</span><span>${cl ? esc(t('fc_closes', { d: fmtDate(cl.fc.closes) })) : 'Horizon 2040'}</span></div><p class="df-sub">${esc(t('df_bet_sub'))}</p><h3 class="df-q">${esc(qTxt)}</h3><div class="df-bet-ctrl"><output id="dfBetOut">${existing} %</output><div class="df-bet-sl"><input id="dfBetR" type="range" min="1" max="99" step="1" value="${existing}" aria-label="${esc(t('fc_your'))}"><div class="df-bet-scale" aria-hidden="true"><span>1 %</span><span>25 %</span><span>50 %</span><span>75 %</span><span>99 %</span></div></div></div><div class="df-acts">${cl ? `<button type="button" class="df-btn-s" data-dfcl="${esc(cl.id)}">${esc(t('df_claim_btn'))}</button>` : card.qi >= 0 ? `<button type="button" class="df-btn-s" data-dfq="${card.qi}">${esc(t('df_map'))}</button>` : ''}<button type="button" class="df-btn-p" id="dfBetSave">${esc(t('df_bet_save'))}</button></div></section>`;
+  const isIl = card.kind === 'il';
+  const known = isIl ? card.item.known : card.solved;
+  const qi = isIl ? (card.item.qid ? Q.findIndex(q => q.id === card.item.qid) : -1) : card.qi;
+  const prompt = isIl ? loc(card.item.q) : dfRuPrompt(card.qi, card.solved);
+  const cat = isIl ? loc(card.item.cat) : (Q[card.qi].subs.length ? loc(F[S[Q[card.qi].subs[0]].f].nn) : '');
+  const expl = isIl ? loc(card.item.exp) : loc(Q[card.qi].cc);
+  const dis = ans ? ' disabled' : '';
+  const cls = want => !ans ? '' : (known === want ? ' is-true' : ans.pick === want ? ' is-wrong' : ' is-dim');
+  const claim = !known && qi >= 0 && Q[qi].ia && Q[qi].ia.find(e => e.lad && e.lad.length);
+  const verdictTxt = isIl
+    ? (known ? t(ans && ans.ok ? 'df_il_ok_yes' : 'df_il_ko_yes') : t(ans && ans.ok ? 'df_il_ok_no' : 'df_il_ko_no'))
+    : (known ? t(ans && ans.ok ? 'df_ok_solved' : 'df_ko_solved', { y: Q[card.qi].year }) : t(ans && ans.ok ? 'df_ok_open' : 'df_ko_open'));
+  const rev = ans ? `<div class="df-rev"><div class="df-verdict ${ans.ok ? 'ok' : 'ko'}"><b>${ans.ok ? '✓ ' : '× '}${esc(verdictTxt)}</b></div><p>${esc(expl)}</p>${claim ? `<div class="df-cl-strip"><span>${esc(t('df_claim_note'))}</span><button type="button" class="df-btn-s" data-dfcl="${esc(claim.id)}">${esc(t('df_claim_btn'))}</button></div>` : ''}<div class="df-acts">${qi >= 0 ? `<button type="button" class="df-btn-s" data-dfq="${qi}">${esc(t('df_map'))}</button>` : ''}<button type="button" class="df-btn-s" data-dffact="1">${esc(t('df_share_fact'))}</button><button type="button" class="df-btn-p" id="dfNext">${esc(isInf ? t('df_inf_next') : isLast ? t('df_finish') : t('df_next'))}</button></div></div>` : '';
+  return `<section class="df-card"><div class="df-eyebrow"><span class="acc">${esc(stepLabel)} · ${esc(t('df_il_prompt'))}</span><span>${esc(cat)}</span></div><p class="df-sub">${esc(t('df_il_sub'))}</p><h3 class="df-q">${esc(prompt)}</h3><div class="df-choices"><button type="button" class="df-choice${cls(true)}" data-pick="1"${dis}><span class="df-ckey" aria-hidden="true">1</span><span class="df-csym" aria-hidden="true">!</span><strong>${esc(t('df_il_yes'))}</strong><small>${esc(t('df_il_yes_s'))}</small></button><button type="button" class="df-choice is-open-opt${cls(false)}" data-pick="0"${dis}><span class="df-ckey" aria-hidden="true">2</span><span class="df-csym" aria-hidden="true">?</span><strong>${esc(t('df_il_no'))}</strong><small>${esc(t('df_il_no_s'))}</small></button></div>${rev}</section>`;
 }
 function dfDoneHTML(key, store, day, rounds) {
-  const num = dfDayNum(key), score = day.ans.slice(0, 4).filter(a => a && a.ok).length, betP = day.ans[4] ? day.ans[4].p : 50;
-  const glyphs = day.ans.map((a, i) => i === 4 ? '<span class="df-g bet">◆</span>' : `<span class="df-g ${a && a.ok ? 'ok' : 'ko'}">${a && a.ok ? '✓' : '×'}</span>`).join('');
+  const num = dfDayNum(key), score = day.ans.filter(a => a && a.ok).length;
+  const traps = rounds.filter((r, i) => !r.item.known && day.ans[i] && day.ans[i].pick === true).length;
+  const glyphs = day.ans.map(a => `<span class="df-g ${a && a.ok ? 'ok' : 'ko'}">${a && a.ok ? '✓' : '×'}</span>`).join('');
   const recap = rounds.map((r, i) => {
-    const a = day.ans[i];
-    if (r.kind === 'ru') {
-      const q = Q[r.qi], meta = r.solved ? `${t('df_opt_solved')} (${q.year})` : t('df_opt_open');
-      return `<li><span class="df-pdot" style="${a && a.ok ? 'background:var(--ink);border-color:var(--ink);color:var(--paper)' : 'border-color:var(--acc);color:var(--acc)'}">${a && a.ok ? '✓' : '×'}</span><div><span class="rc-t">${esc(dfRuPrompt(r.qi, r.solved))}</span><span class="rc-m">${esc(meta)}</span></div><button type="button" class="df-btn-s" data-dfq="${r.qi}">${esc(t('df_map'))}</button></li>`;
-    }
-    if (r.kind === 'vol') {
-      const wa = T[r.a * 5 + 2], wb = T[r.b * 5 + 2], hi = wa >= wb ? r.a : r.b;
-      return `<li><span class="df-pdot" style="${a && a.ok ? 'background:var(--ink);border-color:var(--ink);color:var(--paper)' : 'border-color:var(--acc);color:var(--acc)'}">${a && a.ok ? '✓' : '×'}</span><div><span class="rc-t">${esc(T[r.a * 5 + 4])} vs ${esc(T[r.b * 5 + 4])}</span><span class="rc-m">${esc(fmtCompact(wa))} vs ${esc(fmtCompact(wb))}</span></div><button type="button" class="df-btn-s" data-dft="${hi}">${esc(t('df_map'))}</button></li>`;
-    }
-    const cl = r.claimId ? CLAIMS.find(c => c.id === r.claimId) : null;
-    const qt = cl ? loc(cl.fc.q) : t('df_bet_q_gen', { q: loc(Q[r.qi].qq) });
-    return `<li><span class="df-pdot" style="background:var(--acc);border-color:var(--acc);color:var(--paper)">◆</span><div><span class="rc-t">${esc(qt)}</span><span class="rc-m">${esc(t('df_bet_lbl'))} : ${betP} %</span></div>${cl ? `<button type="button" class="df-btn-s" data-dfcl="${esc(cl.id)}">${esc(t('df_claim_btn'))}</button>` : r.qi >= 0 ? `<button type="button" class="df-btn-s" data-dfq="${r.qi}">${esc(t('df_map'))}</button>` : ''}</li>`;
+    const a = day.ans[i], item = r.item, qi = item.qid ? Q.findIndex(q => q.id === item.qid) : -1;
+    const meta = item.known ? t('df_il_yes') : t('df_il_no');
+    return `<li><span class="df-pdot" style="${a && a.ok ? 'background:var(--ink);border-color:var(--ink);color:var(--paper)' : 'border-color:var(--acc);color:var(--acc)'}">${a && a.ok ? '✓' : '×'}</span><div><span class="rc-t">${esc(loc(item.q))}</span><span class="rc-m">${esc(meta)} · ${esc(loc(item.cat))}</span></div>${qi >= 0 ? `<button type="button" class="df-btn-s" data-dfq="${qi}">${esc(t('df_map'))}</button>` : ''}</li>`;
   }).join('');
-  return `<div class="df-done-card"><h3>${esc(t('df_done_t', { n: num }))}</h3><p>${esc(t('df_done_sub'))}</p><div class="df-glyphs" aria-hidden="true">${glyphs}</div><div class="df-done-kpis"><div><small>${esc(t('df_score_lbl'))}</small><b>${score} / 4</b></div><div><small>${esc(t('df_streak_lbl'))}</small><b>${store.streak || 1}${LANG === 'fr' ? ' j' : 'd'}</b></div><div><small>${esc(t('df_bet_lbl'))}</small><b>${betP} %</b></div></div><div class="df-done-acts"><button type="button" class="df-btn-p" id="dfCopyRes">${esc(t('df_copy_res'))}</button>${navigator.share ? `<button type="button" class="df-btn-s" id="dfNatShare">${esc(t('df_share_res'))}</button>` : ''}<button type="button" class="df-btn-s" id="dfGoInf">${esc(t('df_play_inf'))}</button></div></div><div class="df-recap-h"><h4>${esc(t('df_recap_t'))}</h4><small>${esc(t('df_recap_s'))}</small></div><ol class="df-recap">${recap}</ol>`;
+  return `<div class="df-done-card"><h3>${esc(t('df_done_t', { n: num }))}</h3><p>${esc(t('df_done_sub'))}</p><div class="df-glyphs" aria-hidden="true">${glyphs}</div><div class="df-done-kpis"><div><small>${esc(t('df_score_lbl'))}</small><b>${score} / 6</b></div><div><small>${esc(t('df_il_traps'))}</small><b style="color:var(--acc)">${traps}</b></div><div><small>${esc(t('df_streak_lbl'))}</small><b>${store.streak || 1}${LANG === 'fr' ? ' j' : 'd'}</b></div></div><div class="df-done-acts"><button type="button" class="df-btn-p" id="dfCopyRes">${esc(t('df_copy_res'))}</button>${navigator.share ? `<button type="button" class="df-btn-s" id="dfNatShare">${esc(t('df_share_res'))}</button>` : ''}<button type="button" class="df-btn-s" id="dfGoInf">${esc(t('df_play_inf'))}</button></div></div><div class="df-recap-h"><h4>${esc(t('df_il_recap'))}</h4><small>${esc(t('df_recap_s'))}</small></div><ol class="df-recap">${recap}</ol>`;
 }
 function renderDaily() {
   if (!dfOpen) return;
@@ -1927,14 +2040,13 @@ function renderDaily() {
   const meta = dfMode === 'daily'
     ? (store.streak ? `<span>${esc(t('df_streak', { n: store.streak }))}</span>` : '')
     : `<span>${esc(t('df_inf_streak', { n: dfInfStreak }))}</span><span>${esc(t('df_inf_best', { n: store.infBest || 0 }))}</span>`;
-  const head = `<div class="df-head"><div><p class="df-kicker">${esc(dfMode === 'daily' ? t('df_kicker', { n: num, d: fmtDate(key) }) : t('df_kicker_inf'))}</p><h2>${esc(t('df_title'))}</h2></div><div class="df-hmeta">${meta}</div><button class="sq" id="dfclose" type="button" aria-label="${esc(t('st_close'))}">×</button></div>`;
-  const infPills = dfMode === 'inf' ? `<div class="df-inf-pills">${[['mix', 'df_inf_mix'], ['ru', 'df_inf_ru'], ['vol', 'df_inf_vol']].map(([k, l]) => `<button type="button" data-inff="${k}" aria-pressed="${dfInfFilter === k}">${esc(t(l))}</button>`).join('')}</div>` : '';
+  const head = `<div class="df-head"><div><p class="df-kicker">${esc(dfMode === 'daily' ? t('df_kicker', { n: num, d: fmtDate(key) }) : t('df_kicker_inf'))}</p><h2>${esc(t('df_il_title'))}</h2></div><div class="df-hmeta">${meta}</div><button class="sq" id="dfclose" type="button" aria-label="${esc(t('st_close'))}">×</button></div>`;
+  const infPills = dfMode === 'inf' ? `<div class="df-inf-pills">${[['day', 'df_inf_day'], ['atlas', 'df_inf_atlas']].map(([k, l]) => `<button type="button" data-inff="${k}" aria-pressed="${dfInfFilter === k}">${esc(t(l))}</button>`).join('')}</div>` : '';
   const bar = `<div class="df-bar"><div class="df-tabs" role="tablist"><button type="button" role="tab" data-dfm="daily" aria-selected="${dfMode === 'daily'}">${esc(t('df_tab_daily'))}</button><button type="button" role="tab" data-dfm="inf" aria-selected="${dfMode === 'inf'}">${esc(t('df_tab_inf'))}</button></div>${infPills}</div>`;
   let body = '';
   if (dfMode === 'daily') {
-    const labels = [t('df_step_ru'), t('df_step_ru'), t('df_step_ru'), t('df_step_vol'), t('df_step_bet')];
-    const prog = `<div class="df-prog" aria-hidden="true">${rounds.map((_, i) => { const a = day.ans[i], cls = a ? (i === 4 ? 'bet' : a.ok ? 'ok' : 'ko') : (!day.done && day.step === i ? 'cur' : ''); const sym = a ? (i === 4 ? '◆' : a.ok ? '✓' : '×') : '0' + (i + 1); return `<div class="df-pst ${cls}"><span class="df-pdot">${sym}</span><span>${esc(labels[i])}</span></div>`; }).join('')}</div>`;
-    body = day.done ? dfDoneHTML(key, store, day, rounds) : prog + dfCardHTML(rounds[day.step], day.ans[day.step], `${day.step + 1} / 5`, day.step === 4, false) + `<p class="df-kb">${esc(t('df_kb_hint'))}</p>`;
+    const prog = `<div class="df-prog" aria-hidden="true">${rounds.map((_, i) => { const a = day.ans[i], cls = a ? (a.ok ? 'ok' : 'ko') : (!day.done && day.step === i ? 'cur' : ''); const sym = a ? (a.ok ? '✓' : '×') : '0' + (i + 1); return `<div class="df-pst ${cls}"><span class="df-pdot">${sym}</span><span>0${i + 1}</span></div>`; }).join('')}</div>`;
+    body = day.done ? dfDoneHTML(key, store, day, rounds) : prog + dfCardHTML(rounds[day.step], day.ans[day.step], `${day.step + 1} / 6`, day.step === 5, false) + `<p class="df-kb">${esc(t('df_kb_hint'))}</p>`;
   } else {
     if (!dfInfCard) dfNextInfCard();
     body = dfCardHTML(dfInfCard, dfInfAns, `${t('df_inf_streak', { n: dfInfStreak })} · ${t('df_inf_best', { n: store.infBest || 0 })}`, false, true) + `<p class="df-kb">${esc(t('df_kb_hint'))}</p>`;
@@ -1949,41 +2061,40 @@ function renderDaily() {
     else { dfInfAns = ans; if (ans.ok) { dfInfStreak++; if (dfInfStreak > (store.infBest || 0)) { store.infBest = dfInfStreak; dfWriteStore(store); } } else dfInfStreak = 0; }
     renderDaily();
   };
-  dailyEl.querySelectorAll('[data-pick]').forEach(b => b.onclick = () => { if (!activeCard) return; const pick = b.dataset.pick === '1'; recordAnswer({ pick, ok: pick === activeCard.solved }); });
-  dailyEl.querySelectorAll('[data-vpick]').forEach(b => b.onclick = () => { if (!activeCard) return; const pick = +b.dataset.vpick, win = T[activeCard.a * 5 + 2] >= T[activeCard.b * 5 + 2] ? 0 : 1; recordAnswer({ pick, ok: pick === win }); });
+  dailyEl.querySelectorAll('[data-pick]').forEach(b => b.onclick = () => {
+    if (!activeCard) return;
+    const pick = b.dataset.pick === '1', known = activeCard.kind === 'il' ? activeCard.item.known : activeCard.solved;
+    recordAnswer({ pick, ok: pick === known });
+  });
   const nx = $('dfNext');
-  if (nx) nx.onclick = () => { if (dfMode === 'daily') { if (day.step < 4) day.step++; dfWriteStore(store); renderDaily(); } else { dfNextInfCard(); renderDaily(); } };
-  const br = $('dfBetR'), bo = $('dfBetOut'), bs = $('dfBetSave');
-  if (br && bo) br.oninput = () => { bo.textContent = br.value + ' %'; };
-  if (bs && br && activeCard && activeCard.kind === 'bet') {
-    bs.onclick = () => {
-      const p = +br.value;
-      day.ans[4] = { p, ok: true }; day.done = true;
-      if (store.lastDone !== key) { store.streak = store.lastDone === dfPrevKey(key) ? (store.streak || 0) + 1 : 1; store.lastDone = key; }
-      dfWriteStore(store); syncDailyBtn();
-      if (activeCard.claimId) {
-        const o = fcRead(); o[activeCard.claimId] = { p, t: Date.now() }; fcWrite(o);
-        if (DATA.API) { const tok = fcToken(); fcApi('/api/challenge').then(ch => fcSolve(ch, activeCard.claimId, tok).then(counter => fcApi('/api/vote', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ claim: activeCard.claimId, token: tok, p, ...ch, counter }) }))).catch(() => {}); }
+  if (nx) nx.onclick = () => {
+    if (dfMode === 'daily') {
+      if (day.step < 5) { day.step++; dfWriteStore(store); renderDaily(); }
+      else {
+        day.done = true;
+        if (store.lastDone !== key) { store.streak = store.lastDone === dfPrevKey(key) ? (store.streak || 0) + 1 : 1; store.lastDone = key; }
+        dfWriteStore(store); syncDailyBtn(); renderDaily();
       }
-      renderDaily();
-    };
-  }
+    } else { dfNextInfCard(); renderDaily(); }
+  };
   const shareText = () => {
-    const score = day.ans.slice(0, 4).filter(a => a && a.ok).length, betP = day.ans[4] ? day.ans[4].p : 50;
-    const g = day.ans.map((a, i) => i === 4 ? '◆' : (a && a.ok ? '●' : '○')).join(' ');
-    return t('df_share_line', { n: num, g, s: score, p: betP, u: `https://unknownpedia.org/${LANG}/${LANG === 'fr' ? '#defi' : '#daily'}` });
+    const score = day.ans.filter(a => a && a.ok).length;
+    const traps = rounds.filter((r, i) => !r.item.known && day.ans[i] && day.ans[i].pick === true).length;
+    const g = day.ans.map(a => a && a.ok ? '●' : '○').join(' ');
+    return t('df_il_share', { n: num, g, s: score, tr: t('df_il_traps_line', { k: traps }), u: `https://unknownpedia.org/${LANG}/${LANG === 'fr' ? '#defi' : '#daily'}` });
   };
   const cp = $('dfCopyRes'); if (cp) cp.onclick = () => dfCopy(shareText(), cp);
-  const ns = $('dfNatShare'); if (ns) ns.onclick = () => navigator.share({ title: t('df_title'), text: shareText() }).catch(() => {});
+  const ns = $('dfNatShare'); if (ns) ns.onclick = () => navigator.share({ title: t('df_il_title'), text: shareText() }).catch(() => {});
   const gi = $('dfGoInf'); if (gi) gi.onclick = () => { dfMode = 'inf'; dfNextInfCard(); renderDaily(); };
   dailyEl.querySelectorAll('[data-dfq]').forEach(b => b.onclick = () => { closeDaily(); openQ(+b.dataset.dfq); });
-  dailyEl.querySelectorAll('[data-dft]').forEach(b => b.onclick = () => { closeDaily(); openT(+b.dataset.dft); });
   dailyEl.querySelectorAll('[data-dfcl]').forEach(b => b.onclick = () => { closeDaily(); openClaims(b.dataset.dfcl); });
   dailyEl.querySelectorAll('[data-dffact]').forEach(b => b.onclick = () => {
-    if (!activeCard || activeCard.kind !== 'ru') return;
-    const q = Q[activeCard.qi], u = `https://unknownpedia.org/${LANG}/#${q.id}`;
-    const txt = activeCard.solved ? t('df_fact_solved', { y: q.year, q: loc(q.qq), u }) : t('df_fact_open', { q: loc(q.qq), u });
-    dfCopy(txt, b);
+    if (!activeCard) return;
+    const isIl = activeCard.kind === 'il', known = isIl ? activeCard.item.known : activeCard.solved;
+    const qid = isIl ? activeCard.item.qid : Q[activeCard.qi].id;
+    const prompt = isIl ? loc(activeCard.item.q) : loc(Q[activeCard.qi].qq);
+    const u = qid ? `https://unknownpedia.org/${LANG}/#${qid}` : `https://unknownpedia.org/${LANG}/${LANG === 'fr' ? '#defi' : '#daily'}`;
+    dfCopy(t(known ? 'df_il_fact_yes' : 'df_il_fact_no', { q: prompt, u }), b);
   });
 }
 function openDaily(mode) {
@@ -2012,17 +2123,17 @@ addEventListener('keydown', e => {
 function drawCardBase(titleLines, kicker, footLeft, footRight) {
   const c = document.createElement('canvas'); c.width = 1200; c.height = 630;
   const g = c.getContext('2d');
-  g.fillStyle = '#f7f4eb'; g.fillRect(0, 0, 1200, 630);
-  g.strokeStyle = '#292921'; g.lineWidth = 2.5; g.strokeRect(24, 24, 1152, 582);
+  g.fillStyle = '#ece5d5'; g.fillRect(0, 0, 1200, 630);
+  g.strokeStyle = '#171e29'; g.lineWidth = 2.5; g.strokeRect(24, 24, 1152, 582);
   g.lineWidth = 0.9; g.strokeRect(34, 34, 1132, 562);
-  g.fillStyle = '#9c2935'; g.font = '700 17px "Archivo Narrow", sans-serif'; g.fillText(kicker.toUpperCase(), 72, 90);
-  g.strokeStyle = '#292921'; g.lineWidth = 2.4; g.beginPath(); g.moveTo(72, 108); g.lineTo(1128, 108); g.stroke();
+  g.fillStyle = '#a5242c'; g.font = '700 17px "Archivo Narrow", sans-serif'; g.fillText(kicker.toUpperCase(), 72, 90);
+  g.strokeStyle = '#171e29'; g.lineWidth = 2.4; g.beginPath(); g.moveTo(72, 108); g.lineTo(1128, 108); g.stroke();
   g.lineWidth = 0.9; g.beginPath(); g.moveTo(72, 114); g.lineTo(1128, 114); g.stroke();
-  g.fillStyle = '#292921'; g.font = '400 48px "IM Fell DW Pica", Georgia, serif';
+  g.fillStyle = '#171e29'; g.font = '400 48px "IM Fell DW Pica", Georgia, serif';
   titleLines.forEach((l, i) => g.fillText(l, 72, 184 + i * 56));
-  g.strokeStyle = 'rgba(41,41,33,.32)'; g.lineWidth = 1; g.beginPath(); g.moveTo(72, 532); g.lineTo(1128, 532); g.stroke();
-  g.fillStyle = '#55564b'; g.font = '400 16px "Archivo Narrow", sans-serif'; g.fillText(footLeft, 72, 566);
-  g.fillStyle = '#292921'; g.font = 'italic 400 20px "IM Fell DW Pica", Georgia, serif'; g.textAlign = 'right'; g.fillText(footRight, 1128, 566); g.textAlign = 'left';
+  g.strokeStyle = 'rgba(23,30,41,.28)'; g.lineWidth = 1; g.beginPath(); g.moveTo(72, 532); g.lineTo(1128, 532); g.stroke();
+  g.fillStyle = '#525965'; g.font = '400 16px "Archivo Narrow", sans-serif'; g.fillText(footLeft, 72, 566);
+  g.fillStyle = '#171e29'; g.font = 'italic 400 20px "IM Fell DW Pica", Georgia, serif'; g.textAlign = 'right'; g.fillText(footRight, 1128, 566); g.textAlign = 'left';
   return { c, g };
 }
 function wrapCanvas(g, txt, maxW, maxLines) {
@@ -2039,17 +2150,17 @@ function downloadClaimPNG(e) {
   const probe = document.createElement('canvas').getContext('2d'); probe.font = '400 48px "IM Fell DW Pica", Georgia, serif';
   const lines = wrapCanvas(probe, loc(e.title), 1040, 3);
   const { c, g } = drawCardBase(lines, `Unknownpedia · ${t('ia_st_' + e.st)} · ${fmtDate(e.date)}`, `${t('cl_intro').split('.')[0]}. · ${t('ia_checked')} ${fmtDate(e.checked)}`, `unknownpedia.org/${LANG}/c/${e.id}/`);
-  g.fillStyle = '#55564b'; g.font = '700 16px "Archivo Narrow", sans-serif'; g.fillText(`${t('lad_t').toUpperCase()} · ${ladderSummary(e).toUpperCase()}`, 72, 356);
-  g.strokeStyle = 'rgba(41,41,33,.28)'; g.lineWidth = 2; g.beginPath(); g.moveTo(156, 422); g.lineTo(1044, 422); g.stroke();
+  g.fillStyle = '#525965'; g.font = '700 16px "Archivo Narrow", sans-serif'; g.fillText(`${t('lad_t').toUpperCase()} · ${ladderSummary(e).toUpperCase()}`, 72, 356);
+  g.strokeStyle = 'rgba(23,30,41,.28)'; g.lineWidth = 2; g.beginPath(); g.moveTo(156, 422); g.lineTo(1044, 422); g.stroke();
   e.lad.forEach((r, idx) => {
     const cx = 156 + idx * 222, cy = 422;
     g.save();
-    if (r.s === 'yes') { g.fillStyle = '#292921'; g.beginPath(); g.arc(cx, cy, 22, 0, 7); g.fill(); g.strokeStyle = '#f7f4eb'; g.lineWidth = 3.5; g.beginPath(); g.moveTo(cx - 8, cy + 1); g.lineTo(cx - 2, cy + 7); g.lineTo(cx + 10, cy - 6); g.stroke(); }
-    else if (r.s === 'partial') { g.fillStyle = '#f7f4eb'; g.strokeStyle = '#292921'; g.lineWidth = 2.6; g.beginPath(); g.arc(cx, cy, 21, 0, 7); g.fill(); g.stroke(); g.fillStyle = '#292921'; g.beginPath(); g.arc(cx, cy, 21, Math.PI / 2, Math.PI * 1.5); g.closePath(); g.fill(); }
-    else if (r.s === 'no') { g.fillStyle = '#f7f4eb'; g.strokeStyle = 'rgba(41,41,33,.72)'; g.lineWidth = 2.4; g.beginPath(); g.arc(cx, cy, 21, 0, 7); g.fill(); g.stroke(); }
-    else { g.fillStyle = '#f7f4eb'; g.strokeStyle = '#55564b'; g.lineWidth = 2.2; g.setLineDash([5, 4]); g.beginPath(); g.arc(cx, cy, 21, 0, 7); g.fill(); g.stroke(); g.setLineDash([]); g.fillStyle = '#55564b'; g.font = '700 20px "Archivo Narrow", sans-serif'; g.textAlign = 'center'; g.fillText('?', cx, cy + 7); }
-    g.textAlign = 'center'; g.fillStyle = '#292921'; g.font = '700 16px "Archivo Narrow", sans-serif'; g.fillText(t('rung_short_' + r.k), cx, cy + 48);
-    g.fillStyle = '#55564b'; g.font = '400 13px "Archivo Narrow", sans-serif'; g.fillText(t('lad_' + r.s).toUpperCase(), cx, cy + 70);
+    if (r.s === 'yes') { g.fillStyle = '#171e29'; g.beginPath(); g.arc(cx, cy, 22, 0, 7); g.fill(); g.strokeStyle = '#ece5d5'; g.lineWidth = 3.5; g.beginPath(); g.moveTo(cx - 8, cy + 1); g.lineTo(cx - 2, cy + 7); g.lineTo(cx + 10, cy - 6); g.stroke(); }
+    else if (r.s === 'partial') { g.fillStyle = '#ece5d5'; g.strokeStyle = '#171e29'; g.lineWidth = 2.6; g.beginPath(); g.arc(cx, cy, 21, 0, 7); g.fill(); g.stroke(); g.fillStyle = '#171e29'; g.beginPath(); g.arc(cx, cy, 21, Math.PI / 2, Math.PI * 1.5); g.closePath(); g.fill(); }
+    else if (r.s === 'no') { g.fillStyle = '#ece5d5'; g.strokeStyle = 'rgba(23,30,41,.72)'; g.lineWidth = 2.4; g.beginPath(); g.arc(cx, cy, 21, 0, 7); g.fill(); g.stroke(); }
+    else { g.fillStyle = '#ece5d5'; g.strokeStyle = '#525965'; g.lineWidth = 2.2; g.setLineDash([5, 4]); g.beginPath(); g.arc(cx, cy, 21, 0, 7); g.fill(); g.stroke(); g.setLineDash([]); g.fillStyle = '#525965'; g.font = '700 20px "Archivo Narrow", sans-serif'; g.textAlign = 'center'; g.fillText('?', cx, cy + 7); }
+    g.textAlign = 'center'; g.fillStyle = '#171e29'; g.font = '700 16px "Archivo Narrow", sans-serif'; g.fillText(t('rung_short_' + r.k), cx, cy + 48);
+    g.fillStyle = '#525965'; g.font = '400 13px "Archivo Narrow", sans-serif'; g.fillText(t('lad_' + r.s).toUpperCase(), cx, cy + 70);
     g.restore();
   });
   triggerPNG(c, `unknownpedia-${e.id}.png`);
@@ -2060,11 +2171,29 @@ function downloadQuestionPNG(q) {
   const fld = q.subs.length ? loc(F[S[q.subs[0]].f].nn) : '';
   const kicker = q.adv ? `Unknownpedia · ${t('st_adv')} · ${q.year}` : `Unknownpedia · ${t('sh_still_unknown')}`;
   const { c, g } = drawCardBase(lines, kicker, fld + (q.adv ? '' : ' · ' + t(q.k ? 'st_enigme' : 'st_' + q.st)), `unknownpedia.org/${LANG}/q/${q.id}/`);
-  g.fillStyle = '#9c2935'; g.font = '700 132px "IM Fell DW Pica", Georgia, serif'; g.textAlign = 'right'; g.fillText(q.adv ? '!' : '?', 1122, 265); g.textAlign = 'left';
-  g.fillStyle = '#55564b'; g.font = '400 22px "Archivo Narrow", sans-serif';
+  g.fillStyle = '#a5242c'; g.font = '700 132px "IM Fell DW Pica", Georgia, serif'; g.textAlign = 'right'; g.fillText(q.adv ? '!' : '?', 1122, 265); g.textAlign = 'left';
+  g.fillStyle = '#525965'; g.font = '400 22px "Archivo Narrow", sans-serif';
   const ctxLines = wrapCanvas(g, loc(q.cc), 980, 4);
   ctxLines.forEach((l, i) => g.fillText(l, 72, 366 + i * 32));
   triggerPNG(c, `unknownpedia-${q.id}.png`);
+}
+function ilRead() { try { return JSON.parse(localStorage.getItem('uf_illusion') || '{}'); } catch (e) { return {}; } }
+function ilWrite(o) { try { localStorage.setItem('uf_illusion', JSON.stringify(o)); } catch (e) {} }
+function ilAggHTML(a) {
+  if (!a) return '';
+  if (a.pct == null) return `<p class="q-il-msg">${esc(t('il_few', { m: a.min, n: a.n }))}</p>`;
+  return `<div class="q-il-bar"><i style="width:${a.pct}%"></i></div><p class="q-il-msg">${esc(t('il_res', { p: a.pct, n: a.n }))}</p>`;
+}
+function wireIllusion(q) {
+  const box = $('qIl'); if (!box) return;
+  const agg = $('qIlAgg'), msg = $('qIlMsg');
+  if (DATA.API) fcApi('/api/illusion/' + q.id).then(a => { if (agg) agg.innerHTML = ilAggHTML(a); }).catch(() => {});
+  box.querySelectorAll('[data-il]').forEach(b => b.onclick = () => {
+    const v = +b.dataset.il, o = ilRead(); o[q.id] = v; ilWrite(o);
+    box.querySelectorAll('[data-il]').forEach(x => x.setAttribute('aria-pressed', String(+x.dataset.il === v)));
+    if (msg) msg.textContent = t(v === 1 ? 'il_saved_yes' : 'il_saved_no');
+    if (DATA.API) fcApi('/api/illusion', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ qid: q.id, token: fcToken(), thoughtKnown: v === 1 }) }).then(a => { if (agg) agg.innerHTML = ilAggHTML(a); }).catch(() => {});
+  });
 }
 function horRead() { try { return JSON.parse(localStorage.getItem('uf_horizons') || '{}'); } catch (e) { return {}; } }
 function horWrite(o) { try { localStorage.setItem('uf_horizons', JSON.stringify(o)); } catch (e) {} }
@@ -2164,7 +2293,7 @@ function draw(dt) {
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.clearRect(0, 0, W, H); const k = view.k;
   locateOrigin(); syncMargin();
   $('ctx').style.opacity = narrowPlate.matches ? (cur ? 0 : clamp((1.5-k)/.4,0,1)) : 1;
-  LV.forEach((s, l) => { ctx.strokeStyle = inkA(l === 0 ? .8 : .3 + l * .07); ctx.lineWidth = l === 0 ? 1.2 : .5 + l * .12; ctx.beginPath(); for (let i = 0; i < s.length; i += 4) { const a = toScreen(s[i], s[i + 1]), b = toScreen(s[i + 2], s[i + 3]); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); } ctx.stroke(); });
+  LV.forEach((s, l) => { ctx.strokeStyle = l === 0 && dark && COL.gold ? COL.gold : inkA(l === 0 ? .8 : .3 + l * .07); ctx.globalAlpha = l === 0 && dark ? .62 : 1; ctx.lineWidth = l === 0 ? 1.25 : .5 + l * .12; ctx.beginPath(); for (let i = 0; i < s.length; i += 4) { const a = toScreen(s[i], s[i + 1]), b = toScreen(s[i + 2], s[i + 3]); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); } ctx.stroke(); }); ctx.globalAlpha = 1;
   ctx.strokeStyle = inkA(.6); ctx.lineWidth = .7; ctx.beginPath(); for (let i = 0; i < TICKS.length; i += 4) { const a = toScreen(TICKS[i], TICKS[i + 1]); ctx.moveTo(a[0], a[1]); ctx.lineTo(a[0] + TICKS[i + 2] * 5, a[1] + TICKS[i + 3] * 5); } ctx.stroke();
   const litDomain = hoverDomain>=0 ? hoverDomain : pinnedDomain;
   ctx.fillStyle = inkA(.68); const grow = 1 + (k - 1) * .22;
@@ -2200,7 +2329,7 @@ function draw(dt) {
   const cx = W / 2, sel = cur && cur.q != null ? cur.q : -1;
   // Discipline names: once you zoom in (k from 1.7 to 2.2) each numbered circle gets its name beside it and keeps it. The name goes outward if there is room, otherwise
   // to the other side; a name that would overlap another name or number is skipped (the hover card still shows it). Markers are pushed out of these boxes (see pushB).
-  const LR = [], FLN = clamp((k - 1.7) / .5, 0, 1), rightEdge = cur ? 460 : wideKey.matches ? 262 : 4;
+  const LR = [], FLN = clamp((k - 1.7) / .5, 0, 1), rightEdge = cur ? 460 : 8;
   if (FLN > 0) { ctx.font = '12px "Archivo Narrow", sans-serif'; ctx.textBaseline = 'alphabetic';
     ORD.forEach(f => { const b = NS[f]; if (!b) return; const nm = loc(F[f].nn).toUpperCase(), w = ctx.measureText(nm).width, g = 15, pref = b[0] >= cx ? 1 : -1;
       for (const sd of [pref, -pref]) { const x0 = sd > 0 ? b[0] + g : b[0] - g - w, r = [x0 - 3, b[1] - 9, x0 + w + 3, b[1] + 9];

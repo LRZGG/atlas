@@ -87,3 +87,9 @@ Combining all three pillars around the measured map, without ads or accounts:
    - [x] One-click anonymous "Too technical?" feedback button on open question fiches (`/api/feedback` + local state).
    - [x] Dedicated "Are you a specialist? Review this fiche (5 min)" CTA with named ORCID credit support on unreviewed fiches (interactive panel and static `/q/` pages).
    - [x] Compass filters on the map & legend: Everyday mysteries, $1M & classics, Fastest rising (live from `DATA.Y`), With AI, and Full fiches, with a browseable matching list.
+4. **V2 palette, decluttering & public engagement**
+   - [x] Engraved Observatory Night (`#0b111c` / `#e5decb` / `#c9b98b` / `#e36246`) & soft matte vellum Day (`#ece5d5` / `#171e29` / `#a5242c`) across map, plates, share cards, and static pages.
+   - [x] Collapsible legend on all viewports + on-demand reading margin collapse (`marginClose`) for wide open map framing.
+   - [x] Everyday **Illusion of Knowledge** game (`#defi` / `#daily`): 6 daily Yes/No questions mixing genuine everyday open unknowns and settled traps, false-certainty counter, and Endless mode (Everyday / Full Atlas).
+   - [x] One-click fiche reaction ("I thought science already knew" / "I knew we didn't know") synced via `GET/POST /api/illusion`.
+   - [x] **Priorities vs Research** plate (`#priorites` / `#priorities` & flagship tab in Stats): pick your top 3 unknowns to solve in your lifetime and compare live against measured OpenAlex publication shares (`GET/POST /api/priorities`).
